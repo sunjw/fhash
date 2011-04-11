@@ -1,0 +1,192 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\fileshash.rc2""  // 非 Microsoft Visual C++ 编辑资源\r\n"
+    "#include ""afxres.rc""         // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 333, 210
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES | WS_EX_APPWINDOW
+CAPTION "fHash"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "BUTTON_OPEN",IDC_OPEN,276,126,50,16
+    PUSHBUTTON      "BUTTON_STOP",IDC_STOP,276,144,50,16,WS_DISABLED
+    PUSHBUTTON      "BUTTON_CLEAN",IDC_CLEAN,222,162,50,16
+    PUSHBUTTON      "BUTTON_COPY",IDC_COPY,167,162,50,16
+    CONTROL         "",IDC_CHECKUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,45,165,11,10
+    PUSHBUTTON      "BUTTON_ABOUT'",IDC_ABOUT,7,187,48,16
+    PUSHBUTTON      "BUTTON_EXIT",IDC_EXIT,276,187,50,16
+    EDITTEXT        IDE_TXTMAIN,7,8,319,115,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "FILE_PROG",IDC_STATIC_FILE,7,131,33,8
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",WS_BORDER,45,130,225,9
+    LTEXT           "WHOLE_PROG",IDC_STATIC_WHOLE,7,147,33,8
+    CONTROL         "",IDC_PROG_WHOLE,"msctls_progress32",WS_BORDER,45,147,225,9
+    LTEXT           "XXXXXs",IDC_STATIC_TIME,98,165,25,8
+    LTEXT           "计算时间:",IDC_STATIC_STR1,60,165,36,8
+    LTEXT           "XX.XXMB/s",IDC_STATIC_SPEED,127,165,37,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,182,319,1
+    LTEXT           "UPPER_HASH",IDC_STATIC_UPPER,7,165,37,8
+    PUSHBUTTON      "BUTTON_FIND",IDC_FIND,276,162,50,16
+    PUSHBUTTON      "BUTTON_CONTEXT",IDC_CONTEXT,60,187,61,16
+    LTEXT           "静态",IDC_STATIC_ADDRESULT,129,191,101,11
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 252, 166
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ABOUT_TITLE"
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    LTEXT           "静态",IDC_MAIN,74,10,168,121
+    PUSHBUTTON      "BUTTON_OK",IDOK,192,142,50,14
+    ICON            IDI_ICON1,IDC_ICON2,10,10,20,20
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,11,135,231,1
+END
+
+IDD_FIND_DIALOG DIALOGEX 0, 0, 181, 65
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FIND_TITLE"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_FILE,41,7,133,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,41,25,133,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "BUTTON_OK",IDOK,71,44,50,14
+    PUSHBUTTON      "BUTTON_CANCEL",IDCANCEL,125,44,50,14
+    LTEXT           "FILENAME",IDC_STATIC_FILE,7,10,31,8,0,WS_EX_RIGHT
+    LTEXT           "HASH",IDC_STATIC_HASH,7,28,31,8,0,WS_EX_RIGHT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 326
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 203
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 242
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 156
+    END
+
+    IDD_FIND_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "res\\fileshash.manifest"
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\fileshash.rc2"  // 非 Microsoft Visual C++ 编辑资源
+#include "afxres.rc"         // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,52 @@
+//
+// MD5SUM03.RC2 - Microsoft Visual C++ 不会直接编辑的资源
+//
+
+#ifdef APSTUDIO_INVOKED
+#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 在此处添加手动编辑的资源...
+/////////////////////////////////////////////////////////////////////////////
+#include "version.h"
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION NUM_VERSION
+ PRODUCTVERSION NUM_VERSION
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "CompanyName", "SUN Junwen"
+            VALUE "FileDescription", "fHash: 文件 Hash 计算器"
+            VALUE "FileVersion", STR_VERSION
+            VALUE "InternalName", "filesmd5.exe"
+            VALUE "LegalCopyright", "(C) 2007-2010 SUN Junwen。保留所有权利。"
+            VALUE "OriginalFilename", "fHash.exe"
+            VALUE "ProductName", "fHash: 文件 Hash 计算器"
+            VALUE "ProductVersion", STR_VERSION
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
