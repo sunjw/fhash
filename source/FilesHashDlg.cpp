@@ -93,11 +93,13 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_STATIC_FILE);
 	pWnd->SetWindowText(MAINDLG_FILE_PROGRESS);
 	pWnd = GetDlgItem(IDC_STATIC_WHOLE);
-	pWnd->SetWindowText(MAINDLG_WHOLE_PROGRESS);
+	pWnd->SetWindowText(MAINDLG_TOTAL_PROGRESS);
 	pWnd = GetDlgItem(IDC_STATIC_UPPER);
 	pWnd->SetWindowText(MAINDLG_UPPER_HASH);
 	pWnd = GetDlgItem(IDC_STATIC_UPPER);
 	pWnd->SetWindowText(MAINDLG_UPPER_HASH);
+	pWnd = GetDlgItem(IDC_STATIC_TIMETITLE);
+	pWnd->SetWindowText(MAINDLG_TIME_TITLE);
 
 	m_btnOpen.SetWindowText(MAINDLG_OPEN);
 	m_btnStop.SetWindowText(MAINDLG_STOP);
@@ -634,7 +636,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 {
-	CString strResult(MAINDLG_SEARCH_IN_RESULT);
+	CString strResult(MAINDLG_FIND_IN_RESULT);
 	strResult.Append(_T("\r\n"));
 	strResult.Append(FILENAME_STRING);
 	strResult.Append(_T(" "));

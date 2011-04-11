@@ -1,4 +1,4 @@
-#define ZH_CN
+//#define ZH_CN
 
 #ifdef ZH_CN
 // Global Strings
@@ -25,12 +25,13 @@ const char* MAINDLG_ADD_CONTEXT_MENU = "添加右键菜单";
 const char* MAINDLG_CLEAN = "清除(&N)";
 const char* MAINDLG_CLEAN_FIND = "清除查找(&N)";
 const char* MAINDLG_CALCU_TERMINAL = "计算终止";
-const char* MAINDLG_SEARCH_IN_RESULT = "在结果中搜索";
+const char* MAINDLG_FIND_IN_RESULT = "在结果中搜索";
 const char* MAINDLG_RESULT = "匹配的结果:";
 const char* MAINDLG_NORESULT = "无匹配结果";
 const char* MAINDLG_FILE_PROGRESS = "文件进度";
-const char* MAINDLG_WHOLE_PROGRESS = "总体进度";
+const char* MAINDLG_TOTAL_PROGRESS = "总体进度";
 const char* MAINDLG_UPPER_HASH = "大写 Hash";
+const char* MAINDLG_TIME_TITLE = "计算时间:";
 const char* MAINDLG_OPEN = "打开(&O)...";
 const char* MAINDLG_STOP = "停止(&S)";
 const char* MAINDLG_COPY = "全部复制(&C)";
@@ -52,5 +53,56 @@ const char* ABOUTDLG_INFO_RIGHTDETAIL = "详细授权信息见开发者网站。";
 const char* ABOUTDLG_INFO_OSTITLE = "当前操作系统:";
 
 #else
+// Global Strings
+const char* FILE_STRING = "File";
+const char* BYTE_STRING = "Byte(s)";
+const char* HASHVALUE_STRING = "Hash:";
+const char* FILENAME_STRING = "Name:";
+const char* FILESIZE_STRING = "File Size:";
+const char* MODIFYTIME_STRING = "Modified Date:";
+const char* VERSION_STRING = "Version:";
+const char* SECOND_STRING = "second(s)";
+const char* BUTTON_OK = "OK";
+const char* BUTTON_CANCEL = "Cancel";
+
+// Main Dialog Strings
+const char* MAINDLG_INITINFO = "Drag files here or click open to start calculate.";
+const char* MAINDLG_CONTEXT_INIT = "Need Administrator";
+const char* MAINDLG_ADD_SUCCEEDED = "Add Succeeded";
+const char* MAINDLG_ADD_FAILED = "Add Failed";
+const char* MAINDLG_REMOVE_SUCCEEDED = "Remove Succeeded";
+const char* MAINDLG_REMOVE_FAILED = "Remove Failed";
+const char* MAINDLG_REMOVE_CONTEXT_MENU = "Remove Context Item";
+const char* MAINDLG_ADD_CONTEXT_MENU = "Add Context Item";
+const char* MAINDLG_CLEAN = "Clea&n";
+const char* MAINDLG_CLEAN_FIND = "Clea&n Result";
+const char* MAINDLG_CALCU_TERMINAL = "Terminated";
+const char* MAINDLG_FIND_IN_RESULT = "Find";
+const char* MAINDLG_RESULT = "Result:";
+const char* MAINDLG_NORESULT = "Nothing Found";
+const char* MAINDLG_FILE_PROGRESS = "File";
+const char* MAINDLG_TOTAL_PROGRESS = "Total";
+const char* MAINDLG_UPPER_HASH = "Uppercase";
+const char* MAINDLG_TIME_TITLE = "Time Used:";
+const char* MAINDLG_OPEN = "&Open...";
+const char* MAINDLG_STOP = "&Stop";
+const char* MAINDLG_COPY = "&Copy";
+const char* MAINDLG_FIND = "&Find";
+const char* MAINDLG_ABOUT = "&About";
+const char* MAINDLG_EXIT = "E&xit";
+
+// Find Dialog Strings
+const char* FINDDLG_TITLE = "Find";
+
+// About Dialog Strings
+const char* ABOUTDLG_TITLE = "About fHash";
+const char* ABOUTDLG_INFO_TITLE = "fHash: Files' Hash Calculator ";
+const char* ABOUTDLG_INFO_RIGHT = "Copyright (C) 2007-2010 SUN Junwen.";
+const char* ABOUTDLG_INFO_MD5 = "MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.";
+const char* ABOUTDLG_INFO_SHA256 = "SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller";
+const char* ABOUTDLG_INFO_CRC32 = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";
+const char* ABOUTDLG_INFO_RIGHTDETAIL = "More details are on Project Site.";
+const char* ABOUTDLG_INFO_OSTITLE = "Operating System:";
+
 
 #endif
