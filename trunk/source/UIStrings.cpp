@@ -45,7 +45,7 @@ const char* FINDDLG_TITLE = "查找";
 // About Dialog Strings
 const char* ABOUTDLG_TITLE = "关于 fHash";
 const char* ABOUTDLG_INFO_TITLE = "fHash: 文件 Hash 计算器 ";
-const char* ABOUTDLG_INFO_RIGHT = "Copyright (C) 2007-2010 SUN Junwen.";
+const char* ABOUTDLG_INFO_RIGHT = "Copyright (C) 2007-2011 SUN Junwen.";
 const char* ABOUTDLG_INFO_MD5 = "MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.";
 const char* ABOUTDLG_INFO_SHA256 = "SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller";
 const char* ABOUTDLG_INFO_CRC32 = "CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl";
@@ -97,7 +97,7 @@ const char* FINDDLG_TITLE = "Find";
 // About Dialog Strings
 const char* ABOUTDLG_TITLE = "About fHash";
 const char* ABOUTDLG_INFO_TITLE = "fHash: Files' Hash Calculator ";
-const char* ABOUTDLG_INFO_RIGHT = "Copyright (C) 2007-2010 SUN Junwen.";
+const char* ABOUTDLG_INFO_RIGHT = "Copyright (C) 2007-2011 SUN Junwen.";
 const char* ABOUTDLG_INFO_MD5 = "MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.";
 const char* ABOUTDLG_INFO_SHA256 = "SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller";
 const char* ABOUTDLG_INFO_CRC32 = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";
