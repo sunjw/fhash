@@ -4,6 +4,7 @@
 
 #include "HashEngine.h"
 #include "Functions.h"
+#include "UIStrings.h"
 
 #include "Algorithms/md5.h"
 #include "Algorithms/sha1.h"
@@ -94,7 +95,8 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		int position = 0; // 进度条位置
 
 		// 显示文件名
-		thrdData->strAll.Append("文件名: ");
+		thrdData->strAll.Append(FILENAME_STRING);
+		thrdData->strAll.Append(" ");
 		thrdData->strAll.Append(thrdData->fullPaths[i]);
 		thrdData->strAll.Append("\r\n"); 
 
@@ -142,18 +144,24 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			strFileSize.Format("%I64u", fsize);
 
-			thrdData->strAll.Append("文件大小: ");
+			thrdData->strAll.Append(FILESIZE_STRING);
+			thrdData->strAll.Append(" ");
 			thrdData->strAll.Append(strFileSize);
-			thrdData->strAll.Append(" 字节");
+			thrdData->strAll.Append(" ");
+			thrdData->strAll.Append(BYTE_STRING);
 			thrdData->strAll.Append(shortSize);
-			thrdData->strAll.Append("\r\n修改日期: ");
+			thrdData->strAll.Append("\r\n");
+			thrdData->strAll.Append(MODIFYTIME_STRING);
+			thrdData->strAll.Append(" ");
 			thrdData->strAll.Append(lastModifiedTime);
 
 			// get file version //
 			CString Ver = GetExeFileVersion(path);
 			if(Ver.Compare("") != 0)
 			{
-				thrdData->strAll.Append("\r\n版本: ");
+				thrdData->strAll.Append("\r\n");
+				thrdData->strAll.Append(VERSION_STRING);
+				thrdData->strAll.Append(" ");
 				thrdData->strAll.Append(Ver);
 				/*
 				thrdData->strAll = thrdData->strAll + "文件大小: " + thrdData->Size + " 字节" + shortSize + "\r\n"

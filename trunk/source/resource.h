@@ -25,6 +25,7 @@
 #define IDC_CHECKUP                     1019
 #define IDC_STATIC_TIME                 1020
 #define IDC_STATIC_STR1                 1021
+#define IDC_STATIC_TIMETITLE            1021
 #define IDC_STATIC_SPEED                1022
 #define IDC_ADDReg                      1023
 #define IDC_STATIC_WHOLE2               1023
