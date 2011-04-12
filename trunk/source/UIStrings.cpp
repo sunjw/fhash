@@ -61,7 +61,7 @@ const char* FILENAME_STRING = "Name:";
 const char* FILESIZE_STRING = "File Size:";
 const char* MODIFYTIME_STRING = "Modified Date:";
 const char* VERSION_STRING = "Version:";
-const char* SECOND_STRING = "second(s)";
+const char* SECOND_STRING = "s";
 const char* BUTTON_OK = "OK";
 const char* BUTTON_CANCEL = "Cancel";
 
