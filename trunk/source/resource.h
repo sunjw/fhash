@@ -37,6 +37,8 @@
 #define IDC_EDIT2                       1027
 #define IDC_BUTTON1                     1028
 #define IDC_CONTEXT                     1028
+#define IDC_SYSLINK1                    1029
+#define IDC_SYSLINK_SITE                1029
 
 // Next default values for new objects
 // 
@@ -44,7 +46,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32772
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

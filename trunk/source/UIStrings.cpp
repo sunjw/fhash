@@ -51,6 +51,7 @@ const char* ABOUTDLG_INFO_SHA256 = "SHA256 算法是由 Niels Moller 编写。Copyright
 const char* ABOUTDLG_INFO_CRC32 = "CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl";
 const char* ABOUTDLG_INFO_RIGHTDETAIL = "详细授权信息见开发者网站。";
 const char* ABOUTDLG_INFO_OSTITLE = "当前操作系统:";
+const char* ABOUTDLG_PROJECT_SITE = "<a>项目主页</a>";
 
 #else
 // Global Strings
@@ -103,6 +104,6 @@ const char* ABOUTDLG_INFO_SHA256 = "SHA256 Algorithm is writtend by Niels Moller
 const char* ABOUTDLG_INFO_CRC32 = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";
 const char* ABOUTDLG_INFO_RIGHTDETAIL = "More details are on Project Site.";
 const char* ABOUTDLG_INFO_OSTITLE = "Operating System:";
-
+const char* ABOUTDLG_PROJECT_SITE = "<a>Project Home</a>";
 
 #endif
