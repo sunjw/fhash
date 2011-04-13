@@ -51,5 +51,6 @@ extern const char* ABOUTDLG_INFO_SHA256;
 extern const char* ABOUTDLG_INFO_CRC32;
 extern const char* ABOUTDLG_INFO_RIGHTDETAIL;
 extern const char* ABOUTDLG_INFO_OSTITLE;
+extern const char* ABOUTDLG_PROJECT_SITE;
 
 #endif

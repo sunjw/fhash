@@ -32,4 +32,5 @@ public:
 //	bool IsContextMenuAdded(void);
 //
 //	char exeFullPath[MAX_PATH + 10]; // MAX_PATH
+	afx_msg void OnNMClickSyslinkSite(NMHDR *pNMHDR, LRESULT *pResult);
 };
