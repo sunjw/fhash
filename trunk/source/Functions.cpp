@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include <atlbase.h>
-
 #include "Functions.h"
 
 CString ConvertSizeToCStr(ULONGLONG size)
@@ -17,13 +16,13 @@ CString ConvertSizeToCStr(ULONGLONG size)
 			if(M_fsize > 1024)
 			{
 				float g_fsize = M_fsize / 1024;
-				strSize.Format(" (%.2f GB)", g_fsize);
+				strSize.Format(_T(" (%.2f GB)"), g_fsize);
 			}
 			else
-				strSize.Format(" (%.2f MB)", M_fsize);
+				strSize.Format(_T(" (%.2f MB)"), M_fsize);
 		}
 		else
-			strSize.Format(" (%.2f KB)", k_fsize);
+			strSize.Format(_T(" (%.2f KB)"), k_fsize);
 	}
 
 	return strSize;
@@ -39,7 +38,7 @@ CString GetExeFileVersion(char* path)
 {
 	// get file version //
 
-	CString Ver = "";
+	CString Ver(_T(""));
 	unsigned int MVer,SVer,LVer,BVer;
 	VS_FIXEDFILEINFO pvsf;
 	DWORD dwHandle;
@@ -50,7 +49,7 @@ CString GetExeFileVersion(char* path)
 	{
 		UINT uLen;
 		void *pbuf;
-		bret = VerQueryValue(pver, "\\", &pbuf, &uLen);
+		bret = VerQueryValue(pver, _T("\\"), &pbuf, &uLen);
 		memcpy(&pvsf, pbuf, sizeof(VS_FIXEDFILEINFO));
 
 		// 将版本号转换为数字 //
@@ -58,7 +57,7 @@ CString GetExeFileVersion(char* path)
 		SVer = pvsf.dwFileVersionMS - 65536 * MVer;
 		LVer = pvsf.dwFileVersionLS / 65536;
 		BVer = pvsf.dwFileVersionLS - 65536 * LVer;
-		Ver.Format("%d.%d.%d.%d", MVer, SVer, LVer, BVer);
+		Ver.Format(_T("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
 		// 将版本号转换为数字 //
 	}
 
@@ -90,7 +89,7 @@ BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx)
  */
 CString GetWindowsInfo()
 {
-	CString osinfo="";
+	CString osinfo(_T(""));
 
 	OSVERSIONINFOEX osvi;
 	SYSTEM_INFO si;
@@ -103,17 +102,15 @@ CString GetWindowsInfo()
 
 	// Call GetNativeSystemInfo if supported or GetSystemInfo otherwise.
 
-	pGNSI = (PGNSI) GetProcAddress(
-		GetModuleHandle(TEXT("kernel32.dll")), 
-		"GetNativeSystemInfo");
+	pGNSI = (PGNSI)GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetNativeSystemInfo");
 	if(NULL != pGNSI)
 		pGNSI(&si);
-	else GetSystemInfo(&si);
+	else 
+		GetSystemInfo(&si);
 
-	switch (osvi.dwPlatformId)
+	switch(osvi.dwPlatformId)
 	{
-		// Test for the Windows NT product family.
-
+	// Test for the Windows NT product family.
 	case VER_PLATFORM_WIN32_NT:
 
 		// Test for the specific product.
@@ -122,23 +119,23 @@ CString GetWindowsInfo()
 			osinfo.AppendFormat(_T("Windows Version %d"), osvi.dwMajorVersion);
 		}
 
-		if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
+		if(osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
 		{
 			if( osvi.wProductType == VER_NT_WORKSTATION )
 				osinfo.Append(_T("Windows 7 "));
 			else 
-				osinfo.Append(_T("Windows Server \"Longhorn\" "));
+				osinfo.Append(_T("Windows Server 2008 R2 "));
 		}
 
-		if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
+		if(osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
 		{
 			if( osvi.wProductType == VER_NT_WORKSTATION )
 				osinfo.Append(_T("Windows Vista "));
 			else 
-				osinfo.Append(_T("Windows Server \"Longhorn\" "));
+				osinfo.Append(_T("Windows Server 2008 "));
 		}
 
-		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
+		if(osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
 		{
 			if( osvi.wProductType == VER_NT_WORKSTATION &&
 				si.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64)
@@ -149,57 +146,53 @@ CString GetWindowsInfo()
 				osinfo.Append(_T("Microsoft Windows Server 2003, "));
 		}
 
-		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1 )
+		if(osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1 )
 		{	
 			osinfo.Append(_T("Microsoft Windows XP "));
 		}
 
-		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
+		if(osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
 			osinfo.Append(_T("Microsoft Windows 2000 "));
 
-		if ( osvi.dwMajorVersion <= 4 )
+		if(osvi.dwMajorVersion <= 4 )
 			osinfo.Append(_T("Microsoft Windows NT "));
 
 		///osvi.dwMajorVersion = 6;
 
 		if(osvi.dwMajorVersion != 6)
 		{
-			if(  osvi.wSuiteMask & VER_SUITE_PERSONAL )
+			if(osvi.wSuiteMask & VER_SUITE_PERSONAL)
 				osinfo.Append(_T( "Home Edition "));
-			else osinfo.Append(_T( "Professional "));
+			else
+				osinfo.Append(_T( "Professional "));
 		}
 		else
 		{
 			// 获得GetProductInfo函数原型
-			PGPI   pGetProductInfo  = NULL;
-			pGetProductInfo = (PGPI) GetProcAddress( GetModuleHandle(TEXT("kernel32.dll")), "GetProductInfo");
+			PGPI pGetProductInfo  = NULL;
+			pGetProductInfo = (PGPI)GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetProductInfo");
 			if( pGetProductInfo != NULL )
 			{
 				DWORD dwProductType = 0;
-				(*pGetProductInfo)( 6,0,0,0,&dwProductType);
+				(*pGetProductInfo)(osvi.dwMajorVersion, osvi.dwMinorVersion, 0, 0, &dwProductType);
 				switch( dwProductType )
 				{
 				case PRODUCT_ULTIMATE:
-				case PRODUCT_ULTIMATE_N:
 					osinfo.Append(_T("Ultimate Edition "));
 					break;
+				case PRODUCT_PROFESSIONAL:
+					osinfo.Append(_T("Professional "));
+					break;
 				case PRODUCT_HOME_PREMIUM:
-				case PRODUCT_HOME_PREMIUM_N:
 					osinfo.Append(_T("Home Premium Edition "));
 					break;
 				case PRODUCT_HOME_BASIC:
-				case PRODUCT_HOME_BASIC_N:
 					osinfo.Append(_T("Home Basic Edition "));
 					break;
-				case PRODUCT_HOME_SERVER:
-					osinfo.Append(_T("Home Server Edition "));
-					break;
 				case PRODUCT_ENTERPRISE:
-				case PRODUCT_ENTERPRISE_N:
 					osinfo.Append(_T("Enterprise Edition "));
 					break;
 				case PRODUCT_BUSINESS:
-				case PRODUCT_BUSINESS_N:
 					osinfo.Append(_T("Business Edition "));
 					break;
 				case PRODUCT_STARTER:
@@ -215,7 +208,7 @@ CString GetWindowsInfo()
 					osinfo.Append(_T("Datacenter Edition (core installation) "));
 					break;
 				case PRODUCT_ENTERPRISE_SERVER:
-					osinfo.Append(_T("Enterprise Edition"));
+					osinfo.Append(_T("Enterprise Edition "));
 					break;
 				case PRODUCT_ENTERPRISE_SERVER_CORE:
 					osinfo.Append(_T("Enterprise Edition (core installation) "));
@@ -229,9 +222,6 @@ CString GetWindowsInfo()
 				case PRODUCT_SMALLBUSINESS_SERVER_PREMIUM:
 					osinfo.Append(_T("Small Business Server Premium Edition "));
 					break;
-				case  PRODUCT_SERVER_FOR_SMALLBUSINESS:
-					osinfo.Append(_T("Server for Small Business Edition "));
-					break;
 				case PRODUCT_STANDARD_SERVER:
 					osinfo.Append(_T("Standard Edition "));
 					break;
@@ -241,27 +231,6 @@ CString GetWindowsInfo()
 				case PRODUCT_WEB_SERVER:
 					osinfo.Append(_T("Web Server Edition "));
 					break;
-				case PRODUCT_WEB_SERVER_CORE:
-					osinfo.Append(_T("Web Server Edition (core installation) "));
-					break;
-				case PRODUCT_STORAGE_ENTERPRISE_SERVER:
-					osinfo.Append(_T("Storage Server Enterprise Edition "));
-					break;
-				case PRODUCT_STORAGE_EXPRESS_SERVER:
-					osinfo.Append(_T("Storage Server Express Edition "));
-					break;
-				case PRODUCT_STORAGE_STANDARD_SERVER:
-					osinfo.Append(_T("Storage Server Standard Edition "));
-					break;
-				case PRODUCT_STORAGE_WORKGROUP_SERVER:
-					osinfo.Append(_T("Storage Server Workgroup Edition "));
-					break;
-				case PRODUCT_UNLICENSED:
-					osinfo.Append(_T("Unlicensed Edition "));
-					break;
-				default:
-					osinfo.Append(_T("Unknown Edition "));
-					break;
 				}
 			}
 		}
@@ -270,7 +239,7 @@ CString GetWindowsInfo()
 		if( bOsVersionInfoEx )
 		{
 			// Test for the workstation type.
-			if ( osvi.wProductType == VER_NT_WORKSTATION &&
+			if(osvi.wProductType == VER_NT_WORKSTATION &&
 				si.wProcessorArchitecture!=PROCESSOR_ARCHITECTURE_AMD64)
 			{
 				if( osvi.dwMajorVersion == 4 )
@@ -278,12 +247,12 @@ CString GetWindowsInfo()
 			}
 
 			// Test for the server type.
-			else if ( osvi.wProductType == VER_NT_SERVER || 
+			else if(osvi.wProductType == VER_NT_SERVER || 
 				osvi.wProductType == VER_NT_DOMAIN_CONTROLLER )
 			{
 				if(osvi.dwMajorVersion==5 && osvi.dwMinorVersion==2)
 				{
-					if ( si.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_IA64 )
+					if(si.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_IA64 )
 					{
 						if( osvi.wSuiteMask & VER_SUITE_DATACENTER )
 							osinfo.Append(_T( "Datacenter Edition for Itanium-based Systems"));
@@ -291,7 +260,7 @@ CString GetWindowsInfo()
 							osinfo.Append(_T( "Enterprise Edition for Itanium-based Systems"));
 					}
 
-					else if ( si.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64 )
+					else if(si.wProcessorArchitecture==PROCESSOR_ARCHITECTURE_AMD64 )
 					{
 						if( osvi.wSuiteMask & VER_SUITE_DATACENTER )
 							osinfo.Append(_T( "Datacenter x64 Edition "));
@@ -306,7 +275,7 @@ CString GetWindowsInfo()
 							osinfo.Append(_T( "Datacenter Edition "));
 						else if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
 							osinfo.Append(_T( "Enterprise Edition "));
-						else if ( osvi.wSuiteMask & VER_SUITE_BLADE )
+						else if(osvi.wSuiteMask & VER_SUITE_BLADE )
 							osinfo.Append(_T( "Web Edition "));
 						else osinfo.Append(_T( "Standard Edition "));
 					}
@@ -336,23 +305,23 @@ CString GetWindowsInfo()
 			LONG lRet;
 
 			lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-				TEXT("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
+				_T("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
 				0, KEY_QUERY_VALUE, &hKey );
 			if( lRet != ERROR_SUCCESS )
 				return FALSE;
 
-			lRet = RegQueryValueEx( hKey, TEXT("ProductType"), NULL, NULL,
+			lRet = RegQueryValueEx( hKey, _T("ProductType"), NULL, NULL,
 				(LPBYTE) szProductType, &dwBufLen);
 			RegCloseKey( hKey );
 
 			if( (lRet != ERROR_SUCCESS) || (dwBufLen > BUFSIZE*sizeof(TCHAR)) )
 				return FALSE;
 
-			if ( lstrcmpi( TEXT("WINNT"), szProductType) == 0 )
+			if(lstrcmpi( _T("WINNT"), szProductType) == 0 )
 				osinfo.Append(_T( "Workstation "));
-			if ( lstrcmpi( TEXT("LANMANNT"), szProductType) == 0 )
+			if(lstrcmpi( _T("LANMANNT"), szProductType) == 0 )
 				osinfo.Append(_T( "Server "));
-			if ( lstrcmpi( TEXT("SERVERNT"), szProductType) == 0 )
+			if(lstrcmpi( _T("SERVERNT"), szProductType) == 0 )
 				osinfo.Append(_T( "Advanced Server "));
 			CString verinfo;
 			verinfo.Format("%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion );
@@ -362,14 +331,14 @@ CString GetWindowsInfo()
 		// Display service pack (if any) and build number.
 
 		if( osvi.dwMajorVersion == 4 && 
-			lstrcmpi( osvi.szCSDVersion, TEXT("Service Pack 6") ) == 0 )
+			lstrcmpi( osvi.szCSDVersion, _T("Service Pack 6") ) == 0 )
 		{ 
 			HKEY hKey;
 			LONG lRet;
 
 			// Test for SP6 versus SP6a.
 			lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-				TEXT("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
+				_T("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
 				0, KEY_QUERY_VALUE, &hKey );
 			if( lRet == ERROR_SUCCESS )
 			{
@@ -381,7 +350,7 @@ CString GetWindowsInfo()
 			else // Windows NT 4.0 prior to SP6a
 			{
 				CString spinfo;
-				spinfo.Format( TEXT("%s (Build %d)\r\n"),
+				spinfo.Format( _T("%s (Build %d)\r\n"),
 					osvi.szCSDVersion,
 					osvi.dwBuildNumber & 0xFFFF);
 				osinfo.Append(spinfo);
@@ -392,7 +361,7 @@ CString GetWindowsInfo()
 		else // not Windows NT 4.0 
 		{
 			CString spinfo;
-			spinfo.Format(TEXT("%s (Build %d)\r\n"),
+			spinfo.Format(_T("%s (Build %d)\r\n"),
 				osvi.szCSDVersion,
 				osvi.dwBuildNumber & 0xFFFF);
 			osinfo.Append(spinfo);
@@ -413,7 +382,7 @@ CString GetWindowsInfo()
 		if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
 		{
 			osinfo.Append(_T("Microsoft Windows 98 "));
-			if ( osvi.szCSDVersion[1]=='A' || osvi.szCSDVersion[1]=='B')
+			if(osvi.szCSDVersion[1]=='A' || osvi.szCSDVersion[1]=='B')
 				osinfo.Append(_T("SE "));
 		} 
 
