@@ -449,6 +449,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\targetver.h"
+				>
+			</File>
+			<File
 				RelativePath=".\source\UIStrings.h"
 				>
 			</File>

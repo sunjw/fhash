@@ -35,12 +35,12 @@ const char* MAINDLG_TIME_TITLE = "计算时间:";
 const char* MAINDLG_OPEN = "打开(&O)...";
 const char* MAINDLG_STOP = "停止(&S)";
 const char* MAINDLG_COPY = "全部复制(&C)";
-const char* MAINDLG_FIND = "查找(&F)";
+const char* MAINDLG_FIND = "对比(&V)";
 const char* MAINDLG_ABOUT = "关于(&A)";
 const char* MAINDLG_EXIT = "退出(&X)";
 
 // Find Dialog Strings
-const char* FINDDLG_TITLE = "查找";
+const char* FINDDLG_TITLE = "对比";
 
 // About Dialog Strings
 const char* ABOUTDLG_TITLE = "关于 fHash";
@@ -88,12 +88,12 @@ const char* MAINDLG_TIME_TITLE = "Time Used:";
 const char* MAINDLG_OPEN = "&Open...";
 const char* MAINDLG_STOP = "&Stop";
 const char* MAINDLG_COPY = "&Copy";
-const char* MAINDLG_FIND = "&Find";
+const char* MAINDLG_FIND = "&Verify";
 const char* MAINDLG_ABOUT = "&About";
 const char* MAINDLG_EXIT = "E&xit";
 
 // Find Dialog Strings
-const char* FINDDLG_TITLE = "Find";
+const char* FINDDLG_TITLE = "Verify";
 
 // About Dialog Strings
 const char* ABOUTDLG_TITLE = "About fHash";
