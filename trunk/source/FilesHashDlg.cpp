@@ -364,8 +364,8 @@ void CFilesHashDlg::OnBnClickedFind()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CFindDlg Find;
-	Find.SetFindFile(m_strFindFile);
-	Find.SetFindHash(m_strFindHash);
+	Find.SetFindFile(_T(""));
+	Find.SetFindHash(_T(""));
 	if(IDOK == Find.DoModal())
 	{
 		m_strFindFile = Find.GetFindFile().Trim();

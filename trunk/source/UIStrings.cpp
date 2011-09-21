@@ -1,4 +1,4 @@
-//#define ZH_CN
+#define ZH_CN
 
 #ifdef ZH_CN
 // Global Strings
@@ -23,7 +23,7 @@ const char* MAINDLG_REMOVE_FAILED = "移除失败";
 const char* MAINDLG_REMOVE_CONTEXT_MENU = "移除右键菜单";
 const char* MAINDLG_ADD_CONTEXT_MENU = "添加右键菜单";
 const char* MAINDLG_CLEAN = "清除(&N)";
-const char* MAINDLG_CLEAN_FIND = "清除查找(&N)";
+const char* MAINDLG_CLEAN_FIND = "清除对比(&N)";
 const char* MAINDLG_CALCU_TERMINAL = "计算终止";
 const char* MAINDLG_FIND_IN_RESULT = "在结果中搜索";
 const char* MAINDLG_RESULT = "匹配的结果:";
@@ -76,7 +76,7 @@ const char* MAINDLG_REMOVE_FAILED = "Remove Failed";
 const char* MAINDLG_REMOVE_CONTEXT_MENU = "Remove Context Menu";
 const char* MAINDLG_ADD_CONTEXT_MENU = "Add to Context Menu";
 const char* MAINDLG_CLEAN = "Clea&n";
-const char* MAINDLG_CLEAN_FIND = "Clea&n Result";
+const char* MAINDLG_CLEAN_FIND = "Clea&n Verify";
 const char* MAINDLG_CALCU_TERMINAL = "Terminated";
 const char* MAINDLG_FIND_IN_RESULT = "Find";
 const char* MAINDLG_RESULT = "Result:";
