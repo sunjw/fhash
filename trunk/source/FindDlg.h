@@ -16,8 +16,6 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedOk();
 
-	CString GetFindFile();
-	void SetFindFile(const CString& str);
 	CString GetFindHash();
 	void SetFindHash(const CString& str);
 
@@ -26,7 +24,6 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 
-	CString m_strFile;
 	CString m_strHash;
 	
 };

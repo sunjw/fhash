@@ -75,7 +75,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	PrepareAdvTaskbar();
 
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(_T(MAINDLG_CLEAN));
+	m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 
 	m_bHandleNull = TRUE;
 	m_waitingExit = FALSE;
@@ -104,7 +104,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_btnOpen.SetWindowText(MAINDLG_OPEN);
 	m_btnStop.SetWindowText(MAINDLG_STOP);
 	m_btnCopy.SetWindowText(MAINDLG_COPY);
-	m_btnFind.SetWindowText(MAINDLG_FIND);
+	m_btnFind.SetWindowText(MAINDLG_VERIFY);
 	m_btnExit.SetWindowText(MAINDLG_EXIT);
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(MAINDLG_ABOUT);
@@ -325,7 +325,7 @@ void CFilesHashDlg::OnBnClickedClean()
 	{
 		CString strBtnText;
 		m_btnClr.GetWindowText(strBtnText);
-		if(strBtnText.Compare(_T(MAINDLG_CLEAN)) == 0)
+		if(strBtnText.Compare(_T(MAINDLG_CLEAR)) == 0)
 		{
 			m_thrdData.strAll = "";
 			m_thrdData.resultList.clear();
@@ -340,10 +340,10 @@ void CFilesHashDlg::OnBnClickedClean()
 			//m_progWhole.SetPos(0);
 			SetWholeProgPos(0);
 		}
-		else if(strBtnText.Compare(_T(MAINDLG_CLEAN_FIND)) == 0)
+		else if(strBtnText.Compare(_T(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
 			m_bFind = FALSE; // 退出搜索模式
-			m_btnClr.SetWindowText(_T(MAINDLG_CLEAN));
+			m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 			RefreshMainText();
 		}
 	}
@@ -364,16 +364,14 @@ void CFilesHashDlg::OnBnClickedFind()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CFindDlg Find;
-	Find.SetFindFile(_T(""));
 	Find.SetFindHash(_T(""));
 	if(IDOK == Find.DoModal())
 	{
-		m_strFindFile = Find.GetFindFile().Trim();
 		m_strFindHash = Find.GetFindHash().Trim();
-		if(m_strFindFile.Compare(_T("")) != 0 || m_strFindHash.Compare(_T("")) != 0)
+		if(m_strFindHash.Compare(_T("")) != 0)
 		{
 			m_bFind = TRUE; // 进入搜索模式
-			m_btnClr.SetWindowText(_T(MAINDLG_CLEAN_FIND));
+			m_btnClr.SetWindowText(_T(MAINDLG_CLEAR_VERIFY));
 			//m_editMain.SetWindowText(_T(""));
 			m_editMain.SetWindowText(ResultFind(m_strFindFile, m_strFindHash));
 			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
@@ -458,7 +456,7 @@ void CFilesHashDlg::DoMD5()
 	}
 	
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(_T(MAINDLG_CLEAN));
+	m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 
 	PrepareAdvTaskbar();
 
@@ -637,10 +635,6 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 {
 	CString strResult(MAINDLG_FIND_IN_RESULT);
-	strResult.Append(_T("\r\n"));
-	strResult.Append(FILENAME_STRING);
-	strResult.Append(_T(" "));
-	strResult.Append(strFile);
 	strResult.Append(_T("\r\n"));
 	strResult.Append(HASHVALUE_STRING);
 	strResult.Append(_T(" "));

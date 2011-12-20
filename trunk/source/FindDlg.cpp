@@ -13,7 +13,6 @@ IMPLEMENT_DYNAMIC(CFindDlg, CDialog)
 
 CFindDlg::CFindDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CFindDlg::IDD, pParent)
-	, m_strFile(_T(""))
 	, m_strHash(_T(""))
 {
 
@@ -26,8 +25,7 @@ CFindDlg::~CFindDlg()
 void CFindDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Text(pDX, IDC_EDIT_FILE, m_strFile);
-	DDX_Text(pDX, IDC_EDIT2, m_strHash);
+	DDX_Text(pDX, IDC_EDIT_HASH, m_strHash);
 }
 
 
@@ -47,8 +45,6 @@ BOOL CFindDlg::OnInitDialog()
 	pWnd->SetWindowText(BUTTON_OK);
 	pWnd = GetDlgItem(IDCANCEL);
 	pWnd->SetWindowText(BUTTON_CANCEL);
-	pWnd = GetDlgItem(IDC_STATIC_FILE);
-	pWnd->SetWindowText(FILENAME_STRING);
 	pWnd = GetDlgItem(IDC_STATIC_HASH);
 	pWnd->SetWindowText(HASHVALUE_STRING);
 
@@ -63,16 +59,6 @@ void CFindDlg::OnBnClickedOk()
 	UpdateData();
 
 	OnOK();
-}
-
-CString CFindDlg::GetFindFile()
-{
-	return m_strFile;
-}
-
-void CFindDlg::SetFindFile(const CString& str)
-{
-	m_strFile = str;
 }
 
 CString CFindDlg::GetFindHash()
