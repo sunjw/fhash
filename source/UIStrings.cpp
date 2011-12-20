@@ -22,8 +22,8 @@ const char* MAINDLG_REMOVE_SUCCEEDED = "移除成功";
 const char* MAINDLG_REMOVE_FAILED = "移除失败";
 const char* MAINDLG_REMOVE_CONTEXT_MENU = "移除右键菜单";
 const char* MAINDLG_ADD_CONTEXT_MENU = "添加右键菜单";
-const char* MAINDLG_CLEAN = "清除(&N)";
-const char* MAINDLG_CLEAN_FIND = "清除对比(&N)";
+const char* MAINDLG_CLEAR = "清除(&R)";
+const char* MAINDLG_CLEAR_VERIFY = "清除验证(&R)";
 const char* MAINDLG_CALCU_TERMINAL = "计算终止";
 const char* MAINDLG_FIND_IN_RESULT = "在结果中搜索";
 const char* MAINDLG_RESULT = "匹配的结果:";
@@ -35,12 +35,12 @@ const char* MAINDLG_TIME_TITLE = "计算时间:";
 const char* MAINDLG_OPEN = "打开(&O)...";
 const char* MAINDLG_STOP = "停止(&S)";
 const char* MAINDLG_COPY = "全部复制(&C)";
-const char* MAINDLG_FIND = "对比(&V)";
+const char* MAINDLG_VERIFY = "验证(&V)";
 const char* MAINDLG_ABOUT = "关于(&A)";
 const char* MAINDLG_EXIT = "退出(&X)";
 
 // Find Dialog Strings
-const char* FINDDLG_TITLE = "对比";
+const char* FINDDLG_TITLE = "验证";
 
 // About Dialog Strings
 const char* ABOUTDLG_TITLE = "关于 fHash";
@@ -75,10 +75,10 @@ const char* MAINDLG_REMOVE_SUCCEEDED = "Remove Succeeded";
 const char* MAINDLG_REMOVE_FAILED = "Remove Failed";
 const char* MAINDLG_REMOVE_CONTEXT_MENU = "Remove Context Menu";
 const char* MAINDLG_ADD_CONTEXT_MENU = "Add to Context Menu";
-const char* MAINDLG_CLEAN = "Clea&n";
-const char* MAINDLG_CLEAN_FIND = "Clea&n Verify";
+const char* MAINDLG_CLEAR = "Clea&r";
+const char* MAINDLG_CLEAR_VERIFY = "Clea&r Verify";
 const char* MAINDLG_CALCU_TERMINAL = "Terminated";
-const char* MAINDLG_FIND_IN_RESULT = "Find";
+const char* MAINDLG_FIND_IN_RESULT = "Verify";
 const char* MAINDLG_RESULT = "Result:";
 const char* MAINDLG_NORESULT = "Nothing Found";
 const char* MAINDLG_FILE_PROGRESS = "File";
@@ -88,7 +88,7 @@ const char* MAINDLG_TIME_TITLE = "Time Used:";
 const char* MAINDLG_OPEN = "&Open...";
 const char* MAINDLG_STOP = "&Stop";
 const char* MAINDLG_COPY = "&Copy";
-const char* MAINDLG_FIND = "&Verify";
+const char* MAINDLG_VERIFY = "&Verify";
 const char* MAINDLG_ABOUT = "&About";
 const char* MAINDLG_EXIT = "E&xit";
 

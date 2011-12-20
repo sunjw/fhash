@@ -35,6 +35,7 @@
 #define IDC_FIND                        1025
 #define IDC_EDIT_FILE                   1026
 #define IDC_EDIT2                       1027
+#define IDC_EDIT_HASH                   1027
 #define IDC_BUTTON1                     1028
 #define IDC_CONTEXT                     1028
 #define IDC_SYSLINK1                    1029
