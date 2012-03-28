@@ -380,6 +380,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\EditEx.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\FilesHash.cpp"
 				>
 			</File>
@@ -414,6 +418,10 @@
 			>
 			<File
 				RelativePath="source\AboutDlg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\EditEx.h"
 				>
 			</File>
 			<File

@@ -5,6 +5,8 @@
 #include "afxwin.h"
 #include "afxcmn.h"
 
+#include "EditEx.h"
+
 #include "Global.h"
 
 // CMD5SUM03Dlg ¶Ô»°¿ò
@@ -45,7 +47,7 @@ protected:
 
 	CProgressCtrl m_prog;
 	CProgressCtrl m_progWhole;
-	CEdit m_editMain;
+	CEditEx m_editMain;
 	CButton m_btnOpen;
 	CButton m_btnExit;
 	CButton m_btnStop;
