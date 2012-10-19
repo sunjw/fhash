@@ -249,6 +249,8 @@ CStrVector CFilesHashDlg::ParseCmdLine()
 
 void CFilesHashDlg::PrepareAdvTaskbar()
 {
+	m_bAdvTaskbar = FALSE;
+#ifndef _DEBUG
 	VERIFY(CoCreateInstance(
 			CLSID_TaskbarList, NULL, CLSCTX_ALL,
 			IID_ITaskbarList3, (void**)&pTl));
@@ -256,6 +258,7 @@ void CFilesHashDlg::PrepareAdvTaskbar()
 		m_bAdvTaskbar = TRUE;
 	else
 		m_bAdvTaskbar = FALSE;
+#endif
 }
 
 void CFilesHashDlg::OnClose()
