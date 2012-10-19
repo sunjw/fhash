@@ -11,6 +11,20 @@
 #include "Algorithms/sha256.h"
 #include "Algorithms/crc32.h"
 
+unsigned int DataBuffer::preflen = 1048576; // 2^20
+
+DataBuffer::DataBuffer()
+	:datalen(0), data(NULL)
+{
+	data = new unsigned char[DataBuffer::preflen];
+}
+
+DataBuffer::~DataBuffer()
+{
+	delete[] data;
+	datalen = 0;
+}
+
 //工作者线程
 DWORD WINAPI md5_file(LPVOID pParam)
 {
@@ -78,8 +92,9 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		// Declaration for calculator
 		char* path;
 		ULONGLONG fsize, times, t = 0;
-		unsigned int len;
-		unsigned char buffer[65534];
+		//unsigned int len;
+		//unsigned char buffer[65534];
+		DataBuffer databuf;
 		
 		MD5_CTX mdContext; // MD5 context
 
@@ -174,9 +189,9 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			
 			// get calculating times //
-			times = fsize / sizeof(buffer) + 1;
+			times = fsize / DataBuffer::preflen + 1;
 			
-			UINT bufferSize = sizeof( buffer );
+			//UINT bufferSize = sizeof(buffer);
 			do 
 			{	
 				if(thrdData->stop)
@@ -188,13 +203,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 					return 0;
 				}
-				len = File.Read( buffer, bufferSize );
+				databuf.datalen = File.Read(databuf.data, DataBuffer::preflen);
 				t++;
 
-				MD5Update (&mdContext, (unsigned char *)buffer, len); // MD5更新
-				sha1.Update(buffer, len); // SHA1更新
-				sha256_update(&sha256Ctx, buffer, len); // SHA256更新
-				crc32Update(&ulCRC32, buffer, len); // CRC32更新
+				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5更新
+				sha1.Update(databuf.data, databuf.datalen); // SHA1更新
+				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
+				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
 				
 				if((int)(100 * t / times) > position)
 				{
@@ -202,16 +217,18 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, position);
 				}
-				finishedSize += len;
+				finishedSize += databuf.datalen;
 				if(isSizeCaled && thrdData->totalSize > 0 && 
 					(int)(100 * finishedSize / thrdData->totalSize) > positionWhole)
 				{
-					positionWhole = (int)(100 * finishedSize / thrdData->totalSize);
+					// donot multiply 100
+					positionWhole = (int)(94 * finishedSize / thrdData->totalSize);
 
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
 				}
 
-			} while(len >= bufferSize);
+			} 
+			while(databuf.datalen >= DataBuffer::preflen);
 
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
