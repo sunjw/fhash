@@ -89,7 +89,7 @@ void CAboutDlg::OnBnClickedOk()
 void CAboutDlg::OnNMClickSyslinkSite(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: 在此添加控件通知处理程序代码
-	ShellExecute(NULL, "open", "http://sourceforge.net/projects/fhash/", NULL, NULL, SW_SHOW);
+	ShellExecute(NULL, "open", "http://code.google.com/p/fhash/", NULL, NULL, SW_SHOW);
 
 	*pResult = 0;
 }
