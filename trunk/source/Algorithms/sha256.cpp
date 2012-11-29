@@ -284,8 +284,8 @@ void
 sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 {
 	uint32_t i;
-	unsigned char digest[32] = {0};
-	unsigned char *s = digest;
+	unsigned int digest[32] = {0};
+	unsigned int *s = digest;
 
 	if (s!=NULL && sDigest != NULL)
 	{
@@ -297,8 +297,8 @@ sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 			*s++ = 0xff & ctx->state[i];
 		}
 
-		*sDigest = "";
+		*sDigest = _T("");
 		for(int p = 0; p < 32; p++)
-			sDigest->AppendFormat("%02X", digest[p]);
+			sDigest->AppendFormat(_T("%02X"), digest[p]);
 	}
 }
