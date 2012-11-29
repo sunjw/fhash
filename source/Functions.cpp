@@ -34,7 +34,7 @@ CString ConvertSizeToCStr(ULONGLONG size)
  * 格式化为 主版本号.副版本号.低版本号.编译版本号
  * 如果文件没有版本号，返回""
  */
-CString GetExeFileVersion(char* path)
+CString GetExeFileVersion(TCHAR* path)
 {
 	// get file version //
 
@@ -324,7 +324,7 @@ CString GetWindowsInfo()
 			if(lstrcmpi( _T("SERVERNT"), szProductType) == 0 )
 				osinfo.Append(_T( "Advanced Server "));
 			CString verinfo;
-			verinfo.Format("%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion );
+			verinfo.Format(_T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
 			osinfo.Append(verinfo);
 		}
 
@@ -343,7 +343,7 @@ CString GetWindowsInfo()
 			if( lRet == ERROR_SUCCESS )
 			{
 				CString spinfo;
-				spinfo.Format("Service Pack 6a (Build %d)\r\n", 
+				spinfo.Format(_T("Service Pack 6a (Build %d)\r\n"), 
 								osvi.dwBuildNumber & 0xFFFF ); 
 				osinfo.Append(spinfo); 
 			}
@@ -402,11 +402,11 @@ CString GetWindowsInfo()
 
 bool AddContextMenu(void)
 {
-	char exeFullPath[MAX_PATH + 10]; // MAX_PATH
+	TCHAR exeFullPath[MAX_PATH + 10]; // MAX_PATH
 	GetModuleFileName(NULL, exeFullPath, MAX_PATH);//得到程序模块名称，全路径
 
 	CRegKey key;
-	LPCSTR lpszKeyName = "*\\shell\\Hash it with fHash\\command";
+	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
 	LONG lResult;
 	// 创建目录
 	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -419,9 +419,16 @@ bool AddContextMenu(void)
 		return false;
 
 	// 成功打开
-	char command[270];
+	TCHAR command[270];
+
+#if defined(UNICODE) || defined(_UNICODE)
+	wcscpy_s(command, MAX_PATH + 10, exeFullPath);
+	wcscat_s(command, MAX_PATH + 10, _T(" \"%1\""));
+#else
 	strcpy_s(command, MAX_PATH + 10, exeFullPath);
 	strcat_s(command, MAX_PATH + 10, " \"%1\"");
+#endif
+	
 	lResult = key.SetStringValue(NULL, command);
 	key.Close();
 	if(lResult == ERROR_SUCCESS)
@@ -433,7 +440,7 @@ bool AddContextMenu(void)
 bool RemoveContextMenu(void)
 {
 	CRegKey key;
-	LPCSTR lpszKeyName = "*\\shell\\";
+	LPCTSTR lpszKeyName = _T("*\\shell\\");
 	LONG lResult;
 
 	// 打开
@@ -441,7 +448,7 @@ bool RemoveContextMenu(void)
 	if(lResult != ERROR_SUCCESS)
 		return false;
 
-	lResult = key.RecurseDeleteKey("Hash it with fHash");
+	lResult = key.RecurseDeleteKey(_T("Hash it with fHash"));
 	if(lResult != ERROR_SUCCESS)
 		return false;
 	else
@@ -451,7 +458,7 @@ bool RemoveContextMenu(void)
 bool IsContextMenuAdded(void)
 {
 	CRegKey key;
-	LPCSTR lpszKeyName = "*\\shell\\Hash it with fHash\\command";
+	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
 	LONG lResult;
 
 	// 打开

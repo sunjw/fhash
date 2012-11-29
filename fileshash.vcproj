@@ -26,7 +26,7 @@
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="1"
-			CharacterSet="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -408,6 +408,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\strhelper.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\UIStrings.cpp"
 				>
 			</File>
@@ -454,6 +458,10 @@
 			</File>
 			<File
 				RelativePath="source\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\strhelper.h"
 				>
 			</File>
 			<File

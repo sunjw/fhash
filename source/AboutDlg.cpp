@@ -37,26 +37,26 @@ BOOL CAboutDlg::OnInitDialog()
 	pWnd->SetWindowText(ABOUTDLG_PROJECT_SITE);
 
 	
-	CString fHashVersion = STR_VERSION; //GetExeFileVersion(exeFullPath);
+	CString fHashVersion = _T(STR_VERSION); //GetExeFileVersion(exeFullPath);
 
 	CString osinfo = GetWindowsInfo();
 	m_about = ABOUTDLG_INFO_TITLE;
 	m_about.Append(fHashVersion);
-	m_about.Append("\r\n");
+	m_about.Append(_T("\r\n"));
 	m_about.Append(ABOUTDLG_INFO_RIGHT);
-	m_about.Append("\r\n\r\n");
+	m_about.Append(_T("\r\n\r\n"));
 	m_about.Append(ABOUTDLG_INFO_MD5);
-	m_about.Append("\r\n");
+	m_about.Append(_T("\r\n"));
 	m_about.Append(ABOUTDLG_INFO_SHA256);
-	m_about.Append("\r\n");
+	m_about.Append(_T("\r\n"));
 	m_about.Append(ABOUTDLG_INFO_CRC32);
-	/*m_about.Append("\r\n");
+	/*m_about.Append(_T("\r\n"));
 	m_about.Append(ABOUTDLG_INFO_RIGHTDETAIL);*/
-	m_about.Append("\r\n\r\n");
+	m_about.Append(_T("\r\n\r\n"));
 
 	//m_about = m_about + "当前操作系统:\r\n" + osinfo;
 	m_about.Append(ABOUTDLG_INFO_OSTITLE);
-	m_about.Append("\r\n");
+	m_about.Append(_T("\r\n"));
 	m_about.Append(osinfo);
 
 	UpdateData(FALSE);
@@ -89,7 +89,7 @@ void CAboutDlg::OnBnClickedOk()
 void CAboutDlg::OnNMClickSyslinkSite(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: 在此添加控件通知处理程序代码
-	ShellExecute(NULL, "open", "http://code.google.com/p/fhash/", NULL, NULL, SW_SHOW);
+	ShellExecute(NULL, _T("open"), _T("http://code.google.com/p/fhash/"), NULL, NULL, SW_SHOW);
 
 	*pResult = 0;
 }
