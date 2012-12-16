@@ -119,10 +119,12 @@ CString GetWindowsInfo()
 			osinfo.AppendFormat(_T("Windows Version %d"), osvi.dwMajorVersion);
 		}
 
-		if(osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
+		if(osvi.dwMajorVersion == 6 && (osvi.dwMinorVersion == 1 || osvi.dwMinorVersion == 2))
 		{
-			if( osvi.wProductType == VER_NT_WORKSTATION )
+			if(osvi.dwMinorVersion == 1 && osvi.wProductType == VER_NT_WORKSTATION)
 				osinfo.Append(_T("Windows 7 "));
+			else if(osvi.dwMinorVersion == 2 && osvi.wProductType == VER_NT_WORKSTATION)
+				osinfo.Append(_T("Windows 8 "));
 			else 
 				osinfo.Append(_T("Windows Server 2008 R2 "));
 		}
