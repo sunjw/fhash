@@ -1,34 +1,15 @@
 #include "stdafx.h"
 
-#include <string>
 #include <cstdlib>
 
 #include "HashEngine.h"
 #include "Functions.h"
 #include "UIStrings.h"
-#include "strhelper.h"
 
 #include "Algorithms/md5.h"
 #include "Algorithms/sha1.h"
 #include "Algorithms/sha256.h"
 #include "Algorithms/crc32.h"
-
-using namespace std;
-using namespace sunjwbase;
-
-unsigned int DataBuffer::preflen = 1048576; // 2^20
-
-DataBuffer::DataBuffer()
-	:datalen(0), data(NULL)
-{
-	data = new unsigned char[DataBuffer::preflen];
-}
-
-DataBuffer::~DataBuffer()
-{
-	delete[] data;
-	datalen = 0;
-}
 
 //工作者线程
 DWORD WINAPI md5_file(LPVOID pParam)
@@ -71,8 +52,8 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			}
 			ULONGLONG fSize = 0;
 		
-			const TCHAR* path;
-			path = thrdData->fullPaths[i].GetString();
+			char* path;
+			path = (char *)thrdData->fullPaths[i].operator LPCSTR();
 			if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex))
 			{
 				fSize = File.GetLength();//fsize=status.m_size; // Fix 4GB file
@@ -95,11 +76,10 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		}
 
 		// Declaration for calculator
-		TCHAR* path;
+		char* path;
 		ULONGLONG fsize, times, t = 0;
-		//unsigned int len;
-		//unsigned char buffer[65534];
-		DataBuffer databuf;
+		unsigned int len;
+		unsigned char buffer[65534];
 		
 		MD5_CTX mdContext; // MD5 context
 
@@ -107,7 +87,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		char strSHA1[256];
 
 		SHA256_CTX sha256Ctx; // SHA256 context
-		CString strSHA256 = _T("");
+		CString strSHA256 = "";
 
 		unsigned long ulCRC32; // CRC32 context
 		// Declaration for calculator
@@ -116,13 +96,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 		// 显示文件名
 		thrdData->strAll.Append(FILENAME_STRING);
-		thrdData->strAll.Append(_T(" "));
+		thrdData->strAll.Append(" ");
 		thrdData->strAll.Append(thrdData->fullPaths[i]);
-		thrdData->strAll.Append(_T("\r\n")); 
+		thrdData->strAll.Append("\r\n"); 
 
 		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 
-		path = thrdData->fullPaths[i].GetBuffer();
+		path = (char *)thrdData->fullPaths[i].operator LPCSTR();
 		// 显示文件名
 
 		//Calculating begins
@@ -162,37 +142,41 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			CString shortSize = ConvertSizeToCStr(fsize);
 
-			strFileSize.Format(_T("%I64u"), fsize);
+			strFileSize.Format("%I64u", fsize);
 
 			thrdData->strAll.Append(FILESIZE_STRING);
-			thrdData->strAll.Append(_T(" "));
+			thrdData->strAll.Append(" ");
 			thrdData->strAll.Append(strFileSize);
-			thrdData->strAll.Append(_T(" "));
+			thrdData->strAll.Append(" ");
 			thrdData->strAll.Append(BYTE_STRING);
 			thrdData->strAll.Append(shortSize);
-			thrdData->strAll.Append(_T("\r\n"));
+			thrdData->strAll.Append("\r\n");
 			thrdData->strAll.Append(MODIFYTIME_STRING);
-			thrdData->strAll.Append(_T(" "));
+			thrdData->strAll.Append(" ");
 			thrdData->strAll.Append(lastModifiedTime);
 
 			// get file version //
 			CString Ver = GetExeFileVersion(path);
-			if(Ver.Compare(_T("")) != 0)
+			if(Ver.Compare("") != 0)
 			{
-				thrdData->strAll.Append(_T("\r\n"));
+				thrdData->strAll.Append("\r\n");
 				thrdData->strAll.Append(VERSION_STRING);
-				thrdData->strAll.Append(_T(" "));
+				thrdData->strAll.Append(" ");
 				thrdData->strAll.Append(Ver);
+				/*
+				thrdData->strAll = thrdData->strAll + "文件大小: " + thrdData->Size + " 字节" + shortSize + "\r\n"
+				+ "修改日期: " + lastModifiedTime + "\r\n" + "版本: " + Ver + "\r\n";
+				*/
 			}
 
-			thrdData->strAll.Append(_T("\r\n"));
+			thrdData->strAll.Append("\r\n");
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			
 			// get calculating times //
-			times = fsize / DataBuffer::preflen + 1;
+			times = fsize / sizeof(buffer) + 1;
 			
-			//UINT bufferSize = sizeof(buffer);
+			UINT bufferSize = sizeof( buffer );
 			do 
 			{	
 				if(thrdData->stop)
@@ -204,13 +188,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 					return 0;
 				}
-				databuf.datalen = File.Read(databuf.data, DataBuffer::preflen);
+				len = File.Read( buffer, bufferSize );
 				t++;
 
-				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5更新
-				sha1.Update(databuf.data, databuf.datalen); // SHA1更新
-				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
-				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
+				MD5Update (&mdContext, (unsigned char *)buffer, len); // MD5更新
+				sha1.Update(buffer, len); // SHA1更新
+				sha256_update(&sha256Ctx, buffer, len); // SHA256更新
+				crc32Update(&ulCRC32, buffer, len); // CRC32更新
 				
 				if((int)(100 * t / times) > position)
 				{
@@ -218,18 +202,16 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, position);
 				}
-				finishedSize += databuf.datalen;
+				finishedSize += len;
 				if(isSizeCaled && thrdData->totalSize > 0 && 
 					(int)(100 * finishedSize / thrdData->totalSize) > positionWhole)
 				{
-					// donot multiply 100
-					positionWhole = (int)(94 * finishedSize / thrdData->totalSize);
+					positionWhole = (int)(100 * finishedSize / thrdData->totalSize);
 
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
 				}
 
-			} 
-			while(databuf.datalen >= DataBuffer::preflen);
+			} while(len >= bufferSize);
 
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
@@ -247,7 +229,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			File.Close();
 			//Calculating ends
 
-			strFileMD5.Format(_T("%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"),
+			strFileMD5.Format("%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 								mdContext.digest[0],
 								mdContext.digest[1],
 								mdContext.digest[2],
@@ -265,11 +247,10 @@ DWORD WINAPI md5_file(LPVOID pParam)
 								mdContext.digest[14],
 								mdContext.digest[15]);
 			sha1.ReportHash(strSHA1, CSHA1::REPORT_HEX);
-			tstring tstrSHA1(strtotstr(strSHA1));
-			strFileSHA1.Format(_T("%s"), tstrSHA1.c_str());
+			strFileSHA1.Format("%s", strSHA1);
 			sha256_digest(&sha256Ctx, &strSHA256);
 			strFileSHA256 = strSHA256;
-			strFileCRC32.Format(_T("%08X"), ulCRC32);
+			strFileCRC32.Format("%08X", ulCRC32);
 
 			// 在这里保存结果是因为只保存完全计算完毕的
 			ResultData result;
@@ -301,15 +282,15 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			}
 			
 			// 显示结果
-			thrdData->strAll.Append(_T("MD5: "));
+			thrdData->strAll.Append("MD5: ");
 			thrdData->strAll.Append(strFileMD5);
-			thrdData->strAll.Append(_T("\r\nSHA1: "));
+			thrdData->strAll.Append("\r\nSHA1: ");
 			thrdData->strAll.Append(strFileSHA1);
-			thrdData->strAll.Append(_T("\r\nSHA256: "));
+			thrdData->strAll.Append("\r\nSHA256: ");
 			thrdData->strAll.Append(strFileSHA256);
-			thrdData->strAll.Append(_T("\r\nCRC32: "));
+			thrdData->strAll.Append("\r\nCRC32: ");
 			thrdData->strAll.Append(strFileCRC32);
-			thrdData->strAll.Append(_T("\r\n\r\n"));
+			thrdData->strAll.Append("\r\n\r\n");
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
@@ -320,7 +301,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			ex.GetErrorMessage(szError, 1024);
 			// 显示结果
 			thrdData->strAll.Append(szError);
-			thrdData->strAll.Append(_T("\r\n\r\n"));
+			thrdData->strAll.Append("\r\n\r\n");
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果

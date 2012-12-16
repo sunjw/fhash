@@ -5,18 +5,6 @@
 
 #include "Global.h"
 
-class DataBuffer
-{
-public:
-	DataBuffer();
-	~DataBuffer();
-
-	static unsigned int preflen;
-
-	unsigned int datalen;
-	unsigned char *data;
-};
-
 DWORD WINAPI md5_file(LPVOID pParam);
 
 #endif

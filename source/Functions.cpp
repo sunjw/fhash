@@ -34,7 +34,7 @@ CString ConvertSizeToCStr(ULONGLONG size)
  * 格式化为 主版本号.副版本号.低版本号.编译版本号
  * 如果文件没有版本号，返回""
  */
-CString GetExeFileVersion(TCHAR* path)
+CString GetExeFileVersion(char* path)
 {
 	// get file version //
 
@@ -119,12 +119,10 @@ CString GetWindowsInfo()
 			osinfo.AppendFormat(_T("Windows Version %d"), osvi.dwMajorVersion);
 		}
 
-		if(osvi.dwMajorVersion == 6 && (osvi.dwMinorVersion == 1 || osvi.dwMinorVersion == 2))
+		if(osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
 		{
-			if(osvi.dwMinorVersion == 1 && osvi.wProductType == VER_NT_WORKSTATION)
+			if( osvi.wProductType == VER_NT_WORKSTATION )
 				osinfo.Append(_T("Windows 7 "));
-			else if(osvi.dwMinorVersion == 2 && osvi.wProductType == VER_NT_WORKSTATION)
-				osinfo.Append(_T("Windows 8 "));
 			else 
 				osinfo.Append(_T("Windows Server 2008 R2 "));
 		}
@@ -326,7 +324,7 @@ CString GetWindowsInfo()
 			if(lstrcmpi( _T("SERVERNT"), szProductType) == 0 )
 				osinfo.Append(_T( "Advanced Server "));
 			CString verinfo;
-			verinfo.Format(_T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
+			verinfo.Format("%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion );
 			osinfo.Append(verinfo);
 		}
 
@@ -345,7 +343,7 @@ CString GetWindowsInfo()
 			if( lRet == ERROR_SUCCESS )
 			{
 				CString spinfo;
-				spinfo.Format(_T("Service Pack 6a (Build %d)\r\n"), 
+				spinfo.Format("Service Pack 6a (Build %d)\r\n", 
 								osvi.dwBuildNumber & 0xFFFF ); 
 				osinfo.Append(spinfo); 
 			}
@@ -404,11 +402,11 @@ CString GetWindowsInfo()
 
 bool AddContextMenu(void)
 {
-	TCHAR exeFullPath[MAX_PATH + 10]; // MAX_PATH
+	char exeFullPath[MAX_PATH + 10]; // MAX_PATH
 	GetModuleFileName(NULL, exeFullPath, MAX_PATH);//得到程序模块名称，全路径
 
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
+	LPCSTR lpszKeyName = "*\\shell\\Hash it with fHash\\command";
 	LONG lResult;
 	// 创建目录
 	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -421,16 +419,9 @@ bool AddContextMenu(void)
 		return false;
 
 	// 成功打开
-	TCHAR command[270];
-
-#if defined(UNICODE) || defined(_UNICODE)
-	wcscpy_s(command, MAX_PATH + 10, exeFullPath);
-	wcscat_s(command, MAX_PATH + 10, _T(" \"%1\""));
-#else
+	char command[270];
 	strcpy_s(command, MAX_PATH + 10, exeFullPath);
 	strcat_s(command, MAX_PATH + 10, " \"%1\"");
-#endif
-	
 	lResult = key.SetStringValue(NULL, command);
 	key.Close();
 	if(lResult == ERROR_SUCCESS)
@@ -442,7 +433,7 @@ bool AddContextMenu(void)
 bool RemoveContextMenu(void)
 {
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\");
+	LPCSTR lpszKeyName = "*\\shell\\";
 	LONG lResult;
 
 	// 打开
@@ -450,7 +441,7 @@ bool RemoveContextMenu(void)
 	if(lResult != ERROR_SUCCESS)
 		return false;
 
-	lResult = key.RecurseDeleteKey(_T("Hash it with fHash"));
+	lResult = key.RecurseDeleteKey("Hash it with fHash");
 	if(lResult != ERROR_SUCCESS)
 		return false;
 	else
@@ -460,7 +451,7 @@ bool RemoveContextMenu(void)
 bool IsContextMenuAdded(void)
 {
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
+	LPCSTR lpszKeyName = "*\\shell\\Hash it with fHash\\command";
 	LONG lResult;
 
 	// 打开

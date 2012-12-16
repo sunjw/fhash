@@ -1,20 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-#include "strhelper.h"
-
-inline sunjwbase::tstring cstrtotstr(const CString& cstring)
-{
-	return sunjwbase::tstring(cstring.GetString());
-}
-
-inline CString tstrtocstr(const sunjwbase::tstring& tstr)
-{
-	CString temp;
-	temp.SetString(tstr.c_str());
-	return temp;
-}
-
 // 以下是获得 Windows 版本信息的定义内容
 #define BUFSIZE 80
 
@@ -25,7 +11,7 @@ typedef BOOL (WINAPI *PGPI)(DWORD dwOSMajorVersion, DWORD dwOSMinorVersion, DWOR
 
 CString ConvertSizeToCStr(ULONGLONG size);
 
-CString GetExeFileVersion(TCHAR* path);
+CString GetExeFileVersion(char* path);
 
 BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx);
 

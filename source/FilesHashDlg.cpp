@@ -75,7 +75,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	PrepareAdvTaskbar();
 
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(MAINDLG_CLEAR);
+	m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 
 	m_bHandleNull = TRUE;
 	m_waitingExit = FALSE;
@@ -87,9 +87,9 @@ BOOL CFilesHashDlg::OnInitDialog()
 
 	CWnd* pWnd;
 	pWnd = GetDlgItem(IDC_STATIC_SPEED);
-	pWnd->SetWindowText(_T(""));
+	pWnd->SetWindowText("");
 	pWnd = GetDlgItem(IDC_STATIC_TIME);
-	pWnd->SetWindowText(_T(""));
+	pWnd->SetWindowText("");
 	pWnd = GetDlgItem(IDC_STATIC_FILE);
 	pWnd->SetWindowText(MAINDLG_FILE_PROGRESS);
 	pWnd = GetDlgItem(IDC_STATIC_WHOLE);
@@ -115,7 +115,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 
 	m_thrdData.nFiles = 0;
 
-	m_thrdData.strAll = _T("");
+	m_thrdData.strAll = "";
 	m_thrdData.resultList.clear();
 	
 	pTl = NULL;
@@ -196,7 +196,7 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 	if(!m_thrdData.threadWorking)
 	{
 		unsigned int i;
-		TCHAR DragFilename[MAX_PATH];
+		char DragFilename[MAX_PATH];
 		DragAcceptFiles(FALSE);
 
 		m_thrdData.nFiles = DragQueryFile(hDropInfo, -1, NULL, 0);
@@ -206,7 +206,7 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 		{
 			DragQueryFile(hDropInfo, i, DragFilename, sizeof(DragFilename));
 			CString tmp;
-			tmp.Format(_T("%s"), DragFilename);
+			tmp.Format("%s", DragFilename);
 			m_thrdData.fullPaths.push_back(tmp);
 		}
 
@@ -221,13 +221,7 @@ CStrVector CFilesHashDlg::ParseCmdLine()
 {
 	// 从命令行获取文件路径
 	CStrVector Parameters;
-
-#if defined(UNICODE) || defined(_UNICODE)
-	size_t cmdLen = wcslen(theApp.m_lpCmdLine);
-#else
 	size_t cmdLen = strlen(theApp.m_lpCmdLine);
-#endif
-
 	if(cmdLen > 0)
 	{
 		for(size_t i = 0; i < cmdLen; ++i)
@@ -255,8 +249,6 @@ CStrVector CFilesHashDlg::ParseCmdLine()
 
 void CFilesHashDlg::PrepareAdvTaskbar()
 {
-	m_bAdvTaskbar = FALSE;
-#ifndef _DEBUG
 	VERIFY(CoCreateInstance(
 			CLSID_TaskbarList, NULL, CLSCTX_ALL,
 			IID_ITaskbarList3, (void**)&pTl));
@@ -264,7 +256,6 @@ void CFilesHashDlg::PrepareAdvTaskbar()
 		m_bAdvTaskbar = TRUE;
 	else
 		m_bAdvTaskbar = FALSE;
-#endif
 }
 
 void CFilesHashDlg::OnClose()
@@ -286,12 +277,12 @@ void CFilesHashDlg::OnBnClickedOpen()
 	if(!m_thrdData.threadWorking)
 	{
 		CString filter;
-		TCHAR* nameBuffer;
+		char* nameBuffer;
 		POSITION pos;
-		nameBuffer = new TCHAR[MAX_FILES_NUM * MAX_PATH + 1];
+		nameBuffer = new char[MAX_FILES_NUM * MAX_PATH + 1];
 		nameBuffer[0] = 0;
 		filter = FILE_STRING;
-		filter.Append(_T("(*.*)|*.*|"));
+		filter.Append("(*.*)|*.*|");
 		CFileDialog dlgOpen(TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_ALLOWMULTISELECT, filter, NULL, 0);
 		dlgOpen.GetOFN().lpstrFile = nameBuffer;
 		dlgOpen.GetOFN().nMaxFile = MAX_FILES_NUM;
@@ -334,25 +325,25 @@ void CFilesHashDlg::OnBnClickedClean()
 	{
 		CString strBtnText;
 		m_btnClr.GetWindowText(strBtnText);
-		if(strBtnText.Compare(MAINDLG_CLEAR) == 0)
+		if(strBtnText.Compare(_T(MAINDLG_CLEAR)) == 0)
 		{
-			m_thrdData.strAll = _T("");
+			m_thrdData.strAll = "";
 			m_thrdData.resultList.clear();
 
 			m_editMain.SetWindowText(m_thrdData.strAll);
 			CStatic* pWnd =(CStatic *)GetDlgItem(IDC_STATIC_TIME);
-			pWnd->SetWindowText(_T(""));
+			pWnd->SetWindowText("");
 			pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
-			pWnd->SetWindowText(_T(""));
+			pWnd->SetWindowText("");
 
 			m_prog.SetPos(0);
 			//m_progWhole.SetPos(0);
 			SetWholeProgPos(0);
 		}
-		else if(strBtnText.Compare(MAINDLG_CLEAR_VERIFY) == 0)
+		else if(strBtnText.Compare(_T(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
 			m_bFind = FALSE; // 退出搜索模式
-			m_btnClr.SetWindowText(MAINDLG_CLEAR);
+			m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 			RefreshMainText();
 		}
 	}
@@ -380,7 +371,7 @@ void CFilesHashDlg::OnBnClickedFind()
 		if(m_strFindHash.Compare(_T("")) != 0)
 		{
 			m_bFind = TRUE; // 进入搜索模式
-			m_btnClr.SetWindowText(MAINDLG_CLEAR_VERIFY);
+			m_btnClr.SetWindowText(_T(MAINDLG_CLEAR_VERIFY));
 			//m_editMain.SetWindowText(_T(""));
 			m_editMain.SetWindowText(ResultFind(m_strFindFile, m_strFindHash));
 			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
@@ -392,7 +383,7 @@ void CFilesHashDlg::OnBnClickedContext()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CStatic* pWnd = (CStatic *)GetDlgItem(IDC_STATIC_ADDRESULT);
-	CString buttonText = _T("");
+	CString buttonText = "";
 
 	m_btnContext.GetWindowText(buttonText);
 
@@ -465,7 +456,7 @@ void CFilesHashDlg::DoMD5()
 	}
 	
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(MAINDLG_CLEAR);
+	m_btnClr.SetWindowText(_T(MAINDLG_CLEAR));
 
 	PrepareAdvTaskbar();
 
@@ -478,11 +469,11 @@ void CFilesHashDlg::DoMD5()
 	m_calculateTime = 0.0;
 	m_timer = SetTimer(1, 100, NULL);
 	CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_TIME);
-	CString cstrZero(_T("0 "));
+	CString cstrZero("0 ");
 	cstrZero.Append(SECOND_STRING);
 	pWnd->SetWindowText(cstrZero);
 	pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
-	pWnd->SetWindowText(_T(""));
+	pWnd->SetWindowText("");
 
 	m_thrdData.stop = FALSE;
 	m_hWorkThread = CreateThread(NULL, 0, md5_file, &m_thrdData, 0, &thredID);
@@ -559,18 +550,18 @@ void CFilesHashDlg::CalcSpeed(ULONGLONG tsize)
 	if(m_calculateTime > 0.1)
 	{
 		speed = tsize / m_calculateTime;
-		CString speedStr, measure = _T("B/s");
+		CString speedStr,measure = "B/s";
 		if((speed / 1024) > 1)
 		{
 			speed /= 1024;
-			measure = _T("KB/s");
+			measure = "KB/s";
 			if((speed / 1024) > 1)
 			{
 				speed /= 1024;
-				measure = _T("MB/s");
+				measure = "MB/s";
 			}
 		}
-		speedStr.Format(_T("%4.2f "), speed);
+		speedStr.Format("%4.2f ", speed);
 		CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 		speedStr.Append(measure);
 		pWnd->SetWindowText(speedStr);
@@ -578,7 +569,7 @@ void CFilesHashDlg::CalcSpeed(ULONGLONG tsize)
 	else
 	{
 		CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
-		pWnd->SetWindowText(_T(""));
+		pWnd->SetWindowText("");
 	}
 }
 
@@ -615,15 +606,15 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 		m_calculateTime = 0.0;
 		CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_TIME);
-		pWnd->SetWindowText(_T(""));
+		pWnd->SetWindowText("");
 
 		//界面设置 - 开始
 		SetCtrls(FALSE);
 		//界面设置 - 结束
 			
-		m_thrdData.strAll.Append(_T("\r\n"));
+		m_thrdData.strAll.Append("\r\n");
 		m_thrdData.strAll.Append(MAINDLG_CALCU_TERMINAL);
-		m_thrdData.strAll.Append(_T("\r\n\r\n"));
+		m_thrdData.strAll.Append("\r\n\r\n");
 		m_editMain.SetWindowText(m_thrdData.strAll);
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
@@ -671,26 +662,26 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 			++count;
 
 			strResult.Append(FILENAME_STRING);
-			strResult.Append(_T(" "));
+			strResult.Append(" ");
 			strResult.Append(itr->strPath);
-			strResult.Append(_T("\r\n"));
+			strResult.Append("\r\n");
 			strResult.Append(FILESIZE_STRING);
-			strResult.Append(_T(" "));
-			strResult.AppendFormat(_T("%I64u "), itr->ulSize);
+			strResult.Append(" ");
+			strResult.AppendFormat("%I64u ", itr->ulSize);
 			strResult.Append(BYTE_STRING);
 			strResult.Append(ConvertSizeToCStr(itr->ulSize));
-			strResult.Append(_T("\r\n"));
+			strResult.Append("\r\n");
 			strResult.Append(MODIFYTIME_STRING);
-			strResult.Append(_T(" "));
+			strResult.Append(" ");
 			strResult.Append(itr->strMDate);
 			if(itr->strVersion.Compare(_T("")) != 0)
 			{
-				strResult.Append(_T("\r\n"));
+				strResult.Append("\r\n");
 				strResult.Append(VERSION_STRING);
-				strResult.Append(_T(" "));
+				strResult.Append(" ");
 				strResult.Append(itr->strVersion);
 			}
-			strResult.Append(_T("\r\n"));
+			strResult.Append("\r\n");
 
 			CString strMD5(itr->strMD5);
 			CString strSHA1(itr->strSHA1);
@@ -699,27 +690,27 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 
 			if(m_thrdData.uppercase = m_chkUppercase.GetCheck())
 			{
-				strResult.Append(_T("MD5: "));
+				strResult.Append("MD5: ");
 				strResult.Append(strMD5.MakeUpper());
-				strResult.Append(_T("\r\nSHA1: "));
+				strResult.Append("\r\nSHA1: ");
 				strResult.Append(strSHA1.MakeUpper());
-				strResult.Append(_T("\r\nSHA256: "));
+				strResult.Append("\r\nSHA256: ");
 				strResult.Append(strSHA256.MakeUpper());
-				strResult.Append(_T("\r\nCRC32: "));
+				strResult.Append("\r\nCRC32: ");
 				strResult.Append(strCRC32.MakeUpper());
-				strResult.Append(_T("\r\n\r\n"));
+				strResult.Append("\r\n\r\n");
 			}
 			else
 			{
-				strResult.Append(_T("MD5: "));
+				strResult.Append("MD5: ");
 				strResult.Append(strMD5.MakeLower());
-				strResult.Append(_T("\r\nSHA1: "));
+				strResult.Append("\r\nSHA1: ");
 				strResult.Append(strSHA1.MakeLower());
-				strResult.Append(_T("\r\nSHA256: "));
+				strResult.Append("\r\nSHA256: ");
 				strResult.Append(strSHA256.MakeLower());
-				strResult.Append(_T("\r\nCRC32: "));
+				strResult.Append("\r\nCRC32: ");
 				strResult.Append(strCRC32.MakeLower());
-				strResult.Append(_T("\r\n\r\n"));
+				strResult.Append("\r\n\r\n");
 			}
 		}
 	}
