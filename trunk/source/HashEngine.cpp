@@ -42,6 +42,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	CFile File;
 	thrdData->totalSize = 0;
 	ULONGLONG finishedSize = 0;
+	ULONGLONG finishedSizeWhole = 0;
 	bool isSizeCaled = false;
 	//ULONGLONG* fSizes = NULL;
 	ULLongVector fSizes(thrdData->nFiles);
@@ -97,6 +98,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		// Declaration for calculator
 		TCHAR* path;
 		ULONGLONG fsize, times, t = 0;
+		finishedSize = 0;
 		//unsigned int len;
 		//unsigned char buffer[65534];
 		DataBuffer databuf;
@@ -212,19 +214,20 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
 				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
 				
-				if((int)(100 * t / times) > position)
+				finishedSize += databuf.datalen;
+				int positionNew = (int)(100 * finishedSize / fsize);
+				if(positionNew > position)
 				{
-					position = (int)(100 * t / times);
-	
+					position = positionNew;
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, position);
 				}
-				finishedSize += databuf.datalen;
-				if(isSizeCaled && thrdData->totalSize > 0 && 
-					(int)(100 * finishedSize / thrdData->totalSize) > positionWhole)
-				{
-					// donot multiply 100
-					positionWhole = (int)(94 * finishedSize / thrdData->totalSize);
 
+				finishedSizeWhole += databuf.datalen;
+				int positionWholeNew = (int)(100 * finishedSizeWhole / thrdData->totalSize);
+				if(isSizeCaled && thrdData->totalSize > 0 && 
+					positionWholeNew > positionWhole)
+				{
+					positionWhole = positionWholeNew;
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
 				}
 
