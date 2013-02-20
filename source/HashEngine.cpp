@@ -215,7 +215,11 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32¸üÐÂ
 				
 				finishedSize += databuf.datalen;
-				int positionNew = (int)(100 * finishedSize / fsize);
+				int positionNew;
+				if(fsize == 0)
+					positionNew = 100;
+				else
+					positionNew = (int)(100 * finishedSize / fsize);
 				if(positionNew > position)
 				{
 					position = positionNew;
@@ -223,9 +227,12 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				}
 
 				finishedSizeWhole += databuf.datalen;
-				int positionWholeNew = (int)(100 * finishedSizeWhole / thrdData->totalSize);
-				if(isSizeCaled && thrdData->totalSize > 0 && 
-					positionWholeNew > positionWhole)
+				int positionWholeNew;
+				if(thrdData->totalSize == 0)
+					positionWholeNew = 100;
+				else
+					positionWholeNew = (int)(100 * finishedSizeWhole / thrdData->totalSize);
+				if(isSizeCaled && positionWholeNew > positionWhole)
 				{
 					positionWhole = positionWholeNew;
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
