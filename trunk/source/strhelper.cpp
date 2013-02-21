@@ -1,7 +1,7 @@
 /*
  * strhelpe implementation file
  * Author: Sun Junwen
- * Version: 1.2.1
+ * Version: 1.2.2
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -17,20 +17,42 @@
 
 #include "strhelper.h"
 
+namespace sunjwbase
+{
+	static std::string _wstrtostr(const std::wstring& wstr, UINT codePage)
+	{
+		// Convert a wstring to an string with specified code page
+		size_t strLen = WideCharToMultiByte(codePage, 0, wstr.c_str(), (int)wstr.length(), NULL, 0, NULL, NULL);
+		std::string strTo;
+		char *szTo = new char[strLen + 1];
+		szTo[strLen] = '\0';
+		WideCharToMultiByte(codePage, 0, wstr.c_str(), -1, szTo, (int)strLen, NULL, NULL);
+		strTo = szTo;
+		delete[] szTo;
+		return strTo;
+	}
+
+	static std::wstring _strtowstr(const std::string& str, UINT codePage)
+	{
+		// Convert an string to a wstring with specified code page
+		size_t wstrLen = MultiByteToWideChar(codePage, 0, str.c_str(), -1, NULL, 0);
+		std::wstring wstrTo;
+		wchar_t *wszTo = new wchar_t[wstrLen + 1];
+		wszTo[wstrLen] = L'\0';
+		MultiByteToWideChar(codePage, 0, str.c_str(), -1, wszTo, wstrLen);
+		wstrTo = wszTo;
+		delete[] wszTo;
+		return wstrTo;
+	}
+}
+
 /*
  * 将 ascii 编码的 wstring 转换为 utf8 编码的 string
  */
 std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 {
-    // Convert a Unicode string to an ASCII string
-	size_t strLen = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), (int)wstr.length(), NULL, 0, NULL, NULL);
-    std::string strTo;
-    char *szTo = new char[strLen + 1];
-    szTo[strLen] = '\0';
-    WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, szTo, (int)strLen, NULL, NULL);
-    strTo = szTo;
-    delete[] szTo;
-    return strTo;
+    // Convert a Unicode wstring to an ASCII string
+    return _wstrtostr(wstr, CP_UTF8);
 }
 
 /*
@@ -40,39 +62,20 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
  */
 std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 {
-    // Convert an ASCII string to a Unicode String
-    std::wstring wstrTo;
-    wchar_t *wszTo = new wchar_t[str.length() + 1];
-    wszTo[str.size()] = L'\0';
-    MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, wszTo, (int)str.length());
-    wstrTo = wszTo;
-    delete[] wszTo;
-    return wstrTo;
+    // Convert an ASCII string to a Unicode wstring
+    return _strtowstr(str, CP_UTF8);
 }
 
 std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 {
-    // Convert a Unicode string to an ASCII string
-	size_t strLen = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), (int)wstr.length(), NULL, 0, NULL, NULL);
-    std::string strTo;
-    char *szTo = new char[strLen + 1];
-    szTo[strLen] = '\0';
-    WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, szTo, (int)strLen, NULL, NULL);
-    strTo = szTo;
-    delete[] szTo;
-    return strTo;
+    // Convert a wstring to an string
+    return _wstrtostr(wstr, CP_ACP);
 }
 
 std::wstring sunjwbase::strtowstr(const std::string& str)
 {
-    // Convert an ASCII string to a Unicode String
-    std::wstring wstrTo;
-    wchar_t *wszTo = new wchar_t[str.length() + 1];
-    wszTo[str.size()] = L'\0';
-    MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, wszTo, (int)str.length());
-    wstrTo = wszTo;
-    delete[] wszTo;
-    return wstrTo;
+    // Convert an string to a wtring
+    return _strtowstr(str, CP_ACP);
 }
 
 std::string sunjwbase::strtrim_right(const std::string& s, const std::string& spaces)

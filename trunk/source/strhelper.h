@@ -1,7 +1,7 @@
 /*
  * strhelpe header file
  * Author: Sun Junwen
- * Version: 1.2.1
+ * Version: 1.2.2
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -22,13 +22,25 @@ namespace sunjwbase
 #endif
 
 	// converting part
+	/*
+	 * 将 ascii 编码的 wstring 转换为 utf8 编码的 string
+	 */
 	std::string wstrtostrutf8(const std::wstring& wstr);
+	/*
+	 * 将 utf8 编码的 string 转换为 wstring
+	 * 如果需要把 utf8 编码的 string 转换为本地编码的 string
+	 * 再调用一次 wstrtostr
+	 */
 	std::wstring strtowstrutf8(const std::string& str);
 	std::string wstrtostr(const std::wstring& wstr);
 	std::wstring strtowstr(const std::string& str);
 
+	// 将本地编码的 string 转换成 utf8 编码的 string
 	inline std::string utf8conv(std::string& strAscii)
 	{ return wstrtostrutf8(strtowstr(strAscii)); }
+	// 将 utf8 编码的 string 转换成本地编码的 string
+	inline std::string asciiconv(std::string& strUtf8)
+	{ return wstrtostr(strtowstrutf8(strUtf8)); }
 
 	inline std::string tstrtostr(const tstring& tstr)
 	{
