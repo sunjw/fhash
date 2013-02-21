@@ -217,7 +217,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				finishedSize += databuf.datalen;
 				int positionNew;
 				if(fsize == 0)
-					positionNew = 100;
+					positionNew = 100; // ×¢Òâ³ý0´íÎó
 				else
 					positionNew = (int)(100 * finishedSize / fsize);
 				if(positionNew > position)
@@ -229,7 +229,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				finishedSizeWhole += databuf.datalen;
 				int positionWholeNew;
 				if(thrdData->totalSize == 0)
-					positionWholeNew = 100;
+					positionWholeNew = 100; // ×¢Òâ³ý0´íÎó
 				else
 					positionWholeNew = (int)(100 * finishedSizeWhole / thrdData->totalSize);
 				if(isSizeCaled && positionWholeNew > positionWhole)
