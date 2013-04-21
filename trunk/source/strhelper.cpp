@@ -1,7 +1,7 @@
 /*
- * strhelpe implementation file
+ * strhelper implementation file
  * Author: Sun Junwen
- * Version: 1.2.2
+ * Version: 1.2.3
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -11,7 +11,6 @@
 #include "stdafx.h"
 
 #include <string>
-#include <algorithm>
 
 #include "Windows.h"
 
@@ -39,7 +38,7 @@ namespace sunjwbase
 		std::wstring wstrTo;
 		wchar_t *wszTo = new wchar_t[wstrLen + 1];
 		wszTo[wstrLen] = L'\0';
-		MultiByteToWideChar(codePage, 0, str.c_str(), -1, wszTo, wstrLen);
+		MultiByteToWideChar(codePage, 0, str.c_str(), -1, wszTo, (int)wstrLen);
 		wstrTo = wszTo;
 		delete[] wszTo;
 		return wstrTo;

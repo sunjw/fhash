@@ -1,7 +1,7 @@
 /*
- * strhelpe header file
+ * strhelper header file
  * Author: Sun Junwen
- * Version: 1.2.2
+ * Version: 1.2.3
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -11,6 +11,8 @@
 #ifndef _STR_HELPER_H_
 #define _STR_HELPER_H_
 #include <string>
+#include <algorithm>
+#include <locale>
 
 namespace sunjwbase
 {
@@ -108,6 +110,36 @@ namespace sunjwbase
 	// upper and lower
 	std::string str_upper(const std::string& str);
 	std::string str_lower(const std::string& str);
+
+	// searching part
+	// case insensitive equal for ci_strfind
+	// templated version of ci_equal so it could work with both char and wchar_t
+	template<typename charT>
+	struct ci_equal 
+	{
+		ci_equal( const std::locale& loc ):loc_(loc) 
+		{}
+
+		bool operator()(charT ch1, charT ch2) 
+		{
+			return std::toupper(ch1, loc_) == std::toupper(ch2, loc_);
+		}
+	private:
+		const std::locale& loc_;
+	};
+
+	// case insensitive search
+	template<typename T>
+	__int64 ci_strfind(const T& str, const T& substr, const std::locale& loc = std::locale())
+	{
+		T::const_iterator it = std::search(str.begin(), str.end(), 
+										substr.begin(), substr.end(), 
+										ci_equal<T::value_type>(loc));
+		if (it != str.end()) 
+			return it - str.begin();
+		else 
+			return -1; // not found
+	}
 }
 
 
