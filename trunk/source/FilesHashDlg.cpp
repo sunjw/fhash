@@ -123,7 +123,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_editMain.SetLimitText(UINT_MAX);
 	m_editMain.SetWindowText(MAINDLG_INITINFO);
 
-	if(IsContextMenuAdded())
+	if(ContextMenuExisted())
 	{
 		// 已经添加右键菜单
 		m_btnContext.SetWindowText(MAINDLG_REMOVE_CONTEXT_MENU);
@@ -398,7 +398,7 @@ void CFilesHashDlg::OnBnClickedContext()
 
 	if(buttonText.Compare(MAINDLG_ADD_CONTEXT_MENU) == 0)
 	{
-
+		RemoveContextMenu(); // Try to delete all items related to fHash
 		if(AddContextMenu())
 		{
 			pWnd->SetWindowText(MAINDLG_ADD_SUCCEEDED);

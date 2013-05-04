@@ -2,6 +2,7 @@
 
 #include <atlbase.h>
 #include "Functions.h"
+#include "UIStrings.h"
 
 CString ConvertSizeToCStr(ULONGLONG size)
 {
@@ -408,7 +409,7 @@ bool AddContextMenu(void)
 	GetModuleFileName(NULL, exeFullPath, MAX_PATH);//得到程序模块名称，全路径
 
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY;
 	LONG lResult;
 	// 创建目录
 	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -450,17 +451,18 @@ bool RemoveContextMenu(void)
 	if(lResult != ERROR_SUCCESS)
 		return false;
 
-	lResult = key.RecurseDeleteKey(_T("Hash it with fHash"));
+	lResult = key.RecurseDeleteKey(CONTEXT_MENU_ITEM_EN_US);
+	lResult &= key.RecurseDeleteKey(CONTEXT_MENU_ITEM_ZH_CN);
 	if(lResult != ERROR_SUCCESS)
 		return false;
 	else
 		return true;
 }
 
-bool IsContextMenuAdded(void)
+bool ContextMenuExisted(void)
 {
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\Hash it with fHash\\command");
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY;
 	LONG lResult;
 
 	// 打开

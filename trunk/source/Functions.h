@@ -33,4 +33,4 @@ CString GetWindowsInfo();
 
 bool AddContextMenu(void);
 bool RemoveContextMenu(void);
-bool IsContextMenuAdded(void);
+bool ContextMenuExisted(void);
