@@ -13,7 +13,8 @@
 		34AA973C D4C4DAA4 F61EEB2B DBAD2731 6534016F
 */
 
-#include "../stdafx.h"
+#include "stdafx.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
