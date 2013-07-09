@@ -19,10 +19,11 @@
 
 /* Modelled after the sha1.c code by Peter Gutmann. */
 
+#include "stdafx.h"
+
 #include <stdio.h>
 #include <string.h>
 
-#include "../stdafx.h"
 #include "sha256.h"
 
 /* A block, treated as a sequence of 32-bit words. */

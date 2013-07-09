@@ -11,7 +11,8 @@
 	---------------------------------------------------------------------------
 */
 
-#include "../stdafx.h"
+#include "stdafx.h"
+
 #include "CRC32.h"
 
 // CRC-32 table for the following polynominal:

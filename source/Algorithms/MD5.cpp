@@ -46,7 +46,8 @@
  **********************************************************************
  */
 
-#include "../stdafx.h"
+#include "stdafx.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
