@@ -163,7 +163,7 @@ END
 // RT_MANIFEST
 //
 
-1                       RT_MANIFEST             "res\\fileshash.manifest"
+//1                       RT_MANIFEST             "res\\fileshash.manifest"
 #endif    // 中文(中华人民共和国) resources
 /////////////////////////////////////////////////////////////////////////////
 
