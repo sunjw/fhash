@@ -42,6 +42,8 @@ BOOL CAboutDlg::OnInitDialog()
 	CString osinfo = GetWindowsInfo();
 	m_about = ABOUTDLG_INFO_TITLE;
 	m_about.Append(fHashVersion);
+	if(sizeof(void*) == 8)
+		m_about.Append(_T(" x64"));
 	m_about.Append(_T("\r\n"));
 	m_about.Append(ABOUTDLG_INFO_RIGHT);
 	m_about.Append(_T("\r\n\r\n"));

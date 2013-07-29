@@ -35,8 +35,8 @@ BEGIN
             VALUE "CompanyName", "SUN Junwen"
             VALUE "FileDescription", "fHash: Files' Hash Calculator"
             VALUE "FileVersion", STR_VERSION
-            VALUE "InternalName", "filesmd5.exe"
-            VALUE "LegalCopyright", "(C) 2007-2011 SUN Junwen."
+            VALUE "InternalName", "fHash.exe"
+            VALUE "LegalCopyright", "(C) 2007-2013 SUN Junwen."
             VALUE "OriginalFilename", "fHash.exe"
             VALUE "ProductName", "fHash: Files' Hash Calculator"
             VALUE "ProductVersion", STR_VERSION
