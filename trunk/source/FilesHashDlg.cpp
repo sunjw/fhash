@@ -196,7 +196,7 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 	if(!m_thrdData.threadWorking)
 	{
 		unsigned int i;
-		TCHAR DragFilename[MAX_PATH];
+		TCHAR szDragFilename[MAX_PATH];
 		DragAcceptFiles(FALSE);
 
 		m_thrdData.nFiles = DragQueryFile(hDropInfo, -1, NULL, 0);
@@ -204,9 +204,9 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 
 		for(i=0; i < m_thrdData.nFiles; i++)
 		{
-			DragQueryFile(hDropInfo, i, DragFilename, sizeof(DragFilename));
+			DragQueryFile(hDropInfo, i, szDragFilename, sizeof(szDragFilename));
 			CString tmp;
-			tmp.Format(_T("%s"), DragFilename);
+			tmp.Format(_T("%s"), szDragFilename);
 			m_thrdData.fullPaths.push_back(tmp);
 		}
 
