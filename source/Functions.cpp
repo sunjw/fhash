@@ -3,6 +3,9 @@
 #include <atlbase.h>
 #include "Functions.h"
 #include "UIStrings.h"
+#include "strhelper.h"
+
+using namespace sunjwbase;
 
 CString ConvertSizeToCStr(ULONGLONG size)
 {
@@ -403,18 +406,98 @@ CString GetWindowsInfo()
 	return osinfo; 
 }
 
-bool AddContextMenu(void)
+BOOL IsWindows64()
 {
-	TCHAR exeFullPath[MAX_PATH + 10]; // MAX_PATH
-	GetModuleFileName(NULL, exeFullPath, MAX_PATH);//得到程序模块名称，全路径
+	typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
+    //IsWow64Process is not available on all supported versions of Windows.
+    //Use GetModuleHandle to get a handle to the DLL that contains the function
+    //and GetProcAddress to get a pointer to the function if available.
+	LPFN_ISWOW64PROCESS fnIsWow64Process = NULL;
+    fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(
+						GetModuleHandle(_T("kernel32")), "IsWow64Process");
+
+	return (fnIsWow64Process != NULL); // Windows 32bit not have this function
+}
+
+bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
+{
+	tstring tstrExeDirPath(pszExeFullPath);
+	tstring::size_type idx = tstrExeDirPath.rfind(_T("\\"));
+	tstrExeDirPath = tstrExeDirPath.substr(0, idx);
+
+	tstring tstrShlExtDll = tstrExeDirPath;
+	tstrShlExtDll.append(_T("\\fHashShlExt"));
+	if(IsWindows64())
+		tstrShlExtDll.append(_T("_64"));
+	tstrShlExtDll.append(_T(".dll"));
+
+	WIN32_FIND_DATA ffData;
+	HANDLE hFind = FindFirstFile(tstrShlExtDll.c_str(), &ffData);
+
+	bool bRet = (hFind != INVALID_HANDLE_VALUE);
+
+	if(bRet)
+	{
+#if defined(UNICODE) || defined(_UNICODE)
+			wcscpy_s(pszShlDllPath, MAX_PATH, tstrShlExtDll.c_str());
+#else
+			strcpy_s(pszShlDllPath, MAX_PATH, tstrShlExtDll.c_str());
+#endif
+
+		FindClose(hFind);
+	}
+
+	return bRet;
+}
+
+bool RegShellExt(TCHAR *pszShlDllPath)
+{
+	HMODULE hModule = LoadLibrary(pszShlDllPath);
+	if(hModule)
+	{
+		LPFN_DllRegisterServer fnDllRegSvr = NULL;
+		fnDllRegSvr = (LPFN_DllRegisterServer) GetProcAddress(hModule, "DllRegisterServer");
+		if(fnDllRegSvr != NULL)
+		{
+			return (fnDllRegSvr() == S_OK);
+		}
+
+		FreeLibrary(hModule);
+	}
+	
+	return false;
+}
+
+bool UnregShellExt(TCHAR *pszShlDllPath)
+{
+	HMODULE hModule = LoadLibrary(pszShlDllPath);
+	if(hModule)
+	{
+		LPFN_DllUnregisterServer fnDllUnregSvr = NULL;
+		fnDllUnregSvr = (LPFN_DllUnregisterServer) GetProcAddress(hModule, "DllUnregisterServer");
+		if(fnDllUnregSvr != NULL)
+		{
+			return (fnDllUnregSvr() == S_OK);
+		}
+
+		FreeLibrary(hModule);
+	}
+	
+	return false;
+}
+
+
+bool AddContextMenu(TCHAR *pszExeFullPath)
+{
 	CRegKey key;
+	LONG lResult;
 #ifdef ZH_CN
 	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
 #else
 	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
 #endif
-	LONG lResult;
+
 	// 创建目录
 	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
 	if(lResult != ERROR_SUCCESS)
@@ -426,58 +509,150 @@ bool AddContextMenu(void)
 		return false;
 
 	// 成功打开
-	TCHAR command[270];
+	TCHAR pszCommand[270];
 
 #if defined(UNICODE) || defined(_UNICODE)
-	wcscpy_s(command, MAX_PATH + 10, exeFullPath);
-	wcscat_s(command, MAX_PATH + 10, _T(" \"%1\""));
+	wcscpy_s(pszCommand, MAX_PATH + 10, pszExeFullPath);
+	wcscat_s(pszCommand, MAX_PATH + 10, _T(" \"%1\""));
 #else
-	strcpy_s(command, MAX_PATH + 10, exeFullPath);
-	strcat_s(command, MAX_PATH + 10, " \"%1\"");
+	strcpy_s(pszCommand, MAX_PATH + 10, pszExeFullPath);
+	strcat_s(pszCommand, MAX_PATH + 10, _T(" \"%1\""));
 #endif
 	
-	lResult = key.SetStringValue(NULL, command);
+	lResult = key.SetStringValue(NULL, pszCommand);
 	key.Close();
+
 	if(lResult == ERROR_SUCCESS)
 		return true;
 	else
 		return false;
 }
 
-bool RemoveContextMenu(void)
+bool AddShellExt(TCHAR *pszExeFullPath)
 {
 	CRegKey key;
-	LPCTSTR lpszKeyName = _T("*\\shell\\");
 	LONG lResult;
+	LPCTSTR lpszKeyName = SHELL_EXT_REGESTRY;
+
+	// 创建目录
+	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
+	if(lResult != ERROR_SUCCESS)
+		return false; // 失败
 
 	// 打开
 	lResult = key.Open(HKEY_CLASSES_ROOT, lpszKeyName, KEY_ALL_ACCESS);
 	if(lResult != ERROR_SUCCESS)
 		return false;
 
-	lResult = key.RecurseDeleteKey(CONTEXT_MENU_ITEM_EN_US);
-	lResult &= key.RecurseDeleteKey(CONTEXT_MENU_ITEM_ZH_CN);
+	// 成功打开
+	LPCTSTR pszUuid = SHELL_EXT_UUID;
+	LPCTSTR pszExePath = pszExeFullPath;
+	
+	lResult = key.SetStringValue(NULL, pszUuid);
+	lResult |= key.SetStringValue(SHELL_EXT_EXEPATH, pszExePath);
+	key.Close();
+
+	if(lResult == ERROR_SUCCESS)
+		return true;
+	else
+		return false;
+}
+
+bool AddContextMenu()
+{
+	TCHAR pszExeFullPath[MAX_PATH + 10] = { L'0' };
+	TCHAR pszShlDllPath[MAX_PATH + 10] = { L'0' };
+
+	GetModuleFileName(NULL, pszExeFullPath, MAX_PATH); // 得到程序模块名称，全路径
+	
+	if(FindShlExtDll(pszExeFullPath, pszShlDllPath))
+	{
+		// We found shell extension dll
+		if(RegShellExt(pszShlDllPath) &&
+			AddShellExt(pszExeFullPath))
+			return true;
+		else
+			return AddContextMenu(pszExeFullPath); // fallback
+	}
+	else
+	{
+		// No dll, just add context menu
+		return AddContextMenu(pszExeFullPath);
+	}
+}
+
+bool RemoveContextMenu()
+{
+	TCHAR pszExeFullPath[MAX_PATH + 10] = { L'0' };
+	TCHAR pszShlDllPath[MAX_PATH + 10] = { L'0' };
+
+	GetModuleFileName(NULL, pszExeFullPath, MAX_PATH); // 得到程序模块名称，全路径
+	if(FindShlExtDll(pszExeFullPath, pszShlDllPath))
+	{
+		UnregShellExt(pszShlDllPath);
+	}
+
+	CRegKey keyShell, keyShellEx;
+	LPCTSTR lpszKeyShellName = _T("*\\shell\\");
+	LPCTSTR lpszKeyShellExName = _T("*\\shellex\\ContextMenuHandlers\\");
+	LONG lResShell, lResShellEx;
+
+	// 打开
+	lResShell = keyShell.Open(HKEY_CLASSES_ROOT, lpszKeyShellName, KEY_ALL_ACCESS);
+	lResShellEx = keyShellEx.Open(HKEY_CLASSES_ROOT, lpszKeyShellExName, KEY_ALL_ACCESS);
+	if(lResShell != ERROR_SUCCESS && 
+		lResShellEx != ERROR_SUCCESS)
+		return false;
+
+	LONG lResult = 1L;
+
+	// Try to delete context menu
+	if(lResShell == ERROR_SUCCESS)
+	{
+		lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_EN_US);
+		lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_ZH_CN);
+		keyShell.Close();
+	}
+
+	// Try to delete shell extension
+	if(lResShellEx == ERROR_SUCCESS)
+	{
+		lResult &= keyShellEx.RecurseDeleteKey(_T("fHashShellExt"));
+		keyShellEx.Close();
+	}
+
 	if(lResult != ERROR_SUCCESS)
 		return false;
 	else
 		return true;
 }
 
-bool ContextMenuExisted(void)
+bool ContextMenuExisted()
 {
-	CRegKey key;
+	CRegKey keyCtxMenu, keyShlExt;
 #ifdef ZH_CN
-	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+	LPCTSTR lpszCtxMenuKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
 #else
-	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
+	LPCTSTR lpszCtxMenuKeyName = CONTEXT_MENU_REGESTRY_EN_US;
 #endif
-	LONG lResult;
+	LPCTSTR lpszShlExtKeyName = SHELL_EXT_REGESTRY;
+
+	LONG lResCtxMenu;
+	LONG lResShlExt;
 
 	// 打开
-	lResult = key.Open(HKEY_CLASSES_ROOT, lpszKeyName, KEY_READ);
-	if(lResult != ERROR_SUCCESS)
+	lResCtxMenu = keyCtxMenu.Open(HKEY_CLASSES_ROOT, lpszCtxMenuKeyName, KEY_READ);
+	lResShlExt = keyShlExt.Open(HKEY_CLASSES_ROOT, lpszShlExtKeyName, KEY_READ);
+
+	if(lResCtxMenu != ERROR_SUCCESS && 
+		lResShlExt != ERROR_SUCCESS)
 		return false;
-	else
-		return true;
+	
+	if(lResCtxMenu == ERROR_SUCCESS)
+		keyCtxMenu.Close();
+	if(lResShlExt == ERROR_SUCCESS)
+		keyShlExt.Close();
+
+	return true;
 }
 
