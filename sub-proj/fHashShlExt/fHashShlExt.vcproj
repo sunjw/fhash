@@ -56,6 +56,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\..\trunk\source"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -144,6 +145,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\..\trunk\source"
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -234,6 +236,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
+				AdditionalIncludeDirectories="..\..\trunk\source"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
@@ -322,6 +325,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
+				AdditionalIncludeDirectories="..\..\trunk\source"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
@@ -477,7 +481,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\strhelper.cpp"
+				RelativePath="..\..\trunk\source\strhelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\UIStrings.cpp"
 				>
 			</File>
 		</Filter>
@@ -503,11 +511,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strhelper.h"
+				RelativePath="..\..\trunk\source\strhelper.h"
 				>
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\UIStrings.h"
 				>
 			</File>
 		</Filter>

@@ -1,7 +1,10 @@
 #ifndef _UISTRINGS_H_
 #define _UISTRINGS_H_
 
-#include "stdafx.h"
+#include <tchar.h>
+
+// Multi languages
+#define ZH_CN
 
 // Global Strings
 extern const TCHAR *FILE_STRING;
@@ -14,7 +17,8 @@ extern const TCHAR *VERSION_STRING;
 extern const TCHAR *SECOND_STRING;
 extern const TCHAR *BUTTON_OK;
 extern const TCHAR *BUTTON_CANCEL;
-extern const TCHAR *CONTEXT_MENU_REGESTRY;
+extern const TCHAR *CONTEXT_MENU_REGESTRY_EN_US;
+extern const TCHAR *CONTEXT_MENU_REGESTRY_ZH_CN;
 extern const TCHAR *CONTEXT_MENU_ITEM_EN_US;
 extern const TCHAR *CONTEXT_MENU_ITEM_ZH_CN;
 

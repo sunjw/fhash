@@ -5,9 +5,7 @@
 #include <string>
 #include <atlconv.h>
 #include "strhelper.h"
-
-#define CONTEXT_MENU_REGESTRY_ZH_CN _T("*\\shell\\ π”√ fHash º∆À„π˛œ£\\command")
-#define CONTEXT_MENU_REGESTRY_EN_US _T("*\\shell\\Hash it with fHash\\command")
+#include "UIStrings.h"
 
 using namespace std;
 using namespace sunjwbase;
