@@ -1,10 +1,10 @@
 #include "stdafx.h"
+#include "UIStrings.h"
 
 const TCHAR *CONTEXT_MENU_ITEM_EN_US = _T("Hash it with fHash");
 const TCHAR *CONTEXT_MENU_ITEM_ZH_CN = _T("使用 fHash 计算哈希");
-
-// Multi languages
-#define ZH_CN
+const TCHAR *CONTEXT_MENU_REGESTRY_ZH_CN = _T("*\\shell\\使用 fHash 计算哈希\\command");
+const TCHAR *CONTEXT_MENU_REGESTRY_EN_US = _T("*\\shell\\Hash it with fHash\\command");
 
 #ifdef ZH_CN
 // Global Strings
@@ -18,7 +18,6 @@ const TCHAR *VERSION_STRING = _T("版本:");
 const TCHAR *SECOND_STRING = _T("秒");
 const TCHAR *BUTTON_OK = _T("确定");
 const TCHAR *BUTTON_CANCEL = _T("取消");
-const TCHAR *CONTEXT_MENU_REGESTRY = _T("*\\shell\\使用 fHash 计算哈希\\command");
 
 // Main Dialog Strings
 const TCHAR *MAINDLG_INITINFO = _T("将文件拖入或点击打开，开始计算。");
@@ -72,7 +71,6 @@ const TCHAR *VERSION_STRING = _T("Version:");
 const TCHAR *SECOND_STRING = _T("s");
 const TCHAR *BUTTON_OK = _T("OK");
 const TCHAR *BUTTON_CANCEL = _T("Cancel");
-const TCHAR *CONTEXT_MENU_REGESTRY = _T("*\\shell\\Hash it with fHash\\command");
 
 // Main Dialog Strings
 const TCHAR *MAINDLG_INITINFO = _T("Drag files here or click open to start calculate.");

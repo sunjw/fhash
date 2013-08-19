@@ -409,7 +409,11 @@ bool AddContextMenu(void)
 	GetModuleFileName(NULL, exeFullPath, MAX_PATH);//得到程序模块名称，全路径
 
 	CRegKey key;
-	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY;
+#ifdef ZH_CN
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+#else
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
+#endif
 	LONG lResult;
 	// 创建目录
 	lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -462,11 +466,15 @@ bool RemoveContextMenu(void)
 bool ContextMenuExisted(void)
 {
 	CRegKey key;
-	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY;
+#ifdef ZH_CN
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+#else
+	LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
+#endif
 	LONG lResult;
 
 	// 打开
-	lResult = key.Open(HKEY_CLASSES_ROOT, lpszKeyName, KEY_ALL_ACCESS);
+	lResult = key.Open(HKEY_CLASSES_ROOT, lpszKeyName, KEY_READ);
 	if(lResult != ERROR_SUCCESS)
 		return false;
 	else
