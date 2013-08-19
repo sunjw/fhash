@@ -6,12 +6,12 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Mon Aug 19 21:24:14 2013
+/* at Mon Aug 19 23:30:14 2013
  */
 /* Compiler settings for .\fHashShlExt.idl:
-    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 7.00.0555 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
     protocol : dce , ms_ext, c_ext, robust
-    error checks: allocation ref bounds_check enum stub_data 
+    error checks: stub_data 
     VC __declspec() decoration level: 
          __declspec(uuid()), __declspec(selectany), __declspec(novtable)
          DECLSPEC_UUID(), MIDL_INTERFACE()

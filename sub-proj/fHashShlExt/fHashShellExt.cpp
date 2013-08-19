@@ -58,33 +58,21 @@ HRESULT CfHashShellExt::Initialize(LPCITEMIDLIST pidlFolder,
 	ReleaseStgMedium(&stg);
 
 	// Try to find fHash
-	CRegKey keyZh, keyEn;
-	LPCTSTR lpszKeyNameZh = CONTEXT_MENU_REGESTRY_ZH_CN;
-	LPCTSTR lpszKeyNameEn = CONTEXT_MENU_REGESTRY_EN_US;
-	LONG lResultZh, lResultEn;
-	lResultZh = keyZh.Open(HKEY_CLASSES_ROOT, lpszKeyNameZh, KEY_READ);
-	lResultEn = keyEn.Open(HKEY_CLASSES_ROOT, lpszKeyNameEn, KEY_READ);
-	if(lResultZh != ERROR_SUCCESS && lResultEn != ERROR_SUCCESS)
+	CRegKey key;
+	LPCTSTR lpszKeyName = SHELL_EXT_REGESTRY;
+	LONG lResult;
+	lResult = key.Open(HKEY_CLASSES_ROOT, lpszKeyName, KEY_READ);
+	if(lResult != ERROR_SUCCESS)
 		return E_INVALIDARG;
 
-	TCHAR szPath[MAX_PATH + 1] = {0};
+	TCHAR szPath[MAX_PATH + 1] = { L'0' };
 	ULONG nChars = MAX_PATH;
-	if(lResultZh == ERROR_SUCCESS)
-	{
-		keyZh.QueryStringValue(NULL, szPath, &nChars);
-		keyZh.Close();
-	}
-	else if(lResultEn == ERROR_SUCCESS)
-	{
-		keyEn.QueryStringValue(NULL, szPath, &nChars);
-		keyEn.Close();
-	}
+	key.QueryStringValue(SHELL_EXT_EXEPATH, szPath, &nChars);
+	key.Close();
 
 	m_fHashPath = szPath;
 	if(m_fHashPath == _T(""))
-		hr = E_INVALIDARG; 
-
-	m_fHashPath = strreplace(m_fHashPath, _T(" \"%1\""), _T(""));
+		hr = E_INVALIDARG;
  
 	return hr;
 }
@@ -96,9 +84,15 @@ HRESULT CfHashShellExt::QueryContextMenu(
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
- 
+
+#ifdef ZH_CN
+	LPCTSTR pszMenuItem = SHELL_EXT_ITEM_ZH_CN;
+#else
+	LPCTSTR pszMenuItem = SHELL_EXT_ITEM_EN_US;
+#endif
+
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION,
-               uidFirstCmd, _T("Hash with fHash+"));
+               uidFirstCmd, pszMenuItem);
  
 	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 1);
 }
