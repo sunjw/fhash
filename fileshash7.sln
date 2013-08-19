@@ -2,6 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHash", "fileshash.vcproj", "{6644A084-A7A3-40C1-9DDD-3312944FED03}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashShlExt", "..\sub-proj\fHashShlExt\fHashShlExt.vcproj", "{853488C2-0156-427B-BD20-FD6ECF3782EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -18,6 +20,14 @@ Global
 		{6644A084-A7A3-40C1-9DDD-3312944FED03}.Release|Win32.Build.0 = Release|Win32
 		{6644A084-A7A3-40C1-9DDD-3312944FED03}.Release|x64.ActiveCfg = Release|x64
 		{6644A084-A7A3-40C1-9DDD-3312944FED03}.Release|x64.Build.0 = Release|x64
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Debug|Win32.Build.0 = Debug|Win32
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Debug|x64.ActiveCfg = Debug|x64
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Debug|x64.Build.0 = Debug|x64
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Release|Win32.ActiveCfg = Release|Win32
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Release|Win32.Build.0 = Release|Win32
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Release|x64.ActiveCfg = Release|x64
+		{853488C2-0156-427B-BD20-FD6ECF3782EC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
