@@ -1,10 +1,12 @@
 #include "stdafx.h"
 
+#include <string>
 #include <atlbase.h>
 #include "Functions.h"
 #include "UIStrings.h"
 #include "strhelper.h"
 
+using namespace std;
 using namespace sunjwbase;
 
 CString ConvertSizeToCStr(ULONGLONG size)
@@ -409,7 +411,7 @@ CString GetWindowsInfo()
 BOOL IsWindows64()
 {
 	CRegKey key;
-	LPCTSTR lpszEnvKeyName = _T("SYSTEM\\CurrentCongtrolSet\\Control\\Session Manager\\Envirornment");
+	LPCTSTR lpszEnvKeyName = _T("SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment");
 	LPCTSTR lpszArchKeyName = _T("PROCESSOR_ARCHITECTURE");
 
 	LONG lResEnv;
