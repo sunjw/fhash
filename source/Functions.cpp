@@ -429,7 +429,7 @@ bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
 	tstring tstrShlExtDll = tstrExeDirPath;
 	tstrShlExtDll.append(_T("\\fHashShlExt"));
 	if(IsWindows64())
-		tstrShlExtDll.append(_T("_64"));
+		tstrShlExtDll.append(_T("64"));
 	tstrShlExtDll.append(_T(".dll"));
 
 	WIN32_FIND_DATA ffData;
