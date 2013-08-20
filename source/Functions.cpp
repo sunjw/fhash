@@ -408,16 +408,28 @@ CString GetWindowsInfo()
 
 BOOL IsWindows64()
 {
-	typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
+	CRegKey key;
+	LPCTSTR lpszEnvKeyName = _T("SYSTEM\\CurrentCongtrolSet\\Control\\Session Manager\\Envirornment");
+	LPCTSTR lpszArchKeyName = _T("PROCESSOR_ARCHITECTURE");
 
-    //IsWow64Process is not available on all supported versions of Windows.
-    //Use GetModuleHandle to get a handle to the DLL that contains the function
-    //and GetProcAddress to get a pointer to the function if available.
-	LPFN_ISWOW64PROCESS fnIsWow64Process = NULL;
-    fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(
-						GetModuleHandle(_T("kernel32")), "IsWow64Process");
+	LONG lResEnv;
 
-	return (fnIsWow64Process != NULL); // Windows 32bit not have this function
+	// ´ò¿ª
+	lResEnv = key.Open(HKEY_LOCAL_MACHINE, lpszEnvKeyName, KEY_READ);
+
+	if(lResEnv != ERROR_SUCCESS)
+		return false;
+	
+	TCHAR tszArch[100] = { L'0' };
+    ULONG nChars = 100;
+    key.QueryStringValue(lpszArchKeyName, tszArch, &nChars);
+	key.Close();
+	
+	string strArch(tstrtostr(tszArch));
+	strArch = str_upper(strArch);
+	strArch = strtrim(strArch);
+
+	return (strArch == "AMD64");
 }
 
 bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
