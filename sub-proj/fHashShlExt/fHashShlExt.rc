@@ -11,6 +11,7 @@
 #include "targetver.h"
 #endif
 #include "winres.h"
+#include "version.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -59,8 +60,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,9,0,0
- PRODUCTVERSION 0,9,0,0
+ FILEVERSION NUM_VERSION
+ PRODUCTVERSION NUM_VERSION
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -77,12 +78,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "SUN Junwen"
             VALUE "FileDescription", "ShellExt for fHash"
-            VALUE "FileVersion", "0.9.0.0"
+            VALUE "FileVersion", STR_VERSION
             VALUE "InternalName", "fHashShlExt.dll"
             VALUE "LegalCopyright", "SUN Junwen"
             VALUE "OriginalFilename", "fHashShlExt.dll"
             VALUE "ProductName", "ShellExt for fHash"
-            VALUE "ProductVersion", "0.9.0.0"
+            VALUE "ProductVersion", STR_VERSION
         END
     END
     BLOCK "VarFileInfo"

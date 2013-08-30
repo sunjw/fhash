@@ -155,8 +155,9 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 				tstrCmd.append(_T("\""));
 			}
 
-			TCHAR *pszCmd = new TCHAR[tstrCmd.length() + 1];
-			memset(pszCmd, 0, sizeof(pszCmd));
+			size_t cmdLen = tstrCmd.length()*sizeof(TCHAR) + 1;
+			TCHAR *pszCmd = new TCHAR[cmdLen];
+			memset(pszCmd, 0, cmdLen);
 #if defined(UNICODE) || defined(_UNICODE)
 			wcscpy(pszCmd, tstrCmd.c_str());
 #else
