@@ -4,7 +4,7 @@
 #include <tchar.h>
 
 // Multi languages
-#define ZH_CN
+//#define ZH_CN
 
 // Global Strings
 extern const TCHAR *FILE_STRING;
