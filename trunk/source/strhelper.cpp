@@ -1,7 +1,7 @@
 /*
  * strhelper implementation file
  * Author: Sun Junwen
- * Version: 1.3
+ * Version: 2.0
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -97,7 +97,7 @@ std::string sunjwbase::striconv(const std::string& input,
 #endif
 
 /*
- * 将 ascii 编码的 wstring 转换为 utf8 编码的 string
+ * convert ascii encoded wstring to utf8 encoded string
  */
 std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 {
@@ -111,9 +111,9 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 }
 
 /*
- * 将 utf8 编码的 string 转换为 wstring
- * 如果需要把 utf8 编码的 string 转换为本地编码的 string
- * 再调用一次 wstrtostr
+ * convert utf8 encoded string to wstring
+ * 1st, convert utf8 encoded string to native string
+ * 2nd, call strtowstr
  */
 std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 {
@@ -133,11 +133,13 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
     return _wstrtostr(wstr, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (UNIX)
+    setlocale(LC_ALL, "zh_CN.UTF-8");
 	size_t num_chars = wcstombs(NULL, wstr.c_str(), 0);
 	char* char_buf = new char[num_chars + 1];
-	wcstombs(char_buf, wstr.c_str(), wstr.size());
+	wcstombs(char_buf, wstr.c_str(), num_chars);
 	std::string str(char_buf);
 	delete[] char_buf;
+    setlocale(LC_ALL, "C");
     
 	return str;
 #endif
@@ -150,11 +152,13 @@ std::wstring sunjwbase::strtowstr(const std::string& str)
     return _strtowstr(str, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (UNIX)
+    setlocale(LC_ALL, "zh_CN.UTF-8");
     size_t num_chars = mbstowcs(NULL, str.c_str(), 0);
 	wchar_t* wct_buf = new wchar_t[num_chars + 1];
-	mbstowcs(wct_buf, str.c_str(), str.size());
+	mbstowcs(wct_buf, str.c_str(), num_chars);
 	std::wstring wstr(wct_buf, num_chars);
 	delete[] wct_buf;
+    setlocale(LC_ALL, "C");
     
 	return wstr;
 #endif
@@ -228,7 +232,7 @@ std::string sunjwbase::fixnewline(const std::string& str)
 {
 	std::string ret;
 	std::string strRepairSrc(""), strRepairDst("");
-	// 修理换行符, /10->/13/10, /13/13/10->/13/10
+	// convert new line, /10->/13/10, /13/13/10->/13/10
 	strRepairSrc += (char)10;
 	strRepairDst += (char)13;
 	strRepairDst += (char)10;
@@ -237,7 +241,7 @@ std::string sunjwbase::fixnewline(const std::string& str)
 	strRepairSrc += (char)13;
 	strRepairSrc += (char)10;
 	ret = strreplace(ret, strRepairSrc, strRepairDst);
-	// 修理换行符, /13->/13/10, /13/10/10->/13/10
+	// convert new line, /13->/13/10, /13/10/10->/13/10
 	strRepairSrc = "";
 	strRepairDst = "";
 	strRepairSrc += (char)13;
@@ -295,7 +299,11 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
     while (1) {
         temp.resize(size);
         va_start(vl, format);
+#if defined (WIN32)
+		int n = vsnprintf_s((char *)temp.c_str(), size, size, format, vl);
+#else
         int n = vsnprintf((char *)temp.c_str(), size, format, vl);
+#endif
         va_end(vl);
         if (n > -1 && n < size) {
             temp.resize(n);
@@ -309,4 +317,38 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
     str.append(temp);
     
     return str;
+}
+
+bool sunjwbase::str_startwith(const std::string& str, const std::string& target)
+{
+	if(str.length() < target.length())
+		return false;
+
+	// Length is enough, let's check content.
+	size_t i = 0;
+	for(; i < target.length(); ++i)
+	{
+		if(str[i] != target[i])
+			return false;
+	}
+
+	return (i == target.length());
+}
+
+bool sunjwbase::str_endwith(const std::string& str, const std::string& target)
+{
+	if(str.length() < target.length())
+		return false;
+
+	// Length is enough, let's check content.
+	size_t str_len = str.length();
+	size_t target_len = target.length();
+	size_t i = 0;
+	for(; i < target.length(); ++i)
+	{
+		if(str[str_len - target_len + i] != target[i])
+			return false;
+	}
+
+	return (i == target.length());
 }

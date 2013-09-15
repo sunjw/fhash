@@ -155,7 +155,16 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 				tstrCmd.append(_T("\""));
 			}
 
-			size_t cmdLen = tstrCmd.length()*sizeof(TCHAR) + 1;
+			size_t cmdLen = tstrCmd.length() + 1;
+			if(cmdLen > 32768)
+			{
+				MessageBox(pCmdInfo->hwnd, 
+					SHELL_EXT_TOO_MANY_FILES, 
+					SHELL_EXT_TOO_MANY_FILES, 
+					MB_OK | MB_ICONWARNING);
+				return S_OK;
+			}
+
 			TCHAR *pszCmd = new TCHAR[cmdLen];
 			memset(pszCmd, 0, cmdLen);
 #if defined(UNICODE) || defined(_UNICODE)

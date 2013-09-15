@@ -15,6 +15,8 @@
 #define new DEBUG_NEW
 #endif
 
+CRITICAL_SECTION g_criticalSection;
+
 // CFilesHashDlg 对话框
 CFilesHashDlg::CFilesHashDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CFilesHashDlg::IDD, pParent)
@@ -70,6 +72,8 @@ BOOL CFilesHashDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO：在此添加额外的初始化代码
+	InitializeCriticalSection(&g_criticalSection);
+
 	m_bruEditBkg.CreateSolidBrush(RGB(255, 255, 255));
 
 	PrepareAdvTaskbar();
@@ -110,13 +114,17 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd->SetWindowText(MAINDLG_ABOUT);
 	
 
-	m_thrdData.hWnd = m_hWnd;
-	m_thrdData.uppercase = FALSE;
+	EnterCriticalSection(&g_criticalSection);
+	{
+		m_thrdData.hWnd = m_hWnd;
+		m_thrdData.uppercase = FALSE;
 
-	m_thrdData.nFiles = 0;
+		m_thrdData.nFiles = 0;
 
-	m_thrdData.strAll = _T("");
-	m_thrdData.resultList.clear();
+		m_thrdData.strAll = _T("");
+		m_thrdData.resultList.clear();
+	}
+	LeaveCriticalSection(&g_criticalSection);
 	
 	pTl = NULL;
 
@@ -278,6 +286,8 @@ void CFilesHashDlg::OnClose()
 		return;
 	}
 
+	DeleteCriticalSection(&g_criticalSection);
+
 	CDialog::OnClose();
 }
 
@@ -336,10 +346,15 @@ void CFilesHashDlg::OnBnClickedClean()
 		m_btnClr.GetWindowText(strBtnText);
 		if(strBtnText.Compare(MAINDLG_CLEAR) == 0)
 		{
-			m_thrdData.strAll = _T("");
-			m_thrdData.resultList.clear();
+			EnterCriticalSection(&g_criticalSection);
+			{
+				m_thrdData.strAll = _T("");
+				m_thrdData.resultList.clear();
+			
+				m_editMain.SetWindowText(m_thrdData.strAll);
+			}
+			LeaveCriticalSection(&g_criticalSection);
 
-			m_editMain.SetWindowText(m_thrdData.strAll);
 			CStatic* pWnd =(CStatic *)GetDlgItem(IDC_STATIC_TIME);
 			pWnd->SetWindowText(_T(""));
 			pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
@@ -548,7 +563,9 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 
 void CFilesHashDlg::RefreshMainText()
 {
+	EnterCriticalSection(&g_criticalSection);
 	m_editMain.SetWindowText(m_thrdData.strAll);
+	LeaveCriticalSection(&g_criticalSection);
 	m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 }
 
@@ -620,11 +637,17 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		//界面设置 - 开始
 		SetCtrls(FALSE);
 		//界面设置 - 结束
+		
+		EnterCriticalSection(&g_criticalSection);
+		{
+			m_thrdData.strAll.Append(_T("\r\n"));
+			m_thrdData.strAll.Append(MAINDLG_CALCU_TERMINAL);
+			m_thrdData.strAll.Append(_T("\r\n\r\n"));
+
+			m_editMain.SetWindowText(m_thrdData.strAll);
+		}
+		LeaveCriticalSection(&g_criticalSection);
 			
-		m_thrdData.strAll.Append(_T("\r\n"));
-		m_thrdData.strAll.Append(MAINDLG_CALCU_TERMINAL);
-		m_thrdData.strAll.Append(_T("\r\n\r\n"));
-		m_editMain.SetWindowText(m_thrdData.strAll);
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
 		m_prog.SetPos(0);

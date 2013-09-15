@@ -6,6 +6,7 @@ const TCHAR *SHELL_EXT_REGESTRY = _T("*\\shellex\\ContextMenuHandlers\\fHashShel
 const TCHAR *SHELL_EXT_EXEPATH = _T("fHashPath");
 const TCHAR *SHELL_EXT_ITEM_EN_US = _T("Hash with fHash");
 const TCHAR *SHELL_EXT_ITEM_ZH_CN = _T("使用 fHash 计算哈希");
+
 const TCHAR *CONTEXT_MENU_ITEM_EN_US = _T("Hash it with fHash");
 const TCHAR *CONTEXT_MENU_ITEM_ZH_CN = _T("使用 fHash 计算哈希");
 const TCHAR *CONTEXT_MENU_REGESTRY_ZH_CN = _T("*\\shell\\使用 fHash 计算哈希\\command");
@@ -26,6 +27,7 @@ const TCHAR *BUTTON_CANCEL = _T("取消");
 
 // Main Dialog Strings
 const TCHAR *MAINDLG_INITINFO = _T("将文件拖入或点击打开，开始计算。");
+const TCHAR *MAINDLG_WAITING_START = _T("准备开始计算。");
 const TCHAR *MAINDLG_CONTEXT_INIT = _T("需要管理员权限");
 const TCHAR *MAINDLG_ADD_SUCCEEDED = _T("添加成功");
 const TCHAR *MAINDLG_ADD_FAILED = _T("添加失败");
@@ -64,6 +66,9 @@ const TCHAR *ABOUTDLG_INFO_RIGHTDETAIL = _T("详细授权信息见开发者网站。");
 const TCHAR *ABOUTDLG_INFO_OSTITLE = _T("当前操作系统:");
 const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>项目主页</a>");
 
+// Shell ext
+const TCHAR *SHELL_EXT_TOO_MANY_FILES = _T("选择的文件太多");
+
 #else
 // Global Strings
 const TCHAR *FILE_STRING = _T("File");
@@ -79,6 +84,7 @@ const TCHAR *BUTTON_CANCEL = _T("Cancel");
 
 // Main Dialog Strings
 const TCHAR *MAINDLG_INITINFO = _T("Drag files here or click open to start calculate.");
+const TCHAR *MAINDLG_WAITING_START = _T("Prepare to start calculation.");
 const TCHAR *MAINDLG_CONTEXT_INIT = _T("Need Administrator");
 const TCHAR *MAINDLG_ADD_SUCCEEDED = _T("Add Succeeded");
 const TCHAR *MAINDLG_ADD_FAILED = _T("Add Failed");
@@ -116,5 +122,8 @@ const TCHAR *ABOUTDLG_INFO_CRC32 = _T("CRC32 Algorithm is writtend by Dominik Re
 const TCHAR *ABOUTDLG_INFO_RIGHTDETAIL = _T("More details are on Project Site.");
 const TCHAR *ABOUTDLG_INFO_OSTITLE = _T("Operating System:");
 const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>Project Home</a>");
+
+// Shell ext
+const TCHAR *SHELL_EXT_TOO_MANY_FILES = _T("Selected too many files");
 
 #endif

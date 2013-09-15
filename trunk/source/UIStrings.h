@@ -17,11 +17,14 @@ extern const TCHAR *VERSION_STRING;
 extern const TCHAR *SECOND_STRING;
 extern const TCHAR *BUTTON_OK;
 extern const TCHAR *BUTTON_CANCEL;
+
 extern const TCHAR *SHELL_EXT_UUID;
 extern const TCHAR *SHELL_EXT_REGESTRY;
 extern const TCHAR *SHELL_EXT_EXEPATH;
 extern const TCHAR *SHELL_EXT_ITEM_EN_US;
 extern const TCHAR *SHELL_EXT_ITEM_ZH_CN;
+extern const TCHAR *SHELL_EXT_TOO_MANY_FILES;
+
 extern const TCHAR *CONTEXT_MENU_REGESTRY_EN_US;
 extern const TCHAR *CONTEXT_MENU_REGESTRY_ZH_CN;
 extern const TCHAR *CONTEXT_MENU_ITEM_EN_US;
@@ -29,6 +32,7 @@ extern const TCHAR *CONTEXT_MENU_ITEM_ZH_CN;
 
 // Main Dialog Strings
 extern const TCHAR *MAINDLG_INITINFO;
+extern const TCHAR *MAINDLG_WAITING_START;
 extern const TCHAR *MAINDLG_CONTEXT_INIT;
 extern const TCHAR *MAINDLG_ADD_SUCCEEDED;
 extern const TCHAR *MAINDLG_ADD_FAILED;
