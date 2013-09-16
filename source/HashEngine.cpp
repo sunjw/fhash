@@ -58,9 +58,12 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 	//界面设置 - 开始
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_WORKING, 0);
+
+	CString strTemp;
 	
 	EnterCriticalSection(&g_criticalSection);
 	{
+		strTemp = thrdData->strAll;
 		thrdData->strAll = MAINDLG_WAITING_START;
 	}
 	LeaveCriticalSection(&g_criticalSection);
@@ -97,8 +100,8 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 	EnterCriticalSection(&g_criticalSection);
 	{
-		// 清空开始显示内容
-		thrdData->strAll = _T("");
+		// 恢复内容
+		thrdData->strAll = strTemp;
 	}
 	LeaveCriticalSection(&g_criticalSection);
 
