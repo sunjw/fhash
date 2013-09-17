@@ -65,7 +65,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	{
 		strTemp = thrdData->strAll;
 		thrdData->strAll.Append(MAINDLG_WAITING_START);
-		thrdData->strAll.Append("\r\n");
+		thrdData->strAll.Append(_T("\r\n"));
 	}
 	LeaveCriticalSection(&g_criticalSection);
 	
