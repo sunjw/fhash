@@ -33,6 +33,7 @@ CString GetExeFileVersion(TCHAR* path);
 BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx);
 CString GetWindowsInfo();
 BOOL IsWindows64();
+BOOL IsLimitedProc();
 
 bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath);
 

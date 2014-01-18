@@ -71,6 +71,8 @@ protected:
 	CString m_strFindFile;
 	CString m_strFindHash;
 
+	BOOL m_bLimited;
+
 	CStrVector ParseCmdLine();
 	void ClearFilePaths();
 	void PrepareAdvTaskbar();
