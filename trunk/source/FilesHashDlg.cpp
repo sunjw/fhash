@@ -89,6 +89,8 @@ BOOL CFilesHashDlg::OnInitDialog()
 
 	m_prog.SetStep(1);
 
+	m_bLimited = IsLimitedProc();
+
 	CWnd* pWnd;
 	pWnd = GetDlgItem(IDC_STATIC_SPEED);
 	pWnd->SetWindowText(_T(""));
@@ -141,7 +143,9 @@ BOOL CFilesHashDlg::OnInitDialog()
 		m_btnContext.SetWindowText(MAINDLG_ADD_CONTEXT_MENU);
 	}
 	pWnd = (CStatic*)GetDlgItem(IDC_STATIC_ADDRESULT);
-	pWnd->SetWindowText(MAINDLG_CONTEXT_INIT);
+	pWnd->SetWindowText(_T(""));
+
+	SetCtrls(FALSE);
 
 	// 从命令行获取文件路径
 	CStrVector Paras = ParseCmdLine();
@@ -545,6 +549,7 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 		m_btnClr.EnableWindow(FALSE);
 		m_btnCopy.EnableWindow(FALSE);
 		m_btnFind.EnableWindow(FALSE);
+		m_btnContext.EnableWindow(FALSE);
 		m_chkUppercase.EnableWindow(FALSE);
 		GotoDlgCtrl(&m_btnStop);
 	}
@@ -555,6 +560,15 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 		m_btnClr.EnableWindow(TRUE);
 		m_btnCopy.EnableWindow(TRUE);
 		m_btnFind.EnableWindow(TRUE);
+		if(m_bLimited)
+		{
+			m_btnContext.SetWindowText(MAINDLG_CONTEXT_INIT);
+			m_btnContext.EnableWindow(FALSE);
+		}
+		else
+		{
+			m_btnContext.EnableWindow(TRUE);
+		}
 		m_chkUppercase.EnableWindow(TRUE);
 		GotoDlgCtrl(&m_btnOpen);
 		DragAcceptFiles();

@@ -434,6 +434,51 @@ BOOL IsWindows64()
 	return (strArch == "AMD64");
 }
 
+BOOL IsLimitedProc()
+{
+	HRESULT hResult = E_FAIL; // assume an error occurred
+    HANDLE hToken = NULL;
+	TOKEN_ELEVATION_TYPE tet;
+
+    if (!OpenProcessToken(GetCurrentProcess(), 
+						TOKEN_QUERY, 
+						&hToken))
+    {
+        return FALSE;
+    }
+
+    DWORD dwReturnLength = 0;
+
+    if (GetTokenInformation(
+                hToken,
+                TokenElevationType,
+                &tet,
+                sizeof(tet),
+                &dwReturnLength))
+    {
+            if(dwReturnLength != sizeof(tet))
+				return FALSE;
+            hResult = S_OK;
+    }
+
+    CloseHandle(hToken);
+
+	if(hResult != S_OK)
+		return FALSE;
+
+	if(tet == TokenElevationTypeLimited)
+	{
+		return TRUE;
+	}
+	else if(tet == TokenElevationTypeDefault && 
+			!IsUserAnAdmin())
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
 {
 	tstring tstrExeDirPath(pszExeFullPath);
