@@ -36,6 +36,7 @@ public:
 	afx_msg void OnBnClickedCopy();
 	afx_msg void OnBnClickedFind();
 	afx_msg void OnBnClickedContext();
+	afx_msg void OnBnClickedCheckup();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
@@ -79,13 +80,16 @@ protected:
 
 	CString ResultFind(CString strFile, CString strHash);
 
+	void AppendResult(const ResultData& result, CString& strToAppend);
+
 	void DoMD5();
 	void StopWorkingThread();
 	
 	// 下面的为计算时使用，一般不要用
 	void SetCtrls(BOOL working);
 	void SetWholeProgPos(UINT pos);
-	void RefreshMainText();
+	void RefreshResult();
+	void RefreshMainText(BOOL bScrollToEnd = TRUE);
 	void CalcSpeed(ULONGLONG tsize);
-	
+
 };

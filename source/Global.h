@@ -27,6 +27,7 @@ typedef std::list<ResultData> ResultList;
 
 struct ResultData // 计算结果
 {
+	BOOL bDone; // Done
 	CString strPath; // 路径
 	ULONGLONG ulSize; // 大小
 	CString strMDate; // 修改日期
@@ -35,6 +36,7 @@ struct ResultData // 计算结果
 	CString strSHA1; // SHA1
 	CString strSHA256; // SHA256
 	CString strCRC32; // CRC32
+	CString strError; // Error string
 };
 
 struct ThreadData // 传向计算线程的信息
