@@ -154,6 +154,9 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		path = thrdData->fullPaths[i].GetBuffer();
 		// 显示文件名
 
+		ResultData result;
+		result.strPath = thrdData->fullPaths[i];
+
 		//Calculating begins
 		if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		{
@@ -316,8 +319,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			strFileSHA256 = strSHA256;
 			strFileCRC32.Format(_T("%08X"), ulCRC32);
 
-			// 在这里保存结果是因为只保存完全计算完毕的
-			ResultData result;
+			result.bDone = TRUE;
 			result.strPath = thrdData->fullPaths[i];
 			result.ulSize = fsize;
 			result.strMDate = lastModifiedTime;
@@ -327,8 +329,6 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			result.strSHA1 = strFileSHA1;
 			result.strSHA256 = strFileSHA256;
 			result.strCRC32 = strFileCRC32;
-
-			thrdData->resultList.push_back(result); // 保存结果
 
 			if(thrdData->uppercase)
 			{
@@ -362,11 +362,14 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
-		}
+		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
 			TCHAR szError[1024];
 			ex.GetErrorMessage(szError, 1024);
+
+			result.bDone = FALSE;
+			result.strError = szError;
 
 			EnterCriticalSection(&g_criticalSection);
 			{
@@ -379,7 +382,9 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
 		}
-	}
+
+		thrdData->resultList.push_back(result); // 保存结果
+	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
 	

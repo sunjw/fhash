@@ -57,6 +57,7 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_MESSAGE(WM_THREAD_INFO, OnThreadMsg)
 	ON_BN_CLICKED(IDC_FIND, &CFilesHashDlg::OnBnClickedFind)
 	ON_BN_CLICKED(IDC_CONTEXT, &CFilesHashDlg::OnBnClickedContext)
+	ON_BN_CLICKED(IDC_CHECKUP, &CFilesHashDlg::OnBnClickedCheckup)
 END_MESSAGE_MAP()
 
 
@@ -372,6 +373,8 @@ void CFilesHashDlg::OnBnClickedClean()
 		{
 			m_bFind = FALSE; // 退出搜索模式
 			m_btnClr.SetWindowText(MAINDLG_CLEAR);
+
+			RefreshResult();
 			RefreshMainText();
 		}
 	}
@@ -442,6 +445,27 @@ void CFilesHashDlg::OnBnClickedContext()
 	}
 }
 
+void CFilesHashDlg::OnBnClickedCheckup()
+{
+	// Remember current scroll position
+	int iFirstVisible = m_editMain.GetFirstVisibleLine();
+
+	if(!m_bFind)
+	{
+		// List mode
+		RefreshResult();
+		RefreshMainText(FALSE);
+	}
+	else
+	{
+		// Search mode
+		m_editMain.SetWindowText(ResultFind(m_strFindFile, m_strFindHash));
+	}
+
+	// Reset scroll position
+	m_editMain.LineScroll(iFirstVisible);
+}
+
 void CFilesHashDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if(nIDEvent == 1)
@@ -492,7 +516,7 @@ void CFilesHashDlg::DoMD5()
 	//m_progWhole.SetPos(0);
 	SetWholeProgPos(0);
 
-	m_thrdData.uppercase = m_chkUppercase.GetCheck();
+	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
 
 	m_calculateTime = 0.0;
 	m_timer = SetTimer(1, 100, NULL);
@@ -575,12 +599,23 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 	}
 }
 
-void CFilesHashDlg::RefreshMainText()
+void CFilesHashDlg::RefreshResult()
+{
+	m_thrdData.strAll = _T("");
+	ResultList::iterator itr = m_thrdData.resultList.begin();
+	for(; itr != m_thrdData.resultList.end(); ++itr)
+	{
+		AppendResult(*itr, m_thrdData.strAll);
+	}
+}
+
+void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	EnterCriticalSection(&g_criticalSection);
 	m_editMain.SetWindowText(m_thrdData.strAll);
 	LeaveCriticalSection(&g_criticalSection);
-	m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+	if(bScrollToEnd)
+		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 }
 
 void CFilesHashDlg::CalcSpeed(ULONGLONG tsize)
@@ -707,57 +742,7 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 		{
 			++count;
 
-			strResult.Append(FILENAME_STRING);
-			strResult.Append(_T(" "));
-			strResult.Append(itr->strPath);
-			strResult.Append(_T("\r\n"));
-			strResult.Append(FILESIZE_STRING);
-			strResult.Append(_T(" "));
-			strResult.AppendFormat(_T("%I64u "), itr->ulSize);
-			strResult.Append(BYTE_STRING);
-			strResult.Append(ConvertSizeToCStr(itr->ulSize));
-			strResult.Append(_T("\r\n"));
-			strResult.Append(MODIFYTIME_STRING);
-			strResult.Append(_T(" "));
-			strResult.Append(itr->strMDate);
-			if(itr->strVersion.Compare(_T("")) != 0)
-			{
-				strResult.Append(_T("\r\n"));
-				strResult.Append(VERSION_STRING);
-				strResult.Append(_T(" "));
-				strResult.Append(itr->strVersion);
-			}
-			strResult.Append(_T("\r\n"));
-
-			CString strMD5(itr->strMD5);
-			CString strSHA1(itr->strSHA1);
-			CString strSHA256(itr->strSHA256);
-			CString strCRC32(itr->strCRC32);
-
-			if(m_thrdData.uppercase = m_chkUppercase.GetCheck())
-			{
-				strResult.Append(_T("MD5: "));
-				strResult.Append(strMD5.MakeUpper());
-				strResult.Append(_T("\r\nSHA1: "));
-				strResult.Append(strSHA1.MakeUpper());
-				strResult.Append(_T("\r\nSHA256: "));
-				strResult.Append(strSHA256.MakeUpper());
-				strResult.Append(_T("\r\nCRC32: "));
-				strResult.Append(strCRC32.MakeUpper());
-				strResult.Append(_T("\r\n\r\n"));
-			}
-			else
-			{
-				strResult.Append(_T("MD5: "));
-				strResult.Append(strMD5.MakeLower());
-				strResult.Append(_T("\r\nSHA1: "));
-				strResult.Append(strSHA1.MakeLower());
-				strResult.Append(_T("\r\nSHA256: "));
-				strResult.Append(strSHA256.MakeLower());
-				strResult.Append(_T("\r\nCRC32: "));
-				strResult.Append(strCRC32.MakeLower());
-				strResult.Append(_T("\r\n\r\n"));
-			}
+			AppendResult(*itr, strResult);
 		}
 	}
 
@@ -765,4 +750,68 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 		strResult.Append(MAINDLG_NORESULT);
 
 	return strResult;
+}
+
+void CFilesHashDlg::AppendResult(const ResultData& result, CString& strToAppend)
+{
+	strToAppend.Append(FILENAME_STRING);
+	strToAppend.Append(_T(" "));
+	strToAppend.Append(result.strPath);
+	strToAppend.Append(_T("\r\n"));
+	if(result.bDone)
+	{
+		// A succeed result
+		strToAppend.Append(FILESIZE_STRING);
+		strToAppend.Append(_T(" "));
+		strToAppend.AppendFormat(_T("%I64u "), result.ulSize);
+		strToAppend.Append(BYTE_STRING);
+		strToAppend.Append(ConvertSizeToCStr(result.ulSize));
+		strToAppend.Append(_T("\r\n"));
+		strToAppend.Append(MODIFYTIME_STRING);
+		strToAppend.Append(_T(" "));
+		strToAppend.Append(result.strMDate);
+		if(result.strVersion.Compare(_T("")) != 0)
+		{
+			strToAppend.Append(_T("\r\n"));
+			strToAppend.Append(VERSION_STRING);
+			strToAppend.Append(_T(" "));
+			strToAppend.Append(result.strVersion);
+		}
+		strToAppend.Append(_T("\r\n"));
+
+		CString strMD5(result.strMD5);
+		CString strSHA1(result.strSHA1);
+		CString strSHA256(result.strSHA256);
+		CString strCRC32(result.strCRC32);
+
+		if(m_thrdData.uppercase = m_chkUppercase.GetCheck())
+		{
+			strToAppend.Append(_T("MD5: "));
+			strToAppend.Append(strMD5.MakeUpper());
+			strToAppend.Append(_T("\r\nSHA1: "));
+			strToAppend.Append(strSHA1.MakeUpper());
+			strToAppend.Append(_T("\r\nSHA256: "));
+			strToAppend.Append(strSHA256.MakeUpper());
+			strToAppend.Append(_T("\r\nCRC32: "));
+			strToAppend.Append(strCRC32.MakeUpper());
+		}
+		else
+		{
+			strToAppend.Append(_T("MD5: "));
+			strToAppend.Append(strMD5.MakeLower());
+			strToAppend.Append(_T("\r\nSHA1: "));
+			strToAppend.Append(strSHA1.MakeLower());
+			strToAppend.Append(_T("\r\nSHA256: "));
+			strToAppend.Append(strSHA256.MakeLower());
+			strToAppend.Append(_T("\r\nCRC32: "));
+			strToAppend.Append(strCRC32.MakeLower());
+		}
+	}
+	else
+	{
+		// An error result
+		strToAppend.Append(result.strError);
+	}
+
+	strToAppend.Append(_T("\r\n\r\n"));
 }
