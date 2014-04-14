@@ -444,7 +444,7 @@ BOOL IsLimitedProc()
 						TOKEN_QUERY, 
 						&hToken))
     {
-        return FALSE;
+        return TRUE;
     }
 
     DWORD dwReturnLength = 0;
@@ -457,14 +457,14 @@ BOOL IsLimitedProc()
                 &dwReturnLength))
     {
             if(dwReturnLength != sizeof(tet))
-				return FALSE;
+				return TRUE;
             hResult = S_OK;
     }
 
     CloseHandle(hToken);
 
 	if(hResult != S_OK)
-		return FALSE;
+		return TRUE;
 
 	if(tet == TokenElevationTypeLimited)
 	{
@@ -477,6 +477,25 @@ BOOL IsLimitedProc()
 	}
 
 	return FALSE;
+}
+
+BOOL ElevateProcess()
+{
+	BOOL bRet = FALSE;
+
+	TCHAR szExecutable[MAX_PATH];
+    if(GetModuleFileName(NULL, szExecutable, MAX_PATH) > 0)
+	{
+		SHELLEXECUTEINFO sei = { sizeof(SHELLEXECUTEINFO) };
+		sei.lpVerb = TEXT("runas");
+		sei.lpFile = szExecutable;
+		sei.lpParameters = NULL;
+		sei.nShow = SW_SHOWNORMAL;
+
+		return ShellExecuteEx(&sei);
+	}
+
+	return bRet;
 }
 
 bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
