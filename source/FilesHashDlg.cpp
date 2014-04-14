@@ -414,8 +414,14 @@ void CFilesHashDlg::OnBnClickedContext()
 {
 	if(m_bLimited)
 	{
-		if(ElevateProcess())
-			ExitProcess(0);
+		OSVERSIONINFOEX osvi;
+		BOOL bOsVersionInfoEx;
+		if(GetWindowsVersion(osvi, bOsVersionInfoEx) &&
+			osvi.dwMajorVersion >= 6)
+		{
+			if(ElevateProcess())
+				ExitProcess(0);
+		}
 	}
 
 	// May not a limited process.
