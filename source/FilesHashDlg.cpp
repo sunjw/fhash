@@ -412,7 +412,13 @@ void CFilesHashDlg::OnBnClickedFind()
 
 void CFilesHashDlg::OnBnClickedContext()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	if(m_bLimited)
+	{
+		if(ElevateProcess())
+			ExitProcess(0);
+	}
+
+	// May not a limited process.
 	CStatic* pWnd = (CStatic *)GetDlgItem(IDC_STATIC_ADDRESULT);
 	CString buttonText = _T("");
 
@@ -586,13 +592,16 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 		m_btnFind.EnableWindow(TRUE);
 		if(m_bLimited)
 		{
-			m_btnContext.SetWindowText(MAINDLG_CONTEXT_INIT);
-			m_btnContext.EnableWindow(FALSE);
+			Button_SetElevationRequiredState(m_btnContext.GetSafeHwnd(), TRUE);
+			//m_btnContext.SetWindowText(MAINDLG_CONTEXT_INIT);
+			//m_btnContext.EnableWindow(FALSE);
 		}
 		else
 		{
-			m_btnContext.EnableWindow(TRUE);
+			Button_SetElevationRequiredState(m_btnContext.GetSafeHwnd(), FALSE);
+			//m_btnContext.EnableWindow(TRUE);
 		}
+		m_btnContext.EnableWindow(TRUE);
 		m_chkUppercase.EnableWindow(TRUE);
 		GotoDlgCtrl(&m_btnOpen);
 		DragAcceptFiles();
