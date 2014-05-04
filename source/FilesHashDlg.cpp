@@ -82,7 +82,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_bFind = FALSE;
 	m_btnClr.SetWindowText(MAINDLG_CLEAR);
 
-	m_bHandleNull = TRUE;
+	m_hWorkThread = NULL;
 	m_waitingExit = FALSE;
 
 	m_calculateTime = 0.0;
@@ -511,12 +511,9 @@ void CFilesHashDlg::SetWholeProgPos(UINT pos)
 
 void CFilesHashDlg::DoMD5()
 {
-	DWORD thredID;
-
-	if(m_bHandleNull==FALSE)
+	if(m_hWorkThread)
 	{
 		CloseHandle(m_hWorkThread);
-		m_bHandleNull = TRUE;
 	}
 	
 	m_bFind = FALSE;
@@ -539,9 +536,15 @@ void CFilesHashDlg::DoMD5()
 	pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 	pWnd->SetWindowText(_T(""));
 
+	DWORD thredID;
+
 	m_thrdData.stop = FALSE;
-	m_hWorkThread = CreateThread(NULL, 0, md5_file, &m_thrdData, 0, &thredID);
-	m_bHandleNull = FALSE;
+	m_hWorkThread = (HANDLE)_beginthreadex(NULL, 
+											0, 
+											(unsigned int (WINAPI *)(void *))md5_file, 
+											&m_thrdData, 
+											0, 
+											(unsigned int *)&thredID);
 
 }
 

@@ -61,7 +61,6 @@ protected:
 
 	ThreadData m_thrdData;
 	HANDLE m_hWorkThread;
-	BOOL m_bHandleNull;// 线程HANDLE, 1=关闭, 0=打开
 	float m_calculateTime;
 	UINT_PTR m_timer;
 	BOOL m_waitingExit; // 等待线程退出后，退出程序
