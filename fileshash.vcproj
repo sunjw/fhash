@@ -86,6 +86,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 				EmbedManifest="true"
 			/>
 			<Tool
@@ -173,6 +174,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 				EmbedManifest="true"
 			/>
 			<Tool
@@ -264,6 +266,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -355,6 +358,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -445,6 +449,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -536,6 +541,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -667,6 +673,10 @@
 			Name="资源文件"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest"
 			>
+			<File
+				RelativePath=".\source\res\compatibility.manifest"
+				>
+			</File>
 			<File
 				RelativePath="source\fileshash.rc"
 				>

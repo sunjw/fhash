@@ -58,7 +58,7 @@ const TCHAR *FINDDLG_TITLE = _T("验证");
 // About Dialog Strings
 const TCHAR *ABOUTDLG_TITLE = _T("关于 fHash");
 const TCHAR *ABOUTDLG_INFO_TITLE = _T("fHash: 文件 Hash 计算器 ");
-const TCHAR *ABOUTDLG_INFO_RIGHT = _T("Copyright (C) 2007-2013 SUN Junwen.");
+const TCHAR *ABOUTDLG_INFO_RIGHT = _T("Copyright (C) 2007-2014 SUN Junwen.");
 const TCHAR *ABOUTDLG_INFO_MD5 = _T("MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.");
 const TCHAR *ABOUTDLG_INFO_SHA256 = _T("SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller");
 const TCHAR *ABOUTDLG_INFO_CRC32 = _T("CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl");
@@ -115,7 +115,7 @@ const TCHAR *FINDDLG_TITLE = _T("Verify");
 // About Dialog Strings
 const TCHAR *ABOUTDLG_TITLE = _T("About fHash");
 const TCHAR *ABOUTDLG_INFO_TITLE = _T("fHash: Files' Hash Calculator ");
-const TCHAR *ABOUTDLG_INFO_RIGHT = _T("Copyright (C) 2007-2013 SUN Junwen.");
+const TCHAR *ABOUTDLG_INFO_RIGHT = _T("Copyright (C) 2007-2014 SUN Junwen.");
 const TCHAR *ABOUTDLG_INFO_MD5 = _T("MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.");
 const TCHAR *ABOUTDLG_INFO_SHA256 = _T("SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller");
 const TCHAR *ABOUTDLG_INFO_CRC32 = _T("CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl");
