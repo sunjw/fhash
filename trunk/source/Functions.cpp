@@ -125,22 +125,48 @@ CString GetWindowsInfo()
 			osinfo.AppendFormat(_T("Windows Version %d"), osvi.dwMajorVersion);
 		}
 
-		if(osvi.dwMajorVersion == 6 && (osvi.dwMinorVersion == 1 || osvi.dwMinorVersion == 2))
+		if(osvi.dwMajorVersion == 6)
 		{
-			if(osvi.dwMinorVersion == 1 && osvi.wProductType == VER_NT_WORKSTATION)
-				osinfo.Append(_T("Windows 7 "));
-			else if(osvi.dwMinorVersion == 2 && osvi.wProductType == VER_NT_WORKSTATION)
-				osinfo.Append(_T("Windows 8 "));
-			else 
-				osinfo.Append(_T("Windows Server 2008 R2 "));
-		}
-
-		if(osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
-		{
-			if( osvi.wProductType == VER_NT_WORKSTATION )
-				osinfo.Append(_T("Windows Vista "));
-			else 
-				osinfo.Append(_T("Windows Server 2008 "));
+			if(osvi.dwMinorVersion == 0)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows Vista "));
+				else
+					osinfo.Append(_T("Windows Server 2008 "));
+			}
+			else if(osvi.dwMinorVersion == 1)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows 7 "));
+				else
+					osinfo.Append(_T("Windows Server 2008 R2 "));
+			}
+			else if(osvi.dwMinorVersion == 2)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows 8 "));
+				else
+					osinfo.Append(_T("Windows Server 2012 "));
+			}
+			else if(osvi.dwMinorVersion == 3)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows 8.1 "));
+				else
+					osinfo.Append(_T("Windows Server 2012 R2 "));
+			}
+			else if(osvi.dwMinorVersion == 4)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows 10 "));
+				else
+					osinfo.AppendFormat(_T("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+			}
+			else
+			{
+				osinfo.AppendFormat(_T("Windows Version %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+			}
+				
 		}
 
 		if(osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
