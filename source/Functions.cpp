@@ -122,7 +122,17 @@ CString GetWindowsInfo()
 		// Test for the specific product.
 		if(osvi.dwMajorVersion > 6)
 		{
-			osinfo.AppendFormat(_T("Windows Version %d"), osvi.dwMajorVersion);
+			if(osvi.dwMinorVersion == 10)
+			{
+				if(osvi.wProductType == VER_NT_WORKSTATION)
+					osinfo.Append(_T("Windows 10 "));
+				else
+					osinfo.AppendFormat(_T("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+			}
+			else
+			{
+				osinfo.AppendFormat(_T("Windows Version %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+			}
 		}
 
 		if(osvi.dwMajorVersion == 6)
