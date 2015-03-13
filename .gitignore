@@ -1,4 +1,7 @@
 sub-proj/fHashShlExt/Debug/*
+sub-proj/fHashShlExt/Release/*
+sub-proj/fHashShlExt/Release.ENUS/*
+sub-proj/fHashShlExt/x64/*
 sub-proj/fHashShlExt/fHashShlExt_i.c
 sub-proj/fHashShlExt/fHashShlExt_i.h
 sub-proj/fHashShlExt/fHashShlExt_p.c
