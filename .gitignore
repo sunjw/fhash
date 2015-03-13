@@ -1,0 +1,11 @@
+trunk/_UpgradeReport_Files/*
+trunk/Debug/*
+trunk/Release/*
+trunk/Release.ENUS/*
+trunk/x64/*
+UpgradeLog*
+*.aps
+*.ncb
+*.old
+*.suo
+*.user
