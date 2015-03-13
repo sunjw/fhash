@@ -1,11 +1,15 @@
+sub-proj/fHashShlExt/Debug/*
+sub-proj/fHashShlExt/fHashShlExt_i.c
+sub-proj/fHashShlExt/fHashShlExt_i.h
+sub-proj/fHashShlExt/fHashShlExt_p.c
 trunk/_UpgradeReport_Files/*
 trunk/Debug/*
 trunk/Release/*
 trunk/Release.ENUS/*
 trunk/x64/*
-UpgradeLog*
 *.aps
 *.ncb
 *.old
 *.suo
 *.user
+UpgradeLog*
