@@ -50,6 +50,56 @@ bool OsFile::openRead()
 	return WINBOOL_2_CBOOL(ret);
 }
 
+uint64_t OsFile::getLength()
+{
+	uint64_t retLength = 0;
+
+	CFileException ex;
+	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
+
+	bool needClose = false;
+
+	// Not opened, let's open it.
+	if (cfile->m_hFile == CFile::hFileNull &&
+		openRead())
+	{
+		needClose = true;		
+	}
+
+	retLength = cfile->GetLength();
+
+	if (needClose)
+	{
+		close();
+	}
+
+	return retLength;
+}
+
+bool OsFile::getModifiedTime(void *modifiedTime)
+{
+	CTime *cfileModTime = (CTime *)modifiedTime;
+
+	CFileStatus cfileStatus;
+
+	if (CFile::GetStatus(_filePath.c_str(), cfileStatus))
+	{
+		*cfileModTime = cfileStatus.m_mtime;
+
+		return true;
+	}
+
+	return false;
+}
+
+uint32_t OsFile::read(void *readBuffer, uint32_t bytes)
+{
+	// Open first, we don't check here.
+	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
+
+	return cfile->Read(readBuffer, bytes);
+}
+
 void OsFile::close()
 {
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
