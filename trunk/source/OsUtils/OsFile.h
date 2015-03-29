@@ -1,3 +1,10 @@
+/*
+ * OsFile header file
+ * Author: Sun Junwen
+ * Version: 0.5
+ * Provider basic open/close, read, write and 
+ * attributes functions of file.
+ */
 #ifndef _OS_FILE_H_
 #define _OS_FILE_H_
 
@@ -12,6 +19,7 @@ namespace sunjwbase
 	{
 	public:
 		explicit OsFile(sunjwbase::tstring filePath);
+		~OsFile();
 
 		// Open
 		bool openRead();
@@ -27,8 +35,8 @@ namespace sunjwbase
 		void close();
 
 	private:
-		sunjwbase::tstring	m_filePath;
-		void				*m_fileData;
+		sunjwbase::tstring	_filePath;
+		void				*_osfileData;
 	};
 
 }
