@@ -78,6 +78,36 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 	return ret;
 }
 
+bool OsFile::openWrite(void *exception/* = NULL*/)
+{
+	bool ret = false;
+	
+	ret = this->open((void *)(CFile::modeWrite|CFile::shareExclusive), 
+		exception);
+
+	if (ret == true)
+	{
+		_fileStatus = OPEN_WRITE;
+	}
+
+	return ret;
+}
+
+bool OsFile::openReadWrite(void *exception/* = NULL*/)
+{
+	bool ret = false;
+	
+	ret = this->open((void *)(CFile::modeReadWrite|CFile::shareExclusive), 
+		exception);
+
+	if (ret == true)
+	{
+		_fileStatus = OPEN_READWRITE;
+	}
+
+	return ret;
+}
+
 uint64_t OsFile::getLength()
 {
 	uint64_t retLength = 0;
@@ -119,12 +149,42 @@ bool OsFile::getModifiedTime(void *modifiedTime)
 	return false;
 }
 
+uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
+{
+	UINT cfSeekFlag = CFile::begin;
+	switch(from)
+	{
+	case OF_SEEK_BEGIN:
+		cfSeekFlag = CFile::begin;
+		break;
+	case OF_SEEK_CUR:
+		cfSeekFlag = CFile::current;
+		break;
+	case OF_SEEK_END:
+		cfSeekFlag = CFile::end;
+		break;
+	}
+
+	// Open first, we don't check here.
+	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
+
+	return cfile->Seek(offset, cfSeekFlag);
+}
+
 uint32_t OsFile::read(void *readBuffer, uint32_t bytes)
 {
 	// Open first, we don't check here.
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
 
 	return cfile->Read(readBuffer, bytes);
+}
+
+void OsFile::write(void *writeBuffer, uint32_t bytes)
+{
+	// Open first, we don't check here.
+	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
+
+	cfile->Write(writeBuffer, bytes);
 }
 
 void OsFile::close()
