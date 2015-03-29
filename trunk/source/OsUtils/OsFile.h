@@ -27,7 +27,7 @@ namespace sunjwbase
 		~OsFile();
 
 		// Open
-		bool openRead();
+		bool openRead(void *exception = NULL);
 
 		// Attributes
 		uint64_t getLength();
@@ -40,6 +40,8 @@ namespace sunjwbase
 		void close();
 
 	private:
+		bool open(void *flag, void *exception);
+
 		sunjwbase::tstring	_filePath;
 		void				*_osfileData;
 		OsFileStatus		_fileStatus;

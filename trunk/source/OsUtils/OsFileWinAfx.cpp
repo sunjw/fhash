@@ -45,20 +45,37 @@ OsFile::~OsFile()
 	}
 }
 
-bool OsFile::openRead()
+bool OsFile::open(void *flag, void *exception)
 {
 	BOOL ret = FALSE;
 
-	CFileException ex;
-	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
-	ret = cfile->Open(_filePath.c_str(), CFile::modeRead|CFile::shareDenyWrite, &ex);
+	CFileException fExc;
+	CFileException *pFileExc = (CFileException *)exception;
+	if (pFileExc == NULL)
+	{
+		pFileExc = &fExc; 
+	}
 
-	if (ret == TRUE)
+	UINT cfFlag = (UINT)flag;
+	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
+	ret = cfile->Open(_filePath.c_str(), cfFlag, pFileExc);
+
+	return WINBOOL_2_CBOOL(ret);
+}
+
+bool OsFile::openRead(void *exception/* = NULL*/)
+{
+	bool ret = false;
+	
+	ret = this->open((void *)(CFile::modeRead|CFile::shareDenyWrite), 
+		exception);
+
+	if (ret == true)
 	{
 		_fileStatus = OPEN_READ;
 	}
 
-	return WINBOOL_2_CBOOL(ret);
+	return ret;
 }
 
 uint64_t OsFile::getLength()
