@@ -8,6 +8,8 @@
 #include "UIStrings.h"
 #include "strhelper.h"
 
+#include "OsUtils/OsFile.h"
+
 #include "Algorithms/md5.h"
 #include "Algorithms/sha1.h"
 #include "Algorithms/sha256.h"

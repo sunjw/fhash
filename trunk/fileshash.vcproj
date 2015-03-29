@@ -653,6 +653,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\stdint.h"
+				>
+			</File>
+			<File
 				RelativePath=".\source\strhelper.h"
 				>
 			</File>
@@ -723,6 +727,18 @@
 			</File>
 			<File
 				RelativePath=".\source\Algorithms\sha256.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="OsUtils"
+			>
+			<File
+				RelativePath=".\source\OsUtils\OsFile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\OsUtils\OsFileWinAfx.cpp"
 				>
 			</File>
 		</Filter>
