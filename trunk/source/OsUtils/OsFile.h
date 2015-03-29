@@ -18,6 +18,11 @@ namespace sunjwbase
 	class OsFile
 	{
 	public:
+		enum OsFileStatus
+		{
+			CLOSED = 0, OPEN_READ, OPEN_WRITE, OPEN_READWRITE
+		};
+
 		explicit OsFile(sunjwbase::tstring filePath);
 		~OsFile();
 
@@ -37,6 +42,7 @@ namespace sunjwbase
 	private:
 		sunjwbase::tstring	_filePath;
 		void				*_osfileData;
+		OsFileStatus		_fileStatus;
 	};
 
 }

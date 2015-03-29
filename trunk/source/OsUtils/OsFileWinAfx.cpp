@@ -26,7 +26,8 @@ using namespace sunjwbase;
 
 OsFile::OsFile(tstring filePath):
 	_filePath(filePath),
-	_osfileData(new CFile())
+	_osfileData(new CFile()),
+	_fileStatus(CLOSED)
 {
 	
 }
@@ -35,6 +36,11 @@ OsFile::~OsFile()
 {
 	if (_osfileData != NULL)
 	{
+		if (_fileStatus != CLOSED)
+		{
+			close();
+		}
+
 		delete GET_CFILE_FROM_POINTER(_osfileData);
 	}
 }
@@ -46,6 +52,11 @@ bool OsFile::openRead()
 	CFileException ex;
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
 	ret = cfile->Open(_filePath.c_str(), CFile::modeRead|CFile::shareDenyWrite, &ex);
+
+	if (ret == TRUE)
+	{
+		_fileStatus = OPEN_READ;
+	}
 
 	return WINBOOL_2_CBOOL(ret);
 }
@@ -60,8 +71,7 @@ uint64_t OsFile::getLength()
 	bool needClose = false;
 
 	// Not opened, let's open it.
-	if (cfile->m_hFile == CFile::hFileNull &&
-		openRead())
+	if (_fileStatus == CLOSED && openRead())
 	{
 		needClose = true;		
 	}
@@ -104,8 +114,9 @@ void OsFile::close()
 {
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
 
-	if (cfile->m_hFile != CFile::hFileNull)
+	if (_fileStatus != CLOSED)
 	{
 		cfile->Close();
+		_fileStatus = CLOSED;
 	}
 }
