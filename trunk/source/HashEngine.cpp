@@ -42,8 +42,6 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	thrdData->threadWorking = TRUE;
 
 	unsigned int i;
-	CFileException ex;
-	CFile File;
 	thrdData->totalSize = 0;
 	ULONGLONG finishedSize = 0;
 	ULONGLONG finishedSizeWhole = 0;
@@ -90,10 +88,11 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		
 			const TCHAR* path;
 			path = thrdData->fullPaths[i].GetString();
-			if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex))
+			OsFile osFile(path);
+			if(osFile.openRead())
 			{
-				fSize = File.GetLength();//fsize=status.m_size; // Fix 4GB file
-				File.Close();
+				fSize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
+				osFile.close();
 			}
 
 			fSizes[i] = fSize;
@@ -160,7 +159,9 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		result.strPath = thrdData->fullPaths[i];
 
 		//Calculating begins
-		if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
+		CFileException fExc;
+		OsFile osFile(path);
+		if(osFile.openRead((void *)&fExc)) 
 		{
 			MD5Init(&mdContext, 0); // MD5开始
 			sha1.Reset(); // SHA1开始
@@ -178,11 +179,11 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			// get file status //
 			CString lastModifiedTime;
-			CFileStatus status;
-			if(File.GetStatus(status))
+			CTime ctModifedTime;
+			if(osFile.getModifiedTime((void *)&ctModifedTime))
 			{
-				lastModifiedTime = status.m_mtime.Format("%Y-%m-%d %H:%M");
-				fsize = File.GetLength();//fsize=status.m_size; // Fix 4GB file
+				lastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M");
+				fsize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
 				if(!isSizeCaled) // 如果没有计算过大小
 				{
 					thrdData->totalSize += fsize;
@@ -239,14 +240,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			{	
 				if(thrdData->stop)
 				{
-					if(File.m_hFile != CFile::hFileNull)
-						File.Close();//很重要，否则会出错
+					osFile.close();
 
 					thrdData->threadWorking = FALSE;
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 					return 0;
 				}
-				databuf.datalen = File.Read(databuf.data, DataBuffer::preflen);
+				databuf.datalen = osFile.read(databuf.data, DataBuffer::preflen);
 				t++;
 
 				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5更新
@@ -294,7 +294,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, (i + 1) * 100 / (thrdData->nFiles));
 			}
 
-			File.Close();
+			osFile.close();
 			//Calculating ends
 
 			strFileMD5.Format(_T("%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"),
@@ -368,7 +368,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		else
 		{
 			TCHAR szError[1024];
-			ex.GetErrorMessage(szError, 1024);
+			fExc.GetErrorMessage(szError, 1024);
 
 			result.bDone = FALSE;
 			result.strError = szError;
