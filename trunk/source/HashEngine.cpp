@@ -38,7 +38,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 {
 	ThreadData* thrdData = (ThreadData*)pParam;
 
-	thrdData->threadWorking = TRUE;
+	thrdData->threadWorking = true;
 
 	unsigned int i;
 	thrdData->totalSize = 0;
@@ -58,13 +58,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	//界面设置 - 开始
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_WORKING, 0);
 
-	CString strTemp;
+	tstring tstrTemp;
 	
 	EnterCriticalSection(&g_criticalSection);
 	{
-		strTemp = thrdData->strAll;
-		thrdData->strAll.Append(MAINDLG_WAITING_START);
-		thrdData->strAll.Append(_T("\r\n"));
+		tstrTemp = thrdData->tstrAll;
+		thrdData->tstrAll.append(MAINDLG_WAITING_START);
+		thrdData->tstrAll.append(_T("\r\n"));
 	}
 	LeaveCriticalSection(&g_criticalSection);
 	
@@ -79,14 +79,14 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		{
 			if(thrdData->stop)
 			{
-				thrdData->threadWorking = FALSE;
+				thrdData->threadWorking = false;
 				::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 				return 0;
 			}
 			ULONGLONG fSize = 0;
 		
 			const TCHAR* path;
-			path = thrdData->fullPaths[i].GetString();
+			path = thrdData->fullPaths[i].c_str();
 			OsFile osFile(path);
 			if(osFile.openRead())
 			{
@@ -102,7 +102,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	EnterCriticalSection(&g_criticalSection);
 	{
 		// 恢复内容
-		thrdData->strAll = strTemp;
+		thrdData->tstrAll = tstrTemp;
 	}
 	LeaveCriticalSection(&g_criticalSection);
 
@@ -111,7 +111,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 	{
 		if(thrdData->stop)
 		{
-			thrdData->threadWorking = FALSE;
+			thrdData->threadWorking = false;
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 			return 0;
 		}
@@ -119,7 +119,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		Sleep(50);
 
 		// Declaration for calculator
-		TCHAR* path;
+		const TCHAR* path;
 		ULONGLONG fsize, times, t = 0;
 		finishedSize = 0;
 		//unsigned int len;
@@ -142,20 +142,20 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		// 显示文件名
 		EnterCriticalSection(&g_criticalSection);
 		{
-			thrdData->strAll.Append(FILENAME_STRING);
-			thrdData->strAll.Append(_T(" "));
-			thrdData->strAll.Append(thrdData->fullPaths[i]);
-			thrdData->strAll.Append(_T("\r\n"));
+			thrdData->tstrAll.append(FILENAME_STRING);
+			thrdData->tstrAll.append(_T(" "));
+			thrdData->tstrAll.append(thrdData->fullPaths[i].c_str());
+			thrdData->tstrAll.append(_T("\r\n"));
 		}
 		LeaveCriticalSection(&g_criticalSection);
 
 		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 
-		path = thrdData->fullPaths[i].GetBuffer();
+		path = thrdData->fullPaths[i].c_str();
 		// 显示文件名
 
 		ResultData result;
-		result.tstrPath = thrdData->fullPaths[i].GetString();
+		result.tstrPath = thrdData->fullPaths[i];
 
 		//Calculating begins
 		CFileException fExc;
@@ -200,32 +200,32 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			EnterCriticalSection(&g_criticalSection);
 			{
-				thrdData->strAll.Append(FILESIZE_STRING);
-				thrdData->strAll.Append(_T(" "));
-				thrdData->strAll.Append(strFileSize);
-				thrdData->strAll.Append(_T(" "));
-				thrdData->strAll.Append(BYTE_STRING);
-				thrdData->strAll.Append(shortSize);
-				thrdData->strAll.Append(_T("\r\n"));
-				thrdData->strAll.Append(MODIFYTIME_STRING);
-				thrdData->strAll.Append(_T(" "));
-				thrdData->strAll.Append(lastModifiedTime);
+				thrdData->tstrAll.append(FILESIZE_STRING);
+				thrdData->tstrAll.append(_T(" "));
+				thrdData->tstrAll.append(strFileSize);
+				thrdData->tstrAll.append(_T(" "));
+				thrdData->tstrAll.append(BYTE_STRING);
+				thrdData->tstrAll.append(shortSize);
+				thrdData->tstrAll.append(_T("\r\n"));
+				thrdData->tstrAll.append(MODIFYTIME_STRING);
+				thrdData->tstrAll.append(_T(" "));
+				thrdData->tstrAll.append(lastModifiedTime);
 			}
 			LeaveCriticalSection(&g_criticalSection);
 
 			// get file version //
-			CString Ver = GetExeFileVersion(path);
+			CString Ver = GetExeFileVersion((TCHAR *)path);
 
 			EnterCriticalSection(&g_criticalSection);
 			if(Ver.Compare(_T("")) != 0)
 			{
-				thrdData->strAll.Append(_T("\r\n"));
-				thrdData->strAll.Append(VERSION_STRING);
-				thrdData->strAll.Append(_T(" "));
-				thrdData->strAll.Append(Ver);
+				thrdData->tstrAll.append(_T("\r\n"));
+				thrdData->tstrAll.append(VERSION_STRING);
+				thrdData->tstrAll.append(_T(" "));
+				thrdData->tstrAll.append(Ver);
 			}
 
-			thrdData->strAll.Append(_T("\r\n"));
+			thrdData->tstrAll.append(_T("\r\n"));
 
 			LeaveCriticalSection(&g_criticalSection);
 	
@@ -241,7 +241,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				{
 					osFile.close();
 
-					thrdData->threadWorking = FALSE;
+					thrdData->threadWorking = false;
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 					return 0;
 				}
@@ -321,7 +321,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			strFileCRC32.Format(_T("%08X"), ulCRC32);
 
 			result.bDone = true;
-			result.tstrPath = thrdData->fullPaths[i].GetString();
+			result.tstrPath = thrdData->fullPaths[i];
 			result.ulSize = fsize;
 			result.tstrMDate = lastModifiedTime.GetString();
 			result.tstrVersion = Ver.GetString();
@@ -349,15 +349,15 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			EnterCriticalSection(&g_criticalSection);
 			{
 				// 显示结果
-				thrdData->strAll.Append(_T("MD5: "));
-				thrdData->strAll.Append(strFileMD5);
-				thrdData->strAll.Append(_T("\r\nSHA1: "));
-				thrdData->strAll.Append(strFileSHA1);
-				thrdData->strAll.Append(_T("\r\nSHA256: "));
-				thrdData->strAll.Append(strFileSHA256);
-				thrdData->strAll.Append(_T("\r\nCRC32: "));
-				thrdData->strAll.Append(strFileCRC32);
-				thrdData->strAll.Append(_T("\r\n\r\n"));
+				thrdData->tstrAll.append(_T("MD5: "));
+				thrdData->tstrAll.append(strFileMD5);
+				thrdData->tstrAll.append(_T("\r\nSHA1: "));
+				thrdData->tstrAll.append(strFileSHA1);
+				thrdData->tstrAll.append(_T("\r\nSHA256: "));
+				thrdData->tstrAll.append(strFileSHA256);
+				thrdData->tstrAll.append(_T("\r\nCRC32: "));
+				thrdData->tstrAll.append(strFileCRC32);
+				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
 			LeaveCriticalSection(&g_criticalSection);
 
@@ -375,8 +375,8 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			EnterCriticalSection(&g_criticalSection);
 			{
 				// 显示结果
-				thrdData->strAll.Append(szError);
-				thrdData->strAll.Append(_T("\r\n\r\n"));
+				thrdData->tstrAll.append(szError);
+				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
 			LeaveCriticalSection(&g_criticalSection);
 
@@ -389,7 +389,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
 	
-	thrdData->threadWorking=FALSE;
+	thrdData->threadWorking = false;
 
 	return 0;
 }

@@ -2,6 +2,8 @@
 //
 #include "stdafx.h"
 
+#include <string>
+
 #include "FilesHash.h"
 #include "FilesHashDlg.h"
 #include "FindDlg.h"
@@ -13,6 +15,7 @@
 
 #include "strhelper.h"
 
+using namespace std;
 using namespace sunjwbase;
 
 #ifdef _DEBUG
@@ -124,11 +127,11 @@ BOOL CFilesHashDlg::OnInitDialog()
 	EnterCriticalSection(&g_criticalSection);
 	{
 		m_thrdData.hWnd = m_hWnd;
-		m_thrdData.uppercase = FALSE;
+		m_thrdData.uppercase = false;
 
 		m_thrdData.nFiles = 0;
 
-		m_thrdData.strAll = _T("");
+		m_thrdData.tstrAll = _T("");
 		m_thrdData.resultList.clear();
 	}
 	LeaveCriticalSection(&g_criticalSection);
@@ -153,16 +156,16 @@ BOOL CFilesHashDlg::OnInitDialog()
 	SetCtrls(FALSE);
 
 	// 从命令行获取文件路径
-	CStrVector Paras = ParseCmdLine();
+	TStrVector Paras = ParseCmdLine();
 	ClearFilePaths();
-	for(CStrVector::iterator ite = Paras.begin(); ite != Paras.end(); ++ite)
+	for(TStrVector::iterator ite = Paras.begin(); ite != Paras.end(); ++ite)
 	{
 		m_thrdData.fullPaths.push_back(*ite);
 		++m_thrdData.nFiles;
 	}
 	// 从命令行获取文件路径结束
 	
-	m_thrdData.threadWorking = FALSE;
+	m_thrdData.threadWorking = false;
 	m_prog.SetRange(0, 99);
 	m_progWhole.SetRange(0, 99);
 	m_chkUppercase.SetCheck(0);
@@ -213,17 +216,16 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 	if(!m_thrdData.threadWorking)
 	{
 		unsigned int i;
-		TCHAR szDragFilename[MAX_PATH];
+		TCHAR tszDragFilename[MAX_PATH];
 		DragAcceptFiles(FALSE);
 
 		m_thrdData.nFiles = DragQueryFile(hDropInfo, -1, NULL, 0);
 		ClearFilePaths();
 
-		for(i=0; i < m_thrdData.nFiles; i++)
+		for(i = 0; i < m_thrdData.nFiles; i++)
 		{
-			DragQueryFile(hDropInfo, i, szDragFilename, sizeof(szDragFilename));
-			CString tmp;
-			tmp.Format(_T("%s"), szDragFilename);
+			DragQueryFile(hDropInfo, i, tszDragFilename, sizeof(tszDragFilename));
+			tstring tmp = tszDragFilename;
 			m_thrdData.fullPaths.push_back(tmp);
 		}
 
@@ -234,10 +236,10 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 	}
 }
 
-CStrVector CFilesHashDlg::ParseCmdLine()
+TStrVector CFilesHashDlg::ParseCmdLine()
 {
 	// 从命令行获取文件路径
-	CStrVector Parameters;
+	TStrVector parameters;
 
 #if defined(UNICODE) || defined(_UNICODE)
 	size_t cmdLen = wcslen(theApp.m_lpCmdLine);
@@ -249,25 +251,25 @@ CStrVector CFilesHashDlg::ParseCmdLine()
 	{
 		for(size_t i = 0; i < cmdLen; ++i)
 		{
-			CString Parameter("");
+			tstring tstrPara(_T(""));
 			if(theApp.m_lpCmdLine[i] == '"')
 			{
 				++i;
 				for(; theApp.m_lpCmdLine[i] != '"'; ++i)
-					Parameter.AppendChar(theApp.m_lpCmdLine[i]);
-				Parameters.push_back(Parameter);
+					tstrPara += theApp.m_lpCmdLine[i];
+				parameters.push_back(tstrPara);
 				++i;
 			}
 			else
 			{
 				for(; theApp.m_lpCmdLine[i] != ' '; ++i)
-					Parameter.AppendChar(theApp.m_lpCmdLine[i]);
-				Parameters.push_back(Parameter);
+					tstrPara += theApp.m_lpCmdLine[i];
+				parameters.push_back(tstrPara);
 			}
 		}
 	}
 	// 从命令行获取文件路径结束
-	return Parameters;
+	return parameters;
 }
 
 void CFilesHashDlg::PrepareAdvTaskbar()
@@ -319,7 +321,7 @@ void CFilesHashDlg::OnBnClickedOpen()
 			pos = dlgOpen.GetStartPosition();
 			ClearFilePaths();
 			for(m_thrdData.nFiles = 0; pos != NULL; m_thrdData.nFiles++)
-				m_thrdData.fullPaths.push_back(dlgOpen.GetNextPathName(pos));
+				m_thrdData.fullPaths.push_back(dlgOpen.GetNextPathName(pos).GetString());
 
 			DoMD5();
 		}
@@ -357,10 +359,10 @@ void CFilesHashDlg::OnBnClickedClean()
 		{
 			EnterCriticalSection(&g_criticalSection);
 			{
-				m_thrdData.strAll = _T("");
+				m_thrdData.tstrAll = _T("");
 				m_thrdData.resultList.clear();
 			
-				m_editMain.SetWindowText(m_thrdData.strAll);
+				m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
 			}
 			LeaveCriticalSection(&g_criticalSection);
 
@@ -408,7 +410,8 @@ void CFilesHashDlg::OnBnClickedFind()
 			m_bFind = TRUE; // 进入搜索模式
 			m_btnClr.SetWindowText(MAINDLG_CLEAR_VERIFY);
 			//m_editMain.SetWindowText(_T(""));
-			m_editMain.SetWindowText(ResultFind(m_strFindFile, m_strFindHash));
+			tstring tstrResult = ResultFind(m_strFindFile, m_strFindHash);
+			m_editMain.SetWindowText(tstrResult.c_str());
 			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 		}
 	}
@@ -475,7 +478,8 @@ void CFilesHashDlg::OnBnClickedCheckup()
 	else
 	{
 		// Search mode
-		m_editMain.SetWindowText(ResultFind(m_strFindFile, m_strFindHash));
+		tstring tstrResult = ResultFind(m_strFindFile, m_strFindHash);
+		m_editMain.SetWindowText(tstrResult.c_str());
 	}
 
 	// Reset scroll position
@@ -542,7 +546,7 @@ void CFilesHashDlg::DoMD5()
 
 	DWORD thredID;
 
-	m_thrdData.stop = FALSE;
+	m_thrdData.stop = false;
 	m_hWorkThread = (HANDLE)_beginthreadex(NULL, 
 											0, 
 											(unsigned int (WINAPI *)(void *))md5_file, 
@@ -556,7 +560,7 @@ void CFilesHashDlg::StopWorkingThread()
 {
 	if(m_thrdData.threadWorking)
 	{
-		m_thrdData.stop = TRUE;
+		m_thrdData.stop = true;
 	}
 }
 
@@ -623,18 +627,18 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 
 void CFilesHashDlg::RefreshResult()
 {
-	m_thrdData.strAll = _T("");
+	m_thrdData.tstrAll = _T("");
 	ResultList::iterator itr = m_thrdData.resultList.begin();
 	for(; itr != m_thrdData.resultList.end(); ++itr)
 	{
-		AppendResult(*itr, m_thrdData.strAll);
+		AppendResult(*itr, m_thrdData.tstrAll);
 	}
 }
 
 void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	EnterCriticalSection(&g_criticalSection);
-	m_editMain.SetWindowText(m_thrdData.strAll);
+	m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
 	LeaveCriticalSection(&g_criticalSection);
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
@@ -711,11 +715,11 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		
 		EnterCriticalSection(&g_criticalSection);
 		{
-			m_thrdData.strAll.Append(_T("\r\n"));
-			m_thrdData.strAll.Append(MAINDLG_CALCU_TERMINAL);
-			m_thrdData.strAll.Append(_T("\r\n\r\n"));
+			m_thrdData.tstrAll.append(_T("\r\n"));
+			m_thrdData.tstrAll.append(MAINDLG_CALCU_TERMINAL);
+			m_thrdData.tstrAll.append(_T("\r\n\r\n"));
 
-			m_editMain.SetWindowText(m_thrdData.strAll);
+			m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
 		}
 		LeaveCriticalSection(&g_criticalSection);
 			
@@ -735,16 +739,16 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
+tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 {
-	CString strResult(MAINDLG_FIND_IN_RESULT);
-	strResult.Append(_T("\r\n"));
-	strResult.Append(HASHVALUE_STRING);
-	strResult.Append(_T(" "));
-	strResult.Append(strHash);
-	strResult.Append(_T("\r\n\r\n"));
-	strResult.Append(MAINDLG_RESULT);
-	strResult.Append(_T("\r\n\r\n"));
+	tstring tstrResult(MAINDLG_FIND_IN_RESULT);
+	tstrResult.append(_T("\r\n"));
+	tstrResult.append(HASHVALUE_STRING);
+	tstrResult.append(_T(" "));
+	tstrResult.append(strHash);
+	tstrResult.append(_T("\r\n\r\n"));
+	tstrResult.append(MAINDLG_RESULT);
+	tstrResult.append(_T("\r\n\r\n"));
 
 	strHash.MakeUpper();
 	strFile.MakeLower();
@@ -764,76 +768,81 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 		{
 			++count;
 
-			AppendResult(*itr, strResult);
+			AppendResult(*itr, tstrResult);
 		}
 	}
 
 	if(count == 0)
-		strResult.Append(MAINDLG_NORESULT);
+		tstrResult.append(MAINDLG_NORESULT);
 
-	return strResult;
+	return tstrResult;
 }
 
-void CFilesHashDlg::AppendResult(const ResultData& result, CString& strToAppend)
+void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend)
 {
-	strToAppend.Append(FILENAME_STRING);
-	strToAppend.Append(_T(" "));
-	strToAppend.Append(result.tstrPath.c_str());
-	strToAppend.Append(_T("\r\n"));
+	tstrToAppend.append(FILENAME_STRING);
+	tstrToAppend.append(_T(" "));
+	tstrToAppend.append(result.tstrPath);
+	tstrToAppend.append(_T("\r\n"));
 	if(result.bDone)
 	{
 		// A succeed result
-		strToAppend.Append(FILESIZE_STRING);
-		strToAppend.Append(_T(" "));
-		strToAppend.AppendFormat(_T("%I64u "), result.ulSize);
-		strToAppend.Append(BYTE_STRING);
-		strToAppend.Append(ConvertSizeToCStr(result.ulSize));
-		strToAppend.Append(_T("\r\n"));
-		strToAppend.Append(MODIFYTIME_STRING);
-		strToAppend.Append(_T(" "));
-		strToAppend.Append(result.tstrMDate.c_str());
+		tstrToAppend.append(FILESIZE_STRING);
+		tstrToAppend.append(_T(" "));
+		
+		char zhSize[1024] = {0};
+		sprintf(zhSize, "%I64u ", result.ulSize);
+
+		tstrToAppend.append(strtotstr(string(zhSize)));
+		tstrToAppend.append(BYTE_STRING);
+
+		tstrToAppend.append(ConvertSizeToCStr(result.ulSize));
+		tstrToAppend.append(_T("\r\n"));
+		tstrToAppend.append(MODIFYTIME_STRING);
+		tstrToAppend.append(_T(" "));
+		tstrToAppend.append(result.tstrMDate.c_str());
 		if(result.tstrVersion != tstring(_T("")))
 		{
-			strToAppend.Append(_T("\r\n"));
-			strToAppend.Append(VERSION_STRING);
-			strToAppend.Append(_T(" "));
-			strToAppend.Append(result.tstrVersion.c_str());
+			tstrToAppend.append(_T("\r\n"));
+			tstrToAppend.append(VERSION_STRING);
+			tstrToAppend.append(_T(" "));
+			tstrToAppend.append(result.tstrVersion.c_str());
 		}
-		strToAppend.Append(_T("\r\n"));
+		tstrToAppend.append(_T("\r\n"));
 
 		CString strMD5(result.tstrMD5.c_str());
 		CString strSHA1(result.tstrSHA1.c_str());
 		CString strSHA256(result.tstrSHA256.c_str());
 		CString strCRC32(result.tstrCRC32.c_str());
 
-		if(m_thrdData.uppercase = m_chkUppercase.GetCheck())
+		if(m_thrdData.uppercase = (m_chkUppercase.GetCheck() == TRUE))
 		{
-			strToAppend.Append(_T("MD5: "));
-			strToAppend.Append(strMD5.MakeUpper());
-			strToAppend.Append(_T("\r\nSHA1: "));
-			strToAppend.Append(strSHA1.MakeUpper());
-			strToAppend.Append(_T("\r\nSHA256: "));
-			strToAppend.Append(strSHA256.MakeUpper());
-			strToAppend.Append(_T("\r\nCRC32: "));
-			strToAppend.Append(strCRC32.MakeUpper());
+			tstrToAppend.append(_T("MD5: "));
+			tstrToAppend.append(strMD5.MakeUpper());
+			tstrToAppend.append(_T("\r\nSHA1: "));
+			tstrToAppend.append(strSHA1.MakeUpper());
+			tstrToAppend.append(_T("\r\nSHA256: "));
+			tstrToAppend.append(strSHA256.MakeUpper());
+			tstrToAppend.append(_T("\r\nCRC32: "));
+			tstrToAppend.append(strCRC32.MakeUpper());
 		}
 		else
 		{
-			strToAppend.Append(_T("MD5: "));
-			strToAppend.Append(strMD5.MakeLower());
-			strToAppend.Append(_T("\r\nSHA1: "));
-			strToAppend.Append(strSHA1.MakeLower());
-			strToAppend.Append(_T("\r\nSHA256: "));
-			strToAppend.Append(strSHA256.MakeLower());
-			strToAppend.Append(_T("\r\nCRC32: "));
-			strToAppend.Append(strCRC32.MakeLower());
+			tstrToAppend.append(_T("MD5: "));
+			tstrToAppend.append(strMD5.MakeLower());
+			tstrToAppend.append(_T("\r\nSHA1: "));
+			tstrToAppend.append(strSHA1.MakeLower());
+			tstrToAppend.append(_T("\r\nSHA256: "));
+			tstrToAppend.append(strSHA256.MakeLower());
+			tstrToAppend.append(_T("\r\nCRC32: "));
+			tstrToAppend.append(strCRC32.MakeLower());
 		}
 	}
 	else
 	{
 		// An error result
-		strToAppend.Append(result.tstrError.c_str());
+		tstrToAppend.append(result.tstrError.c_str());
 	}
 
-	strToAppend.Append(_T("\r\n\r\n"));
+	tstrToAppend.append(_T("\r\n\r\n"));
 }

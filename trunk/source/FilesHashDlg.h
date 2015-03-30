@@ -8,6 +8,7 @@
 #include "EditEx.h"
 
 #include "Global.h"
+#include "strhelper.h"
 
 // CMD5SUM03Dlg ¶Ô»°¿ò
 class CFilesHashDlg : public CDialog
@@ -73,13 +74,13 @@ protected:
 
 	BOOL m_bLimited;
 
-	CStrVector ParseCmdLine();
+	TStrVector ParseCmdLine();
 	void ClearFilePaths();
 	void PrepareAdvTaskbar();
 
-	CString ResultFind(CString strFile, CString strHash);
+	sunjwbase::tstring ResultFind(CString strFile, CString strHash);
 
-	void AppendResult(const ResultData& result, CString& strToAppend);
+	void AppendResult(const ResultData& result, sunjwbase::tstring& tstrToAppend);
 
 	void DoMD5();
 	void StopWorkingThread();

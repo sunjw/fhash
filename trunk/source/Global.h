@@ -15,8 +15,8 @@
 
 struct ResultData;
 
-typedef std::vector<CString> CStrVector;
-typedef std::vector<ULONGLONG> ULLongVector;
+typedef std::vector<sunjwbase::tstring> TStrVector;
+typedef std::vector<uint64_t> ULLongVector;
 typedef std::list<ResultData> ResultList;
 
 #define WM_THREAD_INFO		WM_USER + 1 // 线程发出消息
@@ -45,18 +45,18 @@ struct ResultData // 计算结果
 
 struct ThreadData // 传向计算线程的信息
 {
-	BOOL threadWorking; // 线程是否在工作
+	bool threadWorking; // 线程是否在工作
 
 	HWND hWnd; // 界面句柄
-	BOOL uppercase; // 是否大写
+	bool uppercase; // 是否大写
 
-	unsigned int nFiles; // 文件个数
-	ULONGLONG totalSize; // 所有文件大小
-	BOOL stop; // 主界面要求停止计算
+	uint32_t nFiles; // 文件个数
+	uint64_t totalSize; // 所有文件大小
+	bool stop; // 主界面要求停止计算
 
-	CStrVector fullPaths; // 待计算的所有文件路径
+	TStrVector fullPaths; // 待计算的所有文件路径
 
-	CString strAll; // 全部计算结果，它应该和下面的resultList 同步
+	sunjwbase::tstring tstrAll; // 全部计算结果，它应该和下面的resultList 同步
 	ResultList resultList;
 };
 
