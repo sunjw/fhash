@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-#include <string>
-#include <cstdlib>
+#include <stdlib.h>
 
 #include "HashEngine.h"
 #include "Functions.h"
@@ -156,7 +155,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		// 显示文件名
 
 		ResultData result;
-		result.strPath = thrdData->fullPaths[i];
+		result.tstrPath = thrdData->fullPaths[i].GetString();
 
 		//Calculating begins
 		CFileException fExc;
@@ -321,16 +320,16 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			strFileSHA256 = strSHA256;
 			strFileCRC32.Format(_T("%08X"), ulCRC32);
 
-			result.bDone = TRUE;
-			result.strPath = thrdData->fullPaths[i];
+			result.bDone = true;
+			result.tstrPath = thrdData->fullPaths[i].GetString();
 			result.ulSize = fsize;
-			result.strMDate = lastModifiedTime;
-			result.strVersion = Ver;
+			result.tstrMDate = lastModifiedTime.GetString();
+			result.tstrVersion = Ver.GetString();
 			// 在没做转换前，结果都是大写的
-			result.strMD5 = strFileMD5;
-			result.strSHA1 = strFileSHA1;
-			result.strSHA256 = strFileSHA256;
-			result.strCRC32 = strFileCRC32;
+			result.tstrMD5 = strFileMD5.GetString();
+			result.tstrSHA1 = strFileSHA1.GetString();
+			result.tstrSHA256 = strFileSHA256.GetString();
+			result.tstrCRC32 = strFileCRC32.GetString();
 
 			if(thrdData->uppercase)
 			{
@@ -370,8 +369,8 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			TCHAR szError[1024];
 			fExc.GetErrorMessage(szError, 1024);
 
-			result.bDone = FALSE;
-			result.strError = szError;
+			result.bDone = false;
+			result.tstrError = szError;
 
 			EnterCriticalSection(&g_criticalSection);
 			{

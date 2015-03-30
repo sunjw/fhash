@@ -11,6 +11,10 @@
 #include "HashEngine.h"
 #include "UIStrings.h"
 
+#include "strhelper.h"
+
+using namespace sunjwbase;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -750,13 +754,13 @@ CString CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 	ResultList::iterator itr = m_thrdData.resultList.begin();
 	for(; itr != m_thrdData.resultList.end(); ++itr)
 	{
-		strPathLower = itr->strPath;
+		strPathLower = CString(itr->tstrPath.c_str());
 		strPathLower.MakeLower();
 		if(strPathLower.Find(strFile) >= 0 && 
-			(itr->strMD5.Find(strHash) >= 0 ||
-			itr->strSHA1.Find(strHash) >= 0 ||
-			itr->strSHA256.Find(strHash) >= 0 ||
-			itr->strCRC32.Find(strHash) >= 0 ))
+			(itr->tstrMD5.find(strHash.GetString()) != tstring::npos ||
+			itr->tstrSHA1.find(strHash.GetString()) != tstring::npos ||
+			itr->tstrSHA256.find(strHash.GetString()) != tstring::npos ||
+			itr->tstrCRC32.find(strHash.GetString()) != tstring::npos ))
 		{
 			++count;
 
@@ -774,7 +778,7 @@ void CFilesHashDlg::AppendResult(const ResultData& result, CString& strToAppend)
 {
 	strToAppend.Append(FILENAME_STRING);
 	strToAppend.Append(_T(" "));
-	strToAppend.Append(result.strPath);
+	strToAppend.Append(result.tstrPath.c_str());
 	strToAppend.Append(_T("\r\n"));
 	if(result.bDone)
 	{
@@ -787,20 +791,20 @@ void CFilesHashDlg::AppendResult(const ResultData& result, CString& strToAppend)
 		strToAppend.Append(_T("\r\n"));
 		strToAppend.Append(MODIFYTIME_STRING);
 		strToAppend.Append(_T(" "));
-		strToAppend.Append(result.strMDate);
-		if(result.strVersion.Compare(_T("")) != 0)
+		strToAppend.Append(result.tstrMDate.c_str());
+		if(result.tstrVersion != tstring(_T("")))
 		{
 			strToAppend.Append(_T("\r\n"));
 			strToAppend.Append(VERSION_STRING);
 			strToAppend.Append(_T(" "));
-			strToAppend.Append(result.strVersion);
+			strToAppend.Append(result.tstrVersion.c_str());
 		}
 		strToAppend.Append(_T("\r\n"));
 
-		CString strMD5(result.strMD5);
-		CString strSHA1(result.strSHA1);
-		CString strSHA256(result.strSHA256);
-		CString strCRC32(result.strCRC32);
+		CString strMD5(result.tstrMD5.c_str());
+		CString strSHA1(result.tstrSHA1.c_str());
+		CString strSHA256(result.tstrSHA256.c_str());
+		CString strCRC32(result.tstrCRC32.c_str());
 
 		if(m_thrdData.uppercase = m_chkUppercase.GetCheck())
 		{
@@ -828,7 +832,7 @@ void CFilesHashDlg::AppendResult(const ResultData& result, CString& strToAppend)
 	else
 	{
 		// An error result
-		strToAppend.Append(result.strError);
+		strToAppend.Append(result.tstrError.c_str());
 	}
 
 	strToAppend.Append(_T("\r\n\r\n"));

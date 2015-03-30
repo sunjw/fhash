@@ -1,6 +1,8 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#include <stdint.h>
+
 #include <vector>
 #include <list>
 
@@ -8,6 +10,8 @@
 #include <WinUser.h>
 #include <WinDef.h>
 #include <WinNT.h>
+
+#include "strhelper.h"
 
 struct ResultData;
 
@@ -27,16 +31,16 @@ typedef std::list<ResultData> ResultList;
 
 struct ResultData // 计算结果
 {
-	BOOL bDone; // Done
-	CString strPath; // 路径
-	ULONGLONG ulSize; // 大小
-	CString strMDate; // 修改日期
-	CString strVersion; // 版本
-	CString strMD5; // MD5
-	CString strSHA1; // SHA1
-	CString strSHA256; // SHA256
-	CString strCRC32; // CRC32
-	CString strError; // Error string
+	bool bDone; // Done
+	sunjwbase::tstring tstrPath; // 路径
+	uint64_t ulSize; // 大小
+	sunjwbase::tstring tstrMDate; // 修改日期
+	sunjwbase::tstring tstrVersion; // 版本
+	sunjwbase::tstring tstrMD5; // MD5
+	sunjwbase::tstring tstrSHA1; // SHA1
+	sunjwbase::tstring tstrSHA256; // SHA256
+	sunjwbase::tstring tstrCRC32; // CRC32
+	sunjwbase::tstring tstrError; // Error string
 };
 
 struct ThreadData // 传向计算线程的信息
