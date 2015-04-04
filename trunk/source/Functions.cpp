@@ -1,17 +1,21 @@
 #include "stdafx.h"
 
+#include "Functions.h"
+
 #include <string>
 #include <atlbase.h>
-#include "Functions.h"
+
 #include "UIStrings.h"
 #include "strhelper.h"
 
 using namespace std;
 using namespace sunjwbase;
 
-CString ConvertSizeToCStr(ULONGLONG size)
+string ConvertSizeToStr(uint64_t size)
 {
-	CString strSize(_T(""));
+	string strSize("");
+
+	char buff[1024] = {0};
 
 	if(size > 1024)
 	{
@@ -22,14 +26,16 @@ CString ConvertSizeToCStr(ULONGLONG size)
 			if(M_fsize > 1024)
 			{
 				float g_fsize = M_fsize / 1024;
-				strSize.Format(_T(" (%.2f GB)"), g_fsize);
+				sprintf_s(buff, 1024, " (%.2f GB)", g_fsize);
 			}
 			else
-				strSize.Format(_T(" (%.2f MB)"), M_fsize);
+				sprintf_s(buff, 1024, " (%.2f MB)", M_fsize);
 		}
 		else
-			strSize.Format(_T(" (%.2f KB)"), k_fsize);
+			sprintf_s(buff, 1024, " (%.2f KB)", k_fsize);
 	}
+
+	strSize = buff;
 
 	return strSize;
 }

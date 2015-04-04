@@ -303,3 +303,30 @@ sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 			sDigest->AppendFormat(_T("%02X"), digest[p]);
 	}
 }
+
+void
+sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest)
+{
+	uint32_t i;
+	unsigned int digest[32] = {0};
+	unsigned int *s = digest;
+
+	if (s!=NULL && sDigest != NULL)
+	{
+		for (i = 0; i < _SHA256_DIGEST_LENGTH; i++) 
+		{
+			*s++ = ctx->state[i] >> 24;
+			*s++ = 0xff & (ctx->state[i] >> 16);
+			*s++ = 0xff & (ctx->state[i] >> 8);
+			*s++ = 0xff & ctx->state[i];
+		}
+
+		*sDigest = "";
+		for(int p = 0; p < 32; p++)
+		{
+			char buf[8] = {0};
+			sprintf_s(buf, "%02X", digest[p]);
+			sDigest->append(std::string(buf));
+		}
+	}
+}

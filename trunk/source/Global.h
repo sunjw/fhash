@@ -6,18 +6,12 @@
 #include <vector>
 #include <list>
 
+#if defined (WIN32)
+
 #include <atlbase.h>
 #include <WinUser.h>
 #include <WinDef.h>
 #include <WinNT.h>
-
-#include "strhelper.h"
-
-struct ResultData;
-
-typedef std::vector<sunjwbase::tstring> TStrVector;
-typedef std::vector<uint64_t> ULLongVector;
-typedef std::list<ResultData> ResultList;
 
 #define WM_THREAD_INFO		WM_USER + 1 // 线程发出消息
 #define WP_WORKING			WM_USER + 2 // 开始工作
@@ -26,6 +20,16 @@ typedef std::list<ResultData> ResultList;
 #define WP_REFRESH_TEXT		WM_USER + 5 // 刷新文本框
 #define WP_PROG				WM_USER + 6 // 文件进度条
 #define WP_PROG_WHOLE		WM_USER + 7 // 全局进度条
+
+#endif
+
+#include "strhelper.h"
+
+struct ResultData;
+
+typedef std::vector<sunjwbase::tstring> TStrVector;
+typedef std::vector<uint64_t> ULLongVector;
+typedef std::list<ResultData> ResultList;
 
 #define MAX_FILES_NUM 8192
 

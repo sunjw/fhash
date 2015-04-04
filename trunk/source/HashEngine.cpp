@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
+#include "HashEngine.h"
+
 #include <stdlib.h>
 
-#include "HashEngine.h"
 #include "Functions.h"
 #include "UIStrings.h"
 #include "strhelper.h"
@@ -40,20 +41,20 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 	thrdData->threadWorking = true;
 
-	unsigned int i;
+	uint32_t i;
 	thrdData->totalSize = 0;
-	ULONGLONG finishedSize = 0;
-	ULONGLONG finishedSizeWhole = 0;
+	uint64_t finishedSize = 0;
+	uint64_t finishedSizeWhole = 0;
 	bool isSizeCaled = false;
 	//ULONGLONG* fSizes = NULL;
 	ULLongVector fSizes(thrdData->nFiles);
 	int positionWhole = 0; // 全局进度条位置
 
-	CString strFileSize;
-	CString strFileMD5;
-	CString strFileSHA1;
-	CString strFileSHA256;
-	CString strFileCRC32;
+	tstring tstrFileSize;
+	tstring tstrFileMD5;
+	tstring tstrFileSHA1;
+	tstring tstrFileSHA256;
+	tstring tstrFileCRC32;
 
 	//界面设置 - 开始
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_WORKING, 0);
@@ -83,7 +84,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 				return 0;
 			}
-			ULONGLONG fSize = 0;
+			uint64_t fSize = 0;
 		
 			const TCHAR* path;
 			path = thrdData->fullPaths[i].c_str();
@@ -120,7 +121,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 		// Declaration for calculator
 		const TCHAR* path;
-		ULONGLONG fsize, times, t = 0;
+		uint64_t fsize, times, t = 0;
 		finishedSize = 0;
 		//unsigned int len;
 		//unsigned char buffer[65534];
@@ -132,7 +133,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		char strSHA1[256];
 
 		SHA256_CTX sha256Ctx; // SHA256 context
-		CString strSHA256 = _T("");
+		string strSHA256;
 
 		unsigned long ulCRC32; // CRC32 context
 		// Declaration for calculator
@@ -144,7 +145,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		{
 			thrdData->tstrAll.append(FILENAME_STRING);
 			thrdData->tstrAll.append(_T(" "));
-			thrdData->tstrAll.append(thrdData->fullPaths[i].c_str());
+			thrdData->tstrAll.append(thrdData->fullPaths[i]);
 			thrdData->tstrAll.append(_T("\r\n"));
 		}
 		LeaveCriticalSection(&g_criticalSection);
@@ -177,11 +178,11 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			*/
 
 			// get file status //
-			CString lastModifiedTime;
+			tstring tstrLastModifiedTime;
 			CTime ctModifedTime;
 			if(osFile.getModifiedTime((void *)&ctModifedTime))
 			{
-				lastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M");
+				tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
 				fsize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
 				if(!isSizeCaled) // 如果没有计算过大小
 				{
@@ -194,39 +195,43 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				}
 			}
 
-			CString shortSize = ConvertSizeToCStr(fsize);
+			tstring tstrShortSize = strtotstr(ConvertSizeToStr(fsize));
 
-			strFileSize.Format(_T("%I64u"), fsize);
+			char chSizeBuff[1024] = {0};
+			sprintf_s(chSizeBuff, 1024, "%I64u", fsize);
+
+			tstrFileSize = strtotstr(string(chSizeBuff));
 
 			EnterCriticalSection(&g_criticalSection);
 			{
 				thrdData->tstrAll.append(FILESIZE_STRING);
 				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(strFileSize);
+				thrdData->tstrAll.append(tstrFileSize);
 				thrdData->tstrAll.append(_T(" "));
 				thrdData->tstrAll.append(BYTE_STRING);
-				thrdData->tstrAll.append(shortSize);
+				thrdData->tstrAll.append(tstrShortSize);
 				thrdData->tstrAll.append(_T("\r\n"));
 				thrdData->tstrAll.append(MODIFYTIME_STRING);
 				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(lastModifiedTime);
+				thrdData->tstrAll.append(tstrLastModifiedTime);
 			}
 			LeaveCriticalSection(&g_criticalSection);
 
 			// get file version //
-			CString Ver = GetExeFileVersion((TCHAR *)path);
+			CString cstrVer = GetExeFileVersion((TCHAR *)path);
 
 			EnterCriticalSection(&g_criticalSection);
-			if(Ver.Compare(_T("")) != 0)
 			{
+				if(cstrVer.Compare(_T("")) != 0)
+				{
+					thrdData->tstrAll.append(_T("\r\n"));
+					thrdData->tstrAll.append(VERSION_STRING);
+					thrdData->tstrAll.append(_T(" "));
+					thrdData->tstrAll.append(cstrVer.GetString());
+				}
+
 				thrdData->tstrAll.append(_T("\r\n"));
-				thrdData->tstrAll.append(VERSION_STRING);
-				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(Ver);
 			}
-
-			thrdData->tstrAll.append(_T("\r\n"));
-
 			LeaveCriticalSection(&g_criticalSection);
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
@@ -296,7 +301,11 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			osFile.close();
 			//Calculating ends
 
-			strFileMD5.Format(_T("%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X"),
+			char chHashBuff[1024] = {0};
+
+			// MD5
+			sprintf_s(chHashBuff, 1024, 
+								"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 								mdContext.digest[0],
 								mdContext.digest[1],
 								mdContext.digest[2],
@@ -313,50 +322,57 @@ DWORD WINAPI md5_file(LPVOID pParam)
 								mdContext.digest[13],
 								mdContext.digest[14],
 								mdContext.digest[15]);
+			tstrFileMD5 = strtotstr(string(chHashBuff));
+
+			// SHA1
 			sha1.ReportHash(strSHA1, CSHA1::REPORT_HEX);
-			tstring tstrSHA1(strtotstr(strSHA1));
-			strFileSHA1.Format(_T("%s"), tstrSHA1.c_str());
+			tstrFileSHA1 = strtotstr(string(strSHA1));
+
+			// SHA256
 			sha256_digest(&sha256Ctx, &strSHA256);
-			strFileSHA256 = strSHA256;
-			strFileCRC32.Format(_T("%08X"), ulCRC32);
+			tstrFileSHA256 = strtotstr(string(strSHA256));
+
+			// CRC32
+			sprintf_s(chHashBuff, 1024, "%08X", ulCRC32);
+			tstrFileCRC32 = strtotstr(string(chHashBuff));
 
 			result.bDone = true;
 			result.tstrPath = thrdData->fullPaths[i];
 			result.ulSize = fsize;
-			result.tstrMDate = lastModifiedTime.GetString();
-			result.tstrVersion = Ver.GetString();
+			result.tstrMDate = tstrLastModifiedTime;
+			result.tstrVersion = cstrVer.GetString();
 			// 在没做转换前，结果都是大写的
-			result.tstrMD5 = strFileMD5.GetString();
-			result.tstrSHA1 = strFileSHA1.GetString();
-			result.tstrSHA256 = strFileSHA256.GetString();
-			result.tstrCRC32 = strFileCRC32.GetString();
+			result.tstrMD5 = tstrFileMD5;
+			result.tstrSHA1 = tstrFileSHA1;
+			result.tstrSHA256 = tstrFileSHA256;
+			result.tstrCRC32 = tstrFileCRC32;
 
 			if(thrdData->uppercase)
 			{
-				strFileMD5.MakeUpper();
-				strFileSHA1.MakeUpper();
-				strFileSHA256.MakeUpper();
-				strFileCRC32.MakeUpper();
+				tstrFileMD5 = strtotstr(str_upper(tstrtostr(tstrFileMD5)));
+				tstrFileSHA1 = strtotstr(str_upper(tstrtostr(tstrFileSHA1)));
+				tstrFileSHA256 = strtotstr(str_upper(tstrtostr(tstrFileSHA256)));
+				tstrFileCRC32 = strtotstr(str_upper(tstrtostr(tstrFileCRC32)));
 			}
 			else
 			{
-				strFileMD5.MakeLower();
-				strFileSHA1.MakeLower();
-				strFileSHA256.MakeLower();
-				strFileCRC32.MakeLower();
+				tstrFileMD5 = strtotstr(str_lower(tstrtostr(tstrFileMD5)));
+				tstrFileSHA1 = strtotstr(str_lower(tstrtostr(tstrFileSHA1)));
+				tstrFileSHA256 = strtotstr(str_lower(tstrtostr(tstrFileSHA256)));
+				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
 			}
 			
 			EnterCriticalSection(&g_criticalSection);
 			{
 				// 显示结果
 				thrdData->tstrAll.append(_T("MD5: "));
-				thrdData->tstrAll.append(strFileMD5);
+				thrdData->tstrAll.append(tstrFileMD5);
 				thrdData->tstrAll.append(_T("\r\nSHA1: "));
-				thrdData->tstrAll.append(strFileSHA1);
+				thrdData->tstrAll.append(tstrFileSHA1);
 				thrdData->tstrAll.append(_T("\r\nSHA256: "));
-				thrdData->tstrAll.append(strFileSHA256);
+				thrdData->tstrAll.append(tstrFileSHA256);
 				thrdData->tstrAll.append(_T("\r\nCRC32: "));
-				thrdData->tstrAll.append(strFileCRC32);
+				thrdData->tstrAll.append(tstrFileCRC32);
 				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
 			LeaveCriticalSection(&g_criticalSection);

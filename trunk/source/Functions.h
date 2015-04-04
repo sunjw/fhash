@@ -1,6 +1,9 @@
 #pragma once
 #include "stdafx.h"
 
+#include <stdint.h>
+#include <string>
+
 #include "strhelper.h"
 
 inline sunjwbase::tstring cstrtotstr(const CString& cstring)
@@ -26,7 +29,7 @@ typedef BOOL (WINAPI *PGPI)(DWORD, DWORD, DWORD,
 typedef HRESULT (__stdcall *LPFN_DllRegisterServer)(void);
 typedef HRESULT (__stdcall *LPFN_DllUnregisterServer)(void);
 
-CString ConvertSizeToCStr(ULONGLONG size);
+std::string ConvertSizeToStr(uint64_t size);
 
 CString GetExeFileVersion(TCHAR* path);
 

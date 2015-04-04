@@ -41,6 +41,8 @@
 
 #include "../stdafx.h"
 
+#include <string>
+
 typedef signed char int8_t;
 typedef unsigned char uint8_t;
 
@@ -83,5 +85,8 @@ sha256_digest(const struct sha256_ctx *ctx, unsigned char *digest);
 
 void
 sha256_digest(const struct sha256_ctx *ctx, CString* sDigest);
+
+void
+sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest);
 
 #endif

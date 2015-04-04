@@ -790,13 +790,14 @@ void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend
 		tstrToAppend.append(FILESIZE_STRING);
 		tstrToAppend.append(_T(" "));
 		
-		char zhSize[1024] = {0};
-		sprintf(zhSize, "%I64u ", result.ulSize);
+		char chSize[1024] = {0};
+		sprintf_s(chSize, 1024, "%I64u ", result.ulSize);
 
-		tstrToAppend.append(strtotstr(string(zhSize)));
+		tstrToAppend.append(strtotstr(string(chSize)));
 		tstrToAppend.append(BYTE_STRING);
 
-		tstrToAppend.append(ConvertSizeToCStr(result.ulSize));
+		tstring tstrResultSize = strtotstr(ConvertSizeToStr(result.ulSize));
+		tstrToAppend.append(tstrResultSize);
 		tstrToAppend.append(_T("\r\n"));
 		tstrToAppend.append(MODIFYTIME_STRING);
 		tstrToAppend.append(_T(" "));
