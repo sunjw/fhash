@@ -14,6 +14,7 @@
 #include "UIStrings.h"
 
 #include "strhelper.h"
+#include "OsUtils/OsThread.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -22,7 +23,7 @@ using namespace sunjwbase;
 #define new DEBUG_NEW
 #endif
 
-CRITICAL_SECTION g_criticalSection;
+OsMutex g_mainMtx;
 
 // CFilesHashDlg 对话框
 CFilesHashDlg::CFilesHashDlg(CWnd* pParent /*=NULL*/)
@@ -80,7 +81,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO：在此添加额外的初始化代码
-	InitializeCriticalSection(&g_criticalSection);
 
 	m_bruEditBkg.CreateSolidBrush(RGB(255, 255, 255));
 
@@ -124,7 +124,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd->SetWindowText(MAINDLG_ABOUT);
 	
 
-	EnterCriticalSection(&g_criticalSection);
+	g_mainMtx.lock();
 	{
 		m_thrdData.hWnd = m_hWnd;
 		m_thrdData.uppercase = false;
@@ -134,7 +134,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 		m_thrdData.tstrAll = _T("");
 		m_thrdData.resultList.clear();
 	}
-	LeaveCriticalSection(&g_criticalSection);
+	g_mainMtx.unlock();
 	
 	pTl = NULL;
 
@@ -297,8 +297,6 @@ void CFilesHashDlg::OnClose()
 		return;
 	}
 
-	DeleteCriticalSection(&g_criticalSection);
-
 	CDialog::OnClose();
 }
 
@@ -357,14 +355,14 @@ void CFilesHashDlg::OnBnClickedClean()
 		m_btnClr.GetWindowText(strBtnText);
 		if(strBtnText.Compare(MAINDLG_CLEAR) == 0)
 		{
-			EnterCriticalSection(&g_criticalSection);
+			g_mainMtx.lock();
 			{
 				m_thrdData.tstrAll = _T("");
 				m_thrdData.resultList.clear();
 			
 				m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
 			}
-			LeaveCriticalSection(&g_criticalSection);
+			g_mainMtx.unlock();
 
 			CStatic* pWnd =(CStatic *)GetDlgItem(IDC_STATIC_TIME);
 			pWnd->SetWindowText(_T(""));
@@ -637,9 +635,9 @@ void CFilesHashDlg::RefreshResult()
 
 void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
-	EnterCriticalSection(&g_criticalSection);
+	g_mainMtx.lock();
 	m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
-	LeaveCriticalSection(&g_criticalSection);
+	g_mainMtx.unlock();
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 }
@@ -713,7 +711,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		SetCtrls(FALSE);
 		//界面设置 - 结束
 		
-		EnterCriticalSection(&g_criticalSection);
+		g_mainMtx.lock();
 		{
 			m_thrdData.tstrAll.append(_T("\r\n"));
 			m_thrdData.tstrAll.append(MAINDLG_CALCU_TERMINAL);
@@ -721,7 +719,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 			m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
 		}
-		LeaveCriticalSection(&g_criticalSection);
+		g_mainMtx.unlock();
 			
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 

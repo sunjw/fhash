@@ -9,6 +9,7 @@
 #include "strhelper.h"
 
 #include "OsUtils/OsFile.h"
+#include "OsUtils/OsThread.h"
 
 #include "Algorithms/md5.h"
 #include "Algorithms/sha1.h"
@@ -18,7 +19,7 @@
 using namespace std;
 using namespace sunjwbase;
 
-extern CRITICAL_SECTION g_criticalSection;
+extern OsMutex g_mainMtx;
 
 unsigned int DataBuffer::preflen = 1048576; // 2^20
 
@@ -61,13 +62,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 	tstring tstrTemp;
 	
-	EnterCriticalSection(&g_criticalSection);
+	g_mainMtx.lock();
 	{
 		tstrTemp = thrdData->tstrAll;
 		thrdData->tstrAll.append(MAINDLG_WAITING_START);
 		thrdData->tstrAll.append(_T("\r\n"));
 	}
-	LeaveCriticalSection(&g_criticalSection);
+	g_mainMtx.unlock();
 	
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 	//界面设置 - 结束
@@ -100,12 +101,12 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		}
 	}
 
-	EnterCriticalSection(&g_criticalSection);
+	g_mainMtx.lock();
 	{
 		// 恢复内容
 		thrdData->tstrAll = tstrTemp;
 	}
-	LeaveCriticalSection(&g_criticalSection);
+	g_mainMtx.unlock();
 
 	// 计算循环
 	for(i = 0; i < (thrdData->nFiles); i++)
@@ -141,14 +142,14 @@ DWORD WINAPI md5_file(LPVOID pParam)
 		int position = 0; // 进度条位置
 
 		// 显示文件名
-		EnterCriticalSection(&g_criticalSection);
+		g_mainMtx.lock();
 		{
 			thrdData->tstrAll.append(FILENAME_STRING);
 			thrdData->tstrAll.append(_T(" "));
 			thrdData->tstrAll.append(thrdData->fullPaths[i]);
 			thrdData->tstrAll.append(_T("\r\n"));
 		}
-		LeaveCriticalSection(&g_criticalSection);
+		g_mainMtx.unlock();
 
 		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 
@@ -202,7 +203,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 			tstrFileSize = strtotstr(string(chSizeBuff));
 
-			EnterCriticalSection(&g_criticalSection);
+			g_mainMtx.lock();
 			{
 				thrdData->tstrAll.append(FILESIZE_STRING);
 				thrdData->tstrAll.append(_T(" "));
@@ -215,12 +216,12 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				thrdData->tstrAll.append(_T(" "));
 				thrdData->tstrAll.append(tstrLastModifiedTime);
 			}
-			LeaveCriticalSection(&g_criticalSection);
+			g_mainMtx.unlock();
 
 			// get file version //
 			CString cstrVer = GetExeFileVersion((TCHAR *)path);
 
-			EnterCriticalSection(&g_criticalSection);
+			g_mainMtx.lock();
 			{
 				if(cstrVer.Compare(_T("")) != 0)
 				{
@@ -232,7 +233,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 
 				thrdData->tstrAll.append(_T("\r\n"));
 			}
-			LeaveCriticalSection(&g_criticalSection);
+			g_mainMtx.unlock();
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			
@@ -362,7 +363,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
 			}
 			
-			EnterCriticalSection(&g_criticalSection);
+			g_mainMtx.lock();
 			{
 				// 显示结果
 				thrdData->tstrAll.append(_T("MD5: "));
@@ -375,7 +376,7 @@ DWORD WINAPI md5_file(LPVOID pParam)
 				thrdData->tstrAll.append(tstrFileCRC32);
 				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
-			LeaveCriticalSection(&g_criticalSection);
+			g_mainMtx.unlock();
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
@@ -388,13 +389,13 @@ DWORD WINAPI md5_file(LPVOID pParam)
 			result.bDone = false;
 			result.tstrError = szError;
 
-			EnterCriticalSection(&g_criticalSection);
+			g_mainMtx.lock();
 			{
 				// 显示结果
 				thrdData->tstrAll.append(szError);
 				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
-			LeaveCriticalSection(&g_criticalSection);
+			g_mainMtx.unlock();
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果

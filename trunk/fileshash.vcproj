@@ -741,6 +741,14 @@
 				RelativePath=".\source\OsUtils\OsFileWinAfx.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\source\OsUtils\OsThread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\OsUtils\OsThreadWinApi.cpp"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\ChangeLog.txt"
