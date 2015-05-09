@@ -25,11 +25,12 @@ int main(int argc, char *argv[])
     thData.threadWorking = false;
     thData.stop = false;
     thData.uppercase = false;
+    thData.nFiles = 0;
     
-    string strPath = "/Users/sunjw/temp/com.microsoft.office.officehub-2.apk";
+    string strPath = "/Users/sunjw/temp/empty";
     tstring tstrPath = strtotstr(strPath);
     thData.fullPaths.push_back(tstrPath);
-    thData.nFiles = 1;
+    thData.nFiles++;
     
     HashThreadFunc(&thData);
     
