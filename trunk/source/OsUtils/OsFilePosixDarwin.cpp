@@ -55,7 +55,7 @@ bool OsFile::open(void *flag, void *exception)
     
     *fd = ::open(strFilePath.c_str(), posixFlag);
     
-    if (*fd == -1)
+    if (*fd == -1 && pFileExc != NULL)
     {
         strcpy(pFileExc, "Cannot open.");
     }
