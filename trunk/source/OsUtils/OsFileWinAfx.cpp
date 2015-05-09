@@ -108,9 +108,9 @@ bool OsFile::openReadWrite(void *exception/* = NULL*/)
 	return ret;
 }
 
-uint64_t OsFile::getLength()
+int64_t OsFile::getLength()
 {
-	uint64_t retLength = 0;
+	int64_t retLength = 0;
 
 	CFileException ex;
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
@@ -171,7 +171,7 @@ uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
 	return cfile->Seek(offset, cfSeekFlag);
 }
 
-uint32_t OsFile::read(void *readBuffer, uint32_t bytes)
+int64_t OsFile::read(void *readBuffer, uint32_t bytes)
 {
 	// Open first, we don't check here.
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
@@ -179,12 +179,14 @@ uint32_t OsFile::read(void *readBuffer, uint32_t bytes)
 	return cfile->Read(readBuffer, bytes);
 }
 
-void OsFile::write(void *writeBuffer, uint32_t bytes)
+int64_t OsFile::write(void *writeBuffer, uint32_t bytes)
 {
 	// Open first, we don't check here.
 	CFile* cfile = GET_CFILE_FROM_POINTER(_osfileData);
 
 	cfile->Write(writeBuffer, bytes);
+
+	return bytes;
 }
 
 void OsFile::close()
