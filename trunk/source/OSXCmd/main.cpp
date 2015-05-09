@@ -8,6 +8,12 @@
 
 #include <stdio.h>
 
+#include "OsThread.h"
+
+using namespace sunjwbase;
+
+OsMutex g_mainMtx;
+
 int main(int argc, char *argv[])
 {
     

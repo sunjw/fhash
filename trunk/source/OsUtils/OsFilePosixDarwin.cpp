@@ -1,5 +1,5 @@
 /*
- * OsFile posix implementation file
+ * OsFile posix (darwin) implementation file
  * Author: Sun Junwen
  * Version: 0.5
  * Provider basic open/close, read, write and 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <string>
 
 #include "strhelper.h"
 
