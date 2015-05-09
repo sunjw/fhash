@@ -50,6 +50,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 /* MD5 header */
 #include "MD5.h"
@@ -183,7 +184,7 @@ static void Transform (UINT4 *buf, UINT4 *in)
   buf[3] += d;
 }
 
-void MD5Init (MD5_CTX *mdContext, unsigned long pseudoRandomNumber)
+void MD5Init (MD5_CTX *mdContext, uint32_t pseudoRandomNumber)
 {
   mdContext->i[0] = mdContext->i[1] = (UINT4)0;
 

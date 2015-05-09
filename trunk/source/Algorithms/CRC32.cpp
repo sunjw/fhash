@@ -15,9 +15,11 @@
 
 #include "CRC32.h"
 
+#include <stdint.h>
+
 // CRC-32 table for the following polynominal:
 // X^32+X^26+X^23+X^22+X^16+X^12+X^11+X^10+X^8+X^7+X^5+X^4+X^2+X+1
-unsigned long crc32tab[] = {
+uint32_t crc32tab[] = {
 	0x00000000L, 0x77073096L, 0xEE0E612CL, 0x990951BAL,
 	0x076DC419L, 0x706AF48FL, 0xE963A535L, 0x9E6495A3L,
 	0x0EDB8832L, 0x79DCB8A4L, 0xE0D5E91EL, 0x97D2D988L,
@@ -84,21 +86,21 @@ unsigned long crc32tab[] = {
 	0xB40BBE37L, 0xC30C8EA1L, 0x5A05DF1BL, 0x2D02EF8DL
 };
 
-void crc32Init(unsigned long *pCrc32)
+void crc32Init(uint32_t *pCrc32)
 {
 	*pCrc32 = 0xFFFFFFFF;
 }
 
-void crc32Update(unsigned long *pCrc32, unsigned char *pData, unsigned long uSize)
+void crc32Update(uint32_t *pCrc32, unsigned char *pData, uint32_t uSize)
 {
-	unsigned long i = 0;
+	uint32_t i = 0;
 
 	for(i = 0; i < uSize; i++)
 		*pCrc32 = ((*pCrc32) >> 8) ^ crc32tab[(pData[i]) ^ ((*pCrc32) & 0x000000FF)];
 }
 
 // Make the final adjustment
-void crc32Finish(unsigned long *pCrc32)
+void crc32Finish(uint32_t *pCrc32)
 {
 	*pCrc32 = ~(*pCrc32);
 }

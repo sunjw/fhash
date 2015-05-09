@@ -14,8 +14,10 @@
 #ifndef ___CRC32_H___
 #define ___CRC32_H___
 
-void crc32Init(unsigned long *pCrc32);
-void crc32Update(unsigned long *pCrc32, unsigned char *pData, unsigned long uSize);
-void crc32Finish(unsigned long *pCrc32);
+#include <stdint.h>
+
+void crc32Init(uint32_t *pCrc32);
+void crc32Update(uint32_t *pCrc32, unsigned char *pData, uint32_t uSize);
+void crc32Finish(uint32_t *pCrc32);
 
 #endif /* ___CRC32_H___ */
