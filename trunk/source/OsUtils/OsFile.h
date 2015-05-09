@@ -37,13 +37,13 @@ namespace sunjwbase
 		bool openReadWrite(void *exception = NULL);
 
 		// Attributes
-		uint64_t getLength();
+		int64_t getLength();
 		bool getModifiedTime(void *modifiedTime);
 
 		// Operation
 		uint64_t seek(uint64_t offset, OsFileSeekFrom from);
-		uint32_t read(void *readBuffer, uint32_t bytes);
-		void write(void *writeBuffer, uint32_t bytes);
+		int64_t read(void *readBuffer, uint32_t bytes);
+		int64_t write(void *writeBuffer, uint32_t bytes);
 
 		// Close
 		void close();
