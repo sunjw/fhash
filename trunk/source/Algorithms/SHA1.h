@@ -16,7 +16,6 @@
 #ifndef ___SHA1_H___
 #define ___SHA1_H___
 
-#include <windows.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -62,7 +61,7 @@ public:
 	void Reset();
 
 	void Update(unsigned char* data, unsigned int len);
-	BOOL HashFile(char *szFileName);
+	bool HashFile(char *szFileName);
 
 	void Final();
 	void ReportHash(char *szReport, unsigned char uReportType = REPORT_HEX);

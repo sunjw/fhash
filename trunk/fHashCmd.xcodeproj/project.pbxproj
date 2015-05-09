@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410AB8081AFE38A2001A10F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8071AFE38A2001A10F9 /* main.cpp */; };
+		410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */; };
+		410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8111AFE3B1A001A10F9 /* MD5.cpp */; };
+		410AB8191AFE3B1A001A10F9 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8131AFE3B1A001A10F9 /* SHA1.cpp */; };
+		410AB81A1AFE3B1A001A10F9 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8151AFE3B1A001A10F9 /* sha256.cpp */; };
+		410AB81F1AFE3BA5001A10F9 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */; };
+		410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8201AFE3CF7001A10F9 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +29,18 @@
 
 /* Begin PBXFileReference section */
 		410AB8041AFE38A2001A10F9 /* fHashCmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fHashCmd; sourceTree = BUILT_PRODUCTS_DIR; };
-		410AB8071AFE38A2001A10F9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8101AFE3B1A001A10F9 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = SOURCE_ROOT; };
+		410AB8111AFE3B1A001A10F9 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8121AFE3B1A001A10F9 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = md5.h; path = source/Algorithms/md5.h; sourceTree = SOURCE_ROOT; };
+		410AB8131AFE3B1A001A10F9 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHA1.cpp; path = source/Algorithms/SHA1.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8141AFE3B1A001A10F9 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = SOURCE_ROOT; };
+		410AB8151AFE3B1A001A10F9 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8161AFE3B1A001A10F9 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = source/Algorithms/sha256.h; sourceTree = SOURCE_ROOT; };
+		410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = source/stdafx.cpp; sourceTree = SOURCE_ROOT; };
+		410AB81D1AFE3BA5001A10F9 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/stdafx.h; sourceTree = SOURCE_ROOT; };
+		410AB81E1AFE3BA5001A10F9 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = SOURCE_ROOT; };
+		410AB8201AFE3CF7001A10F9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/OSXCmd/main.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +73,52 @@
 		410AB8061AFE38A2001A10F9 /* fHashCmd */ = {
 			isa = PBXGroup;
 			children = (
-				410AB8071AFE38A2001A10F9 /* main.cpp */,
+				410AB8221AFE3D06001A10F9 /* Common */,
+				410AB8231AFE3D24001A10F9 /* OsUtils */,
+				410AB80E1AFE3B09001A10F9 /* HashAlgorithms */,
+				410AB81B1AFE3B83001A10F9 /* src */,
 			);
 			path = fHashCmd;
+			sourceTree = "<group>";
+		};
+		410AB80E1AFE3B09001A10F9 /* HashAlgorithms */ = {
+			isa = PBXGroup;
+			children = (
+				410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */,
+				410AB8101AFE3B1A001A10F9 /* CRC32.h */,
+				410AB8111AFE3B1A001A10F9 /* MD5.cpp */,
+				410AB8121AFE3B1A001A10F9 /* md5.h */,
+				410AB8131AFE3B1A001A10F9 /* SHA1.cpp */,
+				410AB8141AFE3B1A001A10F9 /* SHA1.h */,
+				410AB8151AFE3B1A001A10F9 /* sha256.cpp */,
+				410AB8161AFE3B1A001A10F9 /* sha256.h */,
+			);
+			name = HashAlgorithms;
+			sourceTree = "<group>";
+		};
+		410AB81B1AFE3B83001A10F9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				410AB8201AFE3CF7001A10F9 /* main.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		410AB8221AFE3D06001A10F9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */,
+				410AB81D1AFE3BA5001A10F9 /* stdafx.h */,
+				410AB81E1AFE3BA5001A10F9 /* targetver.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		410AB8231AFE3D24001A10F9 /* OsUtils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = OsUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +177,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				410AB8081AFE38A2001A10F9 /* main.cpp in Sources */,
+				410AB81A1AFE3B1A001A10F9 /* sha256.cpp in Sources */,
+				410AB8191AFE3B1A001A10F9 /* SHA1.cpp in Sources */,
+				410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */,
+				410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */,
+				410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */,
+				410AB81F1AFE3BA5001A10F9 /* stdafx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +299,7 @@
 				410AB80D1AFE38A2001A10F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -281,6 +281,7 @@ void sha256_digest(const struct sha256_ctx *ctx, unsigned char *s)
 		}
 }
 
+#if defined (WIN32)
 void
 sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 {
@@ -303,6 +304,7 @@ sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 			sDigest->AppendFormat(_T("%02X"), digest[p]);
 	}
 }
+#endif
 
 void
 sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest)
@@ -325,7 +327,11 @@ sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest)
 		for(int p = 0; p < 32; p++)
 		{
 			char buf[8] = {0};
+#if defined (WIN32)
 			sprintf_s(buf, "%02X", digest[p]);
+#else
+            sprintf(buf, "%02X", digest[p]);
+#endif
 			sDigest->append(std::string(buf));
 		}
 	}

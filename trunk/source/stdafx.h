@@ -15,6 +15,8 @@
 
 #include "targetver.h"
 
+#if defined (WIN32)
+
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // 某些 CString 构造函数将是显式的
 
 // 关闭 MFC 对某些常见但经常可放心忽略的警告消息的隐藏
@@ -36,6 +38,7 @@
 
 #include <afxcontrolbars.h>     // 功能区和控件条的 MFC 支持
 
+#endif
 
 
 

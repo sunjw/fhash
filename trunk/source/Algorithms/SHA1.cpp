@@ -124,14 +124,14 @@ void CSHA1::Update(unsigned char* data, unsigned int len)
 }
 
 // Hash in file contents
-BOOL CSHA1::HashFile(char *szFileName)
+bool CSHA1::HashFile(char *szFileName)
 {
 	unsigned long ulFileSize = 0, ulRest = 0, ulBlocks = 0;
 	unsigned long i = 0;
 	unsigned char uData[MAX_FILE_READ_BUFFER];
 	FILE *fIn = NULL;
 
-	if((fIn = fopen(szFileName, "rb")) == NULL) return(FALSE);
+	if((fIn = fopen(szFileName, "rb")) == NULL) return(false);
 
 	fseek(fIn, 0, SEEK_END);
 	ulFileSize = ftell(fIn);
@@ -155,7 +155,7 @@ BOOL CSHA1::HashFile(char *szFileName)
 	fclose(fIn);
 	fIn = NULL;
 
-	return(TRUE);
+	return(true);
 }
 
 void CSHA1::Final()
