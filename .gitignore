@@ -10,6 +10,9 @@ trunk/Debug/*
 trunk/Release/*
 trunk/Release.ENUS/*
 trunk/x64/*
+trunk/fHashCmd.xcodeproj/xcuserdata/*
+trunk/fHashCmd.xcodeproj/project.xcworkspace/xcuserdata/*
+trunk/fHashCmd.xcodeproj/project.xcworkspace/xcshareddata/*
 *.aps
 *.ncb
 *.old
