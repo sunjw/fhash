@@ -547,7 +547,7 @@ void CFilesHashDlg::DoMD5()
 	m_thrdData.stop = false;
 	m_hWorkThread = (HANDLE)_beginthreadex(NULL, 
 											0, 
-											(unsigned int (WINAPI *)(void *))md5_file, 
+											(unsigned int (WINAPI *)(void *))HashThreadFunc, 
 											&m_thrdData, 
 											0, 
 											(unsigned int *)&thredID);

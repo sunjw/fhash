@@ -22,6 +22,6 @@ public:
 	unsigned char *data;
 };
 
-DWORD WINAPI md5_file(LPVOID pParam);
+int WINAPI HashThreadFunc(void *param);
 
 #endif

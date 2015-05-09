@@ -36,9 +36,9 @@ DataBuffer::~DataBuffer()
 }
 
 //工作者线程
-DWORD WINAPI md5_file(LPVOID pParam)
+int WINAPI HashThreadFunc(void *param)
 {
-	ThreadData* thrdData = (ThreadData*)pParam;
+	ThreadData* thrdData = (ThreadData*)param;
 
 	thrdData->threadWorking = true;
 
