@@ -159,7 +159,7 @@ int WINAPI HashThreadFunc(void *param)
 		SHA256_CTX sha256Ctx; // SHA256 context
 		string strSHA256;
 
-		unsigned long ulCRC32; // CRC32 context
+		uint32_t ulCRC32; // CRC32 context
 		// Declaration for calculator
 
 		int position = 0; // 进度条位置
