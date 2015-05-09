@@ -296,7 +296,7 @@ int WINAPI HashThreadFunc(void *param)
 #endif
 					return 0;
 				}
-				databuf.datalen = osFile.read(databuf.data, DataBuffer::preflen);
+				databuf.datalen = (unsigned int)osFile.read(databuf.data, DataBuffer::preflen);
 				t++;
 
 				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5¸üÐÂ
