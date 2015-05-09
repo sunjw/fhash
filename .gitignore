@@ -13,6 +13,7 @@ trunk/x64/*
 trunk/fHashCmd.xcodeproj/xcuserdata/*
 trunk/fHashCmd.xcodeproj/project.xcworkspace/xcuserdata/*
 trunk/fHashCmd.xcodeproj/project.xcworkspace/xcshareddata/*
+trunk/DerivedData/*
 *.aps
 *.ncb
 *.old
