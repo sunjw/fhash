@@ -17,6 +17,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 
 #include "SHA1.h"
@@ -46,9 +47,9 @@ void CSHA1::Reset()
 	m_count[1] = 0;
 }
 
-void CSHA1::Transform(unsigned long state[5], unsigned char buffer[64])
+void CSHA1::Transform(uint32_t state[5], unsigned char buffer[64])
 {
-	unsigned long a = 0, b = 0, c = 0, d = 0, e = 0;
+	uint32_t a = 0, b = 0, c = 0, d = 0, e = 0;
 
 	SHA1_WORKSPACE_BLOCK* block;
 	static unsigned char workspace[64];
@@ -98,7 +99,7 @@ void CSHA1::Transform(unsigned long state[5], unsigned char buffer[64])
 // Use this function to hash in binary data and strings
 void CSHA1::Update(unsigned char* data, unsigned int len)
 {
-	unsigned long i = 0, j = 0;
+	uint32_t i = 0, j = 0;
 
 	j = (m_count[0] >> 3) & 63;
 
@@ -126,8 +127,8 @@ void CSHA1::Update(unsigned char* data, unsigned int len)
 // Hash in file contents
 bool CSHA1::HashFile(char *szFileName)
 {
-	unsigned long ulFileSize = 0, ulRest = 0, ulBlocks = 0;
-	unsigned long i = 0;
+	uint32_t ulFileSize = 0, ulRest = 0, ulBlocks = 0;
+	uint32_t i = 0;
 	unsigned char uData[MAX_FILE_READ_BUFFER];
 	FILE *fIn = NULL;
 
@@ -160,7 +161,7 @@ bool CSHA1::HashFile(char *szFileName)
 
 void CSHA1::Final()
 {
-	unsigned long i = 0, j = 0;
+	uint32_t i = 0, j = 0;
 	unsigned char finalcount[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	for (i = 0; i < 8; i++)

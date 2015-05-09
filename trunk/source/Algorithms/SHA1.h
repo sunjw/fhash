@@ -18,6 +18,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
 #define LITTLE_ENDIAN
 #define MAX_FILE_READ_BUFFER 8000
@@ -45,7 +46,7 @@ public:
 
 	typedef union {
 		unsigned char c[64];
-		unsigned long l[16];
+		uint32_t l[16];
 	} SHA1_WORKSPACE_BLOCK;
 
 	enum { REPORT_HEX = 0, REPORT_DIGIT = 1 };
@@ -53,8 +54,8 @@ public:
 	CSHA1();
 	virtual ~CSHA1();
 
-	unsigned long m_state[5];
-	unsigned long m_count[2];
+	uint32_t m_state[5];
+	uint32_t m_count[2];
 	unsigned char m_buffer[64];
 	unsigned char m_digest[20];
 
@@ -68,7 +69,7 @@ public:
 	void GetHash(unsigned char *uDest);
 
 private:
-	void Transform(unsigned long state[5], unsigned char buffer[64]);
+	void Transform(uint32_t state[5], unsigned char buffer[64]);
 };
 
 #endif
