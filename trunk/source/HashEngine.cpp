@@ -5,7 +5,11 @@
 #include <stdlib.h>
 
 #if defined (__APPLE__) || defined (UNIX)
+#include <string.h>
 #include <unistd.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #endif
 
 #include "strhelper.h"
@@ -45,7 +49,7 @@ DataBuffer::~DataBuffer()
 //工作者线程
 int WINAPI HashThreadFunc(void *param)
 {
-	ThreadData* thrdData = (ThreadData*)param;
+	ThreadData *thrdData = (ThreadData *)param;
 
 	thrdData->threadWorking = true;
 
@@ -112,12 +116,14 @@ int WINAPI HashThreadFunc(void *param)
 		}
 	}
 
+#if defined FHASH_WIN_UI
 	g_mainMtx.lock();
 	{
 		// 恢复内容
 		thrdData->tstrAll = tstrTemp;
 	}
 	g_mainMtx.unlock();
+#endif
 
 	// 计算循环
 	for(i = 0; i < (thrdData->nFiles); i++)
@@ -182,7 +188,7 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (WIN32)
 		CFileException fExc;
 #else
-        int fExc;
+        char fExc[1024] = {0};
 #endif
 		OsFile osFile(path);
 		if(osFile.openRead((void *)&fExc)) 
@@ -208,14 +214,23 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (WIN32)
 			CTime ctModifedTime;
 #else
-            int ctModifedTime;
+            struct timespec ctModifedTime;
 #endif
 			if(osFile.getModifiedTime((void *)&ctModifedTime))
 			{
 #if defined (WIN32)
 				tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
 #else
-                tstrLastModifiedTime = "";
+                time_t ttModifiedTime;
+                struct tm *tmModifiedTime;
+                
+                ttModifiedTime = ctModifedTime.tv_sec;
+                tmModifiedTime = localtime(&ttModifiedTime);
+                
+                char szTmBuf[1024] = {0};
+                strftime(szTmBuf, 1024, "%Y-%m-%d %H:%M", tmModifiedTime);
+                
+                tstrLastModifiedTime = strtotstr(string(szTmBuf));
 #endif
 				fsize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
 				if(!isSizeCaled) // 如果没有计算过大小
@@ -279,7 +294,7 @@ int WINAPI HashThreadFunc(void *param)
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 #endif
-			
+            
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
 			
@@ -469,13 +484,15 @@ int WINAPI HashThreadFunc(void *param)
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
-            TCHAR szError[1024] = {0};
 #if defined (WIN32)
+            TCHAR szError[1024] = {0};
 			fExc.GetErrorMessage(szError, 1024);
+            result.tstrError = szError;
+#else
+            result.tstrError = strtotstr(string(fExc));
 #endif
 
 			result.bDone = false;
-			result.tstrError = szError;
 
 #if defined FHASH_WIN_UI
 			g_mainMtx.lock();
