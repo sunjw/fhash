@@ -21,6 +21,10 @@
 #define WP_PROG				WM_USER + 6 // 文件进度条
 #define WP_PROG_WHOLE		WM_USER + 7 // 全局进度条
 
+#else
+
+#define WINAPI
+
 #endif
 
 #include "strhelper.h"
@@ -51,7 +55,9 @@ struct ThreadData // 传向计算线程的信息
 {
 	bool threadWorking; // 线程是否在工作
 
+#if defined FHASH_WIN_UI
 	HWND hWnd; // 界面句柄
+#endif
 	bool uppercase; // 是否大写
 
 	uint32_t nFiles; // 文件个数

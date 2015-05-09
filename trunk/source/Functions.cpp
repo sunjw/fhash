@@ -2,11 +2,18 @@
 
 #include "Functions.h"
 
+#include <stdio.h>
 #include <string>
-#include <atlbase.h>
 
-#include "UIStrings.h"
+#if defined (WIN32)
+#include <atlbase.h>
+#endif
+
 #include "strhelper.h"
+
+#if defined FHASH_WIN_UI
+#include "UIStrings.h"
+#endif
 
 using namespace std;
 using namespace sunjwbase;
@@ -26,19 +33,37 @@ string ConvertSizeToStr(uint64_t size)
 			if(M_fsize > 1024)
 			{
 				float g_fsize = M_fsize / 1024;
+#if defined (WIN32)
 				sprintf_s(buff, 1024, " (%.2f GB)", g_fsize);
+#else
+                sprintf(buff, " (%.2f GB)", g_fsize);
+#endif
 			}
 			else
+            {
+#if defined (WIN32)
 				sprintf_s(buff, 1024, " (%.2f MB)", M_fsize);
+#else
+                sprintf(buff, " (%.2f MB)", M_fsize);
+#endif
+            }
 		}
 		else
+        {
+#if defined (WIN32)
 			sprintf_s(buff, 1024, " (%.2f KB)", k_fsize);
+#else
+            sprintf(buff, " (%.2f KB)", k_fsize);
+#endif
+        }
 	}
 
 	strSize = buff;
 
 	return strSize;
 }
+
+#if defined (WIN32)
 
 /*
  * GetExeFileVersion
@@ -775,4 +800,6 @@ bool ContextMenuExisted()
 
 	return true;
 }
+
+#endif
 

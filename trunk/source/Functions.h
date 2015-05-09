@@ -6,6 +6,10 @@
 
 #include "strhelper.h"
 
+std::string ConvertSizeToStr(uint64_t size);
+
+#if defined (WIN32)
+
 inline sunjwbase::tstring cstrtotstr(const CString& cstring)
 {
 	return sunjwbase::tstring(cstring.GetString());
@@ -29,8 +33,6 @@ typedef BOOL (WINAPI *PGPI)(DWORD, DWORD, DWORD,
 typedef HRESULT (__stdcall *LPFN_DllRegisterServer)(void);
 typedef HRESULT (__stdcall *LPFN_DllUnregisterServer)(void);
 
-std::string ConvertSizeToStr(uint64_t size);
-
 CString GetExeFileVersion(TCHAR* path);
 
 BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx);
@@ -50,3 +52,5 @@ bool AddShellExt(TCHAR *pszExeFullPath);
 bool AddContextMenu();
 bool RemoveContextMenu();
 bool ContextMenuExisted();
+
+#endif

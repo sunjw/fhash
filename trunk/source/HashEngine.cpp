@@ -4,17 +4,24 @@
 
 #include <stdlib.h>
 
-#include "Functions.h"
-#include "UIStrings.h"
+#if defined (__APPLE__) || defined (UNIX)
+#include <unistd.h>
+#endif
+
 #include "strhelper.h"
+#include "Functions.h"
+
+#if defined FHASH_WIN_UI
+#include "UIStrings.h"
+#endif
 
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
 
 #include "Algorithms/md5.h"
-#include "Algorithms/sha1.h"
+#include "Algorithms/SHA1.h"
 #include "Algorithms/sha256.h"
-#include "Algorithms/crc32.h"
+#include "Algorithms/CRC32.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -56,11 +63,12 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA1;
 	tstring tstrFileSHA256;
 	tstring tstrFileCRC32;
+    
+    tstring tstrTemp;
 
+#if defined FHASH_WIN_UI
 	//界面设置 - 开始
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_WORKING, 0);
-
-	tstring tstrTemp;
 	
 	g_mainMtx.lock();
 	{
@@ -72,6 +80,7 @@ int WINAPI HashThreadFunc(void *param)
 	
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 	//界面设置 - 结束
+#endif
 
 	// 获得文件总大小
 	if(thrdData->nFiles < 200) // 文件太多就不预先计算了
@@ -82,7 +91,9 @@ int WINAPI HashThreadFunc(void *param)
 			if(thrdData->stop)
 			{
 				thrdData->threadWorking = false;
+#if defined FHASH_WIN_UI
 				::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
+#endif
 				return 0;
 			}
 			uint64_t fSize = 0;
@@ -114,11 +125,17 @@ int WINAPI HashThreadFunc(void *param)
 		if(thrdData->stop)
 		{
 			thrdData->threadWorking = false;
+#if defined FHASH_WIN_UI
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
+#endif
 			return 0;
 		}
 
+#if defined (WIN32)
 		Sleep(50);
+#else
+        usleep(50 * 1000);
+#endif
 
 		// Declaration for calculator
 		const TCHAR* path;
@@ -141,6 +158,7 @@ int WINAPI HashThreadFunc(void *param)
 
 		int position = 0; // 进度条位置
 
+#if defined FHASH_WIN_UI
 		// 显示文件名
 		g_mainMtx.lock();
 		{
@@ -152,6 +170,7 @@ int WINAPI HashThreadFunc(void *param)
 		g_mainMtx.unlock();
 
 		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+#endif
 
 		path = thrdData->fullPaths[i].c_str();
 		// 显示文件名
@@ -160,7 +179,11 @@ int WINAPI HashThreadFunc(void *param)
 		result.tstrPath = thrdData->fullPaths[i];
 
 		//Calculating begins
+#if defined (WIN32)
 		CFileException fExc;
+#else
+        int fExc;
+#endif
 		OsFile osFile(path);
 		if(osFile.openRead((void *)&fExc)) 
 		{
@@ -169,7 +192,9 @@ int WINAPI HashThreadFunc(void *param)
 			sha256_init(&sha256Ctx); // SHA256开始
 			crc32Init(&ulCRC32); // CRC32开始
 
+#if defined FHASH_WIN_UI
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, 0);
+#endif
 
 			/*
 			// get file size - start //
@@ -180,10 +205,18 @@ int WINAPI HashThreadFunc(void *param)
 
 			// get file status //
 			tstring tstrLastModifiedTime;
+#if defined (WIN32)
 			CTime ctModifedTime;
+#else
+            int ctModifedTime;
+#endif
 			if(osFile.getModifiedTime((void *)&ctModifedTime))
 			{
+#if defined (WIN32)
 				tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
+#else
+                tstrLastModifiedTime = "";
+#endif
 				fsize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
 				if(!isSizeCaled) // 如果没有计算过大小
 				{
@@ -199,10 +232,15 @@ int WINAPI HashThreadFunc(void *param)
 			tstring tstrShortSize = strtotstr(ConvertSizeToStr(fsize));
 
 			char chSizeBuff[1024] = {0};
+#if defined (WIN32)
 			sprintf_s(chSizeBuff, 1024, "%I64u", fsize);
+#else
+            sprintf(chSizeBuff, "%llu", fsize);
+#endif
 
 			tstrFileSize = strtotstr(string(chSizeBuff));
 
+#if defined FHASH_WIN_UI
 			g_mainMtx.lock();
 			{
 				thrdData->tstrAll.append(FILESIZE_STRING);
@@ -217,9 +255,13 @@ int WINAPI HashThreadFunc(void *param)
 				thrdData->tstrAll.append(tstrLastModifiedTime);
 			}
 			g_mainMtx.unlock();
+#endif
 
+#if defined FHASH_WIN_UI
+#if defined (WIN32)
 			// get file version //
 			CString cstrVer = GetExeFileVersion((TCHAR *)path);
+#endif
 
 			g_mainMtx.lock();
 			{
@@ -236,6 +278,7 @@ int WINAPI HashThreadFunc(void *param)
 			g_mainMtx.unlock();
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+#endif
 			
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
@@ -248,7 +291,9 @@ int WINAPI HashThreadFunc(void *param)
 					osFile.close();
 
 					thrdData->threadWorking = false;
+#if defined FHASH_WIN_UI
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
+#endif
 					return 0;
 				}
 				databuf.datalen = osFile.read(databuf.data, DataBuffer::preflen);
@@ -268,7 +313,9 @@ int WINAPI HashThreadFunc(void *param)
 				if(positionNew > position)
 				{
 					position = positionNew;
+#if defined FHASH_WIN_UI
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, position);
+#endif
 				}
 
 				finishedSizeWhole += databuf.datalen;
@@ -280,7 +327,9 @@ int WINAPI HashThreadFunc(void *param)
 				if(isSizeCaled && positionWholeNew > positionWhole)
 				{
 					positionWhole = positionWholeNew;
+#if defined FHASH_WIN_UI
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
+#endif
 				}
 
 			} 
@@ -294,9 +343,17 @@ int WINAPI HashThreadFunc(void *param)
 			if(!isSizeCaled)
 			{
 				if(thrdData->nFiles == 0)
+                {
+#if defined FHASH_WIN_UI
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, 0);
+#endif
+                }
 				else
+                {
+#if defined FHASH_WIN_UI
 					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, (i + 1) * 100 / (thrdData->nFiles));
+#endif
+                }
 			}
 
 			osFile.close();
@@ -305,6 +362,7 @@ int WINAPI HashThreadFunc(void *param)
 			char chHashBuff[1024] = {0};
 
 			// MD5
+#if defined (WIN32)
 			sprintf_s(chHashBuff, 1024, 
 								"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 								mdContext.digest[0],
@@ -323,6 +381,26 @@ int WINAPI HashThreadFunc(void *param)
 								mdContext.digest[13],
 								mdContext.digest[14],
 								mdContext.digest[15]);
+#else
+            sprintf(chHashBuff,
+                      "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                      mdContext.digest[0],
+                      mdContext.digest[1],
+                      mdContext.digest[2],
+                      mdContext.digest[3],
+                      mdContext.digest[4],
+                      mdContext.digest[5],
+                      mdContext.digest[6],
+                      mdContext.digest[7],
+                      mdContext.digest[8],
+                      mdContext.digest[9],
+                      mdContext.digest[10],
+                      mdContext.digest[11],
+                      mdContext.digest[12],
+                      mdContext.digest[13],
+                      mdContext.digest[14],
+                      mdContext.digest[15]);
+#endif
 			tstrFileMD5 = strtotstr(string(chHashBuff));
 
 			// SHA1
@@ -334,14 +412,20 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileSHA256 = strtotstr(string(strSHA256));
 
 			// CRC32
+#if defined (WIN32)
 			sprintf_s(chHashBuff, 1024, "%08X", ulCRC32);
+#else
+            sprintf(chHashBuff, "%08lX", ulCRC32);
+#endif
 			tstrFileCRC32 = strtotstr(string(chHashBuff));
 
 			result.bDone = true;
 			result.tstrPath = thrdData->fullPaths[i];
 			result.ulSize = fsize;
 			result.tstrMDate = tstrLastModifiedTime;
+#if defined (WIN32)
 			result.tstrVersion = cstrVer.GetString();
+#endif
 			// 在没做转换前，结果都是大写的
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
@@ -363,6 +447,7 @@ int WINAPI HashThreadFunc(void *param)
 				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
 			}
 			
+#if defined FHASH_WIN_UI
 			g_mainMtx.lock();
 			{
 				// 显示结果
@@ -380,15 +465,19 @@ int WINAPI HashThreadFunc(void *param)
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
+#endif
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
-			TCHAR szError[1024];
+            TCHAR szError[1024] = {0};
+#if defined (WIN32)
 			fExc.GetErrorMessage(szError, 1024);
+#endif
 
 			result.bDone = false;
 			result.tstrError = szError;
 
+#if defined FHASH_WIN_UI
 			g_mainMtx.lock();
 			{
 				// 显示结果
@@ -399,12 +488,15 @@ int WINAPI HashThreadFunc(void *param)
 
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
+#endif
 		}
 
 		thrdData->resultList.push_back(result); // 保存结果
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
+#if defined FHASH_WIN_UI
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
+#endif
 	
 	thrdData->threadWorking = false;
 

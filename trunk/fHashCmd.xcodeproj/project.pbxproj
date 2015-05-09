@@ -13,6 +13,9 @@
 		410AB81A1AFE3B1A001A10F9 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8151AFE3B1A001A10F9 /* sha256.cpp */; };
 		410AB81F1AFE3BA5001A10F9 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */; };
 		410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8201AFE3CF7001A10F9 /* main.cpp */; };
+		410AB8271AFE3D8A001A10F9 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8251AFE3D8A001A10F9 /* HashEngine.cpp */; };
+		410AB82A1AFE3D96001A10F9 /* strhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8281AFE3D96001A10F9 /* strhelper.cpp */; };
+		410AB8321AFE40AD001A10F9 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8301AFE40AD001A10F9 /* Functions.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +44,15 @@
 		410AB81D1AFE3BA5001A10F9 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/stdafx.h; sourceTree = SOURCE_ROOT; };
 		410AB81E1AFE3BA5001A10F9 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = SOURCE_ROOT; };
 		410AB8201AFE3CF7001A10F9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/OSXCmd/main.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8241AFE3D8A001A10F9 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = SOURCE_ROOT; };
+		410AB8251AFE3D8A001A10F9 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8261AFE3D8A001A10F9 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = SOURCE_ROOT; };
+		410AB8281AFE3D96001A10F9 /* strhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strhelper.cpp; path = source/strhelper.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8291AFE3D96001A10F9 /* strhelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strhelper.h; path = source/strhelper.h; sourceTree = SOURCE_ROOT; };
+		410AB82E1AFE3E91001A10F9 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = SOURCE_ROOT; };
+		410AB82F1AFE3E91001A10F9 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = SOURCE_ROOT; };
+		410AB8301AFE40AD001A10F9 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8311AFE40AD001A10F9 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,13 +87,13 @@
 			children = (
 				410AB8221AFE3D06001A10F9 /* Common */,
 				410AB8231AFE3D24001A10F9 /* OsUtils */,
-				410AB80E1AFE3B09001A10F9 /* HashAlgorithms */,
+				410AB80E1AFE3B09001A10F9 /* Algorithms */,
 				410AB81B1AFE3B83001A10F9 /* src */,
 			);
 			path = fHashCmd;
 			sourceTree = "<group>";
 		};
-		410AB80E1AFE3B09001A10F9 /* HashAlgorithms */ = {
+		410AB80E1AFE3B09001A10F9 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
 				410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */,
@@ -93,12 +105,17 @@
 				410AB8151AFE3B1A001A10F9 /* sha256.cpp */,
 				410AB8161AFE3B1A001A10F9 /* sha256.h */,
 			);
-			name = HashAlgorithms;
+			name = Algorithms;
 			sourceTree = "<group>";
 		};
 		410AB81B1AFE3B83001A10F9 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				410AB8241AFE3D8A001A10F9 /* Global.h */,
+				410AB8311AFE40AD001A10F9 /* Functions.h */,
+				410AB8301AFE40AD001A10F9 /* Functions.cpp */,
+				410AB8261AFE3D8A001A10F9 /* HashEngine.h */,
+				410AB8251AFE3D8A001A10F9 /* HashEngine.cpp */,
 				410AB8201AFE3CF7001A10F9 /* main.cpp */,
 			);
 			name = src;
@@ -110,6 +127,8 @@
 				410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */,
 				410AB81D1AFE3BA5001A10F9 /* stdafx.h */,
 				410AB81E1AFE3BA5001A10F9 /* targetver.h */,
+				410AB8291AFE3D96001A10F9 /* strhelper.h */,
+				410AB8281AFE3D96001A10F9 /* strhelper.cpp */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -117,6 +136,8 @@
 		410AB8231AFE3D24001A10F9 /* OsUtils */ = {
 			isa = PBXGroup;
 			children = (
+				410AB82E1AFE3E91001A10F9 /* OsFile.h */,
+				410AB82F1AFE3E91001A10F9 /* OsThread.h */,
 			);
 			name = OsUtils;
 			sourceTree = "<group>";
@@ -182,7 +203,10 @@
 				410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */,
 				410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */,
 				410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */,
+				410AB8271AFE3D8A001A10F9 /* HashEngine.cpp in Sources */,
+				410AB8321AFE40AD001A10F9 /* Functions.cpp in Sources */,
 				410AB81F1AFE3BA5001A10F9 /* stdafx.cpp in Sources */,
+				410AB82A1AFE3D96001A10F9 /* strhelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
