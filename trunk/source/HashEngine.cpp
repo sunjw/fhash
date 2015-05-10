@@ -430,7 +430,7 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (WIN32)
 			sprintf_s(chHashBuff, 1024, "%08X", ulCRC32);
 #else
-            sprintf(chHashBuff, "%08lX", ulCRC32);
+            sprintf(chHashBuff, "%08X", ulCRC32);
 #endif
 			tstrFileCRC32 = strtotstr(string(chHashBuff));
 
