@@ -30,18 +30,22 @@ int main(int argc, char *argv[])
     thData.uppercase = false;
     thData.nFiles = 0;
     
-    string strPath;
-    tstring tstrPath;
+    if (argc == 1)
+    {
+        printf("Usage: fhash <file1> <file2> <file3> ...\n");
+        exit(0);
+    }
     
-    strPath = "/Users/sunjw/temp/empty";
-    tstrPath = strtotstr(strPath);
-    thData.fullPaths.push_back(tstrPath);
-    thData.nFiles++;
-    
-    strPath = "/Users/sunjw/temp/phpfm_文件夹/特色同时有iso/It Ended On An Oily Stage.mp3";
-    tstrPath = strtotstr(strPath);
-    thData.fullPaths.push_back(tstrPath);
-    thData.nFiles++;
+    for (int i = 1; i < argc; ++i)
+    {
+        string strPath;
+        tstring tstrPath;
+        
+        strPath = string(argv[i]);
+        tstrPath = strtotstr(strPath);
+        thData.fullPaths.push_back(tstrPath);
+        thData.nFiles++;
+    }
     
     pthread_t ptHash;
     pthread_create(&ptHash, NULL,
@@ -49,6 +53,7 @@ int main(int argc, char *argv[])
     
     pthread_join(ptHash, NULL);
     
+    /*
     ResultList::const_iterator resItr;
     for (resItr = thData.resultList.begin();
          resItr != thData.resultList.end();
@@ -86,6 +91,7 @@ int main(int argc, char *argv[])
         
         printf("\n");
     }
+    */
     
     return 0;
 }

@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		410AB8031AFE38A2001A10F9 /* fHashCmd */ = {
+		410AB8031AFE38A2001A10F9 /* fhash */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 410AB80B1AFE38A2001A10F9 /* Build configuration list for PBXNativeTarget "fHashCmd" */;
+			buildConfigurationList = 410AB80B1AFE38A2001A10F9 /* Build configuration list for PBXNativeTarget "fhash" */;
 			buildPhases = (
 				410AB8001AFE38A2001A10F9 /* Sources */,
 				410AB8011AFE38A2001A10F9 /* Frameworks */,
@@ -163,7 +163,7 @@
 			);
 			dependencies = (
 			);
-			name = fHashCmd;
+			name = fhash;
 			productName = fHashCmd;
 			productReference = 410AB8041AFE38A2001A10F9 /* fHashCmd */;
 			productType = "com.apple.product-type.tool";
@@ -194,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				410AB8031AFE38A2001A10F9 /* fHashCmd */,
+				410AB8031AFE38A2001A10F9 /* fhash */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +301,7 @@
 		410AB80C1AFE38A2001A10F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "-DFHASH_OSX_CMD";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -309,6 +310,7 @@
 		410AB80D1AFE38A2001A10F9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "-DFHASH_OSX_CMD";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -326,7 +328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		410AB80B1AFE38A2001A10F9 /* Build configuration list for PBXNativeTarget "fHashCmd" */ = {
+		410AB80B1AFE38A2001A10F9 /* Build configuration list for PBXNativeTarget "fhash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				410AB80C1AFE38A2001A10F9 /* Debug */,

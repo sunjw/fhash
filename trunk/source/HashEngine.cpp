@@ -19,6 +19,10 @@
 #include "UIStrings.h"
 #endif
 
+#if defined FHASH_OSX_CMD
+#include <stdio.h>
+#endif
+
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
 
@@ -84,6 +88,10 @@ int WINAPI HashThreadFunc(void *param)
 	
 	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 	//界面设置 - 结束
+#endif
+    
+#if defined FHASH_OSX_CMD
+    printf("Prepare to start calculation.\n\n");
 #endif
 
 	// 获得文件总大小
@@ -176,6 +184,11 @@ int WINAPI HashThreadFunc(void *param)
 		g_mainMtx.unlock();
 
 		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+#endif
+        
+#if defined FHASH_OSX_CMD
+        tstring tstrCurPath = thrdData->fullPaths[i];
+        printf("%s\n", tstrtostr(tstrCurPath).c_str());
 #endif
 
 		path = thrdData->fullPaths[i].c_str();
@@ -271,6 +284,14 @@ int WINAPI HashThreadFunc(void *param)
 			}
 			g_mainMtx.unlock();
 #endif
+            
+#if defined FHASH_OSX_CMD
+            printf("File Size: %s Byte(s)%s\n",
+                   tstrtostr(tstrFileSize).c_str(),
+                   tstrtostr(tstrShortSize).c_str());
+            printf("Modified Date: %s\n",
+                   tstrtostr(tstrLastModifiedTime).c_str());
+#endif
 
 #if defined FHASH_WIN_UI
 #if defined (WIN32)
@@ -320,17 +341,36 @@ int WINAPI HashThreadFunc(void *param)
 				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
 				
 				finishedSize += databuf.datalen;
+                
+#if defined FHASH_WIN_UI
+#define PROGRESS_MAX 100
+#endif
+                
+#if defined FHASH_OSX_CMD
+#define PROGRESS_MAX 40
+#endif
+                
 				int positionNew;
 				if(fsize == 0)
-					positionNew = 100; // 注意除0错误
+					positionNew = PROGRESS_MAX; // 注意除0错误
 				else
-					positionNew = (int)(100 * finishedSize / fsize);
+					positionNew = (int)(PROGRESS_MAX * finishedSize / fsize);
+                
 				if(positionNew > position)
 				{
-					position = positionNew;
 #if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, position);
+					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, positionNew);
 #endif
+                    
+#if defined FHASH_OSX_CMD
+                    for (int i = 0; i < (positionNew - position); ++i)
+                    {
+                        printf("#");
+                        fflush(stdout);
+                    }
+#endif
+
+                    position = positionNew;
 				}
 
 				finishedSizeWhole += databuf.datalen;
@@ -349,6 +389,10 @@ int WINAPI HashThreadFunc(void *param)
 
 			} 
 			while(databuf.datalen >= DataBuffer::preflen);
+            
+#if defined FHASH_OSX_CMD
+            printf("\n");
+#endif
 
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
@@ -481,6 +525,13 @@ int WINAPI HashThreadFunc(void *param)
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
 #endif
+            
+#if defined FHASH_OSX_CMD
+            printf("MD5: %s\n", tstrtostr(tstrFileMD5).c_str());
+            printf("SHA1: %s\n", tstrtostr(tstrFileSHA1).c_str());
+            printf("SHA256: %s\n", tstrtostr(tstrFileSHA256).c_str());
+            printf("CRC32: %s\n", tstrtostr(tstrFileCRC32).c_str());
+#endif
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
@@ -506,9 +557,17 @@ int WINAPI HashThreadFunc(void *param)
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 			// 显示结果
 #endif
+            
+#if defined FHASH_OSX_CMD
+            printf("%s\n", fExc);
+#endif
 		}
 
 		thrdData->resultList.push_back(result); // 保存结果
+        
+#if defined FHASH_OSX_CMD
+        printf("\n");
+#endif
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
 #if defined FHASH_WIN_UI
