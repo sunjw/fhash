@@ -57,6 +57,7 @@
 		410AB8311AFE40AD001A10F9 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = SOURCE_ROOT; };
 		410AB8331AFE45AA001A10F9 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
 		410AB83B1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
+		41BE6C691AFF2BBF00DEF5F5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				410AB8241AFE3D8A001A10F9 /* Global.h */,
+				41BE6C691AFF2BBF00DEF5F5 /* version.h */,
 				410AB8311AFE40AD001A10F9 /* Functions.h */,
 				410AB8301AFE40AD001A10F9 /* Functions.cpp */,
 				410AB8261AFE3D8A001A10F9 /* HashEngine.h */,
