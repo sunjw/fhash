@@ -328,7 +328,7 @@ sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest)
 		{
 			char buf[8] = {0};
 #if defined (WIN32)
-			sprintf_s(buf, "%02X", digest[p]);
+			sprintf_s(buf, 8, "%02X", digest[p]);
 #else
             sprintf(buf, "%02X", digest[p]);
 #endif
