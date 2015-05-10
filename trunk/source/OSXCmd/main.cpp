@@ -63,10 +63,21 @@ int main(int argc, char *argv[])
             printf("Size: %llu Bytes%s\n",
                    result.ulSize, ConvertSizeToStr(result.ulSize).c_str());
             printf("Modified Date: %s\n", tstrtostr(result.tstrMDate).c_str());
-            printf("MD5: %s\n", tstrtostr(result.tstrMD5).c_str());
-            printf("SHA1: %s\n", tstrtostr(result.tstrSHA1).c_str());
-            printf("SHA256: %s\n", tstrtostr(result.tstrSHA256).c_str());
-            printf("CRC32: %s\n", tstrtostr(result.tstrCRC32).c_str());
+            
+            if (thData.uppercase)
+            {
+                printf("MD5: %s\n", tstrtostr(result.tstrMD5).c_str());
+                printf("SHA1: %s\n", tstrtostr(result.tstrSHA1).c_str());
+                printf("SHA256: %s\n", tstrtostr(result.tstrSHA256).c_str());
+                printf("CRC32: %s\n", tstrtostr(result.tstrCRC32).c_str());
+            }
+            else
+            {
+                printf("MD5: %s\n", str_lower(tstrtostr(result.tstrMD5)).c_str());
+                printf("SHA1: %s\n", str_lower(tstrtostr(result.tstrSHA1)).c_str());
+                printf("SHA256: %s\n", str_lower(tstrtostr(result.tstrSHA256)).c_str());
+                printf("CRC32: %s\n", str_lower(tstrtostr(result.tstrCRC32)).c_str());
+            }
         }
         else
         {
