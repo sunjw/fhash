@@ -5,13 +5,11 @@
 
 #include <Windows.h>
 #include "strhelper.h"
-#include "Global.h"
 
 class UIBridgeMFC: public UIBridgeBase
 {
 public:
 	UIBridgeMFC(HWND hWnd = NULL, 
-				ThreadData *threadData = NULL,
 				sunjwbase::tstring *tstrUIAll = NULL);
 	virtual ~UIBridgeMFC();
 
@@ -40,7 +38,6 @@ public:
 
 private:
 	HWND m_hWnd;
-	ThreadData *m_thrdData;
 	sunjwbase::tstring *m_uiTstrAll;
 
 	sunjwbase::tstring m_tstrNoPreparing;

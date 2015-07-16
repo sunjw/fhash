@@ -16,9 +16,8 @@ using namespace sunjwbase;
 extern OsMutex g_mainMtx;
 
 UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
-						ThreadData *threadData,
 						sunjwbase::tstring *tstrUIAll)
-:m_hWnd(hWnd), m_thrdData(threadData), m_uiTstrAll(tstrUIAll)
+:m_hWnd(hWnd), m_uiTstrAll(tstrUIAll)
 {
 }
 

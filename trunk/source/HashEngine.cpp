@@ -162,7 +162,6 @@ int WINAPI HashThreadFunc(void *param)
 		// showFileName(tstrFileName)
 
 		path = thrdData->fullPaths[i].c_str();
-		// 显示文件名
 
 		ResultData result;
 		result.tstrPath = thrdData->fullPaths[i];

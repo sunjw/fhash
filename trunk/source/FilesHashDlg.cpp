@@ -125,7 +125,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(MAINDLG_ABOUT);
 	
-	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_thrdData, &m_tstrAll);
+	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_tstrAll);
 
 	g_mainMtx.lock();
 	{
