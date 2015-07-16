@@ -16,13 +16,13 @@ public:
 
 	virtual void showFileName(const sunjwbase::tstring& tstrFileName) = 0;
 	virtual void showFileMeta(const sunjwbase::tstring& tstrFileSize,
-		const sunjwbase::tstring& tstrShortSize,
-		const sunjwbase::tstring& tstrLastModifiedTime,
-		const sunjwbase::tstring& tstrFileVersion) = 0;
+							const sunjwbase::tstring& tstrShortSize,
+							const sunjwbase::tstring& tstrLastModifiedTime,
+							const sunjwbase::tstring& tstrFileVersion) = 0;
 	virtual void showFileHash(const sunjwbase::tstring& tstrFileMD5,
-		const sunjwbase::tstring& tstrFileSHA1,
-		const sunjwbase::tstring& tstrFileSHA256,
-		const sunjwbase::tstring& tstrFileCRC32) = 0;
+							const sunjwbase::tstring& tstrFileSHA1,
+							const sunjwbase::tstring& tstrFileSHA256,
+							const sunjwbase::tstring& tstrFileCRC32) = 0;
 	virtual void showFileErr(const sunjwbase::tstring& tstrErr) = 0;
 
 	virtual int getProgMax() = 0;
