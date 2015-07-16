@@ -65,6 +65,7 @@ protected:
 	ThreadData m_thrdData;
 	HANDLE m_hWorkThread;
 	float m_calculateTime;
+	sunjwbase::tstring m_tstrAll;
 	UINT_PTR m_timer;
 	BOOL m_waitingExit; // 等待线程退出后，退出程序
 	BOOL m_bAdvTaskbar;

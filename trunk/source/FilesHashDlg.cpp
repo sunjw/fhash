@@ -125,16 +125,17 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(MAINDLG_ABOUT);
 	
-	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_thrdData);
+	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_thrdData, &m_tstrAll);
 
 	g_mainMtx.lock();
 	{
+		m_tstrAll = _T("");
+
 		m_thrdData.uiBridge = &m_uiBridgeMFC;
 		m_thrdData.uppercase = false;
 
 		m_thrdData.nFiles = 0;
 
-		m_thrdData.tstrAll = _T("");
 		m_thrdData.resultList.clear();
 	}
 	g_mainMtx.unlock();
@@ -360,10 +361,11 @@ void CFilesHashDlg::OnBnClickedClean()
 		{
 			g_mainMtx.lock();
 			{
-				m_thrdData.tstrAll = _T("");
+				m_tstrAll = _T("");
+
 				m_thrdData.resultList.clear();
 			
-				m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
+				m_editMain.SetWindowText(m_tstrAll.c_str());
 			}
 			g_mainMtx.unlock();
 
@@ -628,18 +630,18 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 
 void CFilesHashDlg::RefreshResult()
 {
-	m_thrdData.tstrAll = _T("");
+	m_tstrAll = _T("");
 	ResultList::iterator itr = m_thrdData.resultList.begin();
 	for(; itr != m_thrdData.resultList.end(); ++itr)
 	{
-		AppendResult(*itr, m_thrdData.tstrAll);
+		AppendResult(*itr, m_tstrAll);
 	}
 }
 
 void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	g_mainMtx.lock();
-	m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
+	m_editMain.SetWindowText(m_tstrAll.c_str());
 	g_mainMtx.unlock();
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
@@ -716,11 +718,11 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		
 		g_mainMtx.lock();
 		{
-			m_thrdData.tstrAll.append(_T("\r\n"));
-			m_thrdData.tstrAll.append(MAINDLG_CALCU_TERMINAL);
-			m_thrdData.tstrAll.append(_T("\r\n\r\n"));
+			m_tstrAll.append(_T("\r\n"));
+			m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
+			m_tstrAll.append(_T("\r\n\r\n"));
 
-			m_editMain.SetWindowText(m_thrdData.tstrAll.c_str());
+			m_editMain.SetWindowText(m_tstrAll.c_str());
 		}
 		g_mainMtx.unlock();
 			

@@ -67,7 +67,6 @@ struct ThreadData // 传向计算线程的信息
 
 	TStrVector fullPaths; // 待计算的所有文件路径
 
-	sunjwbase::tstring tstrAll; // 全部计算结果，它应该和下面的resultList 同步
 	ResultList resultList;
 };
 

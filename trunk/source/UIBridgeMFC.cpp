@@ -15,8 +15,10 @@ using namespace sunjwbase;
 
 extern OsMutex g_mainMtx;
 
-UIBridgeMFC::UIBridgeMFC(HWND hWnd, ThreadData *threadData)
-:m_hWnd(hWnd), m_thrdData(threadData)
+UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
+						ThreadData *threadData,
+						sunjwbase::tstring *tstrUIAll)
+:m_hWnd(hWnd), m_thrdData(threadData), m_uiTstrAll(tstrUIAll)
 {
 }
 
@@ -30,9 +32,9 @@ void UIBridgeMFC::preparingCalc()
 	
 	g_mainMtx.lock();
 	{
-		m_tstrNoPreparing = m_thrdData->tstrAll;
-		m_thrdData->tstrAll.append(MAINDLG_WAITING_START);
-		m_thrdData->tstrAll.append(_T("\r\n"));
+		m_tstrNoPreparing = *m_uiTstrAll;
+		m_uiTstrAll->append(MAINDLG_WAITING_START);
+		m_uiTstrAll->append(_T("\r\n"));
 	}
 	g_mainMtx.unlock();
 	
@@ -44,7 +46,7 @@ void UIBridgeMFC::removePreparingCalc()
 	g_mainMtx.lock();
 	{
 		// restore and remove MAINDLG_WAITING_START
-		m_thrdData->tstrAll = m_tstrNoPreparing;
+		*m_uiTstrAll = m_tstrNoPreparing;
 	}
 	g_mainMtx.unlock();
 }
@@ -63,10 +65,10 @@ void UIBridgeMFC::showFileName(const tstring& tstrFileName)
 {
 	g_mainMtx.lock();
 	{
-		m_thrdData->tstrAll.append(FILENAME_STRING);
-		m_thrdData->tstrAll.append(_T(" "));
-		m_thrdData->tstrAll.append(tstrFileName);
-		m_thrdData->tstrAll.append(_T("\r\n"));
+		m_uiTstrAll->append(FILENAME_STRING);
+		m_uiTstrAll->append(_T(" "));
+		m_uiTstrAll->append(tstrFileName);
+		m_uiTstrAll->append(_T("\r\n"));
 	}
 	g_mainMtx.unlock();
 
@@ -80,26 +82,26 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 {
 	g_mainMtx.lock();
 	{
-		m_thrdData->tstrAll.append(FILESIZE_STRING);
-		m_thrdData->tstrAll.append(_T(" "));
-		m_thrdData->tstrAll.append(tstrFileSize);
-		m_thrdData->tstrAll.append(_T(" "));
-		m_thrdData->tstrAll.append(BYTE_STRING);
-		m_thrdData->tstrAll.append(tstrShortSize);
-		m_thrdData->tstrAll.append(_T("\r\n"));
-		m_thrdData->tstrAll.append(MODIFYTIME_STRING);
-		m_thrdData->tstrAll.append(_T(" "));
-		m_thrdData->tstrAll.append(tstrLastModifiedTime);
+		m_uiTstrAll->append(FILESIZE_STRING);
+		m_uiTstrAll->append(_T(" "));
+		m_uiTstrAll->append(tstrFileSize);
+		m_uiTstrAll->append(_T(" "));
+		m_uiTstrAll->append(BYTE_STRING);
+		m_uiTstrAll->append(tstrShortSize);
+		m_uiTstrAll->append(_T("\r\n"));
+		m_uiTstrAll->append(MODIFYTIME_STRING);
+		m_uiTstrAll->append(_T(" "));
+		m_uiTstrAll->append(tstrLastModifiedTime);
 
 		if(tstrFileVersion != _T(""))
 		{
-			m_thrdData->tstrAll.append(_T("\r\n"));
-			m_thrdData->tstrAll.append(VERSION_STRING);
-			m_thrdData->tstrAll.append(_T(" "));
-			m_thrdData->tstrAll.append(tstrFileVersion);
+			m_uiTstrAll->append(_T("\r\n"));
+			m_uiTstrAll->append(VERSION_STRING);
+			m_uiTstrAll->append(_T(" "));
+			m_uiTstrAll->append(tstrFileVersion);
 		}
 
-		m_thrdData->tstrAll.append(_T("\r\n"));
+		m_uiTstrAll->append(_T("\r\n"));
 	}
 	g_mainMtx.unlock();
 	
@@ -113,15 +115,15 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 {
 	g_mainMtx.lock();
 	{
-		m_thrdData->tstrAll.append(_T("MD5: "));
-		m_thrdData->tstrAll.append(tstrFileMD5);
-		m_thrdData->tstrAll.append(_T("\r\nSHA1: "));
-		m_thrdData->tstrAll.append(tstrFileSHA1);
-		m_thrdData->tstrAll.append(_T("\r\nSHA256: "));
-		m_thrdData->tstrAll.append(tstrFileSHA256);
-		m_thrdData->tstrAll.append(_T("\r\nCRC32: "));
-		m_thrdData->tstrAll.append(tstrFileCRC32);
-		m_thrdData->tstrAll.append(_T("\r\n\r\n"));
+		m_uiTstrAll->append(_T("MD5: "));
+		m_uiTstrAll->append(tstrFileMD5);
+		m_uiTstrAll->append(_T("\r\nSHA1: "));
+		m_uiTstrAll->append(tstrFileSHA1);
+		m_uiTstrAll->append(_T("\r\nSHA256: "));
+		m_uiTstrAll->append(tstrFileSHA256);
+		m_uiTstrAll->append(_T("\r\nCRC32: "));
+		m_uiTstrAll->append(tstrFileCRC32);
+		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
 	g_mainMtx.unlock();
 
@@ -132,8 +134,8 @@ void UIBridgeMFC::showFileErr(const tstring& tstrErr)
 {
 	g_mainMtx.lock();
 	{
-		m_thrdData->tstrAll.append(tstrErr);
-		m_thrdData->tstrAll.append(_T("\r\n\r\n"));
+		m_uiTstrAll->append(tstrErr);
+		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
 	g_mainMtx.unlock();
 
