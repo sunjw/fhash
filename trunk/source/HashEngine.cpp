@@ -67,6 +67,7 @@ int WINAPI HashThreadFunc(void *param)
 	int positionWhole = 0; // 全局进度条位置
 
 	tstring tstrFileSize;
+	tstring tstrFileVersion;
 	tstring tstrFileMD5;
 	tstring tstrFileSHA1;
 	tstring tstrFileSHA256;
@@ -127,7 +128,7 @@ int WINAPI HashThreadFunc(void *param)
 #if defined FHASH_WIN_UI
 	g_mainMtx.lock();
 	{
-		// 恢复内容
+		// 恢复内容, 去掉 preparing 字样
 		thrdData->tstrAll = tstrTemp;
 	}
 	g_mainMtx.unlock();
@@ -268,6 +269,12 @@ int WINAPI HashThreadFunc(void *param)
 
 			tstrFileSize = strtotstr(string(chSizeBuff));
 
+#if defined (WIN32)
+			// get file version //
+			CString cstrVer = GetExeFileVersion((TCHAR *)path);
+			tstrFileVersion = cstrVer.GetString();
+#endif
+
 #if defined FHASH_WIN_UI
 			g_mainMtx.lock();
 			{
@@ -281,32 +288,13 @@ int WINAPI HashThreadFunc(void *param)
 				thrdData->tstrAll.append(MODIFYTIME_STRING);
 				thrdData->tstrAll.append(_T(" "));
 				thrdData->tstrAll.append(tstrLastModifiedTime);
-			}
-			g_mainMtx.unlock();
-#endif
-            
-#if defined FHASH_OSX_CMD
-            printf("File Size: %s Byte(s)%s\n",
-                   tstrtostr(tstrFileSize).c_str(),
-                   tstrtostr(tstrShortSize).c_str());
-            printf("Modified Date: %s\n",
-                   tstrtostr(tstrLastModifiedTime).c_str());
-#endif
 
-#if defined FHASH_WIN_UI
-#if defined (WIN32)
-			// get file version //
-			CString cstrVer = GetExeFileVersion((TCHAR *)path);
-#endif
-
-			g_mainMtx.lock();
-			{
-				if(cstrVer.Compare(_T("")) != 0)
+				if(tstrFileVersion != _T(""))
 				{
 					thrdData->tstrAll.append(_T("\r\n"));
 					thrdData->tstrAll.append(VERSION_STRING);
 					thrdData->tstrAll.append(_T(" "));
-					thrdData->tstrAll.append(cstrVer.GetString());
+					thrdData->tstrAll.append(tstrFileVersion);
 				}
 
 				thrdData->tstrAll.append(_T("\r\n"));
@@ -314,6 +302,14 @@ int WINAPI HashThreadFunc(void *param)
 			g_mainMtx.unlock();
 	
 			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+#endif
+
+#if defined FHASH_OSX_CMD
+            printf("File Size: %s Byte(s)%s\n",
+                   tstrtostr(tstrFileSize).c_str(),
+                   tstrtostr(tstrShortSize).c_str());
+            printf("Modified Date: %s\n",
+                   tstrtostr(tstrLastModifiedTime).c_str());
 #endif
             
 			// get calculating times //
@@ -549,7 +545,7 @@ int WINAPI HashThreadFunc(void *param)
 			g_mainMtx.lock();
 			{
 				// 显示结果
-				thrdData->tstrAll.append(szError);
+				thrdData->tstrAll.append(result.tstrError);
 				thrdData->tstrAll.append(_T("\r\n\r\n"));
 			}
 			g_mainMtx.unlock();
@@ -559,7 +555,7 @@ int WINAPI HashThreadFunc(void *param)
 #endif
             
 #if defined FHASH_OSX_CMD
-            printf("%s\n", fExc);
+            printf("%s\n", tstrtostr(result.tstrError).c_str());
 #endif
 		}
 
