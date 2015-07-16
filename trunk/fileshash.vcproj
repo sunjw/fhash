@@ -665,6 +665,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\UIBridgeBase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\source\UIStrings.h"
 				>
 			</File>
