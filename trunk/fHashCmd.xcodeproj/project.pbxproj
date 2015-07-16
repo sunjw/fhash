@@ -33,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		410AB8041AFE38A2001A10F9 /* fHashCmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fHashCmd; sourceTree = BUILT_PRODUCTS_DIR; };
+		410AB8041AFE38A2001A10F9 /* fhash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fhash; sourceTree = BUILT_PRODUCTS_DIR; };
 		410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = SOURCE_ROOT; };
 		410AB8101AFE3B1A001A10F9 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = SOURCE_ROOT; };
 		410AB8111AFE3B1A001A10F9 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = SOURCE_ROOT; };
@@ -57,6 +57,7 @@
 		410AB8311AFE40AD001A10F9 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = SOURCE_ROOT; };
 		410AB8331AFE45AA001A10F9 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
 		410AB83B1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
+		41BE6C691AFF2BBF00DEF5F5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +82,7 @@
 		410AB8051AFE38A2001A10F9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				410AB8041AFE38A2001A10F9 /* fHashCmd */,
+				410AB8041AFE38A2001A10F9 /* fhash */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				410AB8241AFE3D8A001A10F9 /* Global.h */,
+				41BE6C691AFF2BBF00DEF5F5 /* version.h */,
 				410AB8311AFE40AD001A10F9 /* Functions.h */,
 				410AB8301AFE40AD001A10F9 /* Functions.cpp */,
 				410AB8261AFE3D8A001A10F9 /* HashEngine.h */,
@@ -165,7 +167,7 @@
 			);
 			name = fhash;
 			productName = fHashCmd;
-			productReference = 410AB8041AFE38A2001A10F9 /* fHashCmd */;
+			productReference = 410AB8041AFE38A2001A10F9 /* fhash */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */

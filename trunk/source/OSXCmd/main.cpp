@@ -7,10 +7,13 @@
 //
 
 #include <stdio.h>
+#include <stdint.h>
 #include <pthread.h>
+#include <sys/time.h>
 #include <string>
 
 #include "Global.h"
+#include "version.h"
 #include "OsThread.h"
 #include "strhelper.h"
 #include "Functions.h"
@@ -21,8 +24,22 @@ using namespace sunjwbase;
 
 OsMutex g_mainMtx;
 
+static int64_t GetCurMillSecond()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    
+    int64_t timeMillSec = (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+    
+    return timeMillSec;
+}
+
 int main(int argc, char *argv[])
 {
+    printf("fhash - A files hash calculator\n");
+    printf("Version: " STR_VERSION "\n");
+    printf("\n");
+    
     ThreadData thData;
     
     thData.threadWorking = false;
@@ -32,7 +49,7 @@ int main(int argc, char *argv[])
     
     if (argc == 1)
     {
-        printf("Usage: fhash <file1> <file2> <file3> ...\n");
+        printf("Usage: fhash [file1] [file2] [file3] ...\n");
         exit(0);
     }
     
@@ -47,11 +64,39 @@ int main(int argc, char *argv[])
         thData.nFiles++;
     }
     
+    uint64_t beginTime = GetCurMillSecond();
+    
     pthread_t ptHash;
     pthread_create(&ptHash, NULL,
                    (void *(*)(void *))HashThreadFunc, &thData);
     
     pthread_join(ptHash, NULL);
+    
+    uint64_t endTime = GetCurMillSecond();
+    uint64_t durTime = endTime - beginTime;
+    
+    double calcSpeed = thData.totalSize / (double)durTime * 1000;
+    
+    string strMeasure;
+    if((calcSpeed / 1024) > 1)
+    {
+        calcSpeed /= 1024;
+        strMeasure = "KB/s";
+        if((calcSpeed / 1024) > 1)
+        {
+            calcSpeed /= 1024;
+            strMeasure = "MB/s";
+        }
+    }
+    
+    double durTimeSec = durTime / 1000.0;
+    
+    printf("Finished in %4.2fs", durTimeSec);
+    if (strMeasure != "")
+    {
+        printf(", %4.2f %s", calcSpeed, strMeasure.c_str());
+    }
+    printf("\n");
     
     /*
     ResultList::const_iterator resItr;
