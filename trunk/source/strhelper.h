@@ -29,6 +29,8 @@ namespace sunjwbase
 #endif
 #if defined (__APPLE__) || defined (__unix)
 	typedef long long INT64;
+    typedef tstring::value_type TCHAR;
+    typedef TCHAR _TCHAR;
 #endif
 
 	// converting part
