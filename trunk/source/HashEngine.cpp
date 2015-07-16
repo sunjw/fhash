@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 
-#if defined (__APPLE__) || defined (UNIX)
+#if defined (__APPLE__) || defined (__unix)
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
