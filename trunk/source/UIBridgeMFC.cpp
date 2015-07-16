@@ -56,7 +56,7 @@ void UIBridgeMFC::calcStop()
 
 void UIBridgeMFC::calcFinish()
 {
-
+	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
 }
 
 void UIBridgeMFC::showFileName(const tstring& tstrFileName)

@@ -7,8 +7,9 @@
 
 #include "EditEx.h"
 
-#include "Global.h"
 #include "strhelper.h"
+#include "Global.h"
+#include "UIBridgeMFC.h"
 
 // CMD5SUM03Dlg ¶Ô»°¿ò
 class CFilesHashDlg : public CDialog
@@ -60,6 +61,7 @@ protected:
 	CButton m_btnContext;
 	CBrush m_bruEditBkg;
 
+	UIBridgeMFC m_uiBridgeMFC;
 	ThreadData m_thrdData;
 	HANDLE m_hWorkThread;
 	float m_calculateTime;

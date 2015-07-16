@@ -4,6 +4,9 @@
 
 #include <string>
 
+#include "strhelper.h"
+#include "OsUtils/OsThread.h"
+
 #include "FilesHash.h"
 #include "FilesHashDlg.h"
 #include "FindDlg.h"
@@ -12,9 +15,8 @@
 #include "Functions.h"
 #include "HashEngine.h"
 #include "UIStrings.h"
+#include "UIBridgeMFC.h"
 
-#include "strhelper.h"
-#include "OsUtils/OsThread.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -123,10 +125,11 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(MAINDLG_ABOUT);
 	
+	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_thrdData);
 
 	g_mainMtx.lock();
 	{
-		m_thrdData.hWnd = m_hWnd;
+		m_thrdData.uiBridge = &m_uiBridgeMFC;
 		m_thrdData.uppercase = false;
 
 		m_thrdData.nFiles = 0;

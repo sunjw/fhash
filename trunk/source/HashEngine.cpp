@@ -14,6 +14,7 @@
 
 #include "strhelper.h"
 #include "Functions.h"
+#include "UIBridgeBase.h"
 
 #if defined FHASH_WIN_UI
 #include "UIStrings.h"
@@ -54,6 +55,7 @@ DataBuffer::~DataBuffer()
 int WINAPI HashThreadFunc(void *param)
 {
 	ThreadData *thrdData = (ThreadData *)param;
+	UIBridgeBase *uiBridge = thrdData->uiBridge;
 
 	thrdData->threadWorking = true;
 
@@ -75,25 +77,13 @@ int WINAPI HashThreadFunc(void *param)
     
     tstring tstrTemp;
 
-#if defined FHASH_WIN_UI
-	//界面设置 - 开始
-	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_WORKING, 0);
-	
-	g_mainMtx.lock();
-	{
-		tstrTemp = thrdData->tstrAll;
-		thrdData->tstrAll.append(MAINDLG_WAITING_START);
-		thrdData->tstrAll.append(_T("\r\n"));
-	}
-	g_mainMtx.unlock();
-	
-	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
-	//界面设置 - 结束
-#endif
+	// preparingCalc
+	uiBridge->preparingCalc();
     
 #if defined FHASH_OSX_CMD
     printf("Prepare to start calculation.\n\n");
 #endif
+	// preparingCalc
 
 	// 获得文件总大小
 	if(thrdData->nFiles < 200) // 文件太多就不预先计算了
@@ -104,9 +94,7 @@ int WINAPI HashThreadFunc(void *param)
 			if(thrdData->stop)
 			{
 				thrdData->threadWorking = false;
-#if defined FHASH_WIN_UI
-				::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
-#endif
+				uiBridge->calcStop();
 				return 0;
 			}
 			uint64_t fSize = 0;
@@ -125,14 +113,7 @@ int WINAPI HashThreadFunc(void *param)
 		}
 	}
 
-#if defined FHASH_WIN_UI
-	g_mainMtx.lock();
-	{
-		// 恢复内容, 去掉 preparing 字样
-		thrdData->tstrAll = tstrTemp;
-	}
-	g_mainMtx.unlock();
-#endif
+	uiBridge->removePreparingCalc();
 
 	// 计算循环
 	for(i = 0; i < (thrdData->nFiles); i++)
@@ -140,9 +121,7 @@ int WINAPI HashThreadFunc(void *param)
 		if(thrdData->stop)
 		{
 			thrdData->threadWorking = false;
-#if defined FHASH_WIN_UI
-			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
-#endif
+			uiBridge->calcStop();
 			return 0;
 		}
 
@@ -173,24 +152,14 @@ int WINAPI HashThreadFunc(void *param)
 
 		int position = 0; // 进度条位置
 
-#if defined FHASH_WIN_UI
-		// 显示文件名
-		g_mainMtx.lock();
-		{
-			thrdData->tstrAll.append(FILENAME_STRING);
-			thrdData->tstrAll.append(_T(" "));
-			thrdData->tstrAll.append(thrdData->fullPaths[i]);
-			thrdData->tstrAll.append(_T("\r\n"));
-		}
-		g_mainMtx.unlock();
-
-		::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
-#endif
+		// showFileName(tstrFileName)
+		uiBridge->showFileName(thrdData->fullPaths[i]);
         
 #if defined FHASH_OSX_CMD
         tstring tstrCurPath = thrdData->fullPaths[i];
         printf("%s\n", tstrtostr(tstrCurPath).c_str());
 #endif
+		// showFileName(tstrFileName)
 
 		path = thrdData->fullPaths[i].c_str();
 		// 显示文件名
@@ -212,9 +181,7 @@ int WINAPI HashThreadFunc(void *param)
 			sha256_init(&sha256Ctx); // SHA256开始
 			crc32Init(&ulCRC32); // CRC32开始
 
-#if defined FHASH_WIN_UI
-			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, 0);
-#endif
+			uiBridge->updateProg(0);
 
 			/*
 			// get file size - start //
@@ -275,34 +242,11 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileVersion = cstrVer.GetString();
 #endif
 
-#if defined FHASH_WIN_UI
-			g_mainMtx.lock();
-			{
-				thrdData->tstrAll.append(FILESIZE_STRING);
-				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(tstrFileSize);
-				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(BYTE_STRING);
-				thrdData->tstrAll.append(tstrShortSize);
-				thrdData->tstrAll.append(_T("\r\n"));
-				thrdData->tstrAll.append(MODIFYTIME_STRING);
-				thrdData->tstrAll.append(_T(" "));
-				thrdData->tstrAll.append(tstrLastModifiedTime);
-
-				if(tstrFileVersion != _T(""))
-				{
-					thrdData->tstrAll.append(_T("\r\n"));
-					thrdData->tstrAll.append(VERSION_STRING);
-					thrdData->tstrAll.append(_T(" "));
-					thrdData->tstrAll.append(tstrFileVersion);
-				}
-
-				thrdData->tstrAll.append(_T("\r\n"));
-			}
-			g_mainMtx.unlock();
-	
-			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
-#endif
+			// showFileMeta(tstrFileSize, tstrShortSize, tstrLastModifiedTime, tstrFileVersion)
+			uiBridge->showFileMeta(tstrFileSize, 
+									tstrShortSize, 
+									tstrLastModifiedTime, 
+									tstrFileVersion);
 
 #if defined FHASH_OSX_CMD
             printf("File Size: %s Byte(s)%s\n",
@@ -311,6 +255,7 @@ int WINAPI HashThreadFunc(void *param)
             printf("Modified Date: %s\n",
                    tstrtostr(tstrLastModifiedTime).c_str());
 #endif
+			// showFileMeta(tstrFileSize, tstrShortSize, tstrLastModifiedTime, tstrFileVersion)
             
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
@@ -323,9 +268,7 @@ int WINAPI HashThreadFunc(void *param)
 					osFile.close();
 
 					thrdData->threadWorking = false;
-#if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
-#endif
+					uiBridge->calcStop();
 					return 0;
 				}
 				databuf.datalen = (unsigned int)osFile.read(databuf.data, DataBuffer::preflen);
@@ -338,13 +281,13 @@ int WINAPI HashThreadFunc(void *param)
 				
 				finishedSize += databuf.datalen;
                 
-#if defined FHASH_WIN_UI
-#define PROGRESS_MAX 100
-#endif
+				// getProgMax
+				int PROGRESS_MAX = uiBridge->getProgMax();
                 
 #if defined FHASH_OSX_CMD
 #define PROGRESS_MAX 40
 #endif
+				// getProgMax
                 
 				int positionNew;
 				if(fsize == 0)
@@ -354,9 +297,8 @@ int WINAPI HashThreadFunc(void *param)
                 
 				if(positionNew > position)
 				{
-#if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG, positionNew);
-#endif
+					// updateProg(positionNew)
+					uiBridge->updateProg(positionNew);
                     
 #if defined FHASH_OSX_CMD
                     for (int i = 0; i < (positionNew - position); ++i)
@@ -365,6 +307,7 @@ int WINAPI HashThreadFunc(void *param)
                         fflush(stdout);
                     }
 #endif
+					// updateProg(positionNew)
 
                     position = positionNew;
 				}
@@ -378,17 +321,19 @@ int WINAPI HashThreadFunc(void *param)
 				if(isSizeCaled && positionWholeNew > positionWhole)
 				{
 					positionWhole = positionWholeNew;
-#if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, positionWhole);
-#endif
+					uiBridge->updateProgWhole(positionWhole);
 				}
 
 			} 
 			while(databuf.datalen >= DataBuffer::preflen);
             
+			// fileCalcFinish
+			uiBridge->fileCalcFinish();
+
 #if defined FHASH_OSX_CMD
             printf("\n");
 #endif
+			// fileCalcFinish
 
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
@@ -399,15 +344,11 @@ int WINAPI HashThreadFunc(void *param)
 			{
 				if(thrdData->nFiles == 0)
                 {
-#if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, 0);
-#endif
+					uiBridge->updateProgWhole(0);
                 }
 				else
                 {
-#if defined FHASH_WIN_UI
-					::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, (i + 1) * 100 / (thrdData->nFiles));
-#endif
+					uiBridge->updateProgWhole((i + 1) * 100 / (thrdData->nFiles));
                 }
 			}
 
@@ -502,25 +443,11 @@ int WINAPI HashThreadFunc(void *param)
 				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
 			}
 			
-#if defined FHASH_WIN_UI
-			g_mainMtx.lock();
-			{
-				// 显示结果
-				thrdData->tstrAll.append(_T("MD5: "));
-				thrdData->tstrAll.append(tstrFileMD5);
-				thrdData->tstrAll.append(_T("\r\nSHA1: "));
-				thrdData->tstrAll.append(tstrFileSHA1);
-				thrdData->tstrAll.append(_T("\r\nSHA256: "));
-				thrdData->tstrAll.append(tstrFileSHA256);
-				thrdData->tstrAll.append(_T("\r\nCRC32: "));
-				thrdData->tstrAll.append(tstrFileCRC32);
-				thrdData->tstrAll.append(_T("\r\n\r\n"));
-			}
-			g_mainMtx.unlock();
-
-			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
-			// 显示结果
-#endif
+			// showFileHash
+			uiBridge->showFileHash(tstrFileMD5,
+									tstrFileSHA1,
+									tstrFileSHA256,
+									tstrFileCRC32);
             
 #if defined FHASH_OSX_CMD
             printf("MD5: %s\n", tstrtostr(tstrFileMD5).c_str());
@@ -528,6 +455,7 @@ int WINAPI HashThreadFunc(void *param)
             printf("SHA256: %s\n", tstrtostr(tstrFileSHA256).c_str());
             printf("CRC32: %s\n", tstrtostr(tstrFileCRC32).c_str());
 #endif
+			// showFileHash
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
@@ -541,34 +469,27 @@ int WINAPI HashThreadFunc(void *param)
 
 			result.bDone = false;
 
-#if defined FHASH_WIN_UI
-			g_mainMtx.lock();
-			{
-				// 显示结果
-				thrdData->tstrAll.append(result.tstrError);
-				thrdData->tstrAll.append(_T("\r\n\r\n"));
-			}
-			g_mainMtx.unlock();
-
-			::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
-			// 显示结果
-#endif
+			// showFileErr
+			uiBridge->showFileErr(result.tstrError);
             
 #if defined FHASH_OSX_CMD
             printf("%s\n", tstrtostr(result.tstrError).c_str());
 #endif
+			// showFileErr
 		}
 
 		thrdData->resultList.push_back(result); // 保存结果
         
+		// fileFinish
+		uiBridge->fileFinish();
+
 #if defined FHASH_OSX_CMD
         printf("\n");
 #endif
+		// fileFinish
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
-#if defined FHASH_WIN_UI
-	::PostMessage(thrdData->hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
-#endif
+	uiBridge->calcFinish();
 	
 	thrdData->threadWorking = false;
 

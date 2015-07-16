@@ -10,7 +10,7 @@
 class UIBridgeMFC: public UIBridgeBase
 {
 public:
-	UIBridgeMFC(HWND hWnd, ThreadData *threadData);
+	UIBridgeMFC(HWND hWnd = NULL, ThreadData *threadData = NULL);
 	virtual ~UIBridgeMFC();
 
 	virtual void preparingCalc();
