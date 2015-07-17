@@ -1,20 +1,16 @@
-#ifndef _UI_BRIDGE_MFC_
-#define _UI_BRIDGE_MFC_
+#ifndef _UI_BRIDGE_MAC_CMD_
+#define _UI_BRIDGE_MAC_CMD_
 
 #include "UIBridgeBase.h"
-
-#include <Windows.h>
 
 #include "strhelper.h"
 #include "OsUtils/OsThread.h"
 
-class UIBridgeMFC: public UIBridgeBase
+class UIBridgeMacCmd: public UIBridgeBase
 {
 public:
-	UIBridgeMFC(HWND hWnd, 
-				sunjwbase::tstring *tstrUIAll,
-				sunjwbase::OsMutex *mainMtx);
-	virtual ~UIBridgeMFC();
+    UIBridgeMacCmd();
+	virtual ~UIBridgeMacCmd();
 
 	virtual void lockData();
 	virtual void unlockData();
@@ -43,11 +39,7 @@ public:
 	virtual void fileFinish();
 
 private:
-	HWND m_hWnd;
-	sunjwbase::tstring *m_uiTstrAll;
-	sunjwbase::OsMutex *m_mainMtx;
-
-	sunjwbase::tstring m_tstrNoPreparing;
+    int m_oldProgPos;
 };
 
-#endif _UI_BRIDGE_MFC_
+#endif

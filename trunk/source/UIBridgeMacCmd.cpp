@@ -1,173 +1,110 @@
 #include "stdafx.h"
 
-#include "UIBridgeMFC.h"
+#include "UIBridgeMacCmd.h"
 
 #include <stdlib.h>
-#include <Windows.h>
+#include <stdio.h>
 
 #include "strhelper.h"
-
 #include "Global.h"
-#include "UIStrings.h"
 
 using namespace sunjwbase;
 
-UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
-						tstring *tstrUIAll,
-						OsMutex *mainMtx)
-:m_hWnd(hWnd), m_uiTstrAll(tstrUIAll), m_mainMtx(mainMtx)
+UIBridgeMacCmd::UIBridgeMacCmd()
+:m_oldProgPos(0)
 {
 }
 
-UIBridgeMFC::~UIBridgeMFC()
+UIBridgeMacCmd::~UIBridgeMacCmd()
 {
 }
 
-void UIBridgeMFC::lockData()
+void UIBridgeMacCmd::lockData()
 {
-	m_mainMtx->lock();
 }
 
-void UIBridgeMFC::unlockData()
+void UIBridgeMacCmd::unlockData()
 {
-	m_mainMtx->unlock();
 }
 
-void UIBridgeMFC::preparingCalc()
+void UIBridgeMacCmd::preparingCalc()
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_WORKING, 0);
-	
-	lockData();
-	{
-		m_tstrNoPreparing = *m_uiTstrAll;
-		m_uiTstrAll->append(MAINDLG_WAITING_START);
-		m_uiTstrAll->append(_T("\r\n"));
-	}
-	unlockData();
-	
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+    printf("Prepare to start calculation.\n\n");
 }
 
-void UIBridgeMFC::removePreparingCalc()
+void UIBridgeMacCmd::removePreparingCalc()
 {
-	lockData();
-	{
-		// restore and remove MAINDLG_WAITING_START
-		*m_uiTstrAll = m_tstrNoPreparing;
-	}
-	unlockData();
 }
 
-void UIBridgeMFC::calcStop()
+void UIBridgeMacCmd::calcStop()
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_STOPPED, 0);
 }
 
-void UIBridgeMFC::calcFinish()
+void UIBridgeMacCmd::calcFinish()
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
 }
 
-void UIBridgeMFC::showFileName(const tstring& tstrFileName)
+void UIBridgeMacCmd::showFileName(const tstring& tstrFileName)
 {
-	lockData();
-	{
-		m_uiTstrAll->append(FILENAME_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrFileName);
-		m_uiTstrAll->append(_T("\r\n"));
-	}
-	unlockData();
-
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+    printf("%s\n", tstrtostr(tstrFileName).c_str());
 }
 
-void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
+void UIBridgeMacCmd::showFileMeta(const tstring& tstrFileSize,
 							const tstring& tstrShortSize,
 							const tstring& tstrLastModifiedTime,
 							const tstring& tstrFileVersion)
 {
-	lockData();
-	{
-		m_uiTstrAll->append(FILESIZE_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrFileSize);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(BYTE_STRING);
-		m_uiTstrAll->append(tstrShortSize);
-		m_uiTstrAll->append(_T("\r\n"));
-		m_uiTstrAll->append(MODIFYTIME_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrLastModifiedTime);
-
-		if(tstrFileVersion != _T(""))
-		{
-			m_uiTstrAll->append(_T("\r\n"));
-			m_uiTstrAll->append(VERSION_STRING);
-			m_uiTstrAll->append(_T(" "));
-			m_uiTstrAll->append(tstrFileVersion);
-		}
-
-		m_uiTstrAll->append(_T("\r\n"));
-	}
-	unlockData();
-	
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+    printf("File Size: %s Byte(s)%s\n",
+           tstrtostr(tstrFileSize).c_str(),
+           tstrtostr(tstrShortSize).c_str());
+    printf("Modified Date: %s\n",
+           tstrtostr(tstrLastModifiedTime).c_str());
 }
 
-void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
+void UIBridgeMacCmd::showFileHash(const tstring& tstrFileMD5,
 							const tstring& tstrFileSHA1,
 							const tstring& tstrFileSHA256,
 							const tstring& tstrFileCRC32)
 {
-	lockData();
-	{
-		m_uiTstrAll->append(_T("MD5: "));
-		m_uiTstrAll->append(tstrFileMD5);
-		m_uiTstrAll->append(_T("\r\nSHA1: "));
-		m_uiTstrAll->append(tstrFileSHA1);
-		m_uiTstrAll->append(_T("\r\nSHA256: "));
-		m_uiTstrAll->append(tstrFileSHA256);
-		m_uiTstrAll->append(_T("\r\nCRC32: "));
-		m_uiTstrAll->append(tstrFileCRC32);
-		m_uiTstrAll->append(_T("\r\n\r\n"));
-	}
-	unlockData();
-
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+    printf("MD5: %s\n", tstrtostr(tstrFileMD5).c_str());
+    printf("SHA1: %s\n", tstrtostr(tstrFileSHA1).c_str());
+    printf("SHA256: %s\n", tstrtostr(tstrFileSHA256).c_str());
+    printf("CRC32: %s\n", tstrtostr(tstrFileCRC32).c_str());
 }
 
-void UIBridgeMFC::showFileErr(const tstring& tstrErr)
+void UIBridgeMacCmd::showFileErr(const tstring& tstrErr)
 {
-	lockData();
-	{
-		m_uiTstrAll->append(tstrErr);
-		m_uiTstrAll->append(_T("\r\n\r\n"));
-	}
-	unlockData();
-
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
+    printf("%s\n", tstrtostr(tstrErr).c_str());
 }
 
-int UIBridgeMFC::getProgMax()
+int UIBridgeMacCmd::getProgMax()
 {
-	return 100;
+	return 40;
 }
 
-void UIBridgeMFC::updateProg(int value)
+void UIBridgeMacCmd::updateProg(int value)
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_PROG, value);
+    if (value < m_oldProgPos)
+        m_oldProgPos = 0; // reset
+    
+    for (int i = 0; i < (value - m_oldProgPos); ++i)
+    {
+        printf("#");
+        fflush(stdout);
+    }
 }
 
-void UIBridgeMFC::updateProgWhole(int value)
+void UIBridgeMacCmd::updateProgWhole(int value)
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_PROG_WHOLE, value);
+	
 }
 
-void UIBridgeMFC::fileCalcFinish()
+void UIBridgeMacCmd::fileCalcFinish()
 {
+    printf("\n");
 }
 
-void UIBridgeMFC::fileFinish()
+void UIBridgeMacCmd::fileFinish()
 {
+    printf("\n");
 }
