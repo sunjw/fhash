@@ -5,7 +5,6 @@
 #include <string>
 
 #include "strhelper.h"
-#include "OsUtils/OsThread.h"
 
 #include "FilesHash.h"
 #include "FilesHashDlg.h"
@@ -25,11 +24,10 @@ using namespace sunjwbase;
 #define new DEBUG_NEW
 #endif
 
-OsMutex g_mainMtx;
-
 // CFilesHashDlg 对话框
 CFilesHashDlg::CFilesHashDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CFilesHashDlg::IDD, pParent)
+	: CDialog(CFilesHashDlg::IDD, pParent),
+	m_uiBridgeMFC(NULL)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_ICON1);
 }
@@ -124,21 +122,21 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_btnExit.SetWindowText(MAINDLG_EXIT);
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(MAINDLG_ABOUT);
-	
-	m_uiBridgeMFC = UIBridgeMFC(m_hWnd, &m_tstrAll);
 
-	g_mainMtx.lock();
+	m_uiBridgeMFC = new UIBridgeMFC(m_hWnd, &m_tstrAll, &m_mainMtx);
+
+	m_mainMtx.lock();
 	{
 		m_tstrAll = _T("");
 
-		m_thrdData.uiBridge = &m_uiBridgeMFC;
+		m_thrdData.uiBridge = m_uiBridgeMFC;
 		m_thrdData.uppercase = false;
 
 		m_thrdData.nFiles = 0;
 
 		m_thrdData.resultList.clear();
 	}
-	g_mainMtx.unlock();
+	m_mainMtx.unlock();
 	
 	pTl = NULL;
 
@@ -301,6 +299,12 @@ void CFilesHashDlg::OnClose()
 		return;
 	}
 
+	if(m_uiBridgeMFC != NULL)
+	{
+		delete m_uiBridgeMFC;
+		m_uiBridgeMFC = NULL;
+	}
+
 	CDialog::OnClose();
 }
 
@@ -359,7 +363,7 @@ void CFilesHashDlg::OnBnClickedClean()
 		m_btnClr.GetWindowText(strBtnText);
 		if(strBtnText.Compare(MAINDLG_CLEAR) == 0)
 		{
-			g_mainMtx.lock();
+			m_mainMtx.lock();
 			{
 				m_tstrAll = _T("");
 
@@ -367,7 +371,7 @@ void CFilesHashDlg::OnBnClickedClean()
 			
 				m_editMain.SetWindowText(m_tstrAll.c_str());
 			}
-			g_mainMtx.unlock();
+			m_mainMtx.unlock();
 
 			CStatic* pWnd =(CStatic *)GetDlgItem(IDC_STATIC_TIME);
 			pWnd->SetWindowText(_T(""));
@@ -640,9 +644,9 @@ void CFilesHashDlg::RefreshResult()
 
 void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
-	g_mainMtx.lock();
+	m_mainMtx.lock();
 	m_editMain.SetWindowText(m_tstrAll.c_str());
-	g_mainMtx.unlock();
+	m_mainMtx.unlock();
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 }
@@ -716,7 +720,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		SetCtrls(FALSE);
 		//界面设置 - 结束
 		
-		g_mainMtx.lock();
+		m_mainMtx.lock();
 		{
 			m_tstrAll.append(_T("\r\n"));
 			m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
@@ -724,7 +728,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 			m_editMain.SetWindowText(m_tstrAll.c_str());
 		}
-		g_mainMtx.unlock();
+		m_mainMtx.unlock();
 			
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
@@ -734,7 +738,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		
 		if(m_waitingExit)
 		{
-			PostMessage(WM_CLOSE);//OnCancel();
+			PostMessage(WM_CLOSE);
 		}
 		break;
 	}

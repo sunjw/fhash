@@ -6,18 +6,16 @@
 #include <Windows.h>
 
 #include "strhelper.h"
-#include "OsUtils/OsThread.h"
 
 #include "Global.h"
 #include "UIStrings.h"
 
 using namespace sunjwbase;
 
-extern OsMutex g_mainMtx;
-
 UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
-						sunjwbase::tstring *tstrUIAll)
-:m_hWnd(hWnd), m_uiTstrAll(tstrUIAll)
+						tstring *tstrUIAll,
+						OsMutex *mainMtx)
+:m_hWnd(hWnd), m_uiTstrAll(tstrUIAll), m_mainMtx(mainMtx)
 {
 }
 
@@ -29,25 +27,25 @@ void UIBridgeMFC::preparingCalc()
 {
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_WORKING, 0);
 	
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		m_tstrNoPreparing = *m_uiTstrAll;
 		m_uiTstrAll->append(MAINDLG_WAITING_START);
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 	
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
 void UIBridgeMFC::removePreparingCalc()
 {
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		// restore and remove MAINDLG_WAITING_START
 		*m_uiTstrAll = m_tstrNoPreparing;
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 }
 
 void UIBridgeMFC::calcStop()
@@ -62,14 +60,14 @@ void UIBridgeMFC::calcFinish()
 
 void UIBridgeMFC::showFileName(const tstring& tstrFileName)
 {
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		m_uiTstrAll->append(FILENAME_STRING);
 		m_uiTstrAll->append(_T(" "));
 		m_uiTstrAll->append(tstrFileName);
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
@@ -79,7 +77,7 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 							const tstring& tstrLastModifiedTime,
 							const tstring& tstrFileVersion)
 {
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		m_uiTstrAll->append(FILESIZE_STRING);
 		m_uiTstrAll->append(_T(" "));
@@ -102,7 +100,7 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 	
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
@@ -112,7 +110,7 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 							const tstring& tstrFileSHA256,
 							const tstring& tstrFileCRC32)
 {
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		m_uiTstrAll->append(_T("MD5: "));
 		m_uiTstrAll->append(tstrFileMD5);
@@ -124,19 +122,19 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 		m_uiTstrAll->append(tstrFileCRC32);
 		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
 void UIBridgeMFC::showFileErr(const tstring& tstrErr)
 {
-	g_mainMtx.lock();
+	m_mainMtx->lock();
 	{
 		m_uiTstrAll->append(tstrErr);
 		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
-	g_mainMtx.unlock();
+	m_mainMtx->unlock();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }

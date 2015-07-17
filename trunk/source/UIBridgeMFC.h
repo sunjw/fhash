@@ -4,13 +4,16 @@
 #include "UIBridgeBase.h"
 
 #include <Windows.h>
+
 #include "strhelper.h"
+#include "OsUtils/OsThread.h"
 
 class UIBridgeMFC: public UIBridgeBase
 {
 public:
-	UIBridgeMFC(HWND hWnd = NULL, 
-				sunjwbase::tstring *tstrUIAll = NULL);
+	UIBridgeMFC(HWND hWnd, 
+				sunjwbase::tstring *tstrUIAll,
+				sunjwbase::OsMutex *mainMtx);
 	virtual ~UIBridgeMFC();
 
 	virtual void preparingCalc();
@@ -39,6 +42,7 @@ public:
 private:
 	HWND m_hWnd;
 	sunjwbase::tstring *m_uiTstrAll;
+	sunjwbase::OsMutex *m_mainMtx;
 
 	sunjwbase::tstring m_tstrNoPreparing;
 };

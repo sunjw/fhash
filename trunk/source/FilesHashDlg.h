@@ -8,6 +8,8 @@
 #include "EditEx.h"
 
 #include "strhelper.h"
+#include "OsUtils/OsThread.h"
+
 #include "Global.h"
 #include "UIBridgeMFC.h"
 
@@ -61,7 +63,9 @@ protected:
 	CButton m_btnContext;
 	CBrush m_bruEditBkg;
 
-	UIBridgeMFC m_uiBridgeMFC;
+	sunjwbase::OsMutex m_mainMtx;
+
+	UIBridgeMFC *m_uiBridgeMFC;
 	ThreadData m_thrdData;
 	HANDLE m_hWorkThread;
 	float m_calculateTime;
