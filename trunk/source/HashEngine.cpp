@@ -139,15 +139,14 @@ int WINAPI HashThreadFunc(void *param)
 
 		uint32_t ulCRC32; // CRC32 context
 		// Declaration for calculator
+        
+        ResultData result;
+        path = thrdData->fullPaths[i].c_str();
+        result.tstrPath = thrdData->fullPaths[i];
 
 		int position = 0; // 进度条位置
 
-		uiBridge->showFileName(thrdData->fullPaths[i]);
-
-		path = thrdData->fullPaths[i].c_str();
-
-		ResultData result;
-		result.tstrPath = thrdData->fullPaths[i];
+		uiBridge->showFileName(result);
 
 		//Calculating begins
 #if defined (WIN32)
@@ -195,39 +194,30 @@ int WINAPI HashThreadFunc(void *param)
                 
                 tstrLastModifiedTime = strtotstr(string(szTmBuf));
 #endif
-				fsize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
-				if(!isSizeCaled) // 如果没有计算过大小
-				{
-					thrdData->totalSize += fsize;
-				}
-				else
-				{
-					thrdData->totalSize = thrdData->totalSize + fsize - fSizes[i]; // 修正总大小
-					fSizes[i] = fsize; // 修正文件大小
-				}
-			}
-
-			tstring tstrShortSize = strtotstr(ConvertSizeToStr(fsize));
-
-			char chSizeBuff[1024] = {0};
-#if defined (WIN32)
-			sprintf_s(chSizeBuff, 1024, "%I64u", fsize);
-#else
-            sprintf(chSizeBuff, "%llu", fsize);
-#endif
-
-			tstrFileSize = strtotstr(string(chSizeBuff));
+                result.tstrMDate = tstrLastModifiedTime;
+            }
+            
+            fsize = osFile.getLength(); // Fix 4GB file
+            result.ulSize = fsize;
+            
+            if(!isSizeCaled) // 如果没有计算过大小
+            {
+                thrdData->totalSize += fsize;
+            }
+            else
+            {
+                thrdData->totalSize = thrdData->totalSize + fsize - fSizes[i]; // 修正总大小
+                fSizes[i] = fsize; // 修正文件大小
+            }
 
 #if defined (WIN32)
 			// get file version //
 			CString cstrVer = GetExeFileVersion((TCHAR *)path);
 			tstrFileVersion = cstrVer.GetString();
+            result.tstrVersion = tstrFileVersion;
 #endif
 
-			uiBridge->showFileMeta(tstrFileSize, 
-									tstrShortSize, 
-									tstrLastModifiedTime, 
-									tstrFileVersion);
+			uiBridge->showFileMeta(result);
             
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
@@ -365,37 +355,14 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileCRC32 = strtotstr(string(chHashBuff));
 
 			result.bDone = true;
-			result.tstrPath = thrdData->fullPaths[i];
-			result.ulSize = fsize;
-			result.tstrMDate = tstrLastModifiedTime;
-#if defined (WIN32)
-			result.tstrVersion = cstrVer.GetString();
-#endif
+            
 			// 在没做转换前，结果都是大写的
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
 			result.tstrSHA256 = tstrFileSHA256;
 			result.tstrCRC32 = tstrFileCRC32;
-
-			if(thrdData->uppercase)
-			{
-				tstrFileMD5 = strtotstr(str_upper(tstrtostr(tstrFileMD5)));
-				tstrFileSHA1 = strtotstr(str_upper(tstrtostr(tstrFileSHA1)));
-				tstrFileSHA256 = strtotstr(str_upper(tstrtostr(tstrFileSHA256)));
-				tstrFileCRC32 = strtotstr(str_upper(tstrtostr(tstrFileCRC32)));
-			}
-			else
-			{
-				tstrFileMD5 = strtotstr(str_lower(tstrtostr(tstrFileMD5)));
-				tstrFileSHA1 = strtotstr(str_lower(tstrtostr(tstrFileSHA1)));
-				tstrFileSHA256 = strtotstr(str_lower(tstrtostr(tstrFileSHA256)));
-				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
-			}
 			
-			uiBridge->showFileHash(tstrFileMD5,
-									tstrFileSHA1,
-									tstrFileSHA256,
-									tstrFileCRC32);
+			uiBridge->showFileHash(result, thrdData->uppercase);
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
@@ -409,7 +376,7 @@ int WINAPI HashThreadFunc(void *param)
 
 			result.bDone = false;
 
-			uiBridge->showFileErr(result.tstrError);
+			uiBridge->showFileErr(result);
 		}
 
 		thrdData->resultList.push_back(result); // 保存结果

@@ -4,10 +4,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
 
 #include "strhelper.h"
 #include "Global.h"
+#include "Functions.h"
 
+using namespace std;
 using namespace sunjwbase;
 
 UIBridgeMacCmd::UIBridgeMacCmd()
@@ -44,37 +47,52 @@ void UIBridgeMacCmd::calcFinish()
 {
 }
 
-void UIBridgeMacCmd::showFileName(const tstring& tstrFileName)
+void UIBridgeMacCmd::showFileName(const ResultData& result)
 {
-    printf("%s\n", tstrtostr(tstrFileName).c_str());
+    printf("%s\n", tstrtostr(result.tstrPath).c_str());
 }
 
-void UIBridgeMacCmd::showFileMeta(const tstring& tstrFileSize,
-							const tstring& tstrShortSize,
-							const tstring& tstrLastModifiedTime,
-							const tstring& tstrFileVersion)
+void UIBridgeMacCmd::showFileMeta(const ResultData& result)
 {
+    char chSizeBuff[1024] = {0};
+    sprintf(chSizeBuff, "%llu", result.ulSize);
+    
+    string strShortSize = ConvertSizeToStr(result.ulSize);
+    
     printf("File Size: %s Byte(s)%s\n",
-           tstrtostr(tstrFileSize).c_str(),
-           tstrtostr(tstrShortSize).c_str());
+           chSizeBuff, strShortSize.c_str());
     printf("Modified Date: %s\n",
-           tstrtostr(tstrLastModifiedTime).c_str());
+           tstrtostr(result.tstrMDate).c_str());
 }
 
-void UIBridgeMacCmd::showFileHash(const tstring& tstrFileMD5,
-							const tstring& tstrFileSHA1,
-							const tstring& tstrFileSHA256,
-							const tstring& tstrFileCRC32)
+void UIBridgeMacCmd::showFileHash(const ResultData& result, bool uppercase)
 {
-    printf("MD5: %s\n", tstrtostr(tstrFileMD5).c_str());
-    printf("SHA1: %s\n", tstrtostr(tstrFileSHA1).c_str());
-    printf("SHA256: %s\n", tstrtostr(tstrFileSHA256).c_str());
-    printf("CRC32: %s\n", tstrtostr(tstrFileCRC32).c_str());
+    string strFileMD5, strFileSHA1, strFileSHA256, strFileCRC32;
+    
+    if (uppercase)
+    {
+        strFileMD5 = str_upper(tstrtostr(result.tstrMD5));
+        strFileSHA1 = str_upper(tstrtostr(result.tstrSHA1));
+        strFileSHA256 = str_upper(tstrtostr(result.tstrSHA256));
+        strFileCRC32 = str_upper(tstrtostr(result.tstrCRC32));
+    }
+    else
+    {
+        strFileMD5 = str_lower(tstrtostr(result.tstrMD5));
+        strFileSHA1 = str_lower(tstrtostr(result.tstrSHA1));
+        strFileSHA256 = str_lower(tstrtostr(result.tstrSHA256));
+        strFileCRC32 = str_lower(tstrtostr(result.tstrCRC32));
+    }
+    
+    printf("MD5: %s\n", strFileMD5.c_str());
+    printf("SHA1: %s\n", strFileSHA1.c_str());
+    printf("SHA256: %s\n", strFileSHA256.c_str());
+    printf("CRC32: %s\n", strFileCRC32.c_str());
 }
 
-void UIBridgeMacCmd::showFileErr(const tstring& tstrErr)
+void UIBridgeMacCmd::showFileErr(const ResultData& result)
 {
-    printf("%s\n", tstrtostr(tstrErr).c_str());
+    printf("%s\n", tstrtostr(result.tstrError).c_str());
 }
 
 int UIBridgeMacCmd::getProgMax()
