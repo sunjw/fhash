@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #include "UIBridgeMacCmd.h"
 
 #include <stdlib.h>
