@@ -3,13 +3,16 @@
 #include "UIBridgeMFC.h"
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string>
 #include <Windows.h>
 
 #include "strhelper.h"
-
 #include "Global.h"
+#include "Functions.h"
 #include "UIStrings.h"
 
+using namespace std;
 using namespace sunjwbase;
 
 UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
@@ -68,13 +71,13 @@ void UIBridgeMFC::calcFinish()
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_FINISHED, 0);
 }
 
-void UIBridgeMFC::showFileName(const tstring& tstrFileName)
+void UIBridgeMFC::showFileName(const ResultData& result)
 {
 	lockData();
 	{
 		m_uiTstrAll->append(FILENAME_STRING);
 		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrFileName);
+		m_uiTstrAll->append(result.tstrPath);
 		m_uiTstrAll->append(_T("\r\n"));
 	}
 	unlockData();
@@ -82,11 +85,14 @@ void UIBridgeMFC::showFileName(const tstring& tstrFileName)
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
-void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
-							const tstring& tstrShortSize,
-							const tstring& tstrLastModifiedTime,
-							const tstring& tstrFileVersion)
+void UIBridgeMFC::showFileMeta(const ResultData& result)
 {
+	char chSizeBuff[1024] = {0};
+	sprintf_s(chSizeBuff, 1024, "%I64u", result.ulSize);
+	tstring tstrFileSize = strtotstr(string(chSizeBuff));
+
+	tstring tstrShortSize = strtotstr(ConvertSizeToStr(result.ulSize));
+
 	lockData();
 	{
 		m_uiTstrAll->append(FILESIZE_STRING);
@@ -98,14 +104,14 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 		m_uiTstrAll->append(_T("\r\n"));
 		m_uiTstrAll->append(MODIFYTIME_STRING);
 		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrLastModifiedTime);
+		m_uiTstrAll->append(result.tstrMDate);
 
-		if(tstrFileVersion != _T(""))
+		if(result.tstrVersion != _T(""))
 		{
 			m_uiTstrAll->append(_T("\r\n"));
 			m_uiTstrAll->append(VERSION_STRING);
 			m_uiTstrAll->append(_T(" "));
-			m_uiTstrAll->append(tstrFileVersion);
+			m_uiTstrAll->append(result.tstrVersion);
 		}
 
 		m_uiTstrAll->append(_T("\r\n"));
@@ -115,11 +121,25 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
-void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
-							const tstring& tstrFileSHA1,
-							const tstring& tstrFileSHA256,
-							const tstring& tstrFileCRC32)
+void UIBridgeMFC::showFileHash(const ResultData& result, bool uppercase)
 {
+	tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256, tstrFileCRC32;
+	
+	if (uppercase)
+	{
+		tstrFileMD5 = strtotstr(str_upper(tstrtostr(result.tstrMD5)));
+		tstrFileSHA1 = strtotstr(str_upper(tstrtostr(result.tstrSHA1)));
+		tstrFileSHA256 = strtotstr(str_upper(tstrtostr(result.tstrSHA256)));
+		tstrFileCRC32 = strtotstr(str_upper(tstrtostr(result.tstrCRC32)));
+	}
+	else
+	{
+		tstrFileMD5 = strtotstr(str_lower(tstrtostr(result.tstrMD5)));
+		tstrFileSHA1 = strtotstr(str_lower(tstrtostr(result.tstrSHA1)));
+		tstrFileSHA256 = strtotstr(str_lower(tstrtostr(result.tstrSHA256)));
+		tstrFileCRC32 = strtotstr(str_lower(tstrtostr(result.tstrCRC32)));
+	}
+
 	lockData();
 	{
 		m_uiTstrAll->append(_T("MD5: "));
@@ -137,11 +157,11 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
-void UIBridgeMFC::showFileErr(const tstring& tstrErr)
+void UIBridgeMFC::showFileErr(const ResultData& result)
 {
 	lockData();
 	{
-		m_uiTstrAll->append(tstrErr);
+		m_uiTstrAll->append(result.tstrError);
 		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
 	unlockData();
