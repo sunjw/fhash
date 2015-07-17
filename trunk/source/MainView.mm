@@ -16,7 +16,7 @@
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
-    return NSDragOperationGeneric;
+    return NSDragOperationCopy;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
