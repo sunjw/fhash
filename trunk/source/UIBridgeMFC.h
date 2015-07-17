@@ -50,4 +50,4 @@ private:
 	sunjwbase::tstring m_tstrNoPreparing;
 };
 
-#endif _UI_BRIDGE_MFC_
+#endif
