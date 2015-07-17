@@ -16,6 +16,9 @@ public:
 				sunjwbase::OsMutex *mainMtx);
 	virtual ~UIBridgeMFC();
 
+	virtual void lockData();
+	virtual void unlockData();
+
 	virtual void preparingCalc();
 	virtual void removePreparingCalc();
 	virtual void calcStop();

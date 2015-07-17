@@ -9,6 +9,9 @@ public:
 	UIBridgeBase() {}
 	virtual ~UIBridgeBase() {}
 
+	virtual void lockData() = 0;
+	virtual void unlockData() = 0;
+
 	virtual void preparingCalc() = 0;
 	virtual void removePreparingCalc() = 0;
 	virtual void calcStop() = 0;

@@ -23,29 +23,39 @@ UIBridgeMFC::~UIBridgeMFC()
 {
 }
 
+void UIBridgeMFC::lockData()
+{
+	m_mainMtx->lock();
+}
+
+void UIBridgeMFC::unlockData()
+{
+	m_mainMtx->unlock();
+}
+
 void UIBridgeMFC::preparingCalc()
 {
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_WORKING, 0);
 	
-	m_mainMtx->lock();
+	lockData();
 	{
 		m_tstrNoPreparing = *m_uiTstrAll;
 		m_uiTstrAll->append(MAINDLG_WAITING_START);
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	m_mainMtx->unlock();
+	unlockData();
 	
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
 void UIBridgeMFC::removePreparingCalc()
 {
-	m_mainMtx->lock();
+	lockData();
 	{
 		// restore and remove MAINDLG_WAITING_START
 		*m_uiTstrAll = m_tstrNoPreparing;
 	}
-	m_mainMtx->unlock();
+	unlockData();
 }
 
 void UIBridgeMFC::calcStop()
@@ -60,14 +70,14 @@ void UIBridgeMFC::calcFinish()
 
 void UIBridgeMFC::showFileName(const tstring& tstrFileName)
 {
-	m_mainMtx->lock();
+	lockData();
 	{
 		m_uiTstrAll->append(FILENAME_STRING);
 		m_uiTstrAll->append(_T(" "));
 		m_uiTstrAll->append(tstrFileName);
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	m_mainMtx->unlock();
+	unlockData();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
@@ -77,7 +87,7 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 							const tstring& tstrLastModifiedTime,
 							const tstring& tstrFileVersion)
 {
-	m_mainMtx->lock();
+	lockData();
 	{
 		m_uiTstrAll->append(FILESIZE_STRING);
 		m_uiTstrAll->append(_T(" "));
@@ -100,7 +110,7 @@ void UIBridgeMFC::showFileMeta(const tstring& tstrFileSize,
 
 		m_uiTstrAll->append(_T("\r\n"));
 	}
-	m_mainMtx->unlock();
+	unlockData();
 	
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
@@ -110,7 +120,7 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 							const tstring& tstrFileSHA256,
 							const tstring& tstrFileCRC32)
 {
-	m_mainMtx->lock();
+	lockData();
 	{
 		m_uiTstrAll->append(_T("MD5: "));
 		m_uiTstrAll->append(tstrFileMD5);
@@ -122,19 +132,19 @@ void UIBridgeMFC::showFileHash(const tstring& tstrFileMD5,
 		m_uiTstrAll->append(tstrFileCRC32);
 		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
-	m_mainMtx->unlock();
+	unlockData();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
 
 void UIBridgeMFC::showFileErr(const tstring& tstrErr)
 {
-	m_mainMtx->lock();
+	lockData();
 	{
 		m_uiTstrAll->append(tstrErr);
 		m_uiTstrAll->append(_T("\r\n\r\n"));
 	}
-	m_mainMtx->unlock();
+	unlockData();
 
 	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_REFRESH_TEXT, 0);
 }
