@@ -92,6 +92,8 @@ void UIBridgeMacCmd::updateProg(int value)
         printf("#");
         fflush(stdout);
     }
+    
+    m_oldProgPos = value;
 }
 
 void UIBridgeMacCmd::updateProgWhole(int value)
