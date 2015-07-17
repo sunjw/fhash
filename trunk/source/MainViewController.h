@@ -10,13 +10,15 @@
 
 @interface MainViewController : NSViewController
 
-@property (weak) IBOutlet NSScrollView *mainScrollView;
+@property (unsafe_unretained) IBOutlet NSScrollView *mainScrollView;
 
 @property (unsafe_unretained) IBOutlet NSTextView *mainTextView;
 
-@property (weak) IBOutlet NSProgressIndicator *mainProgressIndicator;
+@property (unsafe_unretained) IBOutlet NSProgressIndicator *mainProgressIndicator;
 
-@property (weak) IBOutlet NSButton *openButton;
+@property (unsafe_unretained) IBOutlet NSButton *openButton;
+
+@property (unsafe_unretained) IBOutlet NSButton *upperCaseButton;
 
 @end
 

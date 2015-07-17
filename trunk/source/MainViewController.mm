@@ -38,6 +38,9 @@
     // Set progress line.
     [self.mainProgressIndicator setDoubleValue:50.0];
     
+    // Set checkbox.
+    [self.upperCaseButton setState:NSOffState];
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
