@@ -4,4 +4,7 @@
    <FileRef
       location = "group:fHashCmd.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:fHashMacUI.xcodeproj">
+   </FileRef>
 </Workspace>
