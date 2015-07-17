@@ -20,10 +20,6 @@
 #include "UIStrings.h"
 #endif
 
-#if defined FHASH_OSX_CMD
-#include <stdio.h>
-#endif
-
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
 
@@ -77,13 +73,7 @@ int WINAPI HashThreadFunc(void *param)
     
     tstring tstrTemp;
 
-	// preparingCalc
 	uiBridge->preparingCalc();
-    
-#if defined FHASH_OSX_CMD
-    printf("Prepare to start calculation.\n\n");
-#endif
-	// preparingCalc
 
 	// 获得文件总大小
 	if(thrdData->nFiles < 200) // 文件太多就不预先计算了
@@ -152,14 +142,7 @@ int WINAPI HashThreadFunc(void *param)
 
 		int position = 0; // 进度条位置
 
-		// showFileName(tstrFileName)
 		uiBridge->showFileName(thrdData->fullPaths[i]);
-        
-#if defined FHASH_OSX_CMD
-        tstring tstrCurPath = thrdData->fullPaths[i];
-        printf("%s\n", tstrtostr(tstrCurPath).c_str());
-#endif
-		// showFileName(tstrFileName)
 
 		path = thrdData->fullPaths[i].c_str();
 
@@ -241,20 +224,10 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileVersion = cstrVer.GetString();
 #endif
 
-			// showFileMeta(tstrFileSize, tstrShortSize, tstrLastModifiedTime, tstrFileVersion)
 			uiBridge->showFileMeta(tstrFileSize, 
 									tstrShortSize, 
 									tstrLastModifiedTime, 
 									tstrFileVersion);
-
-#if defined FHASH_OSX_CMD
-            printf("File Size: %s Byte(s)%s\n",
-                   tstrtostr(tstrFileSize).c_str(),
-                   tstrtostr(tstrShortSize).c_str());
-            printf("Modified Date: %s\n",
-                   tstrtostr(tstrLastModifiedTime).c_str());
-#endif
-			// showFileMeta(tstrFileSize, tstrShortSize, tstrLastModifiedTime, tstrFileVersion)
             
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
@@ -280,34 +253,17 @@ int WINAPI HashThreadFunc(void *param)
 				
 				finishedSize += databuf.datalen;
                 
-				// getProgMax
-				int PROGRESS_MAX = uiBridge->getProgMax();
-                
-#if defined FHASH_OSX_CMD
-#define PROGRESS_MAX 40
-#endif
-				// getProgMax
+				int progressMax = uiBridge->getProgMax();
                 
 				int positionNew;
 				if(fsize == 0)
-					positionNew = PROGRESS_MAX; // 注意除0错误
+					positionNew = progressMax; // 注意除0错误
 				else
-					positionNew = (int)(PROGRESS_MAX * finishedSize / fsize);
+					positionNew = (int)(progressMax * finishedSize / fsize);
                 
 				if(positionNew > position)
 				{
-					// updateProg(positionNew)
 					uiBridge->updateProg(positionNew);
-                    
-#if defined FHASH_OSX_CMD
-                    for (int i = 0; i < (positionNew - position); ++i)
-                    {
-                        printf("#");
-                        fflush(stdout);
-                    }
-#endif
-					// updateProg(positionNew)
-
                     position = positionNew;
 				}
 
@@ -326,14 +282,8 @@ int WINAPI HashThreadFunc(void *param)
 			} 
 			while(databuf.datalen >= DataBuffer::preflen);
             
-			// fileCalcFinish
 			uiBridge->fileCalcFinish();
-
-#if defined FHASH_OSX_CMD
-            printf("\n");
-#endif
-			// fileCalcFinish
-
+            
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
 			sha256_final(&sha256Ctx); // SHA256完成
@@ -442,19 +392,10 @@ int WINAPI HashThreadFunc(void *param)
 				tstrFileCRC32 = strtotstr(str_lower(tstrtostr(tstrFileCRC32)));
 			}
 			
-			// showFileHash
 			uiBridge->showFileHash(tstrFileMD5,
 									tstrFileSHA1,
 									tstrFileSHA256,
 									tstrFileCRC32);
-            
-#if defined FHASH_OSX_CMD
-            printf("MD5: %s\n", tstrtostr(tstrFileMD5).c_str());
-            printf("SHA1: %s\n", tstrtostr(tstrFileSHA1).c_str());
-            printf("SHA256: %s\n", tstrtostr(tstrFileSHA256).c_str());
-            printf("CRC32: %s\n", tstrtostr(tstrFileCRC32).c_str());
-#endif
-			// showFileHash
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
 		{
@@ -468,24 +409,12 @@ int WINAPI HashThreadFunc(void *param)
 
 			result.bDone = false;
 
-			// showFileErr
 			uiBridge->showFileErr(result.tstrError);
-            
-#if defined FHASH_OSX_CMD
-            printf("%s\n", tstrtostr(result.tstrError).c_str());
-#endif
-			// showFileErr
 		}
 
 		thrdData->resultList.push_back(result); // 保存结果
         
-		// fileFinish
 		uiBridge->fileFinish();
-
-#if defined FHASH_OSX_CMD
-        printf("\n");
-#endif
-		// fileFinish
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
 	uiBridge->calcFinish();

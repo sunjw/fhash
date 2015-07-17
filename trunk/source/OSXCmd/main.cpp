@@ -18,6 +18,7 @@
 #include "strhelper.h"
 #include "Functions.h"
 #include "HashEngine.h"
+#include "UIBridgeMacCmd.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -40,8 +41,11 @@ int main(int argc, char *argv[])
     printf("Version: " STR_VERSION "\n");
     printf("\n");
     
+    UIBridgeMacCmd uiBridgeMacCmd;
+    
     ThreadData thData;
     
+    thData.uiBridge = &uiBridgeMacCmd;
     thData.threadWorking = false;
     thData.stop = false;
     thData.uppercase = false;
