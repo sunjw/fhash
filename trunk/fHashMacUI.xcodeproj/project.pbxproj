@@ -278,6 +278,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/source/OSXUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_CFLAGS = "-DFHASH_OSX_UI";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -292,6 +293,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/source/OSXUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_CFLAGS = "-DFHASH_OSX_UI";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
