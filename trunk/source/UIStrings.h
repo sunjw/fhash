@@ -1,11 +1,11 @@
 #ifndef _UISTRINGS_H_
 #define _UISTRINGS_H_
 
-#if defined (WIN32)
+#if defined (FHASH_WIN_UI)
 #include <tchar.h>
 #endif
 
-#if defined (__APPLE__) || defined (__unix)
+#if defined (FHASH_OSX_UI)
 #include "strhelper.h"
 
 #define _T(str) (str)
