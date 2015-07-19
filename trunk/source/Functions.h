@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _FUNCTIONS_H_
+#define _FUNCTIONS_H_
+
 #include "stdafx.h"
 
 #include <stdint.h>
@@ -52,5 +54,7 @@ bool AddShellExt(TCHAR *pszExeFullPath);
 bool AddContextMenu();
 bool RemoveContextMenu();
 bool ContextMenuExisted();
+
+#endif
 
 #endif
