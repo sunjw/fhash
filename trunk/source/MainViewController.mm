@@ -8,12 +8,23 @@
 
 #import "MainViewController.h"
 
+#include <stdio.h>
+#include <string>
+#include "UIStrings.h"
+#include "strhelper.h"
+
+using namespace std;
+using namespace sunjwbase;
+
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
+    string strTest = SHELL_EXT_ITEM_ZH_CN;
+    strTest = utf8conv(strTest);
+    printf("%s\n", strTest.c_str());
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
