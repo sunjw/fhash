@@ -7,11 +7,8 @@
 
 #if defined (FHASH_OSX_UI)
 #include "strhelper.h"
-
 #define _T(str) (str)
-
 using sunjwbase::TCHAR;
-
 #endif
 
 // Multi languages
