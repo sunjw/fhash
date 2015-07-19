@@ -33,9 +33,9 @@
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5381B58D3DA0050C831 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = source/OSXUI/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
-		41FF1DC51B5B49490081F283 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = "<group>"; };
-		41FF1DC61B5B49490081F283 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = "<group>"; };
-		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
+		41FF1DC51B5B49490081F283 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = "<group>"; };
+		41FF1DC61B5B49490081F283 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = "<group>"; };
+		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
 		41FF1DC81B5B49490081F283 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = "<group>"; };
 		41FF1DC91B5B49490081F283 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = "<group>"; };
 		41FF1DCA1B5B49490081F283 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/UIBridgeBase.h; sourceTree = "<group>"; };
