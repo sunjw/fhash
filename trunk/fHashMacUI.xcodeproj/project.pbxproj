@@ -11,10 +11,20 @@
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
-		4198A53E1B58D4770050C831 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4198A53D1B58D4770050C831 /* fHashMacAppDelegate.mm */; };
-		4198A5451B58D4840050C831 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5401B58D4840050C831 /* MainView.mm */; };
-		4198A5461B58D4840050C831 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5421B58D4840050C831 /* MainViewController.mm */; };
-		4198A5471B58D4840050C831 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5441B58D4840050C831 /* MainWindowController.mm */; };
+		41FF1DCC1B5B49490081F283 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC51B5B49490081F283 /* Functions.cpp */; };
+		41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC81B5B49490081F283 /* HashEngine.cpp */; };
+		41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DCF1B5B49A60081F283 /* stdafx.cpp */; };
+		41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD11B5B49A60081F283 /* strhelper.cpp */; };
+		41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */; };
+		41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */; };
+		41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DDF1B5B4B250081F283 /* fHashMacAppDelegate.mm */; };
+		41FF1DE71B5B4B250081F283 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DE11B5B4B250081F283 /* MainView.mm */; };
+		41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DE31B5B4B250081F283 /* MainViewController.mm */; };
+		41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DE51B5B4B250081F283 /* MainWindowController.mm */; };
+		41FF1DF21B5B4B470081F283 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEA1B5B4B470081F283 /* CRC32.cpp */; };
+		41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEC1B5B4B470081F283 /* MD5.cpp */; };
+		41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEE1B5B4B470081F283 /* SHA1.cpp */; };
+		41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DF01B5B4B470081F283 /* sha256.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,14 +33,38 @@
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5381B58D3DA0050C831 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = source/OSXUI/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
-		4198A53C1B58D4770050C831 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/fHashMacAppDelegate.h; sourceTree = "<group>"; };
-		4198A53D1B58D4770050C831 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/fHashMacAppDelegate.mm; sourceTree = "<group>"; };
-		4198A53F1B58D4840050C831 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = source/MainView.h; sourceTree = "<group>"; };
-		4198A5401B58D4840050C831 /* MainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainView.mm; path = source/MainView.mm; sourceTree = "<group>"; };
-		4198A5411B58D4840050C831 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = source/MainViewController.h; sourceTree = "<group>"; };
-		4198A5421B58D4840050C831 /* MainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainViewController.mm; path = source/MainViewController.mm; sourceTree = "<group>"; };
-		4198A5431B58D4840050C831 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = source/MainWindowController.h; sourceTree = "<group>"; };
-		4198A5441B58D4840050C831 /* MainWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainWindowController.mm; path = source/MainWindowController.mm; sourceTree = "<group>"; };
+		41FF1DC51B5B49490081F283 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = "<group>"; };
+		41FF1DC61B5B49490081F283 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = "<group>"; };
+		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
+		41FF1DC81B5B49490081F283 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = "<group>"; };
+		41FF1DC91B5B49490081F283 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = "<group>"; };
+		41FF1DCA1B5B49490081F283 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/UIBridgeBase.h; sourceTree = "<group>"; };
+		41FF1DCB1B5B49490081F283 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = "<group>"; };
+		41FF1DCF1B5B49A60081F283 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = source/stdafx.cpp; sourceTree = "<group>"; };
+		41FF1DD01B5B49A60081F283 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/stdafx.h; sourceTree = "<group>"; };
+		41FF1DD11B5B49A60081F283 /* strhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strhelper.cpp; path = source/strhelper.cpp; sourceTree = "<group>"; };
+		41FF1DD21B5B49A60081F283 /* strhelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strhelper.h; path = source/strhelper.h; sourceTree = "<group>"; };
+		41FF1DD31B5B49A60081F283 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = "<group>"; };
+		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
+		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
+		41FF1DD91B5B4A5A0081F283 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = "<group>"; };
+		41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = "<group>"; };
+		41FF1DDE1B5B4B250081F283 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		41FF1DDF1B5B4B250081F283 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
+		41FF1DE01B5B4B250081F283 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = source/MainView.h; sourceTree = SOURCE_ROOT; };
+		41FF1DE11B5B4B250081F283 /* MainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainView.mm; path = source/MainView.mm; sourceTree = SOURCE_ROOT; };
+		41FF1DE21B5B4B250081F283 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = source/MainViewController.h; sourceTree = SOURCE_ROOT; };
+		41FF1DE31B5B4B250081F283 /* MainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainViewController.mm; path = source/MainViewController.mm; sourceTree = SOURCE_ROOT; };
+		41FF1DE41B5B4B250081F283 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainWindowController.h; path = source/MainWindowController.h; sourceTree = SOURCE_ROOT; };
+		41FF1DE51B5B4B250081F283 /* MainWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainWindowController.mm; path = source/MainWindowController.mm; sourceTree = SOURCE_ROOT; };
+		41FF1DEA1B5B4B470081F283 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = "<group>"; };
+		41FF1DEB1B5B4B470081F283 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = "<group>"; };
+		41FF1DEC1B5B4B470081F283 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = "<group>"; };
+		41FF1DED1B5B4B470081F283 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = md5.h; path = source/Algorithms/md5.h; sourceTree = "<group>"; };
+		41FF1DEE1B5B4B470081F283 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHA1.cpp; path = source/Algorithms/SHA1.cpp; sourceTree = "<group>"; };
+		41FF1DEF1B5B4B470081F283 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = "<group>"; };
+		41FF1DF01B5B4B470081F283 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = "<group>"; };
+		41FF1DF11B5B4B470081F283 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = source/Algorithms/sha256.h; sourceTree = "<group>"; };
 		52751B101B56276F00BD724B /* fHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -48,21 +82,61 @@
 		4166AC661B56961100BF19F9 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				4198A53C1B58D4770050C831 /* fHashMacAppDelegate.h */,
-				4198A53D1B58D4770050C831 /* fHashMacAppDelegate.mm */,
-				4198A5431B58D4840050C831 /* MainWindowController.h */,
-				4198A5441B58D4840050C831 /* MainWindowController.mm */,
-				4198A53F1B58D4840050C831 /* MainView.h */,
-				4198A5401B58D4840050C831 /* MainView.mm */,
-				4198A5411B58D4840050C831 /* MainViewController.h */,
-				4198A5421B58D4840050C831 /* MainViewController.mm */,
+				41FF1DC71B5B49490081F283 /* Global.h */,
+				41FF1DCB1B5B49490081F283 /* version.h */,
+				41FF1DC61B5B49490081F283 /* Functions.h */,
+				41FF1DC51B5B49490081F283 /* Functions.cpp */,
+				41FF1DC91B5B49490081F283 /* HashEngine.h */,
+				41FF1DC81B5B49490081F283 /* HashEngine.cpp */,
+				41FF1DCA1B5B49490081F283 /* UIBridgeBase.h */,
 			);
 			name = src;
+			sourceTree = "<group>";
+		};
+		41FF1DCE1B5B49840081F283 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				41FF1DD31B5B49A60081F283 /* targetver.h */,
+				41FF1DD01B5B49A60081F283 /* stdafx.h */,
+				41FF1DCF1B5B49A60081F283 /* stdafx.cpp */,
+				41FF1DD11B5B49A60081F283 /* strhelper.cpp */,
+				41FF1DD21B5B49A60081F283 /* strhelper.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		41FF1DD61B5B4A420081F283 /* OsUtils */ = {
+			isa = PBXGroup;
+			children = (
+				41FF1DD71B5B4A5A0081F283 /* OsFile.h */,
+				41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */,
+				41FF1DD91B5B4A5A0081F283 /* OsThread.h */,
+				41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */,
+			);
+			name = OsUtils;
+			sourceTree = "<group>";
+		};
+		41FF1DDD1B5B4ACA0081F283 /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				41FF1DEB1B5B4B470081F283 /* CRC32.h */,
+				41FF1DEA1B5B4B470081F283 /* CRC32.cpp */,
+				41FF1DED1B5B4B470081F283 /* md5.h */,
+				41FF1DEC1B5B4B470081F283 /* MD5.cpp */,
+				41FF1DEF1B5B4B470081F283 /* SHA1.h */,
+				41FF1DEE1B5B4B470081F283 /* SHA1.cpp */,
+				41FF1DF11B5B4B470081F283 /* sha256.h */,
+				41FF1DF01B5B4B470081F283 /* sha256.cpp */,
+			);
+			name = Algorithms;
 			sourceTree = "<group>";
 		};
 		52751B071B56276F00BD724B = {
 			isa = PBXGroup;
 			children = (
+				41FF1DCE1B5B49840081F283 /* Common */,
+				41FF1DD61B5B4A420081F283 /* OsUtils */,
+				41FF1DDD1B5B4ACA0081F283 /* Algorithms */,
 				52751B121B56276F00BD724B /* fHashMacUI */,
 				4166AC661B56961100BF19F9 /* src */,
 				52751B111B56276F00BD724B /* Products */,
@@ -83,6 +157,14 @@
 				4198A5311B58D3B50050C831 /* Assets.xcassets */,
 				4198A5351B58D3C40050C831 /* Main.storyboard */,
 				4198A5321B58D3B50050C831 /* Info.plist */,
+				41FF1DDE1B5B4B250081F283 /* fHashMacAppDelegate.h */,
+				41FF1DDF1B5B4B250081F283 /* fHashMacAppDelegate.mm */,
+				41FF1DE01B5B4B250081F283 /* MainView.h */,
+				41FF1DE11B5B4B250081F283 /* MainView.mm */,
+				41FF1DE21B5B4B250081F283 /* MainViewController.h */,
+				41FF1DE31B5B4B250081F283 /* MainViewController.mm */,
+				41FF1DE41B5B4B250081F283 /* MainWindowController.h */,
+				41FF1DE51B5B4B250081F283 /* MainWindowController.mm */,
 				52751B161B56276F00BD724B /* Supporting Files */,
 			);
 			name = fHashMacUI;
@@ -168,11 +250,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4198A5471B58D4840050C831 /* MainWindowController.mm in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
-				4198A5461B58D4840050C831 /* MainViewController.mm in Sources */,
-				4198A5451B58D4840050C831 /* MainView.mm in Sources */,
-				4198A53E1B58D4770050C831 /* fHashMacAppDelegate.mm in Sources */,
+				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
+				41FF1DE71B5B4B250081F283 /* MainView.mm in Sources */,
+				41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */,
+				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
+				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
+				41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */,
+				41FF1DCC1B5B49490081F283 /* Functions.cpp in Sources */,
+				41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */,
+				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
+				41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */,
+				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
+				41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */,
+				41FF1DF21B5B4B470081F283 /* CRC32.cpp in Sources */,
+				41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +371,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CFLAGS = "-DFHASH_OSX_UI";
+				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -294,6 +387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CFLAGS = "-DFHASH_OSX_UI";
+				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
