@@ -54,7 +54,7 @@
 		410AB8291AFE3D96001A10F9 /* strhelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strhelper.h; path = source/strhelper.h; sourceTree = SOURCE_ROOT; };
 		410AB82E1AFE3E91001A10F9 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = SOURCE_ROOT; };
 		410AB82F1AFE3E91001A10F9 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = SOURCE_ROOT; };
-		410AB8301AFE40AD001A10F9 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = SOURCE_ROOT; };
+		410AB8301AFE40AD001A10F9 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = SOURCE_ROOT; };
 		410AB8311AFE40AD001A10F9 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = SOURCE_ROOT; };
 		410AB8331AFE45AA001A10F9 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
 		410AB83B1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
