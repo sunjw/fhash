@@ -43,9 +43,9 @@
 		410AB8141AFE3B1A001A10F9 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = SOURCE_ROOT; };
 		410AB8151AFE3B1A001A10F9 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = SOURCE_ROOT; };
 		410AB8161AFE3B1A001A10F9 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = source/Algorithms/sha256.h; sourceTree = SOURCE_ROOT; };
-		410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = source/stdafx.cpp; sourceTree = SOURCE_ROOT; };
-		410AB81D1AFE3BA5001A10F9 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/stdafx.h; sourceTree = SOURCE_ROOT; };
-		410AB81E1AFE3BA5001A10F9 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = SOURCE_ROOT; };
+		410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.cpp.cpp; name = stdafx.cpp; path = source/stdafx.cpp; sourceTree = SOURCE_ROOT; };
+		410AB81D1AFE3BA5001A10F9 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/stdafx.h; sourceTree = SOURCE_ROOT; };
+		410AB81E1AFE3BA5001A10F9 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = SOURCE_ROOT; };
 		410AB8201AFE3CF7001A10F9 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/OSXCmd/main.cpp; sourceTree = SOURCE_ROOT; };
 		410AB8241AFE3D8A001A10F9 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = SOURCE_ROOT; };
 		410AB8251AFE3D8A001A10F9 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = SOURCE_ROOT; };
@@ -135,8 +135,8 @@
 		410AB8221AFE3D06001A10F9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */,
 				410AB81D1AFE3BA5001A10F9 /* stdafx.h */,
+				410AB81C1AFE3BA5001A10F9 /* stdafx.cpp */,
 				410AB81E1AFE3BA5001A10F9 /* targetver.h */,
 				410AB8291AFE3D96001A10F9 /* strhelper.h */,
 				410AB8281AFE3D96001A10F9 /* strhelper.cpp */,
