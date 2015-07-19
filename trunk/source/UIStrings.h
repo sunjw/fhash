@@ -1,7 +1,18 @@
 #ifndef _UISTRINGS_H_
 #define _UISTRINGS_H_
 
+#if defined (WIN32)
 #include <tchar.h>
+#endif
+
+#if defined (__APPLE__) || defined (__unix)
+#include "strhelper.h"
+
+#define _T(str) (str)
+
+using sunjwbase::TCHAR;
+
+#endif
 
 // Multi languages
 //#define ZH_CN
