@@ -16,7 +16,7 @@
 #include "version.h"
 #include "OsThread.h"
 #include "strhelper.h"
-#include "Functions.h"
+#include "Utils.h"
 #include "HashEngine.h"
 #include "UIBridgeMacCmd.h"
 

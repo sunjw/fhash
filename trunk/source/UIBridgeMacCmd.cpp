@@ -6,7 +6,7 @@
 
 #include "strhelper.h"
 #include "Global.h"
-#include "Functions.h"
+#include "Utils.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -55,9 +55,9 @@ void UIBridgeMacCmd::showFileMeta(const ResultData& result)
     char chSizeBuff[1024] = {0};
     sprintf(chSizeBuff, "%llu", result.ulSize);
     
-    string strShortSize = ConvertSizeToStr(result.ulSize);
+    string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
     
-    printf("File Size: %s Byte(s)%s\n",
+    printf("File Size: %s Byte(s) (%s)\n",
            chSizeBuff, strShortSize.c_str());
     printf("Modified Date: %s\n",
            tstrtostr(result.tstrMDate).c_str());
