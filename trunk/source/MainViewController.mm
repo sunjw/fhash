@@ -33,7 +33,7 @@ enum MainViewControllerState {
 
 @property (assign) MainViewControllerState state;
 @property (assign) pthread_t ptHash;
-@property (assign) ThreadData thrdData;
+@property (assign) ThreadData *thrdData;
 
 @end
 
@@ -43,6 +43,10 @@ enum MainViewControllerState {
 @synthesize ptHash = _ptHash;
 @synthesize thrdData = _thrdData;
 
+- (void)dealloc {
+    delete _thrdData;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -51,7 +55,11 @@ enum MainViewControllerState {
     MainView *mainView = (MainView *)[self view];
     mainView.mainViewController = self;
     
+    _thrdData = new ThreadData();
+    
     [self setViewControllerState:MAINVC_NONE];
+    
+    
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
@@ -91,19 +99,19 @@ enum MainViewControllerState {
     switch (newState) {
         case MAINVC_NONE: {
             // clear all.
-            _thrdData.threadWorking = false;
-            _thrdData.stop = false;
+            _thrdData->threadWorking = false;
+            _thrdData->stop = false;
             
-            _thrdData.uppercase = false;
-            _thrdData.nFiles = 0;
-            _thrdData.totalSize = 0;
+            _thrdData->uppercase = false;
+            _thrdData->nFiles = 0;
+            _thrdData->totalSize = 0;
             
-            _thrdData.fullPaths.clear();
-            _thrdData.resultList.clear();
+            _thrdData->fullPaths.clear();
+            _thrdData->resultList.clear();
             
         } break;
         case MAINVC_CALC_ING: {
-            _thrdData.stop = false;
+            _thrdData->stop = false;
             
         } break;
         case MAINVC_CALC_FINISH: {
@@ -127,13 +135,13 @@ enum MainViewControllerState {
 - (void)startHashCalc:(NSArray *)fileNames {
     // Get files path
     NSUInteger fileCount = [fileNames count];
-    _thrdData.nFiles = (uint32_t)fileCount;
-    _thrdData.fullPaths.clear();
+    _thrdData->nFiles = (uint32_t)fileCount;
+    _thrdData->fullPaths.clear();
     
-    for (uint32_t i = 0; i < _thrdData.nFiles; ++i) {
+    for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
         NSString *nsstrfileName = [fileNames objectAtIndex:i];
         string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
-        _thrdData.fullPaths.push_back(strtotstr(strFileName));
+        _thrdData->fullPaths.push_back(strtotstr(strFileName));
     }
     
     [self setViewControllerState:MAINVC_CALC_ING];
@@ -141,7 +149,7 @@ enum MainViewControllerState {
     pthread_create(&_ptHash,
                    NULL,
                    (void *(*)(void *))HashThreadFunc,
-                   &_thrdData);
+                   _thrdData);
 
 }
 
