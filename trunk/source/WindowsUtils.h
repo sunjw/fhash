@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <string>
+#include <Windows.h>
 #include <atlbase.h>
 
 #include "strhelper.h"
