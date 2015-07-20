@@ -148,6 +148,10 @@ enum MainViewControllerState {
     _mainMtx->lock();
     [self.mainTextView setString:_mainText];
     _mainMtx->unlock();
+    
+    // Scroll to end.
+    [self.mainTextView
+     scrollRangeToVisible:NSMakeRange(self.mainTextView.string.length, 0)];
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {

@@ -5,9 +5,10 @@
 #include <dispatch/dispatch.h>
 
 #include "strhelper.h"
-#include "Global.h"
 #include "Utils.h"
 #include "MacUtils.h"
+#include "Global.h"
+#include "UIStrings.h"
 
 #import "MainViewController.h"
 
@@ -38,11 +39,31 @@ void UIBridgeMacUI::unlockData()
 
 void UIBridgeMacUI::preparingCalc()
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
+    lockData();
+    {
+        _nsmutStrNoPreparing = mainViewController.mainText;
+        
+        string strAppend = MacUtils::GetStringFromRes(MAINDLG_WAITING_START);
+        strAppend.append("\n");
+    }
+    unlockData();
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [mainViewController updateMainTextView];
+    });
 }
 
 void UIBridgeMacUI::removePreparingCalc()
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    
+    lockData();
+    {
+        mainViewController.mainText = _nsmutStrNoPreparing;
+    }
+    unlockData();
 }
 
 void UIBridgeMacUI::calcStop()
