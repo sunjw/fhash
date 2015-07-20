@@ -25,9 +25,6 @@ using namespace sunjwbase;
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
-    string strTest = SHELL_EXT_ITEM_ZH_CN;
-    strTest = utf8conv(strTest);
-    printf("%s\n", strTest.c_str());
     // Save ourself into view.
     MainView *mainView = (MainView *)[self view];
     mainView.mainViewController = self;
