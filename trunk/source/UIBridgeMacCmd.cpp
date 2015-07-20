@@ -95,7 +95,7 @@ void UIBridgeMacCmd::showFileErr(const ResultData& result)
 
 int UIBridgeMacCmd::getProgMax()
 {
-	return 40;
+    return 40;
 }
 
 void UIBridgeMacCmd::updateProg(int value)
@@ -114,7 +114,7 @@ void UIBridgeMacCmd::updateProg(int value)
 
 void UIBridgeMacCmd::updateProgWhole(int value)
 {
-	
+    
 }
 
 void UIBridgeMacCmd::fileCalcFinish()

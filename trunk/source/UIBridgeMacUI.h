@@ -12,27 +12,27 @@ class UIBridgeMacUI: public UIBridgeBase
 public:
     UIBridgeMacUI(MainViewController *mainViewController,
                   sunjwbase::OsMutex *mainMtx);
-	virtual ~UIBridgeMacUI();
+    virtual ~UIBridgeMacUI();
 
-	virtual void lockData();
-	virtual void unlockData();
+    virtual void lockData();
+    virtual void unlockData();
 
-	virtual void preparingCalc();
-	virtual void removePreparingCalc();
-	virtual void calcStop();
-	virtual void calcFinish();
+    virtual void preparingCalc();
+    virtual void removePreparingCalc();
+    virtual void calcStop();
+    virtual void calcFinish();
 
-	virtual void showFileName(const ResultData& result);
-	virtual void showFileMeta(const ResultData& result);
-	virtual void showFileHash(const ResultData& result, bool uppercase);
-	virtual void showFileErr(const ResultData& result);
+    virtual void showFileName(const ResultData& result);
+    virtual void showFileMeta(const ResultData& result);
+    virtual void showFileHash(const ResultData& result, bool uppercase);
+    virtual void showFileErr(const ResultData& result);
 
-	virtual int getProgMax();
-	virtual void updateProg(int value);
-	virtual void updateProgWhole(int value);
+    virtual int getProgMax();
+    virtual void updateProg(int value);
+    virtual void updateProgWhole(int value);
 
-	virtual void fileCalcFinish();
-	virtual void fileFinish();
+    virtual void fileCalcFinish();
+    virtual void fileFinish();
 
 private:
     MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
