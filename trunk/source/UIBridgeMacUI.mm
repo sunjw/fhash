@@ -10,7 +10,9 @@
 using namespace std;
 using namespace sunjwbase;
 
-UIBridgeMacUI::UIBridgeMacUI()
+UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController,
+                             OsMutex *mainMtx)
+:_mainViewControllerPtr(mainViewController), _mainMtx(mainMtx)
 {
 }
 
@@ -20,10 +22,12 @@ UIBridgeMacUI::~UIBridgeMacUI()
 
 void UIBridgeMacUI::lockData()
 {
+    _mainMtx->lock();
 }
 
 void UIBridgeMacUI::unlockData()
 {
+    _mainMtx->unlock();
 }
 
 void UIBridgeMacUI::preparingCalc()

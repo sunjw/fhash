@@ -11,10 +11,11 @@
 #include <stdint.h>
 #include <pthread.h>
 #include <string>
-#include "UIStrings.h"
 #include "strhelper.h"
+#include "OsUtils/OsThread.h"
 #include "Global.h"
 #include "HashEngine.h"
+#include "UIStrings.h"
 
 #import "MacUtils.h"
 #import "MainView.h"
@@ -33,20 +34,26 @@ enum MainViewControllerState {
 @interface MainViewController()
 
 @property (assign) MainViewControllerState state;
-@property (assign) pthread_t ptHash;
+@property (assign) OsMutex *mainMtx;
+@property (assign) UIBridgeMacUI *uiBridgeMac;
 @property (assign) ThreadData *thrdData;
+@property (assign) pthread_t ptHash;
 
 @end
 
 @implementation MainViewController
 
 @synthesize state = _state;
-@synthesize ptHash = _ptHash;
+@synthesize mainMtx = _mainMtx;
+@synthesize uiBridgeMac = _uiBridgeMac;
 @synthesize thrdData = _thrdData;
+@synthesize ptHash = _ptHash;
 
 // Not be called on exit.
 // Just for sure.
 - (void)dealloc {
+    delete _mainMtx;
+    delete _uiBridgeMac;
     delete _thrdData;
 }
 
@@ -58,11 +65,14 @@ enum MainViewControllerState {
     MainView *mainView = (MainView *)[self view];
     mainView.mainViewController = self;
     
+    // alloc c++ member.
+    _mainMtx = new OsMutex();
+    _uiBridgeMac = new UIBridgeMacUI(self, _mainMtx);
     _thrdData = new ThreadData();
     
     [self setViewControllerState:MAINVC_NONE];
     
-    
+    _thrdData->uiBridge = _uiBridgeMac;
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];

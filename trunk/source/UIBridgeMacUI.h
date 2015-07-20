@@ -1,12 +1,17 @@
 #ifndef _UI_BRIDGE_MAC_UI_
 #define _UI_BRIDGE_MAC_UI_
 
+#include "OsUtils/OsThread.h"
 #include "UIBridgeBase.h"
+
+#import "MacUtils.h"
+#import "MainViewController.h"
 
 class UIBridgeMacUI: public UIBridgeBase
 {
 public:
-    UIBridgeMacUI();
+    UIBridgeMacUI(MainViewController *mainViewController,
+                  sunjwbase::OsMutex *mainMtx);
 	virtual ~UIBridgeMacUI();
 
 	virtual void lockData();
@@ -30,7 +35,8 @@ public:
 	virtual void fileFinish();
 
 private:
-    
+    MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
+    sunjwbase::OsMutex *_mainMtx;
 };
 
 #endif
