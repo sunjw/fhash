@@ -8,7 +8,6 @@
 #include "Global.h"
 #include "Utils.h"
 #include "MacUtils.h"
-#include "UIStrings.h"
 
 #import "MainViewController.h"
 
@@ -57,18 +56,10 @@ void UIBridgeMacUI::calcFinish()
 void UIBridgeMacUI::showFileName(const ResultData& result)
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
-    string strFileNameString = tstrtostr(FILENAME_STRING);
-    string strAppend = utf8conv(strFileNameString);
-    strAppend.append(" ");
-    strAppend.append(tstrtostr(result.tstrPath));
-    strAppend.append("\n");
-    
-    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    
+
     lockData();
     {
-        [[mainViewController mainText] appendString:nsstrAppend];
+        MacUtils::AppendFileNameToNSMutableString(result, mainViewController.mainText);
     }
     unlockData();
     
@@ -79,34 +70,34 @@ void UIBridgeMacUI::showFileName(const ResultData& result)
 
 void UIBridgeMacUI::showFileMeta(const ResultData& result)
 {
-    char chSizeBuff[1024] = {0};
-    sprintf(chSizeBuff, "%llu", result.ulSize);
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
-    string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
+    lockData();
+    {
+        MacUtils::AppendFileMetaToNSMutableString(result, mainViewController.mainText);
+    }
+    unlockData();
     
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController updateMainTextView];
+    });
 }
 
 void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
 {
-    string strFileMD5, strFileSHA1, strFileSHA256, strFileCRC32;
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
-    if (uppercase)
+    lockData();
     {
-        strFileMD5 = str_upper(tstrtostr(result.tstrMD5));
-        strFileSHA1 = str_upper(tstrtostr(result.tstrSHA1));
-        strFileSHA256 = str_upper(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_upper(tstrtostr(result.tstrCRC32));
+        MacUtils::AppendFileHashToNSMutableString(result,
+                                                  uppercase,
+                                                  mainViewController.mainText);
     }
-    else
-    {
-        strFileMD5 = str_lower(tstrtostr(result.tstrMD5));
-        strFileSHA1 = str_lower(tstrtostr(result.tstrSHA1));
-        strFileSHA256 = str_lower(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_lower(tstrtostr(result.tstrCRC32));
-    }
+    unlockData();
     
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController updateMainTextView];
+    });
 }
 
 void UIBridgeMacUI::showFileErr(const ResultData& result)

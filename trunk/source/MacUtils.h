@@ -10,6 +10,9 @@
 #define _MAC_UTILS_H_
 
 #include <string>
+#include "strhelper.h"
+#include "Global.h"
+
 #import <Foundation/Foundation.h>
 
 namespace MacUtils {
@@ -24,7 +27,7 @@ namespace MacUtils {
         ObjcWeakPtr(NSTYPE *obj);
         
         void set(NSTYPE *obj);
-        NSTYPE *get();
+        NSTYPE *get() const;
         
     private:
         void *_ptr;
@@ -41,21 +44,43 @@ namespace MacUtils {
     }
     
     template <class NSTYPE>
-    NSTYPE *ObjcWeakPtr<NSTYPE>::get() {
+    NSTYPE *ObjcWeakPtr<NSTYPE>::get() const {
         return (__bridge NSTYPE *)_ptr;
     }
     
     /**
      * Convert NSString to an UTF-8 std::string.
      */
-    std::string ConvertNSStringToUTF8String(NSString *nsstr);
+    std::string ConvertNSStringToUTF8String(const NSString *nsstr);
     
     /**
-     * Convert an UTF-8 std::string to NSString
+     * Convert an UTF-8 std::string to NSString.
      */
-    NSString *ConvertUTF8StringToNSString(std::string stdstrUtf8);
+    NSString *ConvertUTF8StringToNSString(const std::string stdstrUtf8);
     
+    /**
+     * Get specific named string.
+     */
+    std::string GetStringFromRes(const sunjwbase::TCHAR *tzhName);
     
+    /**
+     * Append file name in ResultData to NSMutableString.
+     */
+    void AppendFileNameToNSMutableString(const ResultData& result,
+                                         NSMutableString *nsmutString);
+    
+    /**
+     * Append file meta in ResultData to NSMutableString.
+     */
+    void AppendFileMetaToNSMutableString(const ResultData& result,
+                                         NSMutableString *nsmutString);
+    
+    /**
+     * Append file hash result in ResultData to NSMutableString.
+     */
+    void AppendFileHashToNSMutableString(const ResultData& result,
+                                         bool uppercase,
+                                         NSMutableString *nsmutString);
     
 }
 
