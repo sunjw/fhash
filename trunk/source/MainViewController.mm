@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 
 #include <stdint.h>
+#include <pthread.h>
 #include <string>
 #include "UIStrings.h"
 #include "strhelper.h"
@@ -31,6 +32,7 @@ enum MainViewControllerState {
 @interface MainViewController()
 
 @property (assign) MainViewControllerState state;
+@property (assign) pthread_t ptHash;
 @property (assign) ThreadData thrdData;
 
 @end
@@ -38,6 +40,7 @@ enum MainViewControllerState {
 @implementation MainViewController
 
 @synthesize state = _state;
+@synthesize ptHash = _ptHash;
 @synthesize thrdData = _thrdData;
 
 - (void)viewDidLoad {
@@ -100,6 +103,7 @@ enum MainViewControllerState {
             
         } break;
         case MAINVC_CALC_ING: {
+            _thrdData.stop = false;
             
         } break;
         case MAINVC_CALC_FINISH: {
@@ -124,6 +128,7 @@ enum MainViewControllerState {
     // Get files path
     NSUInteger fileCount = [fileNames count];
     _thrdData.nFiles = (uint32_t)fileCount;
+    _thrdData.fullPaths.clear();
     
     for (uint32_t i = 0; i < _thrdData.nFiles; ++i) {
         NSString *nsstrfileName = [fileNames objectAtIndex:i];
@@ -131,7 +136,13 @@ enum MainViewControllerState {
         _thrdData.fullPaths.push_back(strtotstr(strFileName));
     }
     
+    [self setViewControllerState:MAINVC_CALC_ING];
     
+    pthread_create(&_ptHash,
+                   NULL,
+                   (void *(*)(void *))HashThreadFunc,
+                   &_thrdData);
+
 }
 
 @end
