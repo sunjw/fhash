@@ -57,9 +57,12 @@ namespace MacUtils {
         strAppend.append(chSizeBuff);
         strAppend.append(" ");
         strAppend.append(MacUtils::GetStringFromRes(BYTE_STRING));
-        strAppend.append(" (");
-        strAppend.append(strShortSize);
-        strAppend.append(")\n");
+        if (strShortSize != "") {
+            strAppend.append(" (");
+            strAppend.append(strShortSize);
+            strAppend.append(")");
+        }
+        strAppend.append("\n");
         strAppend.append(MacUtils::GetStringFromRes(MODIFYTIME_STRING));
         strAppend.append(" ");
         strAppend.append(tstrtostr(result.tstrMDate));
