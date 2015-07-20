@@ -13,12 +13,7 @@
 #endif
 
 #include "strhelper.h"
-#include "Functions.h"
 #include "UIBridgeBase.h"
-
-#if defined FHASH_WIN_UI
-#include "UIStrings.h"
-#endif
 
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
@@ -30,8 +25,6 @@
 
 using namespace std;
 using namespace sunjwbase;
-
-extern OsMutex g_mainMtx;
 
 unsigned int DataBuffer::preflen = 1048576; // 2^20
 
