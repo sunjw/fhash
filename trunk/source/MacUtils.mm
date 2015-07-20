@@ -14,6 +14,7 @@
 using namespace std;
 
 namespace MacUtils {
+    
     string ConvertNSStringToUTF8String(NSString *nsstr) {
         string strRet = string([nsstr UTF8String]);
         return strRet;
