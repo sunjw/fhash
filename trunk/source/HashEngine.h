@@ -4,9 +4,7 @@
 #include "Global.h"
 
 #if defined (WIN32)
-
 #include <WinDef.h>
-
 #endif
 
 

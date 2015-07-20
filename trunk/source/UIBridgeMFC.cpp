@@ -9,7 +9,8 @@
 
 #include "strhelper.h"
 #include "Global.h"
-#include "Functions.h"
+#include "Utils.h"
+#include "WindowsUtils.h"
 #include "UIStrings.h"
 
 using namespace std;
@@ -91,7 +92,7 @@ void UIBridgeMFC::showFileMeta(const ResultData& result)
 	sprintf_s(chSizeBuff, 1024, "%I64u", result.ulSize);
 	tstring tstrFileSize = strtotstr(string(chSizeBuff));
 
-	tstring tstrShortSize = strtotstr(ConvertSizeToStr(result.ulSize));
+	tstring tstrShortSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
 
 	lockData();
 	{

@@ -588,10 +588,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Functions.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\source\HashEngine.cpp"
 				>
 			</File>
@@ -609,6 +605,14 @@
 			</File>
 			<File
 				RelativePath=".\source\UIStrings.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Utils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsUtils.cpp"
 				>
 			</File>
 		</Filter>
@@ -634,10 +638,6 @@
 			</File>
 			<File
 				RelativePath=".\source\FindDlg.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Functions.h"
 				>
 			</File>
 			<File
@@ -681,7 +681,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\Utils.h"
+				>
+			</File>
+			<File
 				RelativePath=".\source\version.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsUtils.h"
 				>
 			</File>
 		</Filter>

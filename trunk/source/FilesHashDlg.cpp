@@ -11,7 +11,8 @@
 #include "FindDlg.h"
 #include "AboutDlg.h"
 #include "Global.h"
-#include "Functions.h"
+#include "Utils.h"
+#include "WindowsUtils.h"
 #include "HashEngine.h"
 #include "UIStrings.h"
 #include "UIBridgeMFC.h"
@@ -97,7 +98,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 
 	m_prog.SetStep(1);
 
-	m_bLimited = IsLimitedProc();
+	m_bLimited = WindowsUtils::IsLimitedProc();
 
 	CWnd* pWnd;
 	pWnd = GetDlgItem(IDC_STATIC_SPEED);
@@ -143,7 +144,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_editMain.SetLimitText(UINT_MAX);
 	m_editMain.SetWindowText(MAINDLG_INITINFO);
 
-	if(ContextMenuExisted())
+	if(WindowsUtils::ContextMenuExisted())
 	{
 		// 已经添加右键菜单
 		m_btnContext.SetWindowText(MAINDLG_REMOVE_CONTEXT_MENU);
@@ -430,10 +431,10 @@ void CFilesHashDlg::OnBnClickedContext()
 	{
 		OSVERSIONINFOEX osvi;
 		BOOL bOsVersionInfoEx;
-		if(GetWindowsVersion(osvi, bOsVersionInfoEx) &&
+		if(WindowsUtils::GetWindowsVersion(osvi, bOsVersionInfoEx) &&
 			osvi.dwMajorVersion >= 6)
 		{
-			if(ElevateProcess())
+			if(WindowsUtils::ElevateProcess())
 				ExitProcess(0);
 		}
 	}
@@ -446,8 +447,8 @@ void CFilesHashDlg::OnBnClickedContext()
 
 	if(buttonText.Compare(MAINDLG_ADD_CONTEXT_MENU) == 0)
 	{
-		RemoveContextMenu(); // Try to delete all items related to fHash
-		if(AddContextMenu())
+		WindowsUtils::RemoveContextMenu(); // Try to delete all items related to fHash
+		if(WindowsUtils::AddContextMenu())
 		{
 			pWnd->SetWindowText(MAINDLG_ADD_SUCCEEDED);
 			m_btnContext.SetWindowText(MAINDLG_REMOVE_CONTEXT_MENU);
@@ -459,7 +460,7 @@ void CFilesHashDlg::OnBnClickedContext()
 	}
 	else if(buttonText.Compare(MAINDLG_REMOVE_CONTEXT_MENU) == 0)
 	{
-		if(RemoveContextMenu())
+		if(WindowsUtils::RemoveContextMenu())
 		{
 			pWnd->SetWindowText(MAINDLG_REMOVE_SUCCEEDED);
 			m_btnContext.SetWindowText(MAINDLG_ADD_CONTEXT_MENU);
@@ -803,7 +804,7 @@ void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend
 		tstrToAppend.append(strtotstr(string(chSize)));
 		tstrToAppend.append(BYTE_STRING);
 
-		tstring tstrResultSize = strtotstr(ConvertSizeToStr(result.ulSize));
+		tstring tstrResultSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
 		tstrToAppend.append(tstrResultSize);
 		tstrToAppend.append(_T("\r\n"));
 		tstrToAppend.append(MODIFYTIME_STRING);

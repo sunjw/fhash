@@ -15,6 +15,10 @@
 #include "strhelper.h"
 #include "UIBridgeBase.h"
 
+#if defined (WIN32)
+#include "WindowsUtils.h"
+#endif
+
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
 
@@ -205,7 +209,7 @@ int WINAPI HashThreadFunc(void *param)
 
 #if defined (WIN32)
 			// get file version //
-			CString cstrVer = GetExeFileVersion((TCHAR *)path);
+			CString cstrVer = WindowsUtils::GetExeFileVersion((TCHAR *)path);
 			tstrFileVersion = cstrVer.GetString();
 			result.tstrVersion = tstrFileVersion;
 #endif

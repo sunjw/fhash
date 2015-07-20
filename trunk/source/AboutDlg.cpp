@@ -8,7 +8,7 @@
 #include "version.h"
 #include "FilesHash.h"
 #include "AboutDlg.h"
-#include "Functions.h"
+#include "WindowsUtils.h"
 #include "UIStrings.h"
 
 // CAboutDlg ¶Ô»°¿ò
@@ -39,7 +39,7 @@ BOOL CAboutDlg::OnInitDialog()
 	
 	CString fHashVersion = _T(STR_VERSION); //GetExeFileVersion(exeFullPath);
 
-	CString osinfo = GetWindowsInfo();
+	CString osinfo = WindowsUtils::GetWindowsInfo();
 	m_about = ABOUTDLG_INFO_TITLE;
 	m_about.Append(fHashVersion);
 	if(sizeof(void*) == 8)
