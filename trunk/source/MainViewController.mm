@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 
-#include <stdio.h>
 #include <string>
 #include "UIStrings.h"
 #include "strhelper.h"
@@ -71,7 +70,7 @@ using namespace sunjwbase;
     for (NSUInteger i = 0; i < fileCount; ++i) {
         NSString *nsstrfileName = [fileNames objectAtIndex:i];
         string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
-        printf("%s\n", strFileName.c_str());
+        
     }
     
     

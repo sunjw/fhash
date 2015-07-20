@@ -7,10 +7,6 @@
 //
 
 #import "MainView.h"
-
-#include <stdio.h>
-#include <string>
-
 #import "MacUtils.h"
 
 using namespace std;
