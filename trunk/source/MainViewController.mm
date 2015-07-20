@@ -8,9 +8,12 @@
 
 #import "MainViewController.h"
 
+#include <stdint.h>
 #include <string>
 #include "UIStrings.h"
 #include "strhelper.h"
+#include "Global.h"
+#include "HashEngine.h"
 
 #import "MacUtils.h"
 #import "MainView.h"
@@ -18,15 +21,34 @@
 using namespace std;
 using namespace sunjwbase;
 
+enum MainViewControllerState {
+    MAINVC_NONE = 0,    // clear state
+    MAINVC_CALC_ING,    // calculating
+    MAINVC_CALC_FINISH, // calculating finished/stopped
+    MAINVC_VERIFY,      // verfing
+};
+
+@interface MainViewController()
+
+@property (assign) MainViewControllerState state;
+@property (assign) ThreadData thrdData;
+
+@end
+
 @implementation MainViewController
+
+@synthesize state = _state;
+@synthesize thrdData = _thrdData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
-    // Save ourself into view.
+    // Initiate.
     MainView *mainView = (MainView *)[self view];
     mainView.mainViewController = self;
+    
+    [self setViewControllerState:MAINVC_NONE];
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
@@ -62,15 +84,51 @@ using namespace sunjwbase;
     // Update the view, if already loaded.
 }
 
+- (void)setViewControllerState:(MainViewControllerState)newState {
+    switch (newState) {
+        case MAINVC_NONE: {
+            // clear all.
+            _thrdData.threadWorking = false;
+            _thrdData.stop = false;
+            
+            _thrdData.uppercase = false;
+            _thrdData.nFiles = 0;
+            _thrdData.totalSize = 0;
+            
+            _thrdData.fullPaths.clear();
+            _thrdData.resultList.clear();
+            
+        } break;
+        case MAINVC_CALC_ING: {
+            
+        } break;
+        case MAINVC_CALC_FINISH: {
+            
+        } break;
+        case MAINVC_VERIFY: {
+            
+        } break;
+    }
+    
+    _state = newState;
+}
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
     
+    [self startHashCalc:fileNames];
+}
+
+- (void)startHashCalc:(NSArray *)fileNames {
+    // Get files path
     NSUInteger fileCount = [fileNames count];
-    for (NSUInteger i = 0; i < fileCount; ++i) {
+    _thrdData.nFiles = (uint32_t)fileCount;
+    
+    for (uint32_t i = 0; i < _thrdData.nFiles; ++i) {
         NSString *nsstrfileName = [fileNames objectAtIndex:i];
         string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
-        
+        _thrdData.fullPaths.push_back(strtotstr(strFileName));
     }
     
     
