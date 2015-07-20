@@ -86,10 +86,6 @@ enum MainViewControllerState {
     
     //[self.mainTextView setString:@"sdfasdf\n"];
     
-    
-    // Set progress line.
-    [self.mainProgressIndicator setDoubleValue:50.0];
-    
     // Set checkbox.
     [self.upperCaseButton setState:NSOffState];
     
@@ -115,6 +111,8 @@ enum MainViewControllerState {
             _thrdData->fullPaths.clear();
             _thrdData->resultList.clear();
             
+            [self.mainProgressIndicator setDoubleValue:0];
+            
         } break;
         case MAINVC_CALC_ING: {
             _thrdData->stop = false;
@@ -139,7 +137,7 @@ enum MainViewControllerState {
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {
-    // Get files path
+    // Get files path.
     NSUInteger fileCount = [fileNames count];
     _thrdData->nFiles = (uint32_t)fileCount;
     _thrdData->fullPaths.clear();
@@ -150,6 +148,10 @@ enum MainViewControllerState {
         _thrdData->fullPaths.push_back(strtotstr(strFileName));
     }
     
+    // Uppercase.
+    _thrdData->uppercase = ([self.upperCaseButton state] == NSOnState);
+    
+    // Ready to go.
     [self setViewControllerState:MAINVC_CALC_ING];
     
     pthread_create(&_ptHash,
