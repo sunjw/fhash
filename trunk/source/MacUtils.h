@@ -14,14 +14,20 @@
 
 namespace MacUtils {
     
-    // Convert NSString to an UTF-8 std::string.
+    /**
+     * Convert NSString to an UTF-8 std::string.
+     */
     std::string ConvertNSStringToUTF8String(NSString *nsstr);
     
-    // Convert an UTF-8 std::string to NSString
+    /**
+     * Convert an UTF-8 std::string to NSString
+     */
     NSString *ConvertUTF8StringToNSString(std::string stdstrUtf8);
 
-    // An objc class ref <-> c pointer wrapper.
-    // Like a weak pointer, not change reference count.
+    /**
+     * An objc class ref <-> c pointer wrapper.
+     * Like a weak pointer, not change reference count.
+     */
     template <class NSTYPE>
     class ObjcWeakPtr {
     public:
@@ -48,6 +54,8 @@ namespace MacUtils {
     NSTYPE *ObjcWeakPtr<NSTYPE>::get() {
         return (__bridge NSTYPE *)_ptr;
     }
+    
+    
 }
 
 #endif
