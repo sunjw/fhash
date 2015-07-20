@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0F81B5C8D6400D89326 /* Utils.cpp */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
-		41FF1DCC1B5B49490081F283 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC51B5B49490081F283 /* Functions.cpp */; };
 		41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC81B5B49490081F283 /* HashEngine.cpp */; };
 		41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DCF1B5B49A60081F283 /* stdafx.cpp */; };
 		41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD11B5B49A60081F283 /* strhelper.cpp */; };
@@ -29,13 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4161E0F81B5C8D6400D89326 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Utils.cpp; sourceTree = "<group>"; };
+		4161E0F91B5C8D6400D89326 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Utils.h; sourceTree = "<group>"; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5381B58D3DA0050C831 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = source/OSXUI/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
-		41FF1DC51B5B49490081F283 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.cpp.cpp; name = Functions.cpp; path = source/Functions.cpp; sourceTree = "<group>"; };
-		41FF1DC61B5B49490081F283 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Functions.h; path = source/Functions.h; sourceTree = "<group>"; };
 		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
 		41FF1DC81B5B49490081F283 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = "<group>"; };
 		41FF1DC91B5B49490081F283 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 			children = (
 				41FF1DC71B5B49490081F283 /* Global.h */,
 				41FF1DCB1B5B49490081F283 /* version.h */,
-				41FF1DC61B5B49490081F283 /* Functions.h */,
-				41FF1DC51B5B49490081F283 /* Functions.cpp */,
+				4161E0F91B5C8D6400D89326 /* Utils.h */,
+				4161E0F81B5C8D6400D89326 /* Utils.cpp */,
 				41FF1DC91B5B49490081F283 /* HashEngine.h */,
 				41FF1DC81B5B49490081F283 /* HashEngine.cpp */,
 				41FF1DF61B5B4D2A0081F283 /* UIStrings.h */,
@@ -258,12 +258,12 @@
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				41FF1DE71B5B4B250081F283 /* MainView.mm in Sources */,
+				4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */,
 				41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */,
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
 				41FF1DF81B5B4D310081F283 /* UIStrings.cpp in Sources */,
 				41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */,
-				41FF1DCC1B5B49490081F283 /* Functions.cpp in Sources */,
 				41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */,
 				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
 				41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */,
