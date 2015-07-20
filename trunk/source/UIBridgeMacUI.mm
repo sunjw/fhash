@@ -102,7 +102,17 @@ void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
 
 void UIBridgeMacUI::showFileErr(const ResultData& result)
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
+    lockData();
+    {
+        MacUtils::AppendFileErrToNSMutableString(result, mainViewController.mainText);
+    }
+    unlockData();
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController updateMainTextView];
+    });
 }
 
 int UIBridgeMacUI::getProgMax()

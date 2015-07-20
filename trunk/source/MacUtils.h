@@ -82,6 +82,12 @@ namespace MacUtils {
                                          bool uppercase,
                                          NSMutableString *nsmutString);
     
+    /**
+     * Append file error message in ResultData to NSMutableString.
+     */
+    void AppendFileErrToNSMutableString(const ResultData& result,
+                                        NSMutableString *nsmutString);
+    
 }
 
 #endif

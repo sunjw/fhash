@@ -101,4 +101,14 @@ namespace MacUtils {
         [nsmutString appendString:nsstrAppend];
     }
     
+    void AppendFileErrToNSMutableString(const ResultData& result,
+                                        NSMutableString *nsmutString) {
+        string strAppend;
+        strAppend.append(tstrtostr(result.tstrError));
+        strAppend.append("\n\n");
+        
+        NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+        [nsmutString appendString:nsstrAppend];
+    }
+    
 }
