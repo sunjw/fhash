@@ -43,6 +43,8 @@ enum MainViewControllerState {
 @synthesize ptHash = _ptHash;
 @synthesize thrdData = _thrdData;
 
+// Not be called on exit.
+// Just for sure.
 - (void)dealloc {
     delete _thrdData;
 }
