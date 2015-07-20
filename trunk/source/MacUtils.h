@@ -25,7 +25,7 @@ namespace MacUtils {
     template <class NSTYPE>
     class ObjcWeakPtr {
     public:
-        ObjcWeakPtr(NSTYPE *obj = nil);
+        ObjcWeakPtr(NSTYPE *obj);
         
         void set(NSTYPE *obj);
         NSTYPE *get();
