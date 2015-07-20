@@ -67,8 +67,6 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA1;
 	tstring tstrFileSHA256;
 	tstring tstrFileCRC32;
-	
-	tstring tstrTemp;
 
 	uiBridge->preparingCalc();
 
