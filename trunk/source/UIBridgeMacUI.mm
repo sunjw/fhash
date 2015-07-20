@@ -68,10 +68,16 @@ void UIBridgeMacUI::removePreparingCalc()
 
 void UIBridgeMacUI::calcStop()
 {
+    
 }
 
 void UIBridgeMacUI::calcFinish()
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController calculateFinished];
+    });
 }
 
 void UIBridgeMacUI::showFileName(const ResultData& result)
@@ -143,7 +149,6 @@ int UIBridgeMacUI::getProgMax()
 
 void UIBridgeMacUI::updateProg(int value)
 {
-    
 }
 
 void UIBridgeMacUI::updateProgWhole(int value)
@@ -160,10 +165,8 @@ void UIBridgeMacUI::updateProgWhole(int value)
 
 void UIBridgeMacUI::fileCalcFinish()
 {
-    
 }
 
 void UIBridgeMacUI::fileFinish()
 {
-    
 }
