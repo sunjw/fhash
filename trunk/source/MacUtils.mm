@@ -8,13 +8,16 @@
 #include "MacUtils.h"
 
 #include <string>
+
 #import <Foundation/Foundation.h>
 
 using namespace std;
 
-string MacUtils::ConvertNSStringToUTF8String(NSString *nsstr)
-{
+string MacUtils::ConvertNSStringToUTF8String(NSString *nsstr) {
     string strRet = string([nsstr UTF8String]);
-    
     return strRet;
+}
+
+NSString *MacUtils::ConvertUTF8StringToNSString(string stdstrUtf8) {
+    return [NSString stringWithUTF8String:stdstrUtf8.c_str()];
 }
