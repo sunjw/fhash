@@ -48,16 +48,34 @@ OsFile::~OsFile()
 bool OsFile::open(void *flag, void *exception)
 {
     string strFilePath = tstrtostr(_filePath);
+    char *pFileExc = (char *)exception;
+    int *fd = GET_FD_FROM_POINTER(_osfileData);
+    *fd = -1;
     
-	char *pFileExc = (char *)exception;
-	int posixFlag = (int)(uint64_t)flag;
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
-    
-    *fd = ::open(strFilePath.c_str(), posixFlag);
-    
-    if (*fd == -1 && pFileExc != NULL)
+    int statRet = -1;
+    struct stat st;
+    if ((statRet = stat(strFilePath.c_str(), &st)) == 0 &&
+        (st.st_mode & S_IFREG))
     {
-        strcpy(pFileExc, "Cannot open.");
+        
+        int posixFlag = (int)(uint64_t)flag;
+        
+        *fd = ::open(strFilePath.c_str(), posixFlag);
+        
+        if (*fd == -1 && pFileExc != NULL)
+        {
+            strcpy(pFileExc, "Cannot open this file.");
+        }
+    }
+    else if (statRet == 0 && (st.st_mode & S_IFDIR))
+    {
+        if (pFileExc != NULL)
+            strcpy(pFileExc, "Cannot open a directory.");
+    }
+    else
+    {
+        if (pFileExc != NULL)
+            strcpy(pFileExc, "File is missing.");
     }
 
 	return (*fd != -1);
