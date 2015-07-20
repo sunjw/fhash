@@ -8,8 +8,6 @@
 
 #include "strhelper.h"
 
-std::string ConvertSizeToStr(uint64_t size);
-
 #if defined (WIN32)
 
 inline sunjwbase::tstring cstrtotstr(const CString& cstring)
