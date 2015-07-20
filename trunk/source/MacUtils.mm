@@ -19,7 +19,7 @@ namespace MacUtils {
         return strRet;
     }
     
-    NSString *MacUtils::ConvertUTF8StringToNSString(string stdstrUtf8) {
+    NSString *ConvertUTF8StringToNSString(string stdstrUtf8) {
         return [NSString stringWithUTF8String:stdstrUtf8.c_str()];
     }
     
