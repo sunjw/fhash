@@ -172,14 +172,14 @@
 				4198A5321B58D3B50050C831 /* Info.plist */,
 				41FF1DDE1B5B4B250081F283 /* fHashMacAppDelegate.h */,
 				41FF1DDF1B5B4B250081F283 /* fHashMacAppDelegate.mm */,
+				41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */,
+				41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */,
 				41FF1DE41B5B4B250081F283 /* MainWindowController.h */,
 				41FF1DE51B5B4B250081F283 /* MainWindowController.mm */,
 				41FF1DE01B5B4B250081F283 /* MainView.h */,
 				41FF1DE11B5B4B250081F283 /* MainView.mm */,
 				41FF1DE21B5B4B250081F283 /* MainViewController.h */,
 				41FF1DE31B5B4B250081F283 /* MainViewController.mm */,
-				41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */,
-				41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */,
 				52751B161B56276F00BD724B /* Supporting Files */,
 			);
 			name = fHashMacUI;
