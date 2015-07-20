@@ -8,6 +8,12 @@
 
 #import "MainView.h"
 
+#include <stdio.h>
+#include <string>
+#include "MacUtils.h"
+
+using namespace std;
+
 @implementation MainView
 
 - (void)awakeFromNib {
@@ -21,9 +27,14 @@
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
-    NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
+    NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
     
-    NSLog(@"%@", filenames);
+    NSUInteger fileCount = [fileNames count];
+    for (NSUInteger i = 0; i < fileCount; ++i) {
+        NSString *nsstrfileName = [fileNames objectAtIndex:i];
+        string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
+        printf("%s\n", strFileName.c_str());
+    }
     
     return YES;
 }
