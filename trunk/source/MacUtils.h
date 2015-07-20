@@ -13,16 +13,6 @@
 #import <Foundation/Foundation.h>
 
 namespace MacUtils {
-    
-    /**
-     * Convert NSString to an UTF-8 std::string.
-     */
-    std::string ConvertNSStringToUTF8String(NSString *nsstr);
-    
-    /**
-     * Convert an UTF-8 std::string to NSString
-     */
-    NSString *ConvertUTF8StringToNSString(std::string stdstrUtf8);
 
     /**
      * An objc class ref <-> c pointer wrapper.
@@ -54,6 +44,17 @@ namespace MacUtils {
     NSTYPE *ObjcWeakPtr<NSTYPE>::get() {
         return (__bridge NSTYPE *)_ptr;
     }
+    
+    /**
+     * Convert NSString to an UTF-8 std::string.
+     */
+    std::string ConvertNSStringToUTF8String(NSString *nsstr);
+    
+    /**
+     * Convert an UTF-8 std::string to NSString
+     */
+    NSString *ConvertUTF8StringToNSString(std::string stdstrUtf8);
+    
     
     
 }
