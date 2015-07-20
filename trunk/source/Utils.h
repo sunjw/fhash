@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <string>
 
-namespace Utils {
-    
+namespace Utils
+{
     std::string ConvertSizeToShortSizeStr(uint64_t size);
 
 }
