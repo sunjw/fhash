@@ -18,8 +18,10 @@
 @property (unsafe_unretained) IBOutlet NSButton *upperCaseButton;
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
+@property (strong) NSMutableString *mainText;
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
+- (void)updateMainTextView;
 
 @end
 

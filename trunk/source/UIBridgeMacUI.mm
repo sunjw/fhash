@@ -7,6 +7,8 @@
 #include "strhelper.h"
 #include "Global.h"
 #include "Utils.h"
+#include "MacUtils.h"
+#include "UIStrings.h"
 
 #import "MainViewController.h"
 
@@ -54,7 +56,25 @@ void UIBridgeMacUI::calcFinish()
 
 void UIBridgeMacUI::showFileName(const ResultData& result)
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
+    string strFileNameString = tstrtostr(FILENAME_STRING);
+    string strAppend = utf8conv(strFileNameString);
+    strAppend.append(" ");
+    strAppend.append(tstrtostr(result.tstrPath));
+    strAppend.append("\n");
+    
+    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+    
+    lockData();
+    {
+        [[mainViewController mainText] appendString:nsstrAppend];
+    }
+    unlockData();
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController updateMainTextView];
+    });
 }
 
 void UIBridgeMacUI::showFileMeta(const ResultData& result)

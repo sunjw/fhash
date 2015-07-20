@@ -44,6 +44,7 @@ enum MainViewControllerState {
 
 @synthesize state = _state;
 @synthesize mainMtx = _mainMtx;
+@synthesize mainText = _mainText;
 @synthesize uiBridgeMac = _uiBridgeMac;
 @synthesize thrdData = _thrdData;
 @synthesize ptHash = _ptHash;
@@ -82,12 +83,18 @@ enum MainViewControllerState {
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     [self.mainTextView setFont:[NSFont fontWithName:@"Monaco" size:12]];
-    
-    //[self.mainTextView setString:@"sdfasdf\n"];
+    // nowrap.
+    [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:YES];
+    [self.mainTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [self.mainTextView setHorizontallyResizable:YES];
+    [self.mainTextView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+    [[self.mainTextView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [[self.mainTextView textContainer] setWidthTracksTextView:NO];
     
     // Set checkbox.
     [self.upperCaseButton setState:NSOffState];
     
+    [self updateMainTextView];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -109,6 +116,8 @@ enum MainViewControllerState {
             
             _thrdData->fullPaths.clear();
             _thrdData->resultList.clear();
+            
+            _mainText = [[NSMutableString alloc] init];
             
             [self.mainProgressIndicator setDoubleValue:0];
             
@@ -133,6 +142,12 @@ enum MainViewControllerState {
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
     
     [self startHashCalc:fileNames];
+}
+
+- (void)updateMainTextView {
+    _mainMtx->lock();
+    [self.mainTextView setString:_mainText];
+    _mainMtx->unlock();
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {
