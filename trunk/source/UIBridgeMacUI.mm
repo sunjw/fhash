@@ -2,17 +2,21 @@
 
 #include <stdlib.h>
 #include <string>
+#include <dispatch/dispatch.h>
 
 #include "strhelper.h"
 #include "Global.h"
 #include "Utils.h"
+
+#import "MainViewController.h"
 
 using namespace std;
 using namespace sunjwbase;
 
 UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController,
                              OsMutex *mainMtx)
-:_mainViewControllerPtr(mainViewController), _mainMtx(mainMtx)
+:_mainViewControllerPtr(mainViewController), _mainMtx(mainMtx),
+ _oldProgWholeValue(0)
 {
 }
 
@@ -101,7 +105,14 @@ void UIBridgeMacUI::updateProg(int value)
 
 void UIBridgeMacUI::updateProgWhole(int value)
 {
+    if (value == _oldProgWholeValue)
+        return;
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController.mainProgressIndicator setDoubleValue:(double)value];
+        _oldProgWholeValue = value;
+    });
 }
 
 void UIBridgeMacUI::fileCalcFinish()
