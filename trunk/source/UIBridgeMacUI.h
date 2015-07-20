@@ -10,8 +10,7 @@
 class UIBridgeMacUI: public UIBridgeBase
 {
 public:
-    UIBridgeMacUI(MainViewController *mainViewController,
-                  sunjwbase::OsMutex *mainMtx);
+    UIBridgeMacUI(MainViewController *mainViewController);
     virtual ~UIBridgeMacUI();
 
     virtual void lockData();

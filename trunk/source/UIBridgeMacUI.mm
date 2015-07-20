@@ -13,10 +13,10 @@
 using namespace std;
 using namespace sunjwbase;
 
-UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController,
-                             OsMutex *mainMtx)
-:_mainViewControllerPtr(mainViewController), _mainMtx(mainMtx),
- _oldProgWholeValue(0)
+UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController)
+:_mainViewControllerPtr(mainViewController),
+_mainMtx(mainViewController.mainMtx),
+_oldProgWholeValue(0)
 {
 }
 

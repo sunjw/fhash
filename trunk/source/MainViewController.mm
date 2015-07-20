@@ -34,7 +34,6 @@ enum MainViewControllerState {
 @interface MainViewController()
 
 @property (assign) MainViewControllerState state;
-@property (assign) OsMutex *mainMtx;
 @property (assign) UIBridgeMacUI *uiBridgeMac;
 @property (assign) ThreadData *thrdData;
 @property (assign) pthread_t ptHash;
@@ -67,7 +66,7 @@ enum MainViewControllerState {
     
     // alloc c++ member.
     _mainMtx = new OsMutex();
-    _uiBridgeMac = new UIBridgeMacUI(self, _mainMtx);
+    _uiBridgeMac = new UIBridgeMacUI(self);
     _thrdData = new ThreadData();
     
     [self setViewControllerState:MAINVC_NONE];

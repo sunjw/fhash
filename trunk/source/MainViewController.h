@@ -5,6 +5,7 @@
 //  Created by Sun Junwen on 7/15/15.
 //  Copyright © 2015 Sun Junwen. All rights reserved.
 //
+#include "OsUtils/OsThread.h"
 
 #import <Cocoa/Cocoa.h>
 
@@ -15,6 +16,8 @@
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *mainProgressIndicator;
 @property (unsafe_unretained) IBOutlet NSButton *openButton;
 @property (unsafe_unretained) IBOutlet NSButton *upperCaseButton;
+
+@property (assign) sunjwbase::OsMutex *mainMtx;
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
 
