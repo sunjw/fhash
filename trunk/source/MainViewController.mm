@@ -18,6 +18,7 @@
 
 #import "MacUtils.h"
 #import "MainView.h"
+#import "UIBridgeMacUI.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -72,15 +73,8 @@ enum MainViewControllerState {
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     [self.mainTextView setFont:[NSFont fontWithName:@"Monaco" size:12]];
-    [self.mainTextView setString:@"sdfasdf\n"
-     "sdfasdf\n"
-     "sadfasdfas\n"
-     "sdfasf\n"
-     "sdfadsfasdfdfasf\n"
-     "sdfasdfasfdfs\n\n\n\n\n\n"
-     "sdfasfddasfasdfasf\n\n\n\n\n"
-     "sdfasdfasfasdf\n\n\n\n"
-     "iouwerieuytituoeto"];
+    
+    //[self.mainTextView setString:@"sdfasdf\n"];
     
     
     // Set progress line.

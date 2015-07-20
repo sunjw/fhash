@@ -13,6 +13,7 @@
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
+		41E013CE1B5CE954004126B2 /* UIBridgeMacUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */; };
 		41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC81B5B49490081F283 /* HashEngine.cpp */; };
 		41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DCF1B5B49A60081F283 /* stdafx.cpp */; };
 		41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD11B5B49A60081F283 /* strhelper.cpp */; };
@@ -39,6 +40,8 @@
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5381B58D3DA0050C831 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = source/OSXUI/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
+		41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UIBridgeMacUI.mm; path = source/UIBridgeMacUI.mm; sourceTree = SOURCE_ROOT; };
+		41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacUI.h; path = source/UIBridgeMacUI.h; sourceTree = SOURCE_ROOT; };
 		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
 		41FF1DC81B5B49490081F283 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = "<group>"; };
 		41FF1DC91B5B49490081F283 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				41FF1DE11B5B4B250081F283 /* MainView.mm */,
 				41FF1DE21B5B4B250081F283 /* MainViewController.h */,
 				41FF1DE31B5B4B250081F283 /* MainViewController.mm */,
+				41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */,
+				41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */,
 				52751B161B56276F00BD724B /* Supporting Files */,
 			);
 			name = fHashMacUI;
@@ -272,6 +277,7 @@
 				41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */,
 				41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */,
 				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
+				41E013CE1B5CE954004126B2 /* UIBridgeMacUI.mm in Sources */,
 				41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */,
 				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
 				41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */,
