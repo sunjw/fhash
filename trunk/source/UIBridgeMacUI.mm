@@ -15,7 +15,6 @@ using namespace sunjwbase;
 
 UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController)
 :_mainViewControllerPtr(mainViewController),
-_mainMtx(mainViewController.mainMtx),
 _oldProgWholeValue(0)
 {
 }
@@ -26,12 +25,14 @@ UIBridgeMacUI::~UIBridgeMacUI()
 
 void UIBridgeMacUI::lockData()
 {
-    _mainMtx->lock();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    mainViewController.mainMtx->lock();
 }
 
 void UIBridgeMacUI::unlockData()
 {
-    _mainMtx->unlock();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    mainViewController.mainMtx->unlock();
 }
 
 void UIBridgeMacUI::preparingCalc()

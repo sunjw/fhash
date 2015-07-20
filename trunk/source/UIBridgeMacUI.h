@@ -35,7 +35,6 @@ public:
 
 private:
     MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
-    sunjwbase::OsMutex *_mainMtx;
     
     int _oldProgWholeValue;
 };
