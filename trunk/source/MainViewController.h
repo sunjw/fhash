@@ -20,5 +20,7 @@
 
 @property (unsafe_unretained) IBOutlet NSButton *upperCaseButton;
 
+- (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
+
 @end
 

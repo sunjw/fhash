@@ -10,7 +10,8 @@
 
 #include <stdio.h>
 #include <string>
-#include "MacUtils.h"
+
+#import "MacUtils.h"
 
 using namespace std;
 
@@ -26,15 +27,7 @@ using namespace std;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    NSPasteboard *pboard = [sender draggingPasteboard];
-    NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
-    
-    NSUInteger fileCount = [fileNames count];
-    for (NSUInteger i = 0; i < fileCount; ++i) {
-        NSString *nsstrfileName = [fileNames objectAtIndex:i];
-        string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
-        printf("%s\n", strFileName.c_str());
-    }
+    [self.mainViewController performViewDragOperation:sender];
     
     return YES;
 }

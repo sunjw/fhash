@@ -13,6 +13,9 @@
 #include "UIStrings.h"
 #include "strhelper.h"
 
+#import "MacUtils.h"
+#import "MainView.h"
+
 using namespace std;
 using namespace sunjwbase;
 
@@ -25,6 +28,9 @@ using namespace sunjwbase;
     string strTest = SHELL_EXT_ITEM_ZH_CN;
     strTest = utf8conv(strTest);
     printf("%s\n", strTest.c_str());
+    // Save ourself into view.
+    MainView *mainView = (MainView *)[self view];
+    mainView.mainViewController = self;
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
@@ -58,6 +64,20 @@ using namespace sunjwbase;
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
+}
+
+- (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
+    
+    NSUInteger fileCount = [fileNames count];
+    for (NSUInteger i = 0; i < fileCount; ++i) {
+        NSString *nsstrfileName = [fileNames objectAtIndex:i];
+        string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
+        printf("%s\n", strFileName.c_str());
+    }
+    
+    
 }
 
 @end

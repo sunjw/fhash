@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MainViewController.h"
 
 @interface MainView : NSView <NSDraggingDestination>
+
+@property (weak) MainViewController *mainViewController;
 
 @end
