@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0F81B5C8D6400D89326 /* Utils.cpp */; };
+		4161E0FF1B5C91C900D89326 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0FE1B5C91C900D89326 /* MacUtils.mm */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		4161E0F81B5C8D6400D89326 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Utils.cpp; sourceTree = "<group>"; };
 		4161E0F91B5C8D6400D89326 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Utils.h; sourceTree = "<group>"; };
+		4161E0FE1B5C91C900D89326 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/MacUtils.mm; sourceTree = "<group>"; };
+		4161E1001B5C91E400D89326 /* MacUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacUtils.h; path = source/MacUtils.h; sourceTree = "<group>"; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -89,6 +92,8 @@
 				41FF1DCB1B5B49490081F283 /* version.h */,
 				4161E0F91B5C8D6400D89326 /* Utils.h */,
 				4161E0F81B5C8D6400D89326 /* Utils.cpp */,
+				4161E1001B5C91E400D89326 /* MacUtils.h */,
+				4161E0FE1B5C91C900D89326 /* MacUtils.mm */,
 				41FF1DC91B5B49490081F283 /* HashEngine.h */,
 				41FF1DC81B5B49490081F283 /* HashEngine.cpp */,
 				41FF1DF61B5B4D2A0081F283 /* UIStrings.h */,
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4161E0FF1B5C91C900D89326 /* MacUtils.mm in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				41FF1DE71B5B4B250081F283 /* MainView.mm in Sources */,

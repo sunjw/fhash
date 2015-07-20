@@ -1,0 +1,20 @@
+//
+//  MacUtils.mm
+//  fHashMacUI
+//
+//  Created by Sun Junwen on 15/7/20.
+//  Copyright (c) 2015 Sun Junwen. All rights reserved.
+//
+#include "MacUtils.h"
+
+#include <string>
+#import <Foundation/Foundation.h>
+
+using namespace std;
+
+string MacUtils::ConvertNSStringToUTF8String(NSString *nsstr)
+{
+    string strRet = string([nsstr UTF8String]);
+    
+    return strRet;
+}
