@@ -22,10 +22,6 @@
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;
 
-- (IBAction)openButtonClicked:(NSButton *)sender;
-
-- (IBAction)clearButtonClicked:(NSButton *)sender;
-
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
 
 - (void)updateMainTextView;
@@ -33,6 +29,10 @@
 - (void)calculateFinished;
 
 - (void)calculateStopped;
+
+- (IBAction)openButtonClicked:(NSButton *)sender;
+
+- (IBAction)clearButtonClicked:(NSButton *)sender;
 
 @end
 

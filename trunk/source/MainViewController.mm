@@ -171,38 +171,22 @@ enum MainViewControllerState {
     _state = newState;
 }
 
-- (IBAction)openButtonClicked:(NSButton *)sender {
-    if (_state == MAINVC_CALC_ING) {
-        [self stopHashCalc];
-    } else {
-        NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-        openPanel.showsResizeIndicator = YES;
-        openPanel.showsHiddenFiles = NO;
-        openPanel.canChooseDirectories = NO;
-        openPanel.canCreateDirectories = YES;
-        openPanel.allowsMultipleSelection = YES;
-        openPanel.allowedFileTypes = nil; // all types
-        
-        [openPanel beginSheetModalForWindow:self.view.window completionHandler:
-         ^(NSInteger result) {
-             if (result == NSFileHandlingPanelOKButton) {
-                 NSArray* fileNames = [openPanel URLs];
-                 [self startHashCalc:fileNames isURL:YES];
-             }
-         }];
-        
-    }
-}
-
-- (IBAction)clearButtonClicked:(NSButton *)sender {
-    if (_state == MAINVC_VERIFY) {
-        
-    } else {
-        [self setViewControllerState:MAINVC_NONE];
-        [self.mainProgressIndicator setDoubleValue:0];
-        
-        [self updateMainTextView];
-    }
+- (void)openFiles {
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    openPanel.showsResizeIndicator = YES;
+    openPanel.showsHiddenFiles = NO;
+    openPanel.canChooseDirectories = NO;
+    openPanel.canCreateDirectories = YES;
+    openPanel.allowsMultipleSelection = YES;
+    openPanel.allowedFileTypes = nil; // all types
+    
+    [openPanel beginSheetModalForWindow:self.view.window completionHandler:
+     ^(NSInteger result) {
+         if (result == NSFileHandlingPanelOKButton) {
+             NSArray* fileNames = [openPanel URLs];
+             [self startHashCalc:fileNames isURL:YES];
+         }
+     }];
 }
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
@@ -284,6 +268,25 @@ enum MainViewControllerState {
 - (void)stopHashCalc {
     if (_state == MAINVC_CALC_ING) {
         _thrdData->stop = true;
+    }
+}
+
+- (IBAction)openButtonClicked:(NSButton *)sender {
+    if (_state == MAINVC_CALC_ING) {
+        [self stopHashCalc];
+    } else {
+        [self openFiles];
+    }
+}
+
+- (IBAction)clearButtonClicked:(NSButton *)sender {
+    if (_state == MAINVC_VERIFY) {
+        
+    } else {
+        [self setViewControllerState:MAINVC_NONE];
+        [self.mainProgressIndicator setDoubleValue:0];
+        
+        [self updateMainTextView];
     }
 }
 
