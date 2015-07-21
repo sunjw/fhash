@@ -36,7 +36,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.9.3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -60,7 +60,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.10</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 SunJW. All rights reserved.</string>
+	<string>Copyright © 2015 Sun Junwen. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
