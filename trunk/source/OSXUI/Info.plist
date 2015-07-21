@@ -7,16 +7,20 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeName</key>
-			<string>File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>*</string>
 			</array>
+			<key>CFBundleTypeName</key>
+			<string>Files</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
+			<key>LSTypeIsPackage</key>
+			<integer>1</integer>
+			<key>NSDocumentClass</key>
+			<string>NSDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

@@ -37,8 +37,9 @@
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames {
-    // ViewController is up.
     [self.mainViewController startHashCalc:filenames isURL:NO];
+    
+    [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
 @end
