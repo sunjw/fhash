@@ -18,8 +18,8 @@
 #include "UIStrings.h"
 
 #import "MacUtils.h"
-#import "MainView.h"
 #import "UIBridgeMacUI.h"
+#import "MainView.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -63,7 +63,7 @@ enum MainViewControllerState {
 
     // Do any additional setup after loading the view.
     // Initiate.
-    MainView *mainView = (MainView *)[self view];
+    MainView *mainView = (MainView *)self.view;
     mainView.mainViewController = self;
     
     // alloc c++ member.

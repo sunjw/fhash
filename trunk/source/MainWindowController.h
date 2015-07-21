@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MainViewController.h"
 
 @interface MainWindowController : NSWindowController
+
+- (IBAction)openDocument:(id)sender;
 
 @end

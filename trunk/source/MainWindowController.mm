@@ -7,6 +7,7 @@
 //
 
 #import "MainWindowController.h"
+#import "MainViewController.h"
 
 @interface MainWindowController ()
 
@@ -22,7 +23,14 @@
     self.window.titlebarAppearsTransparent = YES;
     self.window.styleMask |= NSFullSizeContentViewWindowMask;
     self.window.movableByWindowBackground = YES;
-    //self.window.backgroundColor = [NSColor whiteColor];
+    
+}
+
+- (IBAction)openDocument:(id)sender {
+    // Menu bar "open"
+    MainViewController *mainViewController;
+    mainViewController = (MainViewController *)self.window.contentViewController;
+    [mainViewController openFiles];
 }
 
 @end

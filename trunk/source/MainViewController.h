@@ -22,6 +22,8 @@
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;
 
+- (void)openFiles;
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
 
 - (void)updateMainTextView;
