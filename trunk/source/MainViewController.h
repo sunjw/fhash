@@ -21,7 +21,12 @@
 @property (strong) NSMutableString *mainText;
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
+
 - (void)updateMainTextView;
+
+- (void)calculateFinished;
+
+- (void)calculateStopped;
 
 @end
 

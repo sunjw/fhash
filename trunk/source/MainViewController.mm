@@ -106,7 +106,7 @@ enum MainViewControllerState {
 - (void)setViewControllerState:(MainViewControllerState)newState {
     switch (newState) {
         case MAINVC_NONE: {
-            // clear all.
+            // Clear all.
             _thrdData->threadWorking = false;
             _thrdData->stop = false;
             
@@ -120,13 +120,21 @@ enum MainViewControllerState {
             _mainText = [[NSMutableString alloc] init];
             
             [self.mainProgressIndicator setDoubleValue:0];
+         
+            // Passthrough to MAINVC_CALC_FINISH.
+        }
+        case MAINVC_CALC_FINISH: {
+            // Set controls title.
+            [self.openButton
+             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_OPEN)];
+            [self.upperCaseButton
+             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_UPPER_HASH)];
             
         } break;
         case MAINVC_CALC_ING: {
             _thrdData->stop = false;
             
-        } break;
-        case MAINVC_CALC_FINISH: {
+            
             
         } break;
         case MAINVC_VERIFY: {
@@ -152,6 +160,15 @@ enum MainViewControllerState {
     // Scroll to end.
     [self.mainTextView
      scrollRangeToVisible:NSMakeRange(self.mainTextView.string.length, 0)];
+}
+
+- (void)calculateFinished {
+    [self.mainProgressIndicator setDoubleValue:100];
+    [self setViewControllerState:MAINVC_CALC_FINISH];
+}
+
+- (void)calculateStopped {
+    [self setViewControllerState:MAINVC_CALC_FINISH];
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {

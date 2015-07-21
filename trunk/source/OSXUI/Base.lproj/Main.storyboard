@@ -460,31 +460,31 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
-                                <rect key="frame" x="397" y="5" width="120" height="32"/>
+                                <rect key="frame" x="417" y="5" width="100" height="32"/>
                                 <animations/>
-                                <buttonCell key="cell" type="push" title="Open files..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
+                                <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                <rect key="frame" x="277" y="5" width="120" height="32"/>
+                                <rect key="frame" x="317" y="5" width="100" height="32"/>
                                 <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                <rect key="frame" x="157" y="5" width="120" height="32"/>
-                                <buttonCell key="cell" type="push" title="Verify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
                                 <rect key="frame" x="7" y="14" width="111" height="18"/>
-                                <buttonCell key="cell" type="check" title="Upper case" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
+                                <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
+                                <rect key="frame" x="217" y="5" width="100" height="32"/>
+                                <buttonCell key="cell" type="push" title="Verify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
