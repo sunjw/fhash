@@ -93,6 +93,13 @@ namespace MacUtils {
     void AppendFileErrToNSMutableString(const ResultData& result,
                                         NSMutableString *nsmutString);
     
+    /**
+     * Append whole ResultData to NSMutableString.
+     */
+    void AppendResultToNSMutableString(const ResultData& result,
+                                       bool uppercase,
+                                       NSMutableString *nsmutString);
+    
 }
 
 #endif

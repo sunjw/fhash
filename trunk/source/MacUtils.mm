@@ -119,4 +119,37 @@ namespace MacUtils {
         [nsmutString appendString:nsstrAppend];
     }
     
+    void AppendResultToNSMutableString(const ResultData& result,
+                                       bool uppercase,
+                                       NSMutableString *nsmutString) {
+        if (result.enumState == ResultState::RESULT_NONE)
+            return;
+        
+        if (result.enumState == ResultState::RESULT_ALL ||
+            result.enumState == ResultState::RESULT_META ||
+            result.enumState == ResultState::RESULT_ERROR ||
+            result.enumState == ResultState::RESULT_PATH) {
+            AppendFileNameToNSMutableString(result, nsmutString);
+        }
+        
+        if (result.enumState == ResultState::RESULT_ALL ||
+            result.enumState == ResultState::RESULT_META) {
+            AppendFileMetaToNSMutableString(result, nsmutString);
+        }
+        
+        if (result.enumState == ResultState::RESULT_ALL) {
+            AppendFileHashToNSMutableString(result, uppercase, nsmutString);
+        }
+        
+        if (result.enumState == ResultState::RESULT_ERROR) {
+            AppendFileErrToNSMutableString(result, nsmutString);
+        }
+        
+        if (result.enumState != ResultState::RESULT_ALL) {
+            string strAppend = "\n";
+            NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+            [nsmutString appendString:nsstrAppend];
+        }
+    }
+    
 }

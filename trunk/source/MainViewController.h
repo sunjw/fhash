@@ -44,5 +44,7 @@
 
 - (IBAction)clearButtonClicked:(NSButton *)sender;
 
+- (IBAction)uppercaseButtonClicked:(NSButton *)sender;
+
 @end
 

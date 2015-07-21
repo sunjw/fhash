@@ -37,6 +37,7 @@ enum MainViewControllerState {
 
 @property (assign) MainViewControllerState state;
 @property (assign) UIBridgeMacUI *uiBridgeMac;
+@property (assign) BOOL upperCaseState;
 @property (assign) ThreadData *thrdData;
 @property (assign) pthread_t ptHash;
 
@@ -48,6 +49,7 @@ enum MainViewControllerState {
 @synthesize mainMtx = _mainMtx;
 @synthesize mainText = _mainText;
 @synthesize uiBridgeMac = _uiBridgeMac;
+@synthesize upperCaseState = _upperCaseState;
 @synthesize thrdData = _thrdData;
 @synthesize ptHash = _ptHash;
 
@@ -83,6 +85,12 @@ enum MainViewControllerState {
     NSMenu *fileMenu = [self getFileMenu];
     [fileMenu setAutoenablesItems:NO];
     
+    // Set buttons title.
+    [self.verifyButton
+     setTitle:MacUtils::GetNSStringFromRes(MAINDLG_VERIFY)];
+    [self.upperCaseButton
+     setTitle:MacUtils::GetNSStringFromRes(MAINDLG_UPPER_HASH)];
+    
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
     
@@ -102,6 +110,7 @@ enum MainViewControllerState {
     
     // Set checkbox.
     [self.upperCaseButton setState:NSOffState];
+    [self updateUpperCaseState];
     
     // Update main text.
     [self updateMainTextView];
@@ -153,11 +162,7 @@ enum MainViewControllerState {
             [self.clearButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_CLEAR)];
             [self.clearButton setEnabled:YES];
-            [self.verifyButton
-             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_VERIFY)];
             [self.verifyButton setEnabled:YES];
-            [self.upperCaseButton
-             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_UPPER_HASH)];
             [self.upperCaseButton setEnabled:YES];
             
         } break;
@@ -240,14 +245,24 @@ enum MainViewControllerState {
     [self startHashCalc:fileNames isURL:NO];
 }
 
-- (void)updateMainTextView {
+- (void)updateUpperCaseState {
+    _upperCaseState = ([self.upperCaseButton state] == NSOnState);
+}
+
+- (void)updateMainTextView:(BOOL)keepScrollPosition {
     _mainMtx->lock();
     [self.mainTextView setString:_mainText];
     _mainMtx->unlock();
     
-    // Scroll to end.
-    [self.mainTextView
-     scrollRangeToVisible:NSMakeRange(self.mainTextView.string.length, 0)];
+    if (!keepScrollPosition) {
+        // Scroll to end.
+        [self.mainTextView
+         scrollRangeToVisible:NSMakeRange(self.mainTextView.string.length, 0)];
+    }
+}
+
+- (void)updateMainTextView {
+    [self updateMainTextView:NO];
 }
 
 - (void)calculateFinished {
@@ -256,14 +271,14 @@ enum MainViewControllerState {
 }
 
 - (void)calculateStopped {
-    /*string strAppend = "\n";
-    strAppend.append(MacUtils::GetStringFromRes(MAINDLG_CALCU_TERMINAL));
-    strAppend.append("\n\n");
+    string strAppend = "\n";
+    //strAppend.append(MacUtils::GetStringFromRes(MAINDLG_CALCU_TERMINAL));
+    //strAppend.append("\n\n");
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
     
     _mainMtx->lock();
     [_mainText appendString:nsstrAppend];
-    _mainMtx->unlock();*/
+    _mainMtx->unlock();
     
     [self setViewControllerState:MAINVC_CALC_FINISH];
     [self.mainProgressIndicator setDoubleValue:0];
@@ -301,7 +316,8 @@ enum MainViewControllerState {
     }
     
     // Uppercase.
-    _thrdData->uppercase = ([self.upperCaseButton state] == NSOnState);
+    [self updateUpperCaseState];
+    _thrdData->uppercase = _upperCaseState;
     
     // Ready to go.
     [self setViewControllerState:MAINVC_CALC_ING];
@@ -323,6 +339,24 @@ enum MainViewControllerState {
     }
 }
 
+- (void)refreshResultText {
+    [self updateUpperCaseState];
+    
+    _mainMtx->lock();
+    {
+        _mainText = [[NSMutableString alloc] init];
+        
+        ResultList::iterator itr = _thrdData->resultList.begin();
+        for(; itr != _thrdData->resultList.end(); ++itr)
+        {
+            MacUtils::AppendResultToNSMutableString(*itr, _upperCaseState, _mainText);
+        }
+    }
+    _mainMtx->unlock();
+    
+    [self updateMainTextView:YES];
+}
+
 - (IBAction)openButtonClicked:(NSButton *)sender {
     if (_state == MAINVC_CALC_ING) {
         [self stopHashCalc:NO];
@@ -339,6 +373,12 @@ enum MainViewControllerState {
         [self.mainProgressIndicator setDoubleValue:0];
         
         [self updateMainTextView];
+    }
+}
+
+- (IBAction)uppercaseButtonClicked:(NSButton *)sender {
+    if (_state == MAINVC_CALC_FINISH) {
+        [self refreshResultText];
     }
 }
 

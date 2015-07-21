@@ -135,7 +135,10 @@ int WINAPI HashThreadFunc(void *param)
 		uint32_t ulCRC32; // CRC32 context
 		// Declaration for calculator
 		
-		ResultData result;
+		ResultData resultNew;
+        thrdData->resultList.push_back(resultNew);
+        ResultData& result = thrdData->resultList.back();
+        
         result.enumState = ResultState::RESULT_NONE;
         
 		path = thrdData->fullPaths[i].c_str();
@@ -379,8 +382,6 @@ int WINAPI HashThreadFunc(void *param)
 
 			uiBridge->showFileErr(result);
 		}
-
-		thrdData->resultList.push_back(result); // ±£´æ½á¹û
 		
 		uiBridge->fileFinish();
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
