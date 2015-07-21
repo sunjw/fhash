@@ -32,7 +32,12 @@ namespace MacUtils {
     string GetStringFromRes(const TCHAR *tzhName) {
         string strResString = tstrtostr(tzhName);
         string strUtf8 = utf8conv(strResString);
+        strUtf8 = strreplace(strUtf8, "&", ""); // Remove "&"
         return strUtf8;
+    }
+    
+    NSString *GetNSStringFromRes(const TCHAR *tzhName) {
+        return ConvertUTF8StringToNSString(GetStringFromRes(tzhName));
     }
     
     void AppendFileNameToNSMutableString(const ResultData& result,

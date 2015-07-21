@@ -59,9 +59,14 @@ namespace MacUtils {
     NSString *ConvertUTF8StringToNSString(const std::string stdstrUtf8);
     
     /**
-     * Get specific named string.
+     * Get specific named string as std::string.
      */
     std::string GetStringFromRes(const sunjwbase::TCHAR *tzhName);
+    
+    /**
+     * Get specific named string as NSString.
+     */
+    NSString *GetNSStringFromRes(const sunjwbase::TCHAR *tzhName);
     
     /**
      * Append file name in ResultData to NSMutableString.
