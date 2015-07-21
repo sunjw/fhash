@@ -450,6 +450,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="verifyButtonClicked:" target="XfG-lQ-9wD" id="IB5-Fa-T1s"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>

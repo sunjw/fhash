@@ -48,6 +48,7 @@ enum MainViewControllerState {
 @synthesize state = _state;
 @synthesize mainMtx = _mainMtx;
 @synthesize mainText = _mainText;
+@synthesize tag = _tag;
 @synthesize uiBridgeMac = _uiBridgeMac;
 @synthesize upperCaseState = _upperCaseState;
 @synthesize thrdData = _thrdData;
@@ -100,6 +101,9 @@ enum MainViewControllerState {
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     [self.mainTextView setFont:[NSFont fontWithName:@"Monaco" size:12]];
+    [self.mainTextView setUsesFindBar:YES];
+    [self.mainTextView setIncrementalSearchingEnabled:YES];
+    
     // nowrap.
     [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:YES];
     [self.mainTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -374,6 +378,11 @@ enum MainViewControllerState {
         
         [self updateMainTextView];
     }
+}
+
+- (IBAction)verifyButtonClicked:(NSButton *)sender {
+    _tag = NSFindPanelActionShowFindPanel;
+    [self.mainTextView performTextFinderAction:self];
 }
 
 - (IBAction)uppercaseButtonClicked:(NSButton *)sender {

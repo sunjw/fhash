@@ -21,6 +21,7 @@
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;
+@property (assign) NSUInteger tag;
 
 - (BOOL)ableToCalcFiles;
 
@@ -43,6 +44,7 @@
 - (IBAction)openButtonClicked:(NSButton *)sender;
 
 - (IBAction)clearButtonClicked:(NSButton *)sender;
+- (IBAction)verifyButtonClicked:(NSButton *)sender;
 
 - (IBAction)uppercaseButtonClicked:(NSButton *)sender;
 
