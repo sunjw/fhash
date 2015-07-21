@@ -24,6 +24,8 @@
 
 - (BOOL)ableToCalcFiles;
 
+- (BOOL)isCalculating;
+
 - (void)openFiles;
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
@@ -35,6 +37,8 @@
 - (void)calculateStopped;
 
 - (void)startHashCalc:(NSArray *)fileNames isURL:(BOOL)isURL;
+
+- (void)stopHashCalc:(BOOL)needExit;
 
 - (IBAction)openButtonClicked:(NSButton *)sender;
 

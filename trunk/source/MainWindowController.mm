@@ -19,6 +19,8 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self.window setDelegate:self];
+    
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.titlebarAppearsTransparent = YES;
     self.window.styleMask |= NSFullSizeContentViewWindowMask;
@@ -26,10 +28,24 @@
     
 }
 
-- (IBAction)openDocument:(id)sender {
-    // Menu bar "open"
+- (MainViewController *)getMainViewController {
     MainViewController *mainViewController;
     mainViewController = (MainViewController *)self.window.contentViewController;
+    return mainViewController;
+}
+
+- (BOOL)windowShouldClose:(id)sender {
+    MainViewController *mainViewController = [self getMainViewController];
+    
+    if ([mainViewController isCalculating])
+        [mainViewController stopHashCalc:YES];
+    
+    return ![mainViewController isCalculating];
+}
+
+- (IBAction)openDocument:(id)sender {
+    // Menu bar "open"
+    MainViewController *mainViewController = [self getMainViewController];
     [mainViewController openFiles];
 }
 

@@ -182,7 +182,15 @@ enum MainViewControllerState {
         } break;
     }
     
+    MainViewControllerState oldState = _state;
     _state = newState;
+    
+    if (_state == MAINVC_CALC_FINISH &&
+        oldState == MAINVC_WAITING_EXIT) {
+        // User want to close.
+        [self.view.window close];
+    }
+
 }
 
 - (NSMenu *)getFileMenu {
@@ -199,8 +207,12 @@ enum MainViewControllerState {
 }
 
 - (BOOL)ableToCalcFiles {
-    return !(_state == MAINVC_CALC_ING ||
-             _state == MAINVC_WAITING_EXIT);
+    return ![self isCalculating];
+}
+
+- (BOOL)isCalculating {
+    return (_state == MAINVC_CALC_ING ||
+            _state == MAINVC_WAITING_EXIT);
 }
 
 - (void)openFiles {
@@ -301,15 +313,19 @@ enum MainViewControllerState {
 
 }
 
-- (void)stopHashCalc {
+- (void)stopHashCalc:(BOOL)needExit {
     if (_state == MAINVC_CALC_ING) {
         _thrdData->stop = true;
+        
+        if (needExit) {
+            [self setViewControllerState:MAINVC_WAITING_EXIT];
+        }
     }
 }
 
 - (IBAction)openButtonClicked:(NSButton *)sender {
     if (_state == MAINVC_CALC_ING) {
-        [self stopHashCalc];
+        [self stopHashCalc:NO];
     } else {
         [self openFiles];
     }
