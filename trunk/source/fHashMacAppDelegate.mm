@@ -27,4 +27,8 @@
     return YES;
 }
 
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames {
+    
+}
+
 @end
