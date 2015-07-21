@@ -469,7 +469,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
                                 <rect key="frame" x="317" y="5" width="100" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
+                                <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -483,7 +483,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
                                 <rect key="frame" x="217" y="5" width="100" height="32"/>
-                                <buttonCell key="cell" type="push" title="Verify" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
+                                <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -492,11 +492,13 @@
                         <animations/>
                     </view>
                     <connections>
+                        <outlet property="clearButton" destination="T3R-eZ-zFT" id="pHK-Yx-MbL"/>
                         <outlet property="mainProgressIndicator" destination="mgI-sH-iC5" id="VHx-pW-9oH"/>
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
                         <outlet property="upperCaseButton" destination="6ZG-fr-1QJ" id="hCe-Ff-tAv"/>
+                        <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

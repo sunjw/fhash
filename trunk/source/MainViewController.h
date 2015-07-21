@@ -14,8 +14,10 @@
 @property (unsafe_unretained) IBOutlet NSScrollView *mainScrollView;
 @property (unsafe_unretained) IBOutlet NSTextView *mainTextView;
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *mainProgressIndicator;
-@property (unsafe_unretained) IBOutlet NSButton *openButton;
-@property (unsafe_unretained) IBOutlet NSButton *upperCaseButton;
+@property (weak) IBOutlet NSButton *openButton;
+@property (weak) IBOutlet NSButton *clearButton;
+@property (weak) IBOutlet NSButton *verifyButton;
+@property (weak) IBOutlet NSButton *upperCaseButton;
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;

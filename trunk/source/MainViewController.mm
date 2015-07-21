@@ -25,10 +25,11 @@ using namespace std;
 using namespace sunjwbase;
 
 enum MainViewControllerState {
-    MAINVC_NONE = 0,    // clear state
-    MAINVC_CALC_ING,    // calculating
-    MAINVC_CALC_FINISH, // calculating finished/stopped
-    MAINVC_VERIFY,      // verfing
+    MAINVC_NONE = 0,        // clear state
+    MAINVC_CALC_ING,        // calculating
+    MAINVC_CALC_FINISH,     // calculating finished/stopped
+    MAINVC_VERIFY,          // verfing
+    MAINVC_WAITING_EXIT,    // waiting thread stop and exit
 };
 
 @interface MainViewController()
@@ -94,6 +95,7 @@ enum MainViewControllerState {
     // Set checkbox.
     [self.upperCaseButton setState:NSOffState];
     
+    // Update main text.
     [self updateMainTextView];
 }
 
@@ -111,10 +113,11 @@ enum MainViewControllerState {
             _thrdData->stop = false;
             
             _thrdData->uppercase = false;
-            _thrdData->nFiles = 0;
             _thrdData->totalSize = 0;
             
+            _thrdData->nFiles = 0;
             _thrdData->fullPaths.clear();
+            
             _thrdData->resultList.clear();
             
             _mainText = [[NSMutableString alloc] init];
@@ -127,17 +130,31 @@ enum MainViewControllerState {
             // Set controls title.
             [self.openButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_OPEN)];
+            [self.clearButton
+             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_CLEAR)];
+            [self.clearButton setEnabled:YES];
+            [self.verifyButton
+             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_VERIFY)];
+            [self.verifyButton setEnabled:YES];
             [self.upperCaseButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_UPPER_HASH)];
+            [self.upperCaseButton setEnabled:YES];
             
         } break;
         case MAINVC_CALC_ING: {
             _thrdData->stop = false;
             
-            
+            [self.openButton
+             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_STOP)];
+            [self.clearButton setEnabled:NO];
+            [self.verifyButton setEnabled:NO];
+            [self.upperCaseButton setEnabled:NO];
             
         } break;
         case MAINVC_VERIFY: {
+            
+        } break;
+        case MAINVC_WAITING_EXIT: {
             
         } break;
     }
