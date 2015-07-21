@@ -23,6 +23,15 @@
     // Insert code here to tear down your application
 }
 
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+    if ([self.mainViewController isCalculating]) {
+        [self.mainViewController stopHashCalc:YES];
+        return NSTerminateCancel;
+    } else {
+        return NSTerminateNow;
+    }
+}
+
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
 }
