@@ -175,6 +175,22 @@ enum MainViewControllerState {
     if (_state == MAINVC_CALC_ING) {
         [self stopHashCalc];
     } else {
+        NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+        openPanel.title = @"Choose a .TXT file";
+        openPanel.showsResizeIndicator = YES;
+        openPanel.showsHiddenFiles = NO;
+        openPanel.canChooseDirectories = NO;
+        openPanel.canCreateDirectories = YES;
+        openPanel.allowsMultipleSelection = YES;
+        openPanel.allowedFileTypes = nil; // all types
+        
+        [openPanel beginSheetModalForWindow:self.view.window completionHandler:
+         ^(NSInteger result) {
+             if (result == NSFileHandlingPanelOKButton) {
+                 NSArray* fileNames = [openPanel URLs];
+                 [self startHashCalc:fileNames isURL:YES];
+             }
+         }];
         
     }
 }
@@ -194,7 +210,7 @@ enum MainViewControllerState {
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
     
-    [self startHashCalc:fileNames];
+    [self startHashCalc:fileNames isURL:NO];
 }
 
 - (void)updateMainTextView {
@@ -228,7 +244,7 @@ enum MainViewControllerState {
     [self updateMainTextView];
 }
 
-- (void)startHashCalc:(NSArray *)fileNames {
+- (void)startHashCalc:(NSArray *)fileNames isURL:(BOOL)isURL {
     if (_state == MAINVC_NONE) {
         // Clear up text.
         _mainMtx->lock();
@@ -242,8 +258,14 @@ enum MainViewControllerState {
     _thrdData->fullPaths.clear();
     
     for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
-        NSString *nsstrfileName = [fileNames objectAtIndex:i];
-        string strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrfileName);
+        string strFileName;
+        if (!isURL) {
+            NSString *nsstrFileName = [fileNames objectAtIndex:i];
+            strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrFileName);
+        } else {
+            NSURL *nsurlFileName = [fileNames objectAtIndex:i];
+            strFileName = MacUtils::ConvertNSStringToUTF8String([nsurlFileName path]);
+        }
         _thrdData->fullPaths.push_back(strtotstr(strFileName));
     }
     
