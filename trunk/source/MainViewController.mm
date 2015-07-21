@@ -212,19 +212,19 @@ enum MainViewControllerState {
 }
 
 - (void)calculateStopped {
-    string strAppend = "\n";
+    /*string strAppend = "\n";
     strAppend.append(MacUtils::GetStringFromRes(MAINDLG_CALCU_TERMINAL));
     strAppend.append("\n\n");
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
     
     _mainMtx->lock();
     [_mainText appendString:nsstrAppend];
-    _mainMtx->unlock();
+    _mainMtx->unlock();*/
     
     [self setViewControllerState:MAINVC_CALC_FINISH];
     [self.mainProgressIndicator setDoubleValue:0];
     
-    [self updateMainTextView];
+    //[self updateMainTextView];
 }
 
 - (void)startHashCalc:(NSArray *)fileNames isURL:(BOOL)isURL {
