@@ -43,10 +43,12 @@ void UIBridgeMacUI::preparingCalc()
     
     lockData();
     {
-        _nsmutStrNoPreparing = mainViewController.mainText;
+        _nsstrNoPreparing = [NSString stringWithString:mainViewController.mainText];
         
         string strAppend = MacUtils::GetStringFromRes(MAINDLG_WAITING_START);
         strAppend.append("\n");
+        NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+        [mainViewController.mainText appendString:nsstrAppend];
     }
     unlockData();
     
@@ -61,7 +63,7 @@ void UIBridgeMacUI::removePreparingCalc()
     
     lockData();
     {
-        mainViewController.mainText = _nsmutStrNoPreparing;
+        [mainViewController.mainText setString:_nsstrNoPreparing];
     }
     unlockData();
 }

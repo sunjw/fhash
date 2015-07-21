@@ -36,7 +36,7 @@ public:
 private:
     MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
     
-    NSMutableString *_nsmutStrNoPreparing;
+    NSString *_nsstrNoPreparing;
     int _oldProgWholeValue;
 };
 
