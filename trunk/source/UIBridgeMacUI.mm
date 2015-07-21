@@ -43,6 +43,7 @@ void UIBridgeMacUI::preparingCalc()
     
     lockData();
     {
+        // Copy old string.
         _nsstrNoPreparing = [NSString stringWithString:mainViewController.mainText];
         
         string strAppend = MacUtils::GetStringFromRes(MAINDLG_WAITING_START);
@@ -63,6 +64,7 @@ void UIBridgeMacUI::removePreparingCalc()
     
     lockData();
     {
+        // Reset old string.
         [mainViewController.mainText setString:_nsstrNoPreparing];
     }
     unlockData();
