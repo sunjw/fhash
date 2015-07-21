@@ -27,7 +27,7 @@ namespace Utils
 #if defined (WIN32)
                     sprintf_s(buff, 1024, "%.2f GB", g_fsize);
 #else
-                    sprintf(buff, " %.2f GB", g_fsize);
+                    sprintf(buff, "%.2f GB", g_fsize);
 #endif
                 }
                 else
