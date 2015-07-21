@@ -8,6 +8,7 @@
 
 #import "MainView.h"
 #import "MacUtils.h"
+#import "MainViewController.h"
 
 using namespace std;
 
@@ -19,7 +20,10 @@ using namespace std;
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
-    return NSDragOperationCopy;
+    if ([self.mainViewController ableToCalcFiles])
+        return NSDragOperationCopy;
+    else
+        return NSDragOperationNone;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {

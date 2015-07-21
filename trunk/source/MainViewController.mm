@@ -198,6 +198,11 @@ enum MainViewControllerState {
     return openMenuItem;
 }
 
+- (BOOL)ableToCalcFiles {
+    return !(_state == MAINVC_CALC_ING ||
+             _state == MAINVC_WAITING_EXIT);
+}
+
 - (void)openFiles {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.showsResizeIndicator = YES;
@@ -255,6 +260,10 @@ enum MainViewControllerState {
 }
 
 - (void)startHashCalc:(NSArray *)fileNames isURL:(BOOL)isURL {
+    if (![self ableToCalcFiles]) {
+        return;
+    }
+    
     if (_state == MAINVC_NONE) {
         // Clear up text.
         _mainMtx->lock();
