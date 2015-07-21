@@ -68,7 +68,11 @@ void UIBridgeMacUI::removePreparingCalc()
 
 void UIBridgeMacUI::calcStop()
 {
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mainViewController calculateStopped];
+    });
 }
 
 void UIBridgeMacUI::calcFinish()

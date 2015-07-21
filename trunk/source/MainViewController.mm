@@ -162,6 +162,14 @@ enum MainViewControllerState {
     _state = newState;
 }
 
+- (IBAction)openButtonClicked:(NSButton *)sender {
+    if (_state == MAINVC_CALC_ING) {
+        [self stopHashCalc];
+    } else {
+        
+    }
+}
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
@@ -180,12 +188,24 @@ enum MainViewControllerState {
 }
 
 - (void)calculateFinished {
-    [self.mainProgressIndicator setDoubleValue:100];
     [self setViewControllerState:MAINVC_CALC_FINISH];
+    [self.mainProgressIndicator setDoubleValue:100];
 }
 
 - (void)calculateStopped {
+    string strAppend = "\n";
+    strAppend.append(MacUtils::GetStringFromRes(MAINDLG_CALCU_TERMINAL));
+    strAppend.append("\n\n");
+    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+    
+    _mainMtx->lock();
+    [_mainText appendString:nsstrAppend];
+    _mainMtx->unlock();
+    
     [self setViewControllerState:MAINVC_CALC_FINISH];
+    [self.mainProgressIndicator setDoubleValue:0];
+    
+    [self updateMainTextView];
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {
@@ -211,6 +231,12 @@ enum MainViewControllerState {
                    (void *(*)(void *))HashThreadFunc,
                    _thrdData);
 
+}
+
+- (void)stopHashCalc {
+    if (_state == MAINVC_CALC_ING) {
+        _thrdData->stop = true;
+    }
 }
 
 @end

@@ -22,6 +22,8 @@
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;
 
+- (IBAction)openButtonClicked:(NSButton *)sender;
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
 
 - (void)updateMainTextView;
