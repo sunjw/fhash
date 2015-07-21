@@ -39,9 +39,18 @@ typedef std::list<ResultData> ResultList;
 
 #define MAX_FILES_NUM 8192
 
+enum ResultState
+{
+    RESULT_NONE = 0,
+    RESULT_PATH,
+    RESULT_META,
+    RESULT_ALL,
+    RESULT_ERROR
+};
+
 struct ResultData // 计算结果
 {
-	bool bDone; // Done
+	ResultState enumState; // State
 	sunjwbase::tstring tstrPath; // 路径
 	uint64_t ulSize; // 大小
 	sunjwbase::tstring tstrMDate; // 修改日期

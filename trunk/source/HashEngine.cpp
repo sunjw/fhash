@@ -136,11 +136,15 @@ int WINAPI HashThreadFunc(void *param)
 		// Declaration for calculator
 		
 		ResultData result;
+        result.enumState = ResultState::RESULT_NONE;
+        
 		path = thrdData->fullPaths[i].c_str();
 		result.tstrPath = thrdData->fullPaths[i];
 
 		int position = 0; // 进度条位置
 
+        result.enumState = ResultState::RESULT_PATH;
+        
 		uiBridge->showFileName(result);
 
 		//Calculating begins
@@ -211,6 +215,8 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileVersion = cstrVer.GetString();
 			result.tstrVersion = tstrFileVersion;
 #endif
+            
+            result.enumState = ResultState::RESULT_META;
 
 			uiBridge->showFileMeta(result);
 			
@@ -348,14 +354,14 @@ int WINAPI HashThreadFunc(void *param)
 			sprintf(chHashBuff, "%08X", ulCRC32);
 #endif
 			tstrFileCRC32 = strtotstr(string(chHashBuff));
-
-			result.bDone = true;
 			
 			// 在没做转换前，结果都是大写的
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
 			result.tstrSHA256 = tstrFileSHA256;
 			result.tstrCRC32 = tstrFileCRC32;
+            
+            result.enumState = ResultState::RESULT_ALL;
 			
 			uiBridge->showFileHash(result, thrdData->uppercase);
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
@@ -369,7 +375,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrError = strtotstr(string(fExc));
 #endif
 
-			result.bDone = false;
+            result.enumState = ResultState::RESULT_ERROR;
 
 			uiBridge->showFileErr(result);
 		}
