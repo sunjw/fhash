@@ -18,29 +18,29 @@ using namespace sunjwbase;
 
 OsMutex::OsMutex()
 {
-	pthread_mutex_t *ptMutex = new pthread_mutex_t();
-	pthread_mutex_init(ptMutex, NULL);
+    pthread_mutex_t *ptMutex = new pthread_mutex_t();
+    pthread_mutex_init(ptMutex, NULL);
 
-	_osMtxData = (void *)ptMutex;
+    _osMtxData = (void *)ptMutex;
 }
 
 OsMutex::~OsMutex()
 {
-	pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
-	pthread_mutex_destroy(ptMutex);
+    pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
+    pthread_mutex_destroy(ptMutex);
 
-	delete ptMutex;
+    delete ptMutex;
 }
 
 void OsMutex::lock()
 {
-	pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
+    pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
     pthread_mutex_lock(ptMutex);
 }
 
 void OsMutex::unlock()
 {
-	pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
-	pthread_mutex_unlock(ptMutex);
+    pthread_mutex_t *ptMutex = GET_PTMUTEX_FROM_POINTER(_osMtxData);
+    pthread_mutex_unlock(ptMutex);
 }
 

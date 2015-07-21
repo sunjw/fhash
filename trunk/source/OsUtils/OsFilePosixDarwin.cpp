@@ -25,24 +25,24 @@ using namespace sunjwbase;
 #define GET_FD_FROM_POINTER(pointer) ((int *)(pointer))
 
 OsFile::OsFile(tstring filePath):
-	_filePath(filePath),
-	_osfileData(new int(-1)),
-	_fileStatus(CLOSED)
+    _filePath(filePath),
+    _osfileData(new int(-1)),
+    _fileStatus(CLOSED)
 {
-	
+    
 }
 
 OsFile::~OsFile()
 {
-	if (_osfileData != NULL)
-	{
-		if (_fileStatus != CLOSED)
-		{
-			close();
-		}
+    if (_osfileData != NULL)
+    {
+        if (_fileStatus != CLOSED)
+        {
+            close();
+        }
 
-		delete GET_FD_FROM_POINTER(_osfileData);
-	}
+        delete GET_FD_FROM_POINTER(_osfileData);
+    }
 }
 
 bool OsFile::open(void *flag, void *exception)
@@ -78,35 +78,35 @@ bool OsFile::open(void *flag, void *exception)
             strcpy(pFileExc, "File is missing.");
     }
 
-	return (*fd != -1);
+    return (*fd != -1);
 }
 
 bool OsFile::openRead(void *exception/* = NULL*/)
 {
-	bool ret = false;
-	
-	ret = this->open((void *)(O_RDONLY), exception);
+    bool ret = false;
+    
+    ret = this->open((void *)(O_RDONLY), exception);
 
-	if (ret == true)
-	{
-		_fileStatus = OPEN_READ;
-	}
+    if (ret == true)
+    {
+        _fileStatus = OPEN_READ;
+    }
 
-	return ret;
+    return ret;
 }
 
 bool OsFile::openWrite(void *exception/* = NULL*/)
 {
-	bool ret = false;
-	
-	ret = this->open((void *)(O_RDWR | O_CREAT | O_SYNC), exception);
+    bool ret = false;
+    
+    ret = this->open((void *)(O_RDWR | O_CREAT | O_SYNC), exception);
 
-	if (ret == true)
-	{
-		_fileStatus = OPEN_WRITE;
-	}
+    if (ret == true)
+    {
+        _fileStatus = OPEN_WRITE;
+    }
 
-	return ret;
+    return ret;
 }
 
 bool OsFile::openReadWrite(void *exception/* = NULL*/)
@@ -116,7 +116,7 @@ bool OsFile::openReadWrite(void *exception/* = NULL*/)
 
 int64_t OsFile::getLength()
 {
-	int64_t retLength = 0;
+    int64_t retLength = 0;
     string strFilePath = tstrtostr(_filePath);
     
     struct stat st;
@@ -125,7 +125,7 @@ int64_t OsFile::getLength()
         retLength = st.st_size;
     }
 
-	return retLength;
+    return retLength;
 }
 
 bool OsFile::getModifiedTime(void *modifiedTime)
@@ -142,55 +142,55 @@ bool OsFile::getModifiedTime(void *modifiedTime)
         return true;
     }
 
-	return false;
+    return false;
 }
 
 uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
 {
-	int posixSeekFlag = SEEK_SET;
-	switch(from)
-	{
-	case OF_SEEK_BEGIN:
-		posixSeekFlag = SEEK_SET;
-		break;
-	case OF_SEEK_CUR:
-		posixSeekFlag = SEEK_CUR;
-		break;
-	case OF_SEEK_END:
-		posixSeekFlag = SEEK_END;
-		break;
-	}
+    int posixSeekFlag = SEEK_SET;
+    switch(from)
+    {
+    case OF_SEEK_BEGIN:
+        posixSeekFlag = SEEK_SET;
+        break;
+    case OF_SEEK_CUR:
+        posixSeekFlag = SEEK_CUR;
+        break;
+    case OF_SEEK_END:
+        posixSeekFlag = SEEK_END;
+        break;
+    }
 
-	// Open first, we don't check here.
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+    // Open first, we don't check here.
+    int *fd = GET_FD_FROM_POINTER(_osfileData);
 
     return ::lseek(*fd, offset, posixSeekFlag);
 }
 
 int64_t OsFile::read(void *readBuffer, uint32_t bytes)
 {
-	// Open first, we don't check here.
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+    // Open first, we don't check here.
+    int *fd = GET_FD_FROM_POINTER(_osfileData);
 
     return ::read(*fd, readBuffer, bytes);
 }
 
 int64_t OsFile::write(void *writeBuffer, uint32_t bytes)
 {
-	// Open first, we don't check here.
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+    // Open first, we don't check here.
+    int *fd = GET_FD_FROM_POINTER(_osfileData);
 
     return ::write(*fd, writeBuffer, bytes);
 }
 
 void OsFile::close()
 {
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+    int *fd = GET_FD_FROM_POINTER(_osfileData);
 
-	if (_fileStatus != CLOSED)
-	{
+    if (_fileStatus != CLOSED)
+    {
         ::close(*fd);
         *fd = -1;
-		_fileStatus = CLOSED;
-	}
+        _fileStatus = CLOSED;
+    }
 }
