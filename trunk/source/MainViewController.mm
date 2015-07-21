@@ -176,7 +176,6 @@ enum MainViewControllerState {
         [self stopHashCalc];
     } else {
         NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-        openPanel.title = @"Choose a .TXT file";
         openPanel.showsResizeIndicator = YES;
         openPanel.showsHiddenFiles = NO;
         openPanel.canChooseDirectories = NO;
