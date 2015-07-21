@@ -120,7 +120,16 @@ enum MainViewControllerState {
             
             _thrdData->resultList.clear();
             
-            _mainText = [[NSMutableString alloc] init];
+            _mainMtx->lock();
+            {
+                _mainText = [[NSMutableString alloc] init];
+                string strAppend = MacUtils::GetStringFromRes(MAINDLG_INITINFO);
+                strAppend.append("\n\n");
+                NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
+                
+                [_mainText appendString:nsstrAppend];
+            }
+            _mainMtx->unlock();
             
             [self.mainProgressIndicator setDoubleValue:0];
          
@@ -170,6 +179,17 @@ enum MainViewControllerState {
     }
 }
 
+- (IBAction)clearButtonClicked:(NSButton *)sender {
+    if (_state == MAINVC_VERIFY) {
+        
+    } else {
+        [self setViewControllerState:MAINVC_NONE];
+        [self.mainProgressIndicator setDoubleValue:0];
+        
+        [self updateMainTextView];
+    }
+}
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
@@ -209,6 +229,13 @@ enum MainViewControllerState {
 }
 
 - (void)startHashCalc:(NSArray *)fileNames {
+    if (_state == MAINVC_NONE) {
+        // Clear up text.
+        _mainMtx->lock();
+        _mainText = [[NSMutableString alloc] init];
+        _mainMtx->unlock();
+    }
+    
     // Get files path.
     NSUInteger fileCount = [fileNames count];
     _thrdData->nFiles = (uint32_t)fileCount;

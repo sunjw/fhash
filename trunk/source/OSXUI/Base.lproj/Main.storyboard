@@ -476,6 +476,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="clearButtonClicked:" target="XfG-lQ-9wD" id="8v3-B8-CdC"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
                                 <rect key="frame" x="7" y="14" width="111" height="18"/>

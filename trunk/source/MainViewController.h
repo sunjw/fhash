@@ -24,6 +24,8 @@
 
 - (IBAction)openButtonClicked:(NSButton *)sender;
 
+- (IBAction)clearButtonClicked:(NSButton *)sender;
+
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender;
 
 - (void)updateMainTextView;
