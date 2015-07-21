@@ -7,9 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MainViewController.h"
 
 @interface fHashMacAppDelegate : NSObject <NSApplicationDelegate>
 
+@property (weak) MainViewController *mainViewController;
 
 @end
 

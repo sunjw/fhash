@@ -19,6 +19,7 @@
 
 #import "MacUtils.h"
 #import "UIBridgeMacUI.h"
+#import "fHashMacAppDelegate.h"
 #import "MainView.h"
 
 using namespace std;
@@ -62,7 +63,11 @@ enum MainViewControllerState {
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
+    fHashMacAppDelegate *fHashDelegate = (fHashMacAppDelegate *)[NSApp delegate];
+    
     // Initiate.
+    fHashDelegate.mainViewController = self;
+    
     MainView *mainView = (MainView *)self.view;
     mainView.mainViewController = self;
     

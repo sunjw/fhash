@@ -28,7 +28,10 @@
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames {
-    
+    if (self.mainViewController != nil) {
+        // ViewController is up.
+        [self.mainViewController startHashCalc:filenames isURL:NO];
+    }
 }
 
 @end

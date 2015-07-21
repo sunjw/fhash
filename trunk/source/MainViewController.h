@@ -32,6 +32,8 @@
 
 - (void)calculateStopped;
 
+- (void)startHashCalc:(NSArray *)fileNames isURL:(BOOL)isURL;
+
 - (IBAction)openButtonClicked:(NSButton *)sender;
 
 - (IBAction)clearButtonClicked:(NSButton *)sender;
