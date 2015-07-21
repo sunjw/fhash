@@ -75,6 +75,9 @@ enum MainViewControllerState {
     
     _thrdData->uiBridge = _uiBridgeMac;
     
+    NSMenu *fileMenu = [self getFileMenu];
+    [fileMenu setAutoenablesItems:NO];
+    
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
     
@@ -137,6 +140,9 @@ enum MainViewControllerState {
         }
         case MAINVC_CALC_FINISH: {
             // Set controls title.
+            NSMenuItem *openMenuItem = [self getOpenMenuItem];
+            [openMenuItem setEnabled:YES];
+            
             [self.openButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_OPEN)];
             [self.clearButton
@@ -152,6 +158,9 @@ enum MainViewControllerState {
         } break;
         case MAINVC_CALC_ING: {
             _thrdData->stop = false;
+            
+            NSMenuItem *openMenuItem = [self getOpenMenuItem];
+            [openMenuItem setEnabled:NO];
             
             [self.openButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_STOP)];
@@ -169,6 +178,19 @@ enum MainViewControllerState {
     }
     
     _state = newState;
+}
+
+- (NSMenu *)getFileMenu {
+    NSMenu *mainMenu = [NSApp mainMenu];
+    NSMenuItem *fileMenuItem = [mainMenu itemAtIndex:1];
+    return fileMenuItem.submenu;
+}
+
+- (NSMenuItem *)getOpenMenuItem {
+    NSMenu *mainMenu = [NSApp mainMenu];
+    NSMenuItem *fileMenuItem = [mainMenu itemAtIndex:1];
+    NSMenuItem *openMenuItem = [fileMenuItem.submenu itemAtIndex:0];
+    return openMenuItem;
 }
 
 - (void)openFiles {
