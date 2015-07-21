@@ -145,7 +145,8 @@ namespace MacUtils {
             AppendFileErrToNSMutableString(result, nsmutString);
         }
         
-        if (result.enumState != ResultState::RESULT_ALL) {
+        if (result.enumState != ResultState::RESULT_ALL &&
+            result.enumState != ResultState::RESULT_ERROR) {
             string strAppend = "\n";
             NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
             [nsmutString appendString:nsstrAppend];
