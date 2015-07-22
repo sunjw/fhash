@@ -124,7 +124,7 @@ enum MainViewControllerState {
 - (void)viewWillDisappear {
     NSArray *windows = [[NSApplication sharedApplication] windows];
     NSInteger windowCount = windows.count;
-    for (NSInteger i = 1; i < windowCount; ++i) {
+    for (NSInteger i = 0; i < windowCount; ++i) {
         NSWindow *window = [windows objectAtIndex:i];
         NSWindowController *windowController = window.windowController;
         if (windowController == nil ||
