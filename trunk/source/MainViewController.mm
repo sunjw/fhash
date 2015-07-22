@@ -20,6 +20,7 @@
 #import "MacUtils.h"
 #import "UIBridgeMacUI.h"
 #import "fHashMacAppDelegate.h"
+#import "MainWindowController.h"
 #import "MainView.h"
 
 using namespace std;
@@ -118,6 +119,21 @@ enum MainViewControllerState {
     
     // Update main text.
     [self updateMainTextView];
+}
+
+- (void)viewWillDisappear {
+    NSArray *windows = [[NSApplication sharedApplication] windows];
+    NSInteger windowCount = windows.count;
+    for (NSInteger i = 1; i < windowCount; ++i) {
+        NSWindow *window = [windows objectAtIndex:i];
+        NSWindowController *windowController = window.windowController;
+        if (windowController == nil ||
+            ![windowController isKindOfClass:[MainWindowController class]]) {
+            // It looks like about panel or finder overlay window.
+            // They will stop us exit, let's close them.
+            [window close];
+        }
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {
