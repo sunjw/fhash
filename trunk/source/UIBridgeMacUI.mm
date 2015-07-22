@@ -152,7 +152,7 @@ void UIBridgeMacUI::showFileErr(const ResultData& result)
 
 int UIBridgeMacUI::getProgMax()
 {
-    return 100;
+    return 200;
 }
 
 void UIBridgeMacUI::updateProg(int value)

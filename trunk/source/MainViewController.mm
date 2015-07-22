@@ -105,13 +105,16 @@ enum MainViewControllerState {
     [self.mainTextView setUsesFindBar:YES];
     [self.mainTextView setIncrementalSearchingEnabled:YES];
     
-    // nowrap.
+    // Set TextView nowrap.
     [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:YES];
     [self.mainTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     [self.mainTextView setHorizontallyResizable:YES];
     [self.mainTextView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
     [[self.mainTextView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     [[self.mainTextView textContainer] setWidthTracksTextView:NO];
+    
+    // Set progressbar.
+    [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
     
     // Set checkbox.
     [self.upperCaseButton setState:NSOffState];
@@ -287,7 +290,7 @@ enum MainViewControllerState {
 
 - (void)calculateFinished {
     [self setViewControllerState:MAINVC_CALC_FINISH];
-    [self.mainProgressIndicator setDoubleValue:100];
+    [self.mainProgressIndicator setDoubleValue:_uiBridgeMac->getProgMax()];
 }
 
 - (void)calculateStopped {
@@ -338,6 +341,8 @@ enum MainViewControllerState {
     // Uppercase.
     [self updateUpperCaseState];
     _thrdData->uppercase = _upperCaseState;
+    
+    [self.mainProgressIndicator setDoubleValue:0];
     
     // Ready to go.
     [self setViewControllerState:MAINVC_CALC_ING];
@@ -390,8 +395,6 @@ enum MainViewControllerState {
         
     } else {
         [self setViewControllerState:MAINVC_NONE];
-        [self.mainProgressIndicator setDoubleValue:0];
-        
         [self updateMainTextView];
     }
 }

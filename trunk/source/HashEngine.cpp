@@ -264,9 +264,9 @@ int WINAPI HashThreadFunc(void *param)
 				finishedSizeWhole += databuf.datalen;
 				int positionWholeNew;
 				if(thrdData->totalSize == 0)
-					positionWholeNew = 100; // ×¢Òâ³ý0´íÎó
+					positionWholeNew = progressMax; // ×¢Òâ³ý0´íÎó
 				else
-					positionWholeNew = (int)(100 * finishedSizeWhole / thrdData->totalSize);
+					positionWholeNew = (int)(progressMax * finishedSizeWhole / thrdData->totalSize);
 				if(isSizeCaled && positionWholeNew > positionWhole)
 				{
 					positionWhole = positionWholeNew;
