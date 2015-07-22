@@ -103,7 +103,6 @@ enum MainViewControllerState {
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     [self.mainTextView setFont:[NSFont fontWithName:@"Monaco" size:12]];
     [self.mainTextView setUsesFindBar:YES];
-    [self.mainTextView setIncrementalSearchingEnabled:YES];
     
     // Set TextView nowrap.
     [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:YES];
