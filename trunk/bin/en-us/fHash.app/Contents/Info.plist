@@ -77,6 +77,8 @@
 			<string>handleFinderContextOpen</string>
 			<key>NSPortName</key>
 			<string>fHash</string>
+			<key>NSRequiredContext</key>
+			<dict/>
 			<key>NSSendFileTypes</key>
 			<array>
 				<string>NSFilenamesPboardType</string>
