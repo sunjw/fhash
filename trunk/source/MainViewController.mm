@@ -321,8 +321,8 @@ enum MainViewControllerState {
         calcSpeed = calcSpeed * 1000; // Bytes/s
         
         string strSpeed;
-        if (calcSpeed > 1) {
-            strSpeed = Utils::ConvertSizeToShortSizeStr((uint64_t)calcSpeed);
+        strSpeed = Utils::ConvertSizeToShortSizeStr((uint64_t)calcSpeed);
+        if (strSpeed != "") {
             strSpeed.append("/s");
         }
         
