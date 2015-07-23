@@ -15,9 +15,11 @@ namespace Utils
 {
     uint64_t GetCurrentMilliSec()
     {
+#if defined (__APPLE__) || defined (__unix)
         struct timeval tv;
         gettimeofday(&tv, NULL);
         return (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+#endif
     }
     
     string ConvertSizeToShortSizeStr(uint64_t size)
