@@ -13,5 +13,9 @@
 
 @property (weak) MainViewController *mainViewController;
 
+- (void)handleFinderContextOpen:(NSPasteboard *)pboard
+                       userData:(NSString *)userData
+                          error:(NSString **)error;
+
 @end
 

@@ -16,7 +16,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    
+    [NSApp setServicesProvider:self];
+    NSUpdateDynamicServices();
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -40,6 +41,13 @@
     [self.mainViewController startHashCalc:filenames isURL:NO];
     
     [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+}
+
+- (void)handleFinderContextOpen:(NSPasteboard *)pboard
+                       userData:(NSString *)userData
+                          error:(NSString **)error {
+    NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
+    [self.mainViewController startHashCalc:filenames isURL:NO];
 }
 
 @end
