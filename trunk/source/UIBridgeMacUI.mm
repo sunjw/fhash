@@ -16,8 +16,7 @@ using namespace std;
 using namespace sunjwbase;
 
 UIBridgeMacUI::UIBridgeMacUI(MainViewController *mainViewController)
-:_mainViewControllerPtr(mainViewController),
-_oldProgWholeValue(0)
+:_mainViewControllerPtr(mainViewController)
 {
 }
 
@@ -161,13 +160,14 @@ void UIBridgeMacUI::updateProg(int value)
 
 void UIBridgeMacUI::updateProgWhole(int value)
 {
-    if (value == _oldProgWholeValue)
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    int oldValue = (int)[mainViewController.mainProgressIndicator doubleValue];
+    
+    if (value == oldValue)
         return;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        MainViewController *mainViewController = _mainViewControllerPtr.get();
         [mainViewController.mainProgressIndicator setDoubleValue:(double)value];
-        _oldProgWholeValue = value;
     });
 }
 
