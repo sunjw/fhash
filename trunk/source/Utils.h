@@ -6,8 +6,10 @@
 
 namespace Utils
 {
+    uint64_t GetCurrentMilliSec();
+    
     std::string ConvertSizeToShortSizeStr(uint64_t size);
-
+    
 }
 
 #endif

@@ -13,6 +13,7 @@
 #include <string>
 #include "strhelper.h"
 #include "OsUtils/OsThread.h"
+#include "Utils.h"
 #include "Global.h"
 #include "HashEngine.h"
 #include "UIStrings.h"
@@ -37,8 +38,14 @@ enum MainViewControllerState {
 @interface MainViewController()
 
 @property (assign) MainViewControllerState state;
+
 @property (assign) UIBridgeMacUI *uiBridgeMac;
+
+@property (assign) uint64_t calcStartTime;
+@property (assign) uint64_t calcEndTime;
+
 @property (assign) BOOL upperCaseState;
+
 @property (assign) ThreadData *thrdData;
 @property (assign) pthread_t ptHash;
 
@@ -47,11 +54,19 @@ enum MainViewControllerState {
 @implementation MainViewController
 
 @synthesize state = _state;
+
 @synthesize mainMtx = _mainMtx;
 @synthesize mainText = _mainText;
+
 @synthesize tag = _tag;
+
 @synthesize uiBridgeMac = _uiBridgeMac;
+
+@synthesize calcStartTime = _calcStartTime;
+@synthesize calcEndTime = _calcEndTime;
+
 @synthesize upperCaseState = _upperCaseState;
+
 @synthesize thrdData = _thrdData;
 @synthesize ptHash = _ptHash;
 
@@ -175,6 +190,8 @@ enum MainViewControllerState {
             // Passthrough to MAINVC_CALC_FINISH.
         }
         case MAINVC_CALC_FINISH: {
+            _calcEndTime = Utils::GetCurrentMilliSec();
+            
             // Set controls title.
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
             [openMenuItem setEnabled:YES];
@@ -189,6 +206,8 @@ enum MainViewControllerState {
             
         } break;
         case MAINVC_CALC_ING: {
+            _calcStartTime = Utils::GetCurrentMilliSec();
+            
             _thrdData->stop = false;
             
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
@@ -290,6 +309,26 @@ enum MainViewControllerState {
 - (void)calculateFinished {
     [self setViewControllerState:MAINVC_CALC_FINISH];
     [self.mainProgressIndicator setDoubleValue:_uiBridgeMac->getProgMax()];
+    
+    // Show calc speed.
+    uint64_t calcDurationTime = _calcEndTime - _calcStartTime;
+    if (calcDurationTime > 10) {
+        // speed is Bytes/ms
+        double calcSpeed = (double)_thrdData->totalSize / calcDurationTime;
+        calcSpeed = calcSpeed * 1000; // Bytes/s
+        
+        string strSpeed;
+        if (calcSpeed > 1) {
+            strSpeed = Utils::ConvertSizeToShortSizeStr((uint64_t)calcSpeed);
+            strSpeed.append("/s");
+        }
+        
+        NSString *nsstrSpeed = MacUtils::ConvertUTF8StringToNSString(strSpeed);
+        NSLog(@"%@", nsstrSpeed);
+        
+    } else {
+        
+    }
 }
 
 - (void)calculateStopped {

@@ -5,10 +5,21 @@
 #include <stdio.h>
 #include <string>
 
+#if defined (__APPLE__) || defined (__unix)
+#include <sys/time.h>
+#endif
+
 using namespace std;
 
 namespace Utils
 {
+    uint64_t GetCurrentMilliSec()
+    {
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        return (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
+    }
+    
     string ConvertSizeToShortSizeStr(uint64_t size)
     {
         string strSize("");
@@ -53,6 +64,8 @@ namespace Utils
 
         return strSize;
     }
+    
+    
 
 }
 
