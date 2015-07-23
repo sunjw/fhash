@@ -13,14 +13,20 @@
 
 @property (unsafe_unretained) IBOutlet NSScrollView *mainScrollView;
 @property (unsafe_unretained) IBOutlet NSTextView *mainTextView;
+
 @property (unsafe_unretained) IBOutlet NSProgressIndicator *mainProgressIndicator;
+
 @property (weak) IBOutlet NSButton *openButton;
 @property (weak) IBOutlet NSButton *clearButton;
 @property (weak) IBOutlet NSButton *verifyButton;
+
 @property (weak) IBOutlet NSButton *upperCaseButton;
+
+@property (weak) IBOutlet NSTextField *speedTextField;
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableString *mainText;
+
 @property (assign) NSUInteger tag;
 
 - (BOOL)ableToCalcFiles;

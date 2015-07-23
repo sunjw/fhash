@@ -392,10 +392,10 @@
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="538" height="282"/>
-                                            <size key="maxSize" width="538" height="10000000"/>
+                                            <size key="maxSize" width="540" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="538" height="282"/>
-                                            <size key="maxSize" width="538" height="10000000"/>
+                                            <size key="maxSize" width="540" height="10000000"/>
                                         </textView>
                                     </subviews>
                                     <animations/>
@@ -454,6 +454,14 @@
                                     <action selector="uppercaseButtonClicked:" target="XfG-lQ-9wD" id="tg7-CC-dE4"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
+                                <rect key="frame" x="137" y="15" width="86" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="speedTextField" id="iCV-8h-ZqE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <animations/>
                     </view>
@@ -463,6 +471,7 @@
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
+                        <outlet property="speedTextField" destination="rrP-Dq-Bp3" id="9bn-wR-fh6"/>
                         <outlet property="upperCaseButton" destination="6ZG-fr-1QJ" id="hCe-Ff-tAv"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                     </connections>

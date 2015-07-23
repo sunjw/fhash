@@ -186,6 +186,7 @@ enum MainViewControllerState {
             _mainMtx->unlock();
             
             [self.mainProgressIndicator setDoubleValue:0];
+            [self.speedTextField setStringValue:@""];
          
             // Passthrough to MAINVC_CALC_FINISH.
         }
@@ -212,6 +213,8 @@ enum MainViewControllerState {
             
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
             [openMenuItem setEnabled:NO];
+            
+            [self.speedTextField setStringValue:@""];
             
             [self.openButton
              setTitle:MacUtils::GetNSStringFromRes(MAINDLG_STOP)];
@@ -324,10 +327,10 @@ enum MainViewControllerState {
         }
         
         NSString *nsstrSpeed = MacUtils::ConvertUTF8StringToNSString(strSpeed);
-        NSLog(@"%@", nsstrSpeed);
+        [self.speedTextField setStringValue:nsstrSpeed];
         
     } else {
-        
+        [self.speedTextField setStringValue:@""];
     }
 }
 
