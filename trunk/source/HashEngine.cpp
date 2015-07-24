@@ -237,7 +237,12 @@ int WINAPI HashThreadFunc(void *param)
 					uiBridge->calcStop();
 					return 0;
 				}
-				databuf.datalen = (unsigned int)osFile.read(databuf.data, DataBuffer::preflen);
+				int64_t readRet = osFile.read(databuf.data, DataBuffer::preflen);
+				if(readRet >= 0)
+					databuf.datalen = (unsigned int)readRet;
+				else
+					databuf.datalen = 0;
+				
 				t++;
 
 				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5¸üĞÂ
