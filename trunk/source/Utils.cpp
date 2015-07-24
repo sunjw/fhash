@@ -22,7 +22,7 @@ namespace Utils
 #endif
     }
     
-    string ConvertSizeToShortSizeStr(uint64_t size)
+    string ConvertSizeToShortSizeStr(uint64_t size, bool conv1KSmaller)
     {
         string strSize("");
 
@@ -30,36 +30,44 @@ namespace Utils
 
         if(size > 1024)
         {
-            float k_fsize = size / 1024.0f;
-            if(k_fsize > 1024)
+            double k_size = size / 1024.0f;
+            if(k_size > 1024)
             {
-                float M_fsize = k_fsize / 1024;
-                if(M_fsize > 1024)
+                double m_size = k_size / 1024;
+                if(m_size > 1024)
                 {
-                    float g_fsize = M_fsize / 1024;
+                    double g_size = m_size / 1024;
 #if defined (WIN32)
-                    sprintf_s(buff, 1024, "%.2f GB", g_fsize);
+                    sprintf_s(buff, 1024, "%.2f GB", g_size);
 #else
-                    sprintf(buff, "%.2f GB", g_fsize);
+                    sprintf(buff, "%.2f GB", g_size);
 #endif
                 }
                 else
                 {
 #if defined (WIN32)
-                    sprintf_s(buff, 1024, "%.2f MB", M_fsize);
+                    sprintf_s(buff, 1024, "%.2f MB", m_size);
 #else
-                    sprintf(buff, "%.2f MB", M_fsize);
+                    sprintf(buff, "%.2f MB", m_size);
 #endif
                 }
             }
             else
             {
 #if defined (WIN32)
-                sprintf_s(buff, 1024, "%.2f KB", k_fsize);
+                sprintf_s(buff, 1024, "%.2f KB", k_size);
 #else
-                sprintf(buff, "%.2f KB", k_fsize);
+                sprintf(buff, "%.2f KB", k_size);
 #endif
             }
+        }
+        else if(conv1KSmaller)
+        {
+#if defined (WIN32)
+            sprintf_s(buff, 1024, "%.2f B", (double)size);
+#else
+            sprintf(buff, "%.2f B", (double)size);
+#endif
         }
 
         strSize = buff;
