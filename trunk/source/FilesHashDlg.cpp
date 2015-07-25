@@ -792,7 +792,7 @@ void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend
 	tstrToAppend.append(_T(" "));
 	tstrToAppend.append(result.tstrPath);
 	tstrToAppend.append(_T("\r\n"));
-	if(result.bDone)
+	if(result.enumState == RESULT_ALL)
 	{
 		// A succeed result
 		tstrToAppend.append(FILESIZE_STRING);

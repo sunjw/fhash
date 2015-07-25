@@ -139,14 +139,14 @@ int WINAPI HashThreadFunc(void *param)
         thrdData->resultList.push_back(resultNew);
         ResultData& result = thrdData->resultList.back();
         
-        result.enumState = ResultState::RESULT_NONE;
+        result.enumState = RESULT_NONE;
         
 		path = thrdData->fullPaths[i].c_str();
 		result.tstrPath = thrdData->fullPaths[i];
 
 		int position = 0; // 进度条位置
 
-        result.enumState = ResultState::RESULT_PATH;
+        result.enumState = RESULT_PATH;
         
 		uiBridge->showFileName(result);
 
@@ -219,7 +219,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrVersion = tstrFileVersion;
 #endif
             
-            result.enumState = ResultState::RESULT_META;
+            result.enumState = RESULT_META;
 
 			uiBridge->showFileMeta(result);
 			
@@ -369,7 +369,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrSHA256 = tstrFileSHA256;
 			result.tstrCRC32 = tstrFileCRC32;
             
-            result.enumState = ResultState::RESULT_ALL;
+            result.enumState = RESULT_ALL;
 			
 			uiBridge->showFileHash(result, thrdData->uppercase);
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
@@ -383,7 +383,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrError = strtotstr(string(fExc));
 #endif
 
-            result.enumState = ResultState::RESULT_ERROR;
+            result.enumState = RESULT_ERROR;
 
 			uiBridge->showFileErr(result);
 		}
