@@ -1,0 +1,17 @@
+A files' hash calculator for Windows and Mac OS X.
+ * MD5, SHA1, SHA256 and CRC32.
+ * Drag & drop.
+ * Integrated with context menu in Explorer/Finder.
+ * Support multipul files.
+
+Made in China.
+Project Site https://github.com/sunjw/fhash
+
+INSTALL
+
+
+LICENSE
+GPL 2.0
+
+AUTHOR
+Sun Junwen sunjw8888 at gmail.com
