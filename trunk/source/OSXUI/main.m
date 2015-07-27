@@ -1,9 +1,9 @@
 //
 //  main.m
-//  TestUI
+//  fHashMacUI
 //
-//  Created by TM Test on 7/15/15.
-//  Copyright © 2015 SunJW. All rights reserved.
+//  Created by Sun Junwen on 7/15/15.
+//  Copyright © 2015 Sun Junwen. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
