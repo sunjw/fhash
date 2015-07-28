@@ -11,7 +11,6 @@
 #include "strhelper.h"
 #include "Utils.h"
 #include "Global.h"
-#include "UIStrings.h"
 
 #import <Foundation/Foundation.h>
 

@@ -16,7 +16,6 @@
 #include "Utils.h"
 #include "Global.h"
 #include "HashEngine.h"
-#include "UIStrings.h"
 
 #import <Cocoa/Cocoa.h>
 #import "MacUtils.h"

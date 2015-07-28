@@ -8,7 +8,6 @@
 #include "Utils.h"
 #include "MacUtils.h"
 #include "Global.h"
-#include "UIStrings.h"
 
 #import "MainViewController.h"
 
