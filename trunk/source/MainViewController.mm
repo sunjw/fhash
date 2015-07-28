@@ -117,7 +117,10 @@ enum MainViewControllerState {
     
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
-    [self.mainTextView setFont:[NSFont fontWithName:@"Monaco" size:12]];
+    NSFont *fontForTextView = [NSFont fontWithName:@"Monaco" size:12];
+    if (fontForTextView != nil) {
+        [self.mainTextView setFont:fontForTextView];
+    }
     [self.mainTextView setUsesFindBar:YES];
     
     // Set TextView nowrap.
