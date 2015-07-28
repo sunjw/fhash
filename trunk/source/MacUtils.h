@@ -57,6 +57,16 @@ namespace MacUtils {
     NSString *GetSystemVersion();
     
     /**
+     * Get system major version.
+     */
+    NSInteger GetSystemMajorVersion();
+    
+    /**
+     * Get system minor version.
+     */
+    NSInteger GetSystemMinorVersion();
+    
+    /**
      * Get system preferred languange full-name.
      */
     NSString *GetSystemPreferredLanguage();

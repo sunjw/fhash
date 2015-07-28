@@ -122,10 +122,11 @@ enum MainViewControllerState {
         [self.mainTextView setFont:fontForTextView];
     }
     
-    NSString *systemVersion = MacUtils::GetSystemVersion();
+    NSInteger systemMajorVersion = MacUtils::GetSystemMajorVersion();
+    NSInteger systemMinorVersion = MacUtils::GetSystemMinorVersion();
     NSString *prefLanguage = MacUtils::GetSystemPreferredLanguage();
     if ([prefLanguage hasPrefix:@"zh"] &&
-        ([systemVersion hasPrefix:@"10.10."] || [systemVersion hasPrefix:@"10.9."])) {
+        (systemMajorVersion < 10 || (systemMajorVersion == 10 && systemMinorVersion < 11))) {
         // Below 10.11, Chinese fonts is not good.
         // Make a little tweak.
         NSMutableParagraphStyle *paraStyle =[[NSParagraphStyle defaultParagraphStyle]

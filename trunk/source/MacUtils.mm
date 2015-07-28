@@ -26,6 +26,32 @@ namespace MacUtils {
         return systemVersion;
     }
     
+    NSInteger GetSystemMajorVersion() {
+        NSInteger nsiMajorVersion = 0;
+        
+        NSString *systemVersion = GetSystemVersion();
+        NSArray *versionParts = [systemVersion componentsSeparatedByString: @"."];
+        if (versionParts != nil && versionParts.count > 0) {
+            NSString *nsstrMajorVersion = [versionParts objectAtIndex:0];
+            nsiMajorVersion = [nsstrMajorVersion integerValue];
+        }
+        
+        return nsiMajorVersion;
+    }
+    
+    NSInteger GetSystemMinorVersion() {
+        NSInteger nsiMinorVersion = 0;
+        
+        NSString *systemVersion = GetSystemVersion();
+        NSArray *versionParts = [systemVersion componentsSeparatedByString: @"."];
+        if (versionParts != nil && versionParts.count > 1) {
+            NSString *nsstrMinorVersion = [versionParts objectAtIndex:1];
+            nsiMinorVersion = [nsstrMinorVersion integerValue];
+        }
+        
+        return nsiMinorVersion;
+    }
+    
     NSString *GetSystemPreferredLanguage() {
         NSString* language = [[NSLocale preferredLanguages] objectAtIndex:0];
         return language;
