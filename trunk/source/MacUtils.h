@@ -52,6 +52,16 @@ namespace MacUtils {
     }
     
     /**
+     * Get system version.
+     */
+    NSString *GetSystemVersion();
+    
+    /**
+     * Get system preferred languange full-name.
+     */
+    NSString *GetSystemPreferredLanguage();
+    
+    /**
      * Convert NSString to an UTF-8 std::string.
      */
     std::string ConvertNSStringToUTF8String(const NSString *nsstr);

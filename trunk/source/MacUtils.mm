@@ -19,6 +19,20 @@ using namespace sunjwbase;
 
 namespace MacUtils {
     
+    NSString *GetSystemVersion() {
+        NSDictionary *systemVersionDictionary = [NSDictionary dictionaryWithContentsOfFile:
+                                                 @"/System/Library/CoreServices/SystemVersion.plist"];
+        
+        NSString *systemVersion = [systemVersionDictionary objectForKey:@"ProductVersion"];
+        
+        return systemVersion;
+    }
+    
+    NSString *GetSystemPreferredLanguage() {
+        NSString* language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        return language;
+    }
+    
     string ConvertNSStringToUTF8String(const NSString *nsstr) {
         string strRet = string([nsstr UTF8String]);
         return strRet;

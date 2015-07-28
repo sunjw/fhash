@@ -116,10 +116,23 @@ enum MainViewControllerState {
     
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
+    
     NSFont *fontForTextView = [NSFont fontWithName:@"Monaco" size:12];
     if (fontForTextView != nil) {
         [self.mainTextView setFont:fontForTextView];
     }
+    
+    NSString *systemVersion = MacUtils::GetSystemVersion();
+    NSString *prefLanguage = MacUtils::GetSystemPreferredLanguage();
+    if ([prefLanguage hasPrefix:@"zh"] && ![systemVersion hasPrefix:@"10.11."]) {
+        // Below 10.11, Chinese fonts is not good.
+        // Make a little tweak.
+        NSMutableParagraphStyle *paraStyle =[[NSParagraphStyle defaultParagraphStyle]
+                                             mutableCopy];
+        [paraStyle setLineSpacing:self.mainTextView.defaultParagraphStyle.lineSpacing + (float)4];
+        [self.mainTextView setDefaultParagraphStyle:paraStyle];
+    }
+    
     [self.mainTextView setUsesFindBar:YES];
     
     // Set TextView nowrap.
