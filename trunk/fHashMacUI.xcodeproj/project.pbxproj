@@ -28,7 +28,6 @@
 		41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEC1B5B4B470081F283 /* MD5.cpp */; };
 		41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEE1B5B4B470081F283 /* SHA1.cpp */; };
 		41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DF01B5B4B470081F283 /* sha256.cpp */; };
-		41FF1DF81B5B4D310081F283 /* UIStrings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DF71B5B4D310081F283 /* UIStrings.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,8 +74,6 @@
 		41FF1DEF1B5B4B470081F283 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = "<group>"; };
 		41FF1DF01B5B4B470081F283 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = "<group>"; };
 		41FF1DF11B5B4B470081F283 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = source/Algorithms/sha256.h; sourceTree = "<group>"; };
-		41FF1DF61B5B4D2A0081F283 /* UIStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIStrings.h; path = source/UIStrings.h; sourceTree = "<group>"; };
-		41FF1DF71B5B4D310081F283 /* UIStrings.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = UIStrings.cpp; path = source/UIStrings.cpp; sourceTree = "<group>"; };
 		52751B101B56276F00BD724B /* fHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,8 +99,6 @@
 				4161E0FE1B5C91C900D89326 /* MacUtils.mm */,
 				41FF1DC91B5B49490081F283 /* HashEngine.h */,
 				41FF1DC81B5B49490081F283 /* HashEngine.cpp */,
-				41FF1DF61B5B4D2A0081F283 /* UIStrings.h */,
-				41FF1DF71B5B4D310081F283 /* UIStrings.cpp */,
 				41FF1DCA1B5B49490081F283 /* UIBridgeBase.h */,
 			);
 			name = src;
@@ -279,7 +274,6 @@
 				41FF1DD51B5B49A60081F283 /* strhelper.cpp in Sources */,
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
-				41FF1DF81B5B4D310081F283 /* UIStrings.cpp in Sources */,
 				41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */,
 				41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */,
 				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
