@@ -10,6 +10,7 @@
 		4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0F81B5C8D6400D89326 /* Utils.cpp */; };
 		4161E0FF1B5C91C900D89326 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0FE1B5C91C900D89326 /* MacUtils.mm */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
+		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
@@ -37,6 +38,8 @@
 		4161E1001B5C91E400D89326 /* MacUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacUtils.h; path = source/MacUtils.h; sourceTree = "<group>"; };
 		41666E041B67415300A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		41666E061B6741C900A1D71F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		41666E151B67573900A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		41666E171B67573D00A1D71F /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -190,6 +193,7 @@
 				4198A5391B58D3DA0050C831 /* main.m */,
 				4198A5381B58D3DA0050C831 /* Credits.rtf */,
 				41666E051B67415300A1D71F /* Localizable.strings */,
+				41666E161B67573900A1D71F /* ServicesMenu.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -252,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */,
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
 				4198A5371B58D3C40050C831 /* Main.storyboard in Resources */,
@@ -296,6 +301,16 @@
 				41666E061B6741C900A1D71F /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			path = source/OSXUI;
+			sourceTree = SOURCE_ROOT;
+		};
+		41666E161B67573900A1D71F /* ServicesMenu.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41666E151B67573900A1D71F /* en */,
+				41666E171B67573D00A1D71F /* zh-Hans */,
+			);
+			name = ServicesMenu.strings;
 			path = source/OSXUI;
 			sourceTree = SOURCE_ROOT;
 		};
