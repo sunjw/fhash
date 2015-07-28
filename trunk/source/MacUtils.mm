@@ -29,20 +29,22 @@ namespace MacUtils {
         return [NSString stringWithUTF8String:stdstrUtf8.c_str()];
     }
     
-    string GetStringFromRes(const TCHAR *tzhName) {
-        string strResString = tstrtostr(tzhName);
-        string strUtf8 = utf8conv(strResString);
-        strUtf8 = strreplace(strUtf8, "&", ""); // Remove "&"
-        return strUtf8;
+    string GetStringFromRes(NSString *nsstrKey) {
+        NSString *nsstrLocalized = NSLocalizedString(nsstrKey, @"");
+        string strLocalized = ConvertNSStringToUTF8String(nsstrLocalized);
+        strLocalized = strreplace(strLocalized, "&", ""); // Remove "&"
+        return strLocalized;
     }
     
-    NSString *GetNSStringFromRes(const TCHAR *tzhName) {
-        return ConvertUTF8StringToNSString(GetStringFromRes(tzhName));
+    NSString *GetNSStringFromRes(NSString *nsstrKey) {
+        string strLocalized = GetStringFromRes(nsstrKey);
+        NSString *nsstrLocalized = ConvertUTF8StringToNSString(strLocalized);
+        return nsstrLocalized;
     }
     
     void AppendFileNameToNSMutableString(const ResultData& result,
                                          NSMutableString *nsmutString) {
-        string strAppend = MacUtils::GetStringFromRes(FILENAME_STRING);
+        string strAppend = GetStringFromResByKey(FILENAME_STRING);
         strAppend.append(" ");
         strAppend.append(tstrtostr(result.tstrPath));
         strAppend.append("\n");
@@ -57,18 +59,18 @@ namespace MacUtils {
         sprintf(chSizeBuff, "%llu", result.ulSize);
         string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
         
-        string strAppend = MacUtils::GetStringFromRes(FILESIZE_STRING);
+        string strAppend = GetStringFromResByKey(FILESIZE_STRING);
         strAppend.append(" ");
         strAppend.append(chSizeBuff);
         strAppend.append(" ");
-        strAppend.append(MacUtils::GetStringFromRes(BYTE_STRING));
+        strAppend.append(GetStringFromResByKey(BYTE_STRING));
         if (strShortSize != "") {
             strAppend.append(" (");
             strAppend.append(strShortSize);
             strAppend.append(")");
         }
         strAppend.append("\n");
-        strAppend.append(MacUtils::GetStringFromRes(MODIFYTIME_STRING));
+        strAppend.append(GetStringFromResByKey(MODIFYTIME_STRING));
         strAppend.append(" ");
         strAppend.append(tstrtostr(result.tstrMDate));
         strAppend.append("\n");

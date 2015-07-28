@@ -15,6 +15,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define GetNSStringFromResByKey(key) MacUtils::GetNSStringFromRes(@"" #key "")
+#define GetStringFromResByKey(key) MacUtils::GetStringFromRes(@"" #key "")
+
 namespace MacUtils {
 
     /**
@@ -61,12 +64,12 @@ namespace MacUtils {
     /**
      * Get specific named string as std::string.
      */
-    std::string GetStringFromRes(const sunjwbase::TCHAR *tzhName);
+    std::string GetStringFromRes(NSString *nsstrKey);
     
     /**
      * Get specific named string as NSString.
      */
-    NSString *GetNSStringFromRes(const sunjwbase::TCHAR *tzhName);
+    NSString *GetNSStringFromRes(NSString *nsstrKey);
     
     /**
      * Append file name in ResultData to NSMutableString.

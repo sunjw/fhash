@@ -18,6 +18,7 @@
 #include "HashEngine.h"
 #include "UIStrings.h"
 
+#import <Cocoa/Cocoa.h>
 #import "MacUtils.h"
 #import "UIBridgeMacUI.h"
 #import "fHashMacAppDelegate.h"
@@ -104,9 +105,9 @@ enum MainViewControllerState {
     
     // Set buttons title.
     [self.verifyButton
-     setTitle:MacUtils::GetNSStringFromRes(MAINDLG_VERIFY)];
+     setTitle:GetNSStringFromResByKey(MAINDLG_VERIFY)];
     [self.upperCaseButton
-     setTitle:MacUtils::GetNSStringFromRes(MAINDLG_UPPER_HASH)];
+     setTitle:GetNSStringFromResByKey(MAINDLG_UPPER_HASH)];
     
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
@@ -177,7 +178,7 @@ enum MainViewControllerState {
             _mainMtx->lock();
             {
                 _mainText = [[NSMutableString alloc] init];
-                string strAppend = MacUtils::GetStringFromRes(MAINDLG_INITINFO);
+                string strAppend = GetStringFromResByKey(MAINDLG_INITINFO);
                 strAppend.append("\n\n");
                 NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
                 
@@ -198,9 +199,9 @@ enum MainViewControllerState {
             [openMenuItem setEnabled:YES];
             
             [self.openButton
-             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_OPEN)];
+             setTitle:GetNSStringFromResByKey(MAINDLG_OPEN)];
             [self.clearButton
-             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_CLEAR)];
+             setTitle:GetNSStringFromResByKey(MAINDLG_CLEAR)];
             [self.clearButton setEnabled:YES];
             [self.verifyButton setEnabled:YES];
             [self.upperCaseButton setEnabled:YES];
@@ -217,7 +218,7 @@ enum MainViewControllerState {
             [self.speedTextField setStringValue:@""];
             
             [self.openButton
-             setTitle:MacUtils::GetNSStringFromRes(MAINDLG_STOP)];
+             setTitle:GetNSStringFromResByKey(MAINDLG_STOP)];
             [self.clearButton setEnabled:NO];
             [self.verifyButton setEnabled:NO];
             [self.upperCaseButton setEnabled:NO];
