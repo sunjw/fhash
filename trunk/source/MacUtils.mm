@@ -22,9 +22,7 @@ namespace MacUtils {
     NSString *GetSystemVersion() {
         NSDictionary *systemVersionDictionary = [NSDictionary dictionaryWithContentsOfFile:
                                                  @"/System/Library/CoreServices/SystemVersion.plist"];
-        
         NSString *systemVersion = [systemVersionDictionary objectForKey:@"ProductVersion"];
-        
         return systemVersion;
     }
     
