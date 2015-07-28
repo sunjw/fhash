@@ -131,6 +131,14 @@ enum MainViewControllerState {
     [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
     
     // Set checkbox.
+    NSColor *lableTextColor = [self.speedTextField textColor];
+    NSAttributedString *attributedString =
+    [[NSAttributedString alloc] initWithString:[self.upperCaseButton title]
+                                    attributes:[NSDictionary
+                                                dictionaryWithObjectsAndKeys: lableTextColor, NSForegroundColorAttributeName,
+                                                nil]];
+    
+    [self.upperCaseButton setAttributedTitle:attributedString];
     [self.upperCaseButton setState:NSOffState];
     [self updateUpperCaseState];
     

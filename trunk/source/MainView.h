@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "MainViewController.h"
 
-@interface MainView : NSView <NSDraggingDestination>
+@interface MainView : NSVisualEffectView <NSDraggingDestination>
 
 @property (weak) MainViewController *mainViewController;
 

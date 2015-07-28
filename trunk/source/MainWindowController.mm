@@ -25,7 +25,7 @@
     self.window.titlebarAppearsTransparent = YES;
     self.window.styleMask |= NSFullSizeContentViewWindowMask;
     self.window.movableByWindowBackground = YES;
-    
+
 }
 
 - (MainViewController *)getMainViewController {
