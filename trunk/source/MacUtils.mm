@@ -32,7 +32,17 @@ namespace MacUtils {
     string GetStringFromRes(NSString *nsstrKey) {
         NSString *nsstrLocalized = NSLocalizedString(nsstrKey, @"");
         string strLocalized = ConvertNSStringToUTF8String(nsstrLocalized);
+        // Fix Windows UI strings.
+        // Fix zh-cn.
+        for (char chTest = 'A'; chTest <= 'Z'; ++chTest) {
+            string strTest = "(&";
+            strTest += chTest;
+            strTest.append(")");
+            strLocalized = strreplace(strLocalized, strTest, ""); // Remove "(&X)"
+        }
+        // Fix en-us
         strLocalized = strreplace(strLocalized, "&", ""); // Remove "&"
+        
         return strLocalized;
     }
     
