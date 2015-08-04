@@ -1,5 +1,5 @@
 //
-//  AboutWindowController.m
+//  AboutWindowController.mm
 //  fHashMacUI
 //
 //  Created by Sun Junwen on 15/8/4.

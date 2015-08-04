@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410E260A1B70C1FB004B3C9A /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 410E26091B70C1FB004B3C9A /* AboutWindowController.m */; };
-		410E260E1B70C2E2004B3C9A /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 410E260C1B70C2E2004B3C9A /* AboutViewController.m */; };
+		410E260A1B70C1FB004B3C9A /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 410E26091B70C1FB004B3C9A /* AboutWindowController.mm */; };
+		410E260E1B70C2E2004B3C9A /* AboutViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 410E260C1B70C2E2004B3C9A /* AboutViewController.mm */; };
 		4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0F81B5C8D6400D89326 /* Utils.cpp */; };
 		4161E0FF1B5C91C900D89326 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0FE1B5C91C900D89326 /* MacUtils.mm */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
@@ -35,9 +35,9 @@
 
 /* Begin PBXFileReference section */
 		410E26081B70C1FB004B3C9A /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = source/AboutWindowController.h; sourceTree = SOURCE_ROOT; };
-		410E26091B70C1FB004B3C9A /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = source/AboutWindowController.m; sourceTree = SOURCE_ROOT; };
+		410E26091B70C1FB004B3C9A /* AboutWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutWindowController.mm; path = source/AboutWindowController.mm; sourceTree = SOURCE_ROOT; };
 		410E260B1B70C2E2004B3C9A /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = source/AboutViewController.h; sourceTree = SOURCE_ROOT; };
-		410E260C1B70C2E2004B3C9A /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = source/AboutViewController.m; sourceTree = SOURCE_ROOT; };
+		410E260C1B70C2E2004B3C9A /* AboutViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutViewController.mm; path = source/AboutViewController.mm; sourceTree = SOURCE_ROOT; };
 		4161E0F81B5C8D6400D89326 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Utils.cpp; sourceTree = "<group>"; };
 		4161E0F91B5C8D6400D89326 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Utils.h; sourceTree = "<group>"; };
 		4161E0FE1B5C91C900D89326 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/MacUtils.mm; sourceTree = "<group>"; };
@@ -188,9 +188,9 @@
 				41FF1DE21B5B4B250081F283 /* MainViewController.h */,
 				41FF1DE31B5B4B250081F283 /* MainViewController.mm */,
 				410E26081B70C1FB004B3C9A /* AboutWindowController.h */,
-				410E26091B70C1FB004B3C9A /* AboutWindowController.m */,
+				410E26091B70C1FB004B3C9A /* AboutWindowController.mm */,
 				410E260B1B70C2E2004B3C9A /* AboutViewController.h */,
-				410E260C1B70C2E2004B3C9A /* AboutViewController.m */,
+				410E260C1B70C2E2004B3C9A /* AboutViewController.mm */,
 				52751B161B56276F00BD724B /* Supporting Files */,
 			);
 			name = fHashMacUI;
@@ -294,12 +294,12 @@
 				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
 				41E013CE1B5CE954004126B2 /* UIBridgeMacUI.mm in Sources */,
 				41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */,
-				410E260E1B70C2E2004B3C9A /* AboutViewController.m in Sources */,
+				410E260E1B70C2E2004B3C9A /* AboutViewController.mm in Sources */,
 				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
 				41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */,
 				41FF1DF21B5B4B470081F283 /* CRC32.cpp in Sources */,
 				41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */,
-				410E260A1B70C1FB004B3C9A /* AboutWindowController.m in Sources */,
+				410E260A1B70C1FB004B3C9A /* AboutWindowController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

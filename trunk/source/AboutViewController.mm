@@ -1,9 +1,9 @@
 //
-//  AboutViewController.m
+//  AboutViewController.mm
 //  fHashMacUI
 //
 //  Created by Sun Junwen on 15/8/4.
-//  Copyright (c) 2015年 Sun Junwen. All rights reserved.
+//  Copyright (c) 2015 Sun Junwen. All rights reserved.
 //
 
 #import "AboutViewController.h"
