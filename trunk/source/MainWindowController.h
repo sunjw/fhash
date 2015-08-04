@@ -11,6 +11,4 @@
 
 @interface MainWindowController : NSWindowController <NSWindowDelegate>
 
-- (IBAction)openDocument:(id)sender;
-
 @end

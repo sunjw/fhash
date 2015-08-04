@@ -13,6 +13,8 @@
 
 @property (weak) MainViewController *mainViewController;
 
+- (IBAction)openDocument:(id)sender;
+
 - (void)handleFinderContextOpen:(NSPasteboard *)pboard
                        userData:(NSString *)userData
                           error:(NSString **)error;

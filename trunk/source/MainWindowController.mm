@@ -43,10 +43,4 @@
     return ![mainViewController isCalculating];
 }
 
-- (IBAction)openDocument:(id)sender {
-    // Menu bar "open"
-    MainViewController *mainViewController = [self getMainViewController];
-    [mainViewController openFiles];
-}
-
 @end

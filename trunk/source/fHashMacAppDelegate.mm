@@ -43,6 +43,11 @@
     [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
+- (IBAction)openDocument:(id)sender {
+    // Menu bar "open"
+    [self.mainViewController openFiles];
+}
+
 - (void)handleFinderContextOpen:(NSPasteboard *)pboard
                        userData:(NSString *)userData
                           error:(NSString **)error {
