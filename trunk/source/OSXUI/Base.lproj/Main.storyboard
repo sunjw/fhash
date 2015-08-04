@@ -26,13 +26,22 @@
             <objects>
                 <viewController id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" id="bS0-fd-qFN">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
+                                <rect key="frame" x="20" y="186" width="64" height="64"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cg4-uF-IPt"/>
+                            </imageView>
+                        </subviews>
                     </view>
+                    <connections>
+                        <outlet property="iconImageView" destination="l26-dk-XVG" id="CPp-Ev-ON1"/>
+                    </connections>
                 </viewController>
                 <customObject id="SSp-Tu-NaS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="1000"/>
+            <point key="canvasLocation" x="692" y="1006.5"/>
         </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">

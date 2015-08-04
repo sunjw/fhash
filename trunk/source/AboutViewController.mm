@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     // Do view setup here.
-    
+    [self.iconImageView setImage:[NSApp applicationIconImage]];
 }
 
 @end
