@@ -16,7 +16,6 @@
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
-		4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5381B58D3DA0050C831 /* Credits.rtf */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
 		41E013CE1B5CE954004126B2 /* UIBridgeMacUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */; };
 		41FF1DCD1B5B49490081F283 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DC81B5B49490081F283 /* HashEngine.cpp */; };
@@ -52,7 +51,6 @@
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		4198A5381B58D3DA0050C831 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = source/OSXUI/Credits.rtf; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UIBridgeMacUI.mm; path = source/UIBridgeMacUI.mm; sourceTree = SOURCE_ROOT; };
 		41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacUI.h; path = source/UIBridgeMacUI.h; sourceTree = SOURCE_ROOT; };
@@ -206,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				4198A5391B58D3DA0050C831 /* main.m */,
-				4198A5381B58D3DA0050C831 /* Credits.rtf */,
 				41666E051B67415300A1D71F /* Localizable.strings */,
 				41666E161B67573900A1D71F /* ServicesMenu.strings */,
 			);
@@ -275,7 +272,6 @@
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
 				4198A5371B58D3C40050C831 /* Main.storyboard in Resources */,
-				4198A53A1B58D3DA0050C831 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
