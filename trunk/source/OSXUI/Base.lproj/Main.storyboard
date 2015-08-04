@@ -7,7 +7,7 @@
         <!--Window Controller-->
         <scene sceneID="pby-Yy-FUo">
             <objects>
-                <windowController id="gn5-6V-AbC" customClass="AboutWindowController" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="gn5-6V-AbC" customClass="AboutWindowController" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="6Ix-nh-iPf">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>
@@ -24,7 +24,7 @@
         <!--About View Controller-->
         <scene sceneID="4NQ-ZJ-yPP">
             <objects>
-                <viewController id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" id="bS0-fd-qFN">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
