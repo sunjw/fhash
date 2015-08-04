@@ -11,5 +11,6 @@
 @interface AboutViewController : NSViewController
 
 @property (weak) IBOutlet NSImageView *iconImageView;
+@property (weak) IBOutlet NSTextField *infoTextField;
 
 @end

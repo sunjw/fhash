@@ -8,6 +8,11 @@
 
 #import "AboutViewController.h"
 
+#include <string>
+#import "MacUtils.h"
+
+using namespace std;
+
 @interface AboutViewController ()
 
 @end
@@ -19,6 +24,12 @@
     
     // Do view setup here.
     [self.iconImageView setImage:[NSApp applicationIconImage]];
+    
+    string strAboutInfo;
+    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_TITLE));
+    
+    NSString *nsstrAboutInfo = MacUtils::ConvertUTF8StringToNSString(strAboutInfo);
+    [self.infoTextField setStringValue:nsstrAboutInfo];
 }
 
 @end
