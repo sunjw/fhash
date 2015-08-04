@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "NoTitlebarWindowController.h"
 
-@interface AboutWindowController : NoTitlebarWindowController
+@interface AboutWindowController : NSWindowController
 
 @end

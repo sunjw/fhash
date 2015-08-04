@@ -25,11 +25,32 @@ using namespace std;
     // Do view setup here.
     [self.iconImageView setImage:[NSApp applicationIconImage]];
     
+    NSString *nsstrAppVersion = [[[NSBundle mainBundle] infoDictionary]
+                                 objectForKey:@"CFBundleShortVersionString"];
+    
     string strAboutInfo;
+    
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_TITLE));
+    strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppVersion));
+    strAboutInfo.append("\n");
+    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_RIGHT));
+    strAboutInfo.append("\n");
+    strAboutInfo.append("\n");
+    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_MD5));
+    strAboutInfo.append("\n");
+    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_SHA256));
+    strAboutInfo.append("\n");
+    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_CRC32));
     
     NSString *nsstrAboutInfo = MacUtils::ConvertUTF8StringToNSString(strAboutInfo);
     [self.infoTextField setStringValue:nsstrAboutInfo];
+    
+    [self.closeButton setKeyEquivalent:@"\r"];
+    [self.closeButton setTitle:GetNSStringFromResByKey(BUTTON_OK)];
+}
+
+- (IBAction)closeButtonClicked:(NSButton *)sender {
+    [self.view.window close];
 }
 
 @end

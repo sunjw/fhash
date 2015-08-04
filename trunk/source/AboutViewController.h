@@ -12,5 +12,8 @@
 
 @property (weak) IBOutlet NSImageView *iconImageView;
 @property (weak) IBOutlet NSTextField *infoTextField;
+@property (weak) IBOutlet NSButton *closeButton;
+
+- (IBAction)closeButtonClicked:(NSButton *)sender;
 
 @end
