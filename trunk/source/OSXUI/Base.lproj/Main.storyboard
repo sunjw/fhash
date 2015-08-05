@@ -26,15 +26,15 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" id="bS0-fd-qFN">
-                        <rect key="frame" x="0.0" y="0.0" width="429" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="429" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
-                                <rect key="frame" x="20" y="176" width="64" height="64"/>
+                                <rect key="frame" x="20" y="156" width="64" height="64"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cg4-uF-IPt"/>
                             </imageView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
-                                <rect key="frame" x="100" y="49" width="311" height="183"/>
+                                <rect key="frame" x="100" y="49" width="311" height="165"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="infoTextField" id="zWw-Pv-m5p">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -383,7 +383,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="MainWindowController" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
@@ -401,7 +401,7 @@
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="MainView">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
