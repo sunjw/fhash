@@ -1,0 +1,62 @@
+/* 
+  Localizable.strings
+  fHashMacUI
+
+  Created by Sun Junwen on 15/7/28.
+  Copyright (c) 2015 Sun Junwen. All rights reserved.
+*/
+// Global Strings
+"FILE_STRING" = "File";
+"BYTE_STRING" = "Byte(s)";
+"HASHVALUE_STRING" = "Hash:";
+"FILENAME_STRING" = "Name:";
+"FILESIZE_STRING" = "File Size:";
+"MODIFYTIME_STRING" = "Modified Date:";
+"VERSION_STRING" = "Version:";
+"SECOND_STRING" = "s";
+"BUTTON_OK" = "OK";
+"BUTTON_CANCEL" = "Cancel";
+
+// Main Dialog Strings
+"MAINDLG_INITINFO" = "Drag files here or click open to start calculate.";
+"MAINDLG_WAITING_START" = "Prepare to start calculation.";
+"MAINDLG_CONTEXT_INIT" = "Need Administrator";
+"MAINDLG_ADD_SUCCEEDED" = "Add Succeeded";
+"MAINDLG_ADD_FAILED" = "Add Failed";
+"MAINDLG_REMOVE_SUCCEEDED" = "Remove Succeeded";
+"MAINDLG_REMOVE_FAILED" = "Remove Failed";
+"MAINDLG_REMOVE_CONTEXT_MENU" = "Remove Context Menu";
+"MAINDLG_ADD_CONTEXT_MENU" = "Add to Context Menu";
+"MAINDLG_CLEAR" = "Clea&r";
+"MAINDLG_CLEAR_VERIFY" = "Clea&r Verify";
+"MAINDLG_CALCU_TERMINAL" = "Terminated";
+"MAINDLG_FIND_IN_RESULT" = "Verify";
+"MAINDLG_RESULT" = "Result:";
+"MAINDLG_NORESULT" = "Nothing Found";
+"MAINDLG_FILE_PROGRESS" = "File";
+"MAINDLG_TOTAL_PROGRESS" = "Total";
+"MAINDLG_UPPER_HASH" = "Uppercase";
+"MAINDLG_TIME_TITLE" = "Time Used:";
+"MAINDLG_OPEN" = "&Open...";
+"MAINDLG_STOP" = "&Stop";
+"MAINDLG_COPY" = "&Copy";
+"MAINDLG_VERIFY" = "&Verify";
+"MAINDLG_ABOUT" = "&About";
+"MAINDLG_EXIT" = "E&xit";
+
+// Find Dialog Strings
+"FINDDLG_TITLE" = "Verify";
+
+// About Dialog Strings
+"ABOUTDLG_TITLE" = "About fHash";
+"ABOUTDLG_INFO_TITLE" = "fHash: Files' Hash Calculator ";
+"ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007-2015 SUN Junwen.";
+"ABOUTDLG_INFO_MD5" = "MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.";
+"ABOUTDLG_INFO_SHA256" = "SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller";
+"ABOUTDLG_INFO_CRC32" = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";
+"ABOUTDLG_INFO_RIGHTDETAIL" = "More details are on Project Site.";
+"ABOUTDLG_INFO_OSTITLE" = "Operating System:";
+"ABOUTDLG_PROJECT_SITE" = "<a>Project Home</a>";
+
+// Shell ext
+"SHELL_EXT_TOO_MANY_FILES" = "Selected too many files";

@@ -40,6 +40,8 @@
 		410E260C1B70C2E2004B3C9A /* AboutViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutViewController.mm; path = source/AboutViewController.mm; sourceTree = SOURCE_ROOT; };
 		410E26101B70C49A004B3C9A /* NoTitlebarWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoTitlebarWindowController.h; path = source/NoTitlebarWindowController.h; sourceTree = SOURCE_ROOT; };
 		410E26111B70C49A004B3C9A /* NoTitlebarWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoTitlebarWindowController.mm; path = source/NoTitlebarWindowController.mm; sourceTree = SOURCE_ROOT; };
+		410E26131B71C988004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
+		410E26141B71C9CC004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4161E0F81B5C8D6400D89326 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Utils.cpp; sourceTree = "<group>"; };
 		4161E0F91B5C8D6400D89326 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Utils.h; sourceTree = "<group>"; };
 		4161E0FE1B5C91C900D89326 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/MacUtils.mm; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			children = (
 				41666E041B67415300A1D71F /* en */,
 				41666E061B6741C900A1D71F /* zh-Hans */,
+				410E26141B71C9CC004B3C9A /* Base */,
 			);
 			name = Localizable.strings;
 			path = source/OSXUI;
@@ -323,6 +326,7 @@
 			children = (
 				41666E151B67573900A1D71F /* en */,
 				41666E171B67573D00A1D71F /* zh-Hans */,
+				410E26131B71C988004B3C9A /* Base */,
 			);
 			name = ServicesMenu.strings;
 			path = source/OSXUI;
