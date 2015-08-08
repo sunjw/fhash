@@ -45,6 +45,22 @@ using namespace std;
     NSString *nsstrAboutInfo = MacUtils::ConvertUTF8StringToNSString(strAboutInfo);
     [self.infoTextField setStringValue:nsstrAboutInfo];
     
+    // Set homepage.
+    NSString *linkText = @"Host on GitHub";
+    NSURL *url = [NSURL URLWithString:@"https://github.com/sunjw/fhash"];
+    NSMutableAttributedString *hyperlinkString = [[NSMutableAttributedString alloc]
+                                                  initWithString:linkText];
+    [hyperlinkString beginEditing];
+    [hyperlinkString addAttribute:NSLinkAttributeName
+                            value:url
+                            range:NSMakeRange(0, [hyperlinkString length])];
+    [hyperlinkString addAttribute:NSForegroundColorAttributeName
+                            value:[NSColor keyboardFocusIndicatorColor]
+                            range:NSMakeRange(0, [hyperlinkString length])];
+    [hyperlinkString endEditing];
+
+    [self.homePageLinkTextField setAttributedStringValue:hyperlinkString];
+    
     [self.closeButton setKeyEquivalent:@"\r"];
     [self.closeButton setTitle:GetNSStringFromResByKey(BUTTON_OK)];
 }
