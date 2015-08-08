@@ -27,6 +27,8 @@
 using namespace std;
 using namespace sunjwbase;
 
+#define UPPERCASE_DEFAULT_KEY @"upperCaseKey"
+
 enum MainViewControllerState {
     MAINVC_NONE = 0,        // clear state
     MAINVC_CALC_ING,        // calculating
@@ -90,7 +92,18 @@ enum MainViewControllerState {
     MainView *mainView = (MainView *)self.view;
     mainView.mainViewController = self;
     
-    // alloc c++ member.
+    // Register NSUserDefaults.
+    NSDictionary *defaultsDictionary = [NSDictionary
+                                        dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithBool:NO], UPPERCASE_DEFAULT_KEY,
+                                        nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDictionary];
+    
+    // Load NSUserDefaults.
+    BOOL defaultUpperCase = [[NSUserDefaults standardUserDefaults]
+                             boolForKey:UPPERCASE_DEFAULT_KEY];
+    
+    // Alloc c++ member.
     _mainMtx = new OsMutex();
     _uiBridgeMac = new UIBridgeMacUI(self);
     _thrdData = new ThreadData();
@@ -149,7 +162,11 @@ enum MainViewControllerState {
     [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
     
     // Set checkbox.
-    [self.upperCaseButton setState:NSOffState];
+    if (defaultUpperCase) {
+        [self.upperCaseButton setState:NSOnState];
+    } else {
+        [self.upperCaseButton setState:NSOffState];
+    }
     [self updateUpperCaseState];
     
     // Update main text.
@@ -157,6 +174,12 @@ enum MainViewControllerState {
 }
 
 - (void)viewWillDisappear {
+    // Save NSUserDefaults.
+    BOOL defaultUpperCase = ([self.upperCaseButton state] == NSOnState);
+    [[NSUserDefaults standardUserDefaults] setBool:defaultUpperCase
+                                            forKey:UPPERCASE_DEFAULT_KEY];
+    
+    // Close other windows.
     NSArray *windows = [[NSApplication sharedApplication] windows];
     NSInteger windowCount = windows.count;
     for (NSInteger i = 0; i < windowCount; ++i) {
