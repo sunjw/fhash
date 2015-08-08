@@ -55,7 +55,7 @@ using namespace std;
                             value:url
                             range:NSMakeRange(0, [hyperlinkString length])];
     [hyperlinkString addAttribute:NSForegroundColorAttributeName
-                            value:[NSColor keyboardFocusIndicatorColor]
+                            value:[NSColor blueColor]
                             range:NSMakeRange(0, [hyperlinkString length])];
     [hyperlinkString endEditing];
 
