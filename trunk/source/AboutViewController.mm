@@ -46,7 +46,7 @@ using namespace std;
     [self.infoTextField setStringValue:nsstrAboutInfo];
     
     // Set homepage.
-    NSString *linkText = @"Host on GitHub";
+    NSString *linkText = @"Hosted on GitHub";
     NSURL *url = [NSURL URLWithString:@"https://github.com/sunjw/fhash"];
     NSMutableAttributedString *hyperlinkString = [[NSMutableAttributedString alloc]
                                                   initWithString:linkText];
