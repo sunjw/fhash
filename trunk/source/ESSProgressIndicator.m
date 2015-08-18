@@ -1,16 +1,18 @@
 //
-//  NSProgressIndicator+ESSProgressIndicatorCategory.m
+//  ESSProgressIndicator.m
 //  Briefly
 //
 //  Created by Matthias Gansrigler on 06.05.2015.
 //  Copyright (c) 2015 Eternal Storms Software. All rights reserved.
 //
+//  Edited by Sun Junwen on 08.15.2015.
+//
 
-#import "NSProgressIndicator+ESSProgressIndicatorCategory.h"
+#import "ESSProgressIndicator.h"
 
 @interface ESSProgressBarAnimation : NSAnimation
 
-@property (strong) NSProgressIndicator *progInd;
+@property (strong) ESSProgressIndicator *progInd;
 @property (assign) double initValue;
 @property (assign) double newValue;
 
@@ -19,8 +21,7 @@
 
 @end
 
-
-@implementation NSProgressIndicator (ESSProgressIndicatorCategory)
+@implementation ESSProgressIndicator
 
 - (void)animateToDoubleValue:(double)val
 {
@@ -34,7 +35,7 @@
 
 @implementation ESSProgressBarAnimation
 
-- (instancetype)initWithProgressBar:(NSProgressIndicator *)ind
+- (instancetype)initWithProgressBar:(ESSProgressIndicator *)ind
 					 newDoubleValue:(double)val
 {
     
@@ -56,7 +57,8 @@
 	[super setCurrentProgress:currentProgress];
 	
 	double delta = self.newValue - self.progInd.doubleValue;
-    if ((delta * (self.newValue - self.initValue)) > 0) {
+    if (!self.progInd.animateDisabled &&
+        (delta * (self.newValue - self.initValue)) > 0) {
         self.progInd.doubleValue = self.progInd.doubleValue + (delta * currentProgress);
     }
 }

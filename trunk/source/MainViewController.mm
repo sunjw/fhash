@@ -19,6 +19,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MacUtils.h"
+#import "ESSProgressIndicator.h"
 #import "UIBridgeMacUI.h"
 #import "fHashMacAppDelegate.h"
 #import "MainWindowController.h"
@@ -234,6 +235,8 @@ enum MainViewControllerState {
         case MAINVC_CALC_FINISH: {
             _calcEndTime = Utils::GetCurrentMilliSec();
             
+            [self.mainProgressIndicator setAnimateDisabled:YES];
+            
             // Set controls title.
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
             [openMenuItem setEnabled:YES];
@@ -256,6 +259,8 @@ enum MainViewControllerState {
             [openMenuItem setEnabled:NO];
             
             [self.speedTextField setStringValue:@""];
+            
+            [self.mainProgressIndicator setAnimateDisabled:NO];
             
             [self.openButton
              setTitle:GetNSStringFromResByKey(MAINDLG_STOP)];

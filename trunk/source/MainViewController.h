@@ -8,13 +8,14 @@
 #include "OsUtils/OsThread.h"
 
 #import <Cocoa/Cocoa.h>
+#import "ESSProgressIndicator.h"
 
 @interface MainViewController : NSViewController
 
 @property (unsafe_unretained) IBOutlet NSScrollView *mainScrollView;
 @property (unsafe_unretained) IBOutlet NSTextView *mainTextView;
 
-@property (unsafe_unretained) IBOutlet NSProgressIndicator *mainProgressIndicator;
+@property (unsafe_unretained) IBOutlet ESSProgressIndicator *mainProgressIndicator;
 
 @property (weak) IBOutlet NSButton *openButton;
 @property (weak) IBOutlet NSButton *clearButton;

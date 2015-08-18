@@ -9,7 +9,7 @@
 #include "MacUtils.h"
 #include "Global.h"
 
-#import "NSProgressIndicator+ESSProgressIndicatorCategory.h"
+#import "ESSProgressIndicator.h"
 #import "MainViewController.h"
 
 using namespace std;

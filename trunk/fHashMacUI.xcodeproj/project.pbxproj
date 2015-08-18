@@ -10,7 +10,7 @@
 		410E260A1B70C1FB004B3C9A /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 410E26091B70C1FB004B3C9A /* AboutWindowController.mm */; };
 		410E260E1B70C2E2004B3C9A /* AboutViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 410E260C1B70C2E2004B3C9A /* AboutViewController.mm */; };
 		410E26121B70C49A004B3C9A /* NoTitlebarWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 410E26111B70C49A004B3C9A /* NoTitlebarWindowController.mm */; };
-		411024651B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 411024641B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.m */; };
+		411024651B83489A004F8320 /* ESSProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 411024641B83489A004F8320 /* ESSProgressIndicator.m */; };
 		411848DB1B75FC6D00C022C7 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 411848DA1B75FC6D00C022C7 /* HyperlinkTextField.m */; };
 		4161E0FA1B5C8D6400D89326 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0F81B5C8D6400D89326 /* Utils.cpp */; };
 		4161E0FF1B5C91C900D89326 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4161E0FE1B5C91C900D89326 /* MacUtils.mm */; };
@@ -44,8 +44,8 @@
 		410E26111B70C49A004B3C9A /* NoTitlebarWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoTitlebarWindowController.mm; path = source/NoTitlebarWindowController.mm; sourceTree = SOURCE_ROOT; };
 		410E26131B71C988004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		410E26141B71C9CC004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		411024631B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSProgressIndicator+ESSProgressIndicatorCategory.h"; path = "source/NSProgressIndicator+ESSProgressIndicatorCategory.h"; sourceTree = SOURCE_ROOT; };
-		411024641B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSProgressIndicator+ESSProgressIndicatorCategory.m"; path = "source/NSProgressIndicator+ESSProgressIndicatorCategory.m"; sourceTree = SOURCE_ROOT; };
+		411024631B83489A004F8320 /* ESSProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSProgressIndicator.h; path = source/ESSProgressIndicator.h; sourceTree = SOURCE_ROOT; };
+		411024641B83489A004F8320 /* ESSProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSProgressIndicator.m; path = source/ESSProgressIndicator.m; sourceTree = SOURCE_ROOT; };
 		411848D91B75FC6D00C022C7 /* HyperlinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyperlinkTextField.h; path = source/HyperlinkTextField.h; sourceTree = SOURCE_ROOT; };
 		411848DA1B75FC6D00C022C7 /* HyperlinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyperlinkTextField.m; path = source/HyperlinkTextField.m; sourceTree = SOURCE_ROOT; };
 		4161E0F81B5C8D6400D89326 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Utils.cpp; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 				410E26111B70C49A004B3C9A /* NoTitlebarWindowController.mm */,
 				411848D91B75FC6D00C022C7 /* HyperlinkTextField.h */,
 				411848DA1B75FC6D00C022C7 /* HyperlinkTextField.m */,
-				411024631B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.h */,
-				411024641B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.m */,
+				411024631B83489A004F8320 /* ESSProgressIndicator.h */,
+				411024641B83489A004F8320 /* ESSProgressIndicator.m */,
 				41FF1DE41B5B4B250081F283 /* MainWindowController.h */,
 				41FF1DE51B5B4B250081F283 /* MainWindowController.mm */,
 				41FF1DE01B5B4B250081F283 /* MainView.h */,
@@ -304,7 +304,7 @@
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
 				41FF1DE91B5B4B250081F283 /* MainWindowController.mm in Sources */,
-				411024651B83489A004F8320 /* NSProgressIndicator+ESSProgressIndicatorCategory.m in Sources */,
+				411024651B83489A004F8320 /* ESSProgressIndicator.m in Sources */,
 				41FF1DE61B5B4B250081F283 /* fHashMacAppDelegate.mm in Sources */,
 				41FF1DE81B5B4B250081F283 /* MainViewController.mm in Sources */,
 				41E013CE1B5CE954004126B2 /* UIBridgeMacUI.mm in Sources */,
