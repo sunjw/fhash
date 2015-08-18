@@ -9,6 +9,7 @@
 #include "MacUtils.h"
 #include "Global.h"
 
+#import "NSProgressIndicator+ESSProgressIndicatorCategory.h"
 #import "MainViewController.h"
 
 using namespace std;
@@ -166,7 +167,7 @@ void UIBridgeMacUI::updateProgWhole(int value)
         return;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [mainViewController.mainProgressIndicator setDoubleValue:(double)value];
+        [mainViewController.mainProgressIndicator animateToDoubleValue:(double)value];
     });
 }
 
