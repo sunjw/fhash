@@ -11,7 +11,7 @@
 @interface ESSProgressBarAnimation : NSAnimation
 
 @property (strong) NSProgressIndicator *progInd;
-@property (assign) double initialValue;
+@property (assign) double initValue;
 @property (assign) double newValue;
 
 - (instancetype)initWithProgressBar:(NSProgressIndicator *)ind
@@ -37,10 +37,12 @@
 - (instancetype)initWithProgressBar:(NSProgressIndicator *)ind
 					 newDoubleValue:(double)val
 {
-	if (self = [super initWithDuration:0.15 animationCurve:NSAnimationLinear])
+    
+    
+	if (self = [super initWithDuration:0.3 animationCurve:NSAnimationLinear])
 	{
 		self.progInd = ind;
-		self.initialValue = self.progInd.doubleValue;
+        self.initValue = self.progInd.doubleValue;
 		self.newValue = val;
 		self.animationBlockingMode = NSAnimationNonblockingThreaded;
 		return self;
@@ -53,9 +55,10 @@
 {
 	[super setCurrentProgress:currentProgress];
 	
-	double delta = self.newValue-self.initialValue;
-	
-	self.progInd.doubleValue = self.initialValue + (delta*currentProgress);
+	double delta = self.newValue - self.progInd.doubleValue;
+    if ((delta * (self.newValue - self.initValue)) > 0) {
+        self.progInd.doubleValue = self.progInd.doubleValue + (delta * currentProgress);
+    }
 }
 
 @end
