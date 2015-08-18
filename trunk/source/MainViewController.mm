@@ -227,15 +227,13 @@ enum MainViewControllerState {
             }
             _mainMtx->unlock();
             
-            [self.mainProgressIndicator setDoubleValue:0];
+            [self.mainProgressIndicator jumpToDoubleValue:0];
             [self.speedTextField setStringValue:@""];
          
             // Passthrough to MAINVC_CALC_FINISH.
         }
         case MAINVC_CALC_FINISH: {
             _calcEndTime = Utils::GetCurrentMilliSec();
-            
-            [self.mainProgressIndicator setAnimateDisabled:YES];
             
             // Set controls title.
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
@@ -259,8 +257,6 @@ enum MainViewControllerState {
             [openMenuItem setEnabled:NO];
             
             [self.speedTextField setStringValue:@""];
-            
-            [self.mainProgressIndicator setAnimateDisabled:NO];
             
             [self.openButton
              setTitle:GetNSStringFromResByKey(MAINDLG_STOP)];
@@ -357,7 +353,7 @@ enum MainViewControllerState {
 
 - (void)calculateFinished {
     [self setViewControllerState:MAINVC_CALC_FINISH];
-    [self.mainProgressIndicator setDoubleValue:_uiBridgeMac->getProgMax()];
+    [self.mainProgressIndicator jumpToDoubleValue:_uiBridgeMac->getProgMax()];
     
     // Show calc speed.
     uint64_t calcDurationTime = _calcEndTime - _calcStartTime;
@@ -391,7 +387,7 @@ enum MainViewControllerState {
     _mainMtx->unlock();
     
     [self setViewControllerState:MAINVC_CALC_FINISH];
-    [self.mainProgressIndicator setDoubleValue:0];
+    [self.mainProgressIndicator jumpToDoubleValue:0];
     
     //[self updateMainTextView];
 }
@@ -429,7 +425,7 @@ enum MainViewControllerState {
     [self updateUpperCaseState];
     _thrdData->uppercase = _upperCaseState;
     
-    [self.mainProgressIndicator setDoubleValue:0];
+    [self.mainProgressIndicator jumpToDoubleValue:0];
     
     // Ready to go.
     [self setViewControllerState:MAINVC_CALC_ING];
