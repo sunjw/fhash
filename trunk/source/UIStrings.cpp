@@ -64,7 +64,8 @@ const TCHAR *ABOUTDLG_INFO_SHA256 = _T("SHA256 算法是由 Niels Moller 编写。Copyr
 const TCHAR *ABOUTDLG_INFO_CRC32 = _T("CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl");
 const TCHAR *ABOUTDLG_INFO_RIGHTDETAIL = _T("详细授权信息见开发者网站。");
 const TCHAR *ABOUTDLG_INFO_OSTITLE = _T("当前操作系统:");
-const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>项目主页</a>");
+const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>Hosted on GitHub</a>");
+const TCHAR *ABOUTDLG_PROJECT_URL = _T("https://github.com/sunjw/fhash");
 
 // Shell ext
 const TCHAR *SHELL_EXT_TOO_MANY_FILES = _T("选择的文件太多");
@@ -121,7 +122,8 @@ const TCHAR *ABOUTDLG_INFO_SHA256 = _T("SHA256 Algorithm is writtend by Niels Mo
 const TCHAR *ABOUTDLG_INFO_CRC32 = _T("CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl");
 const TCHAR *ABOUTDLG_INFO_RIGHTDETAIL = _T("More details are on Project Site.");
 const TCHAR *ABOUTDLG_INFO_OSTITLE = _T("Operating System:");
-const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>Project Home</a>");
+const TCHAR *ABOUTDLG_PROJECT_SITE = _T("<a>Hosted on GitHub</a>");
+const TCHAR *ABOUTDLG_PROJECT_URL = _T("https://github.com/sunjw/fhash");
 
 // Shell ext
 const TCHAR *SHELL_EXT_TOO_MANY_FILES = _T("Selected too many files");
