@@ -56,7 +56,8 @@
 "ABOUTDLG_INFO_CRC32" = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";
 "ABOUTDLG_INFO_RIGHTDETAIL" = "More details are on Project Site.";
 "ABOUTDLG_INFO_OSTITLE" = "Operating System:";
-"ABOUTDLG_PROJECT_SITE" = "<a>Project Home</a>";
+"ABOUTDLG_PROJECT_SITE" = "<a>Hosted on GitHub</a>";
+"ABOUTDLG_PROJECT_URL" = "https://github.com/sunjw/fhash";
 
 // Shell ext
 "SHELL_EXT_TOO_MANY_FILES" = "Selected too many files";

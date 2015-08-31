@@ -56,7 +56,8 @@
 "ABOUTDLG_INFO_CRC32" = "CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl";
 "ABOUTDLG_INFO_RIGHTDETAIL" = "详细授权信息见开发者网站。";
 "ABOUTDLG_INFO_OSTITLE" = "当前操作系统:";
-"ABOUTDLG_PROJECT_SITE" = "<a>项目主页</a>";
+"ABOUTDLG_PROJECT_SITE" = "<a>Hosted on GitHub</a>";
+"ABOUTDLG_PROJECT_URL" = "https://github.com/sunjw/fhash";
 
 // Shell ext
 "SHELL_EXT_TOO_MANY_FILES" = "选择的文件太多";

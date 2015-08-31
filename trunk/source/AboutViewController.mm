@@ -9,9 +9,11 @@
 #import "AboutViewController.h"
 
 #include <string>
+#include "strhelper.h"
 #import "MacUtils.h"
 
 using namespace std;
+using namespace sunjwbase;
 
 @interface AboutViewController ()
 
@@ -46,8 +48,11 @@ using namespace std;
     [self.infoTextField setStringValue:nsstrAboutInfo];
     
     // Set homepage.
-    NSString *linkText = @"Hosted on GitHub";
-    NSURL *url = [NSURL URLWithString:@"https://github.com/sunjw/fhash"];
+    string strLinkText = GetStringFromResByKey(ABOUTDLG_PROJECT_SITE);
+    strLinkText = strreplace(strLinkText, "<a>", "");
+    strLinkText = strreplace(strLinkText, "</a>", "");
+    NSString *linkText = MacUtils::ConvertUTF8StringToNSString(strLinkText);
+    NSURL *url = [NSURL URLWithString:GetNSStringFromResByKey(ABOUTDLG_PROJECT_URL)];
     NSMutableAttributedString *hyperlinkString = [[NSMutableAttributedString alloc]
                                                   initWithString:linkText];
     [hyperlinkString beginEditing];
