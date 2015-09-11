@@ -101,7 +101,12 @@ void UIBridgeMFC::showFileMeta(const ResultData& result)
 		m_uiTstrAll->append(tstrFileSize);
 		m_uiTstrAll->append(_T(" "));
 		m_uiTstrAll->append(BYTE_STRING);
-		m_uiTstrAll->append(tstrShortSize);
+		if (tstrShortSize.length() > 0) 
+		{
+			m_uiTstrAll->append(_T(" ("));
+			m_uiTstrAll->append(tstrShortSize);
+			m_uiTstrAll->append(_T(")"));
+		}
 		m_uiTstrAll->append(_T("\r\n"));
 		m_uiTstrAll->append(MODIFYTIME_STRING);
 		m_uiTstrAll->append(_T(" "));
