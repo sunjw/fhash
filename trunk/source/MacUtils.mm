@@ -52,6 +52,21 @@ namespace MacUtils {
         return nsiMinorVersion;
     }
     
+    bool IsSystemEarlierThan(int majorVersion, int minorVersion) {
+        NSInteger systemMajorVersion = MacUtils::GetSystemMajorVersion();
+        NSInteger systemMinorVersion = MacUtils::GetSystemMinorVersion();
+        return (systemMajorVersion < majorVersion ||
+                (systemMajorVersion == majorVersion && systemMinorVersion < minorVersion));
+    }
+    
+    bool IsSystemEarlierThan10_10() {
+        return IsSystemEarlierThan(10, 10);
+    }
+    
+    bool IsSystemEarlierThan10_11() {
+        return IsSystemEarlierThan(10, 11);
+    }
+    
     NSString *GetSystemPreferredLanguage() {
         NSString* language = [[NSLocale preferredLanguages] objectAtIndex:0];
         return language;

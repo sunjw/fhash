@@ -67,6 +67,21 @@ namespace MacUtils {
     NSInteger GetSystemMinorVersion();
     
     /**
+     * System version is below sepecific version.
+     */
+    bool IsSystemEarlierThan(int majorVersion, int minorVersion);
+    
+    /**
+     * System version is ealier than 10.10.
+     */
+    bool IsSystemEarlierThan10_10();
+    
+    /**
+     * System version is ealier than 10.11.
+     */
+    bool IsSystemEarlierThan10_11();
+    
+    /**
      * Get system preferred languange full-name.
      */
     NSString *GetSystemPreferredLanguage();
