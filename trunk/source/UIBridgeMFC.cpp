@@ -76,10 +76,7 @@ void UIBridgeMFC::showFileName(const ResultData& result)
 {
 	lockData();
 	{
-		m_uiTstrAll->append(FILENAME_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(result.tstrPath);
-		m_uiTstrAll->append(_T("\r\n"));
+		WindowsUtils::AppendFileNameToTstring(result, m_uiTstrAll);
 	}
 	unlockData();
 
@@ -88,39 +85,9 @@ void UIBridgeMFC::showFileName(const ResultData& result)
 
 void UIBridgeMFC::showFileMeta(const ResultData& result)
 {
-	char chSizeBuff[1024] = {0};
-	sprintf_s(chSizeBuff, 1024, "%I64u", result.ulSize);
-	tstring tstrFileSize = strtotstr(string(chSizeBuff));
-
-	tstring tstrShortSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
-
 	lockData();
 	{
-		m_uiTstrAll->append(FILESIZE_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(tstrFileSize);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(BYTE_STRING);
-		if (tstrShortSize.length() > 0) 
-		{
-			m_uiTstrAll->append(_T(" ("));
-			m_uiTstrAll->append(tstrShortSize);
-			m_uiTstrAll->append(_T(")"));
-		}
-		m_uiTstrAll->append(_T("\r\n"));
-		m_uiTstrAll->append(MODIFYTIME_STRING);
-		m_uiTstrAll->append(_T(" "));
-		m_uiTstrAll->append(result.tstrMDate);
-
-		if(result.tstrVersion != _T(""))
-		{
-			m_uiTstrAll->append(_T("\r\n"));
-			m_uiTstrAll->append(VERSION_STRING);
-			m_uiTstrAll->append(_T(" "));
-			m_uiTstrAll->append(result.tstrVersion);
-		}
-
-		m_uiTstrAll->append(_T("\r\n"));
+		WindowsUtils::AppendFileMetaToTstring(result, m_uiTstrAll);
 	}
 	unlockData();
 	
@@ -129,34 +96,9 @@ void UIBridgeMFC::showFileMeta(const ResultData& result)
 
 void UIBridgeMFC::showFileHash(const ResultData& result, bool uppercase)
 {
-	tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256, tstrFileCRC32;
-	
-	if (uppercase)
-	{
-		tstrFileMD5 = strtotstr(str_upper(tstrtostr(result.tstrMD5)));
-		tstrFileSHA1 = strtotstr(str_upper(tstrtostr(result.tstrSHA1)));
-		tstrFileSHA256 = strtotstr(str_upper(tstrtostr(result.tstrSHA256)));
-		tstrFileCRC32 = strtotstr(str_upper(tstrtostr(result.tstrCRC32)));
-	}
-	else
-	{
-		tstrFileMD5 = strtotstr(str_lower(tstrtostr(result.tstrMD5)));
-		tstrFileSHA1 = strtotstr(str_lower(tstrtostr(result.tstrSHA1)));
-		tstrFileSHA256 = strtotstr(str_lower(tstrtostr(result.tstrSHA256)));
-		tstrFileCRC32 = strtotstr(str_lower(tstrtostr(result.tstrCRC32)));
-	}
-
 	lockData();
 	{
-		m_uiTstrAll->append(_T("MD5: "));
-		m_uiTstrAll->append(tstrFileMD5);
-		m_uiTstrAll->append(_T("\r\nSHA1: "));
-		m_uiTstrAll->append(tstrFileSHA1);
-		m_uiTstrAll->append(_T("\r\nSHA256: "));
-		m_uiTstrAll->append(tstrFileSHA256);
-		m_uiTstrAll->append(_T("\r\nCRC32: "));
-		m_uiTstrAll->append(tstrFileCRC32);
-		m_uiTstrAll->append(_T("\r\n\r\n"));
+		WindowsUtils::AppendFileHashToTstring(result, uppercase, m_uiTstrAll);
 	}
 	unlockData();
 
@@ -167,8 +109,7 @@ void UIBridgeMFC::showFileErr(const ResultData& result)
 {
 	lockData();
 	{
-		m_uiTstrAll->append(result.tstrError);
-		m_uiTstrAll->append(_T("\r\n\r\n"));
+		WindowsUtils::AppendFileErrToTstring(result, m_uiTstrAll);
 	}
 	unlockData();
 

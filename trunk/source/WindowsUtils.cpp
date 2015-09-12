@@ -8,6 +8,7 @@
 #include <atlbase.h>
 
 #include "strhelper.h"
+#include "Utils.h"
 #include "UIStrings.h"
 
 using namespace std;
@@ -63,7 +64,7 @@ namespace WindowsUtils
 		if( !(bOsVersionInfoEx = GetVersionEx ((OSVERSIONINFO *) &osvi)) )
 		{
 			osvi.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
-			if (! GetVersionEx ( (OSVERSIONINFO *) &osvi) ) 
+			if (! GetVersionEx ( (OSVERSIONINFO *) &osvi) )
 				return FALSE;
 		}
 
@@ -749,6 +750,125 @@ namespace WindowsUtils
 			keyShlExt.Close();
 
 		return true;
+	}
+
+
+	void AppendFileNameToTstring(const ResultData& result,
+								tstring *tString)
+	{
+		tString->append(FILENAME_STRING);
+		tString->append(_T(" "));
+		tString->append(result.tstrPath);
+		tString->append(_T("\r\n"));
+	}
+
+	void AppendFileMetaToTstring(const ResultData& result,
+								tstring *tString)
+	{
+		char chSizeBuff[1024] = {0};
+		sprintf_s(chSizeBuff, 1024, "%I64u", result.ulSize);
+		tstring tstrFileSize = strtotstr(string(chSizeBuff));
+		tstring tstrShortSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
+
+		tString->append(FILESIZE_STRING);
+		tString->append(_T(" "));
+		tString->append(tstrFileSize);
+		tString->append(_T(" "));
+		tString->append(BYTE_STRING);
+		if (tstrShortSize.length() > 0)
+		{
+			tString->append(_T(" ("));
+			tString->append(tstrShortSize);
+			tString->append(_T(")"));
+		}
+		tString->append(_T("\r\n"));
+		tString->append(MODIFYTIME_STRING);
+		tString->append(_T(" "));
+		tString->append(result.tstrMDate);
+
+		if(result.tstrVersion != _T(""))
+		{
+			tString->append(_T("\r\n"));
+			tString->append(VERSION_STRING);
+			tString->append(_T(" "));
+			tString->append(result.tstrVersion);
+		}
+
+		tString->append(_T("\r\n"));
+
+	}
+
+	void AppendFileHashToTstring(const ResultData& result,
+								bool uppercase,
+								tstring *tString)
+	{
+		tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256, tstrFileCRC32;
+		
+		if (uppercase)
+		{
+			tstrFileMD5 = strtotstr(str_upper(tstrtostr(result.tstrMD5)));
+			tstrFileSHA1 = strtotstr(str_upper(tstrtostr(result.tstrSHA1)));
+			tstrFileSHA256 = strtotstr(str_upper(tstrtostr(result.tstrSHA256)));
+			tstrFileCRC32 = strtotstr(str_upper(tstrtostr(result.tstrCRC32)));
+		}
+		else
+		{
+			tstrFileMD5 = strtotstr(str_lower(tstrtostr(result.tstrMD5)));
+			tstrFileSHA1 = strtotstr(str_lower(tstrtostr(result.tstrSHA1)));
+			tstrFileSHA256 = strtotstr(str_lower(tstrtostr(result.tstrSHA256)));
+			tstrFileCRC32 = strtotstr(str_lower(tstrtostr(result.tstrCRC32)));
+		}
+
+		tString->append(_T("MD5: "));
+		tString->append(tstrFileMD5);
+		tString->append(_T("\r\nSHA1: "));
+		tString->append(tstrFileSHA1);
+		tString->append(_T("\r\nSHA256: "));
+		tString->append(tstrFileSHA256);
+		tString->append(_T("\r\nCRC32: "));
+		tString->append(tstrFileCRC32);
+		tString->append(_T("\r\n\r\n"));
+	}
+
+	void AppendFileErrToTstring(const ResultData& result,
+								tstring *tString)
+	{
+		tString->append(result.tstrError);
+		tString->append(_T("\r\n\r\n"));
+	}
+
+	void AppendResultToTstring(const ResultData& result,
+								bool uppercase,
+								tstring *tString)
+	{
+		if (result.enumState == RESULT_NONE)
+			return;
+		
+		if (result.enumState == RESULT_ALL ||
+			result.enumState == RESULT_META ||
+			result.enumState == RESULT_ERROR ||
+			result.enumState == RESULT_PATH) {
+			AppendFileNameToTstring(result, tString);
+		}
+		
+		if (result.enumState == RESULT_ALL ||
+			result.enumState == RESULT_META) {
+			AppendFileMetaToTstring(result, tString);
+		}
+		
+		if (result.enumState == RESULT_ALL) {
+			AppendFileHashToTstring(result, uppercase, tString);
+		}
+		
+		if (result.enumState == RESULT_ERROR) {
+			AppendFileErrToTstring(result, tString);
+		}
+		
+		if (result.enumState != RESULT_ALL &&
+			result.enumState != RESULT_ERROR) {
+			tstring tstrAppend = _T("\r\n");
+			tString->append(tstrAppend);
+		}
 	}
 
 }

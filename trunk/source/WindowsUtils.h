@@ -7,6 +7,7 @@
 #include <atlbase.h>
 
 #include "strhelper.h"
+#include "Global.h"
 
 namespace WindowsUtils
 {
@@ -52,6 +53,19 @@ namespace WindowsUtils
 	bool AddContextMenu();
 	bool RemoveContextMenu();
 	bool ContextMenuExisted();
+
+	void AppendFileNameToTstring(const ResultData& result,
+								sunjwbase::tstring *tString);
+	void AppendFileMetaToTstring(const ResultData& result,
+								sunjwbase::tstring *tString);
+	void AppendFileHashToTstring(const ResultData& result,
+								bool uppercase,
+								sunjwbase::tstring *tString);
+	void AppendFileErrToTstring(const ResultData& result,
+								sunjwbase::tstring *tString);
+	void AppendResultToTstring(const ResultData& result,
+								bool uppercase,
+								sunjwbase::tstring *tString);
 
 }
 

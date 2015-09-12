@@ -721,7 +721,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		SetCtrls(FALSE);
 		//界面设置 - 结束
 		
-		m_mainMtx.lock();
+		/*m_mainMtx.lock();
 		{
 			m_tstrAll.append(_T("\r\n"));
 			m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
@@ -729,7 +729,7 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 			m_editMain.SetWindowText(m_tstrAll.c_str());
 		}
-		m_mainMtx.unlock();
+		m_mainMtx.unlock();*/
 			
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
@@ -788,70 +788,6 @@ tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 
 void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend)
 {
-	tstrToAppend.append(FILENAME_STRING);
-	tstrToAppend.append(_T(" "));
-	tstrToAppend.append(result.tstrPath);
-	tstrToAppend.append(_T("\r\n"));
-	if(result.enumState == RESULT_ALL)
-	{
-		// A succeed result
-		tstrToAppend.append(FILESIZE_STRING);
-		tstrToAppend.append(_T(" "));
-		
-		char chSize[1024] = {0};
-		sprintf_s(chSize, 1024, "%I64u ", result.ulSize);
-
-		tstrToAppend.append(strtotstr(string(chSize)));
-		tstrToAppend.append(BYTE_STRING);
-
-		tstring tstrResultSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
-		tstrToAppend.append(tstrResultSize);
-		tstrToAppend.append(_T("\r\n"));
-		tstrToAppend.append(MODIFYTIME_STRING);
-		tstrToAppend.append(_T(" "));
-		tstrToAppend.append(result.tstrMDate.c_str());
-		if(result.tstrVersion != tstring(_T("")))
-		{
-			tstrToAppend.append(_T("\r\n"));
-			tstrToAppend.append(VERSION_STRING);
-			tstrToAppend.append(_T(" "));
-			tstrToAppend.append(result.tstrVersion.c_str());
-		}
-		tstrToAppend.append(_T("\r\n"));
-
-		CString strMD5(result.tstrMD5.c_str());
-		CString strSHA1(result.tstrSHA1.c_str());
-		CString strSHA256(result.tstrSHA256.c_str());
-		CString strCRC32(result.tstrCRC32.c_str());
-
-		if(m_thrdData.uppercase = (m_chkUppercase.GetCheck() == TRUE))
-		{
-			tstrToAppend.append(_T("MD5: "));
-			tstrToAppend.append(strMD5.MakeUpper());
-			tstrToAppend.append(_T("\r\nSHA1: "));
-			tstrToAppend.append(strSHA1.MakeUpper());
-			tstrToAppend.append(_T("\r\nSHA256: "));
-			tstrToAppend.append(strSHA256.MakeUpper());
-			tstrToAppend.append(_T("\r\nCRC32: "));
-			tstrToAppend.append(strCRC32.MakeUpper());
-		}
-		else
-		{
-			tstrToAppend.append(_T("MD5: "));
-			tstrToAppend.append(strMD5.MakeLower());
-			tstrToAppend.append(_T("\r\nSHA1: "));
-			tstrToAppend.append(strSHA1.MakeLower());
-			tstrToAppend.append(_T("\r\nSHA256: "));
-			tstrToAppend.append(strSHA256.MakeLower());
-			tstrToAppend.append(_T("\r\nCRC32: "));
-			tstrToAppend.append(strCRC32.MakeLower());
-		}
-	}
-	else
-	{
-		// An error result
-		tstrToAppend.append(result.tstrError.c_str());
-	}
-
-	tstrToAppend.append(_T("\r\n\r\n"));
+	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
+	WindowsUtils::AppendResultToTstring(result, m_thrdData.uppercase, &tstrToAppend);
 }
