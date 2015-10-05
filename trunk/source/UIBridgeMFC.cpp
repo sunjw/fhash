@@ -11,7 +11,7 @@
 #include "Global.h"
 #include "Utils.h"
 #include "WindowsUtils.h"
-#include "UIStrings.h"
+#include "WindowsStrings.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -44,7 +44,7 @@ void UIBridgeMFC::preparingCalc()
 	lockData();
 	{
 		m_tstrNoPreparing = *m_uiTstrAll;
-		m_uiTstrAll->append(MAINDLG_WAITING_START);
+		m_uiTstrAll->append(GetStringByKey(MAINDLG_WAITING_START));
 		m_uiTstrAll->append(_T("\r\n"));
 	}
 	unlockData();

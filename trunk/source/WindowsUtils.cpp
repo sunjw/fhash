@@ -9,7 +9,7 @@
 
 #include "strhelper.h"
 #include "Utils.h"
-#include "UIStrings.h"
+#include "WindowsStrings.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -589,9 +589,9 @@ namespace WindowsUtils
 		CRegKey key;
 		LONG lResult;
 #ifdef ZH_CN
-		LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+		LPCTSTR lpszKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_ZH_CN);
 #else
-		LPCTSTR lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
+		LPCTSTR lpszKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_EN_US);
 #endif
 
 		// 创建目录
@@ -628,7 +628,7 @@ namespace WindowsUtils
 	{
 		CRegKey key;
 		LONG lResult;
-		LPCTSTR lpszKeyName = SHELL_EXT_REGESTRY;
+		LPCTSTR lpszKeyName = GetStringByKey(SHELL_EXT_REGESTRY);
 
 		// 创建目录
 		lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -641,11 +641,11 @@ namespace WindowsUtils
 			return false;
 
 		// 成功打开
-		LPCTSTR pszUuid = SHELL_EXT_UUID;
+		LPCTSTR pszUuid = GetStringByKey(SHELL_EXT_UUID);
 		LPCTSTR pszExePath = pszExeFullPath;
 		
 		lResult = key.SetStringValue(NULL, pszUuid);
-		lResult |= key.SetStringValue(SHELL_EXT_EXEPATH, pszExePath);
+		lResult |= key.SetStringValue(GetStringByKey(SHELL_EXT_EXEPATH), pszExePath);
 		key.Close();
 
 		if(lResult == ERROR_SUCCESS)
@@ -705,8 +705,8 @@ namespace WindowsUtils
 		// Try to delete context menu
 		if(lResShell == ERROR_SUCCESS)
 		{
-			lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_EN_US);
-			lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_ZH_CN);
+			lResult &= keyShell.RecurseDeleteKey(GetStringByKey(CONTEXT_MENU_ITEM_EN_US));
+			lResult &= keyShell.RecurseDeleteKey(GetStringByKey(CONTEXT_MENU_ITEM_ZH_CN));
 			keyShell.Close();
 		}
 
@@ -727,11 +727,11 @@ namespace WindowsUtils
 	{
 		CRegKey keyCtxMenu, keyShlExt;
 #ifdef ZH_CN
-		LPCTSTR lpszCtxMenuKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+		LPCTSTR lpszCtxMenuKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_ZH_CN);
 #else
-		LPCTSTR lpszCtxMenuKeyName = CONTEXT_MENU_REGESTRY_EN_US;
+		LPCTSTR lpszCtxMenuKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_EN_US);
 #endif
-		LPCTSTR lpszShlExtKeyName = SHELL_EXT_REGESTRY;
+		LPCTSTR lpszShlExtKeyName = GetStringByKey(SHELL_EXT_REGESTRY);
 
 		LONG lResCtxMenu;
 		LONG lResShlExt;
@@ -756,7 +756,7 @@ namespace WindowsUtils
 	void AppendFileNameToTstring(const ResultData& result,
 								tstring *tString)
 	{
-		tString->append(FILENAME_STRING);
+		tString->append(GetStringByKey(FILENAME_STRING));
 		tString->append(_T(" "));
 		tString->append(result.tstrPath);
 		tString->append(_T("\r\n"));
@@ -770,11 +770,11 @@ namespace WindowsUtils
 		tstring tstrFileSize = strtotstr(string(chSizeBuff));
 		tstring tstrShortSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
 
-		tString->append(FILESIZE_STRING);
+		tString->append(GetStringByKey(FILESIZE_STRING));
 		tString->append(_T(" "));
 		tString->append(tstrFileSize);
 		tString->append(_T(" "));
-		tString->append(BYTE_STRING);
+		tString->append(GetStringByKey(BYTE_STRING));
 		if (tstrShortSize.length() > 0)
 		{
 			tString->append(_T(" ("));
@@ -782,14 +782,14 @@ namespace WindowsUtils
 			tString->append(_T(")"));
 		}
 		tString->append(_T("\r\n"));
-		tString->append(MODIFYTIME_STRING);
+		tString->append(GetStringByKey(MODIFYTIME_STRING));
 		tString->append(_T(" "));
 		tString->append(result.tstrMDate);
 
 		if(result.tstrVersion != _T(""))
 		{
 			tString->append(_T("\r\n"));
-			tString->append(VERSION_STRING);
+			tString->append(GetStringByKey(VERSION_STRING));
 			tString->append(_T(" "));
 			tString->append(result.tstrVersion);
 		}

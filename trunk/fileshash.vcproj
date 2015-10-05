@@ -612,6 +612,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\WindowsStrings.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsStringsBase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsStringsInternal.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\WindowsUtils.cpp"
 				>
 			</File>
@@ -686,6 +698,18 @@
 			</File>
 			<File
 				RelativePath=".\source\version.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsStrings.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsStringsBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\WindowsStringsInternal.h"
 				>
 			</File>
 			<File

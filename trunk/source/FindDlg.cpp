@@ -5,7 +5,7 @@
 
 #include "FilesHash.h"
 #include "FindDlg.h"
-#include "UIStrings.h"
+#include "WindowsStrings.h"
 
 // CFindDlg 对话框
 
@@ -38,15 +38,15 @@ BOOL CFindDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	SetWindowText(FINDDLG_TITLE);
+	SetWindowText(GetStringByKey(FINDDLG_TITLE));
 
 	CWnd* pWnd;
 	pWnd = GetDlgItem(IDOK);
-	pWnd->SetWindowText(BUTTON_OK);
+	pWnd->SetWindowText(GetStringByKey(BUTTON_OK));
 	pWnd = GetDlgItem(IDCANCEL);
-	pWnd->SetWindowText(BUTTON_CANCEL);
+	pWnd->SetWindowText(GetStringByKey(BUTTON_CANCEL));
 	pWnd = GetDlgItem(IDC_STATIC_HASH);
-	pWnd->SetWindowText(HASHVALUE_STRING);
+	pWnd->SetWindowText(GetStringByKey(HASHVALUE_STRING));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE

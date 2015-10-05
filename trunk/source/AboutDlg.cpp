@@ -9,7 +9,7 @@
 #include "FilesHash.h"
 #include "AboutDlg.h"
 #include "WindowsUtils.h"
-#include "UIStrings.h"
+#include "WindowsStrings.h"
 
 // CAboutDlg 对话框
 
@@ -28,36 +28,36 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	SetWindowText(ABOUTDLG_TITLE); // 设置标题
+	SetWindowText(GetStringByKey(ABOUTDLG_TITLE)); // 设置标题
 
 	CWnd* pWnd;
 	pWnd = GetDlgItem(IDOK);
-	pWnd->SetWindowText(BUTTON_OK);
+	pWnd->SetWindowText(GetStringByKey(BUTTON_OK));
 	pWnd = GetDlgItem(IDC_SYSLINK_SITE);
-	pWnd->SetWindowText(ABOUTDLG_PROJECT_SITE);
+	pWnd->SetWindowText(GetStringByKey(ABOUTDLG_PROJECT_SITE));
 
 	
 	CString fHashVersion = _T(STR_VERSION); //GetExeFileVersion(exeFullPath);
 
 	CString osinfo = WindowsUtils::GetWindowsInfo();
-	m_about = ABOUTDLG_INFO_TITLE;
+	m_about = GetStringByKey(ABOUTDLG_INFO_TITLE);
 	m_about.Append(fHashVersion);
 	if(sizeof(void*) == 8)
 		m_about.Append(_T(" x64"));
 	m_about.Append(_T("\r\n"));
-	m_about.Append(ABOUTDLG_INFO_RIGHT);
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_RIGHT));
 	m_about.Append(_T("\r\n\r\n"));
-	m_about.Append(ABOUTDLG_INFO_MD5);
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_MD5));
 	m_about.Append(_T("\r\n"));
-	m_about.Append(ABOUTDLG_INFO_SHA256);
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_SHA256));
 	m_about.Append(_T("\r\n"));
-	m_about.Append(ABOUTDLG_INFO_CRC32);
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_CRC32));
 	/*m_about.Append(_T("\r\n"));
-	m_about.Append(ABOUTDLG_INFO_RIGHTDETAIL);*/
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_RIGHTDETAIL));*/
 	m_about.Append(_T("\r\n\r\n"));
 
 	//m_about = m_about + "当前操作系统:\r\n" + osinfo;
-	m_about.Append(ABOUTDLG_INFO_OSTITLE);
+	m_about.Append(GetStringByKey(ABOUTDLG_INFO_OSTITLE));
 	m_about.Append(_T("\r\n"));
 	m_about.Append(osinfo);
 
@@ -91,7 +91,9 @@ void CAboutDlg::OnBnClickedOk()
 void CAboutDlg::OnNMClickSyslinkSite(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: 在此添加控件通知处理程序代码
-	ShellExecute(NULL, _T("open"), ABOUTDLG_PROJECT_URL, NULL, NULL, SW_SHOW);
+	ShellExecute(NULL, 
+				_T("open"), GetStringByKey(ABOUTDLG_PROJECT_URL), 
+				NULL, NULL, SW_SHOW);
 
 	*pResult = 0;
 }

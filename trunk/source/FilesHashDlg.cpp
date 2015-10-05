@@ -14,7 +14,7 @@
 #include "Utils.h"
 #include "WindowsUtils.h"
 #include "HashEngine.h"
-#include "UIStrings.h"
+#include "WindowsStrings.h"
 #include "UIBridgeMFC.h"
 
 
@@ -88,7 +88,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	PrepareAdvTaskbar();
 
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(MAINDLG_CLEAR);
+	m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
 
 	m_hWorkThread = NULL;
 	m_waitingExit = FALSE;
@@ -106,23 +106,21 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_STATIC_TIME);
 	pWnd->SetWindowText(_T(""));
 	pWnd = GetDlgItem(IDC_STATIC_FILE);
-	pWnd->SetWindowText(MAINDLG_FILE_PROGRESS);
+	pWnd->SetWindowText(GetStringByKey(MAINDLG_FILE_PROGRESS));
 	pWnd = GetDlgItem(IDC_STATIC_WHOLE);
-	pWnd->SetWindowText(MAINDLG_TOTAL_PROGRESS);
+	pWnd->SetWindowText(GetStringByKey(MAINDLG_TOTAL_PROGRESS));
 	pWnd = GetDlgItem(IDC_STATIC_UPPER);
-	pWnd->SetWindowText(MAINDLG_UPPER_HASH);
-	pWnd = GetDlgItem(IDC_STATIC_UPPER);
-	pWnd->SetWindowText(MAINDLG_UPPER_HASH);
+	pWnd->SetWindowText(GetStringByKey(MAINDLG_UPPER_HASH));
 	pWnd = GetDlgItem(IDC_STATIC_TIMETITLE);
-	pWnd->SetWindowText(MAINDLG_TIME_TITLE);
+	pWnd->SetWindowText(GetStringByKey(MAINDLG_TIME_TITLE));
 
-	m_btnOpen.SetWindowText(MAINDLG_OPEN);
-	m_btnStop.SetWindowText(MAINDLG_STOP);
-	m_btnCopy.SetWindowText(MAINDLG_COPY);
-	m_btnFind.SetWindowText(MAINDLG_VERIFY);
-	m_btnExit.SetWindowText(MAINDLG_EXIT);
+	m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_OPEN));
+	m_btnStop.SetWindowText(GetStringByKey(MAINDLG_STOP));
+	m_btnCopy.SetWindowText(GetStringByKey(MAINDLG_COPY));
+	m_btnFind.SetWindowText(GetStringByKey(MAINDLG_VERIFY));
+	m_btnExit.SetWindowText(GetStringByKey(MAINDLG_EXIT));
 	pWnd = GetDlgItem(IDC_ABOUT);
-	pWnd->SetWindowText(MAINDLG_ABOUT);
+	pWnd->SetWindowText(GetStringByKey(MAINDLG_ABOUT));
 
 	m_uiBridgeMFC = new UIBridgeMFC(m_hWnd, &m_tstrAll, &m_mainMtx);
 
@@ -142,16 +140,16 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pTl = NULL;
 
 	m_editMain.SetLimitText(UINT_MAX);
-	m_editMain.SetWindowText(MAINDLG_INITINFO);
+	m_editMain.SetWindowText(GetStringByKey(MAINDLG_INITINFO));
 
 	if(WindowsUtils::ContextMenuExisted())
 	{
 		// 已经添加右键菜单
-		m_btnContext.SetWindowText(MAINDLG_REMOVE_CONTEXT_MENU);
+		m_btnContext.SetWindowText(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU));
 	}
 	else
 	{
-		m_btnContext.SetWindowText(MAINDLG_ADD_CONTEXT_MENU);
+		m_btnContext.SetWindowText(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU));
 	}
 	pWnd = (CStatic*)GetDlgItem(IDC_STATIC_ADDRESULT);
 	pWnd->SetWindowText(_T(""));
@@ -318,7 +316,7 @@ void CFilesHashDlg::OnBnClickedOpen()
 		POSITION pos;
 		nameBuffer = new TCHAR[MAX_FILES_NUM * MAX_PATH + 1];
 		nameBuffer[0] = 0;
-		filter = FILE_STRING;
+		filter = GetStringByKey(FILE_STRING);
 		filter.Append(_T("(*.*)|*.*|"));
 		CFileDialog dlgOpen(TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_ALLOWMULTISELECT, filter, NULL, 0);
 		dlgOpen.GetOFN().lpstrFile = nameBuffer;
@@ -362,7 +360,7 @@ void CFilesHashDlg::OnBnClickedClean()
 	{
 		CString strBtnText;
 		m_btnClr.GetWindowText(strBtnText);
-		if(strBtnText.Compare(MAINDLG_CLEAR) == 0)
+		if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR)) == 0)
 		{
 			m_mainMtx.lock();
 			{
@@ -383,10 +381,10 @@ void CFilesHashDlg::OnBnClickedClean()
 			//m_progWhole.SetPos(0);
 			SetWholeProgPos(0);
 		}
-		else if(strBtnText.Compare(MAINDLG_CLEAR_VERIFY) == 0)
+		else if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
 			m_bFind = FALSE; // 退出搜索模式
-			m_btnClr.SetWindowText(MAINDLG_CLEAR);
+			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
 
 			RefreshResult();
 			RefreshMainText();
@@ -416,7 +414,7 @@ void CFilesHashDlg::OnBnClickedFind()
 		if(m_strFindHash.Compare(_T("")) != 0)
 		{
 			m_bFind = TRUE; // 进入搜索模式
-			m_btnClr.SetWindowText(MAINDLG_CLEAR_VERIFY);
+			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR_VERIFY));
 			//m_editMain.SetWindowText(_T(""));
 			tstring tstrResult = ResultFind(m_strFindFile, m_strFindHash);
 			m_editMain.SetWindowText(tstrResult.c_str());
@@ -445,29 +443,29 @@ void CFilesHashDlg::OnBnClickedContext()
 
 	m_btnContext.GetWindowText(buttonText);
 
-	if(buttonText.Compare(MAINDLG_ADD_CONTEXT_MENU) == 0)
+	if(buttonText.Compare(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU)) == 0)
 	{
 		WindowsUtils::RemoveContextMenu(); // Try to delete all items related to fHash
 		if(WindowsUtils::AddContextMenu())
 		{
-			pWnd->SetWindowText(MAINDLG_ADD_SUCCEEDED);
-			m_btnContext.SetWindowText(MAINDLG_REMOVE_CONTEXT_MENU);
+			pWnd->SetWindowText(GetStringByKey(MAINDLG_ADD_SUCCEEDED));
+			m_btnContext.SetWindowText(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU));
 		}
 		else
 		{
-			pWnd->SetWindowText(MAINDLG_ADD_FAILED);
+			pWnd->SetWindowText(GetStringByKey(MAINDLG_ADD_FAILED));
 		}
 	}
-	else if(buttonText.Compare(MAINDLG_REMOVE_CONTEXT_MENU) == 0)
+	else if(buttonText.Compare(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU)) == 0)
 	{
 		if(WindowsUtils::RemoveContextMenu())
 		{
-			pWnd->SetWindowText(MAINDLG_REMOVE_SUCCEEDED);
-			m_btnContext.SetWindowText(MAINDLG_ADD_CONTEXT_MENU);
+			pWnd->SetWindowText(GetStringByKey(MAINDLG_REMOVE_SUCCEEDED));
+			m_btnContext.SetWindowText(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU));
 		}
 		else
 		{
-			pWnd->SetWindowText(MAINDLG_REMOVE_FAILED);
+			pWnd->SetWindowText(GetStringByKey(MAINDLG_REMOVE_FAILED));
 		}
 	}
 }
@@ -504,7 +502,7 @@ void CFilesHashDlg::OnTimer(UINT_PTR nIDEvent)
 		CString cstrTime;
 		int i_calculateTime = (int)m_calculateTime;
 		CString cstrFormat("%d ");
-		cstrFormat.Append(SECOND_STRING);
+		cstrFormat.Append(GetStringByKey(SECOND_STRING));
 		cstrTime.Format(cstrFormat, i_calculateTime);
 		pWnd->SetWindowText(cstrTime);
 	}
@@ -533,7 +531,7 @@ void CFilesHashDlg::DoMD5()
 	}
 	
 	m_bFind = FALSE;
-	m_btnClr.SetWindowText(MAINDLG_CLEAR);
+	m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
 
 	PrepareAdvTaskbar();
 
@@ -547,7 +545,7 @@ void CFilesHashDlg::DoMD5()
 	m_timer = SetTimer(1, 100, NULL);
 	CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_TIME);
 	CString cstrZero(_T("0 "));
-	cstrZero.Append(SECOND_STRING);
+	cstrZero.Append(GetStringByKey(SECOND_STRING));
 	pWnd->SetWindowText(cstrZero);
 	pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 	pWnd->SetWindowText(_T(""));
@@ -749,13 +747,13 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 
 tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 {
-	tstring tstrResult(MAINDLG_FIND_IN_RESULT);
+	tstring tstrResult(GetStringByKey(MAINDLG_FIND_IN_RESULT));
 	tstrResult.append(_T("\r\n"));
-	tstrResult.append(HASHVALUE_STRING);
+	tstrResult.append(GetStringByKey(HASHVALUE_STRING));
 	tstrResult.append(_T(" "));
 	tstrResult.append(strHash);
 	tstrResult.append(_T("\r\n\r\n"));
-	tstrResult.append(MAINDLG_RESULT);
+	tstrResult.append(GetStringByKey(MAINDLG_RESULT));
 	tstrResult.append(_T("\r\n\r\n"));
 
 	strHash.MakeUpper();
@@ -781,7 +779,7 @@ tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 	}
 
 	if(count == 0)
-		tstrResult.append(MAINDLG_NORESULT);
+		tstrResult.append(GetStringByKey(MAINDLG_NORESULT));
 
 	return tstrResult;
 }
