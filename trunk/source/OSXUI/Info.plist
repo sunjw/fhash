@@ -57,7 +57,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Hash it with fHash</string>
+				<string>Hash with fHash</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>handleFinderContextOpen</string>
