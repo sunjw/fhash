@@ -10,18 +10,6 @@ using namespace sunjwbase;
 
 namespace WindowsStrings
 {
-	const TCHAR *WindowsStringsMap::getStringByKey(const TCHAR *tzhKey)
-	{
-		StringMap::iterator itr = m_stringsMap.find(tstring(tzhKey));
-		if (itr == m_stringsMap.end())
-			return NULL;
-
-		return itr->second.c_str();
-	}
-
-	//static int reg = WindowsStringsMgr::getInstance()->
-	//						registerStringsForLang(0, new WindowsStringsBase());
-
 	WindowsStringsBase::WindowsStringsBase()
 	{
 		// Global Strings
@@ -81,4 +69,8 @@ namespace WindowsStrings
 		// Shell ext
 		m_stringsMap[_T("SHELL_EXT_TOO_MANY_FILES")] = _T("Selected too many files");
 	}
+
+	// Register 0 as WindowsStringsBase.
+	static int reg = WindowsStringsMgr::getInstance()->
+							registerStringsForLang(0, new WindowsStringsBase());
 }

@@ -4,16 +4,30 @@
 #include <map>
 #include <tchar.h>
 #include "OsUtils/OsThread.h"
-#include "WindowsStringsBase.h"
+#include "strhelper.h"
 
 namespace WindowsStrings
 {
+	typedef std::map<sunjwbase::tstring, sunjwbase::tstring> StringMap;
+
+	class WindowsStringsMap
+	{
+	public:
+		WindowsStringsMap() {}
+		virtual ~WindowsStringsMap() {}
+
+		const TCHAR *getStringByKey(const TCHAR *tzhKey);
+
+	protected:
+		StringMap m_stringsMap;
+	};
+
 	typedef std::map<int, WindowsStringsMap *> LangStringsMap;
 
 	class WindowsStringsMgr
 	{
 	public:
-		virtual ~WindowsStringsMgr() {}
+		virtual ~WindowsStringsMgr();
 
 		static WindowsStringsMgr *getInstance(void);
 		static void resetInstance(void);
@@ -29,7 +43,6 @@ namespace WindowsStrings
 		static sunjwbase::OsMutex s_instMtx;
 		static WindowsStringsMgr *s_winStrsMgrInst;
 		
-		WindowsStringsBase m_stringsBase;
 		LangStringsMap m_langStrsMap;
 	};
 }
