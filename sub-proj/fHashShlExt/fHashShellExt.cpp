@@ -2,13 +2,23 @@
 
 #include "stdafx.h"
 #include "fHashShellExt.h"
+
 #include <string>
 #include <atlconv.h>
 #include "strhelper.h"
-#include "UIStrings.h"
+#include "ShellExtComm.h"
+#include "WindowsStrings.h"
+#include "fHashShlExtStringsBase.h"
 
 using namespace std;
 using namespace sunjwbase;
+using namespace WindowsStrings;
+
+// CfHashShellExt
+CfHashShellExt::CfHashShellExt()
+{
+	WindowsStringsMgr::getInstance()->registerStringsForLang(0, new fHashShlExtStringsBase());
+}
 
 // CfHashShellExt
 HRESULT CfHashShellExt::Initialize(LPCITEMIDLIST pidlFolder,
@@ -159,8 +169,8 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			if(cmdLen > 32768)
 			{
 				MessageBox(pCmdInfo->hwnd, 
-					SHELL_EXT_TOO_MANY_FILES, 
-					SHELL_EXT_TOO_MANY_FILES, 
+					GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
+					GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
 					MB_OK | MB_ICONWARNING);
 				return S_OK;
 			}

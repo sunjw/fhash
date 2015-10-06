@@ -26,9 +26,7 @@ class ATL_NO_VTABLE CfHashShellExt :
 	public IShellExtInit, public IContextMenu 
 {
 public:
-	CfHashShellExt()
-	{
-	}
+	CfHashShellExt();
 
 DECLARE_REGISTRY_RESOURCEID(IDR_FHASHSHELLEXT)
 

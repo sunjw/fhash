@@ -643,6 +643,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fHashShlExtStringsBase.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\ShellExtComm.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -702,6 +710,14 @@
 				RelativePath="..\..\trunk\source\UIStrings.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\trunk\source\WindowsStrings.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\WindowsStringsInternal.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Í·ÎÄ¼þ"
@@ -717,7 +733,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fHashShlExtStringsBase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\ShellExtComm.h"
 				>
 			</File>
 			<File
@@ -734,6 +758,14 @@
 			</File>
 			<File
 				RelativePath="..\..\trunk\source\UIStrings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\WindowsStrings.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\WindowsStringsInternal.h"
 				>
 			</File>
 		</Filter>
