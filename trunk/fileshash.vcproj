@@ -612,6 +612,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\UIStringsZHCN.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\Utils.cpp"
 				>
 			</File>
@@ -694,6 +698,10 @@
 			</File>
 			<File
 				RelativePath=".\source\UIStringsBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\UIStringsZHCN.h"
 				>
 			</File>
 			<File

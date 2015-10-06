@@ -6,6 +6,7 @@
 #include "fileshashdlg.h"
 #include "WindowsStrings.h"
 #include "UIStringsBase.h"
+#include "UIStringsZHCN.h"
 
 using namespace WindowsStrings;
 
@@ -46,8 +47,9 @@ BOOL CFILESHASHApp::InitInstance()
 
 	CWinApp::InitInstance();
 
-	// Register 0 as base.
+	// Register multi-lang.
 	RegisterStringsForLang(0, new UIStringsBase());
+	RegisterStringsForLang(2052, new UIStringsZHCN());
 
 	CFilesHashDlg dlg;
 	m_pMainWnd = &dlg;
