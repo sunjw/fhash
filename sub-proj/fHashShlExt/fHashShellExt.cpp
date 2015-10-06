@@ -9,6 +9,7 @@
 #include "ShellExtComm.h"
 #include "WindowsStrings.h"
 #include "fHashShlExtStringsBase.h"
+#include "fHashShlExtStringsZHCN.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -18,6 +19,7 @@ using namespace WindowsStrings;
 CfHashShellExt::CfHashShellExt()
 {
 	RegisterStringsForLang(0, new fHashShlExtStringsBase());
+	RegisterStringsForLang(2052, new fHashShlExtStringsZHCN());
 }
 
 // CfHashShellExt

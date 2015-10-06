@@ -57,7 +57,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\trunk\source"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL;ZH_CN"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -146,7 +146,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\trunk\source"
-				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL;ZH_CN"
+				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_USRDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -237,7 +237,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\trunk\source"
-				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL;ZH_CN"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
@@ -326,7 +326,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="..\..\trunk\source"
-				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL;ZH_CN"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_USRDLL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
@@ -647,6 +647,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fHashShlExtStringsZHCN.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\trunk\source\ShellExtComm.cpp"
 				>
 			</File>
@@ -730,6 +734,10 @@
 			</File>
 			<File
 				RelativePath=".\fHashShlExtStringsBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\fHashShlExtStringsZHCN.h"
 				>
 			</File>
 			<File
