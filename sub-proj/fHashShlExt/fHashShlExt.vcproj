@@ -707,10 +707,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\UIStrings.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\trunk\source\WindowsStrings.cpp"
 				>
 			</File>
@@ -754,10 +750,6 @@
 			</File>
 			<File
 				RelativePath=".\targetver.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\trunk\source\UIStrings.h"
 				>
 			</File>
 			<File

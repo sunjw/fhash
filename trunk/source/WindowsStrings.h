@@ -25,6 +25,8 @@ namespace WindowsStrings
 
 	int RegisterStringsForLang(int langId, WindowsStringsMap *stringsMap);
 
+	int GetCurrentLangId();
+
 	const TCHAR *GetStringByStringKey(const TCHAR *tzhKey);
 }
 

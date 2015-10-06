@@ -589,11 +589,11 @@ namespace WindowsUtils
 	{
 		CRegKey key;
 		LONG lResult;
-#ifdef ZH_CN
-		LPCTSTR lpszKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_ZH_CN);
-#else
-		LPCTSTR lpszKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_EN_US);
-#endif
+		LPCTSTR lpszKeyName = NULL;
+		if (WindowsStrings::GetCurrentLangId() == 2052)
+			lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
+		else
+			lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;
 
 		// 创建目录
 		lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -629,7 +629,7 @@ namespace WindowsUtils
 	{
 		CRegKey key;
 		LONG lResult;
-		LPCTSTR lpszKeyName = GetStringByKey(SHELL_EXT_REGESTRY);
+		LPCTSTR lpszKeyName = SHELL_EXT_REGESTRY;
 
 		// 创建目录
 		lResult = key.Create(HKEY_CLASSES_ROOT, lpszKeyName);
@@ -646,7 +646,7 @@ namespace WindowsUtils
 		LPCTSTR pszExePath = pszExeFullPath;
 		
 		lResult = key.SetStringValue(NULL, pszUuid);
-		lResult |= key.SetStringValue(GetStringByKey(SHELL_EXT_EXEPATH), pszExePath);
+		lResult |= key.SetStringValue(SHELL_EXT_EXEPATH, pszExePath);
 		key.Close();
 
 		if(lResult == ERROR_SUCCESS)
@@ -706,8 +706,8 @@ namespace WindowsUtils
 		// Try to delete context menu
 		if(lResShell == ERROR_SUCCESS)
 		{
-			lResult &= keyShell.RecurseDeleteKey(GetStringByKey(CONTEXT_MENU_ITEM_EN_US));
-			lResult &= keyShell.RecurseDeleteKey(GetStringByKey(CONTEXT_MENU_ITEM_ZH_CN));
+			lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_EN_US);
+			lResult &= keyShell.RecurseDeleteKey(CONTEXT_MENU_ITEM_ZH_CN);
 			keyShell.Close();
 		}
 
@@ -726,27 +726,30 @@ namespace WindowsUtils
 
 	bool ContextMenuExisted()
 	{
-		CRegKey keyCtxMenu, keyShlExt;
-#ifdef ZH_CN
-		LPCTSTR lpszCtxMenuKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_ZH_CN);
-#else
-		LPCTSTR lpszCtxMenuKeyName = GetStringByKey(CONTEXT_MENU_REGESTRY_EN_US);
-#endif
-		LPCTSTR lpszShlExtKeyName = GetStringByKey(SHELL_EXT_REGESTRY);
+		CRegKey keyCtxMenuBase, keyCtxMenuZh, keyShlExt;
 
-		LONG lResCtxMenu;
+		LPCTSTR lpszCtxMenuKeyNameBase = CONTEXT_MENU_REGESTRY_EN_US;
+		LPCTSTR lpszCtxMenuKeyNameZh = CONTEXT_MENU_REGESTRY_ZH_CN;
+		LPCTSTR lpszShlExtKeyName = SHELL_EXT_REGESTRY;
+
+		LONG lResCtxMenuBase;
+		LONG lResCtxMenuZh;
 		LONG lResShlExt;
 
 		// 打开
-		lResCtxMenu = keyCtxMenu.Open(HKEY_CLASSES_ROOT, lpszCtxMenuKeyName, KEY_READ);
+		lResCtxMenuBase = keyCtxMenuBase.Open(HKEY_CLASSES_ROOT, lpszCtxMenuKeyNameBase, KEY_READ);
+		lResCtxMenuZh = keyCtxMenuZh.Open(HKEY_CLASSES_ROOT, lpszCtxMenuKeyNameZh, KEY_READ);
 		lResShlExt = keyShlExt.Open(HKEY_CLASSES_ROOT, lpszShlExtKeyName, KEY_READ);
 
-		if(lResCtxMenu != ERROR_SUCCESS && 
+		if(lResCtxMenuBase != ERROR_SUCCESS && 
+			lResCtxMenuZh != ERROR_SUCCESS && 
 			lResShlExt != ERROR_SUCCESS)
 			return false;
 		
-		if(lResCtxMenu == ERROR_SUCCESS)
-			keyCtxMenu.Close();
+		if(lResCtxMenuBase == ERROR_SUCCESS)
+			keyCtxMenuBase.Close();
+		if(lResCtxMenuZh == ERROR_SUCCESS)
+			keyCtxMenuZh.Close();
 		if(lResShlExt == ERROR_SUCCESS)
 			keyShlExt.Close();
 

@@ -608,10 +608,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStrings.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\source\UIStringsBase.cpp"
 				>
 			</File>
@@ -694,10 +690,6 @@
 			</File>
 			<File
 				RelativePath=".\source\UIBridgeMFC.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\UIStrings.h"
 				>
 			</File>
 			<File
