@@ -26,9 +26,6 @@ extern const TCHAR *SECOND_STRING;
 extern const TCHAR *BUTTON_OK;
 extern const TCHAR *BUTTON_CANCEL;
 
-extern const TCHAR *SHELL_EXT_UUID;
-extern const TCHAR *SHELL_EXT_REGESTRY;
-extern const TCHAR *SHELL_EXT_EXEPATH;
 extern const TCHAR *SHELL_EXT_ITEM_EN_US;
 extern const TCHAR *SHELL_EXT_ITEM_ZH_CN;
 extern const TCHAR *SHELL_EXT_TOO_MANY_FILES;

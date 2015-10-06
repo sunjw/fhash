@@ -10,6 +10,7 @@
 #include "strhelper.h"
 #include "Utils.h"
 #include "WindowsStrings.h"
+#include "ShellExtComm.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -641,7 +642,7 @@ namespace WindowsUtils
 			return false;
 
 		// 成功打开
-		LPCTSTR pszUuid = GetStringByKey(SHELL_EXT_UUID);
+		LPCTSTR pszUuid = SHELL_EXT_UUID;
 		LPCTSTR pszExePath = pszExeFullPath;
 		
 		lResult = key.SetStringValue(NULL, pszUuid);

@@ -4,6 +4,10 @@
 #include "stdafx.h"
 #include "fileshash.h"
 #include "fileshashdlg.h"
+#include "WindowsStrings.h"
+#include "WindowsStringsBase.h"
+
+using namespace WindowsStrings;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -41,6 +45,9 @@ BOOL CFILESHASHApp::InitInstance()
 	InitCommonControls();
 
 	CWinApp::InitInstance();
+
+	// Register 0 as WindowsStringsBase.
+	WindowsStringsMgr::getInstance()->registerStringsForLang(0, new WindowsStringsBase());
 
 	CFilesHashDlg dlg;
 	m_pMainWnd = &dlg;

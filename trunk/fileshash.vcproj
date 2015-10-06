@@ -592,6 +592,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\ShellExtComm.cpp"
+				>
+			</File>
+			<File
 				RelativePath="source\stdafx.cpp"
 				>
 			</File>
@@ -662,6 +666,10 @@
 			</File>
 			<File
 				RelativePath="source\resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\ShellExtComm.h"
 				>
 			</File>
 			<File

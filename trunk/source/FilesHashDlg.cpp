@@ -14,12 +14,12 @@
 #include "Utils.h"
 #include "WindowsUtils.h"
 #include "HashEngine.h"
-#include "WindowsStrings.h"
 #include "UIBridgeMFC.h"
-
+#include "WindowsStrings.h"
 
 using namespace std;
 using namespace sunjwbase;
+using namespace WindowsStrings;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
