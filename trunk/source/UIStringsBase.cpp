@@ -4,7 +4,7 @@
 
 #include <tchar.h>
 
-WindowsStringsBase::WindowsStringsBase()
+UIStringsBase::UIStringsBase()
 {
 	// Global Strings
 	m_stringsMap[_T("FILE_STRING")] = _T("File");

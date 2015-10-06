@@ -1,12 +1,12 @@
-#ifndef _WINDOWS_STRINGS_BASE_H_
-#define _WINDOWS_STRINGS_BASE_H_
+#ifndef _UI_STRINGS_BASE_H_
+#define _UI_STRINGS_BASE_H_
 
 #include "WindowsStrings.h"
 
-class WindowsStringsBase: public WindowsStrings::WindowsStringsMap
+class UIStringsBase: public WindowsStrings::WindowsStringsMap
 {
 public:
-	WindowsStringsBase();
+	UIStringsBase();
 };
 
 #endif

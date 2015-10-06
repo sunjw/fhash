@@ -47,7 +47,7 @@ BOOL CFILESHASHApp::InitInstance()
 	CWinApp::InitInstance();
 
 	// Register 0 as base.
-	RegisterStringsForLang(0, new WindowsStringsBase());
+	RegisterStringsForLang(0, new UIStringsBase());
 
 	CFilesHashDlg dlg;
 	m_pMainWnd = &dlg;
