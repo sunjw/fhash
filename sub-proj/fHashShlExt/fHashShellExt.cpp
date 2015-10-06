@@ -95,11 +95,7 @@ HRESULT CfHashShellExt::QueryContextMenu(
 	if (uFlags & CMF_DEFAULTONLY)
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
-#ifdef ZH_CN
-	LPCTSTR pszMenuItem = SHELL_EXT_ITEM_ZH_CN;
-#else
-	LPCTSTR pszMenuItem = SHELL_EXT_ITEM_EN_US;
-#endif
+	LPCTSTR pszMenuItem = GetStringByKey(SHELL_EXT_ITEM);
 
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION,
                uidFirstCmd, pszMenuItem);

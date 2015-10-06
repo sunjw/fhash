@@ -854,6 +854,18 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="OsUtils"
+			>
+			<File
+				RelativePath="..\..\trunk\source\OsUtils\OsThread.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
