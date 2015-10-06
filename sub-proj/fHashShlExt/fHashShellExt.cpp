@@ -17,7 +17,7 @@ using namespace WindowsStrings;
 // CfHashShellExt
 CfHashShellExt::CfHashShellExt()
 {
-	WindowsStringsMgr::getInstance()->registerStringsForLang(0, new fHashShlExtStringsBase());
+	RegisterStringsForLang(0, new fHashShlExtStringsBase());
 }
 
 // CfHashShellExt

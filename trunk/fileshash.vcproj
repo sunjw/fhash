@@ -612,15 +612,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\UIStringsBase.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\Utils.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\source\WindowsStrings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\source\WindowsStringsBase.cpp"
 				>
 			</File>
 			<File
@@ -701,6 +701,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\UIStringsBase.h"
+				>
+			</File>
+			<File
 				RelativePath=".\source\Utils.h"
 				>
 			</File>
@@ -710,10 +714,6 @@
 			</File>
 			<File
 				RelativePath=".\source\WindowsStrings.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\WindowsStringsBase.h"
 				>
 			</File>
 			<File

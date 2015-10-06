@@ -31,6 +31,14 @@ namespace WindowsStrings
 		s_initMtx.unlock();
 	}
 
+	int RegisterStringsForLang(int langId, WindowsStringsMap *stringsMap)
+	{
+		if (s_init == 0)
+			InitStringsManager();
+
+		return s_winStrsMgr->registerStringsForLang(langId, stringsMap);
+	}
+
 	const TCHAR *GetStringByStringKey(const TCHAR *tzhKey)
 	{
 		if (s_init == 0)

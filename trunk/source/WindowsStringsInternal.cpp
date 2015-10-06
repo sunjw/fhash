@@ -2,7 +2,6 @@
 
 #include "WindowsStringsInternal.h"
 
-#include "WindowsStringsBase.h"
 #include "OsUtils/OsThread.h"
 
 using namespace sunjwbase;

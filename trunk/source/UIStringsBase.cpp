@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "WindowsStringsBase.h"
+#include "UIStringsBase.h"
 
 #include <tchar.h>
 

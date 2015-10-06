@@ -1,7 +1,7 @@
 #ifndef _WINDOWS_STRINGS_BASE_H_
 #define _WINDOWS_STRINGS_BASE_H_
 
-#include "WindowsStringsInternal.h"
+#include "WindowsStrings.h"
 
 class WindowsStringsBase: public WindowsStrings::WindowsStringsMap
 {

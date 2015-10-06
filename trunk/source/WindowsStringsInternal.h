@@ -4,24 +4,10 @@
 #include <map>
 #include <tchar.h>
 #include "OsUtils/OsThread.h"
-#include "strhelper.h"
+#include "WindowsStrings.h"
 
 namespace WindowsStrings
 {
-	typedef std::map<sunjwbase::tstring, sunjwbase::tstring> StringMap;
-
-	class WindowsStringsMap
-	{
-	public:
-		WindowsStringsMap() {}
-		virtual ~WindowsStringsMap() {}
-
-		const TCHAR *getStringByKey(const TCHAR *tzhKey);
-
-	protected:
-		StringMap m_stringsMap;
-	};
-
 	typedef std::map<int, WindowsStringsMap *> LangStringsMap;
 
 	class WindowsStringsMgr
