@@ -39,7 +39,6 @@ void CFilesHashDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PROG_WHOLE, m_progWhole);
 	DDX_Control(pDX, IDE_TXTMAIN, m_editMain);
 	DDX_Control(pDX, IDC_OPEN, m_btnOpen);
-	DDX_Control(pDX, IDC_STOP, m_btnStop);
 	DDX_Control(pDX, IDC_EXIT, m_btnExit);
 	DDX_Control(pDX, IDC_CLEAN, m_btnClr);
 	DDX_Control(pDX, IDC_COPY, m_btnCopy);
@@ -53,7 +52,6 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_OPEN, OnBnClickedOpen)
-	ON_BN_CLICKED(IDC_STOP, OnBnClickedStop)
 	ON_BN_CLICKED(IDC_EXIT, OnBnClickedExit)
 	ON_BN_CLICKED(IDC_ABOUT, OnBnClickedAbout)
 	ON_WM_DROPFILES()
@@ -108,7 +106,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd->SetWindowText(GetStringByKey(MAINDLG_TIME_TITLE));
 
 	m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_OPEN));
-	m_btnStop.SetWindowText(GetStringByKey(MAINDLG_STOP));
 	m_btnCopy.SetWindowText(GetStringByKey(MAINDLG_COPY));
 	m_btnFind.SetWindowText(GetStringByKey(MAINDLG_VERIFY));
 	m_btnExit.SetWindowText(GetStringByKey(MAINDLG_EXIT));
@@ -324,11 +321,7 @@ void CFilesHashDlg::OnBnClickedOpen()
 		}
 		delete[] nameBuffer;
 	}
-}
-
-void CFilesHashDlg::OnBnClickedStop()
-{
-	if(m_thrdData.threadWorking)
+	else
 	{
 		//停止工作线程
 		StopWorkingThread();
@@ -585,19 +578,23 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 	if(working)
 	{
 		DragAcceptFiles(FALSE);
-		m_btnOpen.EnableWindow(FALSE);
-		m_btnStop.EnableWindow(TRUE);
+		// Make open button to be stop button
+		m_btnOpen.EnableWindow(TRUE);
+		m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_STOP));
+
 		m_btnClr.EnableWindow(FALSE);
 		m_btnCopy.EnableWindow(FALSE);
 		m_btnFind.EnableWindow(FALSE);
 		m_btnContext.EnableWindow(FALSE);
 		m_chkUppercase.EnableWindow(FALSE);
-		GotoDlgCtrl(&m_btnStop);
+		GotoDlgCtrl(&m_btnOpen);
 	}
 	else
 	{
+		// Make open button to be open button.
 		m_btnOpen.EnableWindow(TRUE);
-		m_btnStop.EnableWindow(FALSE);
+		m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_OPEN));
+
 		m_btnClr.EnableWindow(TRUE);
 		m_btnCopy.EnableWindow(TRUE);
 		m_btnFind.EnableWindow(TRUE);

@@ -32,7 +32,6 @@ public:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 	afx_msg void OnBnClickedOpen();
-	afx_msg void OnBnClickedStop();
 	afx_msg void OnBnClickedExit();
 	afx_msg void OnBnClickedAbout();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
@@ -54,7 +53,6 @@ protected:
 	CEditEx m_editMain;
 	CButton m_btnOpen;
 	CButton m_btnExit;
-	CButton m_btnStop;
 	CButton m_btnClr;
 	CButton m_btnCopy;
 	CButton m_btnFind;
