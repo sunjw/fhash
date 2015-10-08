@@ -50,7 +50,6 @@ public:
 protected:
 	HICON m_hIcon;
 
-	CProgressCtrl m_prog;
 	CProgressCtrl m_progWhole;
 	CEditEx m_editMain;
 	CButton m_btnOpen;

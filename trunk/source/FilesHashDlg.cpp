@@ -36,7 +36,6 @@ CFilesHashDlg::CFilesHashDlg(CWnd* pParent /*=NULL*/)
 void CFilesHashDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_PROGRESS, m_prog);
 	DDX_Control(pDX, IDC_PROG_WHOLE, m_progWhole);
 	DDX_Control(pDX, IDE_TXTMAIN, m_editMain);
 	DDX_Control(pDX, IDC_OPEN, m_btnOpen);
@@ -96,8 +95,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	m_calculateTime = 0.0;
 	m_timer = -1;
 
-	m_prog.SetStep(1);
-
 	m_bLimited = WindowsUtils::IsLimitedProc();
 
 	CWnd* pWnd;
@@ -105,10 +102,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd->SetWindowText(_T(""));
 	pWnd = GetDlgItem(IDC_STATIC_TIME);
 	pWnd->SetWindowText(_T(""));
-	pWnd = GetDlgItem(IDC_STATIC_FILE);
-	pWnd->SetWindowText(GetStringByKey(MAINDLG_FILE_PROGRESS));
-	pWnd = GetDlgItem(IDC_STATIC_WHOLE);
-	pWnd->SetWindowText(GetStringByKey(MAINDLG_TOTAL_PROGRESS));
 	pWnd = GetDlgItem(IDC_STATIC_UPPER);
 	pWnd->SetWindowText(GetStringByKey(MAINDLG_UPPER_HASH));
 	pWnd = GetDlgItem(IDC_STATIC_TIMETITLE);
@@ -167,7 +160,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	// 从命令行获取文件路径结束
 	
 	m_thrdData.threadWorking = false;
-	m_prog.SetRange(0, 99);
 	m_progWhole.SetRange(0, 99);
 	m_chkUppercase.SetCheck(0);
 
@@ -377,8 +369,6 @@ void CFilesHashDlg::OnBnClickedClean()
 			pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 			pWnd->SetWindowText(_T(""));
 
-			m_prog.SetPos(0);
-			//m_progWhole.SetPos(0);
 			SetWholeProgPos(0);
 		}
 		else if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
@@ -535,8 +525,6 @@ void CFilesHashDlg::DoMD5()
 
 	PrepareAdvTaskbar();
 
-	m_prog.SetPos(0);
-	//m_progWhole.SetPos(0);
 	SetWholeProgPos(0);
 
 	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
@@ -690,9 +678,6 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 	case WP_REFRESH_TEXT:
 		RefreshMainText();
 		break;
-	case WP_PROG:
-		m_prog.SetPos((int)lParam);
-		break;
 	case WP_PROG_WHOLE:
 		SetWholeProgPos((int)lParam);
 		break;
@@ -705,7 +690,6 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		SetCtrls(FALSE);
 		// 界面设置 - 结束	
 
-		m_prog.SetPos(99);
 		SetWholeProgPos(99);
 		break;
 	case WP_STOPPED:
@@ -731,8 +715,6 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 			
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
-		m_prog.SetPos(0);
-		//m_progWhole.SetPos(0);
 		SetWholeProgPos(0);
 		
 		if(m_waitingExit)

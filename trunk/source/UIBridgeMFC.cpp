@@ -123,7 +123,7 @@ int UIBridgeMFC::getProgMax()
 
 void UIBridgeMFC::updateProg(int value)
 {
-	::PostMessage(m_hWnd, WM_THREAD_INFO, WP_PROG, value);
+	//::PostMessage(m_hWnd, WM_THREAD_INFO, WP_PROG, value);
 }
 
 void UIBridgeMFC::updateProgWhole(int value)
