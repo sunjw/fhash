@@ -2,6 +2,7 @@
 #define _WINDOWS_STRINGS_H_
 
 #include <tchar.h>
+#include <Windows.h>
 #include <map>
 #include "strhelper.h"
 
@@ -23,9 +24,9 @@ namespace WindowsStrings
 		StringMap m_stringsMap;
 	};
 
-	int RegisterStringsForLang(int langId, WindowsStringsMap *stringsMap);
+	int RegisterStringsForLang(LANGID langId, WindowsStringsMap *stringsMap);
 
-	int GetCurrentLangId();
+	LANGID GetCurrentUILang();
 
 	const TCHAR *GetStringByStringKey(const TCHAR *tzhKey);
 }

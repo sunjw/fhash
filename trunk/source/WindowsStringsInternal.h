@@ -2,13 +2,14 @@
 #define _WINDOWS_STRINGS_INTERNAL_H_
 
 #include <map>
+#include <Windows.h>
 #include <tchar.h>
 #include "OsUtils/OsThread.h"
 #include "WindowsStrings.h"
 
 namespace WindowsStrings
 {
-	typedef std::map<int, WindowsStringsMap *> LangStringsMap;
+	typedef std::map<LANGID, WindowsStringsMap *> LangStringsMap;
 
 	class WindowsStringsMgr
 	{
@@ -18,9 +19,9 @@ namespace WindowsStrings
 		static WindowsStringsMgr *getInstance(void);
 		static void resetInstance(void);
 
-		int registerStringsForLang(int langId, WindowsStringsMap *stringsMap);
+		int registerStringsForLang(LANGID langId, WindowsStringsMap *stringsMap);
 
-		const TCHAR *getStringForLang(int langId, const TCHAR *tzhKey);
+		const TCHAR *getStringForLang(LANGID langId, const TCHAR *tzhKey);
 
 	private:
 		WindowsStringsMgr();

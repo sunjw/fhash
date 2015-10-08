@@ -47,7 +47,7 @@ namespace WindowsStrings
 		return s_winStrsMgrInst;
 	}
 
-	int WindowsStringsMgr::registerStringsForLang(int langId, WindowsStringsMap *stringsMap)
+	int WindowsStringsMgr::registerStringsForLang(LANGID langId, WindowsStringsMap *stringsMap)
 	{
 		m_langStrsMap[langId] = stringsMap;
 
@@ -65,7 +65,7 @@ namespace WindowsStrings
 		s_instMtx.unlock();
 	}
 
-	const TCHAR *WindowsStringsMgr::getStringForLang(int langId, const TCHAR *tzhKey)
+	const TCHAR *WindowsStringsMgr::getStringForLang(LANGID langId, const TCHAR *tzhKey)
 	{
 		const TCHAR *tzhRet = NULL;
 
@@ -78,7 +78,7 @@ namespace WindowsStrings
 		}
 
 		// Find string in base.
-		itrLang = m_langStrsMap.find(0);
+		itrLang = m_langStrsMap.find(-1);
 		if (tzhRet == NULL && itrLang != m_langStrsMap.end())
 		{
 			WindowsStringsMap *baseStringsMap = itrLang->second;

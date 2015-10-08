@@ -590,7 +590,7 @@ namespace WindowsUtils
 		CRegKey key;
 		LONG lResult;
 		LPCTSTR lpszKeyName = NULL;
-		if (WindowsStrings::GetCurrentLangId() == 2052)
+		if (WindowsStrings::GetCurrentUILang() == 2052)
 			lpszKeyName = CONTEXT_MENU_REGESTRY_ZH_CN;
 		else
 			lpszKeyName = CONTEXT_MENU_REGESTRY_EN_US;

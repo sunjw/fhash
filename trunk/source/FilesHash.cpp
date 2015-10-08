@@ -48,7 +48,7 @@ BOOL CFILESHASHApp::InitInstance()
 	CWinApp::InitInstance();
 
 	// Register multi-lang.
-	RegisterStringsForLang(0, new UIStringsBase());
+	RegisterStringsForLang(-1, new UIStringsBase());
 	RegisterStringsForLang(2052, new UIStringsZHCN());
 
 	CFilesHashDlg dlg;
