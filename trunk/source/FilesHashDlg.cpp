@@ -700,15 +700,15 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		SetCtrls(FALSE);
 		//界面设置 - 结束
 		
-		/*m_mainMtx.lock();
+		m_mainMtx.lock();
 		{
 			m_tstrAll.append(_T("\r\n"));
-			m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
-			m_tstrAll.append(_T("\r\n\r\n"));
+			//m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
+			//m_tstrAll.append(_T("\r\n\r\n"));
 
 			m_editMain.SetWindowText(m_tstrAll.c_str());
 		}
-		m_mainMtx.unlock();*/
+		m_mainMtx.unlock();
 			
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
