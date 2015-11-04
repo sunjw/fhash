@@ -36,7 +36,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.0.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -61,10 +61,10 @@
 			</dict>
 			<key>NSMessage</key>
 			<string>handleFinderContextOpen</string>
-			<key>NSRequiredContext</key>
-			<dict/>
 			<key>NSPortName</key>
 			<string>fHash</string>
+			<key>NSRequiredContext</key>
+			<dict/>
 			<key>NSSendFileTypes</key>
 			<array>
 				<string>NSFilenamesPboardType</string>
