@@ -30,10 +30,16 @@ using namespace sunjwbase;
     NSString *nsstrAppVersion = [[[NSBundle mainBundle] infoDictionary]
                                  objectForKey:@"CFBundleShortVersionString"];
     
+    NSString *nsstrAppBundleVersion = [[[NSBundle mainBundle] infoDictionary]
+                                       objectForKey:@"CFBundleVersion"];
+    
     string strAboutInfo;
     
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_TITLE));
     strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppVersion));
+    strAboutInfo.append(" (");
+    strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppBundleVersion));
+    strAboutInfo.append(")");
     strAboutInfo.append("\n");
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_RIGHT));
     strAboutInfo.append("\n");
