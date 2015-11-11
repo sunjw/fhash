@@ -1,12 +1,14 @@
-A files' hash calculator for Windows and Mac OS X.
+An open source files' hash calculator for Windows and Mac OS X.
  * MD5, SHA1, SHA256 and CRC32.
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support multiple files.
+ * Support 10.10 and later Mac OS X.
+ * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
 Thanks for Trend Micro Mobile Club's support.   
-Made in China.   
+   
 Project Site https://github.com/sunjw/fhash
 
 INSTALL   
