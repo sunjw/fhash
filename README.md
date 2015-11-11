@@ -11,7 +11,10 @@ Thanks for Trend Micro Mobile Club's support.
    
 Project Site https://github.com/sunjw/fhash
 
-INSTALL   
+INSTALL (Windows)  
+[![Image of SourceForge.net](https://sourceforge.net/projects/fhash/files/2.0.0/)
+
+INSTALL (Mac OS X)  
 [![Image of Mac App Store](https://raw.githubusercontent.com/sunjw/fhash/master/doc/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.png)](https://itunes.apple.com/us/app/fhash/id1055555711?mt=12)
 
 LICENSE   
