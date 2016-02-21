@@ -51,7 +51,7 @@ UIStringsZHCN::UIStringsZHCN()
 	// About Dialog Strings
 	m_stringsMap[_T("ABOUTDLG_TITLE")] = _T("关于 fHash");
 	m_stringsMap[_T("ABOUTDLG_INFO_TITLE")] = _T("fHash: 文件 Hash 计算器 ");
-	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007-2015 SUN Junwen.");
+	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007-2016 SUN Junwen.");
 	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.");
 	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller");
 	m_stringsMap[_T("ABOUTDLG_INFO_CRC32")] = _T("CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl");
