@@ -52,16 +52,22 @@ namespace Utils
         string strSize("");
 
         char buff[1024] = {0};
+        
+#if defined (__APPLE__)
+        int sizek = 1000;
+#else
+        int sizek = 1024;
+#endif
 
-        if(size > 1024)
+        if(size > sizek)
         {
-            double k_size = size / 1024.0f;
-            if(k_size > 1024)
+            double k_size = ((double)size) / sizek;
+            if(k_size > sizek)
             {
-                double m_size = k_size / 1024;
-                if(m_size > 1024)
+                double m_size = k_size / sizek;
+                if(m_size > sizek)
                 {
-                    double g_size = m_size / 1024;
+                    double g_size = m_size / sizek;
 #if defined (WIN32)
                     sprintf_s(buff, 1024, "%.2f GB", g_size);
 #else
