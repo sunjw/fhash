@@ -1,7 +1,7 @@
 /*
  * strhelper header file
  * Author: Sun Junwen
- * Version: 2.1
+ * Version: 2.2
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -114,6 +114,24 @@ namespace sunjwbase
 		return wstr;
 #else
 		return wstrtostr(wstr);
+#endif
+	}
+
+	inline sunjwbase::tstring strtotstrutf8(const std::string& str)
+	{
+#if defined(_UNICODE_HELPER)
+		return strtowstrutf8(str);
+#else
+		return str;
+#endif
+	}
+
+	inline std::string tstrtostrutf8(const sunjwbase::tstring& tstr)
+	{
+#if defined(_UNICODE_HELPER)
+		return wstrtostrutf8(tstr);
+#else
+		return tstr;
 #endif
 	}
 	// converting part

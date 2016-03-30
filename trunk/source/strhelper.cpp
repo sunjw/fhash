@@ -1,7 +1,7 @@
 /*
  * strhelper implementation file
  * Author: Sun Junwen
- * Version: 2.1
+ * Version: 2.2
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -37,7 +37,7 @@ namespace sunjwbase
 	// Windows convert
 	static std::string _wstrtostr(const std::wstring& wstr, UINT codePage)
 	{
-		// Convert a wstring to an string with specified code page
+		// Convert a wstring to a specified code page encoded string 
 		size_t strLen = WideCharToMultiByte(codePage, 0, wstr.c_str(), (int)wstr.length(), NULL, 0, NULL, NULL);
 		std::string strTo;
 		char *szTo = new char[strLen + 1];
@@ -50,7 +50,7 @@ namespace sunjwbase
 	
 	static std::wstring _strtowstr(const std::string& str, UINT codePage)
 	{
-		// Convert an string to a wstring with specified code page
+		// Convert a specified code page encoded string to a wstring 
 		size_t wstrLen = MultiByteToWideChar(codePage, 0, str.c_str(), -1, NULL, 0);
 		std::wstring wstrTo;
 		wchar_t *wszTo = new wchar_t[wstrLen + 1];
@@ -99,11 +99,11 @@ std::string sunjwbase::striconv(const std::string& input,
 #endif
 
 /*
- * convert ascii encoded wstring to utf8 encoded string
+ * convert wstring to utf8 encoded string
  */
 std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 {
-	// Convert a Unicode wstring to an ASCII string
+	// Convert a wstring to an utf8 encoded string
 #if defined (WIN32)
 	return _wstrtostr(wstr, CP_UTF8);
 #endif
@@ -119,7 +119,7 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
  */
 std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 {
-	// Convert an ASCII string to a Unicode wstring
+	// Convert an utf8 encoded string to a wstring
 #if defined (WIN32)
 	return _strtowstr(str, CP_UTF8);
 #endif
