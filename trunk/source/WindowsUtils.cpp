@@ -186,7 +186,7 @@ namespace WindowsUtils
 
 			///osvi.dwMajorVersion = 6;
 
-			if(osvi.dwMajorVersion != 6)
+			if(osvi.dwMajorVersion < 6)
 			{
 				if(osvi.wSuiteMask & VER_SUITE_PERSONAL)
 					osinfo.Append(_T( "Home Edition "));
@@ -195,6 +195,7 @@ namespace WindowsUtils
 			}
 			else
 			{
+				// >= 6, Vista, 7, 8, 10...
 				// 获得GetProductInfo函数原型
 				PGPI pGetProductInfo  = NULL;
 				pGetProductInfo = (PGPI)GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetProductInfo");
