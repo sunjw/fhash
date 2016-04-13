@@ -378,9 +378,17 @@ namespace WindowsUtils
 				else // Windows NT 4.0 prior to SP6a
 				{
 					CString spinfo;
-					spinfo.Format( _T("%s (Build %d)\r\n"),
-						osvi.szCSDVersion,
-						osvi.dwBuildNumber & 0xFFFF);
+					if(CString::StringLength(osvi.szCSDVersion) > 0)
+					{
+						spinfo.Format( _T("%s (Build %d)\r\n"),
+							osvi.szCSDVersion,
+							osvi.dwBuildNumber & 0xFFFF);
+					}
+					else
+					{
+						spinfo.Format( _T("(Build %d)\r\n"),
+							osvi.dwBuildNumber & 0xFFFF);
+					}
 					osinfo.Append(spinfo);
 				}
 
@@ -389,9 +397,17 @@ namespace WindowsUtils
 			else // not Windows NT 4.0 
 			{
 				CString spinfo;
-				spinfo.Format(_T("%s (Build %d)\r\n"),
-					osvi.szCSDVersion,
-					osvi.dwBuildNumber & 0xFFFF);
+				if(CString::StringLength(osvi.szCSDVersion) > 0)
+				{
+					spinfo.Format( _T("%s (Build %d)\r\n"),
+						osvi.szCSDVersion,
+						osvi.dwBuildNumber & 0xFFFF);
+				}
+				else
+				{
+					spinfo.Format( _T("(Build %d)\r\n"),
+						osvi.dwBuildNumber & 0xFFFF);
+				}
 				osinfo.Append(spinfo);
 			}
 
