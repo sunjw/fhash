@@ -15,6 +15,9 @@
 using namespace std;
 using namespace sunjwbase;
 
+// 10 additional
+#define PRODUCT_CORE 0x00000065
+
 namespace WindowsUtils
 {
 	/*
@@ -210,6 +213,9 @@ namespace WindowsUtils
 						break;
 					case PRODUCT_PROFESSIONAL:
 						osinfo.Append(_T("Professional "));
+						break;
+					case PRODUCT_CORE:
+						osinfo.Append(_T("Home "));
 						break;
 					case PRODUCT_HOME_PREMIUM:
 						osinfo.Append(_T("Home Premium "));
