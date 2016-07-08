@@ -105,7 +105,6 @@ private:
 
 	// Functions borrowed from Chris Maunder's article
     HINSTANCE GotoURL(LPCTSTR url, int showcmd);
-    LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
 
 private:
 	UINT m_nTimer;
