@@ -61,14 +61,18 @@ public:
 	COLORREF GetNormalColor() const { return m_clrNormal; }
 	COLORREF GetHoverColor() const { return m_clrHover; }
 
-	void SetLinkColors(COLORREF clrNormal, COLORREF clrHover){ m_clrNormal=clrNormal; m_clrHover=clrHover; }
+	void SetLinkColors(COLORREF clrNormal, COLORREF clrHover)
+	{ m_clrNormal=clrNormal; m_clrHover=clrHover; }
 
 	// Used with a TIMER to display tooltips (Maybe the webpage TITLE???)
-	CString IsHyperlink(CPoint& pt) const;
-protected:
-	virtual BOOL IsWordHyper(const CString& csToken) const;
+	CString GetHyperlinkFromPoint(CPoint& pt) const;
 
+protected:
 	inline BOOL IsWhiteSpace(const CString& csBuff, int iIndex) const;
+
+	virtual BOOL IsWordHyperlink(const CString& csToken) const;
+
+	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd);
 	
 	//{{AFX_VIRTUAL(CHyperEdit)
 	virtual void PreSubclassWindow();
@@ -87,13 +91,14 @@ protected:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
+
 private:
-	// Located in HyperEdit2.cpp
 	void DrawHyperlinks();
 	void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	// Functions borrowed from Chris Maunder's article
-	void SetDefaultCursor();
+	void InitHandCursor();
+
     HINSTANCE GotoURL(LPCTSTR url, int showcmd);
     LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
 

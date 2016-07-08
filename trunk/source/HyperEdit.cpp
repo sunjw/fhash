@@ -93,7 +93,7 @@ void CHyperEdit::PreSubclassWindow()
 	// Create our hyperlink font :)
 	m_oFont.CreateFontIndirect(&lf);
 
-	SetDefaultCursor(); // Try and initialize our hand cursor
+	InitHandCursor(); // Try and initialize our hand cursor
 
 	// Calculate single line height
 	m_nLineHeight = pDC->DrawText(_T("Test Line"), CRect(0,0,0,0), DT_SINGLELINE|DT_CALCRECT);
@@ -113,7 +113,7 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CEdit::OnMouseMove(nFlags, point);
 									  
-	CString csURL = IsHyperlink(point);
+	CString csURL = GetHyperlinkFromPoint(point);
 
 	// If not empty, then display hand cursor
 	if(!csURL.IsEmpty()){
@@ -133,7 +133,7 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 
 void CHyperEdit::OnLButtonDown(UINT nFlags, CPoint point) 
 {
-	m_csLocation = IsHyperlink(point);
+	m_csLocation = GetHyperlinkFromPoint(point);
 
 	CEdit::OnLButtonDown(nFlags, point);
 }
@@ -158,12 +158,12 @@ void CHyperEdit::OnLButtonUp(UINT nFlags, CPoint point)
 	// Exit if mouse is below last visible character
 	if(point.y>(pt.y+m_nLineHeight)) return; 
 
-	CString csURL = IsHyperlink(point);
+	CString csURL = GetHyperlinkFromPoint(point);
 
 	// If not empty, then open browser and show web site
 	// only if the URL is the same as one clicked on in OnLButtonDown()
 	if(!csURL.IsEmpty() && (m_csLocation==csURL)) 
-		GotoURL(csURL, SW_SHOW);
+		OpenHyperlink(csURL, SW_SHOW);
 }
 
 // Override low level message handling
@@ -252,7 +252,7 @@ void CHyperEdit::DrawHyperlinks()
 	for(int i=0; i<m_linkOffsets.size(); i++){
 		   
 		// Determine if mouse pointer is over a hyperlink
-		csTemp = IsHyperlink(pt_mouse);
+		csTemp = GetHyperlinkFromPoint(pt_mouse);
 			
 		// If return URL is empty then were not over a hyperlink
 		if(csTemp.IsEmpty())		
@@ -307,7 +307,7 @@ void CHyperEdit::DrawHyperlinks()
 // Builds an offset list of all valid hyperlinks. This function is optimized by only
 // searching through characters which are visible, ignoring those that would require 
 // scrolling to view. When this function encounters an token and it determines it's
-// hyperlink-able (Using virtual IsWordHyper) the starting offset and length of where
+// hyperlink-able (Using virtual IsWordHyperlink) the starting offset and length of where
 // the hyperlink exists within the actual CEdit buffer is recorded and pushed onto a vector
 //
 
@@ -330,7 +330,7 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 			// Let client programmer define what tokens can be hyperlinked or not
 			// if one desires he/she could easily implement an easy check using a
 			// regex library on email addresses without using the mailto: suffix
-			if(IsWordHyper(csToken))
+			if(IsWordHyperlink(csToken))
 				m_linkOffsets.push_back(off); // Save the starting offset for current token
 
 			csToken.Empty(); // Flush previous token 		
@@ -346,7 +346,7 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 // and if mouse isn't over any hyperlink it returns a empty CString
 //
 
-CString CHyperEdit::IsHyperlink(CPoint& pt) const 
+CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt) const 
 {
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
@@ -393,7 +393,7 @@ BOOL CHyperEdit::IsWhiteSpace(const CString& csBuff, int iIndex) const
 // email addresses without using the 'mailto:' suffix.
 //
 
-BOOL CHyperEdit::IsWordHyper(const CString& csToken) const
+BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 {
 	if(IsWhiteSpace(csToken, 0)) return FALSE; // Whitespace YUCK!!!
 
@@ -410,8 +410,12 @@ BOOL CHyperEdit::IsWordHyper(const CString& csToken) const
 	return FALSE; // Not a valid token by default
 }	  
 
+HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, int showcmd)
+{
+	return GotoURL(hyperlink, showcmd);
+}
 
-void CHyperEdit::SetDefaultCursor()
+void CHyperEdit::InitHandCursor()
 {
     if(m_hHandCursor == NULL){ // No cursor handle - load our own
         // Get the windows directory
