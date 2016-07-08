@@ -412,3 +412,103 @@ BOOL CHyperEdit::IsWordHyper(const CString& csToken) const
 }	  
 
 
+void CHyperEdit::SetDefaultCursor()
+{
+    if(m_hHandCursor == NULL){ // No cursor handle - load our own
+        // Get the windows directory
+        CString strWndDir;
+        GetWindowsDirectory(strWndDir.GetBuffer(MAX_PATH), MAX_PATH);
+        strWndDir.ReleaseBuffer();
+
+        strWndDir += _T("\\winhlp32.exe");
+
+        // This retrieves cursor #106 from winhlp32.exe, which is a hand pointer
+		HMODULE hModule = LoadLibrary(strWndDir);
+
+        if(hModule){
+            HCURSOR hHandCursor = ::LoadCursor(hModule, MAKEINTRESOURCE(106));
+            
+			if(hHandCursor)
+                m_hHandCursor = CopyCursor(hHandCursor);
+        }
+
+        FreeLibrary(hModule);
+    }
+}
+
+LONG CHyperEdit::GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata)
+{
+    HKEY hkey;
+    LONG retval = RegOpenKeyEx(key, subkey, 0, KEY_QUERY_VALUE, &hkey);
+
+    if (retval == ERROR_SUCCESS) {
+        long datasize = MAX_PATH;
+        TCHAR data[MAX_PATH];
+        RegQueryValue(hkey, NULL, data, &datasize);
+        lstrcpy(retdata,data);
+        RegCloseKey(hkey);
+    }
+
+    return retval;
+}
+
+void CHyperEdit::ReportError(int nError)
+{
+    CString str;
+    switch (nError) {
+        case 0:                       str = _T("The operating system is out\nof memory or resources."); break;
+        case SE_ERR_PNF:              str = _T("The specified path was not found."); break;
+        case SE_ERR_FNF:              str = _T("The specified file was not found."); break;
+        case ERROR_BAD_FORMAT:        str = _T("The .EXE file is invalid\n(non-Win32 .EXE or error in .EXE image)."); break;
+        case SE_ERR_ACCESSDENIED:     str = _T("The operating system denied\naccess to the specified file."); break;
+        case SE_ERR_ASSOCINCOMPLETE:  str = _T("The filename association is\nincomplete or invalid."); break;
+        case SE_ERR_DDEBUSY:          str = _T("The DDE transaction could not\nbe completed because other DDE transactions\nwere being processed."); break;
+        case SE_ERR_DDEFAIL:          str = _T("The DDE transaction failed."); break;
+        case SE_ERR_DDETIMEOUT:       str = _T("The DDE transaction could not\nbe completed because the request timed out."); break;
+        case SE_ERR_DLLNOTFOUND:      str = _T("The specified dynamic-link library was not found."; break);
+        case SE_ERR_NOASSOC:          str = _T("There is no application associated\nwith the given filename extension."); break;
+        case SE_ERR_OOM:              str = _T("There was not enough memory to complete the operation."); break;
+        case SE_ERR_SHARE:            str = _T("A sharing violation occurred. ");
+        default:                      str.Format(_T("Unknown Error (%d) occurred."), nError); break;
+    }
+    str = _T("Unable to open hyperlink:\n\n") + str;
+    AfxMessageBox(str, MB_ICONEXCLAMATION | MB_OK);
+}
+
+HINSTANCE CHyperEdit::GotoURL(LPCTSTR url, int showcmd)
+{
+    TCHAR key[MAX_PATH + MAX_PATH];
+
+    // First try ShellExecute()
+    HINSTANCE result = ShellExecute(NULL, _T("open"), url, NULL,NULL, showcmd);
+
+    // If it failed, get the .htm regkey and lookup the program
+    if ((UINT)result <= HINSTANCE_ERROR) {
+
+        if (GetRegKey(HKEY_CLASSES_ROOT, _T(".htm"), key) == ERROR_SUCCESS) {
+            lstrcat(key, _T("\\shell\\open\\command"));
+
+            if (GetRegKey(HKEY_CLASSES_ROOT,key,key) == ERROR_SUCCESS) {
+                TCHAR *pos;
+                pos = _tcsstr(key, _T("\"%1\""));
+                if (pos == NULL) {                     // No quotes found
+                    pos = _tcsstr(key, _T("%1"));      // Check for %1, without quotes 
+                    if (pos == NULL)                   // No parameter at all...
+                        pos = key+lstrlen(key)-1;
+                    else
+                        *pos = '\0';                   // Remove the parameter
+                }
+                else
+                    *pos = '\0';                       // Remove the parameter
+
+                lstrcat(pos, _T(" "));
+                lstrcat(pos, url);
+
+                USES_CONVERSION;
+                result = (HINSTANCE) WinExec(T2A(key),showcmd);
+            }
+        }
+    }
+
+    return result;
+}
