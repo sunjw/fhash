@@ -21,6 +21,7 @@
 
 #include "stdafx.h"
 #include "HyperEdit.h"
+#include "winuser.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,7 +37,7 @@ CHyperEdit::CHyperEdit()
 
 	m_nLineHeight = 0;
 
-	m_hHandCursor = NULL; // No hand cursor 
+	m_bUseHandCursor = FALSE;
 
 	// Set default hyperlink colors
 	m_clrNormal = RGB(92, 92, 154);
@@ -56,6 +57,7 @@ BEGIN_MESSAGE_MAP(CHyperEdit, CEdit)
 	//{{AFX_MSG_MAP(CHyperEdit)
 	ON_CONTROL_REFLECT(EN_CHANGE, OnChange)
 	ON_WM_MOUSEMOVE()
+	ON_WM_SETCURSOR()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_TIMER()
@@ -93,8 +95,6 @@ void CHyperEdit::PreSubclassWindow()
 	// Create our hyperlink font :)
 	m_oFont.CreateFontIndirect(&lf);
 
-	InitHandCursor(); // Try and initialize our hand cursor
-
 	// Calculate single line height
 	m_nLineHeight = pDC->DrawText(_T("Test Line"), CRect(0,0,0,0), DT_SINGLELINE|DT_CALCRECT);
 
@@ -111,22 +111,25 @@ void CHyperEdit::PreSubclassWindow()
 
 void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point) 
 {
-	CEdit::OnMouseMove(nFlags, point);
-									  
+	m_bUseHandCursor = FALSE;
+
 	CString csURL = GetHyperlinkFromPoint(point);
+	if (!csURL.IsEmpty())
+		m_bUseHandCursor = TRUE;
 
-	// If not empty, then display hand cursor
-	if(!csURL.IsEmpty()){
-	
-		// Get the coordinates of last character in entire buffer
-		CPoint pt_lastchar = PosFromChar(GetWindowTextLength()-1);
-
-		// Don't bother changing mouse cursor if it's below last visible character
-		if(point.y<=(pt_lastchar.y+m_nLineHeight))		
-			::SetCursor(m_hHandCursor);
-	}
+	CEdit::OnMouseMove(nFlags, point);
 
 	DrawHyperlinks();
+}
+
+BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+	if (!m_bUseHandCursor)
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
+	else
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_HAND));
+
+	return TRUE;
 }
 
 // Override left mouse button down (Clicking)
@@ -171,7 +174,8 @@ void CHyperEdit::OnLButtonUp(UINT nFlags, CPoint point)
 LRESULT CHyperEdit::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
 {
 	// handling OnPaint() didn't work
-	if(message==WM_PAINT){
+	if (message == WM_PAINT)
+	{
 		CEdit::WindowProc(message, wParam, lParam);
 
 		DrawHyperlinks();
@@ -346,20 +350,32 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 // and if mouse isn't over any hyperlink it returns a empty CString
 //
 
-CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt) const 
+CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt) 
 {
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
 
-	// Get the index of the character caret is currently over or closest too
-	int iChar = LOWORD(CharFromPos(pt));
+	for (int i= 0; i < m_linkOffsets.size(); i++)
+	{
+		CPoint linkLTPoint = PosFromChar(m_linkOffsets[i].iStart); 
+		CPoint linkRTPoint = PosFromChar(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
+		if (linkRTPoint.x == -1 && linkRTPoint.y == -1)
+		{
+			// PosFromChar has a bug on over last char.
+			// https://social.msdn.microsoft.com/Forums/en-US/5740af95-ec61-4f6a-b46b-ad22521e4609/cedit-posfromchar-broken
+			linkRTPoint = PosFromChar(GetWindowTextLength() - 1); // index of last character
+			CDC *pDC = GetDC();
+			CString str;
+			GetWindowText(str);
+			str = str.Right(1); // last character in string
+			linkRTPoint.x += pDC->GetTextExtent(str).cx; // bump x by it's width
+		}
 
-	// Check 'iChar' against vector offsets and determine if current character
-	// user is hovering over is inside any hyperlink range
-	for(int i=0; i<m_linkOffsets.size(); i++){
-			
-		// If character user is over is within range of this token URL, let's exit and send the URL
-		if(iChar>=m_linkOffsets[i].iStart && iChar<(m_linkOffsets[i].iStart+m_linkOffsets[i].iLength)){
+		if (pt.x >= linkLTPoint.x &&
+			pt.x <= linkRTPoint.x &&
+			pt.y >= linkLTPoint.y &&
+			pt.y <= linkLTPoint.y + m_nLineHeight)
+		{
 			csTemp = csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength);
 			return csTemp;
 		}
@@ -413,30 +429,6 @@ BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, int showcmd)
 {
 	return GotoURL(hyperlink, showcmd);
-}
-
-void CHyperEdit::InitHandCursor()
-{
-    if(m_hHandCursor == NULL){ // No cursor handle - load our own
-        // Get the windows directory
-        CString strWndDir;
-        GetWindowsDirectory(strWndDir.GetBuffer(MAX_PATH), MAX_PATH);
-        strWndDir.ReleaseBuffer();
-
-        strWndDir += _T("\\winhlp32.exe");
-
-        // This retrieves cursor #106 from winhlp32.exe, which is a hand pointer
-		HMODULE hModule = LoadLibrary(strWndDir);
-
-        if(hModule){
-            HCURSOR hHandCursor = ::LoadCursor(hModule, MAKEINTRESOURCE(106));
-            
-			if(hHandCursor)
-                m_hHandCursor = CopyCursor(hHandCursor);
-        }
-
-        FreeLibrary(hModule);
-    }
 }
 
 LONG CHyperEdit::GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata)

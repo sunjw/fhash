@@ -64,8 +64,7 @@ public:
 	void SetLinkColors(COLORREF clrNormal, COLORREF clrHover)
 	{ m_clrNormal=clrNormal; m_clrHover=clrHover; }
 
-	// Used with a TIMER to display tooltips (Maybe the webpage TITLE???)
-	CString GetHyperlinkFromPoint(CPoint& pt) const;
+	CString GetHyperlinkFromPoint(CPoint& pt);
 
 protected:
 	inline BOOL IsWhiteSpace(const CString& csBuff, int iIndex) const;
@@ -84,6 +83,7 @@ protected:
 	//{{AFX_MSG(CHyperEdit)
 	afx_msg void OnChange(){ DrawHyperlinks(); }
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnHScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnVScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
@@ -97,8 +97,6 @@ private:
 	void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	// Functions borrowed from Chris Maunder's article
-	void InitHandCursor();
-
     HINSTANCE GotoURL(LPCTSTR url, int showcmd);
     LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
 
@@ -110,7 +108,7 @@ private:
 
 	CString m_csLocation; // URL or file to be opened when mouse is released
 
-	HCURSOR m_hHandCursor; 
+	BOOL m_bUseHandCursor;
 
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 
