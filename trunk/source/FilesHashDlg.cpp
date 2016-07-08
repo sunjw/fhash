@@ -110,7 +110,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(GetStringByKey(MAINDLG_ABOUT));
 
-	m_uiBridgeMFC = new UIBridgeMFC(m_hWnd, &m_tstrAll, &m_mainMtx);
+	m_uiBridgeMFC = new UIBridgeMFC(GetSafeHwnd(), &m_tstrAll, &m_mainMtx);
 
 	m_mainMtx.lock();
 	{
@@ -501,7 +501,7 @@ void CFilesHashDlg::SetWholeProgPos(UINT pos)
 {
 	m_progWhole.SetPos(pos);
 	if(m_bAdvTaskbar)
-		pTl->SetProgressValue(this->m_hWnd, pos, 99);
+		pTl->SetProgressValue(GetSafeHwnd(), pos, 99);
 }
 
 void CFilesHashDlg::DoMD5()

@@ -31,7 +31,7 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
     // 编辑框快捷键操作  
     if(WM_KEYDOWN == pMsg->message)   
     {  
-        if(::GetFocus() == m_hWnd && (GetKeyState( VK_CONTROL) & 0xFF00 ) == 0xFF00)   
+		if(::GetFocus() == GetSafeHwnd() && (GetKeyState( VK_CONTROL) & 0xFF00 ) == 0xFF00)   
         {  
             // 全选  
             if( pMsg->wParam == 'A' || pMsg->wParam == 'a')  
@@ -76,6 +76,7 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 
 HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
 {
+	ClientToScreen(&point);
 	::MessageBox(GetSafeHwnd(), hyperlink, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
 	return 0;
 }
