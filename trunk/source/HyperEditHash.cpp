@@ -77,7 +77,11 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
 {
 	ClientToScreen(&point);
-	::MessageBox(GetSafeHwnd(), hyperlink, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
+
+	CString cstrMsgBoxText;
+	cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), hyperlink, point.x, point.y);
+
+	::MessageBox(GetSafeHwnd(), cstrMsgBoxText, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
 	return 0;
 }
 
