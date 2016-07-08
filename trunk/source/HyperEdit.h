@@ -95,7 +95,6 @@ private:
 	// Functions borrowed from Chris Maunder's article
 	void SetDefaultCursor();
     HINSTANCE GotoURL(LPCTSTR url, int showcmd);
-    void ReportError(int nError);
     LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
 
 private:

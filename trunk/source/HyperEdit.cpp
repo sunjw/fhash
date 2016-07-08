@@ -24,8 +24,6 @@
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
 #endif
 
 IMPLEMENT_DYNAMIC(CHyperEdit, CEdit)
@@ -451,29 +449,6 @@ LONG CHyperEdit::GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata)
     }
 
     return retval;
-}
-
-void CHyperEdit::ReportError(int nError)
-{
-    CString str;
-    switch (nError) {
-        case 0:                       str = _T("The operating system is out\nof memory or resources."); break;
-        case SE_ERR_PNF:              str = _T("The specified path was not found."); break;
-        case SE_ERR_FNF:              str = _T("The specified file was not found."); break;
-        case ERROR_BAD_FORMAT:        str = _T("The .EXE file is invalid\n(non-Win32 .EXE or error in .EXE image)."); break;
-        case SE_ERR_ACCESSDENIED:     str = _T("The operating system denied\naccess to the specified file."); break;
-        case SE_ERR_ASSOCINCOMPLETE:  str = _T("The filename association is\nincomplete or invalid."); break;
-        case SE_ERR_DDEBUSY:          str = _T("The DDE transaction could not\nbe completed because other DDE transactions\nwere being processed."); break;
-        case SE_ERR_DDEFAIL:          str = _T("The DDE transaction failed."); break;
-        case SE_ERR_DDETIMEOUT:       str = _T("The DDE transaction could not\nbe completed because the request timed out."); break;
-        case SE_ERR_DLLNOTFOUND:      str = _T("The specified dynamic-link library was not found."; break);
-        case SE_ERR_NOASSOC:          str = _T("There is no application associated\nwith the given filename extension."); break;
-        case SE_ERR_OOM:              str = _T("There was not enough memory to complete the operation."); break;
-        case SE_ERR_SHARE:            str = _T("A sharing violation occurred. ");
-        default:                      str.Format(_T("Unknown Error (%d) occurred."), nError); break;
-    }
-    str = _T("Unable to open hyperlink:\n\n") + str;
-    AfxMessageBox(str, MB_ICONEXCLAMATION | MB_OK);
 }
 
 HINSTANCE CHyperEdit::GotoURL(LPCTSTR url, int showcmd)
