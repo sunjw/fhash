@@ -74,18 +74,10 @@ public:
 	CString GetHyperlinkFromPoint(CPoint& pt);
 
 protected:
-	inline BOOL IsWhiteSpace(const CString& csBuff, int iIndex) const;
-
-	virtual BOOL IsWordHyperlink(const CString& csToken) const;
-
-	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd) const;
-	
 	//{{AFX_VIRTUAL(CHyperEdit)
 	virtual void PreSubclassWindow();
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
-
-	afx_msg void OnSelChange(){ DrawHyperlinks(); }
 
 	//{{AFX_MSG(CHyperEdit)
 	afx_msg void OnChange(){ DrawHyperlinks(); }
@@ -100,12 +92,33 @@ protected:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 
+	afx_msg void OnSelChange(){ DrawHyperlinks(); }
+
+	///
+
+	inline BOOL IsWhiteSpaceOrEOF(const CString& csBuff, int iIndex) const;
+
+	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
+
+	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd) const;
+
+	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
+
+	///
+
 private:
+	DECLARE_MESSAGE_MAP()
+
+	///
+
+	BOOL IsWordHyperlink(const CString& csToken) const;
+
 	void DrawHyperlinks();
-	void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	// Functions borrowed from Chris Maunder's article
     HINSTANCE GotoURL(LPCTSTR url, int showcmd) const;
+
+	///
 
 private:
 	UINT m_nTimer;
@@ -117,15 +130,12 @@ private:
 
 	BOOL m_bMouseOnHyperlink;
 
-	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
-
 	COLORREF m_crEditBk;
 	CBrush m_brEditBk;
 
 	COLORREF m_crHyperlinkNormal;
 	COLORREF m_crHyperlinkHover;
 
-	DECLARE_MESSAGE_MAP()
 };
 //{{AFX_INSERT_LOCATION}}
 #endif // !defined(AFX_HYPEREDIT_H__28F52ED8_8811_436F_821B_EB02D02A1F88__INCLUDED_)

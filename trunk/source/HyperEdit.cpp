@@ -359,7 +359,7 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 	// Rebuild list of hyperlink character offsets starting at iCharStart and ending at iCharFinish
 	for(int i=iCharStart, iCurr=iCharStart; i<=iCharFinish; i++){
 		
-		if(IsWhiteSpace(csBuff, i)){	// Also checks for EOB (End of buffer)
+		if(IsWhiteSpaceOrEOF(csBuff, i)){	// Also checks for EOB (End of buffer)
 
 			_TOKEN_OFFSET off = { iCurr /* Start offset */, i-iCurr /* Length */ };
 
@@ -430,7 +430,7 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 // Returns TRUE if indexed character within buffer is whitespace
 //
 
-BOOL CHyperEdit::IsWhiteSpace(const CString& csBuff, int iIndex) const 
+BOOL CHyperEdit::IsWhiteSpaceOrEOF(const CString& csBuff, int iIndex) const 
 { 
 	// Check for End of buffer 
 	if(csBuff.GetLength() == iIndex) return TRUE;
