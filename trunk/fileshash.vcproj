@@ -409,6 +409,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\source\HyperEdit.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\HyperEdit2.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\HyperEdit3.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\source\ShellExtComm.cpp"
 				>
 			</File>
@@ -479,6 +491,10 @@
 			</File>
 			<File
 				RelativePath=".\source\HashEngine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\HyperEdit.h"
 				>
 			</File>
 			<File
