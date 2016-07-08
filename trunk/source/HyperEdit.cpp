@@ -128,7 +128,7 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
 	if (!m_bUseHandCursor)
-		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_IBEAM));
 	else
 		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_HAND));
 
