@@ -7,7 +7,7 @@
 
 // CHyperEditHash
 
-IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEdit)
+IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEditHash_BASE_CLASS)
 
 CHyperEditHash::CHyperEditHash()
 {
@@ -19,7 +19,7 @@ CHyperEditHash::~CHyperEditHash()
 }
 
 
-BEGIN_MESSAGE_MAP(CHyperEditHash, CHyperEdit)
+BEGIN_MESSAGE_MAP(CHyperEditHash, CHyperEditHash_BASE_CLASS)
 END_MESSAGE_MAP()
 
 
@@ -70,6 +70,6 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
         }  
     }  
       
-    return CHyperEdit::PreTranslateMessage(pMsg);  
+    return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
  }  
 

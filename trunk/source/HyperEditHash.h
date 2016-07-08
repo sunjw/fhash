@@ -3,8 +3,9 @@
 #include "HyperEdit.h"
 
 // CHyperEditHash
+#define CHyperEditHash_BASE_CLASS CHyperEdit
 
-class CHyperEditHash : public CHyperEdit
+class CHyperEditHash : public CHyperEditHash_BASE_CLASS
 {
 	DECLARE_DYNAMIC(CHyperEditHash)
 
