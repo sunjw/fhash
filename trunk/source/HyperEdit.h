@@ -33,9 +33,7 @@
 
 #define IsSelection(p1, p2)( p1 != p2 )
 
-#include <vector>  
-
-using namespace std;
+#include <vector>
 
 //
 // This structure holds the starting offset and length for each token
@@ -43,10 +41,13 @@ using namespace std;
 // OnPaint and OnMouseMove and OnChange to quickly get the URL or token string
 // 
 
-struct _TOKEN_OFFSET{
-	WORD iStart;   //
+struct _TOKEN_OFFSET
+{
+	WORD iStart;
 	WORD iLength;
-}; typedef vector<_TOKEN_OFFSET> OFFSETS;
+};
+
+typedef std::vector<_TOKEN_OFFSET> OFFSETS;
 
 // CHyperEdit control interface
 

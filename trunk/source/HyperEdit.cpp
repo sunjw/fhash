@@ -253,11 +253,11 @@ void CHyperEdit::DrawHyperlinks()
 	pDC->IntersectClipRect(rcRect);	// Prevent drawing outside the format rectangle
 
 	// Get the character index of the first and last visible characters
-	int iChar1 = LOWORD(CharFromPos(CPoint(rcRect.left, rcRect.top))); // LineIndex(GetFirstVisibleLine()); // Old method!!!
-	int iChar2 = LOWORD(CharFromPos(CPoint(rcRect.right, rcRect.bottom)));
+	int iCharStart = LOWORD(CharFromPos(CPoint(rcRect.left, rcRect.top))); // LineIndex(GetFirstVisibleLine()); // Old method!!!
+	int iCharFinish = LOWORD(CharFromPos(CPoint(rcRect.right, rcRect.bottom)));
 
 	// Build a list of hyperlink character offsets
-	BuildOffsetList(iChar1, iChar2);
+	BuildOffsetList(iCharStart, iCharFinish);
 
 	CString csBuff; // Holds the text for the entire control
 	GetWindowText(csBuff);
@@ -356,7 +356,7 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 	// Clear previous hyperlink offsets from vector and rebuild list
 	m_linkOffsets.clear(); 
 
-	// Rebuild list of hyperlink character offsets starting at iChar1 and ending at iChar2
+	// Rebuild list of hyperlink character offsets starting at iCharStart and ending at iCharFinish
 	for(int i=iCharStart, iCurr=iCharStart; i<=iCharFinish; i++){
 		
 		if(IsWhiteSpace(csBuff, i)){	// Also checks for EOB (End of buffer)
