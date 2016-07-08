@@ -27,6 +27,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+IMPLEMENT_DYNAMIC(CHyperEdit, CEdit)
+
 // Object construction
 
 CHyperEdit::CHyperEdit()

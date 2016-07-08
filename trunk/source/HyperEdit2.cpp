@@ -221,8 +221,8 @@ BOOL CHyperEdit::IsWordHyper(const CString& csToken) const
 	// A trivial approach to hyperlinking web sites or email addresses
 	// In a derived class we can use regex if we like to only hyperlink
 	// fully qualified URL's etc...
-	if(csTemp.Left(7) == "http://") return TRUE;
-	if(csTemp.Left(7) == "mailto:") return TRUE;
+	if(csTemp.Left(7) == _T("http://")) return TRUE;
+	if(csTemp.Left(7) == _T("mailto:")) return TRUE;
 	//if(csTemp.Left(5) == "file:") return TRUE;
 
 	return FALSE; // Not a valid token by default

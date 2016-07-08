@@ -52,6 +52,8 @@ struct _TOKEN_OFFSET{
 
 class CHyperEdit : public CEdit
 {
+	DECLARE_DYNAMIC(CHyperEdit)
+
 public:
 	CHyperEdit();
 	virtual ~CHyperEdit();
