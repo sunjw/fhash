@@ -256,15 +256,15 @@ void CHyperEdit::DrawHyperlinks()
 	CString csTemp; //
 
 	// Draw our hyperlink(s)	
-	for (int i = 0; i<m_linkOffsets.size(); i++)
+	for (int i = 0; i < m_linkOffsets.size(); i++)
 	{
 		// Determine if mouse pointer is over a hyperlink
 		csTemp = GetHyperlinkFromPoint(pt_mouse);
 
 		pDC->SetTextColor(m_crHyperlinkNormal);
-			
+
 		// If return URL is empty then were not over a hyperlink
-		if(!csTemp.IsEmpty() &&
+		if (!csTemp.IsEmpty() &&
 			csTemp == csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
 			pDC->SetTextColor(m_crHyperlinkHover);
 
