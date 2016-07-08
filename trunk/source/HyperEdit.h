@@ -114,7 +114,7 @@ private:
 
 	CString m_csLocation; // URL or file to be opened when mouse is released
 
-	BOOL m_bUseHandCursor;
+	BOOL m_bMouseOnHyperlink;
 
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 

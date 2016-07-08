@@ -37,7 +37,7 @@ CHyperEdit::CHyperEdit()
 
 	m_nLineHeight = 0;
 
-	m_bUseHandCursor = FALSE;
+	m_bMouseOnHyperlink = FALSE;
 
 	// Set default colors
 	m_crEditBk = RGB(255, 255, 255);
@@ -108,17 +108,18 @@ void CHyperEdit::PreSubclassWindow()
 	// 10 is the default and appears to have an almost flicker free
 	// transition from selection to hyperlinked colors.
 	m_nTimer = SetTimer(IDT_SELCHANGE, 10, NULL);
+
 }
 
 // Override mouse movements
 
 void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point) 
 {
-	m_bUseHandCursor = FALSE;
+	m_bMouseOnHyperlink = FALSE;
 
 	CString csURL = GetHyperlinkFromPoint(point);
 	if (!csURL.IsEmpty())
-		m_bUseHandCursor = TRUE;
+		m_bMouseOnHyperlink = TRUE;
 
 	//DrawHyperlinks();
 
@@ -127,10 +128,24 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 
 BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
-	if (!m_bUseHandCursor)
-		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_IBEAM));
-	else
+	CPoint ptMouse(GetMessagePos()); // Current mouse location
+	ScreenToClient(&ptMouse);
+
+	CRect rectEdit;
+	GetRect(rectEdit); // Get the formatting rectangle for the edit control
+	if (ptMouse.x < rectEdit.left ||
+		ptMouse.x > rectEdit.right ||
+		ptMouse.y < rectEdit.top ||
+		ptMouse.y > rectEdit.bottom)
+	{
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
+		return TRUE;
+	}
+
+	if (m_bMouseOnHyperlink)
 		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_HAND));
+	else
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_IBEAM));
 
 	return TRUE;
 }
@@ -250,8 +265,8 @@ void CHyperEdit::DrawHyperlinks()
 	CPoint pt; // Coordinates for a single tokens character which is painted blue
 
 	// Used to determine if user is hovering over a hyperlink or not
-	CPoint pt_mouse(GetMessagePos()); // Current mouse location
-	ScreenToClient(&pt_mouse);
+	CPoint ptMouse(GetMessagePos()); // Current mouse location
+	ScreenToClient(&ptMouse);
 
 	CString csTemp; //
 
@@ -259,7 +274,7 @@ void CHyperEdit::DrawHyperlinks()
 	for (int i = 0; i < m_linkOffsets.size(); i++)
 	{
 		// Determine if mouse pointer is over a hyperlink
-		csTemp = GetHyperlinkFromPoint(pt_mouse);
+		csTemp = GetHyperlinkFromPoint(ptMouse);
 
 		pDC->SetTextColor(m_crHyperlinkNormal);
 
