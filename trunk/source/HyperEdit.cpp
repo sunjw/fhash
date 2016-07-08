@@ -297,7 +297,27 @@ void CHyperEdit::DrawHyperlinks()
 			}
 
 			if (needDraw)
-				pDC->TextOut(pt.x, pt.y, CString(chToken)); // Draw overtop of existing character
+			{
+				CString cstrToken = CString(chToken);
+
+				CSize size = pDC->GetTextExtent(cstrToken);
+				if (j == m_linkOffsets[i].iStart)
+				{
+					// 1st fix
+					pDC->FillSolidRect(pt.x - 1, pt.y, size.cx + 1, size.cy, m_crEditBk);
+				}
+				else if (j == m_linkOffsets[i].iStart + m_linkOffsets[i].iLength - 1)
+				{
+					// Last fix
+					pDC->FillSolidRect(pt.x, pt.y, size.cx + 1, size.cy, m_crEditBk);
+				}
+				else
+				{
+					pDC->FillSolidRect(pt.x, pt.y, size.cx, size.cy, m_crEditBk);
+				}
+				// Draw overtop of existing character
+				pDC->TextOut(pt.x, pt.y, CString(cstrToken));
+			}
 		}
 	}
 
