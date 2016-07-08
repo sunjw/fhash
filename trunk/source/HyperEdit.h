@@ -64,6 +64,8 @@ public:
 	void SetLinkColors(COLORREF clrNormal, COLORREF clrHover)
 	{ m_clrNormal=clrNormal; m_clrHover=clrHover; }
 
+	CPoint PosFromCharEx(UINT nChar);
+
 	CString GetHyperlinkFromPoint(CPoint& pt);
 
 protected:

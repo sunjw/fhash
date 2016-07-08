@@ -153,14 +153,6 @@ void CHyperEdit::OnLButtonUp(UINT nFlags, CPoint point)
 	// If there is a selection, just exit now, we don't open URL's
 	if(IsSelection(iSelStart, iSelFinish)) return;
 
-	// If were below the last visible character	exit again, cuz we don't want 
-	// to open any URL's that aren't directly clicked on
-	// Get the coordinates of last character in entire buffer
-	CPoint pt = PosFromChar(GetWindowTextLength()-1);
-
-	// Exit if mouse is below last visible character
-	if(point.y>(pt.y+m_nLineHeight)) return; 
-
 	CString csURL = GetHyperlinkFromPoint(point);
 
 	// If not empty, then open browser and show web site
@@ -264,17 +256,8 @@ void CHyperEdit::DrawHyperlinks()
 		else{
 			// Make sure we only hilite the URL were over. This technique will
 			// cause duplicate URl's to hilite in hover color.
-			if(csTemp==csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength)){
-				
-				// Get the coordinates of last character in entire buffer
-				CPoint pt_lastchar = PosFromChar(GetWindowTextLength()-1);
-
-				// Paint normally if mouse is below last visible character
-				if(pt_mouse.y>(pt_lastchar.y+m_nLineHeight))
-					pDC->SetTextColor(m_clrNormal);
-				else
-					pDC->SetTextColor(m_clrHover);
-			}
+			if(csTemp==csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
+				pDC->SetTextColor(m_clrHover);
 			else
 				pDC->SetTextColor(m_clrNormal);
 		}
@@ -284,10 +267,10 @@ void CHyperEdit::DrawHyperlinks()
 		for(int j=m_linkOffsets[i].iStart; j<(m_linkOffsets[i].iStart+m_linkOffsets[i].iLength); j++){
 			
 			TCHAR chToken = csBuff.GetAt(j); // Get a single token from URL, Email, etc
-			pt = PosFromChar(j); // Get the coordinates for a single token
+			pt = PosFromCharEx(j); // Get the coordinates for a single token
 
 			// Holds the start and finish offset of current selection (if any)
-			int iSelStart=0, iSelFinish=0; 
+			int iSelStart=0, iSelFinish=0;
 
 			GetSel(iSelStart, iSelFinish);
 
@@ -345,6 +328,26 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 	}
 }
 
+CPoint CHyperEdit::PosFromCharEx(UINT nChar)
+{
+	if (nChar < GetWindowTextLength())
+	{
+		return PosFromChar(nChar);
+	}
+	else
+	{
+		// PosFromChar has a bug on over last char.
+		// https://social.msdn.microsoft.com/Forums/en-US/5740af95-ec61-4f6a-b46b-ad22521e4609/cedit-posfromchar-broken
+		CPoint point = PosFromChar(GetWindowTextLength() - 1); // index of last character
+		CDC *pDC = GetDC();
+		CString str;
+		GetWindowText(str);
+		str = str.Right(1); // last character in string
+		point.x += pDC->GetTextExtent(str).cx; // bump x by it's width
+		return point;
+	}
+}
+
 //
 // Returns a hyperlinks URL if mouse cursor is actually over a URL
 // and if mouse isn't over any hyperlink it returns a empty CString
@@ -357,24 +360,13 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 
 	for (int i= 0; i < m_linkOffsets.size(); i++)
 	{
-		CPoint linkLTPoint = PosFromChar(m_linkOffsets[i].iStart); 
-		CPoint linkRTPoint = PosFromChar(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
-		if (linkRTPoint.x == -1 && linkRTPoint.y == -1)
-		{
-			// PosFromChar has a bug on over last char.
-			// https://social.msdn.microsoft.com/Forums/en-US/5740af95-ec61-4f6a-b46b-ad22521e4609/cedit-posfromchar-broken
-			linkRTPoint = PosFromChar(GetWindowTextLength() - 1); // index of last character
-			CDC *pDC = GetDC();
-			CString str;
-			GetWindowText(str);
-			str = str.Right(1); // last character in string
-			linkRTPoint.x += pDC->GetTextExtent(str).cx; // bump x by it's width
-		}
+		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart); 
+		CPoint linkRTPoint = PosFromCharEx(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
 
 		if (pt.x >= linkLTPoint.x &&
 			pt.x <= linkRTPoint.x &&
-			pt.y >= linkLTPoint.y &&
-			pt.y <= linkLTPoint.y + m_nLineHeight)
+			pt.y > linkLTPoint.y &&
+			pt.y < linkLTPoint.y + m_nLineHeight)
 		{
 			csTemp = csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength);
 			return csTemp;
