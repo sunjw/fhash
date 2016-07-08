@@ -452,8 +452,6 @@ BOOL CHyperEdit::IsWhiteSpace(const CString& csBuff, int iIndex) const
 
 BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 {
-	if(IsWhiteSpace(csToken, 0)) return FALSE; // Whitespace YUCK!!!
-
 	CString csTemp(csToken); // Make a temp copy so we can convert it's case
 	csTemp.MakeLower();
 
