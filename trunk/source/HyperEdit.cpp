@@ -184,7 +184,7 @@ void CHyperEdit::OnLButtonUp(UINT nFlags, CPoint point)
 	// If not empty, then open browser and show web site
 	// only if the URL is the same as one clicked on in OnLButtonDown()
 	if(!csURL.IsEmpty() && (m_csLocation==csURL)) 
-		OpenHyperlink(csURL, SW_SHOW);
+		OpenHyperlink(csURL, point);
 }
 
 // Override low level message handling
@@ -465,14 +465,14 @@ BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 	return FALSE; // Not a valid token by default
 }	  
 
-HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, int showcmd) const
+HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
 {
-	return GotoURL(hyperlink, showcmd);
+	return GotoURL(hyperlink);
 }
 
-HINSTANCE CHyperEdit::GotoURL(LPCTSTR url, int showcmd) const
+HINSTANCE CHyperEdit::GotoURL(LPCTSTR url) const
 {
-    HINSTANCE result = ShellExecute(NULL, _T("open"), url, NULL, NULL, showcmd);
+    HINSTANCE result = ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOW);
 
     return result;
 }

@@ -74,7 +74,7 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
     return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
  }  
 
-HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, int showcmd) const
+HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
 {
 	::MessageBox(GetSafeHwnd(), hyperlink, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
 	return 0;

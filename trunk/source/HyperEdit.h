@@ -100,7 +100,7 @@ protected:
 
 	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
 
-	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd) const;
+	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, CPoint point) const;
 
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 
@@ -116,7 +116,7 @@ private:
 	void DrawHyperlinks();
 
 	// Functions borrowed from Chris Maunder's article
-    HINSTANCE GotoURL(LPCTSTR url, int showcmd) const;
+    HINSTANCE GotoURL(LPCTSTR url) const;
 
 	///
 
