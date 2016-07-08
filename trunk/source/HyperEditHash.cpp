@@ -11,7 +11,8 @@ IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEditHash_BASE_CLASS)
 
 CHyperEditHash::CHyperEditHash()
 {
-
+	COLORREF crBlack = RGB(0, 0, 0);
+	SetHyperlinkColors(crBlack, crBlack);
 }
 
 CHyperEditHash::~CHyperEditHash()
@@ -72,4 +73,10 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
       
     return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
  }  
+
+HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, int showcmd) const
+{
+	::MessageBox(GetSafeHwnd(), hyperlink, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
+	return 0;
+}
 

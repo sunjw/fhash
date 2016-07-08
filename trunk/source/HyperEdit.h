@@ -77,7 +77,7 @@ protected:
 
 	virtual BOOL IsWordHyperlink(const CString& csToken) const;
 
-	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd);
+	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd) const;
 	
 	//{{AFX_VIRTUAL(CHyperEdit)
 	virtual void PreSubclassWindow();
@@ -104,7 +104,7 @@ private:
 	void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	// Functions borrowed from Chris Maunder's article
-    HINSTANCE GotoURL(LPCTSTR url, int showcmd);
+    HINSTANCE GotoURL(LPCTSTR url, int showcmd) const;
 
 private:
 	UINT m_nTimer;

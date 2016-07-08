@@ -127,9 +127,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	
 	pTl = NULL;
 
-	COLORREF crBlack = RGB(0, 0, 0);
-	m_editMain.SetHyperlinkColors(crBlack, crBlack);
-
 	m_editMain.SetLimitText(UINT_MAX);
 	m_editMain.SetWindowText(GetStringByKey(MAINDLG_INITINFO));
 

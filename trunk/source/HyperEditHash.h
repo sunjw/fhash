@@ -17,6 +17,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	BOOL PreTranslateMessage(MSG* pMsg);
+
+	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, int showcmd) const;
 };
 
 

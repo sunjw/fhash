@@ -465,12 +465,12 @@ BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 	return FALSE; // Not a valid token by default
 }	  
 
-HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, int showcmd)
+HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, int showcmd) const
 {
 	return GotoURL(hyperlink, showcmd);
 }
 
-HINSTANCE CHyperEdit::GotoURL(LPCTSTR url, int showcmd)
+HINSTANCE CHyperEdit::GotoURL(LPCTSTR url, int showcmd) const
 {
     HINSTANCE result = ShellExecute(NULL, _T("open"), url, NULL, NULL, showcmd);
 
