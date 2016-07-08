@@ -120,9 +120,9 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 	if (!csURL.IsEmpty())
 		m_bUseHandCursor = TRUE;
 
-	CEdit::OnMouseMove(nFlags, point);
+	//DrawHyperlinks();
 
-	DrawHyperlinks();
+	CEdit::OnMouseMove(nFlags, point);
 }
 
 BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
@@ -264,9 +264,9 @@ void CHyperEdit::DrawHyperlinks()
 		pDC->SetTextColor(m_crHyperlinkNormal);
 
 		// If return URL is empty then were not over a hyperlink
-		if (!csTemp.IsEmpty() &&
-			csTemp == csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
-			pDC->SetTextColor(m_crHyperlinkHover);
+		//if (!csTemp.IsEmpty() &&
+		//	csTemp == csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
+		//	pDC->SetTextColor(m_crHyperlinkHover);
 
 		// Paint each URL, email, etc character individually so we can have URL's that wrap
 		// onto different lines
