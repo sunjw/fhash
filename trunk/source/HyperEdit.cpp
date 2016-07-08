@@ -245,26 +245,24 @@ void CHyperEdit::DrawHyperlinks()
 	CString csTemp; //
 
 	// Draw our hyperlink(s)	
-	for(int i=0; i<m_linkOffsets.size(); i++){
-		   
+	for (int i = 0; i<m_linkOffsets.size(); i++)
+	{
 		// Determine if mouse pointer is over a hyperlink
 		csTemp = GetHyperlinkFromPoint(pt_mouse);
+
+		pDC->SetTextColor(m_clrNormal);
 			
 		// If return URL is empty then were not over a hyperlink
-		if(csTemp.IsEmpty())		
-			pDC->SetTextColor(m_clrNormal);
-		else{
-			// Make sure we only hilite the URL were over. This technique will
-			// cause duplicate URl's to hilite in hover color.
-			if(csTemp==csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
-				pDC->SetTextColor(m_clrHover);
-			else
-				pDC->SetTextColor(m_clrNormal);
-		}
+		if(!csTemp.IsEmpty() &&
+			csTemp == csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
+			pDC->SetTextColor(m_clrHover);
 
 		// Paint each URL, email, etc character individually so we can have URL's that wrap
 		// onto different lines
-		for(int j=m_linkOffsets[i].iStart; j<(m_linkOffsets[i].iStart+m_linkOffsets[i].iLength); j++){
+		for (int j = m_linkOffsets[i].iStart; 
+			j < (m_linkOffsets[i].iStart + m_linkOffsets[i].iLength); 
+			j++)
+		{
 			
 			TCHAR chToken = csBuff.GetAt(j); // Get a single token from URL, Email, etc
 			pt = PosFromCharEx(j); // Get the coordinates for a single token
@@ -274,15 +272,20 @@ void CHyperEdit::DrawHyperlinks()
 
 			GetSel(iSelStart, iSelFinish);
 
+			BOOL needDraw = FALSE;
 			// Determine if there is a selection
-			if(IsSelection(iSelStart, iSelFinish)){
+			if (IsSelection(iSelStart, iSelFinish))
+			{
 				// Does our current token fall within a selection range
-				if(j>=iSelStart && j<iSelFinish)
-					continue; // Don't paint token blue, it's selected!!!
-				else
-					pDC->TextOut(pt.x, pt.y, CString(chToken)); // Draw overtop of existing character
+				if (j < iSelStart || j >= iSelFinish)
+					needDraw = TRUE;
 			}
 			else // No selection, just draw normally
+			{
+				needDraw = TRUE;
+			}
+
+			if (needDraw)
 				pDC->TextOut(pt.x, pt.y, CString(chToken)); // Draw overtop of existing character
 		}
 	}
