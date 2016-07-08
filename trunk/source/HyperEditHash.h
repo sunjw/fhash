@@ -1,15 +1,16 @@
 #pragma once
 
+#include "HyperEdit.h"
 
-// CEditEx
+// CHyperEditHash
 
-class CEditEx : public CEdit
+class CHyperEditHash : public CHyperEdit
 {
-	DECLARE_DYNAMIC(CEditEx)
+	DECLARE_DYNAMIC(CHyperEditHash)
 
 public:
-	CEditEx();
-	virtual ~CEditEx();
+	CHyperEditHash();
+	virtual ~CHyperEditHash();
 
 protected:
 	DECLARE_MESSAGE_MAP()

@@ -1,31 +1,31 @@
-// src\EditEx.cpp : 实现文件
+// src\HyperEditHash.cpp : 实现文件
 //
 #include "stdafx.h"
 
-#include "EditEx.h"
+#include "HyperEditHash.h"
 
 
-// CEditEx
+// CHyperEditHash
 
-IMPLEMENT_DYNAMIC(CEditEx, CEdit)
+IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEdit)
 
-CEditEx::CEditEx()
+CHyperEditHash::CHyperEditHash()
 {
 
 }
 
-CEditEx::~CEditEx()
+CHyperEditHash::~CHyperEditHash()
 {
 }
 
 
-BEGIN_MESSAGE_MAP(CEditEx, CEdit)
+BEGIN_MESSAGE_MAP(CHyperEditHash, CHyperEdit)
 END_MESSAGE_MAP()
 
 
 
-// CEditEx 消息处理程序
-BOOL CEditEx::PreTranslateMessage(MSG* pMsg)
+// CHyperEditHash 消息处理程序
+BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 {  
     // 编辑框快捷键操作  
     if(WM_KEYDOWN == pMsg->message)   
@@ -70,6 +70,6 @@ BOOL CEditEx::PreTranslateMessage(MSG* pMsg)
         }  
     }  
       
-    return CEdit::PreTranslateMessage(pMsg);  
+    return CHyperEdit::PreTranslateMessage(pMsg);  
  }  
 
