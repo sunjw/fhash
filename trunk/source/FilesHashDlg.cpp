@@ -80,8 +80,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 
 	// TODO：在此添加额外的初始化代码
 
-	m_bruEditBkg.CreateSolidBrush(RGB(255, 255, 255));
-
 	PrepareAdvTaskbar();
 
 	m_bFind = FALSE;
@@ -558,13 +556,6 @@ HBRUSH CFilesHashDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  在此更改 DC 的任何属性
 
 	// TODO:  如果默认的不是所需画笔，则返回另一个画笔
-	if(pWnd->GetDlgCtrlID() == IDE_TXTMAIN)
-	{
-		pDC->SetBkMode(TRANSPARENT);
-
-
-		hbr = m_bruEditBkg;
-	}
 	return hbr;
 }
 

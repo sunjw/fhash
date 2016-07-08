@@ -58,7 +58,6 @@ protected:
 	CButton m_btnFind;
 	CButton m_chkUppercase;
 	CButton m_btnContext;
-	CBrush m_bruEditBkg;
 
 	sunjwbase::OsMutex m_mainMtx;
 

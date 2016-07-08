@@ -58,11 +58,15 @@ public:
 	CHyperEdit();
 	virtual ~CHyperEdit();
 
-	COLORREF GetNormalColor() const { return m_clrNormal; }
-	COLORREF GetHoverColor() const { return m_clrHover; }
+	COLORREF GetBackgroundColor() const { return m_crEditBk; }
+	COLORREF GetHyperlinkNormalColor() const { return m_crHyperlinkNormal; }
+	COLORREF GetHyperlinkHoverColor() const { return m_crHyperlinkHover; }
 
-	void SetLinkColors(COLORREF clrNormal, COLORREF clrHover)
-	{ m_clrNormal=clrNormal; m_clrHover=clrHover; }
+	void SetBackgroundColor(COLORREF crBackground)
+	{ m_crEditBk = crBackground; }
+
+	void SetHyperlinkColors(COLORREF crNormal, COLORREF crHover)
+	{ m_crHyperlinkNormal = crNormal; m_crHyperlinkHover = crHover; }
 
 	CPoint PosFromCharEx(UINT nChar);
 
@@ -86,6 +90,7 @@ protected:
 	afx_msg void OnChange(){ DrawHyperlinks(); }
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnHScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnVScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
@@ -103,10 +108,10 @@ private:
     LONG GetRegKey(HKEY key, LPCTSTR subkey, LPTSTR retdata);
 
 private:
-	UINT m_nTimer;		 
+	UINT m_nTimer;
 	UINT m_nLineHeight;
 	
-	CFont m_oFont; 		 
+	CFont m_oFont;
 
 	CString m_csLocation; // URL or file to be opened when mouse is released
 
@@ -114,7 +119,11 @@ private:
 
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 
-	COLORREF m_clrNormal, m_clrHover;
+	COLORREF m_crEditBk;
+	CBrush m_brEditBk;
+
+	COLORREF m_crHyperlinkNormal;
+	COLORREF m_crHyperlinkHover;
 
 	DECLARE_MESSAGE_MAP()
 };

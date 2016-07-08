@@ -39,9 +39,10 @@ CHyperEdit::CHyperEdit()
 
 	m_bUseHandCursor = FALSE;
 
-	// Set default hyperlink colors
-	m_clrNormal = RGB(92, 92, 154);
-	m_clrHover = RGB(168, 168, 230);
+	// Set default colors
+	m_crEditBk = RGB(255, 255, 255);
+	m_crHyperlinkNormal = RGB(92, 92, 154);
+	m_crHyperlinkHover = RGB(168, 168, 230);
 
 	m_csLocation.Empty();
 }
@@ -51,6 +52,7 @@ CHyperEdit::CHyperEdit()
 CHyperEdit::~CHyperEdit()
 {
 	m_oFont.DeleteObject();	// Delete hyperlink font object
+	m_brEditBk.DeleteObject();
 }
 		  
 BEGIN_MESSAGE_MAP(CHyperEdit, CEdit)
@@ -58,6 +60,7 @@ BEGIN_MESSAGE_MAP(CHyperEdit, CEdit)
 	ON_CONTROL_REFLECT(EN_CHANGE, OnChange)
 	ON_WM_MOUSEMOVE()
 	ON_WM_SETCURSOR()
+	ON_WM_CTLCOLOR_REFLECT()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_TIMER()
@@ -130,6 +133,14 @@ BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_HAND));
 
 	return TRUE;
+}
+
+HBRUSH CHyperEdit::CtlColor(CDC* pDC, UINT nCtlColor)
+{
+	pDC->SetBkMode(TRANSPARENT);
+	m_brEditBk.DeleteObject();
+	m_brEditBk.CreateSolidBrush(m_crEditBk);
+	return (HBRUSH)m_brEditBk.GetSafeHandle();
 }
 
 // Override left mouse button down (Clicking)
@@ -250,12 +261,12 @@ void CHyperEdit::DrawHyperlinks()
 		// Determine if mouse pointer is over a hyperlink
 		csTemp = GetHyperlinkFromPoint(pt_mouse);
 
-		pDC->SetTextColor(m_clrNormal);
+		pDC->SetTextColor(m_crHyperlinkNormal);
 			
 		// If return URL is empty then were not over a hyperlink
 		if(!csTemp.IsEmpty() &&
 			csTemp == csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength))
-			pDC->SetTextColor(m_clrHover);
+			pDC->SetTextColor(m_crHyperlinkHover);
 
 		// Paint each URL, email, etc character individually so we can have URL's that wrap
 		// onto different lines
