@@ -5,7 +5,7 @@
 #include "afxwin.h"
 #include "afxcmn.h"
 
-#include "EditEx.h"
+#include "HyperEditHash.h"
 
 #include "strhelper.h"
 #include "OsUtils/OsThread.h"
@@ -50,7 +50,7 @@ protected:
 	HICON m_hIcon;
 
 	CProgressCtrl m_progWhole;
-	CEditEx m_editMain;
+	CHyperEditHash m_editMain;
 	CButton m_btnOpen;
 	CButton m_btnExit;
 	CButton m_btnClr;
