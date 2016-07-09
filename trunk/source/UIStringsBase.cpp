@@ -44,6 +44,9 @@ UIStringsBase::UIStringsBase()
 	m_stringsMap[_T("MAINDLG_VERIFY")] = _T("&Verify");
 	m_stringsMap[_T("MAINDLG_ABOUT")] = _T("&About");
 	m_stringsMap[_T("MAINDLG_EXIT")] = _T("E&xit");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_COPY")] = _T("Copy hash value");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE")] = _T("Search Google");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL")] = _T("Search VirusTotal");
 
 	// Find Dialog Strings
 	m_stringsMap[_T("FINDDLG_TITLE")] = _T("Verify");

@@ -68,6 +68,8 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_MESSAGE(WM_CUSTOM_MSG, OnCustomMsg)
 	ON_COMMAND(ID_HYPEREDITMENU_COPYHASH, &CFilesHashDlg::OnHypereditmenuCopyhash)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_COPYHASH, &CFilesHashDlg::OnUpdateHypereditmenuCopyhash)
+	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHGOOGLE, &CFilesHashDlg::OnUpdateHypereditmenuSearchgoogle)
+	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHVIRUSTOTAL, &CFilesHashDlg::OnUpdateHypereditmenuSearchvirustotal)
 END_MESSAGE_MAP()
 
 
@@ -830,6 +832,16 @@ void CFilesHashDlg::OnHypereditmenuCopyhash()
 void CFilesHashDlg::OnUpdateHypereditmenuCopyhash(CCmdUI *pCmdUI)
 {
 	pCmdUI->SetText(GetStringByKey(MAINDLG_HYPEREDIT_MENU_COPY));
+}
+
+void CFilesHashDlg::OnUpdateHypereditmenuSearchgoogle(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetText(GetStringByKey(MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE));
+}
+
+void CFilesHashDlg::OnUpdateHypereditmenuSearchvirustotal(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetText(GetStringByKey(MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL));
 }
 
 tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)

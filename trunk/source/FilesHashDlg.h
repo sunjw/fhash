@@ -48,6 +48,8 @@ public:
 	afx_msg void OnInitMenuPopup(CMenu *pPopupMenu, UINT nIndex, BOOL bSysMenu);
 	afx_msg void OnHypereditmenuCopyhash();
 	afx_msg void OnUpdateHypereditmenuCopyhash(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateHypereditmenuSearchgoogle(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateHypereditmenuSearchvirustotal(CCmdUI *pCmdUI);
 
 // й╣ож
 protected:

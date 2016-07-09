@@ -19,7 +19,7 @@ UIStringsZHCN::UIStringsZHCN()
 	m_stringsMap[_T("BUTTON_CANCEL")] = _T("取消");
 
 	// Main Dialog Strings
-	m_stringsMap[_T("MAINDLG_INITINFO")] = _T("将文件拖入或点击打开，开始计算。");
+	m_stringsMap[_T("MAINDLG_INITINFO")] = _T("将文件拖入或点击打开，开始计算。 http://baidu.com");
 	m_stringsMap[_T("MAINDLG_WAITING_START")] = _T("准备开始计算。");
 	m_stringsMap[_T("MAINDLG_CONTEXT_INIT")] = _T("需要管理员权限");
 	m_stringsMap[_T("MAINDLG_ADD_SUCCEEDED")] = _T("添加成功");
@@ -44,6 +44,9 @@ UIStringsZHCN::UIStringsZHCN()
 	m_stringsMap[_T("MAINDLG_VERIFY")] = _T("验证(&V)");
 	m_stringsMap[_T("MAINDLG_ABOUT")] = _T("关于(&A)");
 	m_stringsMap[_T("MAINDLG_EXIT")] = _T("退出(&X)");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_COPY")] = _T("复制哈希值");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE")] = _T("搜索 Google");
+	m_stringsMap[_T("MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL")] = _T("搜索 VirusTotal");
 
 	// Find Dialog Strings
 	m_stringsMap[_T("FINDDLG_TITLE")] = _T("验证");

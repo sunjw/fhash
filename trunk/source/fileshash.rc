@@ -163,10 +163,10 @@ IDR_MENU_HYPEREDIT MENU
 BEGIN
     POPUP "HyperEditMenu"
     BEGIN
-        MENUITEM "Copy hash",                   ID_HYPEREDITMENU_COPYHASH
+        MENUITEM "[Copy hash]",                   ID_HYPEREDITMENU_COPYHASH
         MENUITEM SEPARATOR
-        MENUITEM "Search Google",               ID_HYPEREDITMENU_SEARCHGOOGLE
-        MENUITEM "Search VirusTotal",           ID_HYPEREDITMENU_SEARCHVIRUSTOTAL
+        MENUITEM "[Search Google]",               ID_HYPEREDITMENU_SEARCHGOOGLE
+        MENUITEM "[Search VirusTotal]",           ID_HYPEREDITMENU_SEARCHVIRUSTOTAL
     END
 END
 
