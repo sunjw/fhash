@@ -45,6 +45,9 @@ public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg LRESULT OnThreadMsg(WPARAM, LPARAM);
 	afx_msg LRESULT OnCustomMsg(WPARAM, LPARAM);
+	afx_msg void OnInitMenuPopup(CMenu *pPopupMenu, UINT nIndex, BOOL bSysMenu);
+	afx_msg void OnHypereditmenuCopyhash();
+	afx_msg void OnUpdateHypereditmenuCopyhash(CCmdUI *pCmdUI);
 
 // й╣ож
 protected:
