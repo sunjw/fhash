@@ -13,12 +13,22 @@ public:
 	CHyperEditHash();
 	virtual ~CHyperEditHash();
 
+	inline CString GetLastHyperlink()
+	{ return m_cstrLastHyperlink; }
+
+	inline CPoint GetLastScreenPoint()
+	{ return m_cpLastScreenPoint; }
+
 protected:
 	DECLARE_MESSAGE_MAP()
 
 	BOOL PreTranslateMessage(MSG* pMsg);
 
-	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point) const;
+	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
+
+private:
+	CString m_cstrLastHyperlink;
+	CPoint m_cpLastScreenPoint;
 
 };
 

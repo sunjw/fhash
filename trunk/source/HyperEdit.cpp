@@ -465,7 +465,7 @@ BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 	return FALSE; // Not a valid token by default
 }	  
 
-HINSTANCE CHyperEdit::OpenHyperlink(const CString& hyperlink, CPoint point) const
+HINSTANCE CHyperEdit::OpenHyperlink(const CString& hyperlink, CPoint point)
 {
 	return GotoURL(hyperlink);
 }

@@ -74,9 +74,12 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
     return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
  }  
 
-HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point) const
+HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point)
 {
 	ClientToScreen(&point);
+
+	m_cstrLastHyperlink = hyperlink;
+	m_cpLastScreenPoint = point;
 
 	CString cstrMsgBoxText;
 	cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), hyperlink.GetString(), point.x, point.y);

@@ -100,7 +100,7 @@ protected:
 
 	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
 
-	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point) const;
+	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
 
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 
