@@ -7,6 +7,7 @@
 #define IDI_ICON1                       129
 #define IDR_241                         133
 #define IDD_FIND_DIALOG                 134
+#define IDR_MENU_HYPEREDIT              135
 #define IDE_TXTMAIN                     1000
 #define IDC_STOP                        1002
 #define IDC_OPEN                        1003
@@ -40,13 +41,17 @@
 #define IDC_CONTEXT                     1028
 #define IDC_SYSLINK1                    1029
 #define IDC_SYSLINK_SITE                1029
+#define ID_HYPEREDITMENU_COPYHASH       32772
+#define ID_HYPEREDITMENU_X              32773
+#define ID_HYPEREDITMENU_SEARCHGOOGLE   32774
+#define ID_HYPEREDITMENU_SEARCHVIRUSTOTAL 32775
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32772
+#define _APS_NEXT_RESOURCE_VALUE        136
+#define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

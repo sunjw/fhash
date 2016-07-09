@@ -725,10 +725,12 @@ LRESULT CFilesHashDlg::OnCustomMsg(WPARAM wParam, LPARAM lParam)
 			CString cstrHyperlink = m_editMain.GetLastHyperlink();
 			CPoint cpPoint = m_editMain.GetLastScreenPoint();
 
-			CString cstrMsgBoxText;
-			cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), cstrHyperlink.GetString(),
-				cpPoint.x, cpPoint.y);
-			::MessageBox(GetSafeHwnd(), cstrMsgBoxText, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
+			CMenu menuHyperEdit;
+			menuHyperEdit.LoadMenu(IDR_MENU_HYPEREDIT);
+			CMenu *pmSubMenu = menuHyperEdit.GetSubMenu(0); 
+			ASSERT(pmSubMenu);
+			pmSubMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON, 
+				cpPoint.x, cpPoint.y, this);
 		}
 		break;
 	}
