@@ -735,7 +735,7 @@ LRESULT CFilesHashDlg::OnCustomMsg(WPARAM wParam, LPARAM lParam)
 			menuHyperEdit.LoadMenu(IDR_MENU_HYPEREDIT);
 			CMenu *pmSubMenu = menuHyperEdit.GetSubMenu(0); 
 			ASSERT(pmSubMenu);
-			pmSubMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON, 
+			pmSubMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, 
 				cpPoint.x, cpPoint.y, this);
 		}
 		break;

@@ -128,6 +128,12 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 
 BOOL CHyperEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
+	if (nHitTest == HTCAPTION)
+	{
+		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));
+		return TRUE;
+	}
+
 	CPoint ptMouse(GetMessagePos()); // Current mouse location
 	ScreenToClient(&ptMouse);
 
