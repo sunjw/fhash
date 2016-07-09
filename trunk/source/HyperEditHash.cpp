@@ -75,6 +75,9 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 
 HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point)
 {
+	if (hyperlink.IsEmpty())
+		return 0;
+
 	ClientToScreen(&point);
 
 	m_cstrLastHyperlink = hyperlink;
