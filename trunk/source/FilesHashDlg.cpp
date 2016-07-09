@@ -843,8 +843,6 @@ void CFilesHashDlg::OnHypereditmenuCopyhash()
 	::EmptyClipboard();
 	::SetClipboardData(CF_UNICODETEXT, hMoveable);
 	::CloseClipboard();
-
-	GlobalFree(hMoveable);
 }
 
 void CFilesHashDlg::OnHypereditmenuSearchgoogle()
