@@ -21,6 +21,9 @@
 #define WP_PROG				WM_USER + 6 // 文件进度条
 #define WP_PROG_WHOLE		WM_USER + 7 // 全局进度条
 
+#define WM_CUSTOM_MSG		WM_USER + 16 // 自定义消息
+#define WM_HYPEREDIT_MENU	WM_USER + 17 // HyperEdit 弹出菜单消息
+
 #else
 
 #define WINAPI

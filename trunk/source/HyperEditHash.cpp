@@ -1,9 +1,8 @@
 // src\HyperEditHash.cpp : 实现文件
 //
 #include "stdafx.h"
-
 #include "HyperEditHash.h"
-
+#include "Global.h"
 
 // CHyperEditHash
 
@@ -80,11 +79,13 @@ HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point)
 
 	m_cstrLastHyperlink = hyperlink;
 	m_cpLastScreenPoint = point;
+	
+	CWnd *parentWnd = GetParent();
+	if (parentWnd != NULL)
+	{
+		::PostMessage(parentWnd->GetSafeHwnd(), WM_CUSTOM_MSG, WM_HYPEREDIT_MENU, 0);
+	}
 
-	CString cstrMsgBoxText;
-	cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), hyperlink.GetString(), point.x, point.y);
-
-	::MessageBox(GetSafeHwnd(), cstrMsgBoxText, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
 	return 0;
 }
 

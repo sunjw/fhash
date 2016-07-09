@@ -44,6 +44,7 @@ public:
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg LRESULT OnThreadMsg(WPARAM, LPARAM);
+	afx_msg LRESULT OnCustomMsg(WPARAM, LPARAM);
 
 // й╣ож
 protected:

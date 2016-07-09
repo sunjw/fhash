@@ -61,6 +61,7 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_WM_CTLCOLOR()
 	ON_WM_CLOSE()
 	ON_MESSAGE(WM_THREAD_INFO, OnThreadMsg)
+	ON_MESSAGE(WM_CUSTOM_MSG, OnCustomMsg)
 	ON_BN_CLICKED(IDC_FIND, &CFilesHashDlg::OnBnClickedFind)
 	ON_BN_CLICKED(IDC_CONTEXT, &CFilesHashDlg::OnBnClickedContext)
 	ON_BN_CLICKED(IDC_CHECKUP, &CFilesHashDlg::OnBnClickedCheckup)
@@ -712,6 +713,26 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		break;
 	}
 
+	return 0;
+}
+
+LRESULT CFilesHashDlg::OnCustomMsg(WPARAM wParam, LPARAM lParam)
+{
+	switch(wParam)
+	{
+	case WM_HYPEREDIT_MENU:
+		{
+			CString cstrHyperlink = m_editMain.GetLastHyperlink();
+			CPoint cpPoint = m_editMain.GetLastScreenPoint();
+
+			CString cstrMsgBoxText;
+			cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), cstrHyperlink.GetString(),
+				cpPoint.x, cpPoint.y);
+			::MessageBox(GetSafeHwnd(), cstrMsgBoxText, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
+		}
+		break;
+	}
+	
 	return 0;
 }
 
