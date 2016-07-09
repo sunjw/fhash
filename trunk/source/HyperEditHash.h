@@ -18,7 +18,7 @@ protected:
 
 	BOOL PreTranslateMessage(MSG* pMsg);
 
-	virtual HINSTANCE OpenHyperlink(LPCTSTR hyperlink, CPoint point) const;
+	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point) const;
 
 };
 

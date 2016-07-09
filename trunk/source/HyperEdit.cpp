@@ -465,14 +465,14 @@ BOOL CHyperEdit::IsWordHyperlink(const CString& csToken) const
 	return FALSE; // Not a valid token by default
 }	  
 
-HINSTANCE CHyperEdit::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
+HINSTANCE CHyperEdit::OpenHyperlink(const CString& hyperlink, CPoint point) const
 {
 	return GotoURL(hyperlink);
 }
 
-HINSTANCE CHyperEdit::GotoURL(LPCTSTR url) const
+HINSTANCE CHyperEdit::GotoURL(const CString& url) const
 {
-    HINSTANCE result = ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOW);
+	HINSTANCE result = ShellExecute(NULL, _T("open"), url.GetString(), NULL, NULL, SW_SHOW);
 
-    return result;
+	return result;
 }

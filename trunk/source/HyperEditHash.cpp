@@ -74,12 +74,12 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
     return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
  }  
 
-HINSTANCE CHyperEditHash::OpenHyperlink(LPCTSTR hyperlink, CPoint point) const
+HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point) const
 {
 	ClientToScreen(&point);
 
 	CString cstrMsgBoxText;
-	cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), hyperlink, point.x, point.y);
+	cstrMsgBoxText.Format(_T("%s @ (%d, %d)"), hyperlink.GetString(), point.x, point.y);
 
 	::MessageBox(GetSafeHwnd(), cstrMsgBoxText, _T("BOOM!!!"), MB_ICONINFORMATION | MB_OK);
 	return 0;
