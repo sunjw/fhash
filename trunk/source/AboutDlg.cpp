@@ -91,9 +91,7 @@ void CAboutDlg::OnBnClickedOk()
 void CAboutDlg::OnNMClickSyslinkSite(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: 在此添加控件通知处理程序代码
-	ShellExecute(NULL, 
-				_T("open"), GetStringByKey(ABOUTDLG_PROJECT_URL), 
-				NULL, NULL, SW_SHOW);
+	WindowsUtils::OpenURL(GetStringByKey(ABOUTDLG_PROJECT_URL));
 
 	*pResult = 0;
 }

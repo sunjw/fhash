@@ -42,6 +42,8 @@ namespace WindowsUtils
 	BOOL IsLimitedProc();
 	BOOL ElevateProcess();
 
+	HINSTANCE OpenURL(const TCHAR *pszURL);
+
 	bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath);
 
 	bool RegShellExt(TCHAR *pszShlDllPath);

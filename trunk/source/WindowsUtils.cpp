@@ -540,6 +540,12 @@ namespace WindowsUtils
 		return bRet;
 	}
 
+	HINSTANCE OpenURL(const TCHAR *pszURL)
+	{
+		return ShellExecute(NULL, _T("open"), pszURL, 
+			NULL, NULL, SW_SHOW);
+	}
+
 	bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
 	{
 		tstring tstrExeDirPath(pszExeFullPath);

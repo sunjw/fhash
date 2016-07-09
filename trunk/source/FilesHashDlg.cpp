@@ -67,6 +67,8 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_MESSAGE(WM_THREAD_INFO, OnThreadMsg)
 	ON_MESSAGE(WM_CUSTOM_MSG, OnCustomMsg)
 	ON_COMMAND(ID_HYPEREDITMENU_COPYHASH, &CFilesHashDlg::OnHypereditmenuCopyhash)
+	ON_COMMAND(ID_HYPEREDITMENU_SEARCHGOOGLE, &CFilesHashDlg::OnHypereditmenuSearchgoogle)
+	ON_COMMAND(ID_HYPEREDITMENU_SEARCHVIRUSTOTAL, &CFilesHashDlg::OnHypereditmenuSearchvirustotal)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_COPYHASH, &CFilesHashDlg::OnUpdateHypereditmenuCopyhash)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHGOOGLE, &CFilesHashDlg::OnUpdateHypereditmenuSearchgoogle)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHVIRUSTOTAL, &CFilesHashDlg::OnUpdateHypereditmenuSearchvirustotal)
@@ -727,7 +729,6 @@ LRESULT CFilesHashDlg::OnCustomMsg(WPARAM wParam, LPARAM lParam)
 	{
 	case WM_HYPEREDIT_MENU:
 		{
-			CString cstrHyperlink = m_editMain.GetLastHyperlink();
 			CPoint cpPoint = m_editMain.GetLastScreenPoint();
 
 			CMenu menuHyperEdit;
@@ -826,7 +827,42 @@ void CFilesHashDlg::OnInitMenuPopup(CMenu *pPopupMenu, UINT nIndex, BOOL bSysMen
 
 void CFilesHashDlg::OnHypereditmenuCopyhash()
 {
-	
+	CString cstrHyperlink = m_editMain.GetLastHyperlink();
+
+	HGLOBAL hMoveable;
+	LPTSTR pszArr;
+
+	size_t bytes = (cstrHyperlink.GetLength()+1)*sizeof(TCHAR);
+	hMoveable = GlobalAlloc(GMEM_MOVEABLE, bytes);
+	pszArr = (LPTSTR)GlobalLock(hMoveable);
+	ZeroMemory(pszArr, bytes);
+	_tcscpy_s(pszArr, cstrHyperlink.GetLength()+1, cstrHyperlink);
+	GlobalUnlock(hMoveable);
+
+	::OpenClipboard(NULL);
+	::EmptyClipboard();
+	::SetClipboardData(CF_UNICODETEXT, hMoveable);
+	::CloseClipboard();
+
+	GlobalFree(hMoveable);
+}
+
+void CFilesHashDlg::OnHypereditmenuSearchgoogle()
+{
+	CString cstrHyperlink = m_editMain.GetLastHyperlink();
+	CString cstrGoogleLink;
+	cstrGoogleLink.Format(_T("https://www.google.com/search?q=%s&ie=utf-8&oe=utf-8"),
+		cstrHyperlink.GetString());
+	WindowsUtils::OpenURL(cstrGoogleLink);
+}
+
+void CFilesHashDlg::OnHypereditmenuSearchvirustotal()
+{
+	CString cstrHyperlink = m_editMain.GetLastHyperlink();
+	CString cstrVtLink;
+	cstrVtLink.Format(_T("https://www.virustotal.com/en/search/?query=%s"),
+		cstrHyperlink.GetString());
+	WindowsUtils::OpenURL(cstrVtLink);
 }
 
 void CFilesHashDlg::OnUpdateHypereditmenuCopyhash(CCmdUI *pCmdUI)
