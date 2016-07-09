@@ -183,8 +183,11 @@ void CHyperEdit::OnLButtonUp(UINT nFlags, CPoint point)
 
 	// If not empty, then open browser and show web site
 	// only if the URL is the same as one clicked on in OnLButtonDown()
-	if(!csURL.IsEmpty() && (m_csLocation==csURL)) 
+	if(!csURL.IsEmpty() && (m_csLocation==csURL))
+	{
 		OpenHyperlink(csURL, point);
+		m_bMouseOnHyperlink = FALSE;
+	}
 }
 
 // Override low level message handling
