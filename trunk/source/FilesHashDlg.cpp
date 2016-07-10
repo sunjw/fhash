@@ -628,10 +628,12 @@ void CFilesHashDlg::RefreshResult()
 void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	m_mainMtx.lock();
+
 	m_editMain.SetWindowText(m_tstrAll.c_str());
-	m_mainMtx.unlock();
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+
+	m_mainMtx.unlock();
 }
 
 void CFilesHashDlg::CalcSpeed(ULONGLONG tsize)
@@ -706,10 +708,9 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 			//m_tstrAll.append(_T("\r\n\r\n"));
 
 			m_editMain.SetWindowText(m_tstrAll.c_str());
+			m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 		}
 		m_mainMtx.unlock();
-			
-		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
 		SetWholeProgPos(0);
 		
