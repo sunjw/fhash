@@ -35,6 +35,8 @@ CHyperEdit::CHyperEdit()
 {
 	m_nLineHeight = 0;
 
+	InitializeCriticalSection(&m_csLinkOffsets);
+
 	m_bMouseOnHyperlink = FALSE;
 
 	// Set default colors
@@ -49,6 +51,7 @@ CHyperEdit::CHyperEdit()
 
 CHyperEdit::~CHyperEdit()
 {
+	DeleteCriticalSection(&m_csLinkOffsets);
 	m_oFont.DeleteObject();	// Delete hyperlink font object
 	m_brEditBk.DeleteObject();
 }
@@ -242,6 +245,8 @@ void CHyperEdit::DrawHyperlinks()
 
 	//CString csTemp; //
 
+	EnterCriticalSection(&m_csLinkOffsets);
+
 	// Draw our hyperlink(s)	
 	for (int i = 0; i < m_linkOffsets.size(); i++)
 	{
@@ -308,6 +313,8 @@ void CHyperEdit::DrawHyperlinks()
 		}
 	}
 
+	LeaveCriticalSection(&m_csLinkOffsets);
+
 	pDC->SelectObject(pTemp); // Restore original font (Free hyperlink font)
 }
 
@@ -325,13 +332,17 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 	CString csBuff, csToken; 
 	GetWindowText(csBuff);
 
+	EnterCriticalSection(&m_csLinkOffsets);
+
 	// Clear previous hyperlink offsets from vector and rebuild list
 	m_linkOffsets.clear(); 
 
 	// Rebuild list of hyperlink character offsets starting at iCharStart and ending at iCharFinish
-	for(int i=iCharStart, iCurr=iCharStart; i<=iCharFinish; i++){
+	for (int i = iCharStart, iCurr = iCharStart; i <= iCharFinish; i++)
+	{
 		
-		if(IsWhiteSpaceOrEOF(csBuff, i)){	// Also checks for EOB (End of buffer)
+		if (IsWhiteSpaceOrEOF(csBuff, i))
+		{	// Also checks for EOB (End of buffer)
 
 			_TOKEN_OFFSET off = { iCurr /* Start offset */, i-iCurr /* Length */ };
 
@@ -344,9 +355,13 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 			csToken.Empty(); // Flush previous token 		
 			iCurr = i+1; // Initialize the start offset for next token
 		}
-		else 
+		else
+		{
 			csToken += csBuff.GetAt(i); // Concatenate another char onto token
+		}
 	}
+
+	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
 CPoint CHyperEdit::PosFromCharEx(UINT nChar)
@@ -379,6 +394,8 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
 
+	EnterCriticalSection(&m_csLinkOffsets);
+
 	for (int i= 0; i < m_linkOffsets.size(); i++)
 	{
 		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart); 
@@ -396,6 +413,8 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 			return csTemp;
 		}
 	}
+
+	LeaveCriticalSection(&m_csLinkOffsets);
 
 	csTemp.Empty(); // NULL string on error
 	return csTemp; 

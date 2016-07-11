@@ -21,7 +21,7 @@ public:
 	void AppendTextToBuffer(LPCTSTR pszText);
 	void AppendLinkToBuffer(LPCTSTR pszText);
 
-	void CopyLinkOffsets(OFFSETS& linkOffsets) const;
+	void CopyLinkOffsets(OFFSETS& linkOffsets);
 	void SetLinkOffsets(const OFFSETS& linkOffsets);
 
 	inline CString GetLastHyperlink()

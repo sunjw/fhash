@@ -100,6 +100,7 @@ protected:
 
 	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
 
+	CRITICAL_SECTION m_csLinkOffsets;
 	OFFSETS m_linkOffsets; // Character offsets for each hyperlink located
 
 	///
