@@ -921,5 +921,5 @@ tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend)
 {
 	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
-	WindowsUtils::AppendResultToTstring(result, m_thrdData.uppercase, &tstrToAppend);
+	UIBridgeMFC::AppendResultToTstring(result, m_thrdData.uppercase, &tstrToAppend);
 }

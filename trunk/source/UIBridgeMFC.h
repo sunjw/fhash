@@ -37,6 +37,19 @@ public:
 	virtual void fileCalcFinish();
 	virtual void fileFinish();
 
+	static void AppendFileNameToTstring(const ResultData& result,
+										sunjwbase::tstring *tString);
+	static void AppendFileMetaToTstring(const ResultData& result,
+										sunjwbase::tstring *tString);
+	static void AppendFileHashToTstring(const ResultData& result,
+										bool uppercase,
+										sunjwbase::tstring *tString);
+	static void AppendFileErrToTstring(const ResultData& result,
+										sunjwbase::tstring *tString);
+	static void AppendResultToTstring(const ResultData& result,
+										bool uppercase,
+										sunjwbase::tstring *tString);
+
 private:
 	HWND m_hWnd;
 	sunjwbase::tstring *m_uiTstrAll;
