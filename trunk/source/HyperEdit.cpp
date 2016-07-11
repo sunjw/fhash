@@ -365,7 +365,7 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 
 CPoint CHyperEdit::PosFromCharEx(UINT nChar)
 {
-	if (nChar < GetWindowTextLength())
+	if (nChar < (UINT)GetWindowTextLength())
 	{
 		return PosFromChar(nChar);
 	}
@@ -395,7 +395,7 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 
 	for (int i = 0; i < m_linkOffsets.size(); ++i)
 	{
-		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart); 
+		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart);
 		CPoint linkRTPoint = PosFromCharEx(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
 
 		if (linkLTPoint.y < 0 || linkRTPoint.y < 0)
