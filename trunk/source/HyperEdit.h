@@ -86,8 +86,6 @@ protected:
 	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnHScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnVScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnDestroy(){ CEdit::OnDestroy(); KillTimer(m_nTimer); }
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
@@ -121,7 +119,6 @@ private:
 	///
 
 private:
-	UINT_PTR m_nTimer;
 	INT m_nLineHeight;
 	
 	CFont m_oFont;

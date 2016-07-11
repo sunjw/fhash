@@ -33,8 +33,6 @@ IMPLEMENT_DYNAMIC(CHyperEdit, CEdit)
 
 CHyperEdit::CHyperEdit()
 {
-	m_nTimer = 0;
-
 	m_nLineHeight = 0;
 
 	m_bMouseOnHyperlink = FALSE;
@@ -63,7 +61,6 @@ BEGIN_MESSAGE_MAP(CHyperEdit, CEdit)
 	ON_WM_CTLCOLOR_REFLECT()
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
-	ON_WM_TIMER()
 	ON_WM_DESTROY()
 	ON_WM_LBUTTONUP()
 	ON_WM_LBUTTONDOWN()
@@ -100,14 +97,6 @@ void CHyperEdit::PreSubclassWindow()
 
 	// Calculate single line height
 	m_nLineHeight = pDC->DrawText(_T("Test Line"), CRect(0,0,0,0), DT_SINGLELINE|DT_CALCRECT);
-
-	// PROGRAMMERS NOTE:
-	// =================
-	// If the hyperlinks flicker when changing the selection state
-	// of the edit control change the timer value to a lower count
-	// 10 is the default and appears to have an almost flicker free
-	// transition from selection to hyperlinked colors.
-	m_nTimer = SetTimer(IDT_SELCHANGE, 10, NULL);
 
 }
 
@@ -212,32 +201,6 @@ LRESULT CHyperEdit::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	
 	return CEdit::WindowProc(message, wParam, lParam);
 }
-
-// Emulate an OnSelChange() event using a low interval timer (initialized in PreSubclassWindow)
-
-void CHyperEdit::OnTimer(UINT_PTR nIDEvent) 
-{
-	//
-	// Emulate a OnSelChange() event
-	//
-
-	static int iPrevStart=0, iPrevFinish=0;
-	
-	DWORD dwSel = GetSel();	
-
-	// Check the previous start/finish of selection range
-	// and compare them against the current selection range
-	// if there is any difference between them fire off an OnSelChange event
-	if(LOWORD(dwSel) != iPrevStart || HIWORD(dwSel) != iPrevFinish)
-		OnSelChange();
-
-	// Save current selection state for next call (as previous state)
-	iPrevStart = LOWORD(dwSel);
-	iPrevFinish = HIWORD(dwSel);
-
-	CEdit::OnTimer(nIDEvent);
-}
-
 
 //
 // DrawHyperlinks() draws a hyperlink colored character(individually) over existing
