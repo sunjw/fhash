@@ -112,6 +112,10 @@ int CHyperEdit::GetFirstInvisibleLine()
 		if (ptChar.y > rcRect.bottom)
 			break;
 	}
+
+	if (iLastVisibleLine >= iLineCount)
+		iLastVisibleLine = iLineCount - 1;
+
 	return iLastVisibleLine;
 }
 
@@ -423,9 +427,6 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 
 		CPoint linkLTPoint = PosFromCharEx(linkOffset.iStart);
 		CPoint linkRTPoint = PosFromCharEx(linkOffset.iStart + linkOffset.iLength);
-
-		if (linkLTPoint.y < 0 || linkRTPoint.y < 0)
-			continue; // fast
 
 		if (pt.y > linkLTPoint.y &&
 			pt.y < linkLTPoint.y + m_nLineHeight &&
