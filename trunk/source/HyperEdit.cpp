@@ -231,11 +231,15 @@ void CHyperEdit::DrawHyperlinks()
 	CString csBuff; // Holds the text for the entire control
 	GetWindowText(csBuff);
 
+	// Holds the start and finish offset of current selection (if any)
+	int iSelStart=0, iSelFinish=0;
+	GetSel(iSelStart, iSelFinish);
+
 	CPoint pt; // Coordinates for a single tokens character which is painted blue
 
 	// Used to determine if user is hovering over a hyperlink or not
-	CPoint ptMouse(GetMessagePos()); // Current mouse location
-	ScreenToClient(&ptMouse);
+	//CPoint ptMouse(GetMessagePos()); // Current mouse location
+	//ScreenToClient(&ptMouse);
 
 	//CString csTemp; //
 
@@ -261,11 +265,6 @@ void CHyperEdit::DrawHyperlinks()
 			
 			TCHAR chToken = csBuff.GetAt(j); // Get a single token from URL, Email, etc
 			pt = PosFromCharEx(j); // Get the coordinates for a single token
-
-			// Holds the start and finish offset of current selection (if any)
-			int iSelStart=0, iSelFinish=0;
-
-			GetSel(iSelStart, iSelFinish);
 
 			BOOL needDraw = FALSE;
 			// Determine if there is a selection
@@ -300,7 +299,7 @@ void CHyperEdit::DrawHyperlinks()
 					pDC->FillSolidRect(pt.x, pt.y, size.cx, size.cy, m_crEditBk);
 				}
 				// Draw overtop of existing character
-				pDC->TextOut(pt.x, pt.y, CString(cstrToken));
+				pDC->TextOut(pt.x, pt.y, cstrToken);
 			}
 		}
 	}
