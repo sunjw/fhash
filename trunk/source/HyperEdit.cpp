@@ -99,6 +99,22 @@ void CHyperEdit::PreSubclassWindow()
 
 }
 
+int CHyperEdit::GetFirstInvisibleLine()
+{
+	CRect rcRect;
+	GetRect(rcRect);
+	int iLastVisibleLine = GetFirstVisibleLine();
+	int iLineCount = GetLineCount();
+	for (; iLastVisibleLine < iLineCount; ++iLastVisibleLine)
+	{
+		int iChar = LineIndex(iLastVisibleLine);
+		CPoint ptChar = PosFromChar(iChar);
+		if (ptChar.y > rcRect.bottom)
+			break;
+	}
+	return iLastVisibleLine;
+}
+
 // Override mouse movements
 
 void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point) 
@@ -231,15 +247,8 @@ void CHyperEdit::DrawHyperlinks()
 	int iVisibleLine = GetFirstVisibleLine();
 	iCharStart = LineIndex(iVisibleLine);
 
-	int iLastVisibleLine = iVisibleLine;
-	int iLineCount = GetLineCount();
-	for (; iLastVisibleLine < iLineCount; ++iLastVisibleLine)
-	{
-		iCharFinish = LineIndex(iLastVisibleLine);
-		CPoint ptChar = PosFromChar(iCharFinish);
-		if (ptChar.y > rcRect.bottom)
-			break;
-	}
+	int iInvisibleLine = GetFirstInvisibleLine();
+	iCharFinish = LineIndex(iInvisibleLine);
 
 	// Build a list of hyperlink character offsets
 	BuildOffsetList(iCharStart, iCharFinish);
@@ -393,10 +402,27 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
 
-	for (int i = 0; i < m_linkOffsets.size(); ++i)
+	int iCharStart = 0;
+	int iCharFinish = 0;
+
+	int iVisibleLine = GetFirstVisibleLine();
+	iCharStart = LineIndex(iVisibleLine);
+
+	int iInvisibleLine = GetFirstInvisibleLine();
+	iCharFinish = LineIndex(iInvisibleLine);
+
+	size_t linkOffsetsCount = m_linkOffsets.size();
+	for (size_t i = 0; i < linkOffsetsCount; ++i)
 	{
-		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart);
-		CPoint linkRTPoint = PosFromCharEx(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
+		size_t lastIdx = linkOffsetsCount - 1 - i;
+		const _TOKEN_OFFSET& linkOffset = m_linkOffsets[lastIdx];
+
+		if (linkOffset.iStart + linkOffset.iLength < iCharStart ||
+			linkOffset.iStart > iCharFinish)
+			continue;
+
+		CPoint linkLTPoint = PosFromCharEx(linkOffset.iStart);
+		CPoint linkRTPoint = PosFromCharEx(linkOffset.iStart + linkOffset.iLength);
 
 		if (linkLTPoint.y < 0 || linkRTPoint.y < 0)
 			continue; // fast
@@ -406,7 +432,7 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 			pt.x >= linkLTPoint.x &&
 			pt.x <= linkRTPoint.x)
 		{
-			csTemp = csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength);
+			csTemp = csBuff.Mid(linkOffset.iStart, linkOffset.iLength);
 			return csTemp;
 		}
 	}

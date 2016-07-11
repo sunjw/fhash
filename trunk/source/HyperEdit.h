@@ -59,6 +59,8 @@ public:
 	CHyperEdit();
 	virtual ~CHyperEdit();
 
+	int GetFirstInvisibleLine();
+
 	COLORREF GetBackgroundColor() const { return m_crEditBk; }
 	COLORREF GetHyperlinkNormalColor() const { return m_crHyperlinkNormal; }
 	COLORREF GetHyperlinkHoverColor() const { return m_crHyperlinkHover; }
