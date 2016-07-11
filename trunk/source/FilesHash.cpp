@@ -8,11 +8,17 @@
 #include "UIStringsBase.h"
 #include "UIStringsZHCN.h"
 
+//#define MEMORY_LEAK_TEST
+#undef MEMORY_LEAK_TEST
+
 // Memory leak test
-//#define _CRTDBG_MAP_ALLOC
-//#include <stdlib.h>
-//#include <crtdbg.h>
+#if defined (MEMORY_LEAK_TEST)
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
 // Memory leak test
+
 
 using namespace WindowsStrings;
 
@@ -46,7 +52,9 @@ CFILESHASHApp theApp;
 BOOL CFILESHASHApp::InitInstance()
 {
 	// Memory leak test
-	//_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+#if defined (MEMORY_LEAK_TEST)
+	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+#endif
 	// Memory leak test
 
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
