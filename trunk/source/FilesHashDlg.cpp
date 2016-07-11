@@ -118,25 +118,25 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_ABOUT);
 	pWnd->SetWindowText(GetStringByKey(MAINDLG_ABOUT));
 
-	m_uiBridgeMFC = new UIBridgeMFC(GetSafeHwnd(), &m_tstrAll, &m_mainMtx);
+	m_uiBridgeMFC = new UIBridgeMFC(GetSafeHwnd(), &m_mainMtx, &m_editMain);
 
 	m_mainMtx.lock();
 	{
-		m_tstrAll = _T("");
-
 		m_thrdData.uiBridge = m_uiBridgeMFC;
 		m_thrdData.uppercase = false;
 
 		m_thrdData.nFiles = 0;
 
 		m_thrdData.resultList.clear();
+
+		m_editMain.SetLimitText(UINT_MAX);
+		m_editMain.ClearTextBuffer();
+		m_editMain.AppendTextToBuffer(GetStringByKey(MAINDLG_INITINFO));
+		m_editMain.ShowTextBuffer();
 	}
 	m_mainMtx.unlock();
 	
 	pTl = NULL;
-
-	m_editMain.SetLimitText(UINT_MAX);
-	m_editMain.SetWindowText(GetStringByKey(MAINDLG_INITINFO));
 
 	if(WindowsUtils::ContextMenuExisted())
 	{
@@ -355,11 +355,9 @@ void CFilesHashDlg::OnBnClickedClean()
 		{
 			m_mainMtx.lock();
 			{
-				m_tstrAll = _T("");
-
+				m_editMain.ClearTextBuffer();
 				m_thrdData.resultList.clear();
-			
-				m_editMain.SetWindowText(m_tstrAll.c_str());
+				m_editMain.ShowTextBuffer();
 			}
 			m_mainMtx.unlock();
 
@@ -404,9 +402,10 @@ void CFilesHashDlg::OnBnClickedFind()
 		{
 			m_bFind = TRUE; // 进入搜索模式
 			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR_VERIFY));
-			//m_editMain.SetWindowText(_T(""));
-			tstring tstrResult = ResultFind(m_strFindFile, m_strFindHash);
-			m_editMain.SetWindowText(tstrResult.c_str());
+
+			m_editMain.ClearTextBuffer();
+			ResultFind(m_strFindFile, m_strFindHash);
+			m_editMain.ShowTextBuffer();
 			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 		}
 	}
@@ -473,8 +472,9 @@ void CFilesHashDlg::OnBnClickedCheckup()
 	else
 	{
 		// Search mode
-		tstring tstrResult = ResultFind(m_strFindFile, m_strFindHash);
-		m_editMain.SetWindowText(tstrResult.c_str());
+		m_editMain.ClearTextBuffer();
+		ResultFind(m_strFindFile, m_strFindHash);
+		m_editMain.ShowTextBuffer();
 	}
 
 	// Reset scroll position
@@ -617,11 +617,11 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 
 void CFilesHashDlg::RefreshResult()
 {
-	m_tstrAll = _T("");
+	m_editMain.ClearTextBuffer();
 	ResultList::iterator itr = m_thrdData.resultList.begin();
 	for(; itr != m_thrdData.resultList.end(); ++itr)
 	{
-		AppendResult(*itr, m_tstrAll);
+		AppendResult(*itr);
 	}
 }
 
@@ -629,7 +629,7 @@ void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	m_mainMtx.lock();
 
-	m_editMain.SetWindowText(m_tstrAll.c_str());
+	m_editMain.ShowTextBuffer();
 	if(bScrollToEnd)
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 
@@ -703,11 +703,11 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 		
 		m_mainMtx.lock();
 		{
-			m_tstrAll.append(_T("\r\n"));
-			//m_tstrAll.append(MAINDLG_CALCU_TERMINAL);
-			//m_tstrAll.append(_T("\r\n\r\n"));
+			m_editMain.AppendTextToBuffer(_T("\r\n"));
+			//m_editMain.AppendTextToBuffer(MAINDLG_CALCU_TERMINAL);
+			//m_editMain.AppendTextToBuffer(_T("\r\n\r\n"));
 
-			m_editMain.SetWindowText(m_tstrAll.c_str());
+			m_editMain.ShowTextBuffer();
 			m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
 		}
 		m_mainMtx.unlock();
@@ -879,16 +879,16 @@ void CFilesHashDlg::OnUpdateHypereditmenuSearchvirustotal(CCmdUI *pCmdUI)
 	pCmdUI->SetText(GetStringByKey(MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL));
 }
 
-tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
+void CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 {
-	tstring tstrResult(GetStringByKey(MAINDLG_FIND_IN_RESULT));
-	tstrResult.append(_T("\r\n"));
-	tstrResult.append(GetStringByKey(HASHVALUE_STRING));
-	tstrResult.append(_T(" "));
-	tstrResult.append(strHash);
-	tstrResult.append(_T("\r\n\r\n"));
-	tstrResult.append(GetStringByKey(MAINDLG_RESULT));
-	tstrResult.append(_T("\r\n\r\n"));
+	m_editMain.AppendTextToBuffer(GetStringByKey(MAINDLG_FIND_IN_RESULT));
+	m_editMain.AppendTextToBuffer(_T("\r\n"));
+	m_editMain.AppendTextToBuffer(GetStringByKey(HASHVALUE_STRING));
+	m_editMain.AppendTextToBuffer(_T(" "));
+	m_editMain.AppendTextToBuffer(strHash);
+	m_editMain.AppendTextToBuffer(_T("\r\n\r\n"));
+	m_editMain.AppendTextToBuffer(GetStringByKey(MAINDLG_RESULT));
+	m_editMain.AppendTextToBuffer(_T("\r\n\r\n"));
 
 	strHash.MakeUpper();
 	strFile.MakeLower();
@@ -908,18 +908,16 @@ tstring CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 		{
 			++count;
 
-			AppendResult(*itr, tstrResult);
+			AppendResult(*itr);
 		}
 	}
 
 	if(count == 0)
-		tstrResult.append(GetStringByKey(MAINDLG_NORESULT));
-
-	return tstrResult;
+		m_editMain.AppendTextToBuffer(GetStringByKey(MAINDLG_NORESULT));
 }
 
-void CFilesHashDlg::AppendResult(const ResultData& result, tstring& tstrToAppend)
+void CFilesHashDlg::AppendResult(const ResultData& result)
 {
 	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
-	UIBridgeMFC::AppendResultToTstring(result, m_thrdData.uppercase, &tstrToAppend);
+	UIBridgeMFC::AppendResultToHyperEdit(result, m_thrdData.uppercase, &m_editMain);
 }

@@ -14,10 +14,15 @@ public:
 	virtual ~CHyperEditHash();
 
 	void ClearTextBuffer();
+	CString GetTextBuffer() const;
+
 	void ShowTextBuffer();
 
 	void AppendTextToBuffer(LPCTSTR pszText);
 	void AppendLinkToBuffer(LPCTSTR pszText);
+
+	void CopyLinkOffsets(OFFSETS& linkOffsets) const;
+	void SetLinkOffsets(const OFFSETS& linkOffsets);
 
 	inline CString GetLastHyperlink()
 	{ return m_cstrLastHyperlink; }

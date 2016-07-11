@@ -73,7 +73,6 @@ protected:
 	ThreadData m_thrdData;
 	HANDLE m_hWorkThread;
 	float m_calculateTime;
-	sunjwbase::tstring m_tstrAll;
 	UINT_PTR m_timer;
 	BOOL m_waitingExit; // 等待线程退出后，退出程序
 	BOOL m_bAdvTaskbar;
@@ -89,9 +88,9 @@ protected:
 	void ClearFilePaths();
 	void PrepareAdvTaskbar();
 
-	sunjwbase::tstring ResultFind(CString strFile, CString strHash);
+	void ResultFind(CString strFile, CString strHash);
 
-	void AppendResult(const ResultData& result, sunjwbase::tstring& tstrToAppend);
+	void AppendResult(const ResultData& result);
 
 	void DoMD5();
 	void StopWorkingThread();

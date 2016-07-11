@@ -81,6 +81,11 @@ void CHyperEditHash::ClearTextBuffer()
 	m_cstrTextBuffer = CString(_T(""));
 }
 
+CString CHyperEditHash::GetTextBuffer() const
+{
+	return m_cstrTextBuffer;
+}
+
 void CHyperEditHash::ShowTextBuffer()
 {
 	SetWindowText(m_cstrTextBuffer);
@@ -99,6 +104,16 @@ void CHyperEditHash::AppendLinkToBuffer(LPCTSTR pszText)
 	WORD linkLength = endPos - startPos;
 	_TOKEN_OFFSET off = { startPos /* Start offset */, linkLength /* Length */ };
 	m_linkOffsets.push_back(off);
+}
+
+void CHyperEditHash::CopyLinkOffsets(OFFSETS& linkOffsets) const
+{
+	linkOffsets = m_linkOffsets;
+}
+
+void CHyperEditHash::SetLinkOffsets(const OFFSETS& linkOffsets)
+{
+	m_linkOffsets = linkOffsets;
 }
 
 void CHyperEditHash::BuildOffsetList(int iCharStart, int iCharFinish)

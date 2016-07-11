@@ -16,10 +16,10 @@
 using namespace std;
 using namespace sunjwbase;
 
-UIBridgeMFC::UIBridgeMFC(HWND hWnd, 
-						tstring *tstrUIAll,
-						OsMutex *mainMtx)
-:m_hWnd(hWnd), m_uiTstrAll(tstrUIAll), m_mainMtx(mainMtx)
+UIBridgeMFC::UIBridgeMFC(HWND hWnd,
+						 OsMutex *mainMtx,
+						 CHyperEditHash *hyperEdit)
+:m_hWnd(hWnd), m_mainMtx(mainMtx), m_mainHyperEdit(hyperEdit)
 {
 }
 
@@ -43,9 +43,12 @@ void UIBridgeMFC::preparingCalc()
 	
 	lockData();
 	{
-		m_tstrNoPreparing = *m_uiTstrAll;
-		m_uiTstrAll->append(GetStringByKey(MAINDLG_WAITING_START));
-		m_uiTstrAll->append(_T("\r\n"));
+		m_tstrNoPreparing = m_mainHyperEdit->GetTextBuffer().GetBuffer();
+		// Save link offsets
+		m_mainHyperEdit->CopyLinkOffsets(m_offsetsNoPreparing);
+
+		m_mainHyperEdit->AppendTextToBuffer(GetStringByKey(MAINDLG_WAITING_START));
+		m_mainHyperEdit->AppendTextToBuffer(_T("\r\n"));
 	}
 	unlockData();
 	
@@ -56,8 +59,11 @@ void UIBridgeMFC::removePreparingCalc()
 {
 	lockData();
 	{
-		// restore and remove MAINDLG_WAITING_START
-		*m_uiTstrAll = m_tstrNoPreparing;
+		// Restore and remove MAINDLG_WAITING_START
+		m_mainHyperEdit->ClearTextBuffer();
+		m_mainHyperEdit->AppendTextToBuffer(m_tstrNoPreparing.c_str());
+		// Reset link offsets
+		m_mainHyperEdit->SetLinkOffsets(m_offsetsNoPreparing);
 	}
 	unlockData();
 }
@@ -76,7 +82,7 @@ void UIBridgeMFC::showFileName(const ResultData& result)
 {
 	lockData();
 	{
-		AppendFileNameToTstring(result, m_uiTstrAll);
+		AppendFileNameToHyperEdit(result, m_mainHyperEdit);
 	}
 	unlockData();
 
@@ -87,7 +93,7 @@ void UIBridgeMFC::showFileMeta(const ResultData& result)
 {
 	lockData();
 	{
-		AppendFileMetaToTstring(result, m_uiTstrAll);
+		AppendFileMetaToHyperEdit(result, m_mainHyperEdit);
 	}
 	unlockData();
 	
@@ -98,7 +104,7 @@ void UIBridgeMFC::showFileHash(const ResultData& result, bool uppercase)
 {
 	lockData();
 	{
-		AppendFileHashToTstring(result, uppercase, m_uiTstrAll);
+		AppendFileHashToHyperEdit(result, uppercase, m_mainHyperEdit);
 	}
 	unlockData();
 
@@ -109,7 +115,7 @@ void UIBridgeMFC::showFileErr(const ResultData& result)
 {
 	lockData();
 	{
-		AppendFileErrToTstring(result, m_uiTstrAll);
+		AppendFileErrToHyperEdit(result, m_mainHyperEdit);
 	}
 	unlockData();
 
@@ -139,54 +145,54 @@ void UIBridgeMFC::fileFinish()
 {
 }
 
-void UIBridgeMFC::AppendFileNameToTstring(const ResultData& result,
-										tstring *tString)
+void UIBridgeMFC::AppendFileNameToHyperEdit(const ResultData& result,
+											CHyperEditHash *hyerEdit)
 {
-	tString->append(GetStringByKey(FILENAME_STRING));
-	tString->append(_T(" "));
-	tString->append(result.tstrPath);
-	tString->append(_T("\r\n"));
+	hyerEdit->AppendTextToBuffer(GetStringByKey(FILENAME_STRING));
+	hyerEdit->AppendTextToBuffer(_T(" "));
+	hyerEdit->AppendTextToBuffer(result.tstrPath.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\n"));
 }
 
-void UIBridgeMFC::AppendFileMetaToTstring(const ResultData& result,
-										tstring *tString)
+void UIBridgeMFC::AppendFileMetaToHyperEdit(const ResultData& result,
+											CHyperEditHash *hyerEdit)
 {
 	char chSizeBuff[1024] = {0};
 	sprintf_s(chSizeBuff, 1024, "%I64u", result.ulSize);
 	tstring tstrFileSize = strtotstr(string(chSizeBuff));
 	tstring tstrShortSize = strtotstr(Utils::ConvertSizeToShortSizeStr(result.ulSize));
 
-	tString->append(GetStringByKey(FILESIZE_STRING));
-	tString->append(_T(" "));
-	tString->append(tstrFileSize);
-	tString->append(_T(" "));
-	tString->append(GetStringByKey(BYTE_STRING));
+	hyerEdit->AppendTextToBuffer(GetStringByKey(FILESIZE_STRING));
+	hyerEdit->AppendTextToBuffer(_T(" "));
+	hyerEdit->AppendTextToBuffer(tstrFileSize.c_str());
+	hyerEdit->AppendTextToBuffer(_T(" "));
+	hyerEdit->AppendTextToBuffer(GetStringByKey(BYTE_STRING));
 	if (tstrShortSize.length() > 0)
 	{
-		tString->append(_T(" ("));
-		tString->append(tstrShortSize);
-		tString->append(_T(")"));
+		hyerEdit->AppendTextToBuffer(_T(" ("));
+		hyerEdit->AppendTextToBuffer(tstrShortSize.c_str());
+		hyerEdit->AppendTextToBuffer(_T(")"));
 	}
-	tString->append(_T("\r\n"));
-	tString->append(GetStringByKey(MODIFYTIME_STRING));
-	tString->append(_T(" "));
-	tString->append(result.tstrMDate);
+	hyerEdit->AppendTextToBuffer(_T("\r\n"));
+	hyerEdit->AppendTextToBuffer(GetStringByKey(MODIFYTIME_STRING));
+	hyerEdit->AppendTextToBuffer(_T(" "));
+	hyerEdit->AppendTextToBuffer(result.tstrMDate.c_str());
 
 	if (result.tstrVersion != _T(""))
 	{
-		tString->append(_T("\r\n"));
-		tString->append(GetStringByKey(VERSION_STRING));
-		tString->append(_T(" "));
-		tString->append(result.tstrVersion);
+		hyerEdit->AppendTextToBuffer(_T("\r\n"));
+		hyerEdit->AppendTextToBuffer(GetStringByKey(VERSION_STRING));
+		hyerEdit->AppendTextToBuffer(_T(" "));
+		hyerEdit->AppendTextToBuffer(result.tstrVersion.c_str());
 	}
 
-	tString->append(_T("\r\n"));
+	hyerEdit->AppendTextToBuffer(_T("\r\n"));
 
 }
 
-void UIBridgeMFC::AppendFileHashToTstring(const ResultData& result,
-										bool uppercase,
-										tstring *tString)
+void UIBridgeMFC::AppendFileHashToHyperEdit(const ResultData& result,
+											bool uppercase,
+											CHyperEditHash *hyerEdit)
 {
 	tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256, tstrFileCRC32;
 
@@ -205,31 +211,27 @@ void UIBridgeMFC::AppendFileHashToTstring(const ResultData& result,
 		tstrFileCRC32 = strtotstr(str_lower(tstrtostr(result.tstrCRC32)));
 	}
 
-	tString->append(_T("MD5: "));
-	tString->append(tstrFileMD5);
-	tString->append(_T(" http://baidu.com"));
-	tString->append(_T("\r\nSHA1: "));
-	tString->append(tstrFileSHA1);
-	tString->append(_T(" http://baidu.com"));
-	tString->append(_T("\r\nSHA256: "));
-	tString->append(tstrFileSHA256);
-	tString->append(_T(" http://baidu.com"));
-	tString->append(_T("\r\nCRC32: "));
-	tString->append(tstrFileCRC32);
-	tString->append(_T(" http://baidu.com"));
-	tString->append(_T("\r\n\r\n"));
+	hyerEdit->AppendTextToBuffer(_T("MD5: "));
+	hyerEdit->AppendTextToBuffer(tstrFileMD5.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\nSHA1: "));
+	hyerEdit->AppendTextToBuffer(tstrFileSHA1.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\nSHA256: "));
+	hyerEdit->AppendTextToBuffer(tstrFileSHA256.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\nCRC32: "));
+	hyerEdit->AppendTextToBuffer(tstrFileCRC32.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\n\r\n"));
 }
 
-void UIBridgeMFC::AppendFileErrToTstring(const ResultData& result,
-										tstring *tString)
+void UIBridgeMFC::AppendFileErrToHyperEdit(const ResultData& result,
+											CHyperEditHash *hyerEdit)
 {
-	tString->append(result.tstrError);
-	tString->append(_T("\r\n\r\n"));
+	hyerEdit->AppendTextToBuffer(result.tstrError.c_str());
+	hyerEdit->AppendTextToBuffer(_T("\r\n\r\n"));
 }
 
-void UIBridgeMFC::AppendResultToTstring(const ResultData& result,
-										bool uppercase,
-										tstring *tString)
+void UIBridgeMFC::AppendResultToHyperEdit(const ResultData& result,
+											bool uppercase,
+											CHyperEditHash *hyerEdit)
 {
 	if (result.enumState == RESULT_NONE)
 		return;
@@ -239,29 +241,29 @@ void UIBridgeMFC::AppendResultToTstring(const ResultData& result,
 		result.enumState == RESULT_ERROR ||
 		result.enumState == RESULT_PATH) 
 	{
-			AppendFileNameToTstring(result, tString);
+			AppendFileNameToHyperEdit(result, hyerEdit);
 	}
 
 	if (result.enumState == RESULT_ALL ||
 		result.enumState == RESULT_META) 
 	{
-			AppendFileMetaToTstring(result, tString);
+			AppendFileMetaToHyperEdit(result, hyerEdit);
 	}
 
 	if (result.enumState == RESULT_ALL) 
 	{
-		AppendFileHashToTstring(result, uppercase, tString);
+		AppendFileHashToHyperEdit(result, uppercase, hyerEdit);
 	}
 
 	if (result.enumState == RESULT_ERROR) 
 	{
-		AppendFileErrToTstring(result, tString);
+		AppendFileErrToHyperEdit(result, hyerEdit);
 	}
 
 	if (result.enumState != RESULT_ALL &&
 		result.enumState != RESULT_ERROR) 
 	{
 			tstring tstrAppend = _T("\r\n");
-			tString->append(tstrAppend);
+			hyerEdit->AppendTextToBuffer(tstrAppend.c_str());
 	}
 }
