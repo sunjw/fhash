@@ -393,7 +393,7 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
 
-	for (int i= 0; i < m_linkOffsets.size(); i++)
+	for (int i = 0; i < m_linkOffsets.size(); ++i)
 	{
 		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart); 
 		CPoint linkRTPoint = PosFromCharEx(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
