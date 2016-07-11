@@ -411,7 +411,7 @@ CPoint CHyperEdit::PosFromCharEx(UINT nChar)
 // and if mouse isn't over any hyperlink it returns a empty CString
 //
 
-CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt) 
+CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 {
 	CString csBuff, csTemp;
 	GetWindowText(csBuff);
