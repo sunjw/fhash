@@ -106,10 +106,10 @@ void CHyperEditHash::AppendTextToBuffer(LPCTSTR pszText)
 
 void CHyperEditHash::AppendLinkToBuffer(LPCTSTR pszText)
 {
-	WORD startPos = m_cstrTextBuffer.GetLength();
+	int startPos = m_cstrTextBuffer.GetLength();
 	AppendTextToBuffer(pszText);
-	WORD endPos = m_cstrTextBuffer.GetLength();
-	WORD linkLength = endPos - startPos;
+	INT endPos = m_cstrTextBuffer.GetLength();
+	INT linkLength = endPos - startPos;
 	_TOKEN_OFFSET off = { startPos /* Start offset */, linkLength /* Length */ };
 	EnterCriticalSection(&m_csLinkOffsets);
 	m_bufferLinkOffsets.push_back(off);

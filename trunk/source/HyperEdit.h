@@ -43,8 +43,8 @@
 
 struct _TOKEN_OFFSET
 {
-	WORD iStart;
-	WORD iLength;
+	INT iStart;
+	INT iLength;
 };
 
 typedef std::vector<_TOKEN_OFFSET> OFFSETS;
