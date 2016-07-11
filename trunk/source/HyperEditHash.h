@@ -21,13 +21,13 @@ public:
 	void AppendTextToBuffer(LPCTSTR pszText);
 	void AppendLinkToBuffer(LPCTSTR pszText);
 
-	void CopyLinkOffsets(OFFSETS& linkOffsets) const;
+	void CopyLinkOffsets(OFFSETS& linkOffsets);
 	void SetLinkOffsets(const OFFSETS& linkOffsets);
 
-	inline CString GetLastHyperlink()
+	inline CString GetLastHyperlink() const
 	{ return m_cstrLastHyperlink; }
 
-	inline CPoint GetLastScreenPoint()
+	inline CPoint GetLastScreenPoint() const
 	{ return m_cpLastScreenPoint; }
 
 protected:
@@ -41,6 +41,9 @@ protected:
 
 private:
 	CString m_cstrTextBuffer;
+
+	CRITICAL_SECTION m_csLinkOffsets;
+	OFFSETS m_bufferLinkOffsets;
 
 	CString m_cstrLastHyperlink;
 	CPoint m_cpLastScreenPoint;

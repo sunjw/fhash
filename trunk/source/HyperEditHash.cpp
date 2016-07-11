@@ -10,6 +10,8 @@ IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEditHash_BASE_CLASS)
 
 CHyperEditHash::CHyperEditHash()
 {
+	InitializeCriticalSection(&m_csLinkOffsets);
+
 	ClearTextBuffer();
 
 	COLORREF crBlack = RGB(0, 0, 0);
@@ -18,6 +20,7 @@ CHyperEditHash::CHyperEditHash()
 
 CHyperEditHash::~CHyperEditHash()
 {
+	DeleteCriticalSection(&m_csLinkOffsets);
 }
 
 
@@ -77,7 +80,9 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 
 void CHyperEditHash::ClearTextBuffer()
 {
-	m_linkOffsets.clear();
+	EnterCriticalSection(&m_csLinkOffsets);
+	m_bufferLinkOffsets.clear();
+	LeaveCriticalSection(&m_csLinkOffsets);
 	m_cstrTextBuffer = CString(_T(""));
 }
 
@@ -88,6 +93,9 @@ CString CHyperEditHash::GetTextBuffer() const
 
 void CHyperEditHash::ShowTextBuffer()
 {
+	EnterCriticalSection(&m_csLinkOffsets);
+	m_linkOffsets = m_bufferLinkOffsets;
+	LeaveCriticalSection(&m_csLinkOffsets);
 	SetWindowText(m_cstrTextBuffer);
 }
 
@@ -103,17 +111,23 @@ void CHyperEditHash::AppendLinkToBuffer(LPCTSTR pszText)
 	WORD endPos = m_cstrTextBuffer.GetLength();
 	WORD linkLength = endPos - startPos;
 	_TOKEN_OFFSET off = { startPos /* Start offset */, linkLength /* Length */ };
-	m_linkOffsets.push_back(off);
+	EnterCriticalSection(&m_csLinkOffsets);
+	m_bufferLinkOffsets.push_back(off);
+	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
-void CHyperEditHash::CopyLinkOffsets(OFFSETS& linkOffsets) const
+void CHyperEditHash::CopyLinkOffsets(OFFSETS& linkOffsets)
 {
-	linkOffsets = m_linkOffsets;
+	EnterCriticalSection(&m_csLinkOffsets);
+	linkOffsets = m_bufferLinkOffsets;
+	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
 void CHyperEditHash::SetLinkOffsets(const OFFSETS& linkOffsets)
 {
-	m_linkOffsets = linkOffsets;
+	EnterCriticalSection(&m_csLinkOffsets);
+	m_bufferLinkOffsets = linkOffsets;
+	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
 void CHyperEditHash::BuildOffsetList(int iCharStart, int iCharFinish)
