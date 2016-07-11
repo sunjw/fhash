@@ -222,8 +222,24 @@ void CHyperEdit::DrawHyperlinks()
 	pDC->IntersectClipRect(rcRect);	// Prevent drawing outside the format rectangle
 
 	// Get the character index of the first and last visible characters
-	int iCharStart = LOWORD(CharFromPos(CPoint(rcRect.left, rcRect.top))); // LineIndex(GetFirstVisibleLine()); // Old method!!!
-	int iCharFinish = LOWORD(CharFromPos(CPoint(rcRect.right, rcRect.bottom)));
+	//int iCharStart = LOWORD(CharFromPos(CPoint(rcRect.left, rcRect.top))); // LineIndex(GetFirstVisibleLine()); // Old method!!!
+	//int iCharFinish = LOWORD(CharFromPos(CPoint(rcRect.right, rcRect.bottom)));
+
+	int iCharStart = 0;
+	int iCharFinish = 0;
+
+	int iVisibleLine = GetFirstVisibleLine();
+	iCharStart = LineIndex(iVisibleLine);
+
+	int iLastVisibleLine = iVisibleLine;
+	int iLineCount = GetLineCount();
+	for (; iLastVisibleLine < iLineCount; ++iLastVisibleLine)
+	{
+		iCharFinish = LineIndex(iLastVisibleLine);
+		CPoint ptChar = PosFromChar(iCharFinish);
+		if (ptChar.y > rcRect.bottom)
+			break;
+	}
 
 	// Build a list of hyperlink character offsets
 	BuildOffsetList(iCharStart, iCharFinish);
