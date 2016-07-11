@@ -19,7 +19,7 @@ UIStringsZHCN::UIStringsZHCN()
 	m_stringsMap[_T("BUTTON_CANCEL")] = _T("取消");
 
 	// Main Dialog Strings
-	m_stringsMap[_T("MAINDLG_INITINFO")] = _T("将文件拖入或点击打开，开始计算。 http://baidu.com");
+	m_stringsMap[_T("MAINDLG_INITINFO")] = _T("将文件拖入或点击打开，开始计算。");
 	m_stringsMap[_T("MAINDLG_WAITING_START")] = _T("准备开始计算。");
 	m_stringsMap[_T("MAINDLG_CONTEXT_INIT")] = _T("需要管理员权限");
 	m_stringsMap[_T("MAINDLG_ADD_SUCCEEDED")] = _T("添加成功");
