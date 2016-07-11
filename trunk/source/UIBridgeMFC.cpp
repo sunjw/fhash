@@ -46,6 +46,12 @@ void UIBridgeMFC::preparingCalc()
 		m_tstrNoPreparing = m_mainHyperEdit->GetTextBuffer().GetBuffer();
 		// Save link offsets
 		m_mainHyperEdit->CopyLinkOffsets(m_offsetsNoPreparing);
+		if (m_tstrNoPreparing == tstring(GetStringByKey(MAINDLG_INITINFO)))
+		{
+			// Initial state
+			m_tstrNoPreparing = _T("");
+			m_offsetsNoPreparing.clear();
+		}
 
 		m_mainHyperEdit->AppendTextToBuffer(GetStringByKey(MAINDLG_WAITING_START));
 		m_mainHyperEdit->AppendTextToBuffer(_T("\r\n"));
