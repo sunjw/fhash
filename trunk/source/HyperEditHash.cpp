@@ -77,9 +77,7 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
 
 void CHyperEditHash::ClearTextBuffer()
 {
-	EnterCriticalSection(&m_csLinkOffsets);
 	m_linkOffsets.clear();
-	LeaveCriticalSection(&m_csLinkOffsets);
 	m_cstrTextBuffer = CString(_T(""));
 }
 
@@ -105,23 +103,17 @@ void CHyperEditHash::AppendLinkToBuffer(LPCTSTR pszText)
 	WORD endPos = m_cstrTextBuffer.GetLength();
 	WORD linkLength = endPos - startPos;
 	_TOKEN_OFFSET off = { startPos /* Start offset */, linkLength /* Length */ };
-	EnterCriticalSection(&m_csLinkOffsets);
 	m_linkOffsets.push_back(off);
-	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
-void CHyperEditHash::CopyLinkOffsets(OFFSETS& linkOffsets)
+void CHyperEditHash::CopyLinkOffsets(OFFSETS& linkOffsets) const
 {
-	EnterCriticalSection(&m_csLinkOffsets);
 	linkOffsets = m_linkOffsets;
-	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
 void CHyperEditHash::SetLinkOffsets(const OFFSETS& linkOffsets)
 {
-	EnterCriticalSection(&m_csLinkOffsets);
 	m_linkOffsets = linkOffsets;
-	LeaveCriticalSection(&m_csLinkOffsets);
 }
 
 void CHyperEditHash::BuildOffsetList(int iCharStart, int iCharFinish)
