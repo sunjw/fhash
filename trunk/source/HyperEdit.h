@@ -121,8 +121,8 @@ private:
 	///
 
 private:
-	UINT m_nTimer;
-	UINT m_nLineHeight;
+	UINT_PTR m_nTimer;
+	INT m_nLineHeight;
 	
 	CFont m_oFont;
 
