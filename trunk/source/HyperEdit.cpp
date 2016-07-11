@@ -421,6 +421,9 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 		CPoint linkLTPoint = PosFromCharEx(m_linkOffsets[i].iStart); 
 		CPoint linkRTPoint = PosFromCharEx(m_linkOffsets[i].iStart + m_linkOffsets[i].iLength);
 
+		if (linkLTPoint.y < 0 || linkRTPoint.y < 0)
+			continue; // fast
+
 		if (pt.x >= linkLTPoint.x &&
 			pt.x <= linkRTPoint.x &&
 			pt.y > linkLTPoint.y &&
