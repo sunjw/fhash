@@ -240,13 +240,13 @@ void CHyperEdit::DrawHyperlinks()
 	CPoint ptMouse(GetMessagePos()); // Current mouse location
 	ScreenToClient(&ptMouse);
 
-	CString csTemp; //
+	//CString csTemp; //
 
 	// Draw our hyperlink(s)	
 	for (int i = 0; i < m_linkOffsets.size(); i++)
 	{
 		// Determine if mouse pointer is over a hyperlink
-		csTemp = GetHyperlinkFromPoint(ptMouse);
+		//csTemp = GetHyperlinkFromPoint(ptMouse);
 
 		pDC->SetTextColor(m_crHyperlinkNormal);
 
@@ -387,10 +387,10 @@ CString CHyperEdit::GetHyperlinkFromPoint(CPoint& pt)
 		if (linkLTPoint.y < 0 || linkRTPoint.y < 0)
 			continue; // fast
 
-		if (pt.x >= linkLTPoint.x &&
-			pt.x <= linkRTPoint.x &&
-			pt.y > linkLTPoint.y &&
-			pt.y < linkLTPoint.y + m_nLineHeight)
+		if (pt.y > linkLTPoint.y &&
+			pt.y < linkLTPoint.y + m_nLineHeight &&
+			pt.x >= linkLTPoint.x &&
+			pt.x <= linkRTPoint.x)
 		{
 			csTemp = csBuff.Mid(m_linkOffsets[i].iStart, m_linkOffsets[i].iLength);
 			return csTemp;
