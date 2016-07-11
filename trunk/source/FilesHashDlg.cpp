@@ -383,10 +383,9 @@ void CFilesHashDlg::OnBnClickedCopy()
 {
 	if(!m_thrdData.threadWorking)
 	{
-		m_editMain.SetSel(0, -1);
-		m_editMain.Copy();
-		m_editMain.SetSel(-1,0);
-		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+		CString cstrMain;
+		m_editMain.GetWindowText(cstrMain);
+		WindowsUtils::CopyCString(cstrMain);
 	}
 }
 
@@ -829,21 +828,7 @@ void CFilesHashDlg::OnInitMenuPopup(CMenu *pPopupMenu, UINT nIndex, BOOL bSysMen
 void CFilesHashDlg::OnHypereditmenuCopyhash()
 {
 	CString cstrHyperlink = m_editMain.GetLastHyperlink();
-
-	HGLOBAL hMoveable;
-	LPTSTR pszArr;
-
-	size_t bytes = (cstrHyperlink.GetLength()+1)*sizeof(TCHAR);
-	hMoveable = GlobalAlloc(GMEM_MOVEABLE, bytes);
-	pszArr = (LPTSTR)GlobalLock(hMoveable);
-	ZeroMemory(pszArr, bytes);
-	_tcscpy_s(pszArr, cstrHyperlink.GetLength()+1, cstrHyperlink);
-	GlobalUnlock(hMoveable);
-
-	::OpenClipboard(NULL);
-	::EmptyClipboard();
-	::SetClipboardData(CF_UNICODETEXT, hMoveable);
-	::CloseClipboard();
+	WindowsUtils::CopyCString(cstrHyperlink);
 }
 
 void CFilesHashDlg::OnHypereditmenuSearchgoogle()

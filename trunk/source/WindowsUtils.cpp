@@ -540,6 +540,24 @@ namespace WindowsUtils
 		return bRet;
 	}
 
+	void CopyCString(const CString& cstrToCopy)
+	{
+		HGLOBAL hMoveable;
+		LPTSTR pszArr;
+
+		size_t bytes = (cstrToCopy.GetLength() + 1)*sizeof(TCHAR);
+		hMoveable = GlobalAlloc(GMEM_MOVEABLE, bytes);
+		pszArr = (LPTSTR)GlobalLock(hMoveable);
+		ZeroMemory(pszArr, bytes);
+		_tcscpy_s(pszArr, cstrToCopy.GetLength() + 1, cstrToCopy);
+		GlobalUnlock(hMoveable);
+
+		::OpenClipboard(NULL);
+		::EmptyClipboard();
+		::SetClipboardData(CF_UNICODETEXT, hMoveable);
+		::CloseClipboard();
+	}
+
 	HINSTANCE OpenURL(const TCHAR *pszURL)
 	{
 		return ShellExecute(NULL, _T("open"), pszURL, 
