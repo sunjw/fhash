@@ -55,7 +55,6 @@ CHyperEdit::~CHyperEdit()
 		  
 BEGIN_MESSAGE_MAP(CHyperEdit, CEdit)
 	//{{AFX_MSG_MAP(CHyperEdit)
-	ON_CONTROL_REFLECT(EN_CHANGE, OnChange)
 	ON_WM_MOUSEMOVE()
 	ON_WM_SETCURSOR()
 	ON_WM_CTLCOLOR_REFLECT()
@@ -109,8 +108,6 @@ void CHyperEdit::OnMouseMove(UINT nFlags, CPoint point)
 	CString csURL = GetHyperlinkFromPoint(point);
 	if (!csURL.IsEmpty())
 		m_bMouseOnHyperlink = TRUE;
-
-	//DrawHyperlinks();
 
 	CEdit::OnMouseMove(nFlags, point);
 }

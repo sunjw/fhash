@@ -80,17 +80,12 @@ protected:
 	//}}AFX_VIRTUAL
 
 	//{{AFX_MSG(CHyperEdit)
-	afx_msg void OnChange(){ DrawHyperlinks(); }
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
-	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnHScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
-	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar){ CEdit::OnVScroll(nSBCode, nPos, pScrollBar); DrawHyperlinks(); }
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
-
-	afx_msg void OnSelChange(){ DrawHyperlinks(); }
 
 	///
 
