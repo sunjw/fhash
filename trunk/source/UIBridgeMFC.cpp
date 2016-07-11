@@ -241,13 +241,13 @@ void UIBridgeMFC::AppendResultToHyperEdit(const ResultData& result,
 		result.enumState == RESULT_ERROR ||
 		result.enumState == RESULT_PATH) 
 	{
-			AppendFileNameToHyperEdit(result, hyerEdit);
+		AppendFileNameToHyperEdit(result, hyerEdit);
 	}
 
 	if (result.enumState == RESULT_ALL ||
 		result.enumState == RESULT_META) 
 	{
-			AppendFileMetaToHyperEdit(result, hyerEdit);
+		AppendFileMetaToHyperEdit(result, hyerEdit);
 	}
 
 	if (result.enumState == RESULT_ALL) 
@@ -263,7 +263,7 @@ void UIBridgeMFC::AppendResultToHyperEdit(const ResultData& result,
 	if (result.enumState != RESULT_ALL &&
 		result.enumState != RESULT_ERROR) 
 	{
-			tstring tstrAppend = _T("\r\n");
-			hyerEdit->AppendTextToBuffer(tstrAppend.c_str());
+		tstring tstrAppend = _T("\r\n");
+		hyerEdit->AppendTextToBuffer(tstrAppend.c_str());
 	}
 }
