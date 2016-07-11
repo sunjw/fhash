@@ -235,8 +235,6 @@ void CHyperEdit::DrawHyperlinks()
 	int iSelStart=0, iSelFinish=0;
 	GetSel(iSelStart, iSelFinish);
 
-	CPoint pt; // Coordinates for a single tokens character which is painted blue
-
 	// Used to determine if user is hovering over a hyperlink or not
 	//CPoint ptMouse(GetMessagePos()); // Current mouse location
 	//ScreenToClient(&ptMouse);
@@ -246,6 +244,10 @@ void CHyperEdit::DrawHyperlinks()
 	// Draw our hyperlink(s)	
 	for (int i = 0; i < m_linkOffsets.size(); i++)
 	{
+		if (m_linkOffsets[i].iStart + m_linkOffsets[i].iLength < iCharStart ||
+			m_linkOffsets[i].iStart > iCharFinish)
+			continue; // Do not draw outside
+
 		// Determine if mouse pointer is over a hyperlink
 		//csTemp = GetHyperlinkFromPoint(ptMouse);
 
@@ -262,7 +264,7 @@ void CHyperEdit::DrawHyperlinks()
 			j < (m_linkOffsets[i].iStart + m_linkOffsets[i].iLength); 
 			j++)
 		{
-			
+			CPoint pt; // Coordinates for a single tokens character which is painted blue
 			TCHAR chToken = csBuff.GetAt(j); // Get a single token from URL, Email, etc
 			pt = PosFromCharEx(j); // Get the coordinates for a single token
 
