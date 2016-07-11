@@ -51,6 +51,7 @@ void UIBridgeMFC::preparingCalc()
 			// Initial state
 			m_tstrNoPreparing = _T("");
 			m_offsetsNoPreparing.clear();
+			m_mainHyperEdit->ClearTextBuffer();
 		}
 
 		m_mainHyperEdit->AppendTextToBuffer(GetStringByKey(MAINDLG_WAITING_START));
