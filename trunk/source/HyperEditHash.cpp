@@ -10,6 +10,8 @@ IMPLEMENT_DYNAMIC(CHyperEditHash, CHyperEditHash_BASE_CLASS)
 
 CHyperEditHash::CHyperEditHash()
 {
+	ClearTextBuffer();
+
 	COLORREF crBlack = RGB(0, 0, 0);
 	SetHyperlinkColors(crBlack, crBlack);
 }
@@ -71,7 +73,39 @@ BOOL CHyperEditHash::PreTranslateMessage(MSG* pMsg)
     }  
 
     return CHyperEditHash_BASE_CLASS::PreTranslateMessage(pMsg);  
- }  
+}
+
+void CHyperEditHash::ClearTextBuffer()
+{
+	m_linkOffsets.clear();
+	m_cstrTextBuffer = CString(_T(""));
+}
+
+void CHyperEditHash::ShowTextBuffer()
+{
+	SetWindowText(m_cstrTextBuffer);
+}
+
+void CHyperEditHash::AppendTextToBuffer(LPCTSTR pszText)
+{
+	m_cstrTextBuffer.Append(pszText);
+}
+
+void CHyperEditHash::AppendLinkToBuffer(LPCTSTR pszText)
+{
+	WORD startPos = m_cstrTextBuffer.GetLength();
+	AppendTextToBuffer(pszText);
+	WORD endPos = m_cstrTextBuffer.GetLength();
+	WORD linkLength = endPos - startPos;
+	_TOKEN_OFFSET off = { startPos /* Start offset */, linkLength /* Length */ };
+	m_linkOffsets.push_back(off);
+}
+
+void CHyperEditHash::BuildOffsetList(int iCharStart, int iCharFinish)
+{
+	// We do nothing in CHyperEditHash::BuildOffsetList.
+	// m_linkOffsets is already built in AppendLinkToBuffer.
+}
 
 HINSTANCE CHyperEditHash::OpenHyperlink(const CString& hyperlink, CPoint point)
 {

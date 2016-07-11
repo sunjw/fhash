@@ -13,6 +13,12 @@ public:
 	CHyperEditHash();
 	virtual ~CHyperEditHash();
 
+	void ClearTextBuffer();
+	void ShowTextBuffer();
+
+	void AppendTextToBuffer(LPCTSTR pszText);
+	void AppendLinkToBuffer(LPCTSTR pszText);
+
 	inline CString GetLastHyperlink()
 	{ return m_cstrLastHyperlink; }
 
@@ -24,9 +30,13 @@ protected:
 
 	BOOL PreTranslateMessage(MSG* pMsg);
 
+	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
+
 	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
 
 private:
+	CString m_cstrTextBuffer;
+
 	CString m_cstrLastHyperlink;
 	CPoint m_cpLastScreenPoint;
 
