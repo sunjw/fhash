@@ -212,13 +212,13 @@ void UIBridgeMFC::AppendFileHashToHyperEdit(const ResultData& result,
 	}
 
 	hyerEdit->AppendTextToBuffer(_T("MD5: "));
-	hyerEdit->AppendTextToBuffer(tstrFileMD5.c_str());
+	hyerEdit->AppendLinkToBuffer(tstrFileMD5.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\nSHA1: "));
-	hyerEdit->AppendTextToBuffer(tstrFileSHA1.c_str());
+	hyerEdit->AppendLinkToBuffer(tstrFileSHA1.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\nSHA256: "));
-	hyerEdit->AppendTextToBuffer(tstrFileSHA256.c_str());
+	hyerEdit->AppendLinkToBuffer(tstrFileSHA256.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\nCRC32: "));
-	hyerEdit->AppendTextToBuffer(tstrFileCRC32.c_str());
+	hyerEdit->AppendLinkToBuffer(tstrFileCRC32.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\n\r\n"));
 }
 
