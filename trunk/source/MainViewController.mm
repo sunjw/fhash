@@ -42,6 +42,10 @@ enum MainViewControllerState {
 
 @property (assign) MainViewControllerState state;
 
+@property (nonatomic, strong) NSFont *mainFont;
+@property (nonatomic, strong) NSMutableParagraphStyle *mainParaStyle;
+@property (assign) BOOL needParaFix;
+
 @property (assign) UIBridgeMacUI *uiBridgeMac;
 
 @property (assign) uint64_t calcStartTime;
@@ -131,20 +135,27 @@ enum MainViewControllerState {
     // Set some text in text field.
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     
-    NSFont *fontForTextView = [NSFont fontWithName:@"Monaco" size:12];
-    if (fontForTextView != nil) {
-        [self.mainTextView setFont:fontForTextView];
+    self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
+    if (self.mainFont == nil) {
+        self.mainFont = self.mainTextView.font;
     }
-    
+
+    self.mainParaStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [self.mainParaStyle setLineSpacing:self.mainTextView.defaultParagraphStyle.lineSpacing + (float)4];
+
+    [self.mainTextView setFont:self.mainFont];
+
+    self.needParaFix = NO;
     NSString *prefLanguage = MacUtils::GetSystemPreferredLanguage();
     if ([prefLanguage hasPrefix:@"zh"] &&
         MacUtils::IsSystemEarlierThan10_11()) {
         // Below 10.11, Chinese fonts is not good.
         // Make a little tweak.
-        NSMutableParagraphStyle *paraStyle =[[NSParagraphStyle defaultParagraphStyle]
-                                             mutableCopy];
-        [paraStyle setLineSpacing:self.mainTextView.defaultParagraphStyle.lineSpacing + (float)4];
-        [self.mainTextView setDefaultParagraphStyle:paraStyle];
+        self.needParaFix = YES;
+    }
+
+    if (self.needParaFix) {
+        [self.mainTextView setDefaultParagraphStyle:self.mainParaStyle];
     }
     
     [self.mainTextView setUsesFindBar:YES];
@@ -335,7 +346,20 @@ enum MainViewControllerState {
 
 - (void)updateMainTextView:(BOOL)keepScrollPosition {
     _mainMtx->lock();
+
+    // Apply style to all text.
+    [_mainText addAttribute:NSFontAttributeName
+                      value:self.mainFont
+                      range:NSMakeRange(0, [_mainText length])];
+
+    if (self.needParaFix) {
+        [_mainText addAttribute:NSParagraphStyleAttributeName
+                          value:self.mainParaStyle
+                          range:NSMakeRange(0, [_mainText length])];
+    }
+
     [[self.mainTextView textStorage] setAttributedString:_mainText];
+
     _mainMtx->unlock();
     
     if (!keepScrollPosition) {
