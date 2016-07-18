@@ -43,12 +43,12 @@ void UIBridgeMacUI::preparingCalc()
     lockData();
     {
         // Copy old string.
-        _nsstrNoPreparing = [NSString stringWithString:mainViewController.mainText];
+        _nsstrNoPreparing = [[NSMutableAttributedString alloc] initWithAttributedString:mainViewController.mainText];
         
         string strAppend = GetStringFromResByKey(MAINDLG_WAITING_START);
         strAppend.append("\n");
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        [mainViewController.mainText appendString:nsstrAppend];
+        MacUtils::AppendNSStringToNSMutableAttributedString(mainViewController.mainText, nsstrAppend);
     }
     unlockData();
     
@@ -64,7 +64,7 @@ void UIBridgeMacUI::removePreparingCalc()
     lockData();
     {
         // Reset old string.
-        [mainViewController.mainText setString:_nsstrNoPreparing];
+        mainViewController.mainText = [[NSMutableAttributedString alloc] initWithAttributedString:_nsstrNoPreparing];
     }
     unlockData();
 }
@@ -93,7 +93,7 @@ void UIBridgeMacUI::showFileName(const ResultData& result)
 
     lockData();
     {
-        MacUtils::AppendFileNameToNSMutableString(result, mainViewController.mainText);
+        MacUtils::AppendFileNameToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
     
@@ -108,7 +108,7 @@ void UIBridgeMacUI::showFileMeta(const ResultData& result)
     
     lockData();
     {
-        MacUtils::AppendFileMetaToNSMutableString(result, mainViewController.mainText);
+        MacUtils::AppendFileMetaToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
     
@@ -123,9 +123,9 @@ void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
     
     lockData();
     {
-        MacUtils::AppendFileHashToNSMutableString(result,
-                                                  uppercase,
-                                                  mainViewController.mainText);
+        MacUtils::AppendFileHashToNSMutableAttributedString(result,
+                                                            uppercase,
+                                                            mainViewController.mainText);
     }
     unlockData();
     
@@ -140,7 +140,7 @@ void UIBridgeMacUI::showFileErr(const ResultData& result)
     
     lockData();
     {
-        MacUtils::AppendFileErrToNSMutableString(result, mainViewController.mainText);
+        MacUtils::AppendFileErrToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
     

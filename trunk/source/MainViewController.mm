@@ -216,12 +216,12 @@ enum MainViewControllerState {
             
             _mainMtx->lock();
             {
-                _mainText = [[NSMutableString alloc] init];
+                _mainText = [[NSMutableAttributedString alloc] init];
                 string strAppend = GetStringFromResByKey(MAINDLG_INITINFO);
                 strAppend.append("\n\n");
                 NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-                
-                [_mainText appendString:nsstrAppend];
+
+                MacUtils::AppendNSStringToNSMutableAttributedString(_mainText, nsstrAppend);
             }
             _mainMtx->unlock();
             
@@ -335,7 +335,7 @@ enum MainViewControllerState {
 
 - (void)updateMainTextView:(BOOL)keepScrollPosition {
     _mainMtx->lock();
-    [self.mainTextView setString:_mainText];
+    [[self.mainTextView textStorage] setAttributedString:_mainText];
     _mainMtx->unlock();
     
     if (!keepScrollPosition) {
@@ -381,7 +381,7 @@ enum MainViewControllerState {
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
     
     _mainMtx->lock();
-    [_mainText appendString:nsstrAppend];
+    MacUtils::AppendNSStringToNSMutableAttributedString(_mainText, nsstrAppend);
     _mainMtx->unlock();
     
     [self setViewControllerState:MAINVC_CALC_FINISH];
@@ -398,7 +398,7 @@ enum MainViewControllerState {
     if (_state == MAINVC_NONE) {
         // Clear up text.
         _mainMtx->lock();
-        _mainText = [[NSMutableString alloc] init];
+        _mainText = [[NSMutableAttributedString alloc] init];
         _mainMtx->unlock();
     }
     
@@ -450,12 +450,12 @@ enum MainViewControllerState {
     
     _mainMtx->lock();
     {
-        _mainText = [[NSMutableString alloc] init];
+        _mainText = [[NSMutableAttributedString alloc] init];
         
         ResultList::iterator itr = _thrdData->resultList.begin();
         for(; itr != _thrdData->resultList.end(); ++itr)
         {
-            MacUtils::AppendResultToNSMutableString(*itr, _upperCaseState, _mainText);
+            MacUtils::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
         }
     }
     _mainMtx->unlock();

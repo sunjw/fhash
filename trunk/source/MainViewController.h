@@ -26,7 +26,7 @@
 @property (weak) IBOutlet NSTextField *speedTextField;
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
-@property (strong) NSMutableString *mainText;
+@property (strong) NSMutableAttributedString *mainText;
 
 @property (assign) NSUInteger tag;
 

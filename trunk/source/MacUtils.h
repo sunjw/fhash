@@ -105,38 +105,48 @@ namespace MacUtils {
      * Get specific named string as NSString.
      */
     NSString *GetNSStringFromRes(NSString *nsstrKey);
+
+    /**
+     * Convert NSString to plain NSAttributedString.
+     */
+    NSAttributedString *ConvertNSStringToNSAttributedString(NSString *str);
+
+    /**
+     * Append NSString to NSMutableAttributedString.
+     */
+    void AppendNSStringToNSMutableAttributedString(NSMutableAttributedString *base, NSString *str);
     
     /**
-     * Append file name in ResultData to NSMutableString.
+     * Append file name in ResultData to NSMutableAttributedString.
      */
-    void AppendFileNameToNSMutableString(const ResultData& result,
-                                         NSMutableString *nsmutString);
+    void AppendFileNameToNSMutableAttributedString(const ResultData& result,
+                                                   NSMutableAttributedString *nsmutString);
     
     /**
-     * Append file meta in ResultData to NSMutableString.
+     * Append file meta in ResultData to NSMutableAttributedString.
      */
-    void AppendFileMetaToNSMutableString(const ResultData& result,
-                                         NSMutableString *nsmutString);
+    void AppendFileMetaToNSMutableAttributedString(const ResultData& result,
+                                                   NSMutableAttributedString *nsmutString);
     
     /**
-     * Append file hash result in ResultData to NSMutableString.
+     * Append file hash result in ResultData to NSMutableAttributedString.
      */
-    void AppendFileHashToNSMutableString(const ResultData& result,
-                                         bool uppercase,
-                                         NSMutableString *nsmutString);
+    void AppendFileHashToNSMutableAttributedString(const ResultData& result,
+                                                   bool uppercase,
+                                                   NSMutableAttributedString *nsmutString);
     
     /**
-     * Append file error message in ResultData to NSMutableString.
+     * Append file error message in ResultData to NSMutableAttributedString.
      */
-    void AppendFileErrToNSMutableString(const ResultData& result,
-                                        NSMutableString *nsmutString);
+    void AppendFileErrToNSMutableAttributedString(const ResultData& result,
+                                                  NSMutableAttributedString *nsmutString);
     
     /**
-     * Append whole ResultData to NSMutableString.
+     * Append whole ResultData to NSMutableAttributedString.
      */
-    void AppendResultToNSMutableString(const ResultData& result,
-                                       bool uppercase,
-                                       NSMutableString *nsmutString);
+    void AppendResultToNSMutableAttributedString(const ResultData& result,
+                                                 bool uppercase,
+                                                 NSMutableAttributedString *nsmutString);
     
 }
 

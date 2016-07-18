@@ -103,20 +103,28 @@ namespace MacUtils {
         NSString *nsstrLocalized = ConvertUTF8StringToNSString(strLocalized);
         return nsstrLocalized;
     }
+
+    NSAttributedString *ConvertNSStringToNSAttributedString(NSString *str) {
+        return [[NSAttributedString alloc] initWithString:str];
+    }
+
+    void AppendNSStringToNSMutableAttributedString(NSMutableAttributedString *base, NSString *str) {
+        [base appendAttributedString:ConvertNSStringToNSAttributedString(str)];
+    }
     
-    void AppendFileNameToNSMutableString(const ResultData& result,
-                                         NSMutableString *nsmutString) {
+    void AppendFileNameToNSMutableAttributedString(const ResultData& result,
+                                                   NSMutableAttributedString *nsmutString) {
         string strAppend = GetStringFromResByKey(FILENAME_STRING);
         strAppend.append(" ");
         strAppend.append(tstrtostr(result.tstrPath));
         strAppend.append("\n");
         
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        [nsmutString appendString:nsstrAppend];
+        AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
     }
     
-    void AppendFileMetaToNSMutableString(const ResultData& result,
-                                         NSMutableString *nsmutString) {
+    void AppendFileMetaToNSMutableAttributedString(const ResultData& result,
+                                                   NSMutableAttributedString *nsmutString) {
         char chSizeBuff[1024] = {0};
         sprintf(chSizeBuff, "%llu", result.ulSize);
         string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
@@ -138,12 +146,12 @@ namespace MacUtils {
         strAppend.append("\n");
         
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        [nsmutString appendString:nsstrAppend];
+        AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
     }
     
-    void AppendFileHashToNSMutableString(const ResultData& result,
-                                         bool uppercase,
-                                         NSMutableString *nsmutString) {
+    void AppendFileHashToNSMutableAttributedString(const ResultData& result,
+                                                   bool uppercase,
+                                                   NSMutableAttributedString *nsmutString) {
         string strFileMD5, strFileSHA1, strFileSHA256, strFileCRC32;
         
         if (uppercase) {
@@ -170,22 +178,22 @@ namespace MacUtils {
         strAppend.append("\n\n");
         
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        [nsmutString appendString:nsstrAppend];
+        AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
     }
     
-    void AppendFileErrToNSMutableString(const ResultData& result,
-                                        NSMutableString *nsmutString) {
+    void AppendFileErrToNSMutableAttributedString(const ResultData& result,
+                                                  NSMutableAttributedString *nsmutString) {
         string strAppend;
         strAppend.append(tstrtostr(result.tstrError));
         strAppend.append("\n\n");
         
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        [nsmutString appendString:nsstrAppend];
+        AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
     }
     
-    void AppendResultToNSMutableString(const ResultData& result,
-                                       bool uppercase,
-                                       NSMutableString *nsmutString) {
+    void AppendResultToNSMutableAttributedString(const ResultData& result,
+                                                 bool uppercase,
+                                                 NSMutableAttributedString *nsmutString) {
         if (result.enumState == ResultState::RESULT_NONE)
             return;
         
@@ -193,27 +201,27 @@ namespace MacUtils {
             result.enumState == ResultState::RESULT_META ||
             result.enumState == ResultState::RESULT_ERROR ||
             result.enumState == ResultState::RESULT_PATH) {
-            AppendFileNameToNSMutableString(result, nsmutString);
+            AppendFileNameToNSMutableAttributedString(result, nsmutString);
         }
         
         if (result.enumState == ResultState::RESULT_ALL ||
             result.enumState == ResultState::RESULT_META) {
-            AppendFileMetaToNSMutableString(result, nsmutString);
+            AppendFileMetaToNSMutableAttributedString(result, nsmutString);
         }
         
         if (result.enumState == ResultState::RESULT_ALL) {
-            AppendFileHashToNSMutableString(result, uppercase, nsmutString);
+            AppendFileHashToNSMutableAttributedString(result, uppercase, nsmutString);
         }
         
         if (result.enumState == ResultState::RESULT_ERROR) {
-            AppendFileErrToNSMutableString(result, nsmutString);
+            AppendFileErrToNSMutableAttributedString(result, nsmutString);
         }
         
         if (result.enumState != ResultState::RESULT_ALL &&
             result.enumState != ResultState::RESULT_ERROR) {
             string strAppend = "\n";
             NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-            [nsmutString appendString:nsstrAppend];
+            AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
         }
     }
     
