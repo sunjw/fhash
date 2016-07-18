@@ -43,8 +43,11 @@ enum MainViewControllerState {
 @property (assign) MainViewControllerState state;
 
 @property (nonatomic, strong) NSFont *mainFont;
+
 @property (nonatomic, strong) NSMutableParagraphStyle *mainParaStyle;
 @property (assign) BOOL needParaFix;
+
+@property (nonatomic, strong) NSString *selectedLink;
 
 @property (assign) UIBridgeMacUI *uiBridgeMac;
 
@@ -523,17 +526,47 @@ enum MainViewControllerState {
 - (BOOL)textView:(NSTextView *)aTextView
    clickedOnLink:(id)link
          atIndex:(NSUInteger)charIndex {
-    NSString *nsstrLink = (NSString *)link;
+    if (aTextView == self.mainTextView) {
+        self.selectedLink = (NSString *)link;
 
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Clicked!"
-                                     defaultButton:@"Ok"
-                                   alternateButton:nil
-                                       otherButton:nil
-                         informativeTextWithFormat:nsstrLink];
-    [alert runModal];
+        NSPoint nsptMouseLoc;
+        nsptMouseLoc = [NSEvent mouseLocation];
+        NSPoint nsptMouseInView = [self.view.window convertScreenToBase:nsptMouseLoc];
 
+        NSMenu *nsmenuHash = [[NSMenu alloc] initWithTitle:@"HashMenu"];
+        [nsmenuHash insertItemWithTitle:GetNSStringFromResByKey(MAINDLG_HYPEREDIT_MENU_COPY)
+                                 action:@selector(menuCopyHash)
+                          keyEquivalent:@""
+                                atIndex:0];
+        [nsmenuHash insertItem:[NSMenuItem separatorItem] atIndex:1];
+        [nsmenuHash insertItemWithTitle:GetNSStringFromResByKey(MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE)
+                                 action:@selector(menuSearchGoogle)
+                          keyEquivalent:@""
+                                atIndex:2];
+        [nsmenuHash insertItemWithTitle:GetNSStringFromResByKey(MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL)
+                                 action:@selector(menuSearchVirusTotal)
+                          keyEquivalent:@""
+                                atIndex:3];
 
-    return YES;
+        [nsmenuHash popUpMenuPositioningItem:nil atLocation:nsptMouseInView inView:self.view];
+
+        
+        return YES;
+    }
+
+    return NO;
+}
+
+- (void)menuCopyHash {
+    
+}
+
+- (void)menuSearchGoogle {
+
+}
+
+- (void)menuSearchVirusTotal {
+
 }
 
 @end
