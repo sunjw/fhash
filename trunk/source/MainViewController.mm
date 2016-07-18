@@ -348,6 +348,8 @@ enum MainViewControllerState {
     _mainMtx->lock();
 
     // Apply style to all text.
+    [_mainText beginEditing];
+    
     [_mainText addAttribute:NSFontAttributeName
                       value:self.mainFont
                       range:NSMakeRange(0, [_mainText length])];
@@ -357,6 +359,8 @@ enum MainViewControllerState {
                           value:self.mainParaStyle
                           range:NSMakeRange(0, [_mainText length])];
     }
+
+    [_mainText endEditing];
 
     [[self.mainTextView textStorage] setAttributedString:_mainText];
 
