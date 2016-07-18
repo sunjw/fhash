@@ -558,15 +558,21 @@ enum MainViewControllerState {
 }
 
 - (void)menuCopyHash {
-    
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    [pasteboard clearContents];
+    [pasteboard setString:self.selectedLink forType:NSStringPboardType];
 }
 
 - (void)menuSearchGoogle {
-
+    NSString *nstrUrl = [NSString stringWithFormat:@"https://www.google.com/search?q=%@&ie=utf-8&oe=utf-8", self.selectedLink];
+    NSURL *url = [NSURL URLWithString:nstrUrl];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (void)menuSearchVirusTotal {
-
+    NSString *nstrUrl = [NSString stringWithFormat:@"https://www.virustotal.com/en/search/?query=%@", self.selectedLink];
+    NSURL *url = [NSURL URLWithString:nstrUrl];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 @end
