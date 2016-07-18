@@ -349,7 +349,7 @@ enum MainViewControllerState {
 
     // Apply style to all text.
     [_mainText beginEditing];
-    
+
     [_mainText addAttribute:NSFontAttributeName
                       value:self.mainFont
                       range:NSMakeRange(0, [_mainText length])];

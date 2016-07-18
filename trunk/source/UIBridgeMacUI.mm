@@ -236,19 +236,50 @@ void UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(const ResultData& 
         strFileCRC32 = str_lower(tstrtostr(result.tstrCRC32));
     }
 
-    string strAppend;
-    strAppend.append("MD5: ");
-    strAppend.append(strFileMD5);
-    strAppend.append("\nSHA1: ");
-    strAppend.append(strFileSHA1);
-    strAppend.append("\nSHA256: ");
-    strAppend.append(strFileSHA256);
-    strAppend.append("\nCRC32: ");
-    strAppend.append(strFileCRC32);
-    strAppend.append("\n\n");
+    NSString *nsstrFileMD5 = MacUtils::ConvertUTF8StringToNSString(strFileMD5);
+    NSString *nsstrFileSHA1 = MacUtils::ConvertUTF8StringToNSString(strFileSHA1);
+    NSString *nsstrFileSHA256 = MacUtils::ConvertUTF8StringToNSString(strFileSHA256);
+    NSString *nsstrFileCRC32 = MacUtils::ConvertUTF8StringToNSString(strFileCRC32);
 
-    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
+    NSMutableAttributedString *nsmutStrHash = [[NSMutableAttributedString alloc] init];
+
+    [nsmutStrHash beginEditing];
+
+    NSUInteger oldLength;
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"MD5: ");
+    oldLength = [nsmutStrHash length];
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileMD5);
+    [nsmutStrHash addAttribute:NSLinkAttributeName
+                         value:nsstrFileMD5
+                         range:NSMakeRange(oldLength, [nsstrFileMD5 length])];
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\nSHA1: ");
+    oldLength = [nsmutStrHash length];
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileSHA1);
+    [nsmutStrHash addAttribute:NSLinkAttributeName
+                         value:nsstrFileSHA1
+                         range:NSMakeRange(oldLength, [nsstrFileSHA1 length])];
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\nSHA256: ");
+    oldLength = [nsmutStrHash length];
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileSHA256);
+    [nsmutStrHash addAttribute:NSLinkAttributeName
+                         value:nsstrFileSHA256
+                         range:NSMakeRange(oldLength, [nsstrFileSHA256 length])];
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\nCRC32: ");
+    oldLength = [nsmutStrHash length];
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileCRC32);
+    [nsmutStrHash addAttribute:NSLinkAttributeName
+                         value:nsstrFileCRC32
+                         range:NSMakeRange(oldLength, [nsstrFileCRC32 length])];
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\n\n");
+
+    [nsmutStrHash endEditing];
+
+    [nsmutString appendAttributedString:nsmutStrHash];
 }
 
 void UIBridgeMacUI::AppendFileErrToNSMutableAttributedString(const ResultData& result,
