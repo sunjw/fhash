@@ -43,6 +43,9 @@
 "MAINDLG_VERIFY" = "验证(&V)";
 "MAINDLG_ABOUT" = "关于(&A)";
 "MAINDLG_EXIT" = "退出(&X)";
+"MAINDLG_HYPEREDIT_MENU_COPY" = "复制哈希值";
+"MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE" = "搜索 Google";
+"MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL" = "搜索 VirusTotal";
 
 // Find Dialog Strings
 "FINDDLG_TITLE" = "验证";

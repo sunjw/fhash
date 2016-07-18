@@ -43,6 +43,9 @@
 "MAINDLG_VERIFY" = "&Verify";
 "MAINDLG_ABOUT" = "&About";
 "MAINDLG_EXIT" = "E&xit";
+"MAINDLG_HYPEREDIT_MENU_COPY" = "Copy hash value";
+"MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE" = "Search Google";
+"MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL" = "Search VirusTotal";
 
 // Find Dialog Strings
 "FINDDLG_TITLE" = "Verify";
