@@ -479,7 +479,7 @@ enum MainViewControllerState {
         ResultList::iterator itr = _thrdData->resultList.begin();
         for(; itr != _thrdData->resultList.end(); ++itr)
         {
-            MacUtils::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
+            UIBridgeMacUI::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
         }
     }
     _mainMtx->unlock();

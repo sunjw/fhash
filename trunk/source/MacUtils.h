@@ -116,38 +116,6 @@ namespace MacUtils {
      */
     void AppendNSStringToNSMutableAttributedString(NSMutableAttributedString *base, NSString *str);
     
-    /**
-     * Append file name in ResultData to NSMutableAttributedString.
-     */
-    void AppendFileNameToNSMutableAttributedString(const ResultData& result,
-                                                   NSMutableAttributedString *nsmutString);
-    
-    /**
-     * Append file meta in ResultData to NSMutableAttributedString.
-     */
-    void AppendFileMetaToNSMutableAttributedString(const ResultData& result,
-                                                   NSMutableAttributedString *nsmutString);
-    
-    /**
-     * Append file hash result in ResultData to NSMutableAttributedString.
-     */
-    void AppendFileHashToNSMutableAttributedString(const ResultData& result,
-                                                   bool uppercase,
-                                                   NSMutableAttributedString *nsmutString);
-    
-    /**
-     * Append file error message in ResultData to NSMutableAttributedString.
-     */
-    void AppendFileErrToNSMutableAttributedString(const ResultData& result,
-                                                  NSMutableAttributedString *nsmutString);
-    
-    /**
-     * Append whole ResultData to NSMutableAttributedString.
-     */
-    void AppendResultToNSMutableAttributedString(const ResultData& result,
-                                                 bool uppercase,
-                                                 NSMutableAttributedString *nsmutString);
-    
 }
 
 #endif
