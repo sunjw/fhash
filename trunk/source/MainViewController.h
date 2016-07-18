@@ -10,7 +10,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ESSProgressIndicator.h"
 
-@interface MainViewController : NSViewController
+@interface MainViewController : NSViewController <NSTextViewDelegate>
 
 @property (unsafe_unretained) IBOutlet NSScrollView *mainScrollView;
 @property (unsafe_unretained) IBOutlet NSTextView *mainTextView;

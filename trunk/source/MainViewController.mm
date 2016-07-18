@@ -133,6 +133,7 @@ enum MainViewControllerState {
     self.mainScrollView.borderType = NSNoBorder;
     
     // Set some text in text field.
+    self.mainTextView.delegate = self;
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
     
     self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
@@ -517,6 +518,22 @@ enum MainViewControllerState {
     if (_state == MAINVC_CALC_FINISH) {
         [self refreshResultText];
     }
+}
+
+- (BOOL)textView:(NSTextView *)aTextView
+   clickedOnLink:(id)link
+         atIndex:(NSUInteger)charIndex {
+    NSString *nsstrLink = (NSString *)link;
+
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Clicked!"
+                                     defaultButton:@"Ok"
+                                   alternateButton:nil
+                                       otherButton:nil
+                         informativeTextWithFormat:nsstrLink];
+    [alert runModal];
+
+
+    return YES;
 }
 
 @end
