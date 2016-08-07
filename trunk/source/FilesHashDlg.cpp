@@ -483,8 +483,11 @@ void CFilesHashDlg::OnBnClickedCheckup()
 
 void CFilesHashDlg::OnBnClickedUpperHash()
 {
-	m_chkUppercase.SetCheck(!m_chkUppercase.GetCheck());
-	OnBnClickedCheckup();
+	if (m_chkUppercase.IsWindowEnabled())
+	{
+		m_chkUppercase.SetCheck(!m_chkUppercase.GetCheck());
+		OnBnClickedCheckup();
+	}
 }
 
 void CFilesHashDlg::OnTimer(UINT_PTR nIDEvent)
