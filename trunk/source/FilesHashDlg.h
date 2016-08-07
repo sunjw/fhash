@@ -40,6 +40,7 @@ public:
 	afx_msg void OnBnClickedFind();
 	afx_msg void OnBnClickedContext();
 	afx_msg void OnBnClickedCheckup();
+	afx_msg void OnBnClickedUpperHash();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);

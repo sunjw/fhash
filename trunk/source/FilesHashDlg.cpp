@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_BN_CLICKED(IDC_FIND, &CFilesHashDlg::OnBnClickedFind)
 	ON_BN_CLICKED(IDC_CONTEXT, &CFilesHashDlg::OnBnClickedContext)
 	ON_BN_CLICKED(IDC_CHECKUP, &CFilesHashDlg::OnBnClickedCheckup)
+	ON_BN_CLICKED(IDC_STATIC_UPPER, &CFilesHashDlg::OnBnClickedUpperHash)
 	ON_WM_DROPFILES()
 	ON_WM_TIMER()
 	ON_WM_CTLCOLOR()
@@ -478,6 +479,12 @@ void CFilesHashDlg::OnBnClickedCheckup()
 
 	// Reset scroll position
 	m_editMain.LineScroll(iFirstVisible);
+}
+
+void CFilesHashDlg::OnBnClickedUpperHash()
+{
+	m_chkUppercase.SetCheck(!m_chkUppercase.GetCheck());
+	OnBnClickedCheckup();
 }
 
 void CFilesHashDlg::OnTimer(UINT_PTR nIDEvent)
