@@ -664,8 +664,8 @@ void CFilesHashDlg::CalcSpeed(ULONGLONG tsize)
 			}
 		}
 		speedStr.Format(_T("%4.2f "), speed);
-		CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 		speedStr.Append(measure);
+		CStatic* pWnd = (CStatic*)GetDlgItem(IDC_STATIC_SPEED);
 		pWnd->SetWindowText(speedStr);
 	}
 	else
