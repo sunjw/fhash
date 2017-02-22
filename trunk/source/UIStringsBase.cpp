@@ -54,7 +54,7 @@ UIStringsBase::UIStringsBase()
 	// About Dialog Strings
 	m_stringsMap[_T("ABOUTDLG_TITLE")] = _T("About fHash");
 	m_stringsMap[_T("ABOUTDLG_INFO_TITLE")] = _T("fHash: Files' Hash Calculator ");
-	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007-2016 SUN Junwen.");
+	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007- SUN Junwen.");
 	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.");
 	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller");
 	m_stringsMap[_T("ABOUTDLG_INFO_CRC32")] = _T("CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl");

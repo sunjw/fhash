@@ -80,7 +80,7 @@ BEGIN
             VALUE "FileDescription", "ShellExt for fHash"
             VALUE "FileVersion", STR_VERSION
             VALUE "InternalName", "fHashShlExt.dll"
-            VALUE "LegalCopyright", "(C) 2014-2016 SUN Junwen."
+            VALUE "LegalCopyright", "(C) 2014- SUN Junwen."
             VALUE "OriginalFilename", "fHashShlExt.dll"
             VALUE "ProductName", "ShellExt for fHash"
             VALUE "ProductVersion", STR_VERSION

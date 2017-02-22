@@ -36,7 +36,7 @@ BEGIN
             VALUE "FileDescription", "fHash: Files' Hash Calculator"
             VALUE "FileVersion", STR_VERSION
             VALUE "InternalName", "fHash.exe"
-            VALUE "LegalCopyright", "(C) 2007-2016 SUN Junwen."
+            VALUE "LegalCopyright", "(C) 2007- SUN Junwen."
             VALUE "OriginalFilename", "fHash.exe"
             VALUE "ProductName", "fHash: Files' Hash Calculator"
             VALUE "ProductVersion", STR_VERSION
