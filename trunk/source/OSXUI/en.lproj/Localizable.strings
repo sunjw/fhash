@@ -53,7 +53,7 @@
 // About Dialog Strings
 "ABOUTDLG_TITLE" = "About fHash";
 "ABOUTDLG_INFO_TITLE" = "fHash: Files' Hash Calculator ";
-"ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007-2016 SUN Junwen.";
+"ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007- SUN Junwen.";
 "ABOUTDLG_INFO_MD5" = "MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.";
 "ABOUTDLG_INFO_SHA256" = "SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller";
 "ABOUTDLG_INFO_CRC32" = "CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl";

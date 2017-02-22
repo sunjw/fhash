@@ -53,7 +53,7 @@
 // About Dialog Strings
 "ABOUTDLG_TITLE" = "关于 fHash";
 "ABOUTDLG_INFO_TITLE" = "fHash: 文件 Hash 计算器 ";
-"ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007-2016 SUN Junwen.";
+"ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007- SUN Junwen.";
 "ABOUTDLG_INFO_MD5" = "MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.";
 "ABOUTDLG_INFO_SHA256" = "SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller";
 "ABOUTDLG_INFO_CRC32" = "CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl";
