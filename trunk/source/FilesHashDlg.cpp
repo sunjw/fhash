@@ -154,7 +154,7 @@ BOOL CFilesHashDlg::OnInitDialog()
 	SetCtrls(FALSE);
 
 	// 从命令行获取文件路径
-	TStrVector Paras = ParseCmdLine();
+	TStrVector Paras = ParseFilesCmdLine(theApp.m_lpCmdLine);
 	ClearFilePaths();
 	for(TStrVector::iterator ite = Paras.begin(); ite != Paras.end(); ++ite)
 	{
@@ -233,15 +233,15 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 	}
 }
 
-TStrVector CFilesHashDlg::ParseCmdLine()
+TStrVector CFilesHashDlg::ParseFilesCmdLine(LPTSTR filesCmdLine)
 {
-	// 从命令行获取文件路径
+	// Parse files from string like 'xxx "yy zz" ...'
 	TStrVector parameters;
 
 #if defined(UNICODE) || defined(_UNICODE)
-	size_t cmdLen = wcslen(theApp.m_lpCmdLine);
+	size_t cmdLen = wcslen(filesCmdLine);
 #else
-	size_t cmdLen = strlen(theApp.m_lpCmdLine);
+	size_t cmdLen = strlen(filesCmdLine);
 #endif
 
 	if(cmdLen > 0)
@@ -249,18 +249,18 @@ TStrVector CFilesHashDlg::ParseCmdLine()
 		for(size_t i = 0; i < cmdLen; ++i)
 		{
 			tstring tstrPara(_T(""));
-			if(theApp.m_lpCmdLine[i] == '"')
+			if(filesCmdLine[i] == '"')
 			{
 				++i;
-				for(; theApp.m_lpCmdLine[i] != '"'; ++i)
-					tstrPara += theApp.m_lpCmdLine[i];
+				for(; filesCmdLine[i] != '"'; ++i)
+					tstrPara += filesCmdLine[i];
 				parameters.push_back(tstrPara);
 				++i;
 			}
 			else
 			{
-				for(; theApp.m_lpCmdLine[i] != ' '; ++i)
-					tstrPara += theApp.m_lpCmdLine[i];
+				for(; filesCmdLine[i] != ' '; ++i)
+					tstrPara += filesCmdLine[i];
 				parameters.push_back(tstrPara);
 			}
 		}

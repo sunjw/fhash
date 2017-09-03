@@ -85,7 +85,7 @@ protected:
 
 	BOOL m_bLimited;
 
-	TStrVector ParseCmdLine();
+	TStrVector ParseFilesCmdLine(LPTSTR filesCmdLine);
 	void ClearFilePaths();
 	void PrepareAdvTaskbar();
 
