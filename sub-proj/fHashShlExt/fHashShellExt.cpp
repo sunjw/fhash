@@ -150,51 +150,7 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
     {
     case 0:
 		{
-			tstring tstrfHashPath = m_fHashPath;
-			// fHash.exe
-			tstring tstrCmd = _T("\"") + tstrfHashPath + _T("\"");
-
-			// Files...
-			for(TstrList::const_iterator itr = m_pathList.begin();
-				itr != m_pathList.end();
-				++itr)
-			{
-				tstrCmd.append(_T(" "));
-				tstrCmd.append(_T("\""));
-				tstrCmd.append(*itr);
-				tstrCmd.append(_T("\""));
-			}
-
-			size_t cmdLen = tstrCmd.length() + 1;
-			if(cmdLen > 32768)
-			{
-				MessageBox(pCmdInfo->hwnd, 
-					GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
-					GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
-					MB_OK | MB_ICONWARNING);
-				return S_OK;
-			}
-
-			TCHAR *pszCmd = new TCHAR[cmdLen];
-			memset(pszCmd, 0, cmdLen);
-#if defined(UNICODE) || defined(_UNICODE)
-			wcscpy(pszCmd, tstrCmd.c_str());
-#else
-			strcpy(pszCmd, tstrCmd.c_str());
-#endif
-
-			STARTUPINFO sInfo = {0};
-			sInfo.cb = sizeof(sInfo);
-			PROCESS_INFORMATION pInfo = {0};
-
-			CreateProcess(tstrfHashPath.c_str(), pszCmd,
-							0, 0, TRUE,
-							NORMAL_PRIORITY_CLASS,
-							0, 0, &sInfo, &pInfo);
-	 
-			delete [] pszCmd;
-
-			return S_OK;
+			return RunfHashByCommandLine(pCmdInfo);
 		}
 		break;
  
@@ -202,4 +158,55 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		return E_INVALIDARG;
 		break;
     }
+
+	return S_OK;
+}
+
+HRESULT CfHashShellExt::RunfHashByCommandLine(LPCMINVOKECOMMANDINFO pCmdInfo)
+{
+	tstring tstrfHashPath = m_fHashPath;
+	// fHash.exe
+	tstring tstrCmd = _T("\"") + tstrfHashPath + _T("\"");
+
+	// Files...
+	for(TstrList::const_iterator itr = m_pathList.begin();
+		itr != m_pathList.end();
+		++itr)
+	{
+		tstrCmd.append(_T(" "));
+		tstrCmd.append(_T("\""));
+		tstrCmd.append(*itr);
+		tstrCmd.append(_T("\""));
+	}
+
+	size_t cmdLen = tstrCmd.length() + 1;
+	if(cmdLen > 32768)
+	{
+		MessageBox(pCmdInfo->hwnd, 
+			GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
+			GetStringByKey(SHELL_EXT_TOO_MANY_FILES), 
+			MB_OK | MB_ICONWARNING);
+		return S_OK;
+	}
+
+	TCHAR *pszCmd = new TCHAR[cmdLen];
+	memset(pszCmd, 0, cmdLen);
+#if defined(UNICODE) || defined(_UNICODE)
+	wcscpy_s(pszCmd, cmdLen, tstrCmd.c_str());
+#else
+	strcpy_s(pszCmd, cmdLen, tstrCmd.c_str());
+#endif
+
+	STARTUPINFO sInfo = {0};
+	sInfo.cb = sizeof(sInfo);
+	PROCESS_INFORMATION pInfo = {0};
+
+	CreateProcess(tstrfHashPath.c_str(), pszCmd,
+		0, 0, TRUE,
+		NORMAL_PRIORITY_CLASS,
+		0, 0, &sInfo, &pInfo);
+
+	delete [] pszCmd;
+
+	return S_OK;
 }
