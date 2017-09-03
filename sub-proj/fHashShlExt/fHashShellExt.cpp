@@ -151,8 +151,10 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
     case 0:
 		{
 			tstring tstrfHashPath = m_fHashPath;
+			// fHash.exe
 			tstring tstrCmd = _T("\"") + tstrfHashPath + _T("\"");
 
+			// Files...
 			for(TstrList::const_iterator itr = m_pathList.begin();
 				itr != m_pathList.end();
 				++itr)
