@@ -217,8 +217,8 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 		TCHAR tszDragFilename[MAX_PATH];
 		DragAcceptFiles(FALSE);
 
-		m_thrdData.nFiles = DragQueryFile(hDropInfo, -1, NULL, 0);
 		ClearFilePaths();
+		m_thrdData.nFiles = DragQueryFile(hDropInfo, -1, NULL, 0);
 
 		for(i = 0; i < m_thrdData.nFiles; i++)
 		{
