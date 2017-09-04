@@ -73,6 +73,7 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_COPYHASH, &CFilesHashDlg::OnUpdateHypereditmenuCopyhash)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHGOOGLE, &CFilesHashDlg::OnUpdateHypereditmenuSearchgoogle)
 	ON_UPDATE_COMMAND_UI(ID_HYPEREDITMENU_SEARCHVIRUSTOTAL, &CFilesHashDlg::OnUpdateHypereditmenuSearchvirustotal)
+	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
 
@@ -231,6 +232,34 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 
 		DoMD5();
 	}
+}
+
+
+BOOL CFilesHashDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
+{
+	if (pCopyDataStruct->dwData == 0 && !m_thrdData.threadWorking)
+	{
+		TCHAR *szFiles = (TCHAR *)(pCopyDataStruct->lpData);
+		TStrVector Paras = ParseFilesCmdLine(szFiles);
+		ClearFilePaths();
+		for(TStrVector::iterator ite = Paras.begin(); ite != Paras.end(); ++ite)
+		{
+			tstring tstrFile(*ite);
+			tstrFile = strtrim(tstrFile);
+			if (tstrFile.length() > 0)
+			{
+				m_thrdData.fullPaths.push_back(*ite);
+				++m_thrdData.nFiles;
+			}
+		}
+
+		if (m_thrdData.nFiles > 0)
+			DoMD5();
+
+		return TRUE;
+	}
+
+	return CDialog::OnCopyData(pWnd, pCopyDataStruct);
 }
 
 TStrVector CFilesHashDlg::ParseFilesCmdLine(LPTSTR filesCmdLine)
@@ -578,6 +607,7 @@ HBRUSH CFilesHashDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 void CFilesHashDlg::ClearFilePaths()
 {
+	m_thrdData.nFiles = 0;
 	m_thrdData.fullPaths.clear();
 }
 
@@ -916,3 +946,4 @@ void CFilesHashDlg::AppendResult(const ResultData& result)
 	m_thrdData.uppercase = (m_chkUppercase.GetCheck() != FALSE);
 	UIBridgeMFC::AppendResultToHyperEdit(result, m_thrdData.uppercase, &m_editMain);
 }
+

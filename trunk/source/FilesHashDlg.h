@@ -34,13 +34,14 @@ public:
 	afx_msg void OnBnClickedOpen();
 	afx_msg void OnBnClickedExit();
 	afx_msg void OnBnClickedAbout();
-	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnBnClickedClean();
 	afx_msg void OnBnClickedCopy();
 	afx_msg void OnBnClickedFind();
 	afx_msg void OnBnClickedContext();
 	afx_msg void OnBnClickedCheckup();
 	afx_msg void OnBnClickedUpperHash();
+	afx_msg void OnDropFiles(HDROP hDropInfo);
+	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnClose();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
