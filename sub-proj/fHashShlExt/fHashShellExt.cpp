@@ -5,6 +5,9 @@
 
 #include <string>
 #include <atlconv.h>
+
+#include "Psapi.h"
+
 #include "strhelper.h"
 #include "ShellExtComm.h"
 #include "WindowsStrings.h"
@@ -150,7 +153,14 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
     {
     case 0:
 		{
-			return RunfHashByCommandLine(pCmdInfo);
+			HWND hWndfHash = FindfHashWindow();
+			if (hWndfHash == NULL) // Launch and calculate...
+				return LaunchfHashByCommandLine(pCmdInfo, TRUE);
+
+			// Found fHash, send message.
+
+
+
 		}
 		break;
  
@@ -162,21 +172,24 @@ HRESULT CfHashShellExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	return S_OK;
 }
 
-HRESULT CfHashShellExt::RunfHashByCommandLine(LPCMINVOKECOMMANDINFO pCmdInfo)
+HRESULT CfHashShellExt::LaunchfHashByCommandLine(LPCMINVOKECOMMANDINFO pCmdInfo, BOOL bWithFiles)
 {
 	tstring tstrfHashPath = m_fHashPath;
 	// fHash.exe
 	tstring tstrCmd = _T("\"") + tstrfHashPath + _T("\"");
 
-	// Files...
-	for(TstrList::const_iterator itr = m_pathList.begin();
-		itr != m_pathList.end();
-		++itr)
+	if (bWithFiles == TRUE)
 	{
-		tstrCmd.append(_T(" "));
-		tstrCmd.append(_T("\""));
-		tstrCmd.append(*itr);
-		tstrCmd.append(_T("\""));
+		// Files...
+		for(TstrList::const_iterator itr = m_pathList.begin();
+			itr != m_pathList.end();
+			++itr)
+		{
+			tstrCmd.append(_T(" "));
+			tstrCmd.append(_T("\""));
+			tstrCmd.append(*itr);
+			tstrCmd.append(_T("\""));
+		}
 	}
 
 	size_t cmdLen = tstrCmd.length() + 1;
@@ -209,4 +222,28 @@ HRESULT CfHashShellExt::RunfHashByCommandLine(LPCMINVOKECOMMANDINFO pCmdInfo)
 	delete [] pszCmd;
 
 	return S_OK;
+}
+
+HWND CfHashShellExt::FindfHashWindow()
+{
+	HWND hWndfHash = NULL;
+	hWndfHash = FindWindow(_T("#32770"), _T("fHash"));
+	if (hWndfHash == NULL)
+		return NULL;
+
+	DWORD dwPidfHash = 0;
+	GetWindowThreadProcessId(hWndfHash, &dwPidfHash);
+	HANDLE hProcfHash = OpenProcess(PROCESS_ALL_ACCESS, TRUE, dwPidfHash);
+	if (hProcfHash == NULL)
+		return NULL;
+
+	TCHAR szExecutable[MAX_PATH + 1] = {0};
+	if (GetModuleFileNameEx(hProcfHash, NULL, szExecutable, MAX_PATH) <= 0)
+		return NULL;
+
+	tstring tstrProcfHashPath(szExecutable);
+	if (tstrProcfHashPath == m_fHashPath)
+		return hWndfHash;
+
+	return NULL;
 }

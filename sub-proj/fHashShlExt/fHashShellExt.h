@@ -60,7 +60,8 @@ public:
 	STDMETHODIMP QueryContextMenu(HMENU, UINT, UINT, UINT, UINT);
 
 private:
-	HRESULT RunfHashByCommandLine(LPCMINVOKECOMMANDINFO);
+	HRESULT LaunchfHashByCommandLine(LPCMINVOKECOMMANDINFO, BOOL);
+	HWND FindfHashWindow();
 
 	sunjwbase::tstring m_fHashPath;
 	TstrList m_pathList;
