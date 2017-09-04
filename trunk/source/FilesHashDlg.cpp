@@ -237,6 +237,9 @@ void CFilesHashDlg::OnDropFiles(HDROP hDropInfo)
 
 BOOL CFilesHashDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 {
+	if (pCopyDataStruct->dwData == 0)
+		SetForegroundWindow();
+
 	if (pCopyDataStruct->dwData == 0 && !m_thrdData.threadWorking)
 	{
 		TCHAR *szFiles = (TCHAR *)(pCopyDataStruct->lpData);
@@ -254,7 +257,9 @@ BOOL CFilesHashDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 		}
 
 		if (m_thrdData.nFiles > 0)
+		{
 			DoMD5();
+		}
 
 		return TRUE;
 	}
