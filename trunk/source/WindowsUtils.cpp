@@ -525,7 +525,7 @@ namespace WindowsUtils
 	{
 		BOOL bRet = FALSE;
 
-		TCHAR szExecutable[MAX_PATH];
+		TCHAR szExecutable[MAX_PATH + 1] = {0};
 		if(GetModuleFileName(NULL, szExecutable, MAX_PATH) > 0)
 		{
 			SHELLEXECUTEINFO sei = { sizeof(SHELLEXECUTEINFO) };
