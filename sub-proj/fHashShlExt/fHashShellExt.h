@@ -62,6 +62,7 @@ public:
 private:
 	HRESULT LaunchfHashByCommandLine(LPCMINVOKECOMMANDINFO, BOOL);
 	HWND FindfHashWindow();
+	void SendFilesTofHash(LPCMINVOKECOMMANDINFO, HWND);
 
 	sunjwbase::tstring m_fHashPath;
 	TstrList m_pathList;
