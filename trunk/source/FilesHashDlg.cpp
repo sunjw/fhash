@@ -889,7 +889,7 @@ void CFilesHashDlg::OnHypereditmenuSearchvirustotal()
 {
 	CString cstrHyperlink = m_editMain.GetLastHyperlink();
 	CString cstrVtLink;
-	cstrVtLink.Format(_T("https://www.virustotal.com/en/search/?query=%s"),
+	cstrVtLink.Format(_T("https://www.virustotal.com/#/search/%s"),
 		cstrHyperlink.GetString());
 	WindowsUtils::OpenURL(cstrVtLink);
 }
