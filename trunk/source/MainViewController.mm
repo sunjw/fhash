@@ -570,7 +570,7 @@ enum MainViewControllerState {
 }
 
 - (void)menuSearchVirusTotal {
-    NSString *nstrUrl = [NSString stringWithFormat:@"https://www.virustotal.com/en/search/?query=%@", self.selectedLink];
+    NSString *nstrUrl = [NSString stringWithFormat:@"https://www.virustotal.com/#/search/%@", self.selectedLink];
     NSURL *url = [NSURL URLWithString:nstrUrl];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
