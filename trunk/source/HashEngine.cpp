@@ -248,7 +248,7 @@ int WINAPI HashThreadFunc(void *param)
 				
 				t++;
 
-				MD5Update (&mdContext, databuf.data, databuf.datalen); // MD5更新
+				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5更新
 				sha1.Update(databuf.data, databuf.datalen); // SHA1更新
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
 				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
