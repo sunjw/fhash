@@ -30,19 +30,22 @@
 using namespace std;
 using namespace sunjwbase;
 
+class DataBuffer
+{
+public:
+	DataBuffer():datalen(0), data(NULL)
+	{ data = new unsigned char[DataBuffer::preflen]; }
+
+	~DataBuffer()
+	{ delete[] data; datalen = 0; }
+
+	static unsigned int preflen;
+
+	unsigned int datalen;
+	unsigned char *data;
+};
+
 unsigned int DataBuffer::preflen = 1048576; // 2^20
-
-DataBuffer::DataBuffer()
-	:datalen(0), data(NULL)
-{
-	data = new unsigned char[DataBuffer::preflen];
-}
-
-DataBuffer::~DataBuffer()
-{
-	delete[] data;
-	datalen = 0;
-}
 
 //工作者线程
 int WINAPI HashThreadFunc(void *param)
