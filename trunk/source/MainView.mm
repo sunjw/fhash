@@ -17,8 +17,6 @@ using namespace std;
 - (void)awakeFromNib {
     [self registerForDraggedTypes:
      [NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
-    
-    [self setMaterial:NSVisualEffectMaterialLight];
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
