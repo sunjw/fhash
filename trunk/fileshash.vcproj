@@ -587,7 +587,7 @@
 				>
 			</File>
 			<File
-				RelativePath="source\Algorithms\md5.h"
+				RelativePath=".\source\Algorithms\MD5.h"
 				>
 			</File>
 			<File
