@@ -22,7 +22,7 @@
 #include "OsUtils/OsFile.h"
 #include "OsUtils/OsThread.h"
 
-#include "Algorithms/md5.h"
+#include "Algorithms/MD5.h"
 #include "Algorithms/SHA1.h"
 #include "Algorithms/sha256.h"
 #include "Algorithms/CRC32.h"

@@ -64,6 +64,7 @@
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41E013CC1B5CE954004126B2 /* UIBridgeMacUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UIBridgeMacUI.mm; path = source/UIBridgeMacUI.mm; sourceTree = SOURCE_ROOT; };
 		41E013CD1B5CE954004126B2 /* UIBridgeMacUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacUI.h; path = source/UIBridgeMacUI.h; sourceTree = SOURCE_ROOT; };
+		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
 		41FF1DC71B5B49490081F283 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Global.h; sourceTree = "<group>"; };
 		41FF1DC81B5B49490081F283 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 2147486000; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/HashEngine.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		41FF1DC91B5B49490081F283 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/HashEngine.h; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		41FF1DEA1B5B4B470081F283 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = "<group>"; };
 		41FF1DEB1B5B4B470081F283 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = "<group>"; };
 		41FF1DEC1B5B4B470081F283 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = "<group>"; };
-		41FF1DED1B5B4B470081F283 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = md5.h; path = source/Algorithms/md5.h; sourceTree = "<group>"; };
 		41FF1DEE1B5B4B470081F283 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHA1.cpp; path = source/Algorithms/SHA1.cpp; sourceTree = "<group>"; };
 		41FF1DEF1B5B4B470081F283 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = "<group>"; };
 		41FF1DF01B5B4B470081F283 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			children = (
 				41FF1DEB1B5B4B470081F283 /* CRC32.h */,
 				41FF1DEA1B5B4B470081F283 /* CRC32.cpp */,
-				41FF1DED1B5B4B470081F283 /* md5.h */,
+				41F2360A20C77C3E005E6724 /* MD5.h */,
 				41FF1DEC1B5B4B470081F283 /* MD5.cpp */,
 				41FF1DEF1B5B4B470081F283 /* SHA1.h */,
 				41FF1DEE1B5B4B470081F283 /* SHA1.cpp */,
