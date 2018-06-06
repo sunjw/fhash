@@ -18,14 +18,6 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
-    // Fix NSVisualEffectView compatibility on OS X < 10.10
-    if (![NSVisualEffectView class]) {
-        Class NSVisualEffectViewClass = objc_allocateClassPair([NSView class],
-                                                               "NSVisualEffectView",
-                                                               0);
-        objc_registerClassPair(NSVisualEffectViewClass);
-    }
-    
     [NSApp setServicesProvider:self];
     NSUpdateDynamicServices();
 }
