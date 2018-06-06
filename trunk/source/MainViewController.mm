@@ -531,7 +531,8 @@ enum MainViewControllerState {
 
         NSPoint nsptMouseLoc;
         nsptMouseLoc = [NSEvent mouseLocation];
-        NSPoint nsptMouseInView = [self.view.window convertScreenToBase:nsptMouseLoc];
+        NSRect nsrtMouseInView = [self.view.window convertRectFromScreen:NSMakeRect(nsptMouseLoc.x, nsptMouseLoc.y, 0, 0)];
+        NSPoint nsptMouseInView = nsrtMouseInView.origin;
 
         NSMenu *nsmenuHash = [[NSMenu alloc] initWithTitle:@"HashMenu"];
         [nsmenuHash insertItemWithTitle:GetNSStringFromResByKey(MAINDLG_HYPEREDIT_MENU_COPY)
