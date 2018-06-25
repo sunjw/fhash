@@ -65,9 +65,6 @@ using namespace sunjwbase;
     [hyperlinkString addAttribute:NSLinkAttributeName
                             value:url
                             range:NSMakeRange(0, [hyperlinkString length])];
-    [hyperlinkString addAttribute:NSForegroundColorAttributeName
-                            value:[NSColor blueColor]
-                            range:NSMakeRange(0, [hyperlinkString length])];
     [hyperlinkString endEditing];
 
     [self.homePageLinkTextField setAttributedStringValue:hyperlinkString];
