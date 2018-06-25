@@ -358,6 +358,10 @@ enum MainViewControllerState {
                       value:self.mainFont
                       range:NSMakeRange(0, [_mainText length])];
 
+    [_mainText addAttribute:NSForegroundColorAttributeName
+                      value:[NSColor textColor]
+                      range:NSMakeRange(0, [_mainText length])];
+
     if (self.needParaFix) {
         [_mainText addAttribute:NSParagraphStyleAttributeName
                           value:self.mainParaStyle
