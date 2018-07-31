@@ -438,7 +438,7 @@
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="ESSProgressIndicator">
-                                <rect key="frame" x="-3" y="36" width="562" height="20"/>
+                                <rect key="frame" x="-3" y="43" width="562" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">

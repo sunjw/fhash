@@ -173,6 +173,8 @@ enum MainViewControllerState {
     [[self.mainTextView textContainer] setWidthTracksTextView:NO];
     
     // Set progressbar.
+    NSRect mainProgIndiFrame = [self.mainProgressIndicator frame];
+    [self.mainProgressIndicator setFrameSize:NSMakeSize(mainProgIndiFrame.size.width, 2)];
     [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
     
     // Set checkbox.
