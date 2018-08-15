@@ -16,4 +16,9 @@ const int CLIPVIEW_PADDING_TOP = 22;
     [super setFrameOrigin:NSMakePoint(0, CLIPVIEW_PADDING_TOP)];
 }
 
+- (void)setFrameSize:(NSSize)newSize {
+    NSSize sizeFixed = NSMakeSize(newSize.width, newSize.height - CLIPVIEW_PADDING_TOP);
+    [super setFrameSize:sizeFixed];
+}
+
 @end
