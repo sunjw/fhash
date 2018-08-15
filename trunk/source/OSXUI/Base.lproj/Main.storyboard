@@ -477,6 +477,17 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
+                                        <rect key="frame" x="7" y="14" width="111" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="uppercaseButtonClicked:" target="XfG-lQ-9wD" id="tg7-CC-dE4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </visualEffectView>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
@@ -506,17 +517,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
-                                <rect key="frame" x="7" y="14" width="111" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="uppercaseButtonClicked:" target="XfG-lQ-9wD" id="tg7-CC-dE4"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
