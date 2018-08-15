@@ -428,7 +428,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView appearanceType="inheritedVibrantLight" fixedFrame="YES" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
-                                <rect key="frame" x="0.0" y="0.0" width="556" height="45"/>
+                                <rect key="frame" x="0.0" y="0.0" width="556" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="ESSProgressIndicator">
