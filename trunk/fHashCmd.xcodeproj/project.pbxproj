@@ -15,10 +15,10 @@
 		410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8201AFE3CF7001A10F9 /* main.cpp */; };
 		410AB8341AFE45AA001A10F9 /* OsFilePosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8331AFE45AA001A10F9 /* OsFilePosixDarwin.cpp */; };
 		410AB83C1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB83B1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp */; };
-		4198A52A1B58C8240050C831 /* UIBridgeMacCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5281B58C8240050C831 /* UIBridgeMacCmd.cpp */; };
 		52225807213CD98C00012EF8 /* strhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52225805213CD98C00012EF8 /* strhelper.cpp */; };
 		5222580D213CDA9500012EF8 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5222580B213CDA9400012EF8 /* Utils.cpp */; };
 		52225813213CDB3900012EF8 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52225812213CDB3900012EF8 /* HashEngine.cpp */; };
+		52225818213CF16600012EF8 /* UIBridgeMacCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52225817213CF16600012EF8 /* UIBridgeMacCmd.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,8 +51,6 @@
 		410AB82F1AFE3E91001A10F9 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = SOURCE_ROOT; };
 		410AB8331AFE45AA001A10F9 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
 		410AB83B1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = SOURCE_ROOT; };
-		4198A5281B58C8240050C831 /* UIBridgeMacCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UIBridgeMacCmd.cpp; path = source/UIBridgeMacCmd.cpp; sourceTree = SOURCE_ROOT; };
-		4198A5291B58C8240050C831 /* UIBridgeMacCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacCmd.h; path = source/UIBridgeMacCmd.h; sourceTree = SOURCE_ROOT; };
 		41BE6C691AFF2BBF00DEF5F5 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = SOURCE_ROOT; };
 		52225801213CD6B500012EF8 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Common/Global.h; sourceTree = SOURCE_ROOT; };
 		52225805213CD98C00012EF8 /* strhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strhelper.cpp; path = source/Common/strhelper.cpp; sourceTree = SOURCE_ROOT; };
@@ -62,6 +60,8 @@
 		52225811213CDB3900012EF8 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/Common/HashEngine.h; sourceTree = SOURCE_ROOT; };
 		52225812213CDB3900012EF8 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/Common/HashEngine.cpp; sourceTree = SOURCE_ROOT; };
 		52225815213CDBA800012EF8 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/Common/UIBridgeBase.h; sourceTree = SOURCE_ROOT; };
+		52225816213CF16600012EF8 /* UIBridgeMacCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacCmd.h; path = source/OSXCmd/UIBridgeMacCmd.h; sourceTree = SOURCE_ROOT; };
+		52225817213CF16600012EF8 /* UIBridgeMacCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UIBridgeMacCmd.cpp; path = source/OSXCmd/UIBridgeMacCmd.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,14 +106,14 @@
 		410AB80E1AFE3B09001A10F9 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				410AB8101AFE3B1A001A10F9 /* CRC32.h */,
 				410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */,
-				410AB8121AFE3B1A001A10F9 /* md5.h */,
+				410AB8101AFE3B1A001A10F9 /* CRC32.h */,
 				410AB8111AFE3B1A001A10F9 /* MD5.cpp */,
-				410AB8141AFE3B1A001A10F9 /* SHA1.h */,
+				410AB8121AFE3B1A001A10F9 /* md5.h */,
 				410AB8131AFE3B1A001A10F9 /* SHA1.cpp */,
-				410AB8161AFE3B1A001A10F9 /* sha256.h */,
+				410AB8141AFE3B1A001A10F9 /* SHA1.h */,
 				410AB8151AFE3B1A001A10F9 /* sha256.cpp */,
+				410AB8161AFE3B1A001A10F9 /* sha256.h */,
 			);
 			name = Algorithms;
 			sourceTree = "<group>";
@@ -159,8 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				410AB8201AFE3CF7001A10F9 /* main.cpp */,
-				4198A5291B58C8240050C831 /* UIBridgeMacCmd.h */,
-				4198A5281B58C8240050C831 /* UIBridgeMacCmd.cpp */,
+				52225817213CF16600012EF8 /* UIBridgeMacCmd.cpp */,
+				52225816213CF16600012EF8 /* UIBridgeMacCmd.h */,
 			);
 			name = fHashCmd;
 			sourceTree = "<group>";
@@ -224,8 +224,8 @@
 				410AB81A1AFE3B1A001A10F9 /* sha256.cpp in Sources */,
 				410AB8191AFE3B1A001A10F9 /* SHA1.cpp in Sources */,
 				410AB8211AFE3CF7001A10F9 /* main.cpp in Sources */,
+				52225818213CF16600012EF8 /* UIBridgeMacCmd.cpp in Sources */,
 				52225813213CDB3900012EF8 /* HashEngine.cpp in Sources */,
-				4198A52A1B58C8240050C831 /* UIBridgeMacCmd.cpp in Sources */,
 				410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */,
 				410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */,
 				410AB83C1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp in Sources */,
