@@ -497,10 +497,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\Common\strhelper.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\trunk\source\WindowsStrings.cpp"
 				>
 			</File>
@@ -540,10 +536,6 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\trunk\source\Common\strhelper.h"
 				>
 			</File>
 			<File
@@ -635,6 +627,18 @@
 			</File>
 			<File
 				RelativePath="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath="..\..\trunk\source\Common\strhelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\Common\strhelper.h"
 				>
 			</File>
 		</Filter>

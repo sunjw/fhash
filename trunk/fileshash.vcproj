@@ -401,10 +401,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Common\HashEngine.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\source\HyperEdit.cpp"
 				>
 			</File>
@@ -421,10 +417,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Common\strhelper.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\source\UIBridgeMFC.cpp"
 				>
 			</File>
@@ -434,10 +426,6 @@
 			</File>
 			<File
 				RelativePath=".\source\UIStringsZHCN.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Common\Utils.cpp"
 				>
 			</File>
 			<File
@@ -474,14 +462,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Common\Global.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Common\HashEngine.h"
-				>
-			</File>
-			<File
 				RelativePath=".\source\HyperEdit.h"
 				>
 			</File>
@@ -502,19 +482,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\stdint.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Common\strhelper.h"
+				RelativePath=".\source\WinMFC\stdint.h"
 				>
 			</File>
 			<File
 				RelativePath=".\source\targetver.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Common\UIBridgeBase.h"
 				>
 			</File>
 			<File
@@ -527,10 +499,6 @@
 			</File>
 			<File
 				RelativePath=".\source\UIStringsZHCN.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Common\Utils.h"
 				>
 			</File>
 			<File
@@ -624,6 +592,42 @@
 			</File>
 			<File
 				RelativePath=".\source\OsUtils\OsThreadWinApi.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath=".\source\Common\Global.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\HashEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\HashEngine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\strhelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\strhelper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\UIBridgeBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\Utils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\Utils.h"
 				>
 			</File>
 		</Filter>
