@@ -9,8 +9,8 @@
 #include "Psapi.h"
 
 #include "Common/strhelper.h"
-#include "ShellExtComm.h"
-#include "WindowsStrings.h"
+#include "WinMFC/ShellExtComm.h"
+#include "WinMFC/WindowsStrings.h"
 #include "fHashShlExtStringsBase.h"
 #include "fHashShlExtStringsZHCN.h"
 

@@ -385,31 +385,31 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm"
 			>
 			<File
-				RelativePath="source\AboutDlg.cpp"
+				RelativePath=".\source\WinMFC\AboutDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHash.cpp"
+				RelativePath=".\source\WinMFC\FilesHash.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHashDlg.cpp"
+				RelativePath=".\source\WinMFC\FilesHashDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FindDlg.cpp"
+				RelativePath=".\source\WinMFC\FindDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEdit.cpp"
+				RelativePath=".\source\WinMFC\HyperEdit.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEditHash.cpp"
+				RelativePath=".\source\WinMFC\HyperEditHash.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\ShellExtComm.cpp"
+				RelativePath=".\source\WinMFC\ShellExtComm.cpp"
 				>
 			</File>
 			<File
@@ -417,27 +417,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeMFC.cpp"
+				RelativePath=".\source\WinMFC\UIBridgeMFC.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsBase.cpp"
+				RelativePath=".\source\WinMFC\UIStringsBase.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsZHCN.cpp"
+				RelativePath=".\source\WinMFC\UIStringsZHCN.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStrings.cpp"
+				RelativePath=".\source\WinMFC\WindowsStrings.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStringsInternal.cpp"
+				RelativePath=".\source\WinMFC\WindowsStringsInternal.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsUtils.cpp"
+				RelativePath=".\source\WinMFC\WindowsUtils.cpp"
 				>
 			</File>
 		</Filter>
@@ -446,27 +446,27 @@
 			Filter="h;hpp;hxx;hm;inl;inc"
 			>
 			<File
-				RelativePath="source\AboutDlg.h"
+				RelativePath=".\source\WinMFC\AboutDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHash.h"
+				RelativePath=".\source\WinMFC\FilesHash.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHashDlg.h"
+				RelativePath=".\source\WinMFC\FilesHashDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FindDlg.h"
+				RelativePath=".\source\WinMFC\FindDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEdit.h"
+				RelativePath=".\source\WinMFC\HyperEdit.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEditHash.h"
+				RelativePath=".\source\WinMFC\HyperEditHash.h"
 				>
 			</File>
 			<File
@@ -474,7 +474,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\ShellExtComm.h"
+				RelativePath=".\source\WinMFC\ShellExtComm.h"
 				>
 			</File>
 			<File
@@ -490,15 +490,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeMFC.h"
+				RelativePath=".\source\WinMFC\UIBridgeMFC.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsBase.h"
+				RelativePath=".\source\WinMFC\UIStringsBase.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsZHCN.h"
+				RelativePath=".\source\WinMFC\UIStringsZHCN.h"
 				>
 			</File>
 			<File
@@ -506,15 +506,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStrings.h"
+				RelativePath=".\source\WinMFC\WindowsStrings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStringsInternal.h"
+				RelativePath=".\source\WinMFC\WindowsStringsInternal.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsUtils.h"
+				RelativePath=".\source\WinMFC\WindowsUtils.h"
 				>
 			</File>
 		</Filter>

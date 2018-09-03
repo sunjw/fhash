@@ -16,7 +16,7 @@
 #include "Common/UIBridgeBase.h"
 
 #if defined (WIN32)
-#include "WindowsUtils.h"
+#include "WinMFC/WindowsUtils.h"
 #endif
 
 #include "OsUtils/OsFile.h"
