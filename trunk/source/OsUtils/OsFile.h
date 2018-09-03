@@ -10,7 +10,12 @@
 
 #include <stdlib.h>
 
+#include <stdlib.h>
+#if defined (WIN32)
 #include "WinMFC/stdint.h"
+#else
+#include <stdint.h>
+#endif
 #include "Common/strhelper.h"
 
 namespace sunjwbase
