@@ -1,7 +1,7 @@
 #ifndef _HASH_ENGINE_H_
 #define _HASH_ENGINE_H_
 
-#include "Global.h"
+#include "Common/Global.h"
 
 #if defined (WIN32)
 #include <WinDef.h>

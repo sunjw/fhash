@@ -30,7 +30,7 @@
 
 #endif
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 class UIBridgeBase;
 

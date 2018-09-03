@@ -1,7 +1,7 @@
 #ifndef _UI_BRIDGE_MAC_CMD_
 #define _UI_BRIDGE_MAC_CMD_
 
-#include "UIBridgeBase.h"
+#include "Common/UIBridgeBase.h"
 
 class UIBridgeMacCmd: public UIBridgeBase
 {

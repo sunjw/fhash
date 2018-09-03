@@ -9,7 +9,7 @@
 #import "AboutViewController.h"
 
 #include <string>
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #import "MacUtils.h"
 
 using namespace std;

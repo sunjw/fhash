@@ -11,11 +11,11 @@
 #include <stdint.h>
 #include <pthread.h>
 #include <string>
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "OsUtils/OsThread.h"
-#include "Utils.h"
-#include "Global.h"
-#include "HashEngine.h"
+#include "Common/Utils.h"
+#include "Common/Global.h"
+#include "Common/HashEngine.h"
 
 #import <Cocoa/Cocoa.h>
 #import "MacUtils.h"

@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <string>
 
-#include "strhelper.h"
-#include "Global.h"
-#include "Utils.h"
+#include "Common/strhelper.h"
+#include "Common/Global.h"
+#include "Common/Utils.h"
 
 using namespace std;
 using namespace sunjwbase;
