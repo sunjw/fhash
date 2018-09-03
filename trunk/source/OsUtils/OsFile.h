@@ -9,8 +9,8 @@
 #define _OS_FILE_H_
 
 #include <stdlib.h>
-#include <stdint.h>
 
+#include "WinMFC/stdint.h"
 #include "Common/strhelper.h"
 
 namespace sunjwbase

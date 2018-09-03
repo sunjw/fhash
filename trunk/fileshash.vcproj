@@ -401,7 +401,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\HashEngine.cpp"
+				RelativePath=".\source\Common\HashEngine.cpp"
 				>
 			</File>
 			<File
@@ -421,7 +421,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\strhelper.cpp"
+				RelativePath=".\source\Common\strhelper.cpp"
 				>
 			</File>
 			<File
@@ -437,7 +437,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Utils.cpp"
+				RelativePath=".\source\Common\Utils.cpp"
 				>
 			</File>
 			<File
@@ -474,11 +474,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Global.h"
+				RelativePath=".\source\Common\Global.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HashEngine.h"
+				RelativePath=".\source\Common\HashEngine.h"
 				>
 			</File>
 			<File
@@ -506,7 +506,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\strhelper.h"
+				RelativePath=".\source\Common\strhelper.h"
 				>
 			</File>
 			<File
@@ -514,7 +514,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeBase.h"
+				RelativePath=".\source\Common\UIBridgeBase.h"
 				>
 			</File>
 			<File
@@ -530,7 +530,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\Utils.h"
+				RelativePath=".\source\Common\Utils.h"
 				>
 			</File>
 			<File

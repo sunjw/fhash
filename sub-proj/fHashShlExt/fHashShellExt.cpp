@@ -8,7 +8,7 @@
 
 #include "Psapi.h"
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "ShellExtComm.h"
 #include "WindowsStrings.h"
 #include "fHashShlExtStringsBase.h"

@@ -4,16 +4,16 @@
 
 #include <string>
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 #include "FilesHash.h"
 #include "FilesHashDlg.h"
 #include "FindDlg.h"
 #include "AboutDlg.h"
-#include "Global.h"
-#include "Utils.h"
+#include "Common/Global.h"
+#include "Common/Utils.h"
+#include "Common/HashEngine.h"
 #include "WindowsUtils.h"
-#include "HashEngine.h"
 #include "UIBridgeMFC.h"
 #include "WindowsStrings.h"
 

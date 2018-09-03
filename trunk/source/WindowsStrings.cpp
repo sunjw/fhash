@@ -6,7 +6,7 @@
 #include <tchar.h>
 #include <memory>
 #include "OsUtils/OsThread.h"
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "WindowsStringsInternal.h"
 
 using namespace std;

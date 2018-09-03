@@ -14,7 +14,12 @@
 #ifndef ___CRC32_H___
 #define ___CRC32_H___
 
+#include <stdlib.h>
+#if defined (WIN32)
+#include "WinMFC/stdint.h"
+#else
 #include <stdint.h>
+#endif
 
 void crc32Init(uint32_t *pCrc32);
 void crc32Update(uint32_t *pCrc32, unsigned char *pData, uint32_t uSize);

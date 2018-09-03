@@ -497,7 +497,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\strhelper.cpp"
+				RelativePath="..\..\trunk\source\Common\strhelper.cpp"
 				>
 			</File>
 			<File
@@ -543,7 +543,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\strhelper.h"
+				RelativePath="..\..\trunk\source\Common\strhelper.h"
 				>
 			</File>
 			<File

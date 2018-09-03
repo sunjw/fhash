@@ -2,7 +2,7 @@
 //
 #include "stdafx.h"
 #include "HyperEditHash.h"
-#include "Global.h"
+#include "Common/Global.h"
 
 // CHyperEditHash
 

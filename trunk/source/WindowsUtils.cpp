@@ -7,8 +7,8 @@
 
 #include <atlbase.h>
 
-#include "strhelper.h"
-#include "Utils.h"
+#include "Common/strhelper.h"
+#include "Common/Utils.h"
 #include "WindowsStrings.h"
 #include "ShellExtComm.h"
 

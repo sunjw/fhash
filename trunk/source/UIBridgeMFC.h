@@ -1,13 +1,13 @@
 #ifndef _UI_BRIDGE_MFC_
 #define _UI_BRIDGE_MFC_
 
-#include "UIBridgeBase.h"
+#include "Common/UIBridgeBase.h"
 
 #include <Windows.h>
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "OsUtils/OsThread.h"
-#include "Global.h"
+#include "Common/Global.h"
 #include "HyperEditHash.h"
 
 class UIBridgeMFC: public UIBridgeBase
