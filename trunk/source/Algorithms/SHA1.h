@@ -18,7 +18,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#if defined (WIN32)
+#include "WinMFC/stdint.h"
+#else
 #include <stdint.h>
+#endif
 
 #define LITTLE_ENDIAN
 #define MAX_FILE_READ_BUFFER 8000

@@ -4,7 +4,7 @@
 #include <tchar.h>
 #include <Windows.h>
 #include <map>
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 #define GetStringByKey(key) WindowsStrings::GetStringByStringKey(_T( #key ))
 

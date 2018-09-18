@@ -66,7 +66,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
 				Culture="2052"
-				AdditionalIncludeDirectories="$(IntDir)"
+				AdditionalIncludeDirectories="&quot;$(IntDir)&quot;;&quot;$(ProjectDir)\source\&quot;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -86,7 +86,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
+				AdditionalManifestFiles="$(InputDir)\source\WinMFC\res\compatibility.manifest"
 				EmbedManifest="true"
 			/>
 			<Tool
@@ -153,7 +153,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
 				Culture="2052"
-				AdditionalIncludeDirectories="$(IntDir)"
+				AdditionalIncludeDirectories="&quot;$(IntDir)&quot;;&quot;$(ProjectDir)\source\&quot;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -174,7 +174,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
+				AdditionalManifestFiles="$(InputDir)\source\WinMFC\res\compatibility.manifest"
 				EmbedManifest="true"
 			/>
 			<Tool
@@ -243,7 +243,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="2052"
-				AdditionalIncludeDirectories="$(IntDir)"
+				AdditionalIncludeDirectories="&quot;$(IntDir)&quot;;&quot;$(ProjectDir)\source\&quot;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -266,7 +266,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
+				AdditionalManifestFiles="$(InputDir)\source\WinMFC\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -335,7 +335,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="2052"
-				AdditionalIncludeDirectories="$(IntDir)"
+				AdditionalIncludeDirectories="&quot;$(IntDir)&quot;;&quot;$(ProjectDir)\source\&quot;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -358,7 +358,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
-				AdditionalManifestFiles="$(InputDir)\source\res\compatibility.manifest"
+				AdditionalManifestFiles="$(InputDir)\source\WinMFC\res\compatibility.manifest"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -385,35 +385,31 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm"
 			>
 			<File
-				RelativePath="source\AboutDlg.cpp"
+				RelativePath=".\source\WinMFC\AboutDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHash.cpp"
+				RelativePath=".\source\WinMFC\FilesHash.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHashDlg.cpp"
+				RelativePath=".\source\WinMFC\FilesHashDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FindDlg.cpp"
+				RelativePath=".\source\WinMFC\FindDlg.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HashEngine.cpp"
+				RelativePath=".\source\WinMFC\HyperEdit.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEdit.cpp"
+				RelativePath=".\source\WinMFC\HyperEditHash.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HyperEditHash.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\source\ShellExtComm.cpp"
+				RelativePath=".\source\WinMFC\ShellExtComm.cpp"
 				>
 			</File>
 			<File
@@ -421,35 +417,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\strhelper.cpp"
+				RelativePath=".\source\WinMFC\UIBridgeMFC.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeMFC.cpp"
+				RelativePath=".\source\WinMFC\UIStringsBase.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsBase.cpp"
+				RelativePath=".\source\WinMFC\UIStringsZHCN.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsZHCN.cpp"
+				RelativePath=".\source\WinMFC\WindowsStrings.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\Utils.cpp"
+				RelativePath=".\source\WinMFC\WindowsStringsInternal.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStrings.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\source\WindowsStringsInternal.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\source\WindowsUtils.cpp"
+				RelativePath=".\source\WinMFC\WindowsUtils.cpp"
 				>
 			</File>
 		</Filter>
@@ -458,35 +446,27 @@
 			Filter="h;hpp;hxx;hm;inl;inc"
 			>
 			<File
-				RelativePath="source\AboutDlg.h"
+				RelativePath=".\source\WinMFC\AboutDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHash.h"
+				RelativePath=".\source\WinMFC\FilesHash.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FilesHashDlg.h"
+				RelativePath=".\source\WinMFC\FilesHashDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\FindDlg.h"
+				RelativePath=".\source\WinMFC\FindDlg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\Global.h"
+				RelativePath=".\source\WinMFC\HyperEdit.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\HashEngine.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\HyperEdit.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\HyperEditHash.h"
+				RelativePath=".\source\WinMFC\HyperEditHash.h"
 				>
 			</File>
 			<File
@@ -494,7 +474,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\ShellExtComm.h"
+				RelativePath=".\source\WinMFC\ShellExtComm.h"
 				>
 			</File>
 			<File
@@ -502,11 +482,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\stdint.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\strhelper.h"
+				RelativePath=".\source\WinMFC\stdint.h"
 				>
 			</File>
 			<File
@@ -514,23 +490,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeBase.h"
+				RelativePath=".\source\WinMFC\UIBridgeMFC.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIBridgeMFC.h"
+				RelativePath=".\source\WinMFC\UIStringsBase.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\UIStringsBase.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\UIStringsZHCN.h"
-				>
-			</File>
-			<File
-				RelativePath=".\source\Utils.h"
+				RelativePath=".\source\WinMFC\UIStringsZHCN.h"
 				>
 			</File>
 			<File
@@ -538,15 +506,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStrings.h"
+				RelativePath=".\source\WinMFC\WindowsStrings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsStringsInternal.h"
+				RelativePath=".\source\WinMFC\WindowsStringsInternal.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WindowsUtils.h"
+				RelativePath=".\source\WinMFC\WindowsUtils.h"
 				>
 			</File>
 		</Filter>
@@ -555,19 +523,19 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest"
 			>
 			<File
-				RelativePath=".\source\res\compatibility.manifest"
+				RelativePath=".\source\WinMFC\res\compatibility.manifest"
 				>
 			</File>
 			<File
-				RelativePath="source\fileshash.rc"
+				RelativePath="source\WinMFC\fileshash.rc"
 				>
 			</File>
 			<File
-				RelativePath="source\res\fileshash.rc2"
+				RelativePath="source\WinMFC\res\fileshash.rc2"
 				>
 			</File>
 			<File
-				RelativePath="source\res\icon1.ico"
+				RelativePath="source\WinMFC\res\icon1.ico"
 				>
 			</File>
 		</Filter>
@@ -627,6 +595,42 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath=".\source\Common\Global.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\HashEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\HashEngine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\strhelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\strhelper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\UIBridgeBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\Utils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\source\Common\Utils.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\ChangeLog.txt"
 			>
@@ -635,7 +639,7 @@
 	<Globals>
 		<Global
 			Name="RESOURCE_FILE"
-			Value="source\fileshash.rc"
+			Value="source\WinMFC\fileshash.rc"
 		/>
 	</Globals>
 </VisualStudioProject>

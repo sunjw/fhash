@@ -457,7 +457,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\ShellExtComm.cpp"
+				RelativePath="..\..\trunk\source\WinMFC\ShellExtComm.cpp"
 				>
 			</File>
 			<File
@@ -497,15 +497,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\strhelper.cpp"
+				RelativePath="..\..\trunk\source\WinMFC\WindowsStrings.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WindowsStrings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\trunk\source\WindowsStringsInternal.cpp"
+				RelativePath="..\..\trunk\source\WinMFC\WindowsStringsInternal.cpp"
 				>
 			</File>
 		</Filter>
@@ -535,7 +531,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\ShellExtComm.h"
+				RelativePath="..\..\trunk\source\WinMFC\ShellExtComm.h"
 				>
 			</File>
 			<File
@@ -543,19 +539,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\strhelper.h"
-				>
-			</File>
-			<File
 				RelativePath=".\targetver.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WindowsStrings.h"
+				RelativePath="..\..\trunk\source\WinMFC\WindowsStrings.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WindowsStringsInternal.h"
+				RelativePath="..\..\trunk\source\WinMFC\WindowsStringsInternal.h"
 				>
 			</File>
 		</Filter>
@@ -635,6 +627,18 @@
 			</File>
 			<File
 				RelativePath="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Common"
+			>
+			<File
+				RelativePath="..\..\trunk\source\Common\strhelper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\trunk\source\Common\strhelper.h"
 				>
 			</File>
 		</Filter>

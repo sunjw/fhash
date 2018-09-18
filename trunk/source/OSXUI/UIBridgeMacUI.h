@@ -2,7 +2,7 @@
 #define _UI_BRIDGE_MAC_UI_
 
 #include "OsUtils/OsThread.h"
-#include "UIBridgeBase.h"
+#include "Common/UIBridgeBase.h"
 
 #import "MacUtils.h"
 #import "MainViewController.h"

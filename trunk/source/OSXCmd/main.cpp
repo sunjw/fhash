@@ -12,12 +12,12 @@
 #include <sys/time.h>
 #include <string>
 
-#include "Global.h"
+#include "Common/Global.h"
 #include "version.h"
-#include "OsThread.h"
-#include "strhelper.h"
-#include "Utils.h"
-#include "HashEngine.h"
+#include "Common/strhelper.h"
+#include "Common/Utils.h"
+#include "Common/HashEngine.h"
+#include "OsUtils/OsThread.h"
 #include "UIBridgeMacCmd.h"
 
 using namespace std;

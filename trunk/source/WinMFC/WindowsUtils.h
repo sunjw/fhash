@@ -1,13 +1,13 @@
 #ifndef _WINDOWS_UTILS_H_
 #define _WINDOWS_UTILS_H_
 
-#include <stdint.h>
 #include <string>
 #include <Windows.h>
 #include <atlbase.h>
 
-#include "strhelper.h"
-#include "Global.h"
+#include "WinMFC/stdint.h"
+#include "Common/strhelper.h"
+#include "Common/Global.h"
 
 namespace WindowsUtils
 {

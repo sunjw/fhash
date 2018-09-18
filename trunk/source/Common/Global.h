@@ -1,7 +1,11 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#if defined (WIN32)
+#include "WinMFC/stdint.h"
+#else
 #include <stdint.h>
+#endif
 
 #include <vector>
 #include <list>
@@ -30,7 +34,7 @@
 
 #endif
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 class UIBridgeBase;
 

@@ -52,7 +52,12 @@
 #ifndef ___MD5_H___
 #define ___MD5_H___
 
+#include <stdlib.h>
+#if defined (WIN32)
+#include "WinMFC/stdint.h"
+#else
 #include <stdint.h>
+#endif
 
 /* Typedef a 32 bit type */
 typedef uint32_t UINT4;

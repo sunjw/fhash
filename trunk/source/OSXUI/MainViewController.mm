@@ -11,11 +11,11 @@
 #include <stdint.h>
 #include <pthread.h>
 #include <string>
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "OsUtils/OsThread.h"
-#include "Utils.h"
-#include "Global.h"
-#include "HashEngine.h"
+#include "Common/Utils.h"
+#include "Common/Global.h"
+#include "Common/HashEngine.h"
 
 #import <Cocoa/Cocoa.h>
 #import "MacUtils.h"
@@ -137,7 +137,7 @@ enum MainViewControllerState {
     
     // Set some text in text field.
     self.mainTextView.delegate = self;
-    [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 4.0)];
+    [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 0)];
     
     self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
     if (self.mainFont == nil) {
@@ -173,6 +173,8 @@ enum MainViewControllerState {
     [[self.mainTextView textContainer] setWidthTracksTextView:NO];
     
     // Set progressbar.
+    NSRect mainProgIndiFrame = [self.mainProgressIndicator frame];
+    [self.mainProgressIndicator setFrameSize:NSMakeSize(mainProgIndiFrame.size.width, 2)];
     [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
     
     // Set checkbox.
@@ -356,6 +358,10 @@ enum MainViewControllerState {
 
     [_mainText addAttribute:NSFontAttributeName
                       value:self.mainFont
+                      range:NSMakeRange(0, [_mainText length])];
+
+    [_mainText addAttribute:NSForegroundColorAttributeName
+                      value:[NSColor textColor]
                       range:NSMakeRange(0, [_mainText length])];
 
     if (self.needParaFix) {

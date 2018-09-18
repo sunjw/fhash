@@ -12,11 +12,11 @@
 #include <sys/stat.h>
 #endif
 
-#include "strhelper.h"
-#include "UIBridgeBase.h"
+#include "Common/strhelper.h"
+#include "Common/UIBridgeBase.h"
 
 #if defined (WIN32)
-#include "WindowsUtils.h"
+#include "WinMFC/WindowsUtils.h"
 #endif
 
 #include "OsUtils/OsFile.h"

@@ -7,7 +7,7 @@
 #include <string>
 #include <list>
 #include <shlobj.h>
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 typedef std::list<sunjwbase::tstring> TstrList;
 

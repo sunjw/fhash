@@ -7,9 +7,9 @@
 #include <string>
 #include <Windows.h>
 
-#include "strhelper.h"
-#include "Global.h"
-#include "Utils.h"
+#include "Common/strhelper.h"
+#include "Common/Global.h"
+#include "Common/Utils.h"
 #include "WindowsUtils.h"
 #include "WindowsStrings.h"
 

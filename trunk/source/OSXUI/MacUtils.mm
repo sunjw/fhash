@@ -8,9 +8,9 @@
 #import "MacUtils.h"
 
 #include <string>
-#include "strhelper.h"
-#include "Utils.h"
-#include "Global.h"
+#include "Common/strhelper.h"
+#include "Common/Utils.h"
+#include "Common/Global.h"
 
 #import <Foundation/Foundation.h>
 

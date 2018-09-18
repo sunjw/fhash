@@ -10,8 +10,8 @@
 #define _MAC_UTILS_H_
 
 #include <string>
-#include "strhelper.h"
-#include "Global.h"
+#include "Common/strhelper.h"
+#include "Common/Global.h"
 
 #import <Foundation/Foundation.h>
 

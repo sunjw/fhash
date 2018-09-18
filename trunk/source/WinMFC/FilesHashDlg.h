@@ -7,10 +7,10 @@
 
 #include "HyperEditHash.h"
 
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "OsUtils/OsThread.h"
 
-#include "Global.h"
+#include "Common/Global.h"
 #include "UIBridgeMFC.h"
 
 // CMD5SUM03Dlg ¶Ô»°¿ò

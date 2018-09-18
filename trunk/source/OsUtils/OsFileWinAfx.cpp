@@ -10,12 +10,12 @@
 #include "OsFile.h"
 
 #include <stdlib.h>
-#include <stdint.h>
 
 #include "Windows.h"
 #include "afx.h"
 
-#include "strhelper.h"
+#include "WinMFC/stdint.h"
+#include "Common/strhelper.h"
 
 using namespace std;
 using namespace sunjwbase;

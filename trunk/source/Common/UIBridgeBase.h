@@ -1,7 +1,7 @@
 #ifndef _UI_BRIDGE_BASE_H_
 #define _UI_BRIDGE_BASE_H_
 
-#include "Global.h"
+#include "Common/Global.h"
 
 class UIBridgeBase
 {

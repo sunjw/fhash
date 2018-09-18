@@ -4,10 +4,10 @@
 #include <string>
 #include <dispatch/dispatch.h>
 
-#include "strhelper.h"
-#include "Utils.h"
+#include "Common/strhelper.h"
+#include "Common/Utils.h"
 #include "MacUtils.h"
-#include "Global.h"
+#include "Common/Global.h"
 
 #import "ESSProgressIndicator.h"
 #import "MainViewController.h"
