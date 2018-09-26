@@ -160,13 +160,11 @@ void UIBridgeMacUI::updateProg(int value)
 
 void UIBridgeMacUI::updateProgWhole(int value)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    int oldValue = (int)[mainViewController.mainProgressIndicator doubleValue];
-    
-    if (value == oldValue)
-        return;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        int oldValue = (int)mainViewController.mainProgressIndicator.toValue;
+        if (value == oldValue)
+            return;
         [mainViewController.mainProgressIndicator animateToDoubleValue:(double)value];
     });
 }

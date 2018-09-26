@@ -12,7 +12,8 @@
 
 @interface ESSProgressIndicator : NSProgressIndicator
 
-- (BOOL)isAnimateDisabled;
+@property (assign) double toValue;
+@property (assign) BOOL animateDisabled;
 
 - (void)jumpToDoubleValue:(double)val;
 

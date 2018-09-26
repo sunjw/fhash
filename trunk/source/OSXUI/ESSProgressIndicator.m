@@ -45,39 +45,52 @@
 	[super setCurrentProgress:currentProgress];
 	
 	double delta = self.newValue - self.progInd.doubleValue;
-    if (![self.progInd isAnimateDisabled] &&
+
+    if (!self.progInd.animateDisabled &&
         (delta * (self.newValue - self.initValue)) > 0) {
-        self.progInd.doubleValue = self.progInd.doubleValue + (delta * currentProgress);
+        double newDoubleValue = self.progInd.doubleValue + (delta * self.currentValue);
+        self.progInd.doubleValue = newDoubleValue;
     }
 }
 
 @end
 
-@interface ESSProgressIndicator ()
 
-@property (assign) BOOL animateDisabled;
+static ESSProgressBarAnimation *sAnim = nil;
+
+@interface ESSProgressIndicator ()
 
 @end
 
 @implementation ESSProgressIndicator
 
-- (BOOL)isAnimateDisabled
+- (void)cleanOldAnimation
 {
-    return self.animateDisabled;
+    if (sAnim != nil) {
+        double oldToValue = sAnim.newValue;
+        [sAnim stopAnimation];
+        sAnim = nil;
+        self.doubleValue = oldToValue;
+    }
+
 }
 
 - (void)jumpToDoubleValue:(double)val
 {
+    [self cleanOldAnimation];
     self.animateDisabled = YES;
-    [super setDoubleValue:val];
+    self.toValue = val;
+    [super setDoubleValue:self.toValue];
 }
 
 - (void)animateToDoubleValue:(double)val
 {
+    [self cleanOldAnimation];
     self.animateDisabled = NO;
-    ESSProgressBarAnimation *anim = [[ESSProgressBarAnimation alloc] initWithProgressBar:self
-                                                                          newDoubleValue:val];
-    [anim startAnimation];
+    self.toValue = val;
+    sAnim = [[ESSProgressBarAnimation alloc] initWithProgressBar:self
+                                                  newDoubleValue:self.toValue];
+    [sAnim startAnimation];
 }
 
 @end
