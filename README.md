@@ -3,7 +3,7 @@
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support multiple files.
- * Support 10.10 and later macOS.
+ * Support 10.12 and later macOS, support Mojave Dark Mode.
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
