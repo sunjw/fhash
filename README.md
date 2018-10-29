@@ -11,7 +11,7 @@ Thanks for Trend Micro Mobile Club's support.
    
 Project site: https://github.com/sunjw/fhash
 
-Current version: 2.1.3
+Current version: 2.1.9
 
 #### INSTALL
 [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.1.9/)
