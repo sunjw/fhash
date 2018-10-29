@@ -145,3 +145,9 @@
 2.1.3.0 2017-05-19
 	修复 Windows 高 DPI 显示
 	修复一些小 bug
+
+2.1.9.0 2018-09-26
+	文件浏览器右键菜单使用已经启动的 fHash 实例
+	更新 VirusTotal 链接
+	macOS 支持 10.14 Dark Mode
+	修复一些小 bug
