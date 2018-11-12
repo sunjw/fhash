@@ -25,8 +25,9 @@ May use other licenses for binary package on other distribution sites.
 Sun Junwen sunjw8888 at gmail.com
 
 #### SCREENSHOT
+![Image of light and dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_new_progress_joint.png)   
 ![Image of UI](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_ui.jpg)   
 ![Image of about](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_about.jpg)   
 ![Image of context menu item](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_context_menu_item.jpg)   
-![Image of calc one start](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_calc_one_start.jpg)   
-![Image of calc multi finish](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_calc_multi_finish.jpg)   
+![Image of calc in light mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_new_progress_light.png)   
+![Image of calc in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_new_progress_dark.png)   
