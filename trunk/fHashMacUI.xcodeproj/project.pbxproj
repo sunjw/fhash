@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
-		418F62871BE9C8D6007337CF /* fHash.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 418F62861BE9C8D6007337CF /* fHash.entitlements */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
@@ -271,10 +270,9 @@
 			};
 			buildConfigurationList = 52751B0B1B56276F00BD724B /* Build configuration list for PBXProject "fHashMacUI" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -298,7 +296,6 @@
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
 				4198A5371B58D3C40050C831 /* Main.storyboard in Resources */,
-				418F62871BE9C8D6007337CF /* fHash.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -201,11 +201,11 @@
 			};
 			buildConfigurationList = 410AB7FF1AFE38A2001A10F9 /* Build configuration list for PBXProject "fHashCmd" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 410AB7FB1AFE38A2001A10F9;
 			productRefGroup = 410AB8051AFE38A2001A10F9 /* Products */;
