@@ -332,7 +332,7 @@ enum MainViewControllerState {
     
     [openPanel beginSheetModalForWindow:self.view.window completionHandler:
      ^(NSInteger result) {
-         if (result == NSFileHandlingPanelOKButton) {
+         if (result == NSModalResponseOK) {
              NSArray* fileNames = [openPanel URLs];
              [self startHashCalc:fileNames isURL:YES];
          }
