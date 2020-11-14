@@ -9,9 +9,11 @@
 The icon "希" is from hash in Chinese "哈希".   
 Thanks for Trend Micro Mobile Club's support.   
    
+Current version: 2.1.9
+
 Project site: https://github.com/sunjw/fhash
 
-Current version: 2.1.9
+<a href="https://ko-fi.com/Y8Y72L3FZ"><img src="https://cdn.ko-fi.com/cdn/kofi4.png?v=2" alt="Buy Me a Coffee at ko-fi.com" height="36"></a>
 
 #### DOWNLOAD
 Windows   
