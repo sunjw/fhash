@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHash", "fileshash.vcproj", "{6644A084-A7A3-40C1-9DDD-3312944FED03}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHash", "fileshash.vcxproj", "{6644A084-A7A3-40C1-9DDD-3312944FED03}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashShlExt", "..\sub-proj\fHashShlExt\fHashShlExt.vcproj", "{853488C2-0156-427B-BD20-FD6ECF3782EC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashShlExt", "..\sub-proj\fHashShlExt\fHashShlExt.vcxproj", "{853488C2-0156-427B-BD20-FD6ECF3782EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +33,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72E6341A-3B10-4A2C-82E8-8390AE16CAC6}
 	EndGlobalSection
 EndGlobal
