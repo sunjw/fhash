@@ -5,6 +5,8 @@
 
 #pragma once
 
+#define _AFX_NO_MFC_CONTROLS_IN_DIALOGS
+
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1
 #endif
