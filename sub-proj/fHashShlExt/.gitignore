@@ -360,3 +360,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+fHashShlExt_i.c
+fHashShlExt_i.h
+fHashShlExt_p.c
