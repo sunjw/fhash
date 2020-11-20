@@ -44,9 +44,6 @@ enum MainViewControllerState {
 
 @property (nonatomic, strong) NSFont *mainFont;
 
-@property (nonatomic, strong) NSMutableParagraphStyle *mainParaStyle;
-@property (assign) BOOL needParaFix;
-
 @property (nonatomic, strong) NSString *selectedLink;
 
 @property (assign) UIBridgeMacUI *uiBridgeMac;
@@ -144,23 +141,7 @@ enum MainViewControllerState {
         self.mainFont = self.mainTextView.font;
     }
 
-    self.mainParaStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [self.mainParaStyle setLineSpacing:self.mainTextView.defaultParagraphStyle.lineSpacing + (float)4];
-
     [self.mainTextView setFont:self.mainFont];
-
-    self.needParaFix = NO;
-    NSString *prefLanguage = MacUtils::GetSystemPreferredLanguage();
-    if ([prefLanguage hasPrefix:@"zh"] &&
-        MacUtils::IsSystemEarlierThan10_11()) {
-        // Below 10.11, Chinese fonts is not good.
-        // Make a little tweak.
-        self.needParaFix = YES;
-    }
-
-    if (self.needParaFix) {
-        [self.mainTextView setDefaultParagraphStyle:self.mainParaStyle];
-    }
     
     [self.mainTextView setUsesFindBar:YES];
     
@@ -332,7 +313,7 @@ enum MainViewControllerState {
     
     [openPanel beginSheetModalForWindow:self.view.window completionHandler:
      ^(NSInteger result) {
-         if (result == NSFileHandlingPanelOKButton) {
+         if (result == NSModalResponseOK) {
              NSArray* fileNames = [openPanel URLs];
              [self startHashCalc:fileNames isURL:YES];
          }
@@ -363,12 +344,6 @@ enum MainViewControllerState {
     [_mainText addAttribute:NSForegroundColorAttributeName
                       value:[NSColor textColor]
                       range:NSMakeRange(0, [_mainText length])];
-
-    if (self.needParaFix) {
-        [_mainText addAttribute:NSParagraphStyleAttributeName
-                          value:self.mainParaStyle
-                          range:NSMakeRange(0, [_mainText length])];
-    }
 
     [_mainText endEditing];
 

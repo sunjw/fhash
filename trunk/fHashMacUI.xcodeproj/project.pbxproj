@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
-		418F62871BE9C8D6007337CF /* fHash.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 418F62861BE9C8D6007337CF /* fHash.entitlements */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
@@ -256,7 +255,7 @@
 		52751B081B56276F00BD724B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Sun Junwen";
 				TargetAttributes = {
 					52751B0F1B56276F00BD724B = {
@@ -271,7 +270,7 @@
 			};
 			buildConfigurationList = 52751B0B1B56276F00BD724B /* Build configuration list for PBXProject "fHashMacUI" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -297,7 +296,6 @@
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
 				4198A5371B58D3C40050C831 /* Main.storyboard in Resources */,
-				418F62871BE9C8D6007337CF /* fHash.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +391,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -417,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -447,6 +446,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -465,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -476,11 +476,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/source";
 				INFOPLIST_FILE = "$(SRCROOT)/source/OSXUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "-DFHASH_OSX_UI";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
@@ -493,11 +494,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/source";
 				INFOPLIST_FILE = "$(SRCROOT)/source/OSXUI/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CFLAGS = "-DFHASH_OSX_UI";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
