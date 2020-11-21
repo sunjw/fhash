@@ -1,16 +1,6 @@
 *~
 *.DS_Store
 
-trunk/fHashCmd.xcodeproj/xcuserdata/*
-trunk/fHashCmd.xcodeproj/project.xcworkspace/xcuserdata/*
-trunk/fHashCmd.xcodeproj/project.xcworkspace/xcshareddata/*
-trunk/fHashMacUI.xcodeproj/xcuserdata/*
-trunk/fHashMacUI.xcodeproj/project.xcworkspace/xcuserdata/*
-trunk/fHashMacUI.xcodeproj/project.xcworkspace/xcshareddata/*
-trunk/fHash.xcworkspace/xcshareddata/*
-trunk/fHash.xcworkspace/xcuserdata/*
-trunk/DerivedData/*
-
 *.old
 *.suo
 *.user
