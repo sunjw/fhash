@@ -387,3 +387,7 @@ DerivedData/
 
 ## Gcc Patch
 /*.gcno
+
+*.old
+*.suo
+*.user
