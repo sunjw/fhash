@@ -41,7 +41,6 @@ void CFilesHashDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_OPEN, m_btnOpen);
 	DDX_Control(pDX, IDC_EXIT, m_btnExit);
 	DDX_Control(pDX, IDC_CLEAN, m_btnClr);
-	DDX_Control(pDX, IDC_COPY, m_btnCopy);
 	DDX_Control(pDX, IDC_CHECKUP, m_chkUppercase);
 	DDX_Control(pDX, IDC_FIND, m_btnFind);
 	DDX_Control(pDX, IDC_CONTEXT, m_btnContext);
@@ -55,7 +54,6 @@ BEGIN_MESSAGE_MAP(CFilesHashDlg, CDialog)
 	ON_BN_CLICKED(IDC_EXIT, OnBnClickedExit)
 	ON_BN_CLICKED(IDC_ABOUT, OnBnClickedAbout)
 	ON_BN_CLICKED(IDC_CLEAN, OnBnClickedClean)
-	ON_BN_CLICKED(IDC_COPY, OnBnClickedCopy)
 	ON_BN_CLICKED(IDC_FIND, &CFilesHashDlg::OnBnClickedFind)
 	ON_BN_CLICKED(IDC_CONTEXT, &CFilesHashDlg::OnBnClickedContext)
 	ON_BN_CLICKED(IDC_CHECKUP, &CFilesHashDlg::OnBnClickedCheckup)
@@ -114,7 +112,6 @@ BOOL CFilesHashDlg::OnInitDialog()
 	pWnd->SetWindowText(GetStringByKey(MAINDLG_TIME_TITLE));
 
 	m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_OPEN));
-	m_btnCopy.SetWindowText(GetStringByKey(MAINDLG_COPY));
 	m_btnFind.SetWindowText(GetStringByKey(MAINDLG_VERIFY));
 	m_btnExit.SetWindowText(GetStringByKey(MAINDLG_EXIT));
 	pWnd = GetDlgItem(IDC_ABOUT);
@@ -414,16 +411,6 @@ void CFilesHashDlg::OnBnClickedClean()
 	}
 }
 
-void CFilesHashDlg::OnBnClickedCopy()
-{
-	if(!m_thrdData.threadWorking)
-	{
-		CString cstrMain;
-		m_editMain.GetWindowText(cstrMain);
-		WindowsUtils::CopyCString(cstrMain);
-	}
-}
-
 void CFilesHashDlg::OnBnClickedFind()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -626,7 +613,6 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 		m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_STOP));
 
 		m_btnClr.EnableWindow(FALSE);
-		m_btnCopy.EnableWindow(FALSE);
 		m_btnFind.EnableWindow(FALSE);
 		m_btnContext.EnableWindow(FALSE);
 		m_chkUppercase.EnableWindow(FALSE);
@@ -639,7 +625,6 @@ void CFilesHashDlg::SetCtrls(BOOL working)
 		m_btnOpen.SetWindowText(GetStringByKey(MAINDLG_OPEN));
 
 		m_btnClr.EnableWindow(TRUE);
-		m_btnCopy.EnableWindow(TRUE);
 		m_btnFind.EnableWindow(TRUE);
 		if(m_bLimited)
 		{

@@ -35,7 +35,6 @@ public:
 	afx_msg void OnBnClickedExit();
 	afx_msg void OnBnClickedAbout();
 	afx_msg void OnBnClickedClean();
-	afx_msg void OnBnClickedCopy();
 	afx_msg void OnBnClickedFind();
 	afx_msg void OnBnClickedContext();
 	afx_msg void OnBnClickedCheckup();
@@ -64,7 +63,6 @@ protected:
 	CButton m_btnOpen;
 	CButton m_btnExit;
 	CButton m_btnClr;
-	CButton m_btnCopy;
 	CButton m_btnFind;
 	CButton m_chkUppercase;
 	CButton m_btnContext;

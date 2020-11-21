@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (P.R.C.) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -66,6 +64,7 @@ END
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "res\\icon1.ico"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
@@ -79,7 +78,6 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "BUTTON_OPEN",IDC_OPEN,276,144,50,16
     PUSHBUTTON      "BUTTON_CLEAN",IDC_CLEAN,222,164,50,16
-    PUSHBUTTON      "BUTTON_COPY",IDC_COPY,168,164,50,16
     CONTROL         "",IDC_CHECKUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,168,11,10
     PUSHBUTTON      "BUTTON_ABOUT'",IDC_ABOUT,7,190,48,16
     PUSHBUTTON      "BUTTON_EXIT",IDC_EXIT,276,190,50,16
@@ -125,7 +123,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MAIN_DIALOG, DIALOG
     BEGIN
@@ -159,7 +157,7 @@ END
 // Menu
 //
 
-IDR_MENU_HYPEREDIT MENU 
+IDR_MENU_HYPEREDIT MENU
 BEGIN
     POPUP "HyperEditMenu"
     BEGIN
@@ -170,7 +168,18 @@ BEGIN
     END
 END
 
-#endif    // Chinese (P.R.C.) resources
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_MAIN_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
