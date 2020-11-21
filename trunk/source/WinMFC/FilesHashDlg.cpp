@@ -402,8 +402,12 @@ void CFilesHashDlg::OnBnClickedClean()
 		}
 		else if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
-			m_bFind = FALSE; // 退出搜索模式
+			// 退出搜索模式
+			m_bFind = FALSE;
 			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
+
+			m_btnFind.EnableWindow(TRUE);
+			m_btnOpen.EnableWindow(TRUE);
 
 			RefreshResult();
 			RefreshMainText();
@@ -428,6 +432,9 @@ void CFilesHashDlg::OnBnClickedFind()
 			ResultFind(m_strFindFile, m_strFindHash);
 			m_editMain.ShowTextBuffer();
 			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+
+			m_btnFind.EnableWindow(FALSE);
+			m_btnOpen.EnableWindow(FALSE);
 		}
 	}
 }
