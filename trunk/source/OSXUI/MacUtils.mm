@@ -73,6 +73,10 @@ namespace MacUtils {
         return IsSystemEarlierThan(10, 11);
     }
 
+    bool IsSystem10_14() {
+        return IsSystemEqual(10, 14);
+    }
+
     bool IsSystem10_15() {
         return IsSystemEqual(10, 15);
     }

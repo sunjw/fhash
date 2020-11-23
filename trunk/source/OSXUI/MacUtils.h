@@ -87,6 +87,11 @@ namespace MacUtils {
     bool IsSystemEarlierThan10_11();
 
     /**
+     * System version is 10.14.
+     */
+    bool IsSystem10_14();
+
+    /**
      * System version is 10.15.
      */
     bool IsSystem10_15();
