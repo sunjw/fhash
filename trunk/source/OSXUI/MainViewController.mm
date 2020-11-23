@@ -90,64 +90,64 @@ enum MainViewControllerState {
 
     // Do any additional setup after loading the view.
     fHashMacAppDelegate *fHashDelegate = (fHashMacAppDelegate *)[NSApp delegate];
-    
+
     // Initiate.
     fHashDelegate.mainViewController = self;
     
     MainView *mainView = (MainView *)self.view;
     mainView.mainViewController = self;
-    
+
     // Register NSUserDefaults.
     NSDictionary *defaultsDictionary = [NSDictionary
                                         dictionaryWithObjectsAndKeys:
                                         [NSNumber numberWithBool:NO], UPPERCASE_DEFAULT_KEY,
                                         nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsDictionary];
-    
+
     // Load NSUserDefaults.
     BOOL defaultUpperCase = [[NSUserDefaults standardUserDefaults]
                              boolForKey:UPPERCASE_DEFAULT_KEY];
-    
+
     // Alloc c++ member.
     _mainMtx = new OsMutex();
     _uiBridgeMac = new UIBridgeMacUI(self);
     _thrdData = new ThreadData();
-    
+
     [self setViewControllerState:MAINVC_NONE];
-    
+
     _thrdData->uiBridge = _uiBridgeMac;
-    
+
     NSMenu *fileMenu = [self getFileMenu];
     [fileMenu setAutoenablesItems:NO];
-    
+
     // Set buttons title.
     [self.verifyButton
      setTitle:GetNSStringFromResByKey(MAINDLG_VERIFY)];
     [self.upperCaseButton
      setTitle:GetNSStringFromResByKey(MAINDLG_UPPER_HASH)];
-    
+
     // Set open button as default.
     [self.openButton setKeyEquivalent:@"\r"];
-    
+
     // Set scroll view border type.
     self.mainScrollView.borderType = NSNoBorder;
     if (MacUtils::IsSystem10_14() || MacUtils::IsSystem10_15()) {
         self.mainScrollView.automaticallyAdjustsContentInsets = YES;
     }
-    
+
     // Set some text in text field.
     self.mainTextView.delegate = self;
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 0)];
-    
+
     self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
     if (self.mainFont == nil) {
         self.mainFont = self.mainTextView.font;
     }
 
     [self.mainTextView setFont:self.mainFont];
-    
+
     [self.mainTextView setUsesFindBar:YES];
-    
+
     // Set TextView nowrap.
     [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:YES];
     [self.mainTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
@@ -155,12 +155,12 @@ enum MainViewControllerState {
     [self.mainTextView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
     [[self.mainTextView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     [[self.mainTextView textContainer] setWidthTracksTextView:NO];
-    
+
     // Set progressbar.
     NSRect mainProgIndiFrame = [self.mainProgressIndicator frame];
     [self.mainProgressIndicator setFrameSize:NSMakeSize(mainProgIndiFrame.size.width, 2)];
     [self.mainProgressIndicator setMaxValue:_uiBridgeMac->getProgMax()];
-    
+
     // Set checkbox.
     if (defaultUpperCase) {
         [self.upperCaseButton setState:NSOnState];
@@ -168,7 +168,7 @@ enum MainViewControllerState {
         [self.upperCaseButton setState:NSOffState];
     }
     [self updateUpperCaseState];
-    
+
     // Update main text.
     [self updateMainTextView];
 }
@@ -178,7 +178,7 @@ enum MainViewControllerState {
     BOOL defaultUpperCase = ([self.upperCaseButton state] == NSOnState);
     [[NSUserDefaults standardUserDefaults] setBool:defaultUpperCase
                                             forKey:UPPERCASE_DEFAULT_KEY];
-    
+
     // Close other windows.
     NSArray *windows = [[NSApplication sharedApplication] windows];
     NSInteger windowCount = windows.count;
@@ -206,15 +206,15 @@ enum MainViewControllerState {
             // Clear all.
             _thrdData->threadWorking = false;
             _thrdData->stop = false;
-            
+
             _thrdData->uppercase = false;
             _thrdData->totalSize = 0;
-            
+
             _thrdData->nFiles = 0;
             _thrdData->fullPaths.clear();
-            
+
             _thrdData->resultList.clear();
-            
+
             _mainMtx->lock();
             {
                 _mainText = [[NSMutableAttributedString alloc] init];
@@ -225,19 +225,19 @@ enum MainViewControllerState {
                 MacUtils::AppendNSStringToNSMutableAttributedString(_mainText, nsstrAppend);
             }
             _mainMtx->unlock();
-            
+
             [self.mainProgressIndicator jumpToDoubleValue:0];
             [self.speedTextField setStringValue:@""];
-         
+
             // Passthrough to MAINVC_CALC_FINISH.
         }
         case MAINVC_CALC_FINISH: {
             _calcEndTime = Utils::GetCurrentMilliSec();
-            
+
             // Set controls title.
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
             [openMenuItem setEnabled:YES];
-            
+
             [self.openButton
              setTitle:GetNSStringFromResByKey(MAINDLG_OPEN)];
             [self.clearButton
@@ -245,36 +245,36 @@ enum MainViewControllerState {
             [self.clearButton setEnabled:YES];
             [self.verifyButton setEnabled:YES];
             [self.upperCaseButton setEnabled:YES];
-            
+
         } break;
         case MAINVC_CALC_ING: {
             _calcStartTime = Utils::GetCurrentMilliSec();
-            
+
             _thrdData->stop = false;
-            
+
             NSMenuItem *openMenuItem = [self getOpenMenuItem];
             [openMenuItem setEnabled:NO];
-            
+
             [self.speedTextField setStringValue:@""];
-            
+
             [self.openButton
              setTitle:GetNSStringFromResByKey(MAINDLG_STOP)];
             [self.clearButton setEnabled:NO];
             [self.verifyButton setEnabled:NO];
             [self.upperCaseButton setEnabled:NO];
-            
+
         } break;
         case MAINVC_VERIFY: {
-            
+
         } break;
         case MAINVC_WAITING_EXIT: {
-            
+
         } break;
     }
-    
+
     MainViewControllerState oldState = _state;
     _state = newState;
-    
+
     if (_state == MAINVC_CALC_FINISH &&
         oldState == MAINVC_WAITING_EXIT) {
         // User want to close.
@@ -313,7 +313,7 @@ enum MainViewControllerState {
     openPanel.canCreateDirectories = YES;
     openPanel.allowsMultipleSelection = YES;
     openPanel.allowedFileTypes = nil; // all types
-    
+
     [openPanel beginSheetModalForWindow:self.view.window completionHandler:
      ^(NSInteger result) {
          if (result == NSModalResponseOK) {
@@ -326,7 +326,7 @@ enum MainViewControllerState {
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
-    
+
     [self startHashCalc:fileNames isURL:NO];
 }
 
@@ -353,7 +353,7 @@ enum MainViewControllerState {
     [[self.mainTextView textStorage] setAttributedString:_mainText];
 
     _mainMtx->unlock();
-    
+
     if (!keepScrollPosition) {
         // Scroll to end.
         [self.mainTextView
@@ -368,23 +368,23 @@ enum MainViewControllerState {
 - (void)calculateFinished {
     [self setViewControllerState:MAINVC_CALC_FINISH];
     [self.mainProgressIndicator jumpToDoubleValue:_uiBridgeMac->getProgMax()];
-    
+
     // Show calc speed.
     uint64_t calcDurationTime = _calcEndTime - _calcStartTime;
     if (calcDurationTime > 10) {
         // speed is Bytes/ms
         double calcSpeed = (double)_thrdData->totalSize / calcDurationTime;
         calcSpeed = calcSpeed * 1000; // Bytes/s
-        
+
         string strSpeed;
         strSpeed = Utils::ConvertSizeToShortSizeStr((uint64_t)calcSpeed, true);
         if (strSpeed != "") {
             strSpeed.append("/s");
         }
-        
+
         NSString *nsstrSpeed = MacUtils::ConvertUTF8StringToNSString(strSpeed);
         [self.speedTextField setStringValue:nsstrSpeed];
-        
+
     } else {
         [self.speedTextField setStringValue:@""];
     }
@@ -395,14 +395,14 @@ enum MainViewControllerState {
     //strAppend.append(MacUtils::GetStringFromRes(MAINDLG_CALCU_TERMINAL));
     //strAppend.append("\n\n");
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    
+
     _mainMtx->lock();
     MacUtils::AppendNSStringToNSMutableAttributedString(_mainText, nsstrAppend);
     _mainMtx->unlock();
-    
+
     [self setViewControllerState:MAINVC_CALC_FINISH];
     [self.mainProgressIndicator jumpToDoubleValue:0];
-    
+
     //[self updateMainTextView];
 }
 
@@ -410,19 +410,19 @@ enum MainViewControllerState {
     if (![self ableToCalcFiles]) {
         return;
     }
-    
+
     if (_state == MAINVC_NONE) {
         // Clear up text.
         _mainMtx->lock();
         _mainText = [[NSMutableAttributedString alloc] init];
         _mainMtx->unlock();
     }
-    
+
     // Get files path.
     NSUInteger fileCount = [fileNames count];
     _thrdData->nFiles = (uint32_t)fileCount;
     _thrdData->fullPaths.clear();
-    
+
     for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
         string strFileName;
         if (!isURL) {
@@ -434,16 +434,16 @@ enum MainViewControllerState {
         }
         _thrdData->fullPaths.push_back(strtotstr(strFileName));
     }
-    
+
     // Uppercase.
     [self updateUpperCaseState];
     _thrdData->uppercase = _upperCaseState;
-    
+
     [self.mainProgressIndicator jumpToDoubleValue:0];
-    
+
     // Ready to go.
     [self setViewControllerState:MAINVC_CALC_ING];
-    
+
     pthread_create(&_ptHash,
                    NULL,
                    (void *(*)(void *))HashThreadFunc,
@@ -454,7 +454,7 @@ enum MainViewControllerState {
 - (void)stopHashCalc:(BOOL)needExit {
     if (_state == MAINVC_CALC_ING) {
         _thrdData->stop = true;
-        
+
         if (needExit) {
             [self setViewControllerState:MAINVC_WAITING_EXIT];
         }
@@ -463,11 +463,11 @@ enum MainViewControllerState {
 
 - (void)refreshResultText {
     [self updateUpperCaseState];
-    
+
     _mainMtx->lock();
     {
         _mainText = [[NSMutableAttributedString alloc] init];
-        
+
         ResultList::iterator itr = _thrdData->resultList.begin();
         for(; itr != _thrdData->resultList.end(); ++itr)
         {
@@ -475,7 +475,7 @@ enum MainViewControllerState {
         }
     }
     _mainMtx->unlock();
-    
+
     [self updateMainTextView:YES];
 }
 
@@ -489,7 +489,7 @@ enum MainViewControllerState {
 
 - (IBAction)clearButtonClicked:(NSButton *)sender {
     if (_state == MAINVC_VERIFY) {
-        
+
     } else {
         [self setViewControllerState:MAINVC_NONE];
         [self updateMainTextView];
@@ -535,7 +535,6 @@ enum MainViewControllerState {
 
         [nsmenuHash popUpMenuPositioningItem:nil atLocation:nsptMouseInView inView:self.view];
 
-        
         return YES;
     }
 
