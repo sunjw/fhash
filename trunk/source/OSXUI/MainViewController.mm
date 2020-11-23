@@ -135,6 +135,9 @@ enum MainViewControllerState {
     
     // Set scroll view border type.
     self.mainScrollView.borderType = NSNoBorder;
+    if (MacUtils::IsSystem10_14() || MacUtils::IsSystem10_15()) {
+        self.mainScrollView.automaticallyAdjustsContentInsets = YES;
+    }
     
     // Set some text in text field.
     self.mainTextView.delegate = self;
