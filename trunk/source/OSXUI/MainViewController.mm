@@ -64,7 +64,6 @@ enum MainViewControllerState {
 
 @synthesize mainMtx = _mainMtx;
 @synthesize mainText = _mainText;
-@synthesize mainTextFixed = _mainTextFixed;
 
 @synthesize tag = _tag;
 
@@ -97,10 +96,7 @@ enum MainViewControllerState {
     
     MainView *mainView = (MainView *)self.view;
     mainView.mainViewController = self;
-
-    // Fix for Catalina dark mode.
-    _mainTextFixed = NO;
-
+    
     // Register NSUserDefaults.
     NSDictionary *defaultsDictionary = [NSDictionary
                                         dictionaryWithObjectsAndKeys:
@@ -353,22 +349,6 @@ enum MainViewControllerState {
                       range:NSMakeRange(0, [_mainText length])];
 
     [_mainText endEditing];
-
-    if ((MacUtils::IsSystem10_14() || MacUtils::IsSystem10_15()) &&
-        _mainTextFixed == NO) {
-        string strTempFix = "";
-        for (int i = 0; i < 128; ++i) {
-            strTempFix.append(" ");
-        }
-        NSString *nsstrTempFix = MacUtils::ConvertUTF8StringToNSString(strTempFix);
-        NSString *nsstrReal = [[NSString alloc] initWithString:[_mainText string]];
-        [_mainText.mutableString setString:nsstrTempFix];
-        [[self.mainTextView textStorage] setAttributedString:_mainText];
-
-        [_mainText.mutableString setString:nsstrReal];
-
-        _mainTextFixed = YES;
-    }
 
     [[self.mainTextView textStorage] setAttributedString:_mainText];
 

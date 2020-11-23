@@ -27,7 +27,6 @@
 
 @property (assign) sunjwbase::OsMutex *mainMtx;
 @property (strong) NSMutableAttributedString *mainText;
-@property (assign) BOOL mainTextFixed;
 
 @property (assign) NSUInteger tag;
 
