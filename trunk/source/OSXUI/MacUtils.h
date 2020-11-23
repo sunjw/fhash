@@ -70,6 +70,11 @@ namespace MacUtils {
      * System version is below sepecific version.
      */
     bool IsSystemEarlierThan(int majorVersion, int minorVersion);
+
+    /**
+     * System version is equal to sepecific version.
+     */
+    bool IsSystemEqual(int majorVersion, int minorVersion);
     
     /**
      * System version is ealier than 10.10.
@@ -80,6 +85,11 @@ namespace MacUtils {
      * System version is ealier than 10.11.
      */
     bool IsSystemEarlierThan10_11();
+
+    /**
+     * System version is 10.15.
+     */
+    bool IsSystem10_15();
     
     /**
      * Get system preferred languange full-name.
