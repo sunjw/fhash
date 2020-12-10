@@ -3,13 +3,14 @@
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support multiple files.
- * Support 10.12 and later macOS, support Mojave Dark Mode.
+ * Support Windows 7, 10 or later.
+ * Support macOS 10.14 and later, with Dark Mode and universal binary.
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
 Thanks for Trend Micro Mobile Club's support.   
    
-Current version: 2.1.9
+Current version: 2.2.0
 
 Project site: https://github.com/sunjw/fhash
 
