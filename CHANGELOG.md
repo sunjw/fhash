@@ -154,7 +154,9 @@ macOS 支持 10.14 Dark Mode
 
 2.2.0.0 2020-12-01  
 Windows 更新为 Visual Studio 2017 工程  
+Windows 支持 7 及以后版本  
 Windows 界面调整  
+macOS 支持 10.14 及以后版本  
 macOS 支持 11.0 Big Sur  
 macOS 支持 universal binary  
 修复一些小 bug  

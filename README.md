@@ -3,7 +3,7 @@
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support multiple files.
- * Support Windows 7, 10 or later.
+ * Support Windows 7 and later.
  * Support macOS 10.14 and later, with Dark Mode and universal binary.
  * English and Simplified Chinese UI.
 
