@@ -8,7 +8,6 @@
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
-Thanks for Trend Micro Mobile Club's support.   
    
 Current version: 2.2.0
 
