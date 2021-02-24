@@ -18,8 +18,9 @@ Project site: https://github.com/sunjw/fhash
 
 #### DOWNLOAD
 Windows   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.0/)   
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.0/win/)   
 macOS   
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.0/macOS/)   
 [![Image of Mac App Store](https://raw.githubusercontent.com/sunjw/fhash/master/doc/Download_on_the_Mac_App_Store_Badge_US-UK_165x40.png)](https://itunes.apple.com/us/app/fhash/id1055555711?mt=12)
 
 #### LICENSE
