@@ -1,68 +1,68 @@
 {
   "images" : [
     {
-      "size" : "16x16",
+      "filename" : "fh-bigsur-64.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-64.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "16x16"
     },
     {
-      "size" : "16x16",
+      "filename" : "fh-bigsur-65.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-64-1.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "16x16"
     },
     {
-      "size" : "32x32",
+      "filename" : "fh-bigsur-66.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-64-2.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "32x32"
     },
     {
-      "size" : "32x32",
+      "filename" : "fh-bigsur-67.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-64-3.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "32x32"
     },
     {
-      "size" : "128x128",
+      "filename" : "fh-bigsur-128.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-128.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "128x128"
     },
     {
-      "size" : "128x128",
+      "filename" : "fh-bigsur-256.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-256.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "128x128"
     },
     {
-      "size" : "256x256",
+      "filename" : "fh-bigsur-257.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-256-1.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "256x256"
     },
     {
-      "size" : "256x256",
+      "filename" : "fh-bigsur-512.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-512.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "256x256"
     },
     {
-      "size" : "512x512",
+      "filename" : "fh-bigsur-513.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-512-1.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "512x512"
     },
     {
-      "size" : "512x512",
+      "filename" : "fh-bigsur-1024.png",
       "idiom" : "mac",
-      "filename" : "fh-yosemite-1024.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "512x512"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
