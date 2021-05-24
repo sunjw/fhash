@@ -1,3 +1,6 @@
+2.2.1.0 2021-05-24  
+macOS 更新 Big Sur 样式图标  
+
 2.2.0.0 2020-12-01  
 Windows 更新为 Visual Studio 2017 工程  
 Windows 支持 7 及以后版本  
