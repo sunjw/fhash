@@ -9,7 +9,7 @@
 
 The icon "希" is from hash in Chinese "哈希".   
    
-Current version: 2.2.0
+Current version: 2.2.1
 
 Project site: https://github.com/sunjw/fhash
 
@@ -17,11 +17,11 @@ Project site: https://github.com/sunjw/fhash
 
 #### DOWNLOAD
 Windows   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.0/win/)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases)   
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.1/win/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.2.1)   
 macOS   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.0/macOS/)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases)
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.2.1/macOS/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.2.1)
 
 #### LICENSE
 GPL 2.0 for codes hosted on GitHub.   
