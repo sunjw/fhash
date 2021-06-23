@@ -163,9 +163,9 @@ enum MainViewControllerState {
 
     // Set checkbox.
     if (defaultUpperCase) {
-        [self.upperCaseButton setState:NSOnState];
+        [self.upperCaseButton setState:NSControlStateValueOn];
     } else {
-        [self.upperCaseButton setState:NSOffState];
+        [self.upperCaseButton setState:NSControlStateValueOff];
     }
     [self updateUpperCaseState];
 
@@ -175,7 +175,7 @@ enum MainViewControllerState {
 
 - (void)viewWillDisappear {
     // Save NSUserDefaults.
-    BOOL defaultUpperCase = ([self.upperCaseButton state] == NSOnState);
+    BOOL defaultUpperCase = ([self.upperCaseButton state] == NSControlStateValueOn);
     [[NSUserDefaults standardUserDefaults] setBool:defaultUpperCase
                                             forKey:UPPERCASE_DEFAULT_KEY];
 
@@ -331,7 +331,7 @@ enum MainViewControllerState {
 }
 
 - (void)updateUpperCaseState {
-    _upperCaseState = ([self.upperCaseButton state] == NSOnState);
+    _upperCaseState = ([self.upperCaseButton state] == NSControlStateValueOn);
 }
 
 - (void)updateMainTextView:(BOOL)keepScrollPosition {
