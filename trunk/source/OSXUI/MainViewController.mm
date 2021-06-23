@@ -544,7 +544,7 @@ enum MainViewControllerState {
 - (void)menuCopyHash {
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
     [pasteboard clearContents];
-    [pasteboard setString:self.selectedLink forType:NSStringPboardType];
+    [pasteboard setString:self.selectedLink forType:NSPasteboardTypeString];
 }
 
 - (void)menuSearchGoogle {
