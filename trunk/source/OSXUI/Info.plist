@@ -67,11 +67,11 @@
 			<dict/>
 			<key>NSSendFileTypes</key>
 			<array>
-				<string>NSFilenamesPboardType</string>
+				<string>NSPasteboardTypeFileURL</string>
 			</array>
 			<key>NSSendTypes</key>
 			<array>
-				<string>NSFilenamesPboardType</string>
+				<string>NSPasteboardTypeFileURL</string>
 			</array>
 		</dict>
 	</array>
