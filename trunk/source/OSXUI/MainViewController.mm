@@ -325,9 +325,9 @@ enum MainViewControllerState {
 
 - (void)performViewDragOperation:(id<NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
-    NSArray *fileNames = [pboard propertyListForType:NSFilenamesPboardType];
+    NSArray *fileNames = [pboard readObjectsForClasses:@[[NSURL class]] options:@{}];
 
-    [self startHashCalc:fileNames isURL:NO];
+    [self startHashCalc:fileNames isURL:YES];
 }
 
 - (void)updateUpperCaseState {

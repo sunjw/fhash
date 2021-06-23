@@ -53,8 +53,8 @@
 - (void)handleFinderContextOpen:(NSPasteboard *)pboard
                        userData:(NSString *)userData
                           error:(NSString **)error {
-    NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
-    [self.mainViewController startHashCalc:filenames isURL:NO];
+    NSArray *fileNames = [pboard readObjectsForClasses:@[[NSURL class]] options:@{}];
+    [self.mainViewController startHashCalc:fileNames isURL:YES];
 }
 
 @end

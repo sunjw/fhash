@@ -16,7 +16,7 @@ using namespace std;
 
 - (void)awakeFromNib {
     [self registerForDraggedTypes:
-     [NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
+     [NSArray arrayWithObjects:NSPasteboardTypeFileURL, nil]];
 }
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
