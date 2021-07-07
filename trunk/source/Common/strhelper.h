@@ -1,7 +1,7 @@
 /*
  * strhelper header file
  * Author: Sun Junwen
- * Version: 2.2
+ * Version: 2.2.1
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -179,6 +179,7 @@ namespace sunjwbase
 		{
 			return std::toupper(ch1, m_loc) == std::toupper(ch2, m_loc);
 		}
+
 	private:
 		const std::locale& m_loc;
 	};
@@ -190,10 +191,14 @@ namespace sunjwbase
 		typename T::const_iterator it = std::search(str.begin(), str.end(),
 										   substr.begin(), substr.end(),
 										   strequal_ci<typename T::value_type>(loc));
-		if (it != str.end()) 
+		if (it != str.end())
+		{
 			return it - str.begin();
-		else 
+		}
+		else
+		{
 			return -1; // not found
+		}
 	}
 	
 	// itostr
