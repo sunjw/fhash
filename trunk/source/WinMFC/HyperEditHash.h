@@ -16,8 +16,10 @@ public:
 	void ClearTextBuffer();
 	CString GetTextBuffer() const;
 
-	void ShowTextBuffer();
-	void ShowTextBufferScrollEnd();
+	inline void ShowTextBuffer()
+	{ ShowTextBufferEx(FALSE); }
+	void ShowTextBufferScrollEnd()
+	{ ShowTextBufferEx(TRUE); }
 
 	void AppendTextToBuffer(LPCTSTR pszText);
 	void AppendLinkToBuffer(LPCTSTR pszText);

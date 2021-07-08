@@ -108,16 +108,6 @@ void CHyperEditHash::ShowTextBufferEx(BOOL bScrollToEnd)
 	EnableRedraw(TRUE);
 }
 
-void CHyperEditHash::ShowTextBuffer()
-{
-	ShowTextBufferEx(FALSE);
-}
-
-void CHyperEditHash::ShowTextBufferScrollEnd()
-{
-	ShowTextBufferEx(TRUE);
-}
-
 void CHyperEditHash::AppendTextToBuffer(LPCTSTR pszText)
 {
 	m_cstrTextBuffer.Append(pszText);
