@@ -91,14 +91,31 @@ CString CHyperEditHash::GetTextBuffer() const
 	return m_cstrTextBuffer;
 }
 
-void CHyperEditHash::ShowTextBuffer()
+void CHyperEditHash::ShowTextBufferEx(BOOL bScrollToEnd)
 {
 	EnableRedraw(FALSE);
+
 	EnterCriticalSection(&m_csLinkOffsets);
 	m_linkOffsets = m_bufferLinkOffsets;
 	LeaveCriticalSection(&m_csLinkOffsets);
 	SetWindowText(m_cstrTextBuffer);
+
+	if (bScrollToEnd)
+	{
+		LineScrollEnd();
+	}
+
 	EnableRedraw(TRUE);
+}
+
+void CHyperEditHash::ShowTextBuffer()
+{
+	ShowTextBufferEx(FALSE);
+}
+
+void CHyperEditHash::ShowTextBufferScrollEnd()
+{
+	ShowTextBufferEx(TRUE);
 }
 
 void CHyperEditHash::AppendTextToBuffer(LPCTSTR pszText)

@@ -665,11 +665,14 @@ void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 {
 	m_mainMtx.lock();
 
-	m_editMain.ShowTextBuffer();
 	if (bScrollToEnd)
 	{
 		// 将文本框滚动到结尾
-		m_editMain.LineScrollEnd();
+		m_editMain.ShowTextBufferScrollEnd();
+	}
+	else
+	{
+		m_editMain.ShowTextBuffer();
 	}
 
 	m_mainMtx.unlock();
@@ -746,9 +749,8 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 			//m_editMain.AppendTextToBuffer(MAINDLG_CALCU_TERMINAL);
 			//m_editMain.AppendTextToBuffer(_T("\r\n\r\n"));
 
-			m_editMain.ShowTextBuffer();
 			// 将文本框滚动到结尾
-			m_editMain.LineScrollEnd();
+			m_editMain.ShowTextBufferScrollEnd();
 		}
 		m_mainMtx.unlock();
 

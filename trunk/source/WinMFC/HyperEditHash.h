@@ -17,6 +17,7 @@ public:
 	CString GetTextBuffer() const;
 
 	void ShowTextBuffer();
+	void ShowTextBufferScrollEnd();
 
 	void AppendTextToBuffer(LPCTSTR pszText);
 	void AppendLinkToBuffer(LPCTSTR pszText);
@@ -37,12 +38,14 @@ protected:
 
 	BOOL PreTranslateMessage(MSG* pMsg);
 
+	virtual inline void EnableRedraw(BOOL bEnable)
+	{ SendMessage(WM_SETREDRAW, bEnable, 0); }
+
+	virtual void ShowTextBufferEx(BOOL bScrollToEnd);
+
 	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
-
-	virtual inline void EnableRedraw(BOOL bEnable)
-	{ SendMessage(WM_SETREDRAW, bEnable, 0); }
 
 private:
 	CString m_cstrTextBuffer;
