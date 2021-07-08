@@ -666,8 +666,10 @@ void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 	m_mainMtx.lock();
 
 	m_editMain.ShowTextBuffer();
-	if(bScrollToEnd)
+	if (bScrollToEnd)
+	{
 		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+	}
 
 	m_mainMtx.unlock();
 }
