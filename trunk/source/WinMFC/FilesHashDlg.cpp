@@ -431,7 +431,7 @@ void CFilesHashDlg::OnBnClickedFind()
 			m_editMain.ClearTextBuffer();
 			ResultFind(m_strFindFile, m_strFindHash);
 			m_editMain.ShowTextBuffer();
-			//m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+			//m_editMain.LineScrollEnd(); // 将文本框滚动到结尾
 
 			m_btnFind.EnableWindow(FALSE);
 			m_btnOpen.EnableWindow(FALSE);
@@ -668,7 +668,8 @@ void CFilesHashDlg::RefreshMainText(BOOL bScrollToEnd /*= TRUE*/)
 	m_editMain.ShowTextBuffer();
 	if (bScrollToEnd)
 	{
-		m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+		// 将文本框滚动到结尾
+		m_editMain.LineScrollEnd();
 	}
 
 	m_mainMtx.unlock();
@@ -746,7 +747,8 @@ LRESULT CFilesHashDlg::OnThreadMsg(WPARAM wParam, LPARAM lParam)
 			//m_editMain.AppendTextToBuffer(_T("\r\n\r\n"));
 
 			m_editMain.ShowTextBuffer();
-			m_editMain.LineScroll(m_editMain.GetLineCount()); // 将文本框滚动到结尾
+			// 将文本框滚动到结尾
+			m_editMain.LineScrollEnd();
 		}
 		m_mainMtx.unlock();
 

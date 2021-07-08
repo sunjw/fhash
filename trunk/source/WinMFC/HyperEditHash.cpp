@@ -93,10 +93,12 @@ CString CHyperEditHash::GetTextBuffer() const
 
 void CHyperEditHash::ShowTextBuffer()
 {
+	EnableRedraw(FALSE);
 	EnterCriticalSection(&m_csLinkOffsets);
 	m_linkOffsets = m_bufferLinkOffsets;
 	LeaveCriticalSection(&m_csLinkOffsets);
 	SetWindowText(m_cstrTextBuffer);
+	EnableRedraw(TRUE);
 }
 
 void CHyperEditHash::AppendTextToBuffer(LPCTSTR pszText)
@@ -128,6 +130,13 @@ void CHyperEditHash::SetLinkOffsets(const OFFSETS& linkOffsets)
 	EnterCriticalSection(&m_csLinkOffsets);
 	m_bufferLinkOffsets = linkOffsets;
 	LeaveCriticalSection(&m_csLinkOffsets);
+}
+
+void CHyperEditHash::LineScrollEnd()
+{
+	EnableRedraw(FALSE);
+	LineScroll(GetLineCount());
+	EnableRedraw(TRUE);
 }
 
 void CHyperEditHash::BuildOffsetList(int iCharStart, int iCharFinish)

@@ -30,6 +30,8 @@ public:
 	inline CPoint GetLastScreenPoint() const
 	{ return m_cpLastScreenPoint; }
 
+	void LineScrollEnd();
+
 protected:
 	DECLARE_MESSAGE_MAP()
 
@@ -38,6 +40,9 @@ protected:
 	virtual void BuildOffsetList(int iCharStart, int iCharFinish);
 
 	virtual HINSTANCE OpenHyperlink(const CString& hyperlink, CPoint point);
+
+	virtual inline void EnableRedraw(BOOL bEnable)
+	{ SendMessage(WM_SETREDRAW, bEnable, 0); }
 
 private:
 	CString m_cstrTextBuffer;
