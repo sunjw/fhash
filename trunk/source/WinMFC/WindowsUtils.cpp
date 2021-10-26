@@ -110,10 +110,17 @@ namespace WindowsUtils
 			{
 				if(osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
 				{
-					if(osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows 10 "));
+					if (osvi.wProductType == VER_NT_WORKSTATION)
+					{
+						if (osvi.dwBuildNumber >= 22000) // Test for the Windows 11
+							osinfo.Append(_T("Windows 11 "));
+						else
+							osinfo.Append(_T("Windows 10 "));
+					}
 					else
+					{
 						osinfo.AppendFormat(_T("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+					}
 				}
 				else
 				{
