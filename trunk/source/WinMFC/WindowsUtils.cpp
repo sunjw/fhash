@@ -363,7 +363,6 @@ namespace WindowsUtils
 			}
 
 			// Display service pack (if any) and build number.
-
 			if( osvi.dwMajorVersion == 4 && 
 				lstrcmpi( osvi.szCSDVersion, _T("Service Pack 6") ) == 0 )
 			{ 
