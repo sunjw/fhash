@@ -64,14 +64,6 @@ namespace MacUtils {
         NSInteger systemMinorVersion = MacUtils::GetSystemMinorVersion();
         return (systemMajorVersion == majorVersion && systemMinorVersion == minorVersion);
     }
-    
-    bool IsSystemEarlierThan10_10() {
-        return IsSystemEarlierThan(10, 10);
-    }
-    
-    bool IsSystemEarlierThan10_11() {
-        return IsSystemEarlierThan(10, 11);
-    }
 
     bool IsSystem10_14() {
         return IsSystemEqual(10, 14);
