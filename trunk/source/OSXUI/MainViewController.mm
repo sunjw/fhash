@@ -132,6 +132,7 @@ enum MainViewControllerState {
     // Set scroll view border type.
     self.mainScrollView.borderType = NSNoBorder;
     if (MacUtils::IsSystem10_14() || MacUtils::IsSystem10_15()) {
+        // Only 10.14 and 10.15 need auto adjust.
         self.mainScrollView.automaticallyAdjustsContentInsets = YES;
     }
 
@@ -139,7 +140,11 @@ enum MainViewControllerState {
     self.mainTextView.delegate = self;
     [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 0)];
 
-    self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
+    if (MacUtils::IsSystemEarlierThan(10, 15)) {
+        self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
+    } else {
+        self.mainFont = [NSFont monospacedSystemFontOfSize:12 weight:NSFontWeightRegular];
+    }
     if (self.mainFont == nil) {
         self.mainFont = self.mainTextView.font;
     }
