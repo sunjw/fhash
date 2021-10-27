@@ -138,7 +138,7 @@ enum MainViewControllerState {
 
     // Set some text in text field.
     self.mainTextView.delegate = self;
-    [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 0)];
+    [self.mainTextView setTextContainerInset:NSMakeSize(4.0, 2.0)];
 
     if (MacUtils::IsSystemEarlierThan(10, 15)) {
         self.mainFont = [NSFont fontWithName:@"Monaco" size:12];
