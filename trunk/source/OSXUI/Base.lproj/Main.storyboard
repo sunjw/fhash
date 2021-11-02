@@ -461,9 +461,9 @@
                                         </constraints>
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
-                                        <rect key="frame" x="463" y="5" width="100" height="32"/>
+                                        <rect key="frame" x="458" y="5" width="105" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="Hn1-pg-q73"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="Hn1-pg-q73"/>
                                             <constraint firstAttribute="height" constant="20" id="YiQ-F7-3tz"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="i4A-1q-J7J"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="uWu-fa-qBa"/>
@@ -477,9 +477,9 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                        <rect key="frame" x="364" y="5" width="100" height="32"/>
+                                        <rect key="frame" x="354" y="5" width="105" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="EPe-uf-diE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="EPe-uf-diE"/>
                                             <constraint firstAttribute="height" constant="20" id="dSk-bf-hJo"/>
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
@@ -491,10 +491,10 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                        <rect key="frame" x="265" y="5" width="100" height="32"/>
+                                        <rect key="frame" x="247" y="5" width="108" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="P5d-mH-dS8"/>
-                                            <constraint firstAttribute="width" constant="86" id="TMp-Lb-uzy"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="TMp-Lb-uzy"/>
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -505,10 +505,10 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
-                                        <rect key="frame" x="137" y="15" width="86" height="17"/>
+                                        <rect key="frame" x="159" y="15" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
-                                            <constraint firstAttribute="width" constant="82" id="Zgf-bX-PvL"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Zgf-bX-PvL"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="speedTextField" id="iCV-8h-ZqE">
                                             <font key="font" metaFont="system"/>
@@ -517,9 +517,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
-                                        <rect key="frame" x="8" y="14" width="111" height="18"/>
+                                        <rect key="frame" x="8" y="14" width="133" height="18"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="109" id="5i1-2R-MzS"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="109" id="5i1-2R-MzS"/>
                                             <constraint firstAttribute="height" constant="16" id="9Dd-oc-g1f"/>
                                         </constraints>
                                         <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
@@ -545,6 +545,7 @@
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
                                     <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="top" secondItem="M5s-ns-Qqg" secondAttribute="top" constant="-9" id="kOC-mk-24b"/>
+                                    <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="tJy-cg-q6d"/>
                                 </constraints>
                             </visualEffectView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
@@ -559,7 +560,7 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="548" height="313"/>
-                                            <size key="maxSize" width="568" height="10000000"/>
+                                            <size key="maxSize" width="573" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
