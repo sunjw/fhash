@@ -430,9 +430,11 @@
                             <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="46"/>
                                 <subviews>
-                                    <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="ESSProgressIndicator">
-                                        <rect key="frame" x="-3" y="43" width="574" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="ESSProgressIndicator">
+                                        <rect key="frame" x="-3" y="36" width="574" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="nV5-gn-dUK"/>
+                                        </constraints>
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
                                         <rect key="frame" x="463" y="5" width="100" height="32"/>
@@ -510,12 +512,15 @@
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="12" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="15" id="Mrd-eA-M6m"/>
+                                    <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
+                                    <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
                                     <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="12" id="UBq-6n-rr2"/>
                                     <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" secondItem="PCO-87-Uvg" secondAttribute="trailing" constant="13" id="XGj-4P-pv3"/>
                                     <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="15" id="Ydj-cY-H9E"/>
                                     <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="12" id="g24-ws-BYV"/>
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
                                     <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
+                                    <constraint firstItem="mgI-sH-iC5" firstAttribute="top" secondItem="M5s-ns-Qqg" secondAttribute="top" constant="-9" id="kOC-mk-24b"/>
                                 </constraints>
                             </visualEffectView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
