@@ -55,10 +55,10 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
-                                <rect key="frame" x="316" y="13" width="100" height="32"/>
+                                <rect key="frame" x="309" y="13" width="107" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="VLo-f6-IH5"/>
-                                    <constraint firstAttribute="width" constant="86" id="XF8-Lp-ANU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="XF8-Lp-ANU"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -69,10 +69,10 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
-                                <rect key="frame" x="18" y="24" width="136" height="17"/>
+                                <rect key="frame" x="18" y="24" width="147" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
-                                    <constraint firstAttribute="width" constant="132" id="ou6-86-fTQ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="132" id="ou6-86-fTQ"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="homePageLinkTextField" id="jwH-wW-qOw">
                                     <font key="font" metaFont="system"/>
@@ -84,6 +84,8 @@
                         <constraints>
                             <constraint firstItem="l26-dk-XVG" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" constant="20" symbolic="YES" id="6jM-ds-mmm"/>
                             <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="85y-Wg-AjY"/>
+                            <constraint firstItem="zGm-ZO-GT5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua3-zL-Sha" secondAttribute="trailing" constant="8" symbolic="YES" id="9NA-DV-tQm"/>
+                            <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="HoI-xp-LjW"/>
                             <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="24" id="ZsY-4Q-xp6"/>
                             <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="n60-3M-A4u"/>
                             <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="8" symbolic="YES" id="smj-RG-ZxT"/>
