@@ -465,8 +465,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="Hn1-pg-q73"/>
                                             <constraint firstAttribute="height" constant="20" id="YiQ-F7-3tz"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="i4A-1q-J7J"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="uWu-fa-qBa"/>
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
