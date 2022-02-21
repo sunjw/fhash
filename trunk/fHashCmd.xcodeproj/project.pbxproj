@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */; };
 		410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8111AFE3B1A001A10F9 /* MD5.cpp */; };
 		410AB8191AFE3B1A001A10F9 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8131AFE3B1A001A10F9 /* SHA1.cpp */; };
 		410AB81A1AFE3B1A001A10F9 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 410AB8151AFE3B1A001A10F9 /* sha256.cpp */; };
@@ -35,8 +34,6 @@
 
 /* Begin PBXFileReference section */
 		410AB8041AFE38A2001A10F9 /* fhash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fhash; sourceTree = BUILT_PRODUCTS_DIR; };
-		410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = SOURCE_ROOT; };
-		410AB8101AFE3B1A001A10F9 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = SOURCE_ROOT; };
 		410AB8111AFE3B1A001A10F9 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = SOURCE_ROOT; };
 		410AB8121AFE3B1A001A10F9 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = md5.h; path = source/Algorithms/md5.h; sourceTree = SOURCE_ROOT; };
 		410AB8131AFE3B1A001A10F9 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHA1.cpp; path = source/Algorithms/SHA1.cpp; sourceTree = SOURCE_ROOT; };
@@ -106,8 +103,6 @@
 		410AB80E1AFE3B09001A10F9 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				410AB80F1AFE3B1A001A10F9 /* CRC32.cpp */,
-				410AB8101AFE3B1A001A10F9 /* CRC32.h */,
 				410AB8111AFE3B1A001A10F9 /* MD5.cpp */,
 				410AB8121AFE3B1A001A10F9 /* md5.h */,
 				410AB8131AFE3B1A001A10F9 /* SHA1.cpp */,
@@ -228,7 +223,6 @@
 				52225818213CF16600012EF8 /* UIBridgeMacCmd.cpp in Sources */,
 				52225813213CDB3900012EF8 /* HashEngine.cpp in Sources */,
 				410AB8181AFE3B1A001A10F9 /* MD5.cpp in Sources */,
-				410AB8171AFE3B1A001A10F9 /* CRC32.cpp in Sources */,
 				410AB83C1AFE5068001A10F9 /* OsThreadPosixDarwin.cpp in Sources */,
 				5222580D213CDA9500012EF8 /* Utils.cpp in Sources */,
 				410AB81F1AFE3BA5001A10F9 /* stdafx.cpp in Sources */,
