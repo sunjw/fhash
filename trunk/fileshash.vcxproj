@@ -232,7 +232,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\Algorithms\CRC32.cpp" />
     <ClCompile Include="source\Algorithms\MD5.cpp" />
     <ClCompile Include="source\Algorithms\SHA1.cpp" />
     <ClCompile Include="source\Algorithms\sha256.cpp" />
@@ -257,7 +256,6 @@
     <ClCompile Include="source\WinMFC\WindowsUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Algorithms\CRC32.h" />
     <ClInclude Include="source\Algorithms\MD5.h" />
     <ClInclude Include="source\Algorithms\SHA1.h" />
     <ClInclude Include="source\Algorithms\sha256.h" />

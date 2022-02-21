@@ -66,9 +66,6 @@
     <ClCompile Include="source\WinMFC\WindowsUtils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\Algorithms\CRC32.cpp">
-      <Filter>算法</Filter>
-    </ClCompile>
     <ClCompile Include="source\Algorithms\MD5.cpp">
       <Filter>算法</Filter>
     </ClCompile>
@@ -148,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="source\WinMFC\WindowsUtils.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Algorithms\CRC32.h">
-      <Filter>算法</Filter>
     </ClInclude>
     <ClInclude Include="source\Algorithms\MD5.h">
       <Filter>算法</Filter>
