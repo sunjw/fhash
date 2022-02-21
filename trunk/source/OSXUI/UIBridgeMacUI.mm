@@ -220,24 +220,21 @@ void UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(const ResultData& 
                                                               bool uppercase,
                                                               NSMutableAttributedString *nsmutString)
 {
-    string strFileMD5, strFileSHA1, strFileSHA256, strFileCRC32;
+    string strFileMD5, strFileSHA1, strFileSHA256;
 
     if (uppercase) {
         strFileMD5 = str_upper(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_upper(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_upper(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_upper(tstrtostr(result.tstrCRC32));
     } else {
         strFileMD5 = str_lower(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_lower(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_lower(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_lower(tstrtostr(result.tstrCRC32));
     }
 
     NSString *nsstrFileMD5 = MacUtils::ConvertUTF8StringToNSString(strFileMD5);
     NSString *nsstrFileSHA1 = MacUtils::ConvertUTF8StringToNSString(strFileSHA1);
     NSString *nsstrFileSHA256 = MacUtils::ConvertUTF8StringToNSString(strFileSHA256);
-    NSString *nsstrFileCRC32 = MacUtils::ConvertUTF8StringToNSString(strFileCRC32);
 
     NSMutableAttributedString *nsmutStrHash = [[NSMutableAttributedString alloc] init];
 
@@ -265,13 +262,6 @@ void UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(const ResultData& 
     [nsmutStrHash addAttribute:NSLinkAttributeName
                          value:nsstrFileSHA256
                          range:NSMakeRange(oldLength, [nsstrFileSHA256 length])];
-
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\nCRC32: ");
-    oldLength = [nsmutStrHash length];
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileCRC32);
-    [nsmutStrHash addAttribute:NSLinkAttributeName
-                         value:nsstrFileCRC32
-                         range:NSMakeRange(oldLength, [nsstrFileCRC32 length])];
 
     MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\n\n");
 
