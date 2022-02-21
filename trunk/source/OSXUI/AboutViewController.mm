@@ -47,8 +47,6 @@ using namespace sunjwbase;
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_MD5));
     strAboutInfo.append("\n");
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_SHA256));
-    strAboutInfo.append("\n");
-    strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_CRC32));
     
     NSString *nsstrAboutInfo = MacUtils::ConvertUTF8StringToNSString(strAboutInfo);
     [self.infoTextField setStringValue:nsstrAboutInfo];

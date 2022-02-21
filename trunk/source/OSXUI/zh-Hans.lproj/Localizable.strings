@@ -56,7 +56,6 @@
 "ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007- SUN Junwen.";
 "ABOUTDLG_INFO_MD5" = "MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.";
 "ABOUTDLG_INFO_SHA256" = "SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller";
-"ABOUTDLG_INFO_CRC32" = "CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl";
 "ABOUTDLG_INFO_RIGHTDETAIL" = "详细授权信息见开发者网站。";
 "ABOUTDLG_INFO_OSTITLE" = "当前操作系统:";
 "ABOUTDLG_PROJECT_SITE" = "<a>Hosted on GitHub</a>";
