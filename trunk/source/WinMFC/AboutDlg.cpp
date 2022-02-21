@@ -50,8 +50,6 @@ BOOL CAboutDlg::OnInitDialog()
 	m_about.Append(GetStringByKey(ABOUTDLG_INFO_MD5));
 	m_about.Append(_T("\r\n"));
 	m_about.Append(GetStringByKey(ABOUTDLG_INFO_SHA256));
-	m_about.Append(_T("\r\n"));
-	m_about.Append(GetStringByKey(ABOUTDLG_INFO_CRC32));
 	/*m_about.Append(_T("\r\n"));
 	m_about.Append(GetStringByKey(ABOUTDLG_INFO_RIGHTDETAIL));*/
 	m_about.Append(_T("\r\n\r\n"));

@@ -931,8 +931,7 @@ void CFilesHashDlg::ResultFind(CString strFile, CString strHash)
 		if(strPathLower.Find(strFile) >= 0 && 
 			(itr->tstrMD5.find(strHash.GetString()) != tstring::npos ||
 			itr->tstrSHA1.find(strHash.GetString()) != tstring::npos ||
-			itr->tstrSHA256.find(strHash.GetString()) != tstring::npos ||
-			itr->tstrCRC32.find(strHash.GetString()) != tstring::npos ))
+			itr->tstrSHA256.find(strHash.GetString()) != tstring::npos))
 		{
 			++count;
 

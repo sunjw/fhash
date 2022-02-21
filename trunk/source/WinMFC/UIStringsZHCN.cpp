@@ -57,7 +57,6 @@ UIStringsZHCN::UIStringsZHCN()
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007- SUN Junwen.");
 	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.");
 	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller");
-	m_stringsMap[_T("ABOUTDLG_INFO_CRC32")] = _T("CRC32 算法是由 Dominik Reichl 编写。Copyright (C) Dominik Reichl");
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHTDETAIL")] = _T("详细授权信息见开发者网站。");
 	m_stringsMap[_T("ABOUTDLG_INFO_OSTITLE")] = _T("当前操作系统:");
 	m_stringsMap[_T("ABOUTDLG_PROJECT_SITE")] = _T("<a>Hosted on GitHub</a>");

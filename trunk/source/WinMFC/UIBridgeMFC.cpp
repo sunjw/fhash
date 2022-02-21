@@ -201,21 +201,19 @@ void UIBridgeMFC::AppendFileHashToHyperEdit(const ResultData& result,
 											bool uppercase,
 											CHyperEditHash *hyerEdit)
 {
-	tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256, tstrFileCRC32;
+	tstring tstrFileMD5, tstrFileSHA1, tstrFileSHA256;
 
 	if (uppercase)
 	{
 		tstrFileMD5 = strtotstr(str_upper(tstrtostr(result.tstrMD5)));
 		tstrFileSHA1 = strtotstr(str_upper(tstrtostr(result.tstrSHA1)));
 		tstrFileSHA256 = strtotstr(str_upper(tstrtostr(result.tstrSHA256)));
-		tstrFileCRC32 = strtotstr(str_upper(tstrtostr(result.tstrCRC32)));
 	}
 	else
 	{
 		tstrFileMD5 = strtotstr(str_lower(tstrtostr(result.tstrMD5)));
 		tstrFileSHA1 = strtotstr(str_lower(tstrtostr(result.tstrSHA1)));
 		tstrFileSHA256 = strtotstr(str_lower(tstrtostr(result.tstrSHA256)));
-		tstrFileCRC32 = strtotstr(str_lower(tstrtostr(result.tstrCRC32)));
 	}
 
 	hyerEdit->AppendTextToBuffer(_T("MD5: "));
@@ -224,8 +222,6 @@ void UIBridgeMFC::AppendFileHashToHyperEdit(const ResultData& result,
 	hyerEdit->AppendLinkToBuffer(tstrFileSHA1.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\nSHA256: "));
 	hyerEdit->AppendLinkToBuffer(tstrFileSHA256.c_str());
-	hyerEdit->AppendTextToBuffer(_T("\r\nCRC32: "));
-	hyerEdit->AppendLinkToBuffer(tstrFileCRC32.c_str());
 	hyerEdit->AppendTextToBuffer(_T("\r\n\r\n"));
 }
 

@@ -25,7 +25,6 @@
 #include "Algorithms/MD5.h"
 #include "Algorithms/SHA1.h"
 #include "Algorithms/sha256.h"
-#include "Algorithms/CRC32.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -69,7 +68,6 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileMD5;
 	tstring tstrFileSHA1;
 	tstring tstrFileSHA256;
-	tstring tstrFileCRC32;
 
 	uiBridge->preparingCalc();
 
@@ -134,8 +132,6 @@ int WINAPI HashThreadFunc(void *param)
 
 		SHA256_CTX sha256Ctx; // SHA256 context
 		string strSHA256;
-
-		uint32_t ulCRC32; // CRC32 context
 		// Declaration for calculator
 		
 		ResultData resultNew;
@@ -165,7 +161,6 @@ int WINAPI HashThreadFunc(void *param)
 			MD5Init(&mdContext, 0); // MD5开始
 			sha1.Reset(); // SHA1开始
 			sha256_init(&sha256Ctx); // SHA256开始
-			crc32Init(&ulCRC32); // CRC32开始
 
 			uiBridge->updateProg(0);
 
@@ -221,7 +216,7 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileVersion = cstrVer.GetString();
 			result.tstrVersion = tstrFileVersion;
 #endif
-            
+
             result.enumState = RESULT_META;
 
 			uiBridge->showFileMeta(result);
@@ -251,7 +246,6 @@ int WINAPI HashThreadFunc(void *param)
 				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5更新
 				sha1.Update(databuf.data, databuf.datalen); // SHA1更新
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
-				crc32Update(&ulCRC32, databuf.data, databuf.datalen); // CRC32更新
 				
 				finishedSize += databuf.datalen;
 				
@@ -289,7 +283,6 @@ int WINAPI HashThreadFunc(void *param)
 			MD5Final (&mdContext); // MD5完成
 			sha1.Final(); // SHA1完成
 			sha256_final(&sha256Ctx); // SHA256完成
-			crc32Finish(&ulCRC32); //CRC32完成
 
 			if(!isSizeCaled)
 			{
@@ -358,22 +351,13 @@ int WINAPI HashThreadFunc(void *param)
 			sha256_digest(&sha256Ctx, &strSHA256);
 			tstrFileSHA256 = strtotstr(string(strSHA256));
 
-			// CRC32
-#if defined (WIN32)
-			sprintf_s(chHashBuff, 1024, "%08X", ulCRC32);
-#else
-			sprintf(chHashBuff, "%08X", ulCRC32);
-#endif
-			tstrFileCRC32 = strtotstr(string(chHashBuff));
-			
 			// 在没做转换前，结果都是大写的
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
 			result.tstrSHA256 = tstrFileSHA256;
-			result.tstrCRC32 = tstrFileCRC32;
-            
-            result.enumState = RESULT_ALL;
-			
+
+			result.enumState = RESULT_ALL;
+
 			uiBridge->showFileHash(result, thrdData->uppercase);
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
 		else
@@ -386,7 +370,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrError = strtotstr(string(fExc));
 #endif
 
-            result.enumState = RESULT_ERROR;
+			result.enumState = RESULT_ERROR;
 
 			uiBridge->showFileErr(result);
 		}

@@ -57,7 +57,6 @@ UIStringsBase::UIStringsBase()
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007- SUN Junwen.");
 	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 Algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.");
 	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 Algorithm is writtend by Niels Moller. Copyright (C) Niels Moller");
-	m_stringsMap[_T("ABOUTDLG_INFO_CRC32")] = _T("CRC32 Algorithm is writtend by Dominik Reichl. Copyright (C) Dominik Reichl");
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHTDETAIL")] = _T("More details are on Project Site.");
 	m_stringsMap[_T("ABOUTDLG_INFO_OSTITLE")] = _T("Operating System:");
 	m_stringsMap[_T("ABOUTDLG_PROJECT_SITE")] = _T("<a>Hosted on GitHub</a>");

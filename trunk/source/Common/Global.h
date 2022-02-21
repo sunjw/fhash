@@ -65,7 +65,6 @@ struct ResultData // ¼ÆËã½á¹û
 	sunjwbase::tstring tstrMD5; // MD5
 	sunjwbase::tstring tstrSHA1; // SHA1
 	sunjwbase::tstring tstrSHA256; // SHA256
-	sunjwbase::tstring tstrCRC32; // CRC32
 	sunjwbase::tstring tstrError; // Error string
 };
 
