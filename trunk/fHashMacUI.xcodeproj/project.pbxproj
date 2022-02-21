@@ -15,7 +15,6 @@
 		41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DCF1B5B49A60081F283 /* stdafx.cpp */; };
 		41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */; };
 		41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */; };
-		41FF1DF21B5B4B470081F283 /* CRC32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEA1B5B4B470081F283 /* CRC32.cpp */; };
 		41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEC1B5B4B470081F283 /* MD5.cpp */; };
 		41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEE1B5B4B470081F283 /* SHA1.cpp */; };
 		41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DF01B5B4B470081F283 /* sha256.cpp */; };
@@ -57,8 +56,6 @@
 		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
 		41FF1DD91B5B4A5A0081F283 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = "<group>"; };
 		41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsThreadPosixDarwin.cpp; path = source/OsUtils/OsThreadPosixDarwin.cpp; sourceTree = "<group>"; };
-		41FF1DEA1B5B4B470081F283 /* CRC32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRC32.cpp; path = source/Algorithms/CRC32.cpp; sourceTree = "<group>"; };
-		41FF1DEB1B5B4B470081F283 /* CRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC32.h; path = source/Algorithms/CRC32.h; sourceTree = "<group>"; };
 		41FF1DEC1B5B4B470081F283 /* MD5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MD5.cpp; path = source/Algorithms/MD5.cpp; sourceTree = "<group>"; };
 		41FF1DEE1B5B4B470081F283 /* SHA1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHA1.cpp; path = source/Algorithms/SHA1.cpp; sourceTree = "<group>"; };
 		41FF1DEF1B5B4B470081F283 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHA1.h; path = source/Algorithms/SHA1.h; sourceTree = "<group>"; };
@@ -150,8 +147,6 @@
 		41FF1DDD1B5B4ACA0081F283 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				41FF1DEA1B5B4B470081F283 /* CRC32.cpp */,
-				41FF1DEB1B5B4B470081F283 /* CRC32.h */,
 				41FF1DEC1B5B4B470081F283 /* MD5.cpp */,
 				41F2360A20C77C3E005E6724 /* MD5.h */,
 				41FF1DEE1B5B4B470081F283 /* SHA1.cpp */,
@@ -327,7 +322,6 @@
 				41FF1DD41B5B49A60081F283 /* stdafx.cpp in Sources */,
 				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
 				5222580A213CDA7C00012EF8 /* Utils.cpp in Sources */,
-				41FF1DF21B5B4B470081F283 /* CRC32.cpp in Sources */,
 				41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
