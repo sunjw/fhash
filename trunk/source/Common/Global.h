@@ -48,11 +48,11 @@ typedef std::list<ResultData> ResultList;
 
 enum ResultState
 {
-    RESULT_NONE = 0,
-    RESULT_PATH,
-    RESULT_META,
-    RESULT_ALL,
-    RESULT_ERROR
+	RESULT_NONE = 0,
+	RESULT_PATH,
+	RESULT_META,
+	RESULT_ALL,
+	RESULT_ERROR
 };
 
 struct ResultData // ¼ÆËã½á¹û

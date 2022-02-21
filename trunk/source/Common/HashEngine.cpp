@@ -135,18 +135,18 @@ int WINAPI HashThreadFunc(void *param)
 		// Declaration for calculator
 		
 		ResultData resultNew;
-        thrdData->resultList.push_back(resultNew);
-        ResultData& result = thrdData->resultList.back();
-        
-        result.enumState = RESULT_NONE;
-        
+		thrdData->resultList.push_back(resultNew);
+		ResultData& result = thrdData->resultList.back();
+
+		result.enumState = RESULT_NONE;
+
 		path = thrdData->fullPaths[i].c_str();
 		result.tstrPath = thrdData->fullPaths[i];
 
 		int position = 0; // 进度条位置
 
-        result.enumState = RESULT_PATH;
-        
+		result.enumState = RESULT_PATH;
+
 		uiBridge->showFileName(result);
 
 		//Calculating begins
@@ -217,7 +217,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.tstrVersion = tstrFileVersion;
 #endif
 
-            result.enumState = RESULT_META;
+			result.enumState = RESULT_META;
 
 			uiBridge->showFileMeta(result);
 			
