@@ -65,27 +65,24 @@ void UIBridgeMacCmd::showFileMeta(const ResultData& result)
 
 void UIBridgeMacCmd::showFileHash(const ResultData& result, bool uppercase)
 {
-    string strFileMD5, strFileSHA1, strFileSHA256, strFileCRC32;
+    string strFileMD5, strFileSHA1, strFileSHA256;
     
     if (uppercase)
     {
         strFileMD5 = str_upper(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_upper(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_upper(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_upper(tstrtostr(result.tstrCRC32));
     }
     else
     {
         strFileMD5 = str_lower(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_lower(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_lower(tstrtostr(result.tstrSHA256));
-        strFileCRC32 = str_lower(tstrtostr(result.tstrCRC32));
     }
     
     printf("MD5: %s\n", strFileMD5.c_str());
     printf("SHA1: %s\n", strFileSHA1.c_str());
     printf("SHA256: %s\n", strFileSHA256.c_str());
-    printf("CRC32: %s\n", strFileCRC32.c_str());
 }
 
 void UIBridgeMacCmd::showFileErr(const ResultData& result)
