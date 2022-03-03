@@ -9,7 +9,7 @@ fi
 cur_dir=$PWD
 vol_name="fHash"
 src_folder=$1
-temp_dmg_path="fHash.dmg"
+temp_dmg_path="fHash-macOS.dmg"
 
 echo "Create DMG from [$src_folder]..."
 
