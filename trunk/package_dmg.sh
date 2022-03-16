@@ -2,7 +2,7 @@
 
 if [ -z "$1" ]
   then
-    echo "Usage: package_dmg.sh [/some/target/dir]"
+    echo "Usage: package_dmg.sh </some/target/dir>"
     exit
 fi
 
