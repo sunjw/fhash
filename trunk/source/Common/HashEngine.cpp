@@ -102,10 +102,10 @@ int WINAPI HashThreadFunc(void *param)
 
 	uiBridge->removePreparingCalc();
 
-	// 计算循环
-	for(i = 0; i < (thrdData->nFiles); i++)
+	// loop all files
+	for (i = 0; i < (thrdData->nFiles); i++)
 	{
-		if(thrdData->stop)
+		if (thrdData->stop)
 		{
 			thrdData->threadWorking = false;
 			uiBridge->calcStop();
@@ -144,7 +144,7 @@ int WINAPI HashThreadFunc(void *param)
 		path = thrdData->fullPaths[i].c_str();
 		result.tstrPath = thrdData->fullPaths[i];
 
-		int position = 0; // 进度条位置
+		int position = 0; // progress bar position
 
 		result.enumState = RESULT_PATH;
 
@@ -157,11 +157,11 @@ int WINAPI HashThreadFunc(void *param)
 		char fExc[1024] = {0};
 #endif
 		OsFile osFile(path);
-		if(osFile.openRead((void *)&fExc)) 
+		if (osFile.openRead((void *)&fExc)) 
 		{
-			MD5Init(&mdContext, 0); // MD5开始
-			sha1.Reset(); // SHA1开始
-			sha256_init(&sha256Ctx); // SHA256开始
+			MD5Init(&mdContext, 0); // MD5 init
+			sha1.Reset(); // SHA1 init
+			sha256_init(&sha256Ctx); // SHA256 init
 
 			uiBridge->updateProg(0);
 
@@ -179,7 +179,7 @@ int WINAPI HashThreadFunc(void *param)
 #else
 			struct timespec ctModifedTime;
 #endif
-			if(osFile.getModifiedTime((void *)&ctModifedTime))
+			if (osFile.getModifiedTime((void *)&ctModifedTime))
 			{
 #if defined (WIN32)
 				tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
@@ -198,17 +198,17 @@ int WINAPI HashThreadFunc(void *param)
 				result.tstrMDate = tstrLastModifiedTime;
 			}
 			
-			fsize = osFile.getLength(); // Fix 4GB file
+			fsize = osFile.getLength(); // fix 4GB file
 			result.ulSize = fsize;
 			
-			if(!isSizeCaled) // 如果没有计算过大小
+			if (!isSizeCaled) // not calculated size
 			{
 				thrdData->totalSize += fsize;
 			}
 			else
 			{
-				thrdData->totalSize = thrdData->totalSize + fsize - fSizes[i]; // 修正总大小
-				fSizes[i] = fsize; // 修正文件大小
+				thrdData->totalSize = thrdData->totalSize + fsize - fSizes[i]; // fix total size
+				fSizes[i] = fsize; // fix file size
 			}
 
 #if defined (WIN32)
@@ -228,7 +228,7 @@ int WINAPI HashThreadFunc(void *param)
 			//UINT bufferSize = sizeof(buffer);
 			do 
 			{	
-				if(thrdData->stop)
+				if (thrdData->stop)
 				{
 					osFile.close();
 
@@ -237,28 +237,36 @@ int WINAPI HashThreadFunc(void *param)
 					return 0;
 				}
 				int64_t readRet = osFile.read(databuf.data, DataBuffer::preflen);
-				if(readRet >= 0)
+				if (readRet >= 0)
+				{
 					databuf.datalen = (unsigned int)readRet;
+				}
 				else
+				{
 					databuf.datalen = 0;
+				}
 				
 				t++;
 
-				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5更新
-				sha1.Update(databuf.data, databuf.datalen); // SHA1更新
-				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256更新
+				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
+				sha1.Update(databuf.data, databuf.datalen); // SHA1 update
+				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
 				
 				finishedSize += databuf.datalen;
 				
 				int progressMax = uiBridge->getProgMax();
 				
 				int positionNew;
-				if(fsize == 0)
-					positionNew = progressMax; // 注意除0错误
+				if (fsize == 0)
+				{
+					positionNew = progressMax;
+				}
 				else
+				{
 					positionNew = (int)(progressMax * finishedSize / fsize);
+				}
 				
-				if(positionNew > position)
+				if (positionNew > position)
 				{
 					uiBridge->updateProg(positionNew);
 					position = positionNew;
@@ -266,28 +274,32 @@ int WINAPI HashThreadFunc(void *param)
 
 				finishedSizeWhole += databuf.datalen;
 				int positionWholeNew;
-				if(thrdData->totalSize == 0)
-					positionWholeNew = progressMax; // 注意除0错误
+				if (thrdData->totalSize == 0)
+				{
+					positionWholeNew = progressMax;
+				}
 				else
+				{
 					positionWholeNew = (int)(progressMax * finishedSizeWhole / thrdData->totalSize);
-				if(isSizeCaled && positionWholeNew > positionWhole)
+				}
+				if (isSizeCaled && positionWholeNew > positionWhole)
 				{
 					positionWhole = positionWholeNew;
 					uiBridge->updateProgWhole(positionWhole);
 				}
 
 			} 
-			while(databuf.datalen >= DataBuffer::preflen);
+			while (databuf.datalen >= DataBuffer::preflen);
 			
 			uiBridge->fileCalcFinish();
 			
-			MD5Final (&mdContext); // MD5完成
-			sha1.Final(); // SHA1完成
-			sha256_final(&sha256Ctx); // SHA256完成
+			MD5Final(&mdContext); // MD5 final
+			sha1.Final(); // SHA1 final
+			sha256_final(&sha256Ctx); // SHA256 final
 
-			if(!isSizeCaled)
+			if (!isSizeCaled)
 			{
-				if(thrdData->nFiles == 0)
+				if (thrdData->nFiles == 0)
 				{
 					uiBridge->updateProgWhole(0);
 				}
@@ -352,7 +364,7 @@ int WINAPI HashThreadFunc(void *param)
 			sha256_digest(&sha256Ctx, &strSHA256);
 			tstrFileSHA256 = strtotstr(string(strSHA256));
 
-			// 在没做转换前，结果都是大写的
+			// all upper case
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
 			result.tstrSHA256 = tstrFileSHA256;
