@@ -90,6 +90,9 @@
     <ClCompile Include="source\Common\Utils.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="source\Algorithms\sha512.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\WinMFC\AboutDlg.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="source\endianness.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Algorithms\sha512.h">
+      <Filter>算法</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

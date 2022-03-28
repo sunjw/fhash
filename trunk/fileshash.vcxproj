@@ -235,6 +235,7 @@
     <ClCompile Include="source\Algorithms\MD5.cpp" />
     <ClCompile Include="source\Algorithms\SHA1.cpp" />
     <ClCompile Include="source\Algorithms\sha256.cpp" />
+    <ClCompile Include="source\Algorithms\sha512.cpp" />
     <ClCompile Include="source\Common\HashEngine.cpp" />
     <ClCompile Include="source\Common\strhelper.cpp" />
     <ClCompile Include="source\Common\Utils.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="source\Algorithms\MD5.h" />
     <ClInclude Include="source\Algorithms\SHA1.h" />
     <ClInclude Include="source\Algorithms\sha256.h" />
+    <ClInclude Include="source\Algorithms\sha512.h" />
     <ClInclude Include="source\Common\Global.h" />
     <ClInclude Include="source\Common\HashEngine.h" />
     <ClInclude Include="source\Common\strhelper.h" />
