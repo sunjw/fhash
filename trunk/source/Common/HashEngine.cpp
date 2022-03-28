@@ -373,7 +373,16 @@ int WINAPI HashThreadFunc(void *param)
 			tstrFileSHA256 = strtotstr(strSHA256);
 
 			// SHA512
-			strSHA512 = string((char *)digestSHA512);
+			for (int p = 0; p < SHA512_DIGEST_LENGTH; p++)
+			{
+				char buf[8] = { 0 };
+#if defined (WIN32)
+				sprintf_s(buf, 8, "%02X", digestSHA512[p]);
+#else
+				sprintf(buf, "%02X", digestSHA512[p]);
+#endif
+				strSHA512.append(std::string(buf));
+			}
 			tstrFileSHA512 = strtotstr(strSHA512);
 
 			// all upper case
