@@ -69,6 +69,7 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileMD5;
 	tstring tstrFileSHA1;
 	tstring tstrFileSHA256;
+	tstring tstrFileSHA512;
 
 	uiBridge->preparingCalc();
 
@@ -133,6 +134,10 @@ int WINAPI HashThreadFunc(void *param)
 
 		SHA256_CTX sha256Ctx; // SHA256 context
 		string strSHA256;
+
+		SHA512_CTX sha512Ctx; // SHA512 context
+		uint8_t digestSHA512[SHA512_DIGEST_LENGTH];
+		string strSHA512;
 		// Declaration for calculator
 		
 		ResultData resultNew;
@@ -162,6 +167,7 @@ int WINAPI HashThreadFunc(void *param)
 			MD5Init(&mdContext, 0); // MD5 init
 			sha1.Reset(); // SHA1 init
 			sha256_init(&sha256Ctx); // SHA256 init
+			SHA512_Init(&sha512Ctx); // SHA512 init
 
 			uiBridge->updateProg(0);
 
@@ -251,6 +257,7 @@ int WINAPI HashThreadFunc(void *param)
 				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
 				sha1.Update(databuf.data, databuf.datalen); // SHA1 update
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
+				SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
 				
 				finishedSize += databuf.datalen;
 				
@@ -296,6 +303,7 @@ int WINAPI HashThreadFunc(void *param)
 			MD5Final(&mdContext); // MD5 final
 			sha1.Final(); // SHA1 final
 			sha256_final(&sha256Ctx); // SHA256 final
+			SHA512_Final(digestSHA512, &sha512Ctx); // SHA256 final
 
 			if (!isSizeCaled)
 			{
@@ -362,12 +370,17 @@ int WINAPI HashThreadFunc(void *param)
 
 			// SHA256
 			sha256_digest(&sha256Ctx, &strSHA256);
-			tstrFileSHA256 = strtotstr(string(strSHA256));
+			tstrFileSHA256 = strtotstr(strSHA256);
+
+			// SHA512
+			strSHA512 = string((char *)digestSHA512);
+			tstrFileSHA512 = strtotstr(strSHA512);
 
 			// all upper case
 			result.tstrMD5 = tstrFileMD5;
 			result.tstrSHA1 = tstrFileSHA1;
 			result.tstrSHA256 = tstrFileSHA256;
+			result.tstrSHA512 = tstrFileSHA512;
 
 			result.enumState = RESULT_ALL;
 
