@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		410E26131B71C988004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		410E26141B71C9CC004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4111D69B27F16A35001AD814 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha512.h; path = source/Algorithms/sha512.h; sourceTree = "<group>"; };
+		4111D69C27F16A35001AD814 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha512.cpp; path = source/Algorithms/sha512.cpp; sourceTree = "<group>"; };
 		41666E041B67415300A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		41666E061B6741C900A1D71F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		41666E151B67573900A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				41FF1DEF1B5B4B470081F283 /* SHA1.h */,
 				41FF1DF01B5B4B470081F283 /* sha256.cpp */,
 				41FF1DF11B5B4B470081F283 /* sha256.h */,
+				4111D69C27F16A35001AD814 /* sha512.cpp */,
+				4111D69B27F16A35001AD814 /* sha512.h */,
 			);
 			name = Algorithms;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				5222582A213CF2F000012EF8 /* HyperlinkTextField.m in Sources */,
 				52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */,
 				5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */,
+				4111D69D27F16A35001AD814 /* sha512.cpp in Sources */,
 				52225832213CF32600012EF8 /* MainViewController.mm in Sources */,
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
