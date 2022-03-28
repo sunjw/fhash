@@ -220,21 +220,24 @@ void UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(const ResultData& 
                                                               bool uppercase,
                                                               NSMutableAttributedString *nsmutString)
 {
-    string strFileMD5, strFileSHA1, strFileSHA256;
+    string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
 
     if (uppercase) {
         strFileMD5 = str_upper(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_upper(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_upper(tstrtostr(result.tstrSHA256));
+        strFileSHA512 = str_upper(tstrtostr(result.tstrSHA512));
     } else {
         strFileMD5 = str_lower(tstrtostr(result.tstrMD5));
         strFileSHA1 = str_lower(tstrtostr(result.tstrSHA1));
         strFileSHA256 = str_lower(tstrtostr(result.tstrSHA256));
+        strFileSHA512 = str_lower(tstrtostr(result.tstrSHA512));
     }
 
     NSString *nsstrFileMD5 = MacUtils::ConvertUTF8StringToNSString(strFileMD5);
     NSString *nsstrFileSHA1 = MacUtils::ConvertUTF8StringToNSString(strFileSHA1);
     NSString *nsstrFileSHA256 = MacUtils::ConvertUTF8StringToNSString(strFileSHA256);
+    NSString *nsstrFileSHA512 = MacUtils::ConvertUTF8StringToNSString(strFileSHA512);
 
     NSMutableAttributedString *nsmutStrHash = [[NSMutableAttributedString alloc] init];
 
@@ -262,6 +265,13 @@ void UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(const ResultData& 
     [nsmutStrHash addAttribute:NSLinkAttributeName
                          value:nsstrFileSHA256
                          range:NSMakeRange(oldLength, [nsstrFileSHA256 length])];
+
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\nSHA512: ");
+    oldLength = [nsmutStrHash length];
+    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, nsstrFileSHA512);
+    [nsmutStrHash addAttribute:NSLinkAttributeName
+                         value:nsstrFileSHA512
+                         range:NSMakeRange(oldLength, [nsstrFileSHA512 length])];
 
     MacUtils::AppendNSStringToNSMutableAttributedString(nsmutStrHash, @"\n\n");
 
