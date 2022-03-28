@@ -18,7 +18,6 @@
 */
 
 /* Modelled after the sha1.c code by Peter Gutmann. */
-
 #include "stdafx.h"
 
 #include <stdio.h>
