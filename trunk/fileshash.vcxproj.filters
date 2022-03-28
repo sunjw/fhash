@@ -176,6 +176,9 @@
     <ClInclude Include="source\Common\Utils.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="source\endianness.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="source\WinMFC\res\compatibility.manifest">
