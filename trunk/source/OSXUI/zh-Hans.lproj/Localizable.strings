@@ -52,11 +52,11 @@
 
 // About Dialog Strings
 "ABOUTDLG_TITLE" = "关于 fHash";
-"ABOUTDLG_INFO_TITLE" = "fHash: 文件 Hash 计算器 ";
+"ABOUTDLG_INFO_TITLE" = "fHash: 文件 Hash 计算器";
 "ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007- SUN Junwen.";
-"ABOUTDLG_INFO_MD5" = "MD5 算法是由 RSA Data Security, Inc.编写。Copyright (C) RSA Data Security, Inc.";
-"ABOUTDLG_INFO_SHA256" = "SHA256 算法是由 Niels Moller 编写。Copyright (C) Niels Moller";
-"ABOUTDLG_INFO_SHA512" = "SHA512 算法是由 Aaron D. Gifford 编写。 Copyright (C) Aaron D. Gifford";
+"ABOUTDLG_INFO_MD5" = "MD5 实现 copyright (C) RSA Data Security, Inc.";
+"ABOUTDLG_INFO_SHA256" = "SHA256 实现 copyright (C) Niels Moller";
+"ABOUTDLG_INFO_SHA512" = "SHA512 实现 copyright (C) Aaron D. Gifford";
 "ABOUTDLG_INFO_RIGHTDETAIL" = "详细授权信息见开发者网站。";
 "ABOUTDLG_INFO_OSTITLE" = "当前操作系统:";
 "ABOUTDLG_PROJECT_SITE" = "<a>Hosted on GitHub</a>";
