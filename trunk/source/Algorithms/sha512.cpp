@@ -46,6 +46,7 @@
 
 #include <string.h>	/* memcpy()/memset() or bcopy()/bzero() */
 #include <assert.h>	/* assert() */
+#include "endianness.h"
 
 // /* do we have sha512 header defs */
 // #ifndef SHA512_DIGEST_LENGTH
