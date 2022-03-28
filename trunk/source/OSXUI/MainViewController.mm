@@ -161,6 +161,17 @@ enum MainViewControllerState {
     [[self.mainTextView textContainer] setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
     [[self.mainTextView textContainer] setWidthTracksTextView:NO];
 
+    // Set TextView word wrap.
+//    NSSize contentSize = [self.mainScrollView contentSize];
+//    [[self.mainTextView enclosingScrollView] setHasHorizontalScroller:NO];
+//    [self.mainTextView setMinSize:NSMakeSize(0.0, contentSize.height)];
+//    [self.mainTextView setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+//    [self.mainTextView setVerticallyResizable:YES];
+//    [self.mainTextView setHorizontallyResizable:NO];
+//    [self.mainTextView setAutoresizingMask:NSViewWidthSizable];
+//    [[self.mainTextView textContainer] setContainerSize:NSMakeSize(contentSize.width, FLT_MAX)];
+//    [[self.mainTextView textContainer] setWidthTracksTextView:YES];
+
     // Set progressbar.
     NSRect mainProgIndiFrame = [self.mainProgressIndicator frame];
     [self.mainProgressIndicator setFrameSize:NSMakeSize(mainProgIndiFrame.size.width, 2)];
@@ -352,6 +363,13 @@ enum MainViewControllerState {
     [_mainText addAttribute:NSForegroundColorAttributeName
                       value:[NSColor textColor]
                       range:NSMakeRange(0, [_mainText length])];
+
+    // word wrap
+//    NSMutableParagraphStyle *paraStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+//    [paraStyle setLineBreakMode:NSLineBreakByCharWrapping];
+//    [_mainText addAttribute:NSParagraphStyleAttributeName
+//                      value:paraStyle
+//                      range:NSMakeRange(0, [_mainText length])];
 
     [_mainText endEditing];
 
