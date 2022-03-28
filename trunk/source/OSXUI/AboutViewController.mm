@@ -36,6 +36,7 @@ using namespace sunjwbase;
     string strAboutInfo;
     
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_TITLE));
+    strAboutInfo.append(" ");
     strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppVersion));
     strAboutInfo.append(" (");
     strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppBundleVersion));
