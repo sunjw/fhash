@@ -43,6 +43,7 @@
 #ifndef __SHA512_H__
 #define __SHA512_H__
 
+#include <stdlib.h>
 #if defined (WIN32)
 #include "WinMFC/stdint.h"
 #else
