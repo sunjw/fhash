@@ -25,6 +25,7 @@
 #include "Algorithms/MD5.h"
 #include "Algorithms/SHA1.h"
 #include "Algorithms/sha256.h"
+#include "Algorithms/sha512.h"
 
 using namespace std;
 using namespace sunjwbase;
@@ -46,7 +47,7 @@ public:
 
 unsigned int DataBuffer::preflen = 1048576; // 2^20
 
-//工作者线程
+// working thread
 int WINAPI HashThreadFunc(void *param)
 {
 	ThreadData *thrdData = (ThreadData *)param;
@@ -61,7 +62,7 @@ int WINAPI HashThreadFunc(void *param)
 	bool isSizeCaled = false;
 	//ULONGLONG* fSizes = NULL;
 	ULLongVector fSizes(thrdData->nFiles);
-	int positionWhole = 0; // 全局进度条位置
+	int positionWhole = 0; // whole position
 
 	tstring tstrFileSize;
 	tstring tstrFileVersion;
@@ -71,13 +72,13 @@ int WINAPI HashThreadFunc(void *param)
 
 	uiBridge->preparingCalc();
 
-	// 获得文件总大小
-	if(thrdData->nFiles < 200) // 文件太多就不预先计算了
+	// get total files size
+	if (thrdData->nFiles < 200) // not too many
 	{
 		isSizeCaled = true;
-		for(i = 0; i < (thrdData->nFiles); i++)
+		for (i = 0; i < (thrdData->nFiles); i++)
 		{
-			if(thrdData->stop)
+			if (thrdData->stop)
 			{
 				thrdData->threadWorking = false;
 				uiBridge->calcStop();
@@ -88,7 +89,7 @@ int WINAPI HashThreadFunc(void *param)
 			const TCHAR* path;
 			path = thrdData->fullPaths[i].c_str();
 			OsFile osFile(path);
-			if(osFile.openRead())
+			if (osFile.openRead())
 			{
 				fSize = osFile.getLength();//fsize=status.m_size; // Fix 4GB file
 				osFile.close();
