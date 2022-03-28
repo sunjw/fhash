@@ -53,11 +53,11 @@ UIStringsBase::UIStringsBase()
 
 	// About Dialog Strings
 	m_stringsMap[_T("ABOUTDLG_TITLE")] = _T("About fHash");
-	m_stringsMap[_T("ABOUTDLG_INFO_TITLE")] = _T("fHash: Files' Hash Calculator ");
+	m_stringsMap[_T("ABOUTDLG_INFO_TITLE")] = _T("fHash: Files' Hash Calculator");
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHT")] = _T("Copyright (C) 2007- SUN Junwen.");
-	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 algorithm is writtend by RSA Data Security, Inc. Copyright (C) RSA Data Security, Inc.");
-	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 algorithm is writtend by Niels Moller. Copyright (C) Niels Moller");
-	m_stringsMap[_T("ABOUTDLG_INFO_SHA512")] = _T("SHA512 algorithm is writtend by Aaron D. Gifford. Copyright (C) Aaron D. Gifford");
+	m_stringsMap[_T("ABOUTDLG_INFO_MD5")] = _T("MD5 implementation copyright (C) RSA Data Security, Inc.");
+	m_stringsMap[_T("ABOUTDLG_INFO_SHA256")] = _T("SHA256 implementation copyright (C) Niels Moller");
+	m_stringsMap[_T("ABOUTDLG_INFO_SHA512")] = _T("SHA512 implementation copyright (C) Aaron D. Gifford");
 	m_stringsMap[_T("ABOUTDLG_INFO_RIGHTDETAIL")] = _T("More details are on Project Site.");
 	m_stringsMap[_T("ABOUTDLG_INFO_OSTITLE")] = _T("Operating System:");
 	m_stringsMap[_T("ABOUTDLG_PROJECT_SITE")] = _T("<a>Hosted on GitHub</a>");
