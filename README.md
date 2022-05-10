@@ -17,11 +17,11 @@ Project site: https://github.com/sunjw/fhash
 
 #### DOWNLOAD
 Windows   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)   
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)   
 macOS   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/doc/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/macOS/)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/doc/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/macOS/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
 
 #### LICENSE
 GPL 2.0 for codes hosted on GitHub.   
@@ -31,9 +31,9 @@ May use other licenses for binary package on other distribution sites.
 Sun Junwen sunjw8888 at gmail.com
 
 #### SCREENSHOT
-![Image of light and dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_progress_joint.png)   
-![Image of main dialog](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_start.png)   
-![Image of about dialog](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_about_dark.png)   
-![Image of Finder context menu](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_context_menu.jpg)   
-![Image of hash result in light mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_result.png)   
-![Image of hash result in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/doc/mac_bigsur_result_dark.png)   
+![Image of light and dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_progress_joint.png)   
+![Image of main dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_start.png)   
+![Image of about dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_about_dark.png)   
+![Image of Finder context menu](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_context_menu.jpg)   
+![Image of hash result in light mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_result.png)   
+![Image of hash result in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_result_dark.png)   
