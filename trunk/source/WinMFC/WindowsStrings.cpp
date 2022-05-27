@@ -16,7 +16,7 @@ namespace WindowsStrings
 {
 	static OsMutex s_initMtx;
 	static int s_init = 0;
-	static tr1::shared_ptr<WindowsStringsMgr> s_winStrsMgr;
+	static shared_ptr<WindowsStringsMgr> s_winStrsMgr;
 	static LANGID s_uiLang = -1;
 
 	static void InitStringsManager()
