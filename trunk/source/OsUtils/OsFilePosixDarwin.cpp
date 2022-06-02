@@ -95,6 +95,11 @@ bool OsFile::openRead(void *exception/* = NULL*/)
     return ret;
 }
 
+bool OsFile::openReadScan(void *exception/* = NULL*/)
+{
+    return this->openRead(exception);
+}
+
 bool OsFile::openWrite(void *exception/* = NULL*/)
 {
     bool ret = false;
