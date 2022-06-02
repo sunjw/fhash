@@ -78,6 +78,21 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 	return ret;
 }
 
+bool OsFile::openReadScan(void *exception/* = NULL*/)
+{
+	bool ret = false;
+
+	ret = this->open((void *)(CFile::modeRead | CFile::shareDenyWrite|CFile::osSequentialScan),
+		exception);
+
+	if (ret == true)
+	{
+		_fileStatus = OPEN_READ;
+	}
+
+	return ret;
+}
+
 bool OsFile::openWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;

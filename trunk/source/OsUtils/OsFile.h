@@ -38,6 +38,7 @@ namespace sunjwbase
 
 		// Open
 		bool openRead(void *exception = NULL);
+		bool openReadScan(void *exception = NULL);
 		bool openWrite(void *exception = NULL);
 		bool openReadWrite(void *exception = NULL);
 
