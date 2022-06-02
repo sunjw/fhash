@@ -162,7 +162,7 @@ int WINAPI HashThreadFunc(void *param)
 		char fExc[1024] = {0};
 #endif
 		OsFile osFile(path);
-		if (osFile.openRead((void *)&fExc)) 
+		if (osFile.openReadScan((void *)&fExc)) 
 		{
 			MD5Init(&mdContext, 0); // MD5 init
 			sha1.Reset(); // SHA1 init
