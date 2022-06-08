@@ -51,6 +51,9 @@
     <ClInclude Include="..\fHashUwpShellExt\strhelper.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\fHashUwpWap\version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestWinRtCmpt1.rc">
