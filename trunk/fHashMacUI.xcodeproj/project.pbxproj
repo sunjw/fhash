@@ -52,7 +52,6 @@
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
 		41FF1DCB1B5B49490081F283 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = "<group>"; };
-		41FF1DD31B5B49A60081F283 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 2147484705; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = source/targetver.h; sourceTree = "<group>"; };
 		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
 		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
 		41FF1DD91B5B4A5A0081F283 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 				4163EC952850A2C900453333 /* stdafx.h */,
 				52225802213CD95D00012EF8 /* strhelper.cpp */,
 				52225803213CD95D00012EF8 /* strhelper.h */,
-				41FF1DD31B5B49A60081F283 /* targetver.h */,
 				52225814213CDB9D00012EF8 /* UIBridgeBase.h */,
 				52225808213CDA7C00012EF8 /* Utils.cpp */,
 				52225809213CDA7C00012EF8 /* Utils.h */,
