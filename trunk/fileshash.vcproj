@@ -413,7 +413,7 @@
 				>
 			</File>
 			<File
-				RelativePath="source\WinMFC\stdafx.cpp"
+				RelativePath="source\stdafx.cpp"
 				>
 			</File>
 			<File
@@ -478,7 +478,7 @@
 				>
 			</File>
 			<File
-				RelativePath="source\WinMFC\stdafx.h"
+				RelativePath="source\stdafx.h"
 				>
 			</File>
 			<File
