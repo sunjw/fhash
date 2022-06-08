@@ -55,7 +55,7 @@
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
             <desktop5:ItemType Type="*">
-              <desktop5:Verb Id="fHashUwpShellExt" Clsid="0C88A228-0DEC-4E45-B801-96EC8E4BC4B5" />
+              <desktop5:Verb Id="fHashUwpShellExt" Clsid="A90C1F88-96D8-47E1-8F96-6C37E1162C8D" />
             </desktop5:ItemType>
           </desktop4:FileExplorerContextMenus>
         </desktop4:Extension>
@@ -63,7 +63,7 @@
         <com:Extension Category="windows.comServer">
           <com:ComServer>
             <com:SurrogateServer DisplayName="fHashUwpShellExt">
-              <com:Class Id="0C88A228-0DEC-4E45-B801-96EC8E4BC4B5" Path="fHashUwpShellExt.dll" ThreadingModel="STA"/>
+              <com:Class Id="A90C1F88-96D8-47E1-8F96-6C37E1162C8D" Path="fHashUwpShellExt.dll" ThreadingModel="STA"/>
             </com:SurrogateServer>
           </com:ComServer>
         </com:Extension>
