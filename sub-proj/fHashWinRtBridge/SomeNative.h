@@ -2,7 +2,6 @@
 #include <memory>
 #include <Windows.h>
 #include "TestDelegate.h"
-#include "strhelper.h"
 
 class SomeNative
 {

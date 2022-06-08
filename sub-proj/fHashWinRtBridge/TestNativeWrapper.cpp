@@ -1,7 +1,7 @@
-﻿#include "pch.h"
+﻿#include "stdafx.h"
 #include <memory>
 #include "TestNativeWrapper.h"
-#include "strhelper.h"
+#include "Common/strhelper.h"
 #include "TestDelegate.h"
 
 using namespace Platform;

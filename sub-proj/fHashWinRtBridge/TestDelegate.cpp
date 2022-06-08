@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "stdafx.h"
 #include "TestDelegate.h"
 
 using namespace Platform;

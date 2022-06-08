@@ -16,7 +16,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TestNativeWrapper.cpp">
@@ -28,7 +28,7 @@
     <ClCompile Include="TestDelegate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\fHashUwpShellExt\strhelper.cpp">
+    <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,7 +36,7 @@
     <ClInclude Include="resource.h">
       <Filter>资源文件</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TestNativeWrapper.h">
@@ -48,7 +48,7 @@
     <ClInclude Include="TestDelegate.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\fHashUwpShellExt\strhelper.h">
+    <ClInclude Include="..\..\trunk\source\Common\strhelper.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\trunk\fHashUwpWap\version.h">

@@ -1,7 +1,7 @@
-#include "pch.h"
+#include "stdafx.h"
 #include "SomeNative.h"
 #include "TestDelegate.h"
-#include "strhelper.h"
+#include "Common/strhelper.h"
 
 using namespace Platform;
 using namespace sunjwbase;
