@@ -241,7 +241,7 @@
     <ClCompile Include="source\Common\Utils.cpp" />
     <ClCompile Include="source\OsUtils\OsFileWinAfx.cpp" />
     <ClCompile Include="source\OsUtils\OsThreadWinApi.cpp" />
-    <ClCompile Include="source\stdafx.cpp" />
+    <ClCompile Include="source\WinMFC\stdafx.cpp" />
     <ClCompile Include="source\WinMFC\AboutDlg.cpp" />
     <ClCompile Include="source\WinMFC\FilesHash.cpp" />
     <ClCompile Include="source\WinMFC\FilesHashDlg.cpp" />
@@ -270,7 +270,7 @@
     <ClInclude Include="source\OsUtils\OsFile.h" />
     <ClInclude Include="source\OsUtils\OsThread.h" />
     <ClInclude Include="source\resource.h" />
-    <ClInclude Include="source\stdafx.h" />
+    <ClInclude Include="source\WinMFC\stdafx.h" />
     <ClInclude Include="source\targetver.h" />
     <ClInclude Include="source\version.h" />
     <ClInclude Include="source\WinMFC\AboutDlg.h" />

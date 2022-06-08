@@ -45,7 +45,7 @@
     <ClCompile Include="source\WinMFC\ShellExtComm.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\stdafx.cpp">
+    <ClCompile Include="source\WinMFC\stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="source\WinMFC\UIBridgeMFC.cpp">
@@ -119,7 +119,7 @@
     <ClInclude Include="source\WinMFC\ShellExtComm.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\stdafx.h">
+    <ClInclude Include="source\WinMFC\stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="source\WinMFC\stdint.h">
