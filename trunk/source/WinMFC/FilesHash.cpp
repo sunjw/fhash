@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "fileshash.h"
 #include "fileshashdlg.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 #include "UIStringsBase.h"
 #include "UIStringsZHCN.h"
 

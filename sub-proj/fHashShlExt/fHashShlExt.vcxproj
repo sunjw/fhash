@@ -247,8 +247,8 @@
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\WinMFC\ShellExtComm.cpp" />
-    <ClCompile Include="..\..\trunk\source\WinMFC\WindowsStrings.cpp" />
-    <ClCompile Include="..\..\trunk\source\WinMFC\WindowsStringsInternal.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp" />
     <ClCompile Include="dllmain.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -300,8 +300,8 @@
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
     <ClInclude Include="..\..\trunk\source\WinMFC\ShellExtComm.h" />
-    <ClInclude Include="..\..\trunk\source\WinMFC\WindowsStrings.h" />
-    <ClInclude Include="..\..\trunk\source\WinMFC\WindowsStringsInternal.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h" />
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="fHashShellExt.h" />
     <ClInclude Include="fHashShlExtStringsBase.h" />

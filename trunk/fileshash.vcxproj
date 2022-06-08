@@ -252,8 +252,8 @@
     <ClCompile Include="source\WinMFC\UIBridgeMFC.cpp" />
     <ClCompile Include="source\WinMFC\UIStringsBase.cpp" />
     <ClCompile Include="source\WinMFC\UIStringsZHCN.cpp" />
-    <ClCompile Include="source\WinMFC\WindowsStrings.cpp" />
-    <ClCompile Include="source\WinMFC\WindowsStringsInternal.cpp" />
+    <ClCompile Include="source\WinCommon\WindowsStrings.cpp" />
+    <ClCompile Include="source\WinCommon\WindowsStringsInternal.cpp" />
     <ClCompile Include="source\WinMFC\WindowsUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -284,8 +284,8 @@
     <ClInclude Include="source\WinMFC\UIBridgeMFC.h" />
     <ClInclude Include="source\WinMFC\UIStringsBase.h" />
     <ClInclude Include="source\WinMFC\UIStringsZHCN.h" />
-    <ClInclude Include="source\WinMFC\WindowsStrings.h" />
-    <ClInclude Include="source\WinMFC\WindowsStringsInternal.h" />
+    <ClInclude Include="source\WinCommon\WindowsStrings.h" />
+    <ClInclude Include="source\WinCommon\WindowsStringsInternal.h" />
     <ClInclude Include="source\WinMFC\WindowsUtils.h" />
   </ItemGroup>
   <ItemGroup>

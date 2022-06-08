@@ -46,10 +46,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\WinMFC\WindowsStrings.cpp">
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\WinMFC\WindowsStringsInternal.cpp">
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="fHashShlExt_i.c">
@@ -103,10 +103,10 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\trunk\source\WinMFC\WindowsStrings.h">
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\trunk\source\WinMFC\WindowsStringsInternal.h">
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="fHashShlExt_i.h">

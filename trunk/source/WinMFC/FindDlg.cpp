@@ -5,7 +5,7 @@
 
 #include "FilesHash.h"
 #include "FindDlg.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 
 // CFindDlg ¶Ô»°¿ò
 

@@ -10,7 +10,7 @@
 
 #include "Common/strhelper.h"
 #include "WinMFC/ShellExtComm.h"
-#include "WinMFC/WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 #include "fHashShlExtStringsBase.h"
 #include "fHashShlExtStringsZHCN.h"
 

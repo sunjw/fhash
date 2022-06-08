@@ -497,11 +497,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WinMFC\WindowsStrings.cpp"
+				RelativePath="..\..\trunk\source\WinCommon\WindowsStrings.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WinMFC\WindowsStringsInternal.cpp"
+				RelativePath="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp"
 				>
 			</File>
 		</Filter>
@@ -543,11 +543,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WinMFC\WindowsStrings.h"
+				RelativePath="..\..\trunk\source\WinCommon\WindowsStrings.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\trunk\source\WinMFC\WindowsStringsInternal.h"
+				RelativePath="..\..\trunk\source\WinCommon\WindowsStringsInternal.h"
 				>
 			</File>
 		</Filter>

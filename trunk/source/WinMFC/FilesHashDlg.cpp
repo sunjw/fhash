@@ -15,7 +15,7 @@
 #include "Common/HashEngine.h"
 #include "WindowsUtils.h"
 #include "UIBridgeMFC.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 
 using namespace std;
 using namespace sunjwbase;

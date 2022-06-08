@@ -429,11 +429,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\WinMFC\WindowsStrings.cpp"
+				RelativePath=".\source\WinCommon\WindowsStrings.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WinMFC\WindowsStringsInternal.cpp"
+				RelativePath=".\source\WinCommon\WindowsStringsInternal.cpp"
 				>
 			</File>
 			<File
@@ -506,11 +506,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\source\WinMFC\WindowsStrings.h"
+				RelativePath=".\source\WinCommon\WindowsStrings.h"
 				>
 			</File>
 			<File
-				RelativePath=".\source\WinMFC\WindowsStringsInternal.h"
+				RelativePath=".\source\WinCommon\WindowsStringsInternal.h"
 				>
 			</File>
 			<File

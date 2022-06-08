@@ -57,10 +57,10 @@
     <ClCompile Include="source\WinMFC\UIStringsZHCN.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\WinMFC\WindowsStrings.cpp">
+    <ClCompile Include="source\WinCommon\WindowsStrings.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\WinMFC\WindowsStringsInternal.cpp">
+    <ClCompile Include="source\WinCommon\WindowsStringsInternal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="source\WinMFC\WindowsUtils.cpp">
@@ -140,10 +140,10 @@
     <ClInclude Include="source\version.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\WinMFC\WindowsStrings.h">
+    <ClInclude Include="source\WinCommon\WindowsStrings.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\WinMFC\WindowsStringsInternal.h">
+    <ClInclude Include="source\WinCommon\WindowsStringsInternal.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="source\WinMFC\WindowsUtils.h">

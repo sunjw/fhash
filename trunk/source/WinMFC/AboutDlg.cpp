@@ -9,7 +9,7 @@
 #include "FilesHash.h"
 #include "AboutDlg.h"
 #include "WindowsUtils.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 
 // CAboutDlg ¶Ô»°¿ò
 

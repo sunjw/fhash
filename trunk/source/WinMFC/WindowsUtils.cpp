@@ -9,7 +9,7 @@
 
 #include "Common/strhelper.h"
 #include "Common/Utils.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 #include "ShellExtComm.h"
 
 using namespace std;

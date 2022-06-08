@@ -11,7 +11,7 @@
 #include "Common/Global.h"
 #include "Common/Utils.h"
 #include "WindowsUtils.h"
-#include "WindowsStrings.h"
+#include "WinCommon/WindowsStrings.h"
 
 using namespace std;
 using namespace sunjwbase;
