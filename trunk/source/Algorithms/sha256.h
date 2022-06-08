@@ -38,13 +38,8 @@
 *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 *  MA 02110-1301, USA.
 */
-#include <string>
-
-#if defined (WIN32)
-#include "WinMFC/stdint.h"
-#else
 #include <stdint.h>
-#endif
+#include <string>
 
 #define SHA256_DIGEST_SIZE 32
 #define SHA256_DATA_SIZE 64

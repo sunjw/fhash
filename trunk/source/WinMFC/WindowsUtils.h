@@ -4,8 +4,8 @@
 #include <string>
 #include <Windows.h>
 #include <atlbase.h>
+#include <stdint.h>
 
-#include "WinMFC/stdint.h"
 #include "Common/strhelper.h"
 #include "Common/Global.h"
 

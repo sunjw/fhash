@@ -280,7 +280,6 @@
     <ClInclude Include="source\WinMFC\HyperEdit.h" />
     <ClInclude Include="source\WinMFC\HyperEditHash.h" />
     <ClInclude Include="source\WinMFC\ShellExtComm.h" />
-    <ClInclude Include="source\WinMFC\stdint.h" />
     <ClInclude Include="source\WinMFC\UIBridgeMFC.h" />
     <ClInclude Include="source\WinMFC\UIStringsBase.h" />
     <ClInclude Include="source\WinMFC\UIStringsZHCN.h" />

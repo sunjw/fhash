@@ -122,9 +122,6 @@
     <ClInclude Include="source\stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\WinMFC\stdint.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="source\targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>

@@ -44,11 +44,7 @@
 #define __SHA512_H__
 
 #include <stdlib.h>
-#if defined (WIN32)
-#include "WinMFC/stdint.h"
-#else
 #include <stdint.h>
-#endif
 
 /* do we have sha512 header defs */
 #ifndef SHA512_DIGEST_LENGTH

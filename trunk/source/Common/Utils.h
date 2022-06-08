@@ -3,11 +3,7 @@
 
 #include <string>
 #include <stdlib.h>
-#if defined (WIN32)
-#include "WinMFC/stdint.h"
-#else
 #include <stdint.h>
-#endif
 
 namespace Utils
 {

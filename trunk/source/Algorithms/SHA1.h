@@ -19,12 +19,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "endianness.h"
-#if defined (WIN32)
-#include "WinMFC/stdint.h"
-#else
 #include <stdint.h>
-#endif
+#include "endianness.h"
 
 #define MAX_FILE_READ_BUFFER 8000
 
