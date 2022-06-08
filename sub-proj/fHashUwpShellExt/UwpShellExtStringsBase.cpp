@@ -1,4 +1,4 @@
-#include "TestShellExtStringsBase.h"
+#include "UwpShellExtStringsBase.h"
 
 #include <tchar.h>
 

@@ -10,10 +10,10 @@
     <ClCompile Include="RegisterExtension.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestShellExtStringsBase.cpp">
+    <ClCompile Include="UwpShellExtStringsBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestShellExtStringsZHCN.cpp">
+    <ClCompile Include="UwpShellExtStringsZHCN.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp">
@@ -42,10 +42,10 @@
     <ClInclude Include="ShellHelpers.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="TestShellExtStringsBase.h">
+    <ClInclude Include="UwpShellExtStringsBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="TestShellExtStringsZHCN.h">
+    <ClInclude Include="UwpShellExtStringsZHCN.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">

@@ -1,4 +1,4 @@
-#include "TestShellExtStringsZHCN.h"
+#include "UwpShellExtStringsZHCN.h"
 
 #include <tchar.h>
 

@@ -1,5 +1,5 @@
-#ifndef _TEST_SHLEXT_STRINGS_BASE_H_
-#define _TEST_SHLEXT_STRINGS_BASE_H_
+#ifndef _UWP_SHLEXT_STRINGS_BASE_H_
+#define _UWP_SHLEXT_STRINGS_BASE_H_
 
 #include "WinCommon/WindowsStrings.h"
 

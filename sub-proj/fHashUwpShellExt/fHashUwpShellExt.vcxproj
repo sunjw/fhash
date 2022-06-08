@@ -227,8 +227,8 @@
     <ClCompile Include="dll.cpp" />
     <ClCompile Include="ExplorerCommandVerb.cpp" />
     <ClCompile Include="RegisterExtension.cpp" />
-    <ClCompile Include="TestShellExtStringsBase.cpp" />
-    <ClCompile Include="TestShellExtStringsZHCN.cpp" />
+    <ClCompile Include="UwpShellExtStringsBase.cpp" />
+    <ClCompile Include="UwpShellExtStringsZHCN.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dll.def" />
@@ -245,8 +245,8 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShellHelpers.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TestShellExtStringsBase.h" />
-    <ClInclude Include="TestShellExtStringsZHCN.h" />
+    <ClInclude Include="UwpShellExtStringsBase.h" />
+    <ClInclude Include="UwpShellExtStringsZHCN.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="fHashUwpShellExt.rc" />

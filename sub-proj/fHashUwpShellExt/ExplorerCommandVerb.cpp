@@ -19,8 +19,8 @@
 #include "Dll.h"
 #include "Common/strhelper.h"
 #include "WinCommon/WindowsStrings.h"
-#include "TestShellExtStringsBase.h"
-#include "TestShellExtStringsZHCN.h"
+#include "UwpShellExtStringsBase.h"
+#include "UwpShellExtStringsZHCN.h"
 
 static WCHAR const c_szVerbDisplayNameBack[] = L"Go to TestUWP1";
 static WCHAR const c_szProgID[] = L"*";
