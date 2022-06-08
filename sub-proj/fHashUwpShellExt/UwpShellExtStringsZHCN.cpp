@@ -2,8 +2,8 @@
 
 #include <tchar.h>
 
-TestShlExtStringsZHCN::TestShlExtStringsZHCN()
+UwpShlExtStringsZHCN::UwpShlExtStringsZHCN()
 {
 	// Shell ext
-	m_stringsMap[_T("SHELL_EXT_DISPLAY_NAME")] = _T("试试看 TestUWP1");
+	m_stringsMap[_T("SHELL_EXT_DISPLAY_NAME")] = _T("使用 fHash 计算哈希");
 }

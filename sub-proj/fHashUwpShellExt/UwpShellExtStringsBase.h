@@ -3,10 +3,10 @@
 
 #include "WinCommon/WindowsStrings.h"
 
-class TestShlExtStringsBase: public WindowsStrings::WindowsStringsMap
+class UwpShlExtStringsBase: public WindowsStrings::WindowsStringsMap
 {
 public:
-	TestShlExtStringsBase();
+	UwpShlExtStringsBase();
 };
 
 #endif

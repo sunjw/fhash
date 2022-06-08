@@ -22,10 +22,10 @@
 #include "UwpShellExtStringsBase.h"
 #include "UwpShellExtStringsZHCN.h"
 
-static WCHAR const c_szVerbDisplayNameBack[] = L"Go to TestUWP1";
+static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash";
 static WCHAR const c_szProgID[] = L"*";
-static WCHAR const c_szVerbName[] = L"TestShellExt";
-static WCHAR const c_szExecPath[] = L"TestUWP1.exe";
+static WCHAR const c_szVerbName[] = L"fHashUwpShellExt";
+static WCHAR const c_szExecPath[] = L"fHashUwp.exe";
 
 class CExplorerCommandVerb : public IExplorerCommand,
                              public IInitializeCommand,
@@ -35,8 +35,8 @@ public:
     CExplorerCommandVerb() : _cRef(1), _punkSite(NULL), _hwnd(NULL), _pstmShellItemArray(NULL)
     {
         DllAddRef();
-        RegisterStringsForLang(-1, new TestShlExtStringsBase());
-        RegisterStringsForLang(2052, new TestShlExtStringsZHCN());
+        RegisterStringsForLang(-1, new UwpShlExtStringsBase());
+        RegisterStringsForLang(2052, new UwpShlExtStringsZHCN());
     }
 
     // IUnknown

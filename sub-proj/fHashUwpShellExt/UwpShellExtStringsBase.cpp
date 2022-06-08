@@ -2,8 +2,8 @@
 
 #include <tchar.h>
 
-TestShlExtStringsBase::TestShlExtStringsBase()
+UwpShlExtStringsBase::UwpShlExtStringsBase()
 {
 	// Shell ext
-	m_stringsMap[_T("SHELL_EXT_DISPLAY_NAME")] = _T("Go to TestUWP1");
+	m_stringsMap[_T("SHELL_EXT_DISPLAY_NAME")] = _T("Hash with fHash");
 }
