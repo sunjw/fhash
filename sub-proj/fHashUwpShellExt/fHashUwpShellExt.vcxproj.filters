@@ -31,7 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
-      <Filter>资源</Filter>
+      <Filter>资源文件</Filter>
     </ClInclude>
     <ClInclude Include="Dll.h">
       <Filter>头文件</Filter>
@@ -63,11 +63,11 @@
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\fHashUwpWap\version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="资源">
-      <UniqueIdentifier>{7cfaf0bc-2e7e-4621-8f69-565465bdfc78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件">
       <UniqueIdentifier>{e4c30e31-f68d-43fa-8e95-5e329f762082}</UniqueIdentifier>
     </Filter>
@@ -77,10 +77,13 @@
     <Filter Include="Common">
       <UniqueIdentifier>{fb39b3af-d1c3-4160-9972-050e08b237a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{7cfaf0bc-2e7e-4621-8f69-565465bdfc78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
-      <Filter>资源</Filter>
+      <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>

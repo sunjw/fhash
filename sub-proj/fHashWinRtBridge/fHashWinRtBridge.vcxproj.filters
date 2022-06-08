@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resources">
-      <UniqueIdentifier>55e8b138-c0f1-4ead-9f00-c3ea28a8135e</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="头文件">
       <UniqueIdentifier>{75d2580f-6628-4173-a06d-c7d060501d56}</UniqueIdentifier>
     </Filter>
@@ -13,6 +9,10 @@
     </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{5b774ad5-4caa-4bed-a3ed-24ae0e05bc8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>55e8b138-c0f1-4ead-9f00-c3ea28a8135e</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
-      <Filter>Resources</Filter>
+      <Filter>资源文件</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestWinRtCmpt1.rc">
-      <Filter>Resources</Filter>
+      <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>
