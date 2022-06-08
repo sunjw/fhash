@@ -71,7 +71,7 @@ BEGIN
             VALUE "FileDescription", "fHashUwpShellExt"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "fHashUwpShellExt.dll"
-            VALUE "LegalCopyright", "Copyright ? SUN Junwen 2022-"
+            VALUE "LegalCopyright", "Copyright (C) SUN Junwen 2022-"
             VALUE "OriginalFilename", "fHashUwpShellExt.dll"
             VALUE "ProductName", "fHashUwpShellExt"
             VALUE "ProductVersion", "1.0.0.1"

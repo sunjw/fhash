@@ -71,7 +71,7 @@ BEGIN
             VALUE "FileDescription", "fHashWinRtBridge"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "fHashWinRtBridge.dll"
-            VALUE "LegalCopyright", "Copyright ? SUN Junwen 2022-"
+            VALUE "LegalCopyright", "Copyright (C) SUN Junwen 2022-"
             VALUE "OriginalFilename", "fHashWinRtBridge.dll"
             VALUE "ProductName", "fHashWinRtBridge"
             VALUE "ProductVersion", "1.0.0.1"
