@@ -16,7 +16,7 @@
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>fHashUwp</DisplayName>
+    <DisplayName>fHash</DisplayName>
     <PublisherDisplayName>Sun Junwen</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -35,8 +35,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="fHashUwp"
-        Description="fHashUwp"
+        DisplayName="fHash"
+        Description="fHash"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
