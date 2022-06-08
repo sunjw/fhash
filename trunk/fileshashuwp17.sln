@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fHashUwp", "source\WinUWP\f
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashUwpShellExt", "..\sub-proj\fHashUwpShellExt\fHashUwpShellExt.vcxproj", "{6ADD939C-A7C3-4FB3-B08B-8B037854E98C}"
 EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "fHashUwpWap", "..\sub-proj\fHashUwpWap\fHashUwpWap.wapproj", "{34C7039B-EE3A-47AF-AEF4-85B894113872}"
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "fHashUwpWap", "fHashUwpWap\fHashUwpWap.wapproj", "{34C7039B-EE3A-47AF-AEF4-85B894113872}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashWinRtBridge", "..\sub-proj\fHashWinRtBridge\fHashWinRtBridge.vcxproj", "{1DB637DD-B2F5-4B9F-A8C1-B833E9F86742}"
 EndProject
