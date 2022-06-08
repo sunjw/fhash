@@ -1,10 +1,12 @@
+#include "stdafx.h"
+
 #include "WindowsStrings.h"
 
 #include <Windows.h>
 #include <tchar.h>
 #include <memory>
-#include "OsThread.h"
-#include "strhelper.h"
+#include "OsUtils/OsThread.h"
+#include "Common/strhelper.h"
 #include "WindowsStringsInternal.h"
 
 using namespace std;

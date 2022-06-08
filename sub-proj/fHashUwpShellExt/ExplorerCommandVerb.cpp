@@ -17,8 +17,8 @@
 // in the property bag
 
 #include "Dll.h"
-#include "strhelper.h"
-#include "WindowsStrings.h"
+#include "Common/strhelper.h"
+#include "WinCommon/WindowsStrings.h"
 #include "TestShellExtStringsBase.h"
 #include "TestShellExtStringsZHCN.h"
 

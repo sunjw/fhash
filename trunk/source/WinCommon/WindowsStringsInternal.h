@@ -4,7 +4,7 @@
 #include <map>
 #include <Windows.h>
 #include <tchar.h>
-#include "OsThread.h"
+#include "OsUtils/OsThread.h"
 #include "WindowsStrings.h"
 
 namespace WindowsStrings

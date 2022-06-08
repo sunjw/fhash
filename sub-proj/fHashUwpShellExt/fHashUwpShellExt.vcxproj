@@ -74,7 +74,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
-    <IncludePath>$(SolutionDir)fHashUwpWap\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)fHashUwpWap\;$(SolutionDir)source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -83,7 +83,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
-    <IncludePath>$(SolutionDir)fHashUwpWap\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)fHashUwpWap\;$(SolutionDir)source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -92,7 +92,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
-    <IncludePath>$(SolutionDir)fHashUwpWap\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)fHashUwpWap\;$(SolutionDir)source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -101,7 +101,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
-    <IncludePath>$(SolutionDir)fHashUwpWap\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)fHashUwpWap\;$(SolutionDir)source\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -204,32 +204,33 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp" />
     <ClCompile Include="dll.cpp" />
     <ClCompile Include="ExplorerCommandVerb.cpp" />
-    <ClCompile Include="OsThreadWinApi.cpp" />
     <ClCompile Include="RegisterExtension.cpp" />
-    <ClCompile Include="strhelper.cpp" />
     <ClCompile Include="TestShellExtStringsBase.cpp" />
     <ClCompile Include="TestShellExtStringsZHCN.cpp" />
-    <ClCompile Include="WindowsStrings.cpp" />
-    <ClCompile Include="WindowsStringsInternal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dll.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\trunk\fHashUwpWap\version.h" />
+    <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h" />
     <ClInclude Include="Dll.h" />
-    <ClInclude Include="OsThread.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RegisterExtension.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ShellHelpers.h" />
-    <ClInclude Include="strhelper.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestShellExtStringsBase.h" />
     <ClInclude Include="TestShellExtStringsZHCN.h" />
-    <ClInclude Include="WindowsStrings.h" />
-    <ClInclude Include="WindowsStringsInternal.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="fHashUwpShellExt.rc" />

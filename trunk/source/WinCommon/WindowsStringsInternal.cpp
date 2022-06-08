@@ -1,6 +1,8 @@
+#include "stdafx.h"
+
 #include "WindowsStringsInternal.h"
 
-#include "OsThread.h"
+#include "OsUtils/OsThread.h"
 
 using namespace sunjwbase;
 
