@@ -266,7 +266,7 @@
     <ClInclude Include="source\Common\strhelper.h" />
     <ClInclude Include="source\Common\UIBridgeBase.h" />
     <ClInclude Include="source\Common\Utils.h" />
-    <ClInclude Include="source\endianness.h" />
+    <ClInclude Include="source\Algorithms\endianness.h" />
     <ClInclude Include="source\OsUtils\OsFile.h" />
     <ClInclude Include="source\OsUtils\OsThread.h" />
     <ClInclude Include="source\resource.h" />
