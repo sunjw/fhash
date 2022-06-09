@@ -172,7 +172,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -192,7 +192,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -212,7 +212,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -232,7 +232,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -252,7 +252,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -272,7 +272,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -292,7 +292,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -312,7 +312,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>fHashUwpNative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashUwpNative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashUwpWap\;</AdditionalIncludeDirectories>
@@ -325,6 +325,7 @@
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestDelegate.h" />
     <ClInclude Include="TestNativeWrapper.h" />

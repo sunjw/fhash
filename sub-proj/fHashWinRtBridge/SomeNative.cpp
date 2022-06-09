@@ -2,6 +2,7 @@
 #include "SomeNative.h"
 #include "TestDelegate.h"
 #include "Common/strhelper.h"
+#include "WinCommon/WindowsComm.h"
 
 using namespace Platform;
 using namespace sunjwbase;
@@ -47,7 +48,10 @@ void SomeNative::doGetHello()
 	{
 		return;
 	}
-	tstring tstrHello(L"将文件拖入或点击打开，开始计算。C++/CX native！");
+
+	tstring tstrWinInfo = WindowsComm::GetWindowsInfo();
+	tstring tstrHello(L"将文件拖入或点击打开，开始计算。");
+	tstrHello.append(tstrWinInfo);
 	String^ strHello = ref new String(tstrHello.c_str());
 	testDelegate->OnGetHello(strHello);
 }
