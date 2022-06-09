@@ -46,12 +46,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="fHashShlExt_i.c">
       <Filter>生成的文件</Filter>
     </ClCompile>
@@ -59,6 +53,12 @@
       <Filter>OsUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
@@ -103,12 +103,6 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="fHashShlExt_i.h">
       <Filter>生成的文件</Filter>
     </ClInclude>
@@ -116,6 +110,12 @@
       <Filter>OsUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>

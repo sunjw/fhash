@@ -57,12 +57,6 @@
     <ClCompile Include="source\WinMFC\UIStringsZHCN.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="source\WinCommon\WindowsStrings.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="source\WinCommon\WindowsStringsInternal.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="source\WinMFC\WindowsUtils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -94,6 +88,12 @@
       <Filter>算法</Filter>
     </ClCompile>
     <ClCompile Include="source\WinCommon\WindowsComm.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinCommon\WindowsStrings.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WinCommon\WindowsStringsInternal.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,12 +140,6 @@
     <ClInclude Include="source\version.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\WinCommon\WindowsStrings.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="source\WinCommon\WindowsStringsInternal.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="source\WinMFC\WindowsUtils.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -186,6 +180,12 @@
       <Filter>算法</Filter>
     </ClInclude>
     <ClInclude Include="source\WinCommon\WindowsComm.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WinCommon\WindowsStrings.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WinCommon\WindowsStringsInternal.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
