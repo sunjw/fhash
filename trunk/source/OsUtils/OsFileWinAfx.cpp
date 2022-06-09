@@ -164,6 +164,19 @@ bool OsFile::getModifiedTime(void *modifiedTime)
 	return false;
 }
 
+tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
+{
+	tstring tstrLastModifiedTime;
+	CTime ctModifedTime;
+	if (this->getModifiedTime((void *)&ctModifedTime))
+	{
+		string strTimeFormat = tstrtostr(timeFormat);
+		tstrLastModifiedTime = ctModifedTime.Format(strTimeFormat.c_str()).GetString();
+	}
+
+	return tstrLastModifiedTime;
+}
+
 uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
 {
 	UINT cfSeekFlag = CFile::begin;
