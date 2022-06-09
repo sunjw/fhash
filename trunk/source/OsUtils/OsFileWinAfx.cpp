@@ -167,14 +167,13 @@ bool OsFile::getModifiedTime(void *modifiedTime)
 	return false;
 }
 
-tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
+tstring OsFile::getModifiedTimeFormat()
 {
 	tstring tstrLastModifiedTime;
 	CTime ctModifedTime;
 	if (this->getModifiedTime((void *)&ctModifedTime))
 	{
-		string strTimeFormat = tstrtostr(timeFormat);
-		tstrLastModifiedTime = ctModifedTime.Format(strTimeFormat.c_str()).GetString();
+		tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
 	}
 
 	return tstrLastModifiedTime;
