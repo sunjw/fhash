@@ -41,7 +41,7 @@ namespace sunjwbase
 		// Attributes
 		int64_t getLength();
 		bool getModifiedTime(void *modifiedTime);
-		sunjwbase::tstring getModifiedTimeFormat(sunjwbase::tstring timeFormat);
+		sunjwbase::tstring getModifiedTimeFormat();
 
 		// Operation
 		uint64_t seek(uint64_t offset, OsFileSeekFrom from);

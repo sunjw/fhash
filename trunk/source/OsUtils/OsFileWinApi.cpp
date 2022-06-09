@@ -8,7 +8,9 @@
 #include "stdafx.h"
 
 #include "OsFile.h"
-#include "Windows.h"
+
+#include <Windows.h>
+#include <strsafe.h>
 
 using namespace sunjwbase;
 
@@ -202,22 +204,24 @@ bool OsFile::getModifiedTime(void *modifiedTime)
 	return WINBOOL_2_CBOOL(ret);
 }
 
-tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
+tstring OsFile::getModifiedTimeFormat()
 {
 	tstring tstrLastModifiedTime;
-	struct timespec ctModifedTime;
-	if (this->getModifiedTime((void *)&ctModifedTime))
+
+	FILETIME ftWrite;
+	if (this->getModifiedTime((void*)&ftWrite))
 	{
-		time_t ttModifiedTime;
-		struct tm *tmModifiedTime;
+		// Convert the last-write time to local time.
+		SYSTEMTIME stUTC, stLocal;
+		FileTimeToSystemTime(&ftWrite, &stUTC);
+		SystemTimeToTzSpecificLocalTime(NULL, &stUTC, &stLocal);
 
-		ttModifiedTime = ctModifedTime.tv_sec;
-		tmModifiedTime = localtime(&ttModifiedTime);
-
-		char szTmBuf[1024] = {0};
-		strftime(szTmBuf, 1024, timeFormat.c_str(), tmModifiedTime);
-
-		tstrLastModifiedTime = strtotstr(string(szTmBuf));
+		TCHAR tzTmBuf[1024] = { 0 };
+		StringCchPrintf(tzTmBuf, 1024,
+			TEXT("%d-%02d-%02d %02d:%02d"),
+			stLocal.wYear, stLocal.wMonth, stLocal.wDay,
+			stLocal.wHour, stLocal.wMinute);
+		tstrLastModifiedTime = tzTmBuf;
 	}
 
 	return tstrLastModifiedTime;
