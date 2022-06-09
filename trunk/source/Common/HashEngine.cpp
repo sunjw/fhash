@@ -181,28 +181,11 @@ int WINAPI HashThreadFunc(void *param)
 			// get file status //
 			tstring tstrLastModifiedTime;
 #if defined (WIN32)
-			CTime ctModifedTime;
+			tstrLastModifiedTime = osFile.getModifiedTimeFormat(tstring("%Y-%m-%d %H:%M"));
 #else
-			struct timespec ctModifedTime;
+			tstrLastModifiedTime = osFile.getModifiedTimeFormat(tstring("%Y-%m-%d %H:%M"));
 #endif
-			if (osFile.getModifiedTime((void *)&ctModifedTime))
-			{
-#if defined (WIN32)
-				tstrLastModifiedTime = ctModifedTime.Format("%Y-%m-%d %H:%M").GetString();
-#else
-				time_t ttModifiedTime;
-				struct tm *tmModifiedTime;
-				
-				ttModifiedTime = ctModifedTime.tv_sec;
-				tmModifiedTime = localtime(&ttModifiedTime);
-				
-				char szTmBuf[1024] = {0};
-				strftime(szTmBuf, 1024, "%Y-%m-%d %H:%M", tmModifiedTime);
-				
-				tstrLastModifiedTime = strtotstr(string(szTmBuf));
-#endif
-				result.tstrMDate = tstrLastModifiedTime;
-			}
+			result.tstrMDate = tstrLastModifiedTime;
 			
 			fsize = osFile.getLength(); // fix 4GB file
 			result.ulSize = fsize;

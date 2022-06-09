@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string>
@@ -148,6 +149,27 @@ bool OsFile::getModifiedTime(void *modifiedTime)
     }
 
     return false;
+}
+
+tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
+{
+    tstring tstrLastModifiedTime;
+    struct timespec ctModifedTime;
+    if (this->getModifiedTime((void *)&ctModifedTime))
+    {
+        time_t ttModifiedTime;
+        struct tm *tmModifiedTime;
+
+        ttModifiedTime = ctModifedTime.tv_sec;
+        tmModifiedTime = localtime(&ttModifiedTime);
+
+        char szTmBuf[1024] = {0};
+        strftime(szTmBuf, 1024, timeFormat.c_str(), tmModifiedTime);
+
+        tstrLastModifiedTime = strtotstr(string(szTmBuf));
+    }
+
+    return tstrLastModifiedTime;
 }
 
 uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
