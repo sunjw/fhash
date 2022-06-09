@@ -180,7 +180,7 @@ tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
 uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
 {
 	UINT cfSeekFlag = CFile::begin;
-	switch(from)
+	switch (from)
 	{
 	case OF_SEEK_BEGIN:
 		cfSeekFlag = CFile::begin;
