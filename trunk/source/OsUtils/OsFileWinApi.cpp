@@ -12,6 +12,8 @@
 
 using namespace sunjwbase;
 
+#define WINBOOL_2_CBOOL(winbool_var) bool((winbool_var) == TRUE)
+
 // HANDLE == void *
 
 struct CreateFileFlag
@@ -176,19 +178,28 @@ int64_t OsFile::getLength()
 
 bool OsFile::getModifiedTime(void *modifiedTime)
 {
-	struct timespec *darwinfileModTime = (struct timespec *)modifiedTime;
-	
-	string strFilePath = tstrtostr(_filePath);
-	
-	struct stat st;
-	if (stat(strFilePath.c_str(), &st) == 0)
+	FILETIME *lpFtWrite = (FILETIME *)modifiedTime;
+
+	bool needClose = false;
+
+	// Not opened, let's open it.
+	if (_fileStatus == CLOSED && openRead())
 	{
-		*darwinfileModTime = st.st_mtimespec;
-		
-		return true;
+		needClose = true;
 	}
 
-	return false;
+	BOOL ret = FALSE;
+	if (_fileStatus != CLOSED)
+	{
+		ret = GetFileTime(_osfileData, NULL, NULL, lpFtWrite);
+	}
+
+	if (needClose)
+	{
+		close();
+	}
+
+	return WINBOOL_2_CBOOL(ret);
 }
 
 tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
