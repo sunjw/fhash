@@ -73,7 +73,12 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 {
 	bool ret = false;
 	
-	ret = this->open((void *)(O_RDONLY), exception);
+	CreateFileFlag fileFlag;
+	fileFlag.dwDesiredAccess = GENERIC_READ;
+	fileFlag.dwShareMode = FILE_SHARE_READ;
+	fileFlag.dwCreationDisposition = OPEN_EXISTING;
+	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
 	{
@@ -85,18 +90,37 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 
 bool OsFile::openReadScan(void *exception/* = NULL*/)
 {
-	return this->openRead(exception);
+	bool ret = false;
+
+	CreateFileFlag fileFlag;
+	fileFlag.dwDesiredAccess = GENERIC_READ;
+	fileFlag.dwShareMode = FILE_SHARE_READ;
+	fileFlag.dwCreationDisposition = OPEN_EXISTING;
+	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN;
+	ret = this->open((void*)&fileFlag, exception);
+
+	if (ret == true)
+	{
+		_fileStatus = OPEN_READ;
+	}
+
+	return ret;
 }
 
 bool OsFile::openWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;
-	
-	ret = this->open((void *)(O_RDWR | O_CREAT | O_SYNC), exception);
+
+	CreateFileFlag fileFlag;
+	fileFlag.dwDesiredAccess = GENERIC_WRITE;
+	fileFlag.dwShareMode = 0;
+	fileFlag.dwCreationDisposition = CREATE_NEW;
+	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	ret = this->open((void*)&fileFlag, exception);
 
 	if (ret == true)
 	{
-		_fileStatus = OPEN_WRITE;
+		_fileStatus = OPEN_READ;
 	}
 
 	return ret;
@@ -104,18 +128,47 @@ bool OsFile::openWrite(void *exception/* = NULL*/)
 
 bool OsFile::openReadWrite(void *exception/* = NULL*/)
 {
-	return this->openWrite(exception);
+	bool ret = false;
+
+	CreateFileFlag fileFlag;
+	fileFlag.dwDesiredAccess = GENERIC_WRITE | GENERIC_READ;
+	fileFlag.dwShareMode = 0;
+	fileFlag.dwCreationDisposition = CREATE_NEW;
+	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	ret = this->open((void*)&fileFlag, exception);
+
+	if (ret == true)
+	{
+		_fileStatus = OPEN_READWRITE;
+	}
+
+	return ret;
 }
 
 int64_t OsFile::getLength()
 {
 	int64_t retLength = 0;
-	string strFilePath = tstrtostr(_filePath);
-	
-	struct stat st;
-	if (stat(strFilePath.c_str(), &st) == 0)
+
+	bool needClose = false;
+
+	// Not opened, let's open it.
+	if (_fileStatus == CLOSED && openRead())
 	{
-		retLength = st.st_size;
+		needClose = true;
+	}
+
+	if (_fileStatus != CLOSED)
+	{
+		LARGE_INTEGER liSize;
+		if (GetFileSizeEx(_osfileData, &liSize))
+		{
+			retLength = liSize.QuadPart;
+		}
+	}
+
+	if (needClose)
+	{
+		close();
 	}
 
 	return retLength;
