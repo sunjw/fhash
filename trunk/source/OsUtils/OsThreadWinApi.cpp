@@ -15,7 +15,6 @@
 
 using namespace sunjwbase;
 
-
 #define GET_CRITSEC_FROM_POINTER(pointer) ((CRITICAL_SECTION *)(pointer))
 
 OsMutex::OsMutex()

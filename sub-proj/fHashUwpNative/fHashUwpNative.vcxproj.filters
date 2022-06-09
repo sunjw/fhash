@@ -42,6 +42,9 @@
     <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h">
       <Filter>OsUtils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h">
+      <Filter>OsUtils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -54,6 +57,9 @@
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp">
+      <Filter>OsUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp">
       <Filter>OsUtils</Filter>
     </ClCompile>
   </ItemGroup>
