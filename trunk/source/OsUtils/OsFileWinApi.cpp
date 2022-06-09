@@ -255,17 +255,19 @@ uint64_t OsFile::seek(uint64_t offset, OsFileSeekFrom from)
 int64_t OsFile::read(void *readBuffer, uint32_t bytes)
 {
 	// Open first, we don't check here.
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+	DWORD dwNumberOfBytesRead = 0;
+	ReadFile(_osfileData, readBuffer, bytes, &dwNumberOfBytesRead, NULL);
 
-	return ::read(*fd, readBuffer, bytes);
+	return dwNumberOfBytesRead;
 }
 
 int64_t OsFile::write(void *writeBuffer, uint32_t bytes)
 {
 	// Open first, we don't check here.
-	int *fd = GET_FD_FROM_POINTER(_osfileData);
+	DWORD lpNumberOfBytesWritten = 0;
+	WriteFile(_osfileData, writeBuffer, bytes, &lpNumberOfBytesWritten, NULL);
 
-	return ::write(*fd, writeBuffer, bytes);
+	return lpNumberOfBytesWritten;
 }
 
 void OsFile::close()
