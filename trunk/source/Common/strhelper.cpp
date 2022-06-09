@@ -369,7 +369,7 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 #endif
 		va_end(vl);
 		if (n > -1 && n < size) {
-			temp.resize(n);
+			// temp.resize(n + 1);
 			break;
 		}
 		if (n > -1)

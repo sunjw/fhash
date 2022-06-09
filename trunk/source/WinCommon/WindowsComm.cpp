@@ -32,7 +32,7 @@ namespace WindowsComm
 	tstring GetExeFileVersion(TCHAR* path)
 	{
 		// get file version //
-		tstring tstrVer(_T(""));
+		string strVer("");
 		unsigned int MVer,SVer,LVer,BVer;
 		VS_FIXEDFILEINFO pvsf;
 		DWORD dwHandle;
@@ -51,14 +51,15 @@ namespace WindowsComm
 			SVer = pvsf.dwFileVersionMS - 65536 * MVer;
 			LVer = pvsf.dwFileVersionLS / 65536;
 			BVer = pvsf.dwFileVersionLS - 65536 * LVer;
-			Ver.Format(_T("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
+			strVer = strappendformat(strVer, ("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
+			// Ver.Format(_T("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
 			// 将版本号转换为数字 //
 
 			delete[] pver;
 		}
 
 		// get file version //
-		return tstrVer;
+		return strtotstr(strVer);
 	}
 
 	BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx)
@@ -83,9 +84,9 @@ namespace WindowsComm
 	 * GetWindowsInfo()
 	 * 获得 Windows 版本信息
 	 */
-	CString GetWindowsInfo()
+	tstring GetWindowsInfo()
 	{
-		CString osinfo(_T(""));
+		string strOsinfo("");
 
 		OSVERSIONINFOEX osvi;
 		SYSTEM_INFO si;
@@ -117,18 +118,18 @@ namespace WindowsComm
 					if (osvi.wProductType == VER_NT_WORKSTATION)
 					{
 						if (osvi.dwBuildNumber >= 22000) // Test for the Windows 11
-							osinfo.Append(_T("Windows 11 "));
+							strOsinfo.append("Windows 11 ");
 						else
-							osinfo.Append(_T("Windows 10 "));
+							strOsinfo.append("Windows 10 ");
 					}
 					else
 					{
-						osinfo.AppendFormat(_T("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+						strOsinfo = strappendformat(strOsinfo, "Windows Server %d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
 					}
 				}
 				else
 				{
-					osinfo.AppendFormat(_T("Windows Version %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+					strOsinfo = strappendformat(strOsinfo, "Windows Version %d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
 				}
 			}
 
@@ -137,41 +138,41 @@ namespace WindowsComm
 				if (osvi.dwMinorVersion == 0)
 				{
 					if (osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows Vista "));
+						strOsinfo.append("Windows Vista ");
 					else
-						osinfo.Append(_T("Windows Server 2008 "));
+						strOsinfo.append("Windows Server 2008 ");
 				}
 				else if (osvi.dwMinorVersion == 1)
 				{
 					if (osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows 7 "));
+						strOsinfo.append("Windows 7 ");
 					else
-						osinfo.Append(_T("Windows Server 2008 R2 "));
+						strOsinfo.append("Windows Server 2008 R2 ");
 				}
 				else if (osvi.dwMinorVersion == 2)
 				{
 					if (osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows 8 "));
+						strOsinfo.append("Windows 8 ");
 					else
-						osinfo.Append(_T("Windows Server 2012 "));
+						strOsinfo.append("Windows Server 2012 ");
 				}
 				else if (osvi.dwMinorVersion == 3)
 				{
 					if (osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows 8.1 "));
+						strOsinfo.append("Windows 8.1 ");
 					else
-						osinfo.Append(_T("Windows Server 2012 R2 "));
+						strOsinfo.append("Windows Server 2012 R2 ");
 				}
 				else if (osvi.dwMinorVersion == 4)
 				{
 					if (osvi.wProductType == VER_NT_WORKSTATION)
-						osinfo.Append(_T("Windows 10 "));
+						strOsinfo.append("Windows 10 ");
 					else
-						osinfo.AppendFormat(_T("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+						strOsinfo = strappendformat(strOsinfo, "Windows Server %d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
 				}
 				else
 				{
-					osinfo.AppendFormat(_T("Windows Version %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+					strOsinfo = strappendformat(strOsinfo, "Windows Version %d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
 				}
 					
 			}
@@ -181,33 +182,33 @@ namespace WindowsComm
 				if (osvi.wProductType == VER_NT_WORKSTATION &&
 					si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
 				{
-					osinfo.Append(_T("Microsoft Windows XP Professional x64 Edition "));
+					strOsinfo.append("Microsoft Windows XP Professional x64 Edition ");
 				}
 				else
 				{
-					osinfo.Append(_T("Microsoft Windows Server 2003, "));
+					strOsinfo.append("Microsoft Windows Server 2003, ");
 				}
 			}
 
 			if (osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1)
 			{	
-				osinfo.Append(_T("Microsoft Windows XP "));
+				strOsinfo.append("Microsoft Windows XP ");
 			}
 
 			if (osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0)
-				osinfo.Append(_T("Microsoft Windows 2000 "));
+				strOsinfo.append("Microsoft Windows 2000 ");
 
 			if (osvi.dwMajorVersion <= 4)
-				osinfo.Append(_T("Microsoft Windows NT "));
+				strOsinfo.append("Microsoft Windows NT ");
 
 			///osvi.dwMajorVersion = 6;
 
 			if (osvi.dwMajorVersion < 6)
 			{
 				if (osvi.wSuiteMask & VER_SUITE_PERSONAL)
-					osinfo.Append(_T( "Home Edition "));
+					strOsinfo.append("Home Edition ");
 				else
-					osinfo.Append(_T( "Professional "));
+					strOsinfo.append("Professional ");
 			}
 			else
 			{
@@ -222,61 +223,61 @@ namespace WindowsComm
 					switch (dwProductType)
 					{
 					case PRODUCT_ULTIMATE:
-						osinfo.Append(_T("Ultimate "));
+						strOsinfo.append("Ultimate ");
 						break;
 					case PRODUCT_PROFESSIONAL:
-						osinfo.Append(_T("Professional "));
+						strOsinfo.append("Professional ");
 						break;
 					case PRODUCT_CORE:
-						osinfo.Append(_T("Home "));
+						strOsinfo.append("Home ");
 						break;
 					case PRODUCT_HOME_PREMIUM:
-						osinfo.Append(_T("Home Premium "));
+						strOsinfo.append("Home Premium ");
 						break;
 					case PRODUCT_HOME_BASIC:
-						osinfo.Append(_T("Home Basic "));
+						strOsinfo.append("Home Basic ");
 						break;
 					case PRODUCT_ENTERPRISE:
-						osinfo.Append(_T("Enterprise "));
+						strOsinfo.append("Enterprise ");
 						break;
 					case PRODUCT_BUSINESS:
-						osinfo.Append(_T("Business "));
+						strOsinfo.append("Business ");
 						break;
 					case PRODUCT_STARTER:
-						osinfo.Append(_T("Starter "));
+						strOsinfo.append("Starter ");
 						break;
 					case PRODUCT_CLUSTER_SERVER:
-						osinfo.Append(_T("HPC Edition "));
+						strOsinfo.append("HPC Edition ");
 						break;
 					case PRODUCT_DATACENTER_SERVER:
-						osinfo.Append(_T("Datacenter "));
+						strOsinfo.append("Datacenter ");
 						break;
 					case PRODUCT_DATACENTER_SERVER_CORE:
-						osinfo.Append(_T("Datacenter (core installation) "));
+						strOsinfo.append("Datacenter (core installation) ");
 						break;
 					case PRODUCT_ENTERPRISE_SERVER:
-						osinfo.Append(_T("Enterprise "));
+						strOsinfo.append("Enterprise ");
 						break;
 					case PRODUCT_ENTERPRISE_SERVER_CORE:
-						osinfo.Append(_T("Enterprise (core installation) "));
+						strOsinfo.append("Enterprise (core installation) ");
 						break;
 					case PRODUCT_ENTERPRISE_SERVER_IA64:
-						osinfo.Append(_T("Enterprise for Itanium-based Systems "));
+						strOsinfo.append("Enterprise for Itanium-based Systems ");
 						break;
 					case PRODUCT_SMALLBUSINESS_SERVER:
-						osinfo.Append(_T("Small Business Server "));
+						strOsinfo.append("Small Business Server ");
 						break;
 					case PRODUCT_SMALLBUSINESS_SERVER_PREMIUM:
-						osinfo.Append(_T("Small Business Server Premium "));
+						strOsinfo.append("Small Business Server Premium ");
 						break;
 					case PRODUCT_STANDARD_SERVER:
-						osinfo.Append(_T("Standard "));
+						strOsinfo.append("Standard ");
 						break;
 					case PRODUCT_STANDARD_SERVER_CORE:
-						osinfo.Append(_T("Standard (core installation) "));
+						strOsinfo.append("Standard (core installation) ");
 						break;
 					case PRODUCT_WEB_SERVER:
-						osinfo.Append(_T("Web Server "));
+						strOsinfo.append("Web Server ");
 						break;
 					}
 				}
@@ -290,7 +291,7 @@ namespace WindowsComm
 					si.wProcessorArchitecture != PROCESSOR_ARCHITECTURE_AMD64)
 				{
 					if (osvi.dwMajorVersion == 4)
-						osinfo.Append(_T( "Workstation 4.0 "));
+						strOsinfo.append("Workstation 4.0 ");
 				}
 
 				// Test for the server type.
@@ -302,44 +303,48 @@ namespace WindowsComm
 						if (si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_IA64)
 						{
 							if (osvi.wSuiteMask & VER_SUITE_DATACENTER)
-								osinfo.Append(_T( "Datacenter Edition for Itanium-based Systems"));
+								strOsinfo.append("Datacenter Edition for Itanium-based Systems");
 							else if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE)
-								osinfo.Append(_T( "Enterprise Edition for Itanium-based Systems"));
+								strOsinfo.append("Enterprise Edition for Itanium-based Systems");
 						}
 
 						else if (si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
 						{
 							if (osvi.wSuiteMask & VER_SUITE_DATACENTER)
-								osinfo.Append(_T( "Datacenter x64 Edition "));
+								strOsinfo.append("Datacenter x64 Edition ");
 							else if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE)
-								osinfo.Append(_T( "Enterprise x64 Edition "));
-							else osinfo.Append(_T( "Standard x64 Edition "));
+								strOsinfo.append("Enterprise x64 Edition ");
+							else
+								strOsinfo.append("Standard x64 Edition ");
 						}
 
 						else
 						{
 							if (osvi.wSuiteMask & VER_SUITE_DATACENTER)
-								osinfo.Append(_T( "Datacenter Edition "));
+								strOsinfo.append("Datacenter Edition ");
 							else if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE)
-								osinfo.Append(_T( "Enterprise Edition "));
+								strOsinfo.append("Enterprise Edition ");
 							else if (osvi.wSuiteMask & VER_SUITE_BLADE)
-								osinfo.Append(_T( "Web Edition "));
-							else osinfo.Append(_T( "Standard Edition "));
+								strOsinfo.append("Web Edition ");
+							else
+								strOsinfo.append("Standard Edition ");
 						}
 					}
 					else if(osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0)
 					{
 						if (osvi.wSuiteMask & VER_SUITE_DATACENTER )
-							osinfo.Append(_T( "Datacenter Server "));
+							strOsinfo.append("Datacenter Server ");
 						else if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-							osinfo.Append(_T( "Advanced Server "));
-						else osinfo.Append(_T( "Server "));
+							strOsinfo.append("Advanced Server ");
+						else
+							strOsinfo.append("Server ");
 					}
 					else  // Windows NT 4.0 
 					{
 						if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-							osinfo.Append(_T("Server 4.0, Enterprise Edition "));
-						else osinfo.Append(_T( "Server 4.0 "));
+							strOsinfo.append("Server 4.0, Enterprise Edition ");
+						else
+							strOsinfo.append("Server 4.0 ");
 					}
 				}
 			}
@@ -365,14 +370,14 @@ namespace WindowsComm
 					return FALSE;
 
 				if (lstrcmpi( _T("WINNT"), szProductType) == 0)
-					osinfo.Append(_T( "Workstation "));
+					strOsinfo.append("Workstation ");
 				if (lstrcmpi( _T("LANMANNT"), szProductType) == 0)
-					osinfo.Append(_T( "Server "));
+					strOsinfo.append("Server ");
 				if (lstrcmpi( _T("SERVERNT"), szProductType) == 0)
-					osinfo.Append(_T( "Advanced Server "));
-				CString verinfo;
-				verinfo.Format(_T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
-				osinfo.Append(verinfo);
+					strOsinfo.append("Advanced Server ");
+				string verinfo;
+				verinfo = strappendformat(verinfo, "%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
+				strOsinfo.append(verinfo);
 			}
 
 			// Display service pack (if any) and build number.
@@ -385,48 +390,50 @@ namespace WindowsComm
 				// Test for SP6 versus SP6a.
 				lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
 					_T("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
-					0, KEY_QUERY_VALUE, &hKey );
-				if (lRet == ERROR_SUCCESS )
+					0, KEY_QUERY_VALUE, &hKey);
+				if (lRet == ERROR_SUCCESS)
 				{
-					CString spinfo;
-					spinfo.Format(_T("Service Pack 6a (Build %d)\r\n"), 
-									osvi.dwBuildNumber & 0xFFFF ); 
-					osinfo.Append(spinfo); 
+					string spinfo;
+					spinfo = strappendformat(spinfo, "Service Pack 6a (Build %d)\r\n",
+									osvi.dwBuildNumber & 0xFFFF); 
+					strOsinfo.append(spinfo);
 				}
 				else // Windows NT 4.0 prior to SP6a
 				{
-					CString spinfo;
-					if (CString::StringLength(osvi.szCSDVersion) > 0)
+					string spinfo;
+					if (wcslen(osvi.szCSDVersion) > 0)
 					{
-						spinfo.Format(_T("%s (Build %d)\r\n"),
+						spinfo = strappendformat(spinfo,
+							"%s (Build %d)\r\n",
 							osvi.szCSDVersion,
 							osvi.dwBuildNumber & 0xFFFF);
 					}
 					else
 					{
-						spinfo.Format(_T("(Build %d)\r\n"),
-							osvi.dwBuildNumber & 0xFFFF);
+						spinfo = strappendformat(spinfo,
+							"(Build %d)\r\n", osvi.dwBuildNumber & 0xFFFF);
 					}
-					osinfo.Append(spinfo);
+					strOsinfo.append(spinfo);
 				}
 
 				RegCloseKey( hKey );
 			}
 			else // not Windows NT 4.0 
 			{
-				CString spinfo;
-				if (CString::StringLength(osvi.szCSDVersion) > 0)
+				string spinfo;
+				if (wcslen(osvi.szCSDVersion) > 0)
 				{
-					spinfo.Format(_T("%s (Build %d)\r\n"),
+					spinfo = strappendformat(spinfo,
+						"%s (Build %d)\r\n",
 						osvi.szCSDVersion,
 						osvi.dwBuildNumber & 0xFFFF);
 				}
 				else
 				{
-					spinfo.Format(_T("(Build %d)\r\n"),
-						osvi.dwBuildNumber & 0xFFFF);
+					spinfo = strappendformat(spinfo,
+						"(Build %d)\r\n", osvi.dwBuildNumber & 0xFFFF);
 				}
-				osinfo.Append(spinfo);
+				strOsinfo.append(spinfo);
 			}
 
 			break;
@@ -436,30 +443,31 @@ namespace WindowsComm
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
 			{
-				osinfo.Append(_T("Microsoft Windows 95 "));
-				if (osvi.szCSDVersion[1]=='C' || osvi.szCSDVersion[1]=='B')
-					osinfo.Append(_T("OSR2 "));
+				strOsinfo.append("Microsoft Windows 95 ");
+				if (osvi.szCSDVersion[1] == 'C' || osvi.szCSDVersion[1] == 'B')
+					strOsinfo.append("OSR2 ");
 			} 
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
 			{
-				osinfo.Append(_T("Microsoft Windows 98 "));
-				if(osvi.szCSDVersion[1]=='A' || osvi.szCSDVersion[1]=='B')
-					osinfo.Append(_T("SE "));
+				strOsinfo.append("Microsoft Windows 98 ");
+				if (osvi.szCSDVersion[1] == 'A' || osvi.szCSDVersion[1] == 'B')
+					strOsinfo.append("SE ");
 			} 
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
 			{
-				osinfo.Append(_T("Microsoft Windows Millennium Edition\r\n"));
+				strOsinfo.append("Microsoft Windows Millennium Edition\r\n");
 			} 
 			break;
 
 		case VER_PLATFORM_WIN32s:
 
-			osinfo.Append(_T("Microsoft Win32s\r\n"));
+			strOsinfo.append("Microsoft Win32s\r\n");
 			break;
 		}
-		return osinfo; 
+
+		return strtotstr(strOsinfo);
 	}
 
 }
