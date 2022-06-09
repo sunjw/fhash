@@ -30,7 +30,7 @@ OsFile::OsFile(tstring filePath):
     _osfileData(new int(-1)),
     _fileStatus(CLOSED)
 {
-    
+
 }
 
 OsFile::~OsFile()
@@ -52,7 +52,7 @@ bool OsFile::open(void *flag, void *exception)
     char *pFileExc = (char *)exception;
     int *fd = GET_FD_FROM_POINTER(_osfileData);
     *fd = -1;
-    
+
     int statRet = -1;
     struct stat st;
     if ((statRet = stat(strFilePath.c_str(), &st)) == 0 &&
@@ -124,7 +124,7 @@ int64_t OsFile::getLength()
 {
     int64_t retLength = 0;
     string strFilePath = tstrtostr(_filePath);
-    
+
     struct stat st;
     if (stat(strFilePath.c_str(), &st) == 0)
     {
@@ -137,9 +137,9 @@ int64_t OsFile::getLength()
 bool OsFile::getModifiedTime(void *modifiedTime)
 {
     struct timespec *darwinfileModTime = (struct timespec *)modifiedTime;
-    
+
     string strFilePath = tstrtostr(_filePath);
-    
+
     struct stat st;
     if (stat(strFilePath.c_str(), &st) == 0)
     {
