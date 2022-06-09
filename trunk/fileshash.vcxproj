@@ -239,7 +239,7 @@
     <ClCompile Include="source\Common\HashEngine.cpp" />
     <ClCompile Include="source\Common\strhelper.cpp" />
     <ClCompile Include="source\Common\Utils.cpp" />
-    <ClCompile Include="source\OsUtils\OsFileWinAfx.cpp" />
+    <ClCompile Include="source\OsUtils\OsFileWinApi.cpp" />
     <ClCompile Include="source\OsUtils\OsThreadWinApi.cpp" />
     <ClCompile Include="source\stdafx.cpp" />
     <ClCompile Include="source\WinCommon\WindowsComm.cpp" />

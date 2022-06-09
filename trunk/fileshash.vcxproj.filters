@@ -69,9 +69,6 @@
     <ClCompile Include="source\Algorithms\sha256.cpp">
       <Filter>算法</Filter>
     </ClCompile>
-    <ClCompile Include="source\OsUtils\OsFileWinAfx.cpp">
-      <Filter>OsUtils</Filter>
-    </ClCompile>
     <ClCompile Include="source\OsUtils\OsThreadWinApi.cpp">
       <Filter>OsUtils</Filter>
     </ClCompile>
@@ -95,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="source\WinCommon\WindowsStringsInternal.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="source\OsUtils\OsFileWinApi.cpp">
+      <Filter>OsUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
