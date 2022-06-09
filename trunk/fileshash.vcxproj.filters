@@ -93,6 +93,9 @@
     <ClCompile Include="source\Algorithms\sha512.cpp">
       <Filter>算法</Filter>
     </ClCompile>
+    <ClCompile Include="source\WinCommon\WindowsComm.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\WinMFC\AboutDlg.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="source\Algorithms\endianness.h">
       <Filter>算法</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WinCommon\WindowsComm.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
