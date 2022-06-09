@@ -39,6 +39,9 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h">
+      <Filter>OsUtils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp">
+      <Filter>OsUtils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
