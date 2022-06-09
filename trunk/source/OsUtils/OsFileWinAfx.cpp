@@ -135,10 +135,13 @@ int64_t OsFile::getLength()
 	// Not opened, let's open it.
 	if (_fileStatus == CLOSED && openRead())
 	{
-		needClose = true;		
+		needClose = true;
 	}
 
-	retLength = cfile->GetLength();
+	if (_fileStatus != CLOSED)
+	{
+		retLength = cfile->GetLength();
+	}
 
 	if (needClose)
 	{
