@@ -85,7 +85,7 @@ int WINAPI HashThreadFunc(void *param)
 				return 0;
 			}
 			uint64_t fSize = 0;
-		
+
 			const TCHAR* path;
 			path = thrdData->fullPaths[i].c_str();
 			OsFile osFile(path);
@@ -125,7 +125,7 @@ int WINAPI HashThreadFunc(void *param)
 		//unsigned int len;
 		//unsigned char buffer[65534];
 		DataBuffer databuf;
-		
+
 		MD5_CTX mdContext; // MD5 context
 
 		CSHA1 sha1; // SHA1 object
@@ -138,7 +138,7 @@ int WINAPI HashThreadFunc(void *param)
 		uint8_t digestSHA512[SHA512_DIGEST_LENGTH];
 		string strSHA512;
 		// Declaration for calculator
-		
+
 		ResultData resultNew;
 		thrdData->resultList.push_back(resultNew);
 		ResultData& result = thrdData->resultList.back();
@@ -188,7 +188,7 @@ int WINAPI HashThreadFunc(void *param)
 			
 			fsize = osFile.getLength(); // fix 4GB file
 			result.ulSize = fsize;
-			
+
 			if (!isSizeCaled) // not calculated size
 			{
 				thrdData->totalSize += fsize;
@@ -208,7 +208,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.enumState = RESULT_META;
 
 			uiBridge->showFileMeta(result);
-			
+
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
 			
@@ -232,18 +232,18 @@ int WINAPI HashThreadFunc(void *param)
 				{
 					databuf.datalen = 0;
 				}
-				
+
 				t++;
 
 				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
 				sha1.Update(databuf.data, databuf.datalen); // SHA1 update
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
 				SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
-				
+
 				finishedSize += databuf.datalen;
-				
+
 				int progressMax = uiBridge->getProgMax();
-				
+
 				int positionNew;
 				if (fsize == 0)
 				{
@@ -253,7 +253,7 @@ int WINAPI HashThreadFunc(void *param)
 				{
 					positionNew = (int)(progressMax * finishedSize / fsize);
 				}
-				
+
 				if (positionNew > position)
 				{
 					uiBridge->updateProg(positionNew);
@@ -278,9 +278,9 @@ int WINAPI HashThreadFunc(void *param)
 
 			} 
 			while (databuf.datalen >= DataBuffer::preflen);
-			
+
 			uiBridge->fileCalcFinish();
-			
+
 			MD5Final(&mdContext); // MD5 final
 			sha1.Final(); // SHA1 final
 			sha256_final(&sha256Ctx); // SHA256 final
@@ -390,7 +390,7 @@ int WINAPI HashThreadFunc(void *param)
 
 			uiBridge->showFileErr(result);
 		}
-		
+
 		uiBridge->fileFinish();
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
