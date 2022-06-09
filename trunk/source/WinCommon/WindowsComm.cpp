@@ -43,7 +43,7 @@ namespace WindowsComm
 		{
 			UINT uLen;
 			void *pbuf;
-			bret = VerQueryValue(pver, _T("\\"), &pbuf, &uLen);
+			bret = VerQueryValue(pver, TEXT("\\"), &pbuf, &uLen);
 			memcpy(&pvsf, pbuf, sizeof(VS_FIXEDFILEINFO));
 
 			// 将版本号转换为数字 //
@@ -99,7 +99,7 @@ namespace WindowsComm
 
 		// Call GetNativeSystemInfo if supported or GetSystemInfo otherwise.
 
-		pGNSI = (PGNSI)GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetNativeSystemInfo");
+		pGNSI = (PGNSI)GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "GetNativeSystemInfo");
 		if (NULL != pGNSI)
 			pGNSI(&si);
 		else 
@@ -215,7 +215,7 @@ namespace WindowsComm
 				// >= 6, Vista, 7, 8, 10...
 				// 获得 GetProductInfo 函数原型
 				PGPI pGetProductInfo  = NULL;
-				pGetProductInfo = (PGPI)GetProcAddress(GetModuleHandle(_T("kernel32.dll")), "GetProductInfo");
+				pGetProductInfo = (PGPI)GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "GetProductInfo");
 				if (pGetProductInfo != NULL)
 				{
 					DWORD dwProductType = 0;
@@ -357,23 +357,23 @@ namespace WindowsComm
 				LONG lRet;
 
 				lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-					_T("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
+					TEXT("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
 					0, KEY_QUERY_VALUE, &hKey );
 				if( lRet != ERROR_SUCCESS )
 					return FALSE;
 
-				lRet = RegQueryValueEx(hKey, _T("ProductType"), NULL, NULL,
+				lRet = RegQueryValueEx(hKey, TEXT("ProductType"), NULL, NULL,
 					(LPBYTE) szProductType, &dwBufLen);
 				RegCloseKey( hKey );
 
 				if ((lRet != ERROR_SUCCESS) || (dwBufLen > BUFSIZE*sizeof(TCHAR)))
 					return FALSE;
 
-				if (lstrcmpi( _T("WINNT"), szProductType) == 0)
+				if (lstrcmpi(TEXT("WINNT"), szProductType) == 0)
 					strOsinfo.append("Workstation ");
-				if (lstrcmpi( _T("LANMANNT"), szProductType) == 0)
+				if (lstrcmpi(TEXT("LANMANNT"), szProductType) == 0)
 					strOsinfo.append("Server ");
-				if (lstrcmpi( _T("SERVERNT"), szProductType) == 0)
+				if (lstrcmpi(TEXT("SERVERNT"), szProductType) == 0)
 					strOsinfo.append("Advanced Server ");
 				string verinfo;
 				verinfo = strappendformat(verinfo, "%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
@@ -382,14 +382,14 @@ namespace WindowsComm
 
 			// Display service pack (if any) and build number.
 			if (osvi.dwMajorVersion == 4 && 
-				lstrcmpi(osvi.szCSDVersion, _T("Service Pack 6")) == 0 )
+				lstrcmpi(osvi.szCSDVersion, TEXT("Service Pack 6")) == 0 )
 			{ 
 				HKEY hKey;
 				LONG lRet;
 
 				// Test for SP6 versus SP6a.
 				lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
-					_T("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
+					TEXT("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
 					0, KEY_QUERY_VALUE, &hKey);
 				if (lRet == ERROR_SUCCESS)
 				{

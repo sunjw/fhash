@@ -312,7 +312,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\trunk\fHashUwpWap\version.h" />
+    <ClInclude Include="..\..\trunk\source\Common\Global.h" />
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
+    <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestDelegate.h" />
     <ClInclude Include="TestNativeWrapper.h" />
@@ -321,6 +326,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
