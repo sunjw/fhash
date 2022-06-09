@@ -50,6 +50,7 @@
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
+		41A4A573285198E500D1ECAC /* endianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = endianness.h; path = source/Algorithms/endianness.h; sourceTree = "<group>"; };
 		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
 		41FF1DCB1B5B49490081F283 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = "<group>"; };
 		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		41FF1DDD1B5B4ACA0081F283 /* Algorithms */ = {
 			isa = PBXGroup;
 			children = (
+				41A4A573285198E500D1ECAC /* endianness.h */,
 				41FF1DEC1B5B4B470081F283 /* MD5.cpp */,
 				41F2360A20C77C3E005E6724 /* MD5.h */,
 				41FF1DEE1B5B4B470081F283 /* SHA1.cpp */,
