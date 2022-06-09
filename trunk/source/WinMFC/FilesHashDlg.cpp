@@ -15,6 +15,7 @@
 #include "Common/HashEngine.h"
 #include "WindowsUtils.h"
 #include "UIBridgeMFC.h"
+#include "WinCommon/WindowsComm.h"
 #include "WinCommon/WindowsStrings.h"
 
 using namespace std;
@@ -441,14 +442,14 @@ void CFilesHashDlg::OnBnClickedFind()
 
 void CFilesHashDlg::OnBnClickedContext()
 {
-	if(m_bLimited)
+	if (m_bLimited)
 	{
 		OSVERSIONINFOEX osvi;
 		BOOL bOsVersionInfoEx;
-		if(WindowsUtils::GetWindowsVersion(osvi, bOsVersionInfoEx) &&
+		if (WindowsComm::GetWindowsVersion(osvi, bOsVersionInfoEx) &&
 			osvi.dwMajorVersion >= 6)
 		{
-			if(WindowsUtils::ElevateProcess())
+			if (WindowsUtils::ElevateProcess())
 				ExitProcess(0);
 		}
 	}
@@ -459,10 +460,10 @@ void CFilesHashDlg::OnBnClickedContext()
 
 	m_btnContext.GetWindowText(buttonText);
 
-	if(buttonText.Compare(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU)) == 0)
+	if (buttonText.Compare(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU)) == 0)
 	{
 		WindowsUtils::RemoveContextMenu(); // Try to delete all items related to fHash
-		if(WindowsUtils::AddContextMenu())
+		if (WindowsUtils::AddContextMenu())
 		{
 			pWnd->SetWindowText(GetStringByKey(MAINDLG_ADD_SUCCEEDED));
 			m_btnContext.SetWindowText(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU));
@@ -472,9 +473,9 @@ void CFilesHashDlg::OnBnClickedContext()
 			pWnd->SetWindowText(GetStringByKey(MAINDLG_ADD_FAILED));
 		}
 	}
-	else if(buttonText.Compare(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU)) == 0)
+	else if (buttonText.Compare(GetStringByKey(MAINDLG_REMOVE_CONTEXT_MENU)) == 0)
 	{
-		if(WindowsUtils::RemoveContextMenu())
+		if (WindowsUtils::RemoveContextMenu())
 		{
 			pWnd->SetWindowText(GetStringByKey(MAINDLG_REMOVE_SUCCEEDED));
 			m_btnContext.SetWindowText(GetStringByKey(MAINDLG_ADD_CONTEXT_MENU));

@@ -15,7 +15,7 @@
 #include "Common/UIBridgeBase.h"
 
 #if defined (WIN32)
-#include "WinMFC/WindowsUtils.h"
+#include "WinCommon/WindowsComm.h"
 #endif
 
 #include "OsUtils/OsFile.h"
@@ -201,8 +201,7 @@ int WINAPI HashThreadFunc(void *param)
 
 #if defined (WIN32)
 			// get file version //
-			CString cstrVer = WindowsUtils::GetExeFileVersion((TCHAR *)path);
-			tstrFileVersion = cstrVer.GetString();
+			tstrFileVersion = WindowsComm::GetExeFileVersion((TCHAR *)path);
 			result.tstrVersion = tstrFileVersion;
 #endif
 
