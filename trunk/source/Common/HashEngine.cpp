@@ -178,12 +178,7 @@ int WINAPI HashThreadFunc(void *param)
 			*/
 
 			// get file status //
-			tstring tstrLastModifiedTime;
-#if defined (WIN32)
-			tstrLastModifiedTime = osFile.getModifiedTimeFormat();
-#else
-			tstrLastModifiedTime = osFile.getModifiedTimeFormat(strtotstr("%Y-%m-%d %H:%M"));
-#endif
+			tstring tstrLastModifiedTime = osFile.getModifiedTimeFormat();
 			result.tstrMDate = tstrLastModifiedTime;
 			
 			fsize = osFile.getLength(); // fix 4GB file

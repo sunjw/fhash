@@ -151,7 +151,7 @@ bool OsFile::getModifiedTime(void *modifiedTime)
     return false;
 }
 
-tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
+tstring OsFile::getModifiedTimeFormat()
 {
     tstring tstrLastModifiedTime;
     struct timespec ctModifedTime;
@@ -164,7 +164,7 @@ tstring OsFile::getModifiedTimeFormat(tstring timeFormat)
         tmModifiedTime = localtime(&ttModifiedTime);
 
         char szTmBuf[1024] = {0};
-        strftime(szTmBuf, 1024, timeFormat.c_str(), tmModifiedTime);
+        strftime(szTmBuf, 1024, "%Y-%m-%d %H:%M", tmModifiedTime);
 
         tstrLastModifiedTime = strtotstr(string(szTmBuf));
     }
