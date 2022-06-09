@@ -7,6 +7,8 @@
 
 #include "Common/strhelper.h"
 
+#pragma warning(disable: 4996)
+
 using namespace std;
 using namespace sunjwbase;
 
