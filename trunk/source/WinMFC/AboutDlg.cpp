@@ -9,6 +9,7 @@
 #include "FilesHash.h"
 #include "AboutDlg.h"
 #include "WindowsUtils.h"
+#include "WinCommon/WindowsComm.h"
 #include "WinCommon/WindowsStrings.h"
 
 // CAboutDlg 对话框
@@ -36,10 +37,9 @@ BOOL CAboutDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_SYSLINK_SITE);
 	pWnd->SetWindowText(GetStringByKey(ABOUTDLG_PROJECT_SITE));
 
-	
 	CString fHashVersion = _T(STR_VERSION); //GetExeFileVersion(exeFullPath);
 
-	CString osinfo = WindowsUtils::GetWindowsInfo();
+	sunjwbase::tstring tstrOsinfo = WindowsComm::GetWindowsInfo();
 	m_about = GetStringByKey(ABOUTDLG_INFO_TITLE);
 	m_about.Append(_T(" "));
 	m_about.Append(fHashVersion);
@@ -60,7 +60,7 @@ BOOL CAboutDlg::OnInitDialog()
 	//m_about = m_about + "当前操作系统:\r\n" + osinfo;
 	m_about.Append(GetStringByKey(ABOUTDLG_INFO_OSTITLE));
 	m_about.Append(_T("\r\n"));
-	m_about.Append(osinfo);
+	m_about.Append(tstrOsinfo.c_str());
 
 	UpdateData(FALSE);
 
