@@ -23,21 +23,6 @@ namespace WindowsUtils
 		return temp;
 	}
 
-	// 以下是获得 Windows 版本信息的定义内容
-#define BUFSIZE 80
-
-	typedef void (WINAPI *PGNSI)(LPSYSTEM_INFO);
-	// GetProductInfo 函数原型(Vista/2008)
-	typedef BOOL (WINAPI *PGPI)(DWORD, DWORD, DWORD, 
-								DWORD, PDWORD );
-	// 以上是获得 Windows 版本信息的定义内容
-	typedef HRESULT (__stdcall *LPFN_DllRegisterServer)(void);
-	typedef HRESULT (__stdcall *LPFN_DllUnregisterServer)(void);
-
-	CString GetExeFileVersion(TCHAR* path);
-
-	BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx);
-	CString GetWindowsInfo();
 	BOOL IsWindows64();
 	BOOL IsLimitedProc();
 	BOOL ElevateProcess();
