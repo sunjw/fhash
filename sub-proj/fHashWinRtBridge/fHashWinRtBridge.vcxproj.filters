@@ -37,9 +37,6 @@
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp">
       <Filter>OsUtils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -74,9 +71,6 @@
     </ClInclude>
     <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h">
       <Filter>OsUtils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h">
-      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
