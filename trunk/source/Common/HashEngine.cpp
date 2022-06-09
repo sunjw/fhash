@@ -180,9 +180,9 @@ int WINAPI HashThreadFunc(void *param)
 			// get file status //
 			tstring tstrLastModifiedTime;
 #if defined (WIN32)
-			tstrLastModifiedTime = osFile.getModifiedTimeFormat(tstring("%Y-%m-%d %H:%M"));
+			tstrLastModifiedTime = osFile.getModifiedTimeFormat(strtotstr("%Y-%m-%d %H:%M"));
 #else
-			tstrLastModifiedTime = osFile.getModifiedTimeFormat(tstring("%Y-%m-%d %H:%M"));
+			tstrLastModifiedTime = osFile.getModifiedTimeFormat(strtotstr("%Y-%m-%d %H:%M"));
 #endif
 			result.tstrMDate = tstrLastModifiedTime;
 			
