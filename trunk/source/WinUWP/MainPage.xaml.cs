@@ -32,7 +32,6 @@ namespace fHashUwp
         private MenuFlyout m_menuFlyoutTextMain;
 
         private UISettings m_uiSettings;
-        private TaskbarExtension m_taskbarExt;
 
         private long m_tokenThemeChanged;
         private Thickness m_imageAppIconMargin;
@@ -374,7 +373,6 @@ namespace fHashUwp
             inlines.Add(span1);
             ClearAndShowInlinesInTextMain(inlines);
             ProgressBarMain.Value = 30;
-            // m_taskbarExt.SetProgressValue(30);
         }
 
         private void DoTest2()
@@ -469,7 +467,6 @@ namespace fHashUwp
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
         {
             m_uiSettings = new UISettings();
-            m_taskbarExt = new TaskbarExtension(GetCurrentWindowHandle());
 
             // Theme changed callback
             Frame rootFrame = (Frame)UwpHelper.GetRootFrame();
