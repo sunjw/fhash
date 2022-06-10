@@ -60,13 +60,28 @@ bool OsFile::open(void *flag, void *exception)
 
 	if (_osfileData == INVALID_HANDLE_VALUE)
 	{
-		DWORD dw = GetLastError();
 		if (pFileExc != NULL)
 		{
+			DWORD dw = GetLastError();
+			LPVOID lpMsgBuf = NULL;
+			FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER |
+				FORMAT_MESSAGE_FROM_SYSTEM |
+				FORMAT_MESSAGE_IGNORE_INSERTS,
+				NULL,
+				dw,
+				MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US),
+				(LPTSTR)&lpMsgBuf,
+				0, NULL);
+
+			tstring tstrErrMsg = (LPCTSTR)lpMsgBuf;
+			tstrErrMsg = strtrim(tstrErrMsg);
+			LocalFree(lpMsgBuf);
+
 #if defined(UNICODE) || defined(_UNICODE)
-			wcscpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, TEXT("Cannot open this file."));
+			wcscpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, tstrErrMsg.c_str());
 #else
-			strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, TEXT("Cannot open this file."));
+			strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, tstrErrMsg.c_str());
 #endif
 		}
 	}
