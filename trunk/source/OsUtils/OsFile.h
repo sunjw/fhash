@@ -19,6 +19,8 @@ namespace sunjwbase
 	class OsFile
 	{
 	public:
+		static const uint32_t ERR_MSG_BUFFER_LEN = 1024;
+
 		enum OsFileStatus
 		{
 			CLOSED = 0, OPEN_READ, OPEN_WRITE, OPEN_READWRITE

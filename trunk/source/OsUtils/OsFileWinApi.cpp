@@ -60,12 +60,13 @@ bool OsFile::open(void *flag, void *exception)
 
 	if (_osfileData == INVALID_HANDLE_VALUE)
 	{
+		DWORD dw = GetLastError();
 		if (pFileExc != NULL)
 		{
 #if defined(UNICODE) || defined(_UNICODE)
-			wcscpy_s(pFileExc, 1024, TEXT("Cannot open this file."));
+			wcscpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, TEXT("Cannot open this file."));
 #else
-			strcpy_s(pFileExc, 1024, TEXT("Cannot open this file."));
+			strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, TEXT("Cannot open this file."));
 #endif
 		}
 	}

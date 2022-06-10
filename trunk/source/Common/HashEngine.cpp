@@ -157,9 +157,9 @@ int WINAPI HashThreadFunc(void *param)
 		//Calculating begins
 #if defined (WIN32)
 		// CFileException fExc;
-		TCHAR fExc[1024] = { 0 };
+		TCHAR fExc[OsFile::ERR_MSG_BUFFER_LEN] = { 0 };
 #else
-		char fExc[1024] = {0};
+		char fExc[OsFile::ERR_MSG_BUFFER_LEN] = { 0 };
 #endif
 		OsFile osFile(path);
 		if (osFile.openReadScan((void *)&fExc)) 
