@@ -69,6 +69,9 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Common\HashEngine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestWinRtCmpt1.rc">

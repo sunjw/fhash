@@ -321,6 +321,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\trunk\fHashUwpWap\version.h" />
     <ClInclude Include="..\..\trunk\source\Common\Global.h" />
+    <ClInclude Include="..\..\trunk\source\Common\HashEngine.h" />
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
