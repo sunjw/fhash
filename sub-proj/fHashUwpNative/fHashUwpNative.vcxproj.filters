@@ -19,6 +19,9 @@
     <Filter Include="OsUtils">
       <UniqueIdentifier>{b3d3f239-f821-40cd-8bdd-06ae7834ae10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="算法">
+      <UniqueIdentifier>{aa65bd9f-07e6-4217-b59f-39b4c697622e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -45,6 +48,24 @@
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h">
       <Filter>OsUtils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Common\HashEngine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Algorithms\endianness.h">
+      <Filter>算法</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Algorithms\MD5.h">
+      <Filter>算法</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Algorithms\SHA1.h">
+      <Filter>算法</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha256.h">
+      <Filter>算法</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha512.h">
+      <Filter>算法</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -61,6 +82,21 @@
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp">
       <Filter>OsUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Common\HashEngine.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Algorithms\MD5.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Algorithms\SHA1.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha256.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha512.cpp">
+      <Filter>算法</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

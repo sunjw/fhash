@@ -169,7 +169,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\trunk\source\Algorithms\endianness.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\MD5.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\SHA1.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha256.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha512.h" />
     <ClInclude Include="..\..\trunk\source\Common\Global.h" />
+    <ClInclude Include="..\..\trunk\source\Common\HashEngine.h" />
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
@@ -179,6 +185,11 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\trunk\source\Algorithms\MD5.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\SHA1.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha256.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha512.cpp" />
+    <ClCompile Include="..\..\trunk\source\Common\HashEngine.cpp" />
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
     <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
