@@ -65,18 +65,18 @@ bool OsFile::open(void *flag, void *exception)
         
         if (*fd == -1 && pFileExc != NULL)
         {
-            strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, "Cannot open this file.");
+            strlcpy(pFileExc, "Cannot open this file.", OsFile::ERR_MSG_BUFFER_LEN);
         }
     }
     else if (statRet == 0 && (st.st_mode & S_IFDIR))
     {
         if (pFileExc != NULL)
-            strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, "Cannot open a directory.");
+            strlcpy(pFileExc, "Cannot open a directory.", OsFile::ERR_MSG_BUFFER_LEN);
     }
     else
     {
         if (pFileExc != NULL)
-            strcpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, "File is missing.");
+            strlcpy(pFileExc, "File is missing.", OsFile::ERR_MSG_BUFFER_LEN);
     }
 
     return (*fd != -1);
