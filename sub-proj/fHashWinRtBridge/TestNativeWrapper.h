@@ -3,6 +3,8 @@
 #include "TestDelegate.h"
 #include "SomeNative.h"
 
+#include "Common/Global.h"
+
 namespace fHashUwp
 {
     public ref class TestNativeWrapper sealed
@@ -15,6 +17,7 @@ namespace fHashUwp
     private:
         TestDelegate^ m_testDelegate;
         std::shared_ptr<SomeNative> m_spSomeNative;
-        SomeNative m_spSomeNative2;
+        SomeNative m_someNative2;
+        ThreadData m_threadData;
     };
 }

@@ -1,8 +1,10 @@
 ﻿#include "stdafx.h"
+
 #include <memory>
 #include "TestNativeWrapper.h"
-#include "Common/strhelper.h"
 #include "TestDelegate.h"
+#include "Common/strhelper.h"
+#include "Common/HashEngine.h"
 
 using namespace Platform;
 using namespace sunjwbase;
@@ -17,5 +19,6 @@ TestNativeWrapper::TestNativeWrapper(TestDelegate^ testDelegate)
 
 void TestNativeWrapper::GetHello()
 {
+	void* pHashThreadFunc = HashThreadFunc;
 	m_spSomeNative->getHello();
 }
