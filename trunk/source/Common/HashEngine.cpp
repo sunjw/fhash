@@ -156,7 +156,8 @@ int WINAPI HashThreadFunc(void *param)
 
 		//Calculating begins
 #if defined (WIN32)
-		CFileException fExc;
+		// CFileException fExc;
+		TCHAR fExc[1024] = { 0 };
 #else
 		char fExc[1024] = {0};
 #endif
@@ -374,9 +375,10 @@ int WINAPI HashThreadFunc(void *param)
 		else
 		{
 #if defined (WIN32)
-			TCHAR szError[1024] = {0};
+			/*TCHAR szError[1024] = {0};
 			fExc.GetErrorMessage(szError, 1024);
-			result.tstrError = szError;
+			result.tstrError = szError;*/
+			result.tstrError = fExc;
 #else
 			result.tstrError = strtotstr(string(fExc));
 #endif
