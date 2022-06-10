@@ -67,10 +67,10 @@ sha256_final(struct sha256_ctx *ctx);
 void
 sha256_digest(const struct sha256_ctx *ctx, unsigned char *digest);
 
-#if defined (WIN32)
-void
-sha256_digest(const struct sha256_ctx *ctx, CString* sDigest);
-#endif
+//#if defined (WIN32)
+//void
+//sha256_digest(const struct sha256_ctx *ctx, CString* sDigest);
+//#endif
 
 void
 sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest);

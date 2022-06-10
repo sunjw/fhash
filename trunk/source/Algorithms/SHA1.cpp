@@ -21,6 +21,7 @@
 
 #include "SHA1.h"
 
+#pragma warning(disable: 4996)
 
 CSHA1::CSHA1()
 {
