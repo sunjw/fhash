@@ -70,13 +70,17 @@ bool OsFile::open(void *flag, void *exception)
 				FORMAT_MESSAGE_IGNORE_INSERTS,
 				NULL,
 				dw,
-				MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US),
+				0, //MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), // MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH),
 				(LPTSTR)&lpMsgBuf,
 				0, NULL);
 
-			tstring tstrErrMsg = (LPCTSTR)lpMsgBuf;
+			tstring tstrErrMsg(TEXT("Cannot open this file."));
+			if (lpMsgBuf != NULL)
+			{
+				tstrErrMsg = (LPCTSTR)lpMsgBuf;
+				LocalFree(lpMsgBuf);
+			}
 			tstrErrMsg = strtrim(tstrErrMsg);
-			LocalFree(lpMsgBuf);
 
 #if defined(UNICODE) || defined(_UNICODE)
 			wcscpy_s(pFileExc, OsFile::ERR_MSG_BUFFER_LEN, tstrErrMsg.c_str());
