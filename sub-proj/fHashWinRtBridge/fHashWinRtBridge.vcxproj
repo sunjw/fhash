@@ -339,6 +339,7 @@
     <ClInclude Include="TestNativeWrapper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SomeNative.h" />
+    <ClInclude Include="UIBridgeUwp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -354,6 +355,7 @@
     <ClCompile Include="SomeNative.cpp" />
     <ClCompile Include="TestDelegate.cpp" />
     <ClCompile Include="TestNativeWrapper.cpp" />
+    <ClCompile Include="UIBridgeUwp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestWinRtCmpt1.rc" />

@@ -31,6 +31,9 @@
     <ClCompile Include="TestDelegate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="UIBridgeUwp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="..\..\trunk\source\Common\HashEngine.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBridgeUwp.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
