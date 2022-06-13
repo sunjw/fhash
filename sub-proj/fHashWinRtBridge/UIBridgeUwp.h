@@ -34,7 +34,7 @@ namespace FilesHashUwp
 		virtual void fileCalcFinish();
 		virtual void fileFinish();
 
-		static ResultDataNet^ ConvertResultDataToNet(const ResultData& result);
+		static ResultDataNet ConvertResultDataToNet(const ResultData& result);
 
 	private:
 		FilesHashUwp::UIBridgeDelegate^ m_uiBridgeDelegate;

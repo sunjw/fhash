@@ -5,8 +5,8 @@
 namespace FilesHashUwp
 {
 	public delegate void CalcEventHandler();
-	public delegate void ResultEventHandler(ResultDataNet^);
-	public delegate void ResultHashEventHandler(ResultDataNet^, Platform::Boolean);
+	public delegate void ResultEventHandler(ResultDataNet);
+	public delegate void ResultHashEventHandler(ResultDataNet, Platform::Boolean);
 	public delegate void CalcProgEventHandler(int32);
 
 	public ref class UIBridgeDelegate sealed
