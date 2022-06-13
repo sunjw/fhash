@@ -39,7 +39,7 @@ void UIBridgeMacUI::unlockData()
 void UIBridgeMacUI::preparingCalc()
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     lockData();
     {
         // Copy old string.
@@ -51,7 +51,7 @@ void UIBridgeMacUI::preparingCalc()
         MacUtils::AppendNSStringToNSMutableAttributedString(mainViewController.mainText, nsstrAppend);
     }
     unlockData();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
        [mainViewController updateMainTextView];
     });
@@ -60,7 +60,7 @@ void UIBridgeMacUI::preparingCalc()
 void UIBridgeMacUI::removePreparingCalc()
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     lockData();
     {
         // Reset old string.
@@ -72,7 +72,7 @@ void UIBridgeMacUI::removePreparingCalc()
 void UIBridgeMacUI::calcStop()
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController calculateStopped];
     });
@@ -81,7 +81,7 @@ void UIBridgeMacUI::calcStop()
 void UIBridgeMacUI::calcFinish()
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController calculateFinished];
     });
@@ -96,7 +96,7 @@ void UIBridgeMacUI::showFileName(const ResultData& result)
         UIBridgeMacUI::AppendFileNameToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController updateMainTextView];
     });
@@ -105,13 +105,13 @@ void UIBridgeMacUI::showFileName(const ResultData& result)
 void UIBridgeMacUI::showFileMeta(const ResultData& result)
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     lockData();
     {
         UIBridgeMacUI::AppendFileMetaToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController updateMainTextView];
     });
@@ -120,7 +120,7 @@ void UIBridgeMacUI::showFileMeta(const ResultData& result)
 void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     lockData();
     {
         UIBridgeMacUI::AppendFileHashToNSMutableAttributedString(result,
@@ -128,7 +128,7 @@ void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
                                                                  mainViewController.mainText);
     }
     unlockData();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController updateMainTextView];
     });
@@ -137,13 +137,13 @@ void UIBridgeMacUI::showFileHash(const ResultData& result, bool uppercase)
 void UIBridgeMacUI::showFileErr(const ResultData& result)
 {
     MainViewController *mainViewController = _mainViewControllerPtr.get();
-    
+
     lockData();
     {
         UIBridgeMacUI::AppendFileErrToNSMutableAttributedString(result, mainViewController.mainText);
     }
     unlockData();
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [mainViewController updateMainTextView];
     });
