@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "UIBridgeDelegate.h"
+#include "ResultDataNet.h"
 
 using namespace Platform;
 using namespace FilesHashUwp;
 
-UIBridgeDelegate::UIBridgeDelegate()
+ResultDataNet::ResultDataNet()
 {
 }
