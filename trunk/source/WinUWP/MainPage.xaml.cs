@@ -465,13 +465,14 @@ namespace FilesHashUwp
             // RequestedThemeProperty seems not work at all...
             m_tokenThemeChanged = rootFrame.RegisterPropertyChangedCallback(RequestedThemeProperty, RequestedThemeChanged);
 
-            // Init ui
+            // Init UI
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
             m_paragraphMain = new Paragraph();
             m_paragraphMain.FontFamily = new FontFamily("Consolas");
             RichTextMain.Blocks.Add(m_paragraphMain);
 
-            // Init content
+            // Begin
+            m_hashMgmt.Clear();
             InitContent();
         }
 

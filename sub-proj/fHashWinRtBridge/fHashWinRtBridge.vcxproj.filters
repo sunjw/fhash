@@ -40,6 +40,9 @@
     <ClCompile Include="HashMgmt.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CxHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -88,6 +91,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="HashMgmt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CxHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

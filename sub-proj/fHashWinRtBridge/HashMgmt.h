@@ -13,6 +13,7 @@ namespace FilesHashUwp
 		HashMgmt(UIBridgeDelegate^ uiBridgeDelegate);
 
 		void Init();
+		void Clear();
 
 	private:
 		std::shared_ptr<UIBridgeUwp> m_spUiBridgeUwp;

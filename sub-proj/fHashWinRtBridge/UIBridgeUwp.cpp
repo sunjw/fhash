@@ -2,9 +2,11 @@
 
 #include "UIBridgeUwp.h"
 #include "Common/Global.h"
+#include "CxHelper.h"
 
 using namespace Platform;
 using namespace FilesHashUwp;
+using namespace sunjwbase;
 
 UIBridgeUwp::UIBridgeUwp(UIBridgeDelegate^ uiBridgeDelegate)
 	:m_uiBridgeDelegate(uiBridgeDelegate)
@@ -112,15 +114,15 @@ ResultDataNet UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
 		resultDataNet.EnumState = ResultStateNet::ResultError;
 		break;
 	}
-	resultDataNet.Path = ref new String(result.tstrPath.c_str());
+	resultDataNet.Path = tstrToPlatStr(result.tstrPath);
 	resultDataNet.Size = result.ulSize;
-	resultDataNet.ModifiedDate = ref new String(result.tstrMDate.c_str());
-	resultDataNet.Version = ref new String(result.tstrVersion.c_str());
-	resultDataNet.MD5 = ref new String(result.tstrMD5.c_str());
-	resultDataNet.SHA1 = ref new String(result.tstrSHA1.c_str());
-	resultDataNet.SHA256 = ref new String(result.tstrSHA256.c_str());
-	resultDataNet.SHA512 = ref new String(result.tstrSHA512.c_str());
-	resultDataNet.Error = ref new String(result.tstrError.c_str());
+	resultDataNet.ModifiedDate = tstrToPlatStr(result.tstrMDate);
+	resultDataNet.Version = tstrToPlatStr(result.tstrVersion);
+	resultDataNet.MD5 = tstrToPlatStr(result.tstrMD5);
+	resultDataNet.SHA1 = tstrToPlatStr(result.tstrSHA1);
+	resultDataNet.SHA256 = tstrToPlatStr(result.tstrSHA256);
+	resultDataNet.SHA512 = tstrToPlatStr(result.tstrSHA512);
+	resultDataNet.Error = tstrToPlatStr(result.tstrError);
 
 	return resultDataNet;
 }
