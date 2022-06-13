@@ -78,16 +78,6 @@ namespace FilesHashUwp
             return null;
         }
 
-        private async void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
-        {
-            e.Handled = true;
-            ContentDialogResult result = await m_dialogExitConfirm.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                Application.Current.Exit();
-            }
-        }
-
         public void CommandLineActivated()
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
@@ -415,6 +405,16 @@ namespace FilesHashUwp
             ProgressBarMain.Value = 0;
         }
 
+        private async void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
+        {
+            e.Handled = true;
+            ContentDialogResult result = await m_dialogExitConfirm.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                Application.Current.Exit();
+            }
+        }
+
         private void ColorValuesChanged(UISettings sender, object e)
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
@@ -437,14 +437,6 @@ namespace FilesHashUwp
         private void WindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             UpdatePopupAboutSize();
-        }
-
-        private void OnNativeHelloHandler(string strHello)
-        {
-            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
-            {
-                ShowCmdArgs(strHello + "\r\n");
-            }));
         }
 
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
