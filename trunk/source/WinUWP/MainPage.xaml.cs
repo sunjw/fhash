@@ -468,7 +468,7 @@ namespace FilesHashUwp
             InitContent();
         }
 
-        private void ButtonTest_Click(object sender, RoutedEventArgs e)
+        private void ButtonOpen_Click(object sender, RoutedEventArgs e)
         {
             switch (m_testCount)
             {

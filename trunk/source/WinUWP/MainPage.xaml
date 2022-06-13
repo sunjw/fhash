@@ -120,7 +120,7 @@
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Click="ButtonTest_Click"
+                        Click="ButtonOpen_Click"
                         Content="[Open]"
                         Style="{StaticResource AccentButtonStyle}"
                         TabIndex="1" />
