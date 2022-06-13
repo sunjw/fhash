@@ -37,6 +37,6 @@ namespace FilesHashUwp
 		static ResultDataNet ConvertResultDataToNet(const ResultData& result);
 
 	private:
-		FilesHashUwp::UIBridgeDelegate^ m_uiBridgeDelegate;
+		UIBridgeDelegate^ m_uiBridgeDelegate;
 	};
 }
