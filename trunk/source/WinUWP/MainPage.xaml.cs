@@ -8,7 +8,6 @@ using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Core.Preview;
-using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,13 +41,8 @@ namespace FilesHashUwp
         private TestDelegate m_testDelegate;
         private TestNativeWrapper m_testNativeWrapper;
 
-        [ComImport, Guid("45D64A29-A63E-4CB6-B498-5781D298CB4F")]
-        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        interface ICoreWindowInterop
-        {
-            IntPtr WindowHandle { get; }
-            bool MessageHandled { set; }
-        }
+        private UIBridgeDelegate m_uiBridgeDelegate;
+        private HashMgmt m_hashMgmt;
 
         public MainPage()
         {
@@ -59,6 +53,9 @@ namespace FilesHashUwp
             m_testDelegate = new TestDelegate();
             m_testDelegate.OnHelloHandler += OnNativeHelloHandler;
             m_testNativeWrapper = new TestNativeWrapper(m_testDelegate);
+
+            m_uiBridgeDelegate = new UIBridgeDelegate();
+            m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
 
             m_coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
             m_appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
@@ -85,13 +82,6 @@ namespace FilesHashUwp
             }
 
             return null;
-        }
-
-        private IntPtr GetCurrentWindowHandle()
-        {
-            dynamic corewin = CoreWindow.GetForCurrentThread();
-            var interop = (ICoreWindowInterop)corewin;
-            return interop.WindowHandle;
         }
 
         private async void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
