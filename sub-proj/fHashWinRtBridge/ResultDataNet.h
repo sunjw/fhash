@@ -4,11 +4,11 @@ namespace FilesHashUwp
 {
 	public enum class ResultStateNet
 	{
-		RESULT_NONE = 0,
-		RESULT_PATH,
-		RESULT_META,
-		RESULT_ALL,
-		RESULT_ERROR
+		ResultNone = 0,
+		ResultPath,
+		ResultMeta,
+		ResultAll,
+		ResultError
 	};
 
 	public value struct ResultDataNet
