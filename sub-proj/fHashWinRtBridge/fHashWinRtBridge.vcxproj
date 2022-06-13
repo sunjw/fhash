@@ -37,7 +37,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1db637dd-b2f5-4b9f-a8c1-b833e9f86742}</ProjectGuid>
     <Keyword>WindowsRuntimeComponent</Keyword>
-    <RootNamespace>fHashUwp</RootNamespace>
+    <RootNamespace>FilesHashUwp</RootNamespace>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>

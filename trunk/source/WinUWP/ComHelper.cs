@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace fHashUwp
+namespace FilesHashUwp
 {
     class ComHelper
     {

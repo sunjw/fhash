@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Media;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
-namespace fHashUwp
+namespace FilesHashUwp
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。

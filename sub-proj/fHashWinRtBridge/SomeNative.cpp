@@ -6,7 +6,7 @@
 
 using namespace Platform;
 using namespace sunjwbase;
-using namespace fHashUwp;
+using namespace FilesHashUwp;
 
 int WINAPI TestThreadFunc(void* param);
 

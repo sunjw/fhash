@@ -1,6 +1,6 @@
 #pragma once
 
-namespace fHashUwp
+namespace FilesHashUwp
 {
 	public delegate void OnHelloHandler(Platform::String^ strHello);
 

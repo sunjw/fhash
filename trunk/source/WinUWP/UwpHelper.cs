@@ -4,7 +4,7 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Xaml;
 
-namespace fHashUwp
+namespace FilesHashUwp
 {
     class UwpHelper
     {

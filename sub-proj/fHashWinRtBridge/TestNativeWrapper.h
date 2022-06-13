@@ -5,7 +5,7 @@
 
 #include "Common/Global.h"
 
-namespace fHashUwp
+namespace FilesHashUwp
 {
     public ref class TestNativeWrapper sealed
     {

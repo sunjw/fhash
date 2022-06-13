@@ -2,7 +2,7 @@
 #include "TestDelegate.h"
 
 using namespace Platform;
-using namespace fHashUwp;
+using namespace FilesHashUwp;
 
 TestDelegate::TestDelegate()
 {

@@ -7,7 +7,7 @@
     <ProjectGuid>{724C58F8-74C9-4C16-8A1E-7DE230DD6292}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>fHashUwp</RootNamespace>
+    <RootNamespace>FilesHashUwp</RootNamespace>
     <AssemblyName>fHashUwp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

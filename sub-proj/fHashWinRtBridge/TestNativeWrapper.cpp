@@ -8,7 +8,7 @@
 
 using namespace Platform;
 using namespace sunjwbase;
-using namespace fHashUwp;
+using namespace FilesHashUwp;
 
 TestNativeWrapper::TestNativeWrapper(TestDelegate^ testDelegate)
 {
