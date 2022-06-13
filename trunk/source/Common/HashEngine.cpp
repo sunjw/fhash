@@ -290,7 +290,8 @@ int WINAPI HashThreadFunc(void *param)
 				}
 				else
 				{
-					uiBridge->updateProgWhole((i + 1) * 100 / (thrdData->nFiles));
+					int progressMax = uiBridge->getProgMax();
+					uiBridge->updateProgWhole((i + 1) * progressMax / (thrdData->nFiles));
 				}
 			}
 
