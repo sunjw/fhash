@@ -3,7 +3,10 @@
 #include "UIBridgeUwp.h"
 #include "Common/Global.h"
 
-UIBridgeUwp::UIBridgeUwp()
+using namespace FilesHashUwp;
+
+UIBridgeUwp::UIBridgeUwp(UIBridgeDelegate^ uiBridgeDelegate)
+	:m_uiBridgeDelegate(uiBridgeDelegate)
 {
 }
 

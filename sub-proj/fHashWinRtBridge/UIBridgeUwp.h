@@ -3,10 +3,12 @@
 #include "Common/UIBridgeBase.h"
 #include "Common/Global.h"
 
+#include "UIBridgeDelegate.h"
+
 class UIBridgeUwp: public UIBridgeBase
 {
 public:
-	UIBridgeUwp();
+	UIBridgeUwp(FilesHashUwp::UIBridgeDelegate^ uiBridgeDelegate);
 	virtual ~UIBridgeUwp();
 
 	virtual void lockData();
@@ -30,4 +32,5 @@ public:
 	virtual void fileFinish();
 
 private:
+	FilesHashUwp::UIBridgeDelegate^ m_uiBridgeDelegate;
 };
