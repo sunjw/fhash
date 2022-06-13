@@ -22,15 +22,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TestNativeWrapper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SomeNative.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TestDelegate.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="UIBridgeUwp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -49,15 +40,6 @@
       <Filter>资源文件</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TestNativeWrapper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SomeNative.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TestDelegate.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h">

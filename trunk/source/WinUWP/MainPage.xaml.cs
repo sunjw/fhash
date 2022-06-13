@@ -38,9 +38,6 @@ namespace FilesHashUwp
         private Hyperlink m_hyperlinkClicked;
         private int m_testCount = 0;
 
-        private TestDelegate m_testDelegate;
-        private TestNativeWrapper m_testNativeWrapper;
-
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
 
@@ -49,10 +46,6 @@ namespace FilesHashUwp
             InitializeComponent();
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += MainPage_CloseRequested;
-
-            m_testDelegate = new TestDelegate();
-            m_testDelegate.OnHelloHandler += OnNativeHelloHandler;
-            m_testNativeWrapper = new TestNativeWrapper(m_testDelegate);
 
             m_uiBridgeDelegate = new UIBridgeDelegate();
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
@@ -306,7 +299,6 @@ namespace FilesHashUwp
         private void InitContent()
         {
             // ShowCmdArgs(m_testNativeWrapper.GetHello() + "\r\n");
-            m_testNativeWrapper.GetHello();
         }
 
         private void ShowCmdArgs(string strInit = "")

@@ -338,10 +338,7 @@
     <ClInclude Include="HashMgmt.h" />
     <ClInclude Include="ResultDataNet.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TestDelegate.h" />
-    <ClInclude Include="TestNativeWrapper.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SomeNative.h" />
     <ClInclude Include="UIBridgeUwp.h" />
     <ClInclude Include="UIBridgeDelegate.h" />
   </ItemGroup>
@@ -358,9 +355,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SomeNative.cpp" />
-    <ClCompile Include="TestDelegate.cpp" />
-    <ClCompile Include="TestNativeWrapper.cpp" />
     <ClCompile Include="UIBridgeUwp.cpp" />
     <ClCompile Include="UIBridgeDelegate.cpp" />
   </ItemGroup>
