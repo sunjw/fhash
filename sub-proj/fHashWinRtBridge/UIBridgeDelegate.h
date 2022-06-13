@@ -14,6 +14,18 @@ namespace FilesHashUwp
 	public:
 		UIBridgeDelegate();
 
+		void PreparingCalc();
+		void RemovePreparingCalc();
+		void CalcStop();
+		void CalcFinish();
+
+		void ShowFileName(ResultDataNet resultDataNet);
+		void ShowFileMeta(ResultDataNet resultDataNet);
+		void ShowFileHash(ResultDataNet resultDataNet, Platform::Boolean uppercase);
+		void ShowFileErr(ResultDataNet resultDataNet);
+
+		void UpdateProgWhole(int32 value);
+
 		event CalcEventHandler^ PreparingCalcHandler;
 		event CalcEventHandler^ RemovePreparingCalcHandler;
 		event CalcEventHandler^ CalcStopHandler;
@@ -24,7 +36,6 @@ namespace FilesHashUwp
 		event ResultHashEventHandler^ ShowFileHashHandler;
 		event ResultEventHandler^ ShowFileErrHandler;
 
-		event CalcProgEventHandler^ UpdateProgHandler;
 		event CalcProgEventHandler^ UpdateProgWholeHandler;
 	};
 }

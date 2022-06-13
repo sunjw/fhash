@@ -17,26 +17,32 @@ UIBridgeUwp::~UIBridgeUwp()
 
 void UIBridgeUwp::lockData()
 {
+	// No need here.
 }
 
 void UIBridgeUwp::unlockData()
 {
+	// No need here.
 }
 
 void UIBridgeUwp::preparingCalc()
 {
+	m_uiBridgeDelegate->PreparingCalc();
 }
 
 void UIBridgeUwp::removePreparingCalc()
 {
+	m_uiBridgeDelegate->RemovePreparingCalc();
 }
 
 void UIBridgeUwp::calcStop()
 {
+	m_uiBridgeDelegate->CalcStop();
 }
 
 void UIBridgeUwp::calcFinish()
 {
+	m_uiBridgeDelegate->CalcFinish();
 }
 
 void UIBridgeUwp::showFileName(const ResultData& result)
@@ -66,6 +72,7 @@ void UIBridgeUwp::updateProg(int value)
 
 void UIBridgeUwp::updateProgWhole(int value)
 {
+	m_uiBridgeDelegate->UpdateProgWhole(value);
 }
 
 void UIBridgeUwp::fileCalcFinish()
