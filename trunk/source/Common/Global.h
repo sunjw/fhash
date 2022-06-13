@@ -70,13 +70,12 @@ struct ThreadData // 传向计算线程的信息
 	UIBridgeBase *uiBridge;
 
 	bool threadWorking; // 线程是否在工作
-
-	bool uppercase; // 是否大写
-
-	uint32_t nFiles; // 文件个数
-	uint64_t totalSize; // 所有文件大小
 	bool stop; // 主界面要求停止计算
 
+	bool uppercase; // 是否大写
+	uint64_t totalSize; // 所有文件大小
+
+	uint32_t nFiles; // 文件个数
 	TStrVector fullPaths; // 待计算的所有文件路径
 
 	ResultList resultList;
