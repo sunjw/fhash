@@ -114,15 +114,15 @@ ResultDataNet UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
 		resultDataNet.EnumState = ResultStateNet::ResultError;
 		break;
 	}
-	resultDataNet.Path = tstrToPlatStr(result.tstrPath);
+	resultDataNet.Path = ConvertTstrToPlatStr(result.tstrPath);
 	resultDataNet.Size = result.ulSize;
-	resultDataNet.ModifiedDate = tstrToPlatStr(result.tstrMDate);
-	resultDataNet.Version = tstrToPlatStr(result.tstrVersion);
-	resultDataNet.MD5 = tstrToPlatStr(result.tstrMD5);
-	resultDataNet.SHA1 = tstrToPlatStr(result.tstrSHA1);
-	resultDataNet.SHA256 = tstrToPlatStr(result.tstrSHA256);
-	resultDataNet.SHA512 = tstrToPlatStr(result.tstrSHA512);
-	resultDataNet.Error = tstrToPlatStr(result.tstrError);
+	resultDataNet.ModifiedDate = ConvertTstrToPlatStr(result.tstrMDate);
+	resultDataNet.Version = ConvertTstrToPlatStr(result.tstrVersion);
+	resultDataNet.MD5 = ConvertTstrToPlatStr(result.tstrMD5);
+	resultDataNet.SHA1 = ConvertTstrToPlatStr(result.tstrSHA1);
+	resultDataNet.SHA256 = ConvertTstrToPlatStr(result.tstrSHA256);
+	resultDataNet.SHA512 = ConvertTstrToPlatStr(result.tstrSHA512);
+	resultDataNet.Error = ConvertTstrToPlatStr(result.tstrError);
 
 	return resultDataNet;
 }

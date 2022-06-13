@@ -4,5 +4,5 @@
 
 namespace sunjwbase
 {
-	Platform::String^ tstrToPlatStr(const tstring& tstrSource);
+	Platform::String^ ConvertTstrToPlatStr(const tstring& tstrSource);
 }
