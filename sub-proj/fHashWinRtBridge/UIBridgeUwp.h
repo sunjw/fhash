@@ -1,5 +1,4 @@
-#ifndef _UI_BRIDGE_MFC_
-#define _UI_BRIDGE_MFC_
+#pragma once
 
 #include "Common/UIBridgeBase.h"
 #include "Common/Global.h"
@@ -32,5 +31,3 @@ public:
 
 private:
 };
-
-#endif
