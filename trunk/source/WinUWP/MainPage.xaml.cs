@@ -56,6 +56,7 @@ namespace FilesHashUwp
 
             m_uiBridgeDelegate = new UIBridgeDelegate();
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
+            m_hashMgmt.Init();
 
             m_coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
             m_appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;

@@ -7,5 +7,10 @@ using namespace FilesHashUwp;
 
 HashMgmt::HashMgmt(UIBridgeDelegate^ uiBridgeDelegate)
 {
-	m_uiBridgeUwp = make_shared<UIBridgeUwp>(uiBridgeDelegate);
+	m_spUiBridgeUwp = make_shared<UIBridgeUwp>(uiBridgeDelegate);
+}
+
+void HashMgmt::Init()
+{
+	m_threadData.uiBridge = m_spUiBridgeUwp.get();
 }

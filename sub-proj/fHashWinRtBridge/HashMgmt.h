@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include "Common/Global.h"
 #include "UIBridgeDelegate.h"
 #include "UIBridgeUwp.h"
 
@@ -11,7 +12,10 @@ namespace FilesHashUwp
 	public:
 		HashMgmt(UIBridgeDelegate^ uiBridgeDelegate);
 
+		void Init();
+
 	private:
-		std::shared_ptr<UIBridgeUwp> m_uiBridgeUwp;
+		std::shared_ptr<UIBridgeUwp> m_spUiBridgeUwp;
+		ThreadData m_threadData;
 	};
 }
