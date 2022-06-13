@@ -217,49 +217,12 @@ namespace FilesHashUwp
 
         private void ScrollTextMainToBottom()
         {
-            ScrollViewerMain.Measure(ScrollViewerMain.RenderSize);
-            ScrollViewerMain.ChangeView(null, ScrollViewerMain.ScrollableHeight, null);
-        }
-
-        private Run GenRunFromString(string strContent)
-        {
-            Run run = new Run();
-            run.Text = strContent;
-            return run;
-        }
-
-        private Underline GenUnderlineFromString(string strContent)
-        {
-            Underline underline = new Underline();
-            underline.Inlines.Add(GenRunFromString(strContent));
-            return underline;
-        }
-
-        private Hyperlink GenHyperlinkFromString(string strContent, TypedEventHandler<Hyperlink, HyperlinkClickEventArgs> clickHandler)
-        {
-            Hyperlink hyperlink = new Hyperlink();
-            hyperlink.Inlines.Add(GenRunFromString(strContent));
-            hyperlink.UnderlineStyle = UnderlineStyle.None;
-            if (clickHandler != null)
-            {
-                hyperlink.Click += clickHandler;
-            }
-            return hyperlink;
+            UwpHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
         private Hyperlink GenHyperlinkFromStringForTextMain(string strContent)
         {
-            return GenHyperlinkFromString(strContent, TextMainHyperlink_Click);
-        }
-
-        private string GetTextFromHyperlink(Hyperlink hyperlink)
-        {
-            if (hyperlink.Inlines.Count == 0)
-            {
-                return null;
-            }
-            Run run = (Run)hyperlink.Inlines[0];
-            return run.Text;
+            return UwpHelper.GenHyperlinkFromString(strContent, TextMainHyperlink_Click);
         }
 
         private List<Inline> GenInlinesFromPaths(List<string> strPaths)
@@ -267,8 +230,8 @@ namespace FilesHashUwp
             List<Inline> inlines = new List<Inline>();
             foreach (string path in strPaths)
             {
-                inlines.Add(GenRunFromString(path));
-                inlines.Add(GenRunFromString("\r\n\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString(path));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
             }
             return inlines;
         }
@@ -317,7 +280,7 @@ namespace FilesHashUwp
             }
             else
             {
-                inlines.Add(GenRunFromString(strInit));
+                inlines.Add(UwpHelper.GenRunFromString(strInit));
             }
             ClearAndShowInlinesInTextMain(inlines);
         }
@@ -326,21 +289,21 @@ namespace FilesHashUwp
         {
             Span span1 = new Span();
 
-            span1.Inlines.Add(GenRunFromString("文件名: C:\\Users\\Sun Junwen\\OneDrive\\Apps\\fHash\\fHash64-2.3.0-win64.zip\r\n"));
-            span1.Inlines.Add(GenRunFromString("文件大小: 383692 字节(374.70 KB)\r\n"));
-            span1.Inlines.Add(GenRunFromString("修改日期: 2022-03-28 15:17\r\n"));
-            span1.Inlines.Add(GenRunFromString("MD5: "));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("文件名: C:\\Users\\Sun Junwen\\OneDrive\\Apps\\fHash\\fHash64-2.3.0-win64.zip\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("文件大小: 383692 字节(374.70 KB)\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("修改日期: 2022-03-28 15:17\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("MD5: "));
             span1.Inlines.Add(GenHyperlinkFromStringForTextMain("c0232b5bc37e70eebad95fbfc6499d92"));
-            span1.Inlines.Add(GenRunFromString("\r\n"));
-            span1.Inlines.Add(GenRunFromString("SHA1: "));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
             span1.Inlines.Add(GenHyperlinkFromStringForTextMain("14017068424f5ca356b9440cb025eb0f848e08d9"));
-            span1.Inlines.Add(GenRunFromString("\r\n"));
-            span1.Inlines.Add(GenRunFromString("SHA256: "));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
             span1.Inlines.Add(GenHyperlinkFromStringForTextMain("ce25ecf0650ebfa1f8f2d8ebc557ad3db0cd75e80bda647c59314668e0281a35"));
-            span1.Inlines.Add(GenRunFromString("\r\n"));
-            span1.Inlines.Add(GenRunFromString("SHA512: "));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
             span1.Inlines.Add(GenHyperlinkFromStringForTextMain("aeda1930fc0ae1feda19b68170b78074f4a408ec50080256110dd0d9eda005abaa7167ae6d62ca302f6995f60f3d038af6c21667ea922e1206bb3670bc1c5e71"));
-            span1.Inlines.Add(GenRunFromString("\r\n\r\n"));
+            span1.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
             List<Inline> inlines = new List<Inline>();
             inlines.Add(span1);
@@ -352,21 +315,21 @@ namespace FilesHashUwp
         {
             Span span2 = new Span();
 
-            span2.Inlines.Add(GenRunFromString("Name: /Users/sunjw/Library/CloudStorage/OneDrive-个人/Apps/fHash/fHash-2.3.0-macOS.dmg\r\n"));
-            span2.Inlines.Add(GenRunFromString("File Size: 656793 Byte(s)(656.79 KB)\r\n"));
-            span2.Inlines.Add(GenRunFromString("Modified Date: 2022-03-28 14:58\r\n"));
-            span2.Inlines.Add(GenRunFromString("MD5: "));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("Name: /Users/sunjw/Library/CloudStorage/OneDrive-个人/Apps/fHash/fHash-2.3.0-macOS.dmg\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("File Size: 656793 Byte(s)(656.79 KB)\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("Modified Date: 2022-03-28 14:58\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("MD5: "));
             span2.Inlines.Add(GenHyperlinkFromStringForTextMain("1C880E1191F884EB225F9CFA36CDC355"));
-            span2.Inlines.Add(GenRunFromString("\r\n"));
-            span2.Inlines.Add(GenRunFromString("SHA1: "));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
             span2.Inlines.Add(GenHyperlinkFromStringForTextMain("4528265C32082A3FB115C05CB29FA36E96A942E5"));
-            span2.Inlines.Add(GenRunFromString("\r\n"));
-            span2.Inlines.Add(GenRunFromString("SHA256: "));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
             span2.Inlines.Add(GenHyperlinkFromStringForTextMain("B704FD5E9E6818F1AC8E7EBECF97F0A56E1FDB8DB9AB9E01FE0F6B574A586FEF"));
-            span2.Inlines.Add(GenRunFromString("\r\n"));
-            span2.Inlines.Add(GenRunFromString("SHA512: "));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
             span2.Inlines.Add(GenHyperlinkFromStringForTextMain("15F634DF65D0A41E943A9024CA69FF5C31E4B05446180FE5900B7CB0068CFF9DF2820EFD3F8AFCB48924C3FE45D0113FDC8E81F5E4E6CDD60830BE4581F8B11C"));
-            span2.Inlines.Add(GenRunFromString("\r\n\r\n"));
+            span2.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
             m_paragraphMain.Inlines.Add(span2);
             ScrollTextMainToBottom();
@@ -377,22 +340,22 @@ namespace FilesHashUwp
         {
             Span span3 = new Span();
 
-            span3.Inlines.Add(GenRunFromString("文件名: C:\\Users\\Sun Junwen\\OneDrive\\新建文件夹\\jstool\\JSMinNPP.dll\r\n"));
-            span3.Inlines.Add(GenRunFromString("文件大小: 432640 字节(422.50 KB)\r\n"));
-            span3.Inlines.Add(GenRunFromString("修改日期: 2022-05-24 12:58\r\n"));
-            span3.Inlines.Add(GenRunFromString("版本: 1.2205.0.0\r\n"));
-            span3.Inlines.Add(GenRunFromString("MD5: "));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("文件名: C:\\Users\\Sun Junwen\\OneDrive\\新建文件夹\\jstool\\JSMinNPP.dll\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("文件大小: 432640 字节(422.50 KB)\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("修改日期: 2022-05-24 12:58\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("版本: 1.2205.0.0\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("MD5: "));
             span3.Inlines.Add(GenHyperlinkFromStringForTextMain("68373918248f972c784cf6fd921670dd"));
-            span3.Inlines.Add(GenRunFromString("\r\n"));
-            span3.Inlines.Add(GenRunFromString("SHA1: "));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
             span3.Inlines.Add(GenHyperlinkFromStringForTextMain("9a0acfb02d983bc1feaf0364cd04884dd554c47d"));
-            span3.Inlines.Add(GenRunFromString("\r\n"));
-            span3.Inlines.Add(GenRunFromString("SHA256: "));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
             span3.Inlines.Add(GenHyperlinkFromStringForTextMain("f828b4973c72721b78aafeb9caa82362465ca95ebb8a296f39ef3c45aa8f0d10"));
-            span3.Inlines.Add(GenRunFromString("\r\n"));
-            span3.Inlines.Add(GenRunFromString("SHA512: "));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
             span3.Inlines.Add(GenHyperlinkFromStringForTextMain("e2f8f248b0dbada7799f02eeacccd53ca4d5ef4296504e6826e72cb6aa1259ad61d15c222f9ea1638d06990328a433e3dc871761fc38aef22dfa7bc786145213"));
-            span3.Inlines.Add(GenRunFromString("\r\n\r\n"));
+            span3.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
             m_paragraphMain.Inlines.Add(span3);
             ScrollTextMainToBottom();
@@ -495,8 +458,8 @@ namespace FilesHashUwp
             {
                 string strHash = m_textBoxFindHash.Text;
                 List<Inline> inlines = new List<Inline>();
-                inlines.Add(GenRunFromString(strHash));
-                inlines.Add(GenRunFromString("\r\n\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString(strHash));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
                 ClearAndShowInlinesInTextMain(inlines);
             }
         }
@@ -514,7 +477,7 @@ namespace FilesHashUwp
                 return;
             }
 
-            string strHash = GetTextFromHyperlink(m_hyperlinkClicked);
+            string strHash = UwpHelper.GetTextFromHyperlink(m_hyperlinkClicked);
             UwpHelper.CopyStringToClipboard(strHash);
         }
 
@@ -525,7 +488,7 @@ namespace FilesHashUwp
                 return;
             }
 
-            string strHash = GetTextFromHyperlink(m_hyperlinkClicked);
+            string strHash = UwpHelper.GetTextFromHyperlink(m_hyperlinkClicked);
             string strGoogleUrl = string.Format("https://www.google.com/search?q={0}&ie=utf-8&oe=utf-8", strHash);
             UwpHelper.OpenUrl(strGoogleUrl);
         }
