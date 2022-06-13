@@ -47,18 +47,26 @@ void UIBridgeUwp::calcFinish()
 
 void UIBridgeUwp::showFileName(const ResultData& result)
 {
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileName(resultDataNet);
 }
 
 void UIBridgeUwp::showFileMeta(const ResultData& result)
 {
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileMeta(resultDataNet);
 }
 
 void UIBridgeUwp::showFileHash(const ResultData& result, bool uppercase)
 {
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileHash(resultDataNet, uppercase);
 }
 
 void UIBridgeUwp::showFileErr(const ResultData& result)
 {
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileErr(resultDataNet);
 }
 
 int UIBridgeUwp::getProgMax()
