@@ -74,3 +74,10 @@ void UIBridgeUwp::fileCalcFinish()
 void UIBridgeUwp::fileFinish()
 {
 }
+
+ResultDataNet^ UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
+{
+	ResultDataNet^ resultDataNet = ref new ResultDataNet();
+
+	return resultDataNet;
+}

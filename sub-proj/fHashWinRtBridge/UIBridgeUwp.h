@@ -4,33 +4,39 @@
 #include "Common/Global.h"
 
 #include "UIBridgeDelegate.h"
+#include "ResultDataNet.h"
 
-class UIBridgeUwp: public UIBridgeBase
+namespace FilesHashUwp
 {
-public:
-	UIBridgeUwp(FilesHashUwp::UIBridgeDelegate^ uiBridgeDelegate);
-	virtual ~UIBridgeUwp();
+	class UIBridgeUwp : public UIBridgeBase
+	{
+	public:
+		UIBridgeUwp(UIBridgeDelegate^ uiBridgeDelegate);
+		virtual ~UIBridgeUwp();
 
-	virtual void lockData();
-	virtual void unlockData();
+		virtual void lockData();
+		virtual void unlockData();
 
-	virtual void preparingCalc();
-	virtual void removePreparingCalc();
-	virtual void calcStop();
-	virtual void calcFinish();
+		virtual void preparingCalc();
+		virtual void removePreparingCalc();
+		virtual void calcStop();
+		virtual void calcFinish();
 
-	virtual void showFileName(const ResultData& result);
-	virtual void showFileMeta(const ResultData& result);
-	virtual void showFileHash(const ResultData& result, bool uppercase);
-	virtual void showFileErr(const ResultData& result);
+		virtual void showFileName(const ResultData& result);
+		virtual void showFileMeta(const ResultData& result);
+		virtual void showFileHash(const ResultData& result, bool uppercase);
+		virtual void showFileErr(const ResultData& result);
 
-	virtual int getProgMax();
-	virtual void updateProg(int value);
-	virtual void updateProgWhole(int value);
+		virtual int getProgMax();
+		virtual void updateProg(int value);
+		virtual void updateProgWhole(int value);
 
-	virtual void fileCalcFinish();
-	virtual void fileFinish();
+		virtual void fileCalcFinish();
+		virtual void fileFinish();
 
-private:
-	FilesHashUwp::UIBridgeDelegate^ m_uiBridgeDelegate;
-};
+		static ResultDataNet^ ConvertResultDataToNet(const ResultData& result);
+
+	private:
+		FilesHashUwp::UIBridgeDelegate^ m_uiBridgeDelegate;
+	};
+}
