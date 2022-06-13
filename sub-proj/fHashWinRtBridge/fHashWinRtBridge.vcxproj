@@ -333,7 +333,6 @@
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
-    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TestDelegate.h" />

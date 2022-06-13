@@ -63,9 +63,6 @@
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h">
       <Filter>OsUtils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h">
-      <Filter>OsUtils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h">
       <Filter>Common</Filter>
     </ClInclude>
