@@ -567,18 +567,24 @@ namespace FilesHashUwp
             }
 
             List<string> strDropFilePaths = new List<string>();
-            foreach (StorageFile storageFile in storageItems)
+            foreach (IStorageItem storageItem in storageItems)
             {
-                string path = storageFile.Path;
+                string path = storageItem.Path;
                 if (!string.IsNullOrEmpty(path))
                 {
                     strDropFilePaths.Add(path);
                 }
             }
 
-            HidePopupAbout();
-            List<Inline> inlines = GenInlinesFromPaths(strDropFilePaths);
-            ClearAndShowInlinesInTextMain(inlines);
+            if (strDropFilePaths.Count == 0)
+            {
+                return;
+            }
+
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                StartHashCalc(strDropFilePaths);
+            }));
         }
 
         private void UIBridgeDelegate_PreparingCalcHandler()
