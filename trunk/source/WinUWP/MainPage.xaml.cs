@@ -307,7 +307,9 @@ namespace FilesHashUwp
                     }
                     // Passthrough to MainPageControlStat.MainPageCalcFinish
                     m_calcEndTime = UwpHelper.GetCurrentMilliSec();
+
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
+                    ButtonClear.IsEnabled = true;
                     ButtonVerify.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
@@ -317,6 +319,7 @@ namespace FilesHashUwp
                     m_hashMgmt.SetStop(false);
 
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
+                    ButtonClear.IsEnabled = false;
                     ButtonVerify.IsEnabled = false;
                     break;
                 case MainPageControlStat.MainPageVerify:
