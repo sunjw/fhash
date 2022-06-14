@@ -34,13 +34,14 @@ namespace FilesHashUwp
 
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
+
         private ContentDialog m_dialogExitConfirm;
         private ContentDialog m_dialogFind;
+
         private TextBox m_textBoxFindHash;
         private MenuFlyout m_menuFlyoutTextMain;
 
         private UISettings m_uiSettings;
-
         private long m_tokenThemeChanged;
         private Thickness m_imageAppIconMargin;
         private Paragraph m_paragraphMain;
