@@ -19,9 +19,11 @@ namespace FilesHashUwp
 		void SetUppercase(Platform::Boolean val);
 
 		void AddFiles(const Platform::Array<Platform::String^>^ filePaths);
+		void StartHashThread();
 
 	private:
 		std::shared_ptr<UIBridgeUwp> m_spUiBridgeUwp;
 		ThreadData m_threadData;
+		HANDLE m_hWorkThread;
 	};
 }

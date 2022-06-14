@@ -3,6 +3,7 @@
 #include "HashMgmt.h"
 #include "CxHelper.h"
 #include "Common/strhelper.h"
+#include "Common/HashEngine.h"
 
 using namespace std;
 using namespace Platform;
@@ -10,6 +11,7 @@ using namespace FilesHashUwp;
 using namespace sunjwbase;
 
 HashMgmt::HashMgmt(UIBridgeDelegate^ uiBridgeDelegate)
+	:m_hWorkThread(NULL)
 {
 	m_spUiBridgeUwp = make_shared<UIBridgeUwp>(uiBridgeDelegate);
 }
@@ -52,4 +54,19 @@ void HashMgmt::AddFiles(const Array<String^>^ filePaths)
 		tstring tstrFile(pstrFile->Data());
 		m_threadData.fullPaths.push_back(tstrFile);
 	}
+}
+
+void HashMgmt::StartHashThread()
+{
+	if (m_hWorkThread)
+	{
+		CloseHandle(m_hWorkThread);
+	}
+	DWORD thredID;
+	m_hWorkThread = (HANDLE)_beginthreadex(NULL,
+										0,
+										(unsigned int (WINAPI*)(void*))HashThreadFunc,
+										&m_threadData,
+										0,
+										(unsigned int*)&thredID);
 }
