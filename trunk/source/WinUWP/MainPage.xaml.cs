@@ -409,22 +409,26 @@ namespace FilesHashUwp
 
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            m_uiSettings = new UISettings();
+            // Init UI
+            Frame rootFrame = (Frame)UwpHelper.GetRootFrame();
 
             // Theme changed callback
-            Frame rootFrame = (Frame)UwpHelper.GetRootFrame();
+            m_uiSettings = new UISettings();
             m_uiSettings.ColorValuesChanged += ColorValuesChanged;
             // RequestedThemeProperty seems not work at all...
-            m_tokenThemeChanged = rootFrame.RegisterPropertyChangedCallback(RequestedThemeProperty, RequestedThemeChanged);
+            m_tokenThemeChanged = rootFrame.RegisterPropertyChangedCallback(
+                RequestedThemeProperty, RequestedThemeChanged);
 
-            // Init UI
+            // Prepare RichTextMain
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
             m_paragraphMain = new Paragraph();
             m_paragraphMain.FontFamily = new FontFamily("Consolas");
             RichTextMain.Blocks.Add(m_paragraphMain);
 
-            // Begin
+            // Init stat
             m_hashMgmt.Clear();
+
+            // Begin
             InitContent();
         }
 
