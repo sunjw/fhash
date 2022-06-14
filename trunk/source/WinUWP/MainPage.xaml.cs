@@ -692,10 +692,18 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_CalcStopHandler()
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                CalculateStopped();
+            }));
         }
 
         private void UIBridgeDelegate_CalcFinishHandler()
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                CalculateFinished();
+            }));
         }
 
         private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
@@ -716,6 +724,16 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
         {
+            double newValue = value;
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                double oldValue = ProgressBarMain.Value;
+                if (oldValue == newValue)
+                {
+                    return;
+                }
+                ProgressBarMain.Value = newValue;
+            }));
         }
     }
 }
