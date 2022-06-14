@@ -751,6 +751,40 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
+
+                if (uppercase)
+                {
+                    strFileMD5 = resultData.MD5.ToUpper();
+                    strFileSHA1 = resultData.SHA1.ToUpper();
+                    strFileSHA256 = resultData.SHA256.ToUpper();
+                    strFileSHA512 = resultData.SHA512.ToUpper();
+                }
+                else
+                {
+                    strFileMD5 = resultData.MD5.ToLower();
+                    strFileSHA1 = resultData.SHA1.ToLower();
+                    strFileSHA256 = resultData.SHA256.ToLower();
+                    strFileSHA512 = resultData.SHA512.ToLower();
+                }
+
+                List<Inline> inlines = new List<Inline>();
+                inlines.Add(UwpHelper.GenRunFromString("MD5: "));
+                inlines.Add(GenHyperlinkFromStringForTextMain(strFileMD5));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
+                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA1));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
+                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA256));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
+                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA512));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                AppendInlinesToTextMain(inlines);
+            }));
         }
 
         private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
