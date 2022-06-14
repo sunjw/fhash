@@ -141,7 +141,16 @@
   <data name="MenuItemGoogle" xml:space="preserve">
     <value>Search Google</value>
   </data>
+  <data name="ResultByte" xml:space="preserve">
+    <value>Byte(s)</value>
+  </data>
   <data name="ResultFileName" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="ResultFileSize" xml:space="preserve">
+    <value>File Size:</value>
+  </data>
+  <data name="ResultModifiedTime" xml:space="preserve">
+    <value>Modified Date:</value>
   </data>
 </root>

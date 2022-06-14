@@ -723,6 +723,30 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                string strShortSize = UwpHelper.ConvertSizeToShortSizeStr(resultData.Size);
+                List<Inline> inlines = new List<Inline>();
+                string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
+                strSize += " ";
+                strSize += resultData.Size;
+                strSize += " ";
+                strSize += m_resourceLoaderMain.GetString("ResultByte");
+                if (!string.IsNullOrEmpty(strShortSize))
+                {
+                    strSize += " (";
+                    strSize += strShortSize;
+                    strSize += ")";
+                }
+                string strModifiedTime = m_resourceLoaderMain.GetString("ResultModifiedTime");
+                strModifiedTime += " ";
+                strModifiedTime += resultData.ModifiedDate;
+                inlines.Add(UwpHelper.GenRunFromString(strSize));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString(strModifiedTime));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                AppendInlinesToTextMain(inlines);
+            }));
         }
 
         private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
