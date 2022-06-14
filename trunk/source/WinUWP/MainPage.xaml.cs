@@ -378,6 +378,7 @@ namespace FilesHashUwp
             ProgressBarMain.Value = 0;
 
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
+            m_hashMgmt.StartHashThread();
         }
 
         private void CalculateFinished()
