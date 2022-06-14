@@ -66,6 +66,16 @@ namespace FilesHashUwp
 
             // Init native
             m_uiBridgeDelegate = new UIBridgeDelegate();
+            m_uiBridgeDelegate.PreparingCalcHandler += UIBridgeDelegate_PreparingCalcHandler;
+            m_uiBridgeDelegate.RemovePreparingCalcHandler += UIBridgeDelegate_RemovePreparingCalcHandler;
+            m_uiBridgeDelegate.CalcStopHandler += UIBridgeDelegate_CalcStopHandler;
+            m_uiBridgeDelegate.CalcFinishHandler += UIBridgeDelegate_CalcFinishHandler;
+            m_uiBridgeDelegate.ShowFileNameHandler += UIBridgeDelegate_ShowFileNameHandler;
+            m_uiBridgeDelegate.ShowFileMetaHandler += UIBridgeDelegate_ShowFileMetaHandler;
+            m_uiBridgeDelegate.ShowFileHashHandler += UIBridgeDelegate_ShowFileHashHandler;
+            m_uiBridgeDelegate.ShowFileErrHandler += UIBridgeDelegate_ShowFileErrHandler;
+            m_uiBridgeDelegate.UpdateProgWholeHandler += UIBridgeDelegate_UpdateProgWholeHandler;
+
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
             m_hashMgmt.Init();
 
@@ -660,5 +670,40 @@ namespace FilesHashUwp
             ClearAndShowInlinesInTextMain(inlines);
         }
 
+        private void UIBridgeDelegate_PreparingCalcHandler()
+        {
+        }
+
+        private void UIBridgeDelegate_RemovePreparingCalcHandler()
+        {
+        }
+
+        private void UIBridgeDelegate_CalcStopHandler()
+        {
+        }
+
+        private void UIBridgeDelegate_CalcFinishHandler()
+        {
+        }
+
+        private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
+        {
+        }
+
+        private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
+        {
+        }
+
+        private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
+        {
+        }
+
+        private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
+        {
+        }
+
+        private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
+        {
+        }
     }
 }
