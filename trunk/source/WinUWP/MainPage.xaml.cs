@@ -349,6 +349,24 @@ namespace FilesHashUwp
                 m_mainPageStat == MainPageControlStat.MainPageWaitingExit);
         }
 
+        private void StartHashCalc(List<string> filePaths)
+        {
+            if (!IsAbleToCalcFiles())
+            {
+                return;
+            }
+
+            if (m_mainPageStat == MainPageControlStat.MainPageNone)
+            {
+                ClearTextMain();
+            }
+
+            m_hashMgmt.AddFiles(filePaths.ToArray());
+            ProgressBarMain.Value = 0;
+
+            SetPageControlStat(MainPageControlStat.MainPageCalcIng);
+        }
+
         private void ShowCmdArgs(string strInit = "")
         {
             List<string> cmdArgFiles = new List<string>();
