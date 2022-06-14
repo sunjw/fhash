@@ -90,5 +90,39 @@ namespace FilesHashUwp
         {
             return DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
+
+        public static string ConvertSizeToShortSizeStr(ulong size, bool conv1KSmaller)
+        {
+            string strSize = "";
+            ulong sizek = 1024;
+
+            if (size > sizek)
+            {
+                double k_size = ((double)size) / sizek;
+                if (k_size > sizek)
+                {
+                    double m_size = k_size / sizek;
+                    if (m_size > sizek)
+                    {
+                        double g_size = m_size / sizek;
+                        strSize = string.Format("{0:0.00} GB", g_size);
+                    }
+                    else
+                    {
+                        strSize = string.Format("{0:0.00} MB", m_size);
+                    }
+                }
+                else
+                {
+                    strSize = string.Format("{0:0.00} KB", k_size);
+                }
+            }
+            else if (conv1KSmaller)
+            {
+                strSize = string.Format("{0:0.00} B", (double)size);
+            }
+
+            return strSize;
+        }
     }
 }
