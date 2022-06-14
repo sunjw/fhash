@@ -104,14 +104,14 @@
                         TabIndex="2" />
 
                     <Button
-                        x:Name="ButtonFind"
-                        x:Uid="ButtonFind"
+                        x:Name="ButtonVerify"
+                        x:Uid="ButtonVerify"
                         Grid.Column="2"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Click="ButtonFind_Click"
-                        Content="[Find]"
+                        Content="[Verify]"
                         TabIndex="3" />
                     <Button
                         x:Name="ButtonOpen"

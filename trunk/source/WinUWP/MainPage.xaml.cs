@@ -65,6 +65,7 @@ namespace FilesHashUwp
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
             m_hashMgmt.Init();
 
+            m_resourceLoaderMain = ResourceLoader.GetForCurrentView();
             m_coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
             m_appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
 
@@ -214,10 +215,10 @@ namespace FilesHashUwp
         {
             m_menuFlyoutTextMain = new MenuFlyout();
             MenuFlyoutItem menuItemCopy = new MenuFlyoutItem();
-            menuItemCopy.Text = "Copy";
+            menuItemCopy.Text = m_resourceLoaderMain.GetString("MenuItemCopy");
             menuItemCopy.Click += MenuItemCopy_Click;
             MenuFlyoutItem menuItemGoogle = new MenuFlyoutItem();
-            menuItemGoogle.Text = "Google";
+            menuItemGoogle.Text = m_resourceLoaderMain.GetString("MenuItemGoogle");
             menuItemGoogle.Click += MenuItemGoogle_Click;
             m_menuFlyoutTextMain.Items.Add(menuItemCopy);
             m_menuFlyoutTextMain.Items.Add(menuItemGoogle);
@@ -303,6 +304,7 @@ namespace FilesHashUwp
                         AppendInlineToTextMain(spanInit);
                     }
                     // MainPageControlStat.MainPageCalcFinish
+                    ButtonVerify.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
                     break;
@@ -484,7 +486,6 @@ namespace FilesHashUwp
         {
             // Init UI
             Frame rootFrame = (Frame)UwpHelper.GetRootFrame();
-            m_resourceLoaderMain = ResourceLoader.GetForCurrentView();
 
             // Theme changed callback
             m_uiSettings = new UISettings();
@@ -548,6 +549,10 @@ namespace FilesHashUwp
 
         private void TextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
         {
+            if (sender == null)
+            {
+                return;
+            }
             m_hyperlinkClicked = sender;
             m_menuFlyoutTextMain.ShowAt(UwpHelper.GetRootFrame(), UwpHelper.GetCursorPointRelatedToRootFrame());
         }

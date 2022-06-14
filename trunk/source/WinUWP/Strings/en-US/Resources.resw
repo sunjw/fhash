@@ -120,8 +120,8 @@
   <data name="ButtonAbout.Content" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="ButtonFind.Content" xml:space="preserve">
-    <value>Find</value>
+  <data name="ButtonVerify.Content" xml:space="preserve">
+    <value>Verify</value>
   </data>
   <data name="ButtonOpen.Content" xml:space="preserve">
     <value>Open</value>
@@ -131,5 +131,11 @@
   </data>
   <data name="TextBlockAppName.Text" xml:space="preserve">
     <value>fHash</value>
+  </data>
+  <data name="MenuItemCopy" xml:space="preserve">
+    <value>Copy hash value</value>
+  </data>
+  <data name="MenuItemGoogle" xml:space="preserve">
+    <value>Search Google</value>
   </data>
 </root>
