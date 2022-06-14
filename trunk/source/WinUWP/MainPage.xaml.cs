@@ -64,14 +64,17 @@ namespace FilesHashUwp
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += MainPage_CloseRequested;
             Window.Current.SizeChanged += WindowSizeChanged;
 
+            // Init native
             m_uiBridgeDelegate = new UIBridgeDelegate();
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
             m_hashMgmt.Init();
 
+            // Init resource and titlebar
             m_resourceLoaderMain = ResourceLoader.GetForCurrentView();
             m_coreAppViewTitleBar = CoreApplication.GetCurrentView().TitleBar;
             m_appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
 
+            // Init size
             ApplicationView.PreferredLaunchViewSize = new Size(640, 400);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
