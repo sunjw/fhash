@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI;
@@ -41,6 +42,7 @@ namespace FilesHashUwp
         private TextBox m_textBoxFindHash;
         private MenuFlyout m_menuFlyoutTextMain;
 
+        private ResourceLoader m_resourceLoaderMain;
         private UISettings m_uiSettings;
         private long m_tokenThemeChanged;
         private Thickness m_imageAppIconMargin;
@@ -242,6 +244,34 @@ namespace FilesHashUwp
             return inlines;
         }
 
+        private void ClearTextMain()
+        {
+            m_paragraphMain.Inlines.Clear();
+        }
+
+        private void AppendInlinesToTextMain(List<Inline> inlines, bool scrollBottom = true)
+        {
+            if (inlines != null)
+            {
+                foreach (Inline inline in inlines)
+                {
+                    m_paragraphMain.Inlines.Add(inline);
+                }
+            }
+            if (scrollBottom)
+            {
+                ScrollTextMainToBottom();
+            }
+        }
+
+
+        private void AppendInlineToTextMain(Inline inline)
+        {
+            List<Inline> inlines = new List<Inline>();
+            inlines.Add(inline);
+            AppendInlinesToTextMain(inlines);
+        }
+
         private void ClearAndShowInlinesInTextMain(List<Inline> inlines)
         {
             m_paragraphMain.Inlines.Clear();
@@ -255,12 +285,24 @@ namespace FilesHashUwp
             ScrollTextMainToBottom();
         }
 
-        private void setPageControlStat(MainPageControlStat newStat)
+        private void SetPageControlStat(MainPageControlStat newStat)
         {
             switch (newStat)
             {
                 case MainPageControlStat.MainPageNone:
                 case MainPageControlStat.MainPageCalcFinish:
+                    if (newStat == MainPageControlStat.MainPageNone)
+                    {
+                        m_hashMgmt.Clear();
+
+                        ProgressBarMain.Value = 0;
+
+                        String strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
+                        Span spanInit = UwpHelper.GenSpanFromString(strPageInit);
+                        ClearTextMain();
+                        AppendInlineToTextMain(spanInit);
+                    }
+                    // MainPageControlStat.MainPageCalcFinish
                     break;
                 case MainPageControlStat.MainPageCalcIng:
                     break;
@@ -442,6 +484,7 @@ namespace FilesHashUwp
         {
             // Init UI
             Frame rootFrame = (Frame)UwpHelper.GetRootFrame();
+            m_resourceLoaderMain = ResourceLoader.GetForCurrentView();
 
             // Theme changed callback
             m_uiSettings = new UISettings();
@@ -459,8 +502,7 @@ namespace FilesHashUwp
             RichTextMain.Blocks.Add(m_paragraphMain);
 
             // Init stat
-            m_hashMgmt.Clear();
-            setPageControlStat(MainPageControlStat.MainPageNone);
+            SetPageControlStat(MainPageControlStat.MainPageNone);
         }
 
         private void ButtonOpen_Click(object sender, RoutedEventArgs e)

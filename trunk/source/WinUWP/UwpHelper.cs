@@ -43,6 +43,13 @@ namespace FilesHashUwp
             return run;
         }
 
+        public static Span GenSpanFromString(string strContent)
+        {
+            Span span = new Span();
+            span.Inlines.Add(GenRunFromString(strContent));
+            return span;
+        }
+
         public static Underline GenUnderlineFromString(string strContent)
         {
             Underline underline = new Underline();
