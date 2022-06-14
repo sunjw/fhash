@@ -4,7 +4,7 @@
 using namespace Platform;
 using namespace sunjwbase;
 
-String^ sunjwbase::ConvertTstrToPlatStr(const tstring& tstrSource)
+String^ sunjwbase::ConvertToPlatStr(LPCWSTR lpStrSource)
 {
-	return (ref new String(tstrSource.c_str()));
+	return (ref new String(lpStrSource));
 }
