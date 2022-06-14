@@ -53,7 +53,7 @@ namespace FilesHashUwp
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
 
-        private MainPageControlStat m_pageStat;
+        private MainPageControlStat m_mainPageStat;
         private long m_calcStartTime = 0;
         private long m_calcEndTime = 0;
 
@@ -327,15 +327,26 @@ namespace FilesHashUwp
                     break;
             }
 
-            MainPageControlStat oldStat = m_pageStat;
-            m_pageStat = newStat;
+            MainPageControlStat oldStat = m_mainPageStat;
+            m_mainPageStat = newStat;
 
             if (oldStat == MainPageControlStat.MainPageWaitingExit &&
-                m_pageStat == MainPageControlStat.MainPageCalcFinish)
+                m_mainPageStat == MainPageControlStat.MainPageCalcFinish)
             {
                 // Wait to close
                 Application.Current.Exit();
             }
+        }
+
+        private bool IsAbleToCalcFiles()
+        {
+            return !IsCalculating();
+        }
+
+        private bool IsCalculating()
+        {
+            return (m_mainPageStat == MainPageControlStat.MainPageCalcIng ||
+                m_mainPageStat == MainPageControlStat.MainPageWaitingExit);
         }
 
         private void ShowCmdArgs(string strInit = "")
