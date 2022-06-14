@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
@@ -14,8 +13,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
-
-// https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
 namespace FilesHashUwp
 {
@@ -437,13 +434,12 @@ namespace FilesHashUwp
             }));
         }
 
-        private async void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
+        private void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
         {
-            e.Handled = true;
-            ContentDialogResult result = await m_dialogExitConfirm.ShowAsync();
-            if (result == ContentDialogResult.Primary)
+            if (IsCalculating())
             {
-                Application.Current.Exit();
+                e.Handled = true;
+                StopHashCalc(true);
             }
         }
 
