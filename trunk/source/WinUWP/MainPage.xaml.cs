@@ -564,7 +564,6 @@ namespace FilesHashUwp
             {
                 return;
             }
-
             string strHash = UwpHelper.GetTextFromHyperlink(m_hyperlinkClicked);
             UwpHelper.CopyStringToClipboard(strHash);
         }
