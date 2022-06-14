@@ -315,6 +315,8 @@ namespace FilesHashUwp
                     ButtonVerify.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
+                    HidePopupAbout();
+
                     m_calcStartTime = UwpHelper.GetCurrentMilliSec();
                     m_hashMgmt.SetStop(false);
 
@@ -365,7 +367,7 @@ namespace FilesHashUwp
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
         }
 
-        private void ShowCmdArgs(string strInit = "")
+        private void HandleCommandLineArgs()
         {
             List<string> cmdArgFiles = new List<string>();
             App curApp = (App)Application.Current;
@@ -384,16 +386,15 @@ namespace FilesHashUwp
                 }
             }
 
-            List<Inline> inlines = new List<Inline>();
-            if (cmdArgFiles.Count > 0)
+            if (cmdArgFiles.Count == 0)
             {
-                inlines = GenInlinesFromPaths(cmdArgFiles);
+                return;
             }
-            else
+
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                inlines.Add(UwpHelper.GenRunFromString(strInit));
-            }
-            ClearAndShowInlinesInTextMain(inlines);
+                StartHashCalc(cmdArgFiles);
+            }));
         }
 
         private void DoTest1()
@@ -483,8 +484,7 @@ namespace FilesHashUwp
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                HidePopupAbout();
-                ShowCmdArgs();
+                HandleCommandLineArgs();
             }));
         }
 
@@ -547,6 +547,8 @@ namespace FilesHashUwp
 
             // Init stat
             SetPageControlStat(MainPageControlStat.MainPageNone);
+
+            HandleCommandLineArgs();
         }
 
         private void ButtonOpen_Click(object sender, RoutedEventArgs e)
