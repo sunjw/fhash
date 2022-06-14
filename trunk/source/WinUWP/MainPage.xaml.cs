@@ -789,6 +789,14 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                List<Inline> inlines = new List<Inline>();
+                string strAppend = resultData.Error;
+                inlines.Add(UwpHelper.GenRunFromString(strAppend));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                AppendInlinesToTextMain(inlines);
+            }));
         }
 
         private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
