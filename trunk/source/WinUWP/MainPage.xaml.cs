@@ -78,15 +78,6 @@ namespace FilesHashUwp
             return null;
         }
 
-        public void CommandLineActivated()
-        {
-            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
-            {
-                HidePopupAbout();
-                ShowCmdArgs();
-            }));
-        }
-
         private void ChangeThemeLight()
         {
             ChangeTheme(ElementTheme.Light);
@@ -99,17 +90,17 @@ namespace FilesHashUwp
             UpdateControlColor();
         }
 
-        private void UpdateControlColor()
-        {
-            UpdateTitleBarColor();
-        }
-
         private void InitCustomTitleBar()
         {
             m_coreAppViewTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(GridTitleBarCustom);
             m_imageAppIconMargin = ImageAppIcon.Margin;
 
+            UpdateTitleBarColor();
+        }
+
+        private void UpdateControlColor()
+        {
             UpdateTitleBarColor();
         }
 
@@ -366,6 +357,15 @@ namespace FilesHashUwp
         {
             ClearAndShowInlinesInTextMain(null);
             ProgressBarMain.Value = 0;
+        }
+
+        public void CommandLineActivated()
+        {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                HidePopupAbout();
+                ShowCmdArgs();
+            }));
         }
 
         private async void MainPage_CloseRequested(object sender, SystemNavigationCloseRequestedPreviewEventArgs e)
