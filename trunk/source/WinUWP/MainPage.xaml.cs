@@ -23,6 +23,15 @@ namespace FilesHashUwp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private enum MainPageControllerStat
+        {
+            MainPageNone = 0, // clear stat
+            MainPageCalcIng,  // calculating
+            MainPageCalcFinish, // calculating finished/stopped
+            MainPageVerify, // verfing
+            MainPageWaitingExit, // waiting thread stop and exit
+        };
+
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
         private ContentDialog m_dialogExitConfirm;
@@ -46,6 +55,7 @@ namespace FilesHashUwp
             InitializeComponent();
 
             SystemNavigationManagerPreview.GetForCurrentView().CloseRequested += MainPage_CloseRequested;
+            Window.Current.SizeChanged += WindowSizeChanged;
 
             m_uiBridgeDelegate = new UIBridgeDelegate();
             m_hashMgmt = new HashMgmt(m_uiBridgeDelegate);
@@ -56,8 +66,6 @@ namespace FilesHashUwp
 
             ApplicationView.PreferredLaunchViewSize = new Size(640, 400);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-            Window.Current.SizeChanged += WindowSizeChanged;
 
             InitLayout();
         }
