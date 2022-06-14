@@ -1,9 +1,13 @@
 #include "stdafx.h"
+
 #include "HashMgmt.h"
+#include "CxHelper.h"
+#include "Common/strhelper.h"
 
 using namespace std;
 using namespace Platform;
 using namespace FilesHashUwp;
+using namespace sunjwbase;
 
 HashMgmt::HashMgmt(UIBridgeDelegate^ uiBridgeDelegate)
 {
@@ -29,7 +33,23 @@ void HashMgmt::Clear()
 	m_threadData.resultList.clear();
 }
 
-void HashMgmt::SetStop(Platform::Boolean val)
+void HashMgmt::SetStop(Boolean val)
 {
 	m_threadData.stop = val;
+}
+
+void HashMgmt::SetUppercase(Boolean val)
+{
+	m_threadData.uppercase = val;
+}
+
+void HashMgmt::AddFiles(const Array<String^>^ filePaths)
+{
+	m_threadData.fullPaths.clear();
+	m_threadData.nFiles = filePaths->Length;
+	for (String^ pstrFile : filePaths)
+	{
+		tstring tstrFile(pstrFile->Data());
+		m_threadData.fullPaths.push_back(tstrFile);
+	}
 }
