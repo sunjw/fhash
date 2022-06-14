@@ -409,6 +409,11 @@ namespace FilesHashUwp
 
         private void HandleCommandLineArgs()
         {
+            if (!IsAbleToCalcFiles())
+            {
+                return;
+            }
+
             List<string> cmdArgFiles = new List<string>();
             App curApp = (App)Application.Current;
             if (!string.IsNullOrEmpty(curApp.CmdArgs))
@@ -572,11 +577,23 @@ namespace FilesHashUwp
 
         private void GridRoot_DragOver(object sender, DragEventArgs e)
         {
-            e.AcceptedOperation = DataPackageOperation.Copy;
+            if (IsAbleToCalcFiles())
+            {
+                e.AcceptedOperation = DataPackageOperation.Copy;
+            }
+            else
+            {
+                e.AcceptedOperation = DataPackageOperation.None;
+            }
         }
 
         private async void GridRoot_Drop(object sender, DragEventArgs e)
         {
+            if (!IsAbleToCalcFiles())
+            {
+                return;
+            }
+
             if (!e.DataView.Contains(StandardDataFormats.StorageItems))
             {
                 return;
