@@ -141,6 +141,9 @@
   <data name="MenuItemGoogle" xml:space="preserve">
     <value>Search Google</value>
   </data>
+  <data name="ButtonClear.Content" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="ResultByte" xml:space="preserve">
     <value>Byte(s)</value>
   </data>

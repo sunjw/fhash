@@ -91,6 +91,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -114,9 +115,18 @@
                         Content="[Verify]"
                         TabIndex="3" />
                     <Button
+                        x:Name="ButtonClear"
+                        x:Uid="ButtonClear"
+                        Grid.Column="3"
+                        Margin="0,0,10,10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Content="[Clear]"
+                        TabIndex="4" />
+                    <Button
                         x:Name="ButtonOpen"
                         x:Uid="ButtonOpen"
-                        Grid.Column="3"
+                        Grid.Column="4"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
