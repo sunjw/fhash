@@ -380,6 +380,19 @@ namespace FilesHashUwp
             m_hashMgmt.StartHashThread();
         }
 
+        private void StopHashCalc(bool needExit)
+        {
+            if (m_mainPageStat == MainPageControlStat.MainPageCalcIng)
+            {
+                m_hashMgmt.SetStop(true);
+
+                if (needExit)
+                {
+                    SetPageControlStat(MainPageControlStat.MainPageWaitingExit);
+                }
+            }
+        }
+
         private void CalculateFinished()
         {
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
@@ -388,6 +401,8 @@ namespace FilesHashUwp
 
         private void CalculateStopped()
         {
+            AppendInlineToTextMain(UwpHelper.GenRunFromString("\r\n"));
+
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
             ProgressBarMain.Value = 0;
         }
@@ -495,6 +510,13 @@ namespace FilesHashUwp
 
         private void ButtonOpen_Click(object sender, RoutedEventArgs e)
         {
+            if (m_mainPageStat == MainPageControlStat.MainPageCalcIng)
+            {
+                StopHashCalc(false);
+            }
+            else
+            {
+            }
         }
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
