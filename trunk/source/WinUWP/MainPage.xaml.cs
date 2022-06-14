@@ -288,19 +288,6 @@ namespace FilesHashUwp
             AppendInlinesToTextMain(inlines);
         }
 
-        private void ClearAndShowInlinesInTextMain(List<Inline> inlines)
-        {
-            m_paragraphMain.Inlines.Clear();
-            if (inlines != null)
-            {
-                foreach (Inline inline in inlines)
-                {
-                    m_paragraphMain.Inlines.Add(inline);
-                }
-            }
-            ScrollTextMainToBottom();
-        }
-
         private void SetPageControlStat(MainPageControlStat newStat)
         {
             switch (newStat)
@@ -536,10 +523,6 @@ namespace FilesHashUwp
             if (result == ContentDialogResult.Primary)
             {
                 string strHash = m_textBoxFindHash.Text;
-                List<Inline> inlines = new List<Inline>();
-                inlines.Add(UwpHelper.GenRunFromString(strHash));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
-                ClearAndShowInlinesInTextMain(inlines);
             }
         }
 
