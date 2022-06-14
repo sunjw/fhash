@@ -28,6 +28,7 @@ namespace FilesHashUwp
             DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
+            Clipboard.Flush();
         }
 
         public static void OpenUrl(string url)
