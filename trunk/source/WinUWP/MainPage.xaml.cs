@@ -512,7 +512,7 @@ namespace FilesHashUwp
             ShowPopupAbout();
         }
 
-        private async void ButtonFind_Click(object sender, RoutedEventArgs e)
+        private async void ButtonVerify_Click(object sender, RoutedEventArgs e)
         {
             m_textBoxFindHash.Text = "";
             ContentDialogResult result = await m_dialogFind.ShowAsync();
@@ -520,6 +520,11 @@ namespace FilesHashUwp
             {
                 string strHash = m_textBoxFindHash.Text;
             }
+        }
+
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        {
+            SetPageControlStat(MainPageControlStat.MainPageNone);
         }
 
         private void TextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)

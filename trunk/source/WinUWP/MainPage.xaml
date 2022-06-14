@@ -111,7 +111,7 @@
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Click="ButtonFind_Click"
+                        Click="ButtonVerify_Click"
                         Content="[Verify]"
                         TabIndex="3" />
                     <Button
@@ -121,6 +121,7 @@
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
+                        Click="ButtonClear_Click"
                         Content="[Clear]"
                         TabIndex="4" />
                     <Button
