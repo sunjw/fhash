@@ -380,6 +380,18 @@ namespace FilesHashUwp
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
         }
 
+        private void CalculateFinished()
+        {
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            ProgressBarMain.Value = m_uiBridgeDelegate.GetProgMax();
+        }
+
+        private void CalculateStopped()
+        {
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            ProgressBarMain.Value = 0;
+        }
+
         private void HandleCommandLineArgs()
         {
             List<string> cmdArgFiles = new List<string>();
