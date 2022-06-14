@@ -23,7 +23,7 @@ namespace FilesHashUwp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private enum MainPageControllerStat
+        private enum MainPageControlStat
         {
             MainPageNone = 0, // clear stat
             MainPageCalcIng,  // calculating
@@ -50,6 +50,7 @@ namespace FilesHashUwp
 
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
+        private MainPageControlStat m_pageStat;
 
         public MainPage()
         {
@@ -254,9 +255,30 @@ namespace FilesHashUwp
             ScrollTextMainToBottom();
         }
 
-        private void InitContent()
+        private void setPageControlStat(MainPageControlStat newStat)
         {
-            // ShowCmdArgs(m_testNativeWrapper.GetHello() + "\r\n");
+            switch (newStat)
+            {
+                case MainPageControlStat.MainPageNone:
+                case MainPageControlStat.MainPageCalcFinish:
+                    break;
+                case MainPageControlStat.MainPageCalcIng:
+                    break;
+                case MainPageControlStat.MainPageVerify:
+                    break;
+                case MainPageControlStat.MainPageWaitingExit:
+                    break;
+            }
+
+            MainPageControlStat oldStat = m_pageStat;
+            m_pageStat = newStat;
+
+            if (oldStat == MainPageControlStat.MainPageWaitingExit &&
+                m_pageStat == MainPageControlStat.MainPageCalcFinish)
+            {
+                // Wait to close
+                Application.Current.Exit();
+            }
         }
 
         private void ShowCmdArgs(string strInit = "")
@@ -438,9 +460,7 @@ namespace FilesHashUwp
 
             // Init stat
             m_hashMgmt.Clear();
-
-            // Begin
-            InitContent();
+            setPageControlStat(MainPageControlStat.MainPageNone);
         }
 
         private void ButtonOpen_Click(object sender, RoutedEventArgs e)
