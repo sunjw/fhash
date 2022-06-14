@@ -196,9 +196,11 @@ int WINAPI HashThreadFunc(void *param)
 			}
 
 #if defined (WIN32)
+#if !defined (FHASH_UWP_LIB)
 			// get file version //
 			tstrFileVersion = WindowsComm::GetExeFileVersion((TCHAR *)path);
 			result.tstrVersion = tstrFileVersion;
+#endif
 #endif
 
 			result.enumState = RESULT_META;
