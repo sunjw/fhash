@@ -782,7 +782,7 @@ namespace FilesHashUwp
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                 inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
                 inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA512));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
                 AppendInlinesToTextMain(inlines);
             }));
         }
@@ -794,7 +794,7 @@ namespace FilesHashUwp
                 List<Inline> inlines = new List<Inline>();
                 string strAppend = resultData.Error;
                 inlines.Add(UwpHelper.GenRunFromString(strAppend));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
                 AppendInlinesToTextMain(inlines);
             }));
         }
