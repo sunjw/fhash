@@ -14,6 +14,7 @@ namespace FilesHashUwp
 
 		void Init();
 		void Clear();
+		void SetStop(Platform::Boolean val);
 
 	private:
 		std::shared_ptr<UIBridgeUwp> m_spUiBridgeUwp;

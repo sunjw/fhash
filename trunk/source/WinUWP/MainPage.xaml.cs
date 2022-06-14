@@ -316,6 +316,8 @@ namespace FilesHashUwp
                     break;
                 case MainPageControlStat.MainPageCalcIng:
                     m_calcStartTime = UwpHelper.GetCurrentMilliSec();
+                    m_hashMgmt.SetStop(false);
+
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
                     ButtonVerify.IsEnabled = false;
                     break;

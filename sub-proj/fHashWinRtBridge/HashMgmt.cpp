@@ -28,3 +28,8 @@ void HashMgmt::Clear()
 
 	m_threadData.resultList.clear();
 }
+
+void HashMgmt::SetStop(Platform::Boolean val)
+{
+	m_threadData.stop = val;
+}
