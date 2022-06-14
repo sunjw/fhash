@@ -292,6 +292,7 @@ namespace FilesHashUwp
             {
                 case MainPageControlStat.MainPageNone:
                 case MainPageControlStat.MainPageCalcFinish:
+                    // MainPageControlStat.MainPageNone
                     if (newStat == MainPageControlStat.MainPageNone)
                     {
                         m_hashMgmt.Clear();
@@ -303,7 +304,7 @@ namespace FilesHashUwp
                         ClearTextMain();
                         AppendInlineToTextMain(spanInit);
                     }
-                    // MainPageControlStat.MainPageCalcFinish
+                    // Passthrough to MainPageControlStat.MainPageCalcFinish
                     ButtonVerify.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
