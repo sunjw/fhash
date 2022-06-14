@@ -141,4 +141,7 @@
   <data name="MenuItemGoogle" xml:space="preserve">
     <value>Search Google</value>
   </data>
+  <data name="ResultFileName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
 </root>

@@ -709,6 +709,16 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                List<Inline> inlines = new List<Inline>();
+                string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
+                strAppend += " ";
+                strAppend += resultData.Path;
+                inlines.Add(UwpHelper.GenRunFromString(strAppend));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                AppendInlinesToTextMain(inlines);
+            }));
         }
 
         private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
@@ -725,9 +735,9 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
         {
-            double newValue = value;
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
+                double newValue = value;
                 double oldValue = ProgressBarMain.Value;
                 if (oldValue == newValue)
                 {
