@@ -423,6 +423,8 @@ namespace FilesHashUwp
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
             m_paragraphMain = new Paragraph();
             m_paragraphMain.FontFamily = new FontFamily("Consolas");
+            m_paragraphMain.LineHeight = 18;
+            m_paragraphMain.LineStackingStrategy = LineStackingStrategy.BlockLineHeight;
             RichTextMain.Blocks.Add(m_paragraphMain);
 
             // Init stat
