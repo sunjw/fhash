@@ -59,10 +59,7 @@ namespace FilesHashUwp
 
             Window.Current.SizeChanged += WindowSizeChanged;
 
-            InitCustomTitleBar();
-            InitDialogExitConfirm();
-            InitDialogFind();
-            InitMenuFlyoutTextMain();
+            InitLayout();
         }
 
         public static MainPage GetCurrentMainPage()
@@ -88,15 +85,6 @@ namespace FilesHashUwp
             FrameworkElement root = (FrameworkElement)UwpHelper.GetRootFrame();
             root.RequestedTheme = theme;
             UpdateControlColor();
-        }
-
-        private void InitCustomTitleBar()
-        {
-            m_coreAppViewTitleBar.ExtendViewIntoTitleBar = true;
-            Window.Current.SetTitleBar(GridTitleBarCustom);
-            m_imageAppIconMargin = ImageAppIcon.Margin;
-
-            UpdateTitleBarColor();
         }
 
         private void UpdateControlColor()
@@ -160,6 +148,23 @@ namespace FilesHashUwp
             Rect windowBounds = Window.Current.Bounds;
             PopupAboutContent.Width = windowBounds.Width;
             PopupAboutContent.Height = windowBounds.Height;
+        }
+
+        private void InitLayout()
+        {
+            InitCustomTitleBar();
+            InitDialogExitConfirm();
+            InitDialogFind();
+            InitMenuFlyoutTextMain();
+        }
+
+        private void InitCustomTitleBar()
+        {
+            m_coreAppViewTitleBar.ExtendViewIntoTitleBar = true;
+            Window.Current.SetTitleBar(GridTitleBarCustom);
+            m_imageAppIconMargin = ImageAppIcon.Margin;
+
+            UpdateTitleBarColor();
         }
 
         private void InitDialogExitConfirm()
