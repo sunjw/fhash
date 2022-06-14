@@ -52,7 +52,10 @@ namespace FilesHashUwp
 
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
+
         private MainPageControlStat m_pageStat;
+        private long m_calcStartTime = 0;
+        private long m_calcEndTime = 0;
 
         public MainPage()
         {
@@ -299,15 +302,22 @@ namespace FilesHashUwp
 
                         ProgressBarMain.Value = 0;
 
-                        String strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
-                        Span spanInit = UwpHelper.GenSpanFromString(strPageInit);
+                        Span spanInit = new Span();
+                        string strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
+                        spanInit.Inlines.Add(UwpHelper.GenRunFromString(strPageInit));
+                        spanInit.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                         ClearTextMain();
                         AppendInlineToTextMain(spanInit);
                     }
                     // Passthrough to MainPageControlStat.MainPageCalcFinish
+                    m_calcEndTime = UwpHelper.GetCurrentMilliSec();
+                    ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
                     ButtonVerify.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
+                    m_calcStartTime = UwpHelper.GetCurrentMilliSec();
+                    ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
+                    ButtonVerify.IsEnabled = false;
                     break;
                 case MainPageControlStat.MainPageVerify:
                     break;
@@ -502,6 +512,9 @@ namespace FilesHashUwp
             m_paragraphMain.LineHeight = 18;
             m_paragraphMain.LineStackingStrategy = LineStackingStrategy.BlockLineHeight;
             RichTextMain.Blocks.Add(m_paragraphMain);
+
+            // Prepare controls
+            ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
 
             // Init stat
             SetPageControlStat(MainPageControlStat.MainPageNone);

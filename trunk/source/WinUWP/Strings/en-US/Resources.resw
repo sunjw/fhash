@@ -123,7 +123,7 @@
   <data name="ButtonVerify.Content" xml:space="preserve">
     <value>Verify</value>
   </data>
-  <data name="ButtonOpen.Content" xml:space="preserve">
+  <data name="ButtonOpenOpen" xml:space="preserve">
     <value>Open</value>
   </data>
   <data name="MainPageInitInfo" xml:space="preserve">
@@ -131,6 +131,9 @@
   </data>
   <data name="TextBlockAppName.Text" xml:space="preserve">
     <value>fHash</value>
+  </data>
+  <data name="ButtonOpenStop" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="MenuItemCopy" xml:space="preserve">
     <value>Copy hash value</value>

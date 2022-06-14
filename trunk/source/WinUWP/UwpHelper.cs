@@ -85,5 +85,10 @@ namespace FilesHashUwp
             scrollViewer.Measure(scrollViewer.RenderSize);
             scrollViewer.ChangeView(null, scrollViewer.ScrollableHeight, null);
         }
+
+        public static long GetCurrentMilliSec()
+        {
+            return DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        }
     }
 }
