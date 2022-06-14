@@ -8,6 +8,11 @@ UIBridgeDelegate::UIBridgeDelegate()
 {
 }
 
+int32 UIBridgeDelegate::GetProgMax()
+{
+	return 100;
+}
+
 void UIBridgeDelegate::PreparingCalc()
 {
 	PreparingCalcHandler();

@@ -14,6 +14,8 @@ namespace FilesHashUwp
 	public:
 		UIBridgeDelegate();
 
+		int32 GetProgMax();
+
 		void PreparingCalc();
 		void RemovePreparingCalc();
 		void CalcStop();

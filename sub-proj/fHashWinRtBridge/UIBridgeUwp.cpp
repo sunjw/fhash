@@ -73,7 +73,7 @@ void UIBridgeUwp::showFileErr(const ResultData& result)
 
 int UIBridgeUwp::getProgMax()
 {
-	return 100;
+	return m_uiBridgeDelegate->GetProgMax();
 }
 
 void UIBridgeUwp::updateProg(int value)
