@@ -246,17 +246,6 @@ namespace FilesHashUwp
             return UwpHelper.GenHyperlinkFromString(strContent, TextMainHyperlink_Click);
         }
 
-        private List<Inline> GenInlinesFromPaths(List<string> strPaths)
-        {
-            List<Inline> inlines = new List<Inline>();
-            foreach (string path in strPaths)
-            {
-                inlines.Add(UwpHelper.GenRunFromString(path));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
-            }
-            return inlines;
-        }
-
         private void ClearTextMain()
         {
             m_paragraphMain.Inlines.Clear();
@@ -276,7 +265,6 @@ namespace FilesHashUwp
                 ScrollTextMainToBottom();
             }
         }
-
 
         private void AppendInlineToTextMain(Inline inline)
         {
