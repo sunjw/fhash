@@ -50,6 +50,15 @@ bool OsFile::open(void *flag, void *exception)
 	CreateFileFlag* fileFlag = (CreateFileFlag*)flag;
 	TCHAR *pFileExc = (TCHAR *)exception;
 
+#if defined (FHASH_UWP_LIB)
+	_osfileData = CreateFileFromAppW(_filePath.c_str(), // file to open
+		fileFlag->dwDesiredAccess, // open for reading
+		fileFlag->dwShareMode, // share for reading
+		NULL, // default security
+		fileFlag->dwCreationDisposition, // existing file only
+		fileFlag->dwFlagsAndAttributes, // normal file
+		NULL); // no attr. template
+#else
 	_osfileData = CreateFile(_filePath.c_str(), // file to open
 		fileFlag->dwDesiredAccess, // open for reading
 		fileFlag->dwShareMode, // share for reading
@@ -57,6 +66,8 @@ bool OsFile::open(void *flag, void *exception)
 		fileFlag->dwCreationDisposition, // existing file only
 		fileFlag->dwFlagsAndAttributes, // normal file
 		NULL); // no attr. template
+#endif
+
 
 	if (_osfileData == INVALID_HANDLE_VALUE)
 	{
