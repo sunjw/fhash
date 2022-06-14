@@ -323,8 +323,6 @@ namespace FilesHashUwp
                     break;
                 case MainPageControlStat.MainPageVerify:
                     break;
-                case MainPageControlStat.MainPageWaitingExit:
-                    break;
             }
 
             MainPageControlStat oldStat = m_mainPageStat;
