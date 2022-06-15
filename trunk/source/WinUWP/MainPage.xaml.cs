@@ -356,7 +356,7 @@ namespace FilesHashUwp
             }
         }
 
-        private void UpdateUppercaseStat()
+        private void UpdateUppercaseStat(bool saveLocalSetting = true)
         {
             bool? uppercaseIsChecked = CheckBoxUppercase.IsChecked;
             if (uppercaseIsChecked.HasValue && uppercaseIsChecked.Value)
@@ -366,6 +366,10 @@ namespace FilesHashUwp
             else
             {
                 m_uppercaseChecked = false;
+            }
+            if (saveLocalSetting)
+            {
+                UwpHelper.SaveLocalSettings(KeyUppercase, m_uppercaseChecked);
             }
         }
 
@@ -582,7 +586,7 @@ namespace FilesHashUwp
                 uppercaseSetting = (bool)objUppercase;
             }
             CheckBoxUppercase.IsChecked = uppercaseSetting;
-            UpdateUppercaseStat();
+            UpdateUppercaseStat(false);
 
             // Init stat
             SetPageControlStat(MainPageControlStat.MainPageNone);
