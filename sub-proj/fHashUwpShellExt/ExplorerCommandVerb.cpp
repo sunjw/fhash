@@ -25,7 +25,11 @@
 static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash";
 static WCHAR const c_szProgID[] = L"*";
 static WCHAR const c_szVerbName[] = L"fHashUwpShellExt";
+#if defined (_DEBUG)
+static WCHAR const c_szExecPath[] = L"fHashUwpDev.exe";
+#else
 static WCHAR const c_szExecPath[] = L"fHashUwp.exe";
+#endif
 
 class CExplorerCommandVerb : public IExplorerCommand,
                              public IInitializeCommand,

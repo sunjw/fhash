@@ -48,7 +48,7 @@
 
         <uap5:Extension Category="windows.appExecutionAlias">
           <uap5:AppExecutionAlias>
-            <uap5:ExecutionAlias Alias="fHashUwp.exe"/>
+            <uap5:ExecutionAlias Alias="fHashUwpDev.exe"/>
           </uap5:AppExecutionAlias>
         </uap5:Extension>
 
