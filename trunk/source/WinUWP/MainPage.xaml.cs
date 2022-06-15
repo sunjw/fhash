@@ -5,6 +5,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Core.Preview;
@@ -487,7 +488,7 @@ namespace FilesHashUwp
             HandleCommandLineArgs();
         }
 
-        private void ButtonOpen_Click(object sender, RoutedEventArgs e)
+        private async void ButtonOpen_Click(object sender, RoutedEventArgs e)
         {
             if (m_mainPageStat == MainPageControlStat.MainPageCalcIng)
             {
@@ -495,6 +496,33 @@ namespace FilesHashUwp
             }
             else
             {
+                FileOpenPicker picker = new FileOpenPicker();
+                picker.FileTypeFilter.Add("*");
+
+                IReadOnlyList<StorageFile> pickFiles = await picker.PickMultipleFilesAsync();
+                if (pickFiles != null)
+                {
+                    // Application now has read/write access to the picked file
+                    List<string> strPickFilePaths = new List<string>();
+                    foreach (IStorageItem storageItem in pickFiles)
+                    {
+                        string path = storageItem.Path;
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            strPickFilePaths.Add(path);
+                        }
+                    }
+
+                    if (strPickFilePaths.Count == 0)
+                    {
+                        return;
+                    }
+
+                    _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+                    {
+                        StartHashCalc(strPickFilePaths);
+                    }));
+                }
             }
         }
 
