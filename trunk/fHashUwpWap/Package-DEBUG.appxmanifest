@@ -11,7 +11,7 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="SunJW.fHashUwp"
+    Name="SunJW.fHashUwp.Dev"
     Publisher="CN=sunjunwen"
     Version="2.99.0.0" />
 
