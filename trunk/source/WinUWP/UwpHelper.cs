@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -123,6 +124,22 @@ namespace FilesHashUwp
             }
 
             return strSize;
+        }
+
+        public static void SaveLocalSettings(string key, object val)
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values[key] = val;
+        }
+
+        public static object LoadLocalSettings(string key)
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.ContainsKey(key))
+            {
+                return localSettings.Values[key];
+            }
+            return null;
         }
     }
 }
