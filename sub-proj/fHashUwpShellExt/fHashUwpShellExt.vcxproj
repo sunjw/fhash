@@ -150,6 +150,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>Dll.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command>
@@ -211,6 +212,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
+      <ModuleDefinitionFile>Dll.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command>
