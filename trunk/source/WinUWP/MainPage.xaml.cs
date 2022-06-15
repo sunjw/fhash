@@ -32,6 +32,7 @@ namespace FilesHashUwp
         };
 
         private const string KeyAlreadyRun = "AlreadyRun";
+        private const string KeyUppercase = "Uppercase";
 
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
@@ -573,6 +574,15 @@ namespace FilesHashUwp
             // Prepare controls
             ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
             TextBlockSpeed.Text = "";
+
+            object objUppercase = UwpHelper.LoadLocalSettings(KeyUppercase);
+            bool uppercaseSetting = false;
+            if (objUppercase != null)
+            {
+                uppercaseSetting = (bool)objUppercase;
+            }
+            CheckBoxUppercase.IsChecked = uppercaseSetting;
+            UpdateUppercaseStat();
 
             // Init stat
             SetPageControlStat(MainPageControlStat.MainPageNone);
