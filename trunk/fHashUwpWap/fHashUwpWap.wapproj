@@ -89,7 +89,10 @@
     <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="Package.appxmanifest" Condition="'$(Configuration)'!='Debug'">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <AppxManifest Include="Package-DEBUG.appxmanifest" Condition="'$(Configuration)'=='Debug'">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
