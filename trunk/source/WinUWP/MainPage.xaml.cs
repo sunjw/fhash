@@ -418,6 +418,9 @@ namespace FilesHashUwp
             }
 
             m_hashMgmt.AddFiles(filePaths.ToArray());
+
+            UpdateUppercaseStat();
+            m_hashMgmt.SetUppercase(m_uppercaseChecked);
             ProgressBarMain.Value = 0;
 
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
