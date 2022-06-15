@@ -31,6 +31,8 @@ namespace FilesHashUwp
             MainPageWaitingExit, // waiting thread stop and exit
         };
 
+        private const string KeyAlreadyRun = "AlreadyRun";
+
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
 
@@ -84,8 +86,18 @@ namespace FilesHashUwp
             // Init size
             Size sizePreferred = new Size(660, 420);
             ApplicationView.GetForCurrentView().SetPreferredMinSize(sizePreferred);
-            ApplicationView.PreferredLaunchViewSize = sizePreferred;
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            object objAlreadyRun = UwpHelper.LoadLocalSettings(KeyAlreadyRun);
+            if (objAlreadyRun == null)
+            {
+                // First run
+                ApplicationView.PreferredLaunchViewSize = sizePreferred;
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                UwpHelper.SaveLocalSettings(KeyAlreadyRun, true);
+            }
+            else
+            {
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            }
 
             InitLayout();
         }
