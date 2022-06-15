@@ -297,6 +297,7 @@ namespace FilesHashUwp
                         m_hashMgmt.Clear();
 
                         ProgressBarMain.Value = 0;
+                        TextBlockSpeed.Text = "";
 
                         Span spanInit = new Span();
                         string strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
@@ -318,6 +319,7 @@ namespace FilesHashUwp
                     m_calcStartTime = UwpHelper.GetCurrentMilliSec();
                     m_hashMgmt.SetStop(false);
 
+                    TextBlockSpeed.Text = "";
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
                     ButtonClear.IsEnabled = false;
                     ButtonVerify.IsEnabled = false;
@@ -384,6 +386,29 @@ namespace FilesHashUwp
         {
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
             ProgressBarMain.Value = m_uiBridgeDelegate.GetProgMax();
+
+            long calcDurationTime = m_calcEndTime - m_calcStartTime;
+            if (calcDurationTime > 10)
+            {
+                // speed is Bytes/ms
+                double calcSpeed = ((double)m_hashMgmt.GetTotalSize()) / calcDurationTime;
+                calcSpeed = calcSpeed * 1000; // Bytes/s
+                ulong ulCalcSpeed = (ulong)calcSpeed;
+                string strSpeed = "";
+                if (ulCalcSpeed > 0)
+                {
+                    strSpeed = UwpHelper.ConvertSizeToShortSizeStr(ulCalcSpeed, true);
+                    if (!string.IsNullOrEmpty(strSpeed))
+                    {
+                        strSpeed += "/s";
+                    }
+                }
+                TextBlockSpeed.Text = strSpeed;
+            }
+            else
+            {
+                TextBlockSpeed.Text = "";
+            }
         }
 
         private void CalculateStopped()

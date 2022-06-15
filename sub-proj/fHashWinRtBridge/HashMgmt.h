@@ -17,6 +17,7 @@ namespace FilesHashUwp
 
 		void SetStop(Platform::Boolean val);
 		void SetUppercase(Platform::Boolean val);
+		uint64 GetTotalSize();
 
 		void AddFiles(const Platform::Array<Platform::String^>^ filePaths);
 		void StartHashThread();

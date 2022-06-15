@@ -45,6 +45,11 @@ void HashMgmt::SetUppercase(Boolean val)
 	m_threadData.uppercase = val;
 }
 
+uint64 HashMgmt::GetTotalSize()
+{
+	return m_threadData.totalSize;
+}
+
 void HashMgmt::AddFiles(const Array<String^>^ filePaths)
 {
 	m_threadData.fullPaths.clear();
