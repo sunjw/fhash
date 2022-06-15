@@ -46,8 +46,10 @@ namespace FilesHashUwp
         private UISettings m_uiSettings;
         private long m_tokenThemeChanged;
         private Thickness m_imageAppIconMargin;
+
         private Paragraph m_paragraphMain;
-        private Hyperlink m_hyperlinkClicked;
+        private List<Hyperlink> m_hyperlinksMain = new List<Hyperlink>();
+        private Hyperlink m_hyperlinkClicked = null;
 
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
@@ -306,6 +308,7 @@ namespace FilesHashUwp
                     // MainPageControlStat.MainPageNone
                     if (newStat == MainPageControlStat.MainPageNone)
                     {
+                        m_hyperlinksMain.Clear();
                         m_hashMgmt.Clear();
 
                         ProgressBarMain.Value = 0;
@@ -768,16 +771,24 @@ namespace FilesHashUwp
 
                 List<Inline> inlines = new List<Inline>();
                 inlines.Add(UwpHelper.GenRunFromString("MD5: "));
-                inlines.Add(GenHyperlinkFromStringForTextMain(strFileMD5));
+                Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForTextMain(strFileMD5);
+                m_hyperlinksMain.Add(hyperlinkMD5);
+                inlines.Add(hyperlinkMD5);
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                 inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
-                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA1));
+                Hyperlink hyperlinkSHA1 = GenHyperlinkFromStringForTextMain(strFileSHA1);
+                m_hyperlinksMain.Add(hyperlinkSHA1);
+                inlines.Add(hyperlinkSHA1);
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                 inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
-                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA256));
+                Hyperlink hyperlinkSHA256 = GenHyperlinkFromStringForTextMain(strFileSHA256);
+                m_hyperlinksMain.Add(hyperlinkSHA256);
+                inlines.Add(hyperlinkSHA256);
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                 inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
-                inlines.Add(GenHyperlinkFromStringForTextMain(strFileSHA512));
+                Hyperlink hyperlinkSHA512 = GenHyperlinkFromStringForTextMain(strFileSHA512);
+                m_hyperlinksMain.Add(hyperlinkSHA512);
+                inlines.Add(hyperlinkSHA512);
                 inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
                 AppendInlinesToTextMain(inlines);
             }));
