@@ -82,7 +82,9 @@ namespace FilesHashUwp
             m_appViewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
 
             // Init size
-            ApplicationView.PreferredLaunchViewSize = new Size(660, 420);
+            Size sizePreferred = new Size(660, 420);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(sizePreferred);
+            ApplicationView.PreferredLaunchViewSize = sizePreferred;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             InitLayout();
