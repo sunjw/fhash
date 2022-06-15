@@ -370,7 +370,10 @@ namespace FilesHashUwp
 
         private void UpdateResultUppercase()
         {
+            // Refresh stat
             UpdateUppercaseStat();
+
+            // Refresh result
             foreach (Hyperlink hyperlink in m_hyperlinksMain)
             {
                 if (hyperlink.Inlines.Count == 0)
