@@ -111,6 +111,7 @@
                         Grid.Column="1"
                         Margin="20,0,0,10"
                         VerticalAlignment="Bottom"
+                        Click="CheckBoxUppercase_Click"
                         Content="[Uppercase]"
                         TabIndex="3" />
                     <TextBlock

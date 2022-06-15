@@ -518,6 +518,10 @@ namespace FilesHashUwp
             SetPageControlStat(MainPageControlStat.MainPageNone);
         }
 
+        private void CheckBoxUppercase_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
         private void TextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
         {
             if (sender == null)
