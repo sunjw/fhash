@@ -89,6 +89,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -112,11 +113,17 @@
                         VerticalAlignment="Bottom"
                         Content="[Uppercase]"
                         TabIndex="3" />
+                    <TextBlock
+                        x:Name="TextBlockSpeed"
+                        Grid.Column="2"
+                        Margin="5,0,0,18"
+                        VerticalAlignment="Bottom"
+                        Text="[Speed]" />
 
                     <Button
                         x:Name="ButtonVerify"
                         x:Uid="ButtonVerify"
-                        Grid.Column="3"
+                        Grid.Column="4"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
@@ -126,7 +133,7 @@
                     <Button
                         x:Name="ButtonClear"
                         x:Uid="ButtonClear"
-                        Grid.Column="4"
+                        Grid.Column="5"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
@@ -136,7 +143,7 @@
                     <Button
                         x:Name="ButtonOpen"
                         x:Uid="ButtonOpen"
-                        Grid.Column="5"
+                        Grid.Column="6"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
