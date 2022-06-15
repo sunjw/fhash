@@ -55,7 +55,7 @@
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
             <desktop5:ItemType Type="*">
-              <desktop5:Verb Id="fHashUwpShellExt" Clsid="DFCD2B9E-91B8-4529-B8FD-A512A2046D52" />
+              <desktop5:Verb Id="fHashUwpShellExtDev" Clsid="DFCD2B9E-91B8-4529-B8FD-A512A2046D52" />
             </desktop5:ItemType>
           </desktop4:FileExplorerContextMenus>
         </desktop4:Extension>
