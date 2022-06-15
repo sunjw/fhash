@@ -55,6 +55,7 @@ namespace FilesHashUwp
         private HashMgmt m_hashMgmt;
 
         private MainPageControlStat m_mainPageStat;
+        private bool m_uppercaseChecked = false;
         private long m_calcStartTime = 0;
         private long m_calcEndTime = 0;
 
@@ -354,6 +355,42 @@ namespace FilesHashUwp
             }
         }
 
+        private void UpdateUppercaseStat()
+        {
+            bool? uppercaseIsChecked = CheckBoxUppercase.IsChecked;
+            if (uppercaseIsChecked.HasValue && uppercaseIsChecked.Value)
+            {
+                m_uppercaseChecked = true;
+            }
+            else
+            {
+                m_uppercaseChecked = false;
+            }
+        }
+
+        private void UpdateResultUppercase()
+        {
+            UpdateUppercaseStat();
+            foreach (Hyperlink hyperlink in m_hyperlinksMain)
+            {
+                if (hyperlink.Inlines.Count == 0)
+                {
+                    continue;
+                }
+                string hyperLinkText = UwpHelper.GetTextFromHyperlink(hyperlink);
+                if (m_uppercaseChecked)
+                {
+                    hyperLinkText = hyperLinkText.ToUpper();
+                }
+                else
+                {
+                    hyperLinkText = hyperLinkText.ToLower();
+                }
+                Run runInHyperlink = (Run)hyperlink.Inlines[0];
+                runInHyperlink.Text = hyperLinkText;
+            }
+        }
+
         private bool IsAbleToCalcFiles()
         {
             return !IsCalculating();
@@ -595,8 +632,14 @@ namespace FilesHashUwp
             SetPageControlStat(MainPageControlStat.MainPageNone);
         }
 
-        private void CheckBoxUppercase_Click(object sender, RoutedEventArgs e)
+        private void CheckBoxUppercase_Checked(object sender, RoutedEventArgs e)
         {
+            UpdateResultUppercase();
+        }
+
+        private void CheckBoxUppercase_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateResultUppercase();
         }
 
         private void TextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)

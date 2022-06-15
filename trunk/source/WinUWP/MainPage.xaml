@@ -111,9 +111,10 @@
                         Grid.Column="1"
                         Margin="20,0,0,10"
                         VerticalAlignment="Bottom"
-                        Click="CheckBoxUppercase_Click"
+                        Checked="CheckBoxUppercase_Checked"
                         Content="[Uppercase]"
-                        TabIndex="3" />
+                        TabIndex="3"
+                        Unchecked="CheckBoxUppercase_Unchecked" />
                     <TextBlock
                         x:Name="TextBlockSpeed"
                         Grid.Column="2"
