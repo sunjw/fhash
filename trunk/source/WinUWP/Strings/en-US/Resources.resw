@@ -156,4 +156,7 @@
   <data name="ResultModifiedTime" xml:space="preserve">
     <value>Modified Date:</value>
   </data>
+  <data name="CheckBoxUppercase.Content" xml:space="preserve">
+    <value>Uppercase</value>
+  </data>
 </root>

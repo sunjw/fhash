@@ -88,6 +88,7 @@
                     VerticalAlignment="Bottom">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -103,31 +104,39 @@
                         Click="ButtonAbout_Click"
                         Content="[About]"
                         TabIndex="2" />
+                    <CheckBox
+                        x:Name="CheckBoxUppercase"
+                        x:Uid="CheckBoxUppercase"
+                        Grid.Column="1"
+                        Margin="20,0,0,10"
+                        VerticalAlignment="Bottom"
+                        Content="[Uppercase]"
+                        TabIndex="3" />
 
                     <Button
                         x:Name="ButtonVerify"
                         x:Uid="ButtonVerify"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Click="ButtonVerify_Click"
                         Content="[Verify]"
-                        TabIndex="3" />
+                        TabIndex="4" />
                     <Button
                         x:Name="ButtonClear"
                         x:Uid="ButtonClear"
-                        Grid.Column="3"
+                        Grid.Column="4"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Click="ButtonClear_Click"
                         Content="[Clear]"
-                        TabIndex="4" />
+                        TabIndex="5" />
                     <Button
                         x:Name="ButtonOpen"
                         x:Uid="ButtonOpen"
-                        Grid.Column="4"
+                        Grid.Column="5"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
