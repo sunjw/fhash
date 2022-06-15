@@ -242,6 +242,15 @@ namespace FilesHashUwp
             UwpHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
+        private Paragraph CreateParagraphForTextMain()
+        {
+            Paragraph paragraph = new Paragraph();
+            paragraph.FontFamily = new FontFamily("Consolas");
+            paragraph.LineHeight = 18;
+            paragraph.LineStackingStrategy = LineStackingStrategy.BlockLineHeight;
+            return paragraph;
+        }
+
         private Hyperlink GenHyperlinkFromStringForTextMain(string strContent)
         {
             return UwpHelper.GenHyperlinkFromString(strContent, TextMainHyperlink_Click);
@@ -473,14 +482,12 @@ namespace FilesHashUwp
 
             // Prepare RichTextMain
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
-            m_paragraphMain = new Paragraph();
-            m_paragraphMain.FontFamily = new FontFamily("Consolas");
-            m_paragraphMain.LineHeight = 18;
-            m_paragraphMain.LineStackingStrategy = LineStackingStrategy.BlockLineHeight;
+            m_paragraphMain = CreateParagraphForTextMain();
             RichTextMain.Blocks.Add(m_paragraphMain);
 
             // Prepare controls
             ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
+            TextBlockSpeed.Text = "";
 
             // Init stat
             SetPageControlStat(MainPageControlStat.MainPageNone);
