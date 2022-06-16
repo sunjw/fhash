@@ -16,6 +16,9 @@
 
 #if defined (WIN32)
 #include "WinCommon/WindowsComm.h"
+#if defined (FHASH_UWP_LIB)
+#include "WinCommon/FileVersionHelper.h"
+#endif
 #endif
 
 #include "OsUtils/OsFile.h"
@@ -196,8 +199,16 @@ int WINAPI HashThreadFunc(void *param)
 			}
 
 #if defined (WIN32)
-#if !defined (FHASH_UWP_LIB)
 			// get file version //
+#if defined (FHASH_UWP_LIB)
+			if (osFile.openRead())
+			{
+				WindowsComm::FileVersionHelper fvHelper(osFile);
+				tstring tstrVer = fvHelper.Find();
+				result.tstrVersion = tstrFileVersion;
+				osFile.close();
+			}
+#else
 			tstrFileVersion = WindowsComm::GetExeFileVersion((TCHAR *)path);
 			result.tstrVersion = tstrFileVersion;
 #endif
