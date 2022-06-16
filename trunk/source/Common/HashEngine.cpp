@@ -201,13 +201,10 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (WIN32)
 			// get file version //
 #if defined (FHASH_UWP_LIB)
-			if (osFile.openRead())
-			{
-				WindowsComm::FileVersionHelper fvHelper(osFile);
-				tstrFileVersion = fvHelper.Find();
-				result.tstrVersion = tstrFileVersion;
-				osFile.close();
-			}
+			WindowsComm::FileVersionHelper fvHelper(osFile);
+			tstrFileVersion = fvHelper.Find();
+			result.tstrVersion = tstrFileVersion;
+			osFile.seek(0, OsFile::OsFileSeekFrom::OF_SEEK_BEGIN); // reset offset
 #else
 			tstrFileVersion = WindowsComm::GetExeFileVersion((TCHAR *)path);
 			result.tstrVersion = tstrFileVersion;
