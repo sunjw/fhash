@@ -208,6 +208,9 @@ namespace FilesHashUwp
             m_imageAppIconMargin = ImageAppIcon.Margin;
 
             string titleAppName = m_resourceLoaderMain.GetString("TitleAppName");
+#if DEBUG
+            titleAppName += " Dev";
+#endif
             TextBlockAppName.Text = titleAppName;
 
             UpdateTitleBarColor();
