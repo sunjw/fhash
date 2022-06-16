@@ -202,7 +202,7 @@ tstring FileVersionHelper::Find()
     LPCBYTE version = FindVersion();
     if (!version)
     {
-        wprintf(L"No version\n");
+        // wprintf(L"No version\n");
     }
     else
     {
