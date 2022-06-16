@@ -159,4 +159,7 @@
   <data name="CheckBoxUppercase.Content" xml:space="preserve">
     <value>Uppercase</value>
   </data>
+  <data name="ResultFileVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
 </root>

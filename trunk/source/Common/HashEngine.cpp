@@ -204,7 +204,7 @@ int WINAPI HashThreadFunc(void *param)
 			if (osFile.openRead())
 			{
 				WindowsComm::FileVersionHelper fvHelper(osFile);
-				tstring tstrVer = fvHelper.Find();
+				tstrFileVersion = fvHelper.Find();
 				result.tstrVersion = tstrFileVersion;
 				osFile.close();
 			}

@@ -802,6 +802,14 @@ namespace FilesHashUwp
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
                 inlines.Add(UwpHelper.GenRunFromString(strModifiedTime));
                 inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                if (!string.IsNullOrEmpty(resultData.Version))
+                {
+                    string strVersion = m_resourceLoaderMain.GetString("ResultFileVersion");
+                    strVersion += " ";
+                    strVersion += resultData.Version;
+                    inlines.Add(UwpHelper.GenRunFromString(strVersion));
+                    inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+                }
                 AppendInlinesToTextMain(inlines);
             }));
         }
