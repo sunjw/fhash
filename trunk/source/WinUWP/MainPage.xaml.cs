@@ -207,6 +207,9 @@ namespace FilesHashUwp
             Window.Current.SetTitleBar(GridTitleBarCustom);
             m_imageAppIconMargin = ImageAppIcon.Margin;
 
+            string titleAppName = m_resourceLoaderMain.GetString("TitleAppName");
+            TextBlockAppName.Text = titleAppName;
+
             UpdateTitleBarColor();
         }
 

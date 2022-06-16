@@ -129,7 +129,7 @@
   <data name="MainPageInitInfo" xml:space="preserve">
     <value>Drag files here or click open to start calculate.</value>
   </data>
-  <data name="TextBlockAppName.Text" xml:space="preserve">
+  <data name="TitleAppName" xml:space="preserve">
     <value>fHash</value>
   </data>
   <data name="ButtonOpenStop" xml:space="preserve">
