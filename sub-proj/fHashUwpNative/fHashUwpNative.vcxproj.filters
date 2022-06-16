@@ -66,6 +66,9 @@
     <ClInclude Include="..\..\trunk\source\Algorithms\sha512.h">
       <Filter>算法</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\FileVersionHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\Algorithms\sha512.cpp">
       <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\FileVersionHelper.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
