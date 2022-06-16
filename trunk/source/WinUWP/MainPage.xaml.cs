@@ -34,18 +34,19 @@ namespace FilesHashUwp
         private const string KeyAlreadyRun = "AlreadyRun";
         private const string KeyUppercase = "Uppercase";
 
-        private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
-        private ApplicationViewTitleBar m_appViewTitleBar;
-
-        private ContentDialog m_dialogFind;
-
-        private TextBox m_textBoxFindHash;
-        private MenuFlyout m_menuFlyoutTextMain;
-
         private ResourceLoader m_resourceLoaderMain;
         private UISettings m_uiSettings;
         private long m_tokenThemeChanged;
+
+        private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
+        private ApplicationViewTitleBar m_appViewTitleBar;
+
         private Thickness m_imageAppIconMargin;
+
+        private ContentDialog m_dialogFind;
+        private TextBox m_textBoxFindHash;
+
+        private MenuFlyout m_menuFlyoutTextMain;
 
         private Paragraph m_paragraphMain;
         private List<Hyperlink> m_hyperlinksMain = new List<Hyperlink>();
