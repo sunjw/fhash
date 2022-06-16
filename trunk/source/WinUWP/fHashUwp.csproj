@@ -178,7 +178,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\zh-CN\Resources.resw" />

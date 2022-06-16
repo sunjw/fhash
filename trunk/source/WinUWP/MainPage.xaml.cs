@@ -329,6 +329,7 @@ namespace FilesHashUwp
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
                     ButtonClear.IsEnabled = true;
                     ButtonVerify.IsEnabled = true;
+                    CheckBoxUppercase.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
                     HidePopupAbout();
@@ -340,6 +341,7 @@ namespace FilesHashUwp
                     ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
                     ButtonClear.IsEnabled = false;
                     ButtonVerify.IsEnabled = false;
+                    CheckBoxUppercase.IsEnabled = false;
                     break;
                 case MainPageControlStat.MainPageVerify:
                     break;
