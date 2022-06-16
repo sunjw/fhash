@@ -37,7 +37,6 @@ namespace FilesHashUwp
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
 
-        private ContentDialog m_dialogExitConfirm;
         private ContentDialog m_dialogFind;
 
         private TextBox m_textBoxFindHash;
@@ -197,7 +196,6 @@ namespace FilesHashUwp
         private void InitLayout()
         {
             InitCustomTitleBar();
-            InitDialogExitConfirm();
             InitDialogFind();
             InitMenuFlyoutTextMain();
         }
@@ -209,18 +207,6 @@ namespace FilesHashUwp
             m_imageAppIconMargin = ImageAppIcon.Margin;
 
             UpdateTitleBarColor();
-        }
-
-        private void InitDialogExitConfirm()
-        {
-            m_dialogExitConfirm = new ContentDialog
-            {
-                Title = "Exit",
-                Content = "Really go?",
-                PrimaryButtonText = "Bye!",
-                CloseButtonText = "No",
-                DefaultButton = ContentDialogButton.Primary
-            };
         }
 
         private void InitDialogFind()
