@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ButtonOpenOpen" xml:space="preserve">
-    <value>打开</value>
+    <value>打开...</value>
   </data>
   <data name="MenuItemGoogle" xml:space="preserve">
     <value>搜索 Google</value>
@@ -137,5 +137,8 @@
   </data>
   <data name="ResultFileVersion" xml:space="preserve">
     <value>版本:</value>
+  </data>
+  <data name="MenuItemCopy" xml:space="preserve">
+    <value>复制哈希值</value>
   </data>
 </root>

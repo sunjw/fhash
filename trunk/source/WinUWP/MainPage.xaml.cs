@@ -245,6 +245,7 @@ namespace FilesHashUwp
             menuItemGoogle.Text = m_resourceLoaderMain.GetString("MenuItemGoogle");
             menuItemGoogle.Click += MenuItemGoogle_Click;
             m_menuFlyoutTextMain.Items.Add(menuItemCopy);
+            m_menuFlyoutTextMain.Items.Add(new MenuFlyoutSeparator());
             m_menuFlyoutTextMain.Items.Add(menuItemGoogle);
         }
 
