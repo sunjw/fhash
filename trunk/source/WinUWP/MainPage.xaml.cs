@@ -740,6 +740,35 @@ namespace FilesHashUwp
             }));
         }
 
+        private void RichTextMain_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            double scrollViewerWidth = ScrollViewerMain.ActualWidth;
+            double scrollViewerHeight = ScrollViewerMain.ActualHeight;
+            GeneralTransform transformScrollViewer = ScrollViewerMain.TransformToVisual(UwpHelper.GetRootFrame());
+            Point pointScrollViewer = transformScrollViewer.TransformPoint(new Point(0, 0));
+            Point pointCursor = UwpHelper.GetCursorPointRelatedToRootFrame();
+            double pointRelatedScrollOffX = pointCursor.X - pointScrollViewer.X - scrollViewerWidth;
+            double pointRelatedScrollOffY = pointCursor.Y - pointScrollViewer.Y - scrollViewerHeight;
+            TextBlockSpeed.Text = string.Format("({0:0.00},{1:0.00})", 
+                pointRelatedScrollOffX, pointRelatedScrollOffY);
+            double scrollViewerCurOffX = ScrollViewerMain.HorizontalOffset;
+            double scrollViewerCurOffY = ScrollViewerMain.VerticalOffset;
+            if (pointRelatedScrollOffX > 0 || pointRelatedScrollOffY > 0)
+            {
+                double scrollViewerNewOffX = scrollViewerCurOffX;
+                double scrollViewerNewOffY = scrollViewerCurOffY;
+                if (pointRelatedScrollOffX > 0)
+                {
+                    scrollViewerNewOffX += pointRelatedScrollOffX;
+                }
+                if (pointRelatedScrollOffY > 0)
+                {
+                    scrollViewerNewOffY += pointRelatedScrollOffY;
+                }
+                ScrollViewerMain.ChangeView(scrollViewerNewOffX, scrollViewerNewOffY, null);
+            }
+        }
+
         private void UIBridgeDelegate_PreparingCalcHandler()
         {
         }

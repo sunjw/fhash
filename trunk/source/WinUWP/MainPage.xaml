@@ -64,7 +64,10 @@
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto">
 
-                <RichTextBlock x:Name="RichTextMain" Margin="4,0,4,0" />
+                <RichTextBlock
+                    x:Name="RichTextMain"
+                    Margin="4,0,4,0"
+                    SelectionChanged="RichTextMain_SelectionChanged" />
             </ScrollViewer>
 
             <Grid
