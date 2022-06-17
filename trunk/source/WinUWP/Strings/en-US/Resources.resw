@@ -162,4 +162,7 @@
   <data name="ResultFileVersion" xml:space="preserve">
     <value>Version:</value>
   </data>
+  <data name="MenuItemVirusTotal" xml:space="preserve">
+    <value>Search VirusTotal</value>
+  </data>
 </root>

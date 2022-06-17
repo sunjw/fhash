@@ -141,4 +141,7 @@
   <data name="MenuItemCopy" xml:space="preserve">
     <value>复制哈希值</value>
   </data>
+  <data name="MenuItemVirusTotal" xml:space="preserve">
+    <value>搜索 VirusTotal</value>
+  </data>
 </root>
