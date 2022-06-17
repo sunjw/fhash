@@ -747,26 +747,55 @@ namespace FilesHashUwp
             GeneralTransform transformScrollViewer = ScrollViewerMain.TransformToVisual(UwpHelper.GetRootFrame());
             Point pointScrollViewer = transformScrollViewer.TransformPoint(new Point(0, 0));
             Point pointCursor = UwpHelper.GetCursorPointRelatedToRootFrame();
-            double pointRelatedScrollOffX = pointCursor.X - pointScrollViewer.X - scrollViewerWidth;
-            double pointRelatedScrollOffY = pointCursor.Y - pointScrollViewer.Y - scrollViewerHeight;
-            TextBlockSpeed.Text = string.Format("({0:0.00},{1:0.00})", 
-                pointRelatedScrollOffX, pointRelatedScrollOffY);
+            double pointRelateScrollOffX = pointCursor.X - pointScrollViewer.X;
+            double pointRelateScrollOffY = pointCursor.Y - pointScrollViewer.Y;
+
+            double pointRelateScrollWidthOffX = pointRelateScrollOffX;
+            if (pointRelateScrollWidthOffX > 0 && pointRelateScrollWidthOffX <= scrollViewerWidth)
+            {
+                // X inside
+                pointRelateScrollWidthOffX = 0;
+            }
+            else if (pointRelateScrollWidthOffX > scrollViewerWidth)
+            {
+                // X outside right
+                pointRelateScrollWidthOffX = pointRelateScrollWidthOffX - scrollViewerWidth;
+            }
+
+            double pointRelateScrollHeightOffY = pointRelateScrollOffY;
+            if (pointRelateScrollHeightOffY > 0 && pointRelateScrollHeightOffY <= scrollViewerHeight)
+            {
+                // Y inside
+                pointRelateScrollHeightOffY = 0;
+            }
+            else if (pointRelateScrollHeightOffY > scrollViewerHeight)
+            {
+                // Y outside right
+                pointRelateScrollHeightOffY = pointRelateScrollHeightOffY - scrollViewerHeight;
+            }
+            // TextBlockSpeed.Text = string.Format("({0:0.00},{1:0.00})",
+            //    pointRelateScrollWidthOffX, pointRelateScrollHeightOffY);
+
+            if (pointRelateScrollWidthOffX == 0 && pointRelateScrollHeightOffY == 0)
+            {
+                // X and Y all inside
+                // TextBlockSpeed.Text = TextBlockSpeed.Text + " no";
+                return;
+            }
+
             double scrollViewerCurOffX = ScrollViewerMain.HorizontalOffset;
             double scrollViewerCurOffY = ScrollViewerMain.VerticalOffset;
-            if (pointRelatedScrollOffX > 0 || pointRelatedScrollOffY > 0)
+            double scrollViewerNewOffX = scrollViewerCurOffX;
+            double scrollViewerNewOffY = scrollViewerCurOffY;
+            if (pointRelateScrollWidthOffX != 0)
             {
-                double scrollViewerNewOffX = scrollViewerCurOffX;
-                double scrollViewerNewOffY = scrollViewerCurOffY;
-                if (pointRelatedScrollOffX > 0)
-                {
-                    scrollViewerNewOffX += pointRelatedScrollOffX;
-                }
-                if (pointRelatedScrollOffY > 0)
-                {
-                    scrollViewerNewOffY += pointRelatedScrollOffY;
-                }
-                ScrollViewerMain.ChangeView(scrollViewerNewOffX, scrollViewerNewOffY, null);
+                scrollViewerNewOffX += pointRelateScrollWidthOffX;
             }
+            if (pointRelateScrollHeightOffY != 0)
+            {
+                scrollViewerNewOffY += pointRelateScrollHeightOffY;
+            }
+            ScrollViewerMain.ChangeView(scrollViewerNewOffX, scrollViewerNewOffY, null);
         }
 
         private void UIBridgeDelegate_PreparingCalcHandler()
