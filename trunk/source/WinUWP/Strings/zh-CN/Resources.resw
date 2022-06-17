@@ -120,4 +120,22 @@
   <data name="ButtonOpenOpen" xml:space="preserve">
     <value>打开</value>
   </data>
+  <data name="MenuItemGoogle" xml:space="preserve">
+    <value>搜索 Google</value>
+  </data>
+  <data name="ResultByte" xml:space="preserve">
+    <value>字节</value>
+  </data>
+  <data name="ResultFileName" xml:space="preserve">
+    <value>文件名:</value>
+  </data>
+  <data name="ResultFileSize" xml:space="preserve">
+    <value>文件大小:</value>
+  </data>
+  <data name="ResultModifiedTime" xml:space="preserve">
+    <value>修改日期:</value>
+  </data>
+  <data name="ResultFileVersion" xml:space="preserve">
+    <value>版本:</value>
+  </data>
 </root>
