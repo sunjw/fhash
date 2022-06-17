@@ -149,6 +149,7 @@
                         x:Name="ButtonOpen"
                         x:Uid="ButtonOpen"
                         Grid.Column="6"
+                        Width="70"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
