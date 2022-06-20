@@ -180,6 +180,12 @@
   <data name="HashValue" xml:space="preserve">
     <value>Hash:</value>
   </data>
+  <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
+    <value>Hosted on GitHub</value>
+  </data>
+  <data name="HyperlinkButtonGithub.NavigateUri" xml:space="preserve">
+    <value>https://github.com/sunjw/fhash</value>
+  </data>
   <data name="ResultWaitingStart" xml:space="preserve">
     <value>Prepare to start calculation.</value>
   </data>

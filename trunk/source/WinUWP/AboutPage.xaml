@@ -34,6 +34,13 @@
                 VerticalAlignment="Top"
                 Text="[About]"
                 TextWrapping="Wrap" />
+
+            <HyperlinkButton
+                x:Name="HyperlinkButtonGithub"
+                x:Uid="HyperlinkButtonGithub"
+                Margin="10,0,0,10"
+                VerticalAlignment="Bottom"
+                Content="[Github]" />
             <Button
                 x:Name="ButtonOK"
                 Margin="0,0,10,10"
