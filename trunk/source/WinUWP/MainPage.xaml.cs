@@ -46,10 +46,11 @@ namespace FilesHashUwp
         private ContentDialog m_dialogFind;
         private TextBox m_textBoxFindHash;
 
-        private MenuFlyout m_menuFlyoutTextMain;
-
         private Paragraph m_paragraphMain;
+        private Paragraph m_paragraphResult;
+        private Paragraph m_paragraphFind;
         private List<Hyperlink> m_hyperlinksMain = new List<Hyperlink>();
+        private MenuFlyout m_menuFlyoutTextMain;
         private Hyperlink m_hyperlinkClicked = null;
 
         private UIBridgeDelegate m_uiBridgeDelegate;
@@ -579,6 +580,56 @@ namespace FilesHashUwp
             AppendInlinesToTextMain(inlines);
         }
 
+        private void AppendFileResultToTextMain(ResultDataNet resultData, bool uppercase)
+        {
+            if (resultData.EnumState == ResultStateNet.ResultNone)
+            {
+                return;
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll ||
+                resultData.EnumState == ResultStateNet.ResultMeta ||
+                resultData.EnumState == ResultStateNet.ResultError ||
+                resultData.EnumState == ResultStateNet.ResultPath)
+            {
+                AppendFileNameToTextMain(resultData);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll ||
+                resultData.EnumState == ResultStateNet.ResultMeta)
+            {
+                AppendFileMetaToTextMain(resultData);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll)
+            {
+                AppendFileHashToTextMain(resultData, uppercase);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultError)
+            {
+                AppendFileErrToTextMain(resultData);
+            }
+
+            if (resultData.EnumState != ResultStateNet.ResultAll &&
+                resultData.EnumState != ResultStateNet.ResultError)
+            {
+                AppendInlineToTextMain(UwpHelper.GenRunFromString("\r\n"));
+            }
+        }
+
+        private void ShowFindResult(ResultDataNet[] resultDataNet)
+        {
+            if (resultDataNet == null || resultDataNet.Length == 0)
+            {
+                // No match
+            }
+            else
+            {
+                // Found some
+            }
+        }
+
         private void HandleCommandLineArgs()
         {
             if (!IsAbleToCalcFiles())
@@ -669,7 +720,9 @@ namespace FilesHashUwp
 
             // Prepare RichTextMain
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
-            m_paragraphMain = CreateParagraphForTextMain();
+            m_paragraphResult = CreateParagraphForTextMain();
+            m_paragraphFind = CreateParagraphForTextMain();
+            m_paragraphMain = m_paragraphResult;
             RichTextMain.Blocks.Add(m_paragraphMain);
 
             // Prepare controls
@@ -742,14 +795,7 @@ namespace FilesHashUwp
             {
                 string strHashToFind = m_textBoxFindHash.Text;
                 ResultDataNet[] resultDataNet = m_hashMgmt.FindResult(strHashToFind);
-                if (resultDataNet == null || resultDataNet.Length == 0)
-                {
-                    // No match
-                }
-                else
-                {
-                    // Found some
-                }
+                ShowFindResult(resultDataNet);
             }
         }
 
