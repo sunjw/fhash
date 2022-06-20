@@ -165,4 +165,10 @@
   <data name="MenuItemVirusTotal" xml:space="preserve">
     <value>Search VirusTotal</value>
   </data>
+  <data name="FindDialogTitle" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="HashValuePlaceholder" xml:space="preserve">
+    <value>Hash:</value>
+  </data>
 </root>

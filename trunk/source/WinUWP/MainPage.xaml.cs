@@ -222,11 +222,11 @@ namespace FilesHashUwp
             {
                 Height = (double)Application.Current.Resources["TextControlThemeMinHeight"],
                 Width = 400,
-                PlaceholderText = "Some hash"
+                PlaceholderText = m_resourceLoaderMain.GetString("HashValuePlaceholder")
             };
             m_dialogFind = new ContentDialog()
             {
-                // Title = "Find",
+                Title = m_resourceLoaderMain.GetString("FindDialogTitle"),
                 // MaxWidth = ActualWidth,
                 PrimaryButtonText = "OK",
                 SecondaryButtonText = "Cancel",
@@ -644,7 +644,7 @@ namespace FilesHashUwp
             ContentDialogResult result = await m_dialogFind.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                string strHash = m_textBoxFindHash.Text;
+                string strHashToFind = m_textBoxFindHash.Text;
             }
         }
 
