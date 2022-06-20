@@ -168,6 +168,9 @@
   <data name="FindDialogTitle" xml:space="preserve">
     <value>Verify</value>
   </data>
+  <data name="FindNoResult" xml:space="preserve">
+    <value>Nothing found</value>
+  </data>
   <data name="FindResultBegin" xml:space="preserve">
     <value>Result:</value>
   </data>
