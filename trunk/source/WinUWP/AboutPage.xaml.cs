@@ -29,13 +29,22 @@ namespace FilesHashUwp
 
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            NativeHelper nativeHelper = new NativeHelper();
+
             string strAboutInfoTitle = m_resourceLoaderMain.GetString("AboutInfoTitle");
             PackageVersion packVersion = Package.Current.Id.Version;
             string strVersion = string.Format("{0}.{1}.{2}.{3}",
                 packVersion.Major, packVersion.Minor, packVersion.Build, packVersion.Revision);
+            string strArch = nativeHelper.GetTargetArch();
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoTitle));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strVersion));
+            if (!string.IsNullOrEmpty(strArch))
+            {
+                TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
+                TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strArch));
+            }
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
