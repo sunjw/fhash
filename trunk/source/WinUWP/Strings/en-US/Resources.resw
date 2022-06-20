@@ -180,4 +180,7 @@
   <data name="HashValue" xml:space="preserve">
     <value>Hash:</value>
   </data>
+  <data name="ResultWaitingStart" xml:space="preserve">
+    <value>Prepare to start calculation.</value>
+  </data>
 </root>

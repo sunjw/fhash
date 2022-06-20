@@ -54,6 +54,7 @@ namespace FilesHashUwp
         private List<Hyperlink> m_hyperlinksFind = new List<Hyperlink>();
         private MenuFlyout m_menuFlyoutTextMain;
         private Hyperlink m_hyperlinkClicked = null;
+        private Run m_runPrepare = null;
 
         private UIBridgeDelegate m_uiBridgeDelegate;
         private HashMgmt m_hashMgmt;
@@ -1038,10 +1039,23 @@ namespace FilesHashUwp
 
         private void UIBridgeDelegate_PreparingCalcHandler()
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                string strPrepare = m_resourceLoaderMain.GetString("ResultWaitingStart");
+                m_runPrepare = UwpHelper.GenRunFromString(strPrepare);
+                AppendInlineToTextMain(m_runPrepare);
+            }));
         }
 
         private void UIBridgeDelegate_RemovePreparingCalcHandler()
         {
+            _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
+            {
+                if (m_runPrepare != null)
+                {
+                    m_runPrepare.Text = "";
+                }
+            }));
         }
 
         private void UIBridgeDelegate_CalcStopHandler()
