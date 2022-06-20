@@ -27,6 +27,14 @@
         </Grid>
 
         <Grid x:Name="GridAboutMain" Margin="0,32,0,0">
+            <Image
+                x:Name="ImageAppIconAbout"
+                Width="90"
+                Height="90"
+                Margin="10,10,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" />
             <TextBlock
                 x:Name="TextBlockAbout"
                 Margin="160,10,10,50"
