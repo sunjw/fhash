@@ -22,6 +22,8 @@ namespace FilesHashUwp
 		void AddFiles(const Platform::Array<Platform::String^>^ filePaths);
 		void StartHashThread();
 
+		Platform::Array<ResultDataNet>^ FindResult(Platform::String^ pstrHashToFind);
+
 	private:
 		std::shared_ptr<UIBridgeUwp> m_spUiBridgeUwp;
 		ThreadData m_threadData;

@@ -75,3 +75,36 @@ void HashMgmt::StartHashThread()
 										0,
 										(unsigned int*)&thredID);
 }
+
+Array<ResultDataNet>^ HashMgmt::FindResult(String^ pstrHashToFind)
+{
+	tstring tstrHashToFind(pstrHashToFind->Data());
+	tstrHashToFind = strtotstr(str_upper(tstrtostr(tstrHashToFind))); // Upper
+
+	ResultList findResultList;
+	ResultList::iterator itr = m_threadData.resultList.begin();
+	for (; itr != m_threadData.resultList.end(); ++itr)
+	{
+		if (itr->tstrMD5.find(tstrHashToFind) != tstring::npos ||
+				itr->tstrSHA1.find(tstrHashToFind) != tstring::npos ||
+				itr->tstrSHA256.find(tstrHashToFind) != tstring::npos ||
+				itr->tstrSHA512.find(tstrHashToFind) != tstring::npos)
+		{
+			findResultList.push_back(*itr);
+		}
+	}
+
+	Array<ResultDataNet>^ findResultNetArray =
+		ref new Array<ResultDataNet>(findResultList.size());
+
+	size_t i = 0;
+	itr = findResultList.begin();
+	for (; itr != findResultList.end(); ++itr)
+	{
+		ResultDataNet resultDataNet = UIBridgeUwp::ConvertResultDataToNet(*itr);
+		findResultNetArray[i] = resultDataNet;
+		i++;
+	}
+
+	return findResultNetArray;
+}
