@@ -190,10 +190,10 @@
     <value>匹配的结果:</value>
   </data>
   <data name="FindResultTitle" xml:space="preserve">
-    <value>Verify</value>
+    <value>验证</value>
   </data>
   <data name="HashValue" xml:space="preserve">
-    <value>Hash:</value>
+    <value>Hash 值</value>
   </data>
   <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
     <value>Hosted on GitHub</value>

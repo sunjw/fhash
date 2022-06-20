@@ -196,7 +196,7 @@
     <value>Verify</value>
   </data>
   <data name="HashValue" xml:space="preserve">
-    <value>Hash:</value>
+    <value>Hash</value>
   </data>
   <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
     <value>Hosted on GitHub</value>

@@ -646,7 +646,7 @@ namespace FilesHashUwp
             inlines.Add(UwpHelper.GenRunFromString(strFindResult));
             inlines.Add(UwpHelper.GenRunFromString("\r\n"));
             string strHashValue = m_resourceLoaderMain.GetString("HashValue");
-            strHashValue += " ";
+            strHashValue += ": ";
             inlines.Add(UwpHelper.GenRunFromString(strHashValue));
             inlines.Add(UwpHelper.GenRunFromString(strHashToFind));
             inlines.Add(UwpHelper.GenRunFromString("\r\n"));
