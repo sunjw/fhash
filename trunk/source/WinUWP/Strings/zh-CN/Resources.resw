@@ -127,10 +127,7 @@
     <value>打开...</value>
   </data>
   <data name="MainPageInitInfo" xml:space="preserve">
-    <value>Drag files here or click open to start calculate.</value>
-  </data>
-  <data name="TitleAppName" xml:space="preserve">
-    <value>fHash</value>
+    <value>将文件拖入或点击打开，开始计算。</value>
   </data>
   <data name="ButtonOpenStop" xml:space="preserve">
     <value>停止</value>
@@ -195,13 +192,7 @@
   <data name="HashValue" xml:space="preserve">
     <value>Hash 值</value>
   </data>
-  <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
-    <value>Hosted on GitHub</value>
-  </data>
-  <data name="HyperlinkButtonGithub.NavigateUri" xml:space="preserve">
-    <value>https://github.com/sunjw/fhash</value>
-  </data>
   <data name="ResultWaitingStart" xml:space="preserve">
-    <value>Prepare to start calculation.</value>
+    <value>准备开始计算。</value>
   </data>
 </root>
