@@ -33,7 +33,7 @@ UIStringsBase::UIStringsBase()
 	m_stringsMap[_T("MAINDLG_CALCU_TERMINAL")] = _T("Terminated");
 	m_stringsMap[_T("MAINDLG_FIND_IN_RESULT")] = _T("Verify");
 	m_stringsMap[_T("MAINDLG_RESULT")] = _T("Result:");
-	m_stringsMap[_T("MAINDLG_NORESULT")] = _T("Nothing Found");
+	m_stringsMap[_T("MAINDLG_NORESULT")] = _T("Nothing found");
 	m_stringsMap[_T("MAINDLG_FILE_PROGRESS")] = _T("File");
 	m_stringsMap[_T("MAINDLG_TOTAL_PROGRESS")] = _T("Total");
 	m_stringsMap[_T("MAINDLG_UPPER_HASH")] = _T("Uppercase");
