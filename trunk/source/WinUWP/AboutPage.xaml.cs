@@ -44,6 +44,7 @@ namespace FilesHashUwp
             string strVersion = string.Format("{0}.{1}.{2}.{3}",
                 packVersion.Major, packVersion.Minor, packVersion.Build, packVersion.Revision);
             string strArch = nativeHelper.GetTargetArch();
+            string strRight = m_resourceLoaderMain.GetString("AboutInfoRight");
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoTitle));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strVersion));
@@ -53,6 +54,8 @@ namespace FilesHashUwp
                 TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strArch));
             }
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strRight));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
             string strAboutInfoOsTitle = m_resourceLoaderMain.GetString("AboutInfoOsTitle");
             string strOsInfo = nativeHelper.GetWindowsInfo();

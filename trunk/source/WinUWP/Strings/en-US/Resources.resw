@@ -168,6 +168,9 @@
   <data name="AboutInfoOsTitle" xml:space="preserve">
     <value>Operating System:</value>
   </data>
+  <data name="AboutInfoRight" xml:space="preserve">
+    <value>Copyright (C) 2007- SUN Junwen.</value>
+  </data>
   <data name="AboutInfoTitle" xml:space="preserve">
     <value>fHash: Files' Hash Calculator</value>
   </data>

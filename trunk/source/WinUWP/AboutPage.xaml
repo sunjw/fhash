@@ -37,7 +37,7 @@
                 Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" />
             <TextBlock
                 x:Name="TextBlockAbout"
-                Margin="160,10,10,50"
+                Margin="120,10,10,50"
                 TextWrapping="Wrap" />
 
             <HyperlinkButton
