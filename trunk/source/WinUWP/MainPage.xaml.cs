@@ -49,7 +49,9 @@ namespace FilesHashUwp
         private Paragraph m_paragraphMain;
         private Paragraph m_paragraphResult;
         private Paragraph m_paragraphFind;
-        private List<Hyperlink> m_hyperlinksMain = new List<Hyperlink>();
+        private List<Hyperlink> m_hyperlinksMain;
+        private List<Hyperlink> m_hyperlinksResult = new List<Hyperlink>();
+        private List<Hyperlink> m_hyperlinksFind = new List<Hyperlink>();
         private MenuFlyout m_menuFlyoutTextMain;
         private Hyperlink m_hyperlinkClicked = null;
 
@@ -344,6 +346,7 @@ namespace FilesHashUwp
                     CheckBoxUppercase.IsEnabled = false;
                     break;
                 case MainPageControlStat.MainPageVerify:
+                    ButtonVerify.IsEnabled = false;
                     break;
             }
 
@@ -380,24 +383,30 @@ namespace FilesHashUwp
             // Refresh stat
             UpdateUppercaseStat();
 
-            // Refresh result
-            foreach (Hyperlink hyperlink in m_hyperlinksMain)
+            // Refresh result & find
+            List<List<Hyperlink>> hyperlinkLists = new List<List<Hyperlink>>();
+            hyperlinkLists.Add(m_hyperlinksResult);
+            hyperlinkLists.Add(m_hyperlinksFind);
+            foreach (List<Hyperlink> hyperlinkListItr in hyperlinkLists)
             {
-                if (hyperlink.Inlines.Count == 0)
+                foreach (Hyperlink hyperlink in hyperlinkListItr)
                 {
-                    continue;
+                    if (hyperlink.Inlines.Count == 0)
+                    {
+                        continue;
+                    }
+                    string hyperLinkText = UwpHelper.GetTextFromHyperlink(hyperlink);
+                    if (m_uppercaseChecked)
+                    {
+                        hyperLinkText = hyperLinkText.ToUpper();
+                    }
+                    else
+                    {
+                        hyperLinkText = hyperLinkText.ToLower();
+                    }
+                    Run runInHyperlink = (Run)hyperlink.Inlines[0];
+                    runInHyperlink.Text = hyperLinkText;
                 }
-                string hyperLinkText = UwpHelper.GetTextFromHyperlink(hyperlink);
-                if (m_uppercaseChecked)
-                {
-                    hyperLinkText = hyperLinkText.ToUpper();
-                }
-                else
-                {
-                    hyperLinkText = hyperLinkText.ToLower();
-                }
-                Run runInHyperlink = (Run)hyperlink.Inlines[0];
-                runInHyperlink.Text = hyperLinkText;
             }
         }
 
@@ -620,6 +629,12 @@ namespace FilesHashUwp
 
         private void ShowFindResult(ResultDataNet[] resultDataNet)
         {
+            // Switch m_paragraphMain
+            RichTextMain.Blocks.Clear();
+            m_paragraphMain = m_paragraphFind;
+            RichTextMain.Blocks.Add(m_paragraphMain);
+            m_hyperlinksMain = m_hyperlinksFind;
+
             if (resultDataNet == null || resultDataNet.Length == 0)
             {
                 // No match
@@ -628,6 +643,22 @@ namespace FilesHashUwp
             {
                 // Found some
             }
+
+            SetPageControlStat(MainPageControlStat.MainPageVerify);
+        }
+
+        private void ClearFindResult()
+        {
+            // Switch m_paragraphMain
+            RichTextMain.Blocks.Clear();
+            m_paragraphMain = m_paragraphResult;
+            RichTextMain.Blocks.Add(m_paragraphMain);
+            ScrollTextMainToBottom();
+            m_hyperlinksMain = m_hyperlinksResult;
+
+            // Clear find result
+            m_paragraphFind.Inlines.Clear();
+            m_hyperlinksFind.Clear();
         }
 
         private void HandleCommandLineArgs()
@@ -724,6 +755,7 @@ namespace FilesHashUwp
             m_paragraphFind = CreateParagraphForTextMain();
             m_paragraphMain = m_paragraphResult;
             RichTextMain.Blocks.Add(m_paragraphMain);
+            m_hyperlinksMain = m_hyperlinksResult;
 
             // Prepare controls
             ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
@@ -801,7 +833,15 @@ namespace FilesHashUwp
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-            SetPageControlStat(MainPageControlStat.MainPageNone);
+            if (m_mainPageStat == MainPageControlStat.MainPageVerify)
+            {
+                ClearFindResult();
+                SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            }
+            else
+            {
+                SetPageControlStat(MainPageControlStat.MainPageNone);
+            }
         }
 
         private void CheckBoxUppercase_Checked(object sender, RoutedEventArgs e)
