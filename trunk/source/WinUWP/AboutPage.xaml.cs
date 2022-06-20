@@ -57,6 +57,17 @@ namespace FilesHashUwp
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strRight));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
+            string strInfoMD5 = m_resourceLoaderMain.GetString("AboutInfoMD5");
+            string strInfoSHA256 = m_resourceLoaderMain.GetString("AboutInfoSHA256");
+            string strInfoSHA512 = m_resourceLoaderMain.GetString("AboutInfoSHA512");
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strInfoMD5));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strInfoSHA256));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strInfoSHA512));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
+
+
             string strAboutInfoOsTitle = m_resourceLoaderMain.GetString("AboutInfoOsTitle");
             string strOsInfo = nativeHelper.GetWindowsInfo();
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoOsTitle));

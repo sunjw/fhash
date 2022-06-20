@@ -165,11 +165,20 @@
   <data name="MenuItemVirusTotal" xml:space="preserve">
     <value>Search VirusTotal</value>
   </data>
+  <data name="AboutInfoMD5" xml:space="preserve">
+    <value>MD5 implementation copyright (C) RSA Data Security, Inc.</value>
+  </data>
   <data name="AboutInfoOsTitle" xml:space="preserve">
     <value>Operating System:</value>
   </data>
   <data name="AboutInfoRight" xml:space="preserve">
     <value>Copyright (C) 2007- SUN Junwen.</value>
+  </data>
+  <data name="AboutInfoSHA256" xml:space="preserve">
+    <value>SHA256 implementation copyright (C) Niels Moller</value>
+  </data>
+  <data name="AboutInfoSHA512" xml:space="preserve">
+    <value>SHA512 implementation copyright (C) Aaron D. Gifford</value>
   </data>
   <data name="AboutInfoTitle" xml:space="preserve">
     <value>fHash: Files' Hash Calculator</value>
