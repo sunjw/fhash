@@ -483,6 +483,102 @@ namespace FilesHashUwp
             ProgressBarMain.Value = 0;
         }
 
+        private void AppendFileNameToTextMain(ResultDataNet resultData)
+        {
+            List<Inline> inlines = new List<Inline>();
+            string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
+            strAppend += " ";
+            strAppend += resultData.Path;
+            inlines.Add(UwpHelper.GenRunFromString(strAppend));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileMetaToTextMain(ResultDataNet resultData)
+        {
+            string strShortSize = UwpHelper.ConvertSizeToShortSizeStr(resultData.Size);
+            List<Inline> inlines = new List<Inline>();
+            string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
+            strSize += " ";
+            strSize += resultData.Size;
+            strSize += " ";
+            strSize += m_resourceLoaderMain.GetString("ResultByte");
+            if (!string.IsNullOrEmpty(strShortSize))
+            {
+                strSize += " (";
+                strSize += strShortSize;
+                strSize += ")";
+            }
+            string strModifiedTime = m_resourceLoaderMain.GetString("ResultModifiedTime");
+            strModifiedTime += " ";
+            strModifiedTime += resultData.ModifiedDate;
+            inlines.Add(UwpHelper.GenRunFromString(strSize));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            inlines.Add(UwpHelper.GenRunFromString(strModifiedTime));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            if (!string.IsNullOrEmpty(resultData.Version))
+            {
+                string strVersion = m_resourceLoaderMain.GetString("ResultFileVersion");
+                strVersion += " ";
+                strVersion += resultData.Version;
+                inlines.Add(UwpHelper.GenRunFromString(strVersion));
+                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            }
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileHashToTextMain(ResultDataNet resultData, bool uppercase)
+        {
+            string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
+
+            if (uppercase)
+            {
+                strFileMD5 = resultData.MD5.ToUpper();
+                strFileSHA1 = resultData.SHA1.ToUpper();
+                strFileSHA256 = resultData.SHA256.ToUpper();
+                strFileSHA512 = resultData.SHA512.ToUpper();
+            }
+            else
+            {
+                strFileMD5 = resultData.MD5.ToLower();
+                strFileSHA1 = resultData.SHA1.ToLower();
+                strFileSHA256 = resultData.SHA256.ToLower();
+                strFileSHA512 = resultData.SHA512.ToLower();
+            }
+
+            List<Inline> inlines = new List<Inline>();
+            inlines.Add(UwpHelper.GenRunFromString("MD5: "));
+            Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForTextMain(strFileMD5);
+            m_hyperlinksMain.Add(hyperlinkMD5);
+            inlines.Add(hyperlinkMD5);
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
+            Hyperlink hyperlinkSHA1 = GenHyperlinkFromStringForTextMain(strFileSHA1);
+            m_hyperlinksMain.Add(hyperlinkSHA1);
+            inlines.Add(hyperlinkSHA1);
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
+            Hyperlink hyperlinkSHA256 = GenHyperlinkFromStringForTextMain(strFileSHA256);
+            m_hyperlinksMain.Add(hyperlinkSHA256);
+            inlines.Add(hyperlinkSHA256);
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
+            Hyperlink hyperlinkSHA512 = GenHyperlinkFromStringForTextMain(strFileSHA512);
+            m_hyperlinksMain.Add(hyperlinkSHA512);
+            inlines.Add(hyperlinkSHA512);
+            inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileErrToTextMain(ResultDataNet resultData)
+        {
+            List<Inline> inlines = new List<Inline>();
+            string strAppend = resultData.Error;
+            inlines.Add(UwpHelper.GenRunFromString(strAppend));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
         private void HandleCommandLineArgs()
         {
             if (!IsAbleToCalcFiles())
@@ -853,13 +949,7 @@ namespace FilesHashUwp
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                List<Inline> inlines = new List<Inline>();
-                string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
-                strAppend += " ";
-                strAppend += resultData.Path;
-                inlines.Add(UwpHelper.GenRunFromString(strAppend));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                AppendInlinesToTextMain(inlines);
+                AppendFileNameToTextMain(resultData);
             }));
         }
 
@@ -867,35 +957,7 @@ namespace FilesHashUwp
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                string strShortSize = UwpHelper.ConvertSizeToShortSizeStr(resultData.Size);
-                List<Inline> inlines = new List<Inline>();
-                string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
-                strSize += " ";
-                strSize += resultData.Size;
-                strSize += " ";
-                strSize += m_resourceLoaderMain.GetString("ResultByte");
-                if (!string.IsNullOrEmpty(strShortSize))
-                {
-                    strSize += " (";
-                    strSize += strShortSize;
-                    strSize += ")";
-                }
-                string strModifiedTime = m_resourceLoaderMain.GetString("ResultModifiedTime");
-                strModifiedTime += " ";
-                strModifiedTime += resultData.ModifiedDate;
-                inlines.Add(UwpHelper.GenRunFromString(strSize));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                inlines.Add(UwpHelper.GenRunFromString(strModifiedTime));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                if (!string.IsNullOrEmpty(resultData.Version))
-                {
-                    string strVersion = m_resourceLoaderMain.GetString("ResultFileVersion");
-                    strVersion += " ";
-                    strVersion += resultData.Version;
-                    inlines.Add(UwpHelper.GenRunFromString(strVersion));
-                    inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                }
-                AppendInlinesToTextMain(inlines);
+                AppendFileMetaToTextMain(resultData);
             }));
         }
 
@@ -903,45 +965,7 @@ namespace FilesHashUwp
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
-
-                if (uppercase)
-                {
-                    strFileMD5 = resultData.MD5.ToUpper();
-                    strFileSHA1 = resultData.SHA1.ToUpper();
-                    strFileSHA256 = resultData.SHA256.ToUpper();
-                    strFileSHA512 = resultData.SHA512.ToUpper();
-                }
-                else
-                {
-                    strFileMD5 = resultData.MD5.ToLower();
-                    strFileSHA1 = resultData.SHA1.ToLower();
-                    strFileSHA256 = resultData.SHA256.ToLower();
-                    strFileSHA512 = resultData.SHA512.ToLower();
-                }
-
-                List<Inline> inlines = new List<Inline>();
-                inlines.Add(UwpHelper.GenRunFromString("MD5: "));
-                Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForTextMain(strFileMD5);
-                m_hyperlinksMain.Add(hyperlinkMD5);
-                inlines.Add(hyperlinkMD5);
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                inlines.Add(UwpHelper.GenRunFromString("SHA1: "));
-                Hyperlink hyperlinkSHA1 = GenHyperlinkFromStringForTextMain(strFileSHA1);
-                m_hyperlinksMain.Add(hyperlinkSHA1);
-                inlines.Add(hyperlinkSHA1);
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                inlines.Add(UwpHelper.GenRunFromString("SHA256: "));
-                Hyperlink hyperlinkSHA256 = GenHyperlinkFromStringForTextMain(strFileSHA256);
-                m_hyperlinksMain.Add(hyperlinkSHA256);
-                inlines.Add(hyperlinkSHA256);
-                inlines.Add(UwpHelper.GenRunFromString("\r\n"));
-                inlines.Add(UwpHelper.GenRunFromString("SHA512: "));
-                Hyperlink hyperlinkSHA512 = GenHyperlinkFromStringForTextMain(strFileSHA512);
-                m_hyperlinksMain.Add(hyperlinkSHA512);
-                inlines.Add(hyperlinkSHA512);
-                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
-                AppendInlinesToTextMain(inlines);
+                AppendFileHashToTextMain(resultData, uppercase);
             }));
         }
 
@@ -949,11 +973,7 @@ namespace FilesHashUwp
         {
             _ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(() =>
             {
-                List<Inline> inlines = new List<Inline>();
-                string strAppend = resultData.Error;
-                inlines.Add(UwpHelper.GenRunFromString(strAppend));
-                inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
-                AppendInlinesToTextMain(inlines);
+                AppendFileErrToTextMain(resultData);
             }));
         }
 
