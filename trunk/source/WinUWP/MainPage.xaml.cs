@@ -645,6 +645,15 @@ namespace FilesHashUwp
             if (result == ContentDialogResult.Primary)
             {
                 string strHashToFind = m_textBoxFindHash.Text;
+                ResultDataNet[] resultDataNet = m_hashMgmt.FindResult(strHashToFind);
+                if (resultDataNet == null || resultDataNet.Length == 0)
+                {
+                    // No match
+                }
+                else
+                {
+                    // Found some
+                }
             }
         }
 
