@@ -38,7 +38,6 @@
             <TextBlock
                 x:Name="TextBlockAbout"
                 Margin="160,10,10,50"
-                Text="[About]"
                 TextWrapping="Wrap" />
 
             <HyperlinkButton

@@ -165,6 +165,9 @@
   <data name="MenuItemVirusTotal" xml:space="preserve">
     <value>Search VirusTotal</value>
   </data>
+  <data name="AboutInfoTitle" xml:space="preserve">
+    <value>fHash: Files' Hash Calculator</value>
+  </data>
   <data name="FindDialogTitle" xml:space="preserve">
     <value>Verify</value>
   </data>

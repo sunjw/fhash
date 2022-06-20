@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿using Windows.ApplicationModel;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -28,6 +29,13 @@ namespace FilesHashUwp
 
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            string strAboutInfoTitle = m_resourceLoaderMain.GetString("AboutInfoTitle");
+            PackageVersion packVersion = Package.Current.Id.Version;
+            string strVersion = string.Format("{0}.{1}.{2}.{3}",
+                packVersion.Major, packVersion.Minor, packVersion.Build, packVersion.Revision);
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoTitle));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strVersion));
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
