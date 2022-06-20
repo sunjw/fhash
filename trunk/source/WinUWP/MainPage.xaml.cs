@@ -432,6 +432,10 @@ namespace FilesHashUwp
             {
                 ClearTextMain();
             }
+            if (m_mainPageStat == MainPageControlStat.MainPageVerify)
+            {
+                ClearFindResult();
+            }
 
             m_hashMgmt.AddFiles(filePaths.ToArray());
 

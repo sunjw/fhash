@@ -80,17 +80,22 @@ Array<ResultDataNet>^ HashMgmt::FindResult(String^ pstrHashToFind)
 {
 	tstring tstrHashToFind(pstrHashToFind->Data());
 	tstrHashToFind = strtotstr(str_upper(tstrtostr(tstrHashToFind))); // Upper
+	tstrHashToFind = strtrim(tstrHashToFind);
 
 	ResultList findResultList;
-	ResultList::iterator itr = m_threadData.resultList.begin();
-	for (; itr != m_threadData.resultList.end(); ++itr)
+	ResultList::iterator itr;
+	if (tstrHashToFind.size() > 0)
 	{
-		if (itr->tstrMD5.find(tstrHashToFind) != tstring::npos ||
+		itr = m_threadData.resultList.begin();
+		for (; itr != m_threadData.resultList.end(); ++itr)
+		{
+			if (itr->tstrMD5.find(tstrHashToFind) != tstring::npos ||
 				itr->tstrSHA1.find(tstrHashToFind) != tstring::npos ||
 				itr->tstrSHA256.find(tstrHashToFind) != tstring::npos ||
 				itr->tstrSHA512.find(tstrHashToFind) != tstring::npos)
-		{
-			findResultList.push_back(*itr);
+			{
+				findResultList.push_back(*itr);
+			}
 		}
 	}
 
