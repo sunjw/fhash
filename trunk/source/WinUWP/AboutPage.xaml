@@ -29,9 +29,7 @@
         <Grid x:Name="GridAboutMain" Margin="0,32,0,0">
             <TextBlock
                 x:Name="TextBlockAbout"
-                Margin="10,0,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
+                Margin="160,10,10,50"
                 Text="[About]"
                 TextWrapping="Wrap" />
 
