@@ -225,7 +225,7 @@ namespace FilesHashUwp
             {
                 Height = (double)Application.Current.Resources["TextControlThemeMinHeight"],
                 Width = 400,
-                PlaceholderText = m_resourceLoaderMain.GetString("HashValuePlaceholder")
+                PlaceholderText = m_resourceLoaderMain.GetString("HashValue")
             };
             m_dialogFind = new ContentDialog()
             {
@@ -627,13 +627,28 @@ namespace FilesHashUwp
             }
         }
 
-        private void ShowFindResult(ResultDataNet[] resultDataNet)
+        private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNet)
         {
             // Switch m_paragraphMain
             RichTextMain.Blocks.Clear();
             m_paragraphMain = m_paragraphFind;
             RichTextMain.Blocks.Add(m_paragraphMain);
             m_hyperlinksMain = m_hyperlinksFind;
+
+            // Show result
+            List<Inline> inlines = new List<Inline>();
+            string strFindResult = m_resourceLoaderMain.GetString("FindResultTitle");
+            inlines.Add(UwpHelper.GenRunFromString(strFindResult));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            string strHashValue = m_resourceLoaderMain.GetString("HashValue");
+            strHashValue += " ";
+            inlines.Add(UwpHelper.GenRunFromString(strHashValue));
+            inlines.Add(UwpHelper.GenRunFromString(strHashToFind));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            string strFindResultBegin = m_resourceLoaderMain.GetString("FindResultBegin");
+            inlines.Add(UwpHelper.GenRunFromString(strFindResultBegin));
+            inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
 
             if (resultDataNet == null || resultDataNet.Length == 0)
             {
@@ -655,6 +670,8 @@ namespace FilesHashUwp
             RichTextMain.Blocks.Add(m_paragraphMain);
             ScrollTextMainToBottom();
             m_hyperlinksMain = m_hyperlinksResult;
+
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
 
             // Clear find result
             m_paragraphFind.Inlines.Clear();
@@ -827,7 +844,7 @@ namespace FilesHashUwp
             {
                 string strHashToFind = m_textBoxFindHash.Text;
                 ResultDataNet[] resultDataNet = m_hashMgmt.FindResult(strHashToFind);
-                ShowFindResult(resultDataNet);
+                ShowFindResult(strHashToFind, resultDataNet);
             }
         }
 
@@ -836,7 +853,6 @@ namespace FilesHashUwp
             if (m_mainPageStat == MainPageControlStat.MainPageVerify)
             {
                 ClearFindResult();
-                SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
             }
             else
             {

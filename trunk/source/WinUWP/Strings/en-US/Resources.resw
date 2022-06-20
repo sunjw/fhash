@@ -168,7 +168,13 @@
   <data name="FindDialogTitle" xml:space="preserve">
     <value>Verify</value>
   </data>
-  <data name="HashValuePlaceholder" xml:space="preserve">
+  <data name="FindResultBegin" xml:space="preserve">
+    <value>Result:</value>
+  </data>
+  <data name="FindResultTitle" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
     <value>Hash:</value>
   </data>
 </root>
