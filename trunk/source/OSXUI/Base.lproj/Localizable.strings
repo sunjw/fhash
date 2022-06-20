@@ -32,7 +32,7 @@
 "MAINDLG_CALCU_TERMINAL" = "Terminated";
 "MAINDLG_FIND_IN_RESULT" = "Verify";
 "MAINDLG_RESULT" = "Result:";
-"MAINDLG_NORESULT" = "Nothing Found";
+"MAINDLG_NORESULT" = "Nothing found";
 "MAINDLG_FILE_PROGRESS" = "File";
 "MAINDLG_TOTAL_PROGRESS" = "Total";
 "MAINDLG_UPPER_HASH" = "Uppercase";
