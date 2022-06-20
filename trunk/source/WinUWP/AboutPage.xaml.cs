@@ -14,6 +14,8 @@ namespace FilesHashUwp
     {
         private ResourceLoader m_resourceLoaderMain;
 
+        private bool m_textBlockAboutInit = false;
+
         public AboutPage()
         {
             InitializeComponent();
@@ -29,6 +31,12 @@ namespace FilesHashUwp
 
         private void GridRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            if (m_textBlockAboutInit)
+            {
+                return;
+            }
+            m_textBlockAboutInit = true;
+
             NativeHelper nativeHelper = new NativeHelper();
 
             string strAboutInfoTitle = m_resourceLoaderMain.GetString("AboutInfoTitle");
@@ -45,6 +53,12 @@ namespace FilesHashUwp
                 TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strArch));
             }
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+
+            string strAboutInfoOsTitle = m_resourceLoaderMain.GetString("AboutInfoOsTitle");
+            string strOsInfo = nativeHelper.GetWindowsInfo();
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoOsTitle));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n"));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strOsInfo));
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
