@@ -7,6 +7,7 @@ namespace FilesHashUwp
 	public:
 		NativeHelper();
 
+		Platform::String^ GetTargetArch();
 		Platform::String^ GetWindowsInfo();
 	};
 }

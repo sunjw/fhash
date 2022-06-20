@@ -14,6 +14,16 @@ NativeHelper::NativeHelper()
 {
 }
 
+String^ NativeHelper::GetTargetArch()
+{
+	tstring tstrTarget;
+#if defined (_M_AMD64)
+	tstrTarget = TEXT("x64");
+#endif
+	String^ pstrTarget = ConvertToPlatStr(tstrTarget.c_str());
+	return pstrTarget;
+}
+
 String^ NativeHelper::GetWindowsInfo()
 {
 	tstring tstrWinInfo = WindowsComm::GetWindowsInfo();
