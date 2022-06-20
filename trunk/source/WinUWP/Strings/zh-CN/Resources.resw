@@ -117,11 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonAbout.Content" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="ButtonVerify.Content" xml:space="preserve">
+    <value>验证</value>
+  </data>
   <data name="ButtonOpenOpen" xml:space="preserve">
     <value>打开...</value>
   </data>
+  <data name="MainPageInitInfo" xml:space="preserve">
+    <value>Drag files here or click open to start calculate.</value>
+  </data>
+  <data name="TitleAppName" xml:space="preserve">
+    <value>fHash</value>
+  </data>
+  <data name="ButtonOpenStop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="MenuItemCopy" xml:space="preserve">
+    <value>复制哈希值</value>
+  </data>
   <data name="MenuItemGoogle" xml:space="preserve">
     <value>搜索 Google</value>
+  </data>
+  <data name="ButtonClear.Content" xml:space="preserve">
+    <value>清除</value>
   </data>
   <data name="ResultByte" xml:space="preserve">
     <value>字节</value>
@@ -135,13 +156,52 @@
   <data name="ResultModifiedTime" xml:space="preserve">
     <value>修改日期:</value>
   </data>
+  <data name="CheckBoxUppercase.Content" xml:space="preserve">
+    <value>大写 Hash</value>
+  </data>
   <data name="ResultFileVersion" xml:space="preserve">
     <value>版本:</value>
   </data>
-  <data name="MenuItemCopy" xml:space="preserve">
-    <value>复制哈希值</value>
-  </data>
   <data name="MenuItemVirusTotal" xml:space="preserve">
     <value>搜索 VirusTotal</value>
+  </data>
+  <data name="AboutInfoMD5" xml:space="preserve">
+    <value>MD5 实现 copyright (C) RSA Data Security, Inc.</value>
+  </data>
+  <data name="AboutInfoOsTitle" xml:space="preserve">
+    <value>当前操作系统:</value>
+  </data>
+  <data name="AboutInfoSHA256" xml:space="preserve">
+    <value>SHA256 实现 copyright (C) Niels Moller</value>
+  </data>
+  <data name="AboutInfoSHA512" xml:space="preserve">
+    <value>SHA512 实现 copyright (C) Aaron D. Gifford</value>
+  </data>
+  <data name="AboutInfoTitle" xml:space="preserve">
+    <value>fHash: 文件 Hash 计算器</value>
+  </data>
+  <data name="FindDialogTitle" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="FindNoResult" xml:space="preserve">
+    <value>无匹配结果</value>
+  </data>
+  <data name="FindResultBegin" xml:space="preserve">
+    <value>匹配的结果:</value>
+  </data>
+  <data name="FindResultTitle" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="HashValue" xml:space="preserve">
+    <value>Hash:</value>
+  </data>
+  <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
+    <value>Hosted on GitHub</value>
+  </data>
+  <data name="HyperlinkButtonGithub.NavigateUri" xml:space="preserve">
+    <value>https://github.com/sunjw/fhash</value>
+  </data>
+  <data name="ResultWaitingStart" xml:space="preserve">
+    <value>Prepare to start calculation.</value>
   </data>
 </root>
