@@ -30,7 +30,7 @@ using namespace sunjwbase;
 
 #define UPPERCASE_DEFAULT_KEY @"upperCaseKey"
 
-enum MainViewControllerState {
+typedef NS_OPTIONS(NSUInteger, MainViewControllerState) {
     MAINVC_NONE = 0,        // clear state
     MAINVC_CALC_ING,        // calculating
     MAINVC_CALC_FINISH,     // calculating finished/stopped
