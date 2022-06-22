@@ -1,7 +1,9 @@
 ﻿using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -38,6 +40,12 @@ namespace FilesHashUwp
             m_textBlockAboutInit = true;
 
             NativeHelper nativeHelper = new NativeHelper();
+
+            string strAboutTitle = m_resourceLoaderMain.GetString("AboutTitle");
+            Run runAboutTitle = UwpHelper.GenRunFromString(strAboutTitle);
+            runAboutTitle.FontWeight = FontWeights.Bold;
+            TextBlockAbout.Inlines.Add(runAboutTitle);
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
 
             string strAboutInfoTitle = m_resourceLoaderMain.GetString("AboutInfoTitle");
             PackageVersion packVersion = Package.Current.Id.Version;

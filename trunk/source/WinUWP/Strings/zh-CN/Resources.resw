@@ -195,4 +195,7 @@
   <data name="ResultWaitingStart" xml:space="preserve">
     <value>准备开始计算。</value>
   </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>关于 fHash</value>
+  </data>
 </root>
