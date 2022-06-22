@@ -35,10 +35,19 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Source="ms-appx:///Assets/Square150x150Logo.scale-200.png" />
-            <TextBlock
-                x:Name="TextBlockAbout"
-                Margin="120,10,10,50"
-                TextWrapping="Wrap" />
+
+            <Grid x:Name="GridAboutContent" Margin="120,10,10,50">
+                <TextBlock
+                    x:Name="TextBlockAboutTitle"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="TextBlockAbout"
+                    Margin="0,30,0,0"
+                    TextWrapping="Wrap" />
+            </Grid>
 
             <HyperlinkButton
                 x:Name="HyperlinkButtonGithub"

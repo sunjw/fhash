@@ -44,8 +44,7 @@ namespace FilesHashUwp
             string strAboutTitle = m_resourceLoaderMain.GetString("AboutTitle");
             Run runAboutTitle = UwpHelper.GenRunFromString(strAboutTitle);
             runAboutTitle.FontWeight = FontWeights.Bold;
-            TextBlockAbout.Inlines.Add(runAboutTitle);
-            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("\r\n\r\n"));
+            TextBlockAboutTitle.Inlines.Add(runAboutTitle);
 
             string strAboutInfoTitle = m_resourceLoaderMain.GetString("AboutInfoTitle");
             PackageVersion packVersion = Package.Current.Id.Version;
