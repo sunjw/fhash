@@ -31,12 +31,12 @@
                 x:Name="ImageAppIconAbout"
                 Width="90"
                 Height="90"
-                Margin="20,20,0,0"
+                Margin="25,20,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Source="ms-appx:///Assets/StoreLogo.scale-400.png" />
 
-            <Grid x:Name="GridAboutContent" Margin="130,20,10,50">
+            <Grid x:Name="GridAboutContent" Margin="140,20,10,50">
                 <TextBlock
                     x:Name="TextBlockAboutTitle"
                     Margin="0,0,0,0"
