@@ -41,7 +41,9 @@ namespace FilesHashUwp
         private CoreApplicationViewTitleBar m_coreAppViewTitleBar;
         private ApplicationViewTitleBar m_appViewTitleBar;
 
-        private Thickness m_imageAppIconMargin;
+        private Thickness m_marginForAboutBackButton = new Thickness(48, 0, 0, 0);
+        private Thickness m_marginImageAppIcon;
+        private Thickness m_marginTextBlockAppName;
 
         private ContentDialog m_dialogFind;
         private TextBox m_textBoxFindHash;
@@ -171,7 +173,9 @@ namespace FilesHashUwp
             if (!PopupAbout.IsOpen)
             {
                 GridMain.Visibility = Visibility.Collapsed;
-                ImageAppIcon.Margin = new Thickness(48, 0, 0, 0);
+                // ImageAppIcon.Margin = m_marginForAboutBackButton;
+                ImageAppIcon.Visibility = Visibility.Collapsed;
+                TextBlockAppName.Margin = m_marginForAboutBackButton;
                 PopupAbout.IsOpen = true;
             }
         }
@@ -181,7 +185,9 @@ namespace FilesHashUwp
             if (PopupAbout.IsOpen)
             {
                 PopupAbout.IsOpen = false;
-                ImageAppIcon.Margin = m_imageAppIconMargin;
+                TextBlockAppName.Margin = m_marginTextBlockAppName;
+                // ImageAppIcon.Margin = m_marginImageAppIcon;
+                ImageAppIcon.Visibility = Visibility.Visible;
                 GridMain.Visibility = Visibility.Visible;
             }
         }
@@ -209,7 +215,8 @@ namespace FilesHashUwp
         {
             m_coreAppViewTitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(GridTitleBarCustom);
-            m_imageAppIconMargin = ImageAppIcon.Margin;
+            m_marginImageAppIcon = ImageAppIcon.Margin;
+            m_marginTextBlockAppName = TextBlockAppName.Margin;
 
             string titleAppName = m_resourceLoaderMain.GetString("TitleAppName");
 #if DEBUG
