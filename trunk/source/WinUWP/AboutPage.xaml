@@ -34,7 +34,7 @@
                 Margin="25,20,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Source="ms-appx:///Assets/StoreLogo.scale-400.png" />
+                Source="ms-appx:///Assets/AboutLogo.large.png" />
 
             <Grid x:Name="GridAboutContent" Margin="140,20,10,50">
                 <TextBlock
