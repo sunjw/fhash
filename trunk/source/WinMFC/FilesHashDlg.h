@@ -89,8 +89,8 @@ protected:
 	void PrepareAdvTaskbar();
 
 	void ResultFind(CString strFile, CString strHash);
-
 	void AppendResult(const ResultData& result);
+	void ClearFind();
 
 	void DoMD5();
 	void StopWorkingThread();

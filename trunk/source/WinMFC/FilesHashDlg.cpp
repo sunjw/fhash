@@ -403,15 +403,7 @@ void CFilesHashDlg::OnBnClickedClean()
 		}
 		else if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
-			// 退出搜索模式
-			m_bFind = FALSE;
-			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
-
-			m_btnFind.EnableWindow(TRUE);
-			m_btnOpen.EnableWindow(TRUE);
-
-			RefreshResult();
-			RefreshMainText();
+			ClearFind();
 		}
 	}
 }
@@ -951,3 +943,15 @@ void CFilesHashDlg::AppendResult(const ResultData& result)
 	UIBridgeMFC::AppendResultToHyperEdit(result, m_thrdData.uppercase, &m_editMain);
 }
 
+void CFilesHashDlg::ClearFind()
+{
+	// 退出搜索模式
+	m_bFind = FALSE;
+	m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR));
+
+	m_btnFind.EnableWindow(TRUE);
+	m_btnOpen.EnableWindow(TRUE);
+
+	RefreshResult();
+	RefreshMainText();
+}
