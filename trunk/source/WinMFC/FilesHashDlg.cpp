@@ -544,7 +544,12 @@ void CFilesHashDlg::SetWholeProgPos(UINT pos)
 
 void CFilesHashDlg::DoMD5()
 {
-	if(m_hWorkThread)
+	if (m_bFind)
+	{
+		ClearFind();
+	}
+
+	if (m_hWorkThread)
 	{
 		CloseHandle(m_hWorkThread);
 	}
