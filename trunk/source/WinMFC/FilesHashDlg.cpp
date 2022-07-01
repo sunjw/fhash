@@ -380,11 +380,11 @@ void CFilesHashDlg::OnBnClickedAbout()
 
 void CFilesHashDlg::OnBnClickedClean()
 {
-	if(!m_thrdData.threadWorking)
+	if (!m_thrdData.threadWorking)
 	{
 		CString strBtnText;
 		m_btnClr.GetWindowText(strBtnText);
-		if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR)) == 0)
+		if (strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR)) == 0)
 		{
 			m_mainMtx.lock();
 			{
@@ -401,7 +401,7 @@ void CFilesHashDlg::OnBnClickedClean()
 
 			SetWholeProgPos(0);
 		}
-		else if(strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
+		else if (strBtnText.Compare(GetStringByKey(MAINDLG_CLEAR_VERIFY)) == 0)
 		{
 			ClearFind();
 		}
@@ -413,10 +413,10 @@ void CFilesHashDlg::OnBnClickedFind()
 	// TODO: 在此添加控件通知处理程序代码
 	CFindDlg Find;
 	Find.SetFindHash(_T(""));
-	if(IDOK == Find.DoModal())
+	if (IDOK == Find.DoModal())
 	{
 		m_strFindHash = Find.GetFindHash().Trim();
-		if(m_strFindHash.Compare(_T("")) != 0)
+		if (m_strFindHash.Compare(_T("")) != 0)
 		{
 			m_bFind = TRUE; // 进入搜索模式
 			m_btnClr.SetWindowText(GetStringByKey(MAINDLG_CLEAR_VERIFY));
@@ -538,8 +538,10 @@ void CFilesHashDlg::OnTimer(UINT_PTR nIDEvent)
 void CFilesHashDlg::SetWholeProgPos(UINT pos)
 {
 	m_progWhole.SetPos(pos);
-	if(m_bAdvTaskbar)
+	if (m_bAdvTaskbar)
+	{
 		pTl->SetProgressValue(GetSafeHwnd(), pos, 99);
+	}
 }
 
 void CFilesHashDlg::DoMD5()
