@@ -11,8 +11,8 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="SunJW.fHashUwp"
-    Publisher="CN=Sun Junwen"
+    Name="3089SunJunwen.fHash"
+    Publisher="CN=D9E78D3B-78DB-4079-8C66-F819B4C1DB61"
     Version="3.0.0.0" />
 
   <Properties>
