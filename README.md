@@ -1,4 +1,4 @@
-#### An open source files' hash calculator for Windows and macOS.
+#### An open source files hash calculator for Windows and macOS.
  * MD5, SHA1, SHA256 and SHA512.
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
