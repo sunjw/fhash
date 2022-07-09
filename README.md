@@ -17,11 +17,12 @@ Project site: https://github.com/sunjw/fhash
 
 ### DOWNLOAD
 Windows   
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
 [![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)   
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
 macOS   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)   
 [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/macOS/)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
+
 
 ### LICENSE
 GPL 2.0 for codes hosted on GitHub.   
