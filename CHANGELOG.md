@@ -1,3 +1,7 @@
+3.0.0.0 (49) 2022-07-09  
+Windows UWP first release (3.x)  
+Fix other issues  
+
 2.3.0.0 (47) 2022-05-10  
 Add SHA512  
 
