@@ -80,6 +80,7 @@
                 <muxc:ProgressBar
                     x:Name="ProgressBarMain"
                     Width="Auto"
+                    Height="5"
                     Margin="0,0,0,0"
                     VerticalAlignment="Top"
                     Value="0" />
