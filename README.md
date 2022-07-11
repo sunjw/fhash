@@ -9,21 +9,21 @@
 
 The icon "希" is from hash in Chinese "哈希".   
    
-Current version: 2.3.0
+Current version: 3.0.0
 
 Project site: https://github.com/sunjw/fhash
 
 <a href="https://ko-fi.com/Y8Y72L3FZ"><img src="https://cdn.ko-fi.com/cdn/kofi4.png?v=2" alt="Buy Me a Coffee at ko-fi.com" height="36"></a>
 
 ### DOWNLOAD
-Windows   
+Windows 10 and later   
 [![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)   
 Windows (2.x)   
 [![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
 [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
 macOS   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/macOS/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/3.0.0)
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/3.0.0/macOS/)   
 
 
 ### LICENSE
