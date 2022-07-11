@@ -33,12 +33,12 @@ BEGIN
         BLOCK "080403a8"
         BEGIN
             VALUE "CompanyName", "SUN Junwen"
-            VALUE "FileDescription", "fHash: Files' Hash Calculator"
+            VALUE "FileDescription", "fHash: Files Hash Calculator"
             VALUE "FileVersion", STR_VERSION
             VALUE "InternalName", "fHash.exe"
             VALUE "LegalCopyright", "(C) 2007- SUN Junwen."
             VALUE "OriginalFilename", "fHash.exe"
-            VALUE "ProductName", "fHash: Files' Hash Calculator"
+            VALUE "ProductName", "fHash: Files Hash Calculator"
             VALUE "ProductVersion", STR_VERSION
         END
     END
