@@ -52,7 +52,7 @@
 
 // About Dialog Strings
 "ABOUTDLG_TITLE" = "About fHash";
-"ABOUTDLG_INFO_TITLE" = "fHash: Files' Hash Calculator";
+"ABOUTDLG_INFO_TITLE" = "fHash: Files Hash Calculator";
 "ABOUTDLG_INFO_RIGHT" = "Copyright (C) 2007- SUN Junwen.";
 "ABOUTDLG_INFO_MD5" = "MD5 implementation copyright (C) RSA Data Security, Inc.";
 "ABOUTDLG_INFO_SHA256" = "SHA256 implementation copyright (C) Niels Moller";
