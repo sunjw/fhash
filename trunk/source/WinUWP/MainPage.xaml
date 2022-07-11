@@ -60,7 +60,7 @@
 
             <ScrollViewer
                 x:Name="ScrollViewerMain"
-                Margin="8,5,8,56"
+                Margin="8,5,8,57"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto">
 
@@ -72,7 +72,7 @@
 
             <Grid
                 x:Name="GridBottom"
-                Height="56"
+                Height="57"
                 Margin="0,0,0,0"
                 VerticalAlignment="Bottom"
                 Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}">
