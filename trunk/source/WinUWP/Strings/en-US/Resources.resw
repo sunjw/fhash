@@ -181,7 +181,7 @@
     <value>SHA512 implementation copyright (C) Aaron D. Gifford</value>
   </data>
   <data name="AboutInfoTitle" xml:space="preserve">
-    <value>fHash: Files' Hash Calculator</value>
+    <value>fHash: Files Hash Calculator</value>
   </data>
   <data name="FindDialogTitle" xml:space="preserve">
     <value>Verify</value>
