@@ -17,7 +17,8 @@ Project site: https://github.com/sunjw/fhash
 
 ### DOWNLOAD
 Windows   
-[![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)
+[![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)   
+Windows (2.x)   
 [![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/2.3.0)
 [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.3.0/win/)   
 macOS   
