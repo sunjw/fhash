@@ -406,10 +406,10 @@ namespace WindowsComm
 					tstring tstrCSDVersion(osvi.szCSDVersion);
 					if (tstrCSDVersion.length() > 0)
 					{
-
+						string strCSDVersion = tstrtostr(tstrCSDVersion);
 						spinfo = strappendformat(spinfo,
 							"%s (Build %d)\r\n",
-							tstrCSDVersion.c_str(),
+							strCSDVersion.c_str(),
 							osvi.dwBuildNumber & 0xFFFF);
 					}
 					else
@@ -428,9 +428,10 @@ namespace WindowsComm
 				tstring tstrCSDVersion(osvi.szCSDVersion);
 				if (tstrCSDVersion.length() > 0)
 				{
+					string strCSDVersion = tstrtostr(tstrCSDVersion);
 					spinfo = strappendformat(spinfo,
 						"%s (Build %d)\r\n",
-						tstrCSDVersion.c_str(),
+						strCSDVersion.c_str(),
 						osvi.dwBuildNumber & 0xFFFF);
 				}
 				else
