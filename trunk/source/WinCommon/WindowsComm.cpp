@@ -403,11 +403,13 @@ namespace WindowsComm
 				else // Windows NT 4.0 prior to SP6a
 				{
 					string spinfo;
-					if (wcslen(osvi.szCSDVersion) > 0)
+					tstring tstrCSDVersion(osvi.szCSDVersion);
+					if (tstrCSDVersion.length() > 0)
 					{
+
 						spinfo = strappendformat(spinfo,
 							"%s (Build %d)\r\n",
-							osvi.szCSDVersion,
+							tstrCSDVersion.c_str(),
 							osvi.dwBuildNumber & 0xFFFF);
 					}
 					else
@@ -423,11 +425,12 @@ namespace WindowsComm
 			else // not Windows NT 4.0 
 			{
 				string spinfo;
-				if (wcslen(osvi.szCSDVersion) > 0)
+				tstring tstrCSDVersion(osvi.szCSDVersion);
+				if (tstrCSDVersion.length() > 0)
 				{
 					spinfo = strappendformat(spinfo,
 						"%s (Build %d)\r\n",
-						osvi.szCSDVersion,
+						tstrCSDVersion.c_str(),
 						osvi.dwBuildNumber & 0xFFFF);
 				}
 				else
@@ -446,14 +449,14 @@ namespace WindowsComm
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
 			{
 				strOsinfo.append("Microsoft Windows 95 ");
-				if (osvi.szCSDVersion[1] == 'C' || osvi.szCSDVersion[1] == 'B')
+				if (osvi.szCSDVersion[1] == TEXT('C') || osvi.szCSDVersion[1] == TEXT('B'))
 					strOsinfo.append("OSR2 ");
 			} 
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
 			{
 				strOsinfo.append("Microsoft Windows 98 ");
-				if (osvi.szCSDVersion[1] == 'A' || osvi.szCSDVersion[1] == 'B')
+				if (osvi.szCSDVersion[1] == TEXT('A') || osvi.szCSDVersion[1] == TEXT('B'))
 					strOsinfo.append("SE ");
 			} 
 
