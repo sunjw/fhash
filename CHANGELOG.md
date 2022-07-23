@@ -1,3 +1,9 @@
+3.0.1.0 (50) 2022-07-23  
+Windows UWP fix progress bar high DPI display issue  
+Windows UWP fix Windows version detection issue  
+Fix other issues  
+Windows MFC release 2.4.0  
+
 3.0.0.0 (49) 2022-07-09  
 Windows UWP first release (3.x)  
 Fix other issues  

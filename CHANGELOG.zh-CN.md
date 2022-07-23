@@ -1,3 +1,9 @@
+3.0.1.0 (50) 2022-07-23  
+Windows UWP 修复进度条高 DPI 显示问题  
+Windows UWP 修复 Windows 版本检测问题  
+修复其它问题  
+Windows MFC 发布 2.4.0  
+
 3.0.0.0 (49) 2022-07-09  
 Windows UWP 首次发布 (3.x)  
 修复其它问题  
