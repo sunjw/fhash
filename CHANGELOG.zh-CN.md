@@ -1,3 +1,7 @@
+3.0.2.0 (51) 2022-08-31  
+Windows UWP 更新组件  
+修复其它问题  
+
 3.0.1.0 (50) 2022-07-23  
 Windows UWP 修复进度条高 DPI 显示问题  
 Windows UWP 修复 Windows 版本检测问题  

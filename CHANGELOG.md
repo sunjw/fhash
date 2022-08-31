@@ -1,3 +1,7 @@
+3.0.2.0 (51) 2022-08-31  
+Windows UWP update components  
+Fix other issues  
+
 3.0.1.0 (50) 2022-07-23  
 Windows UWP fix progress bar high DPI display issue  
 Windows UWP fix Windows version detection issue  
