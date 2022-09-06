@@ -37,7 +37,7 @@ Sun Junwen sunjw8888 at gmail.com
 Windows   
 ![Image of light and dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_proc_light_cut_fusion.png)   
 ![Image of main dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_start_light_cut.png)   
-![Image of about dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_about_dark_cut.png)   
+![Image of about dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_about_dark_cut.jpg)   
 ![Image of Finder context menu](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_context_menu_light_cut.png)   
 ![Image of hash result in light mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_done_light_cut.png)   
 ![Image of hash result in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_context_dark_cut.png)   
