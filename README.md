@@ -40,7 +40,7 @@ Windows
 ![Image of about dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_about_dark_cut.jpg)   
 ![Image of Finder context menu](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_context_menu_light_cut.png)   
 ![Image of hash result in light mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_done_light_cut.png)   
-![Image of hash result in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_context_dark_cut.png)   
+![Image of hash result in dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/win_uwp_calc_context_dark_cut.jpg)   
 macOS   
 ![Image of light and dark mode](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_progress_joint.png)   
 ![Image of main dialog](https://raw.githubusercontent.com/sunjw/fhash/master/assets/mac_bigsur_start.png)   
