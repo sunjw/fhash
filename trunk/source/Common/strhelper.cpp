@@ -296,8 +296,8 @@ std::string sunjwbase::fixnewline(const std::string& str)
 	strRepairSrc += (char)10;
 	ret = strreplace(ret, strRepairSrc, strRepairDst);
 	// convert new line, /13->/13/10, /13/10/10->/13/10
-	strRepairSrc = "";
-	strRepairDst = "";
+	strRepairSrc.clear();
+	strRepairDst.clear();
 	strRepairSrc += (char)13;
 	strRepairDst += (char)13;
 	strRepairDst += (char)10;

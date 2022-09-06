@@ -137,10 +137,10 @@ namespace WindowsUtils
 	bool FindShlExtDll(TCHAR *pszExeFullPath, TCHAR *pszShlDllPath)
 	{
 		tstring tstrExeDirPath(pszExeFullPath);
-		tstring::size_type idx = tstrExeDirPath.rfind(_T("\\"));
+		tstring::size_type idx = tstrExeDirPath.rfind(_T('\\'));
 		tstrExeDirPath = tstrExeDirPath.substr(0, idx);
 
-		tstring tstrShlExtDll = tstrExeDirPath;
+		tstring tstrShlExtDll = std::move(tstrExeDirPath);
 		tstrShlExtDll.append(_T("\\fHashShlExt"));
 		if(IsWindows64())
 			tstrShlExtDll.append(_T("64"));

@@ -66,7 +66,6 @@ int WINAPI HashThreadFunc(void *param)
 	ULLongVector fSizes(thrdData->nFiles);
 	int positionWhole = 0; // whole position
 
-	tstring tstrFileSize;
 	tstring tstrFileVersion;
 	tstring tstrFileMD5;
 	tstring tstrFileSHA1;
@@ -183,7 +182,7 @@ int WINAPI HashThreadFunc(void *param)
 
 			// get file status //
 			tstring tstrLastModifiedTime = osFile.getModifiedTimeFormat();
-			result.tstrMDate = tstrLastModifiedTime;
+			result.tstrMDate = std::move(tstrLastModifiedTime);
 			
 			fsize = osFile.getLength(); // fix 4GB file
 			result.ulSize = fsize;

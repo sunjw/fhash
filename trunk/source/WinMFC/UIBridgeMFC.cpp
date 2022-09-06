@@ -49,7 +49,7 @@ void UIBridgeMFC::preparingCalc()
 		if (m_tstrNoPreparing == tstring(GetStringByKey(MAINDLG_INITINFO)))
 		{
 			// Initial state
-			m_tstrNoPreparing = _T("");
+			m_tstrNoPreparing.clear();
 			m_offsetsNoPreparing.clear();
 			m_mainHyperEdit->ClearTextBuffer();
 		}
@@ -185,7 +185,7 @@ void UIBridgeMFC::AppendFileMetaToHyperEdit(const ResultData& result,
 	hyerEdit->AppendTextToBuffer(_T(" "));
 	hyerEdit->AppendTextToBuffer(result.tstrMDate.c_str());
 
-	if (result.tstrVersion != _T(""))
+	if (!result.tstrVersion.empty())
 	{
 		hyerEdit->AppendTextToBuffer(_T("\r\n"));
 		hyerEdit->AppendTextToBuffer(GetStringByKey(VERSION_STRING));

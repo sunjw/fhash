@@ -11,7 +11,7 @@ using namespace FilesHashUwp;
 using namespace sunjwbase;
 
 HashMgmt::HashMgmt(UIBridgeDelegate^ uiBridgeDelegate)
-	:m_hWorkThread(NULL)
+	:m_hWorkThread(NULL), m_threadData()
 {
 	m_spUiBridgeUwp = make_shared<UIBridgeUwp>(uiBridgeDelegate);
 }

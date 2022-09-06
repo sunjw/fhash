@@ -38,7 +38,7 @@ struct ResultData;
 
 typedef std::vector<sunjwbase::tstring> TStrVector;
 typedef std::vector<uint64_t> ULLongVector;
-typedef std::list<ResultData> ResultList;
+typedef std::vector<ResultData> ResultList;
 
 #define MAX_FILES_NUM 8192
 

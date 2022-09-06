@@ -360,13 +360,13 @@ void CHyperEdit::BuildOffsetList(int iCharStart, int iCharFinish)
 		
 		if(IsWhiteSpaceOrEOF(csBuff, i)){	// Also checks for EOB (End of buffer)
 
-			_TOKEN_OFFSET off = { iCurr /* Start offset */, i-iCurr /* Length */ };
-
 			// Let client programmer define what tokens can be hyperlinked or not
 			// if one desires he/she could easily implement an easy check using a
 			// regex library on email addresses without using the mailto: suffix
-			if(IsWordHyperlink(csToken))
+			if(IsWordHyperlink(csToken)){
+				_TOKEN_OFFSET off = { iCurr /* Start offset */, i - iCurr /* Length */ };
 				m_linkOffsets.push_back(off); // Save the starting offset for current token
+			}
 
 			csToken.Empty(); // Flush previous token 		
 			iCurr = i+1; // Initialize the start offset for next token
