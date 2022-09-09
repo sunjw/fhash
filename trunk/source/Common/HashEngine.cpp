@@ -66,6 +66,11 @@ static void SHA256UpdateWrapper(struct sha256_ctx *ctx, const unsigned char *buf
 	sha256_update(ctx, buffer, length); // SHA256 update
 }
 
+static void SHA512UpdateWrapper(SHA512_CTX *context, void *datain, size_t len)
+{
+	SHA512_Update(context, datain, len); // SHA512 update
+}
+
 // working thread
 int WINAPI HashThreadFunc(void *param)
 {
@@ -265,16 +270,19 @@ int WINAPI HashThreadFunc(void *param)
 				//SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen);
 				//sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
 				//SHA256UpdateWrapper(&sha256Ctx, databuf.data, databuf.datalen);
-				SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
+				//SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
+				//SHA512UpdateWrapper(&sha512Ctx, databuf.data, databuf.datalen);
 
 				// multi threads
 				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
 				thread theaSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
 				thread theaSHA256Update(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
+				thread theaSHA512Update(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
 
 				theadMD5Update.join();
 				theaSHA1Update.join();
 				theaSHA256Update.join();
+				theaSHA512Update.join();
 
 				finishedSize += databuf.datalen;
 
