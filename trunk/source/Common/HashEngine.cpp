@@ -98,7 +98,13 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA256;
 	tstring tstrFileSHA512;
 
+	// Create thread pool with 4 threads
+	ThreadPool threadPool(4);
+
 	uiBridge->preparingCalc();
+
+	// Initialize thread pool
+	threadPool.init();
 
 	// get total files size
 	if (thrdData->nFiles < 200) // not too many
@@ -108,7 +114,9 @@ int WINAPI HashThreadFunc(void *param)
 		{
 			if (thrdData->stop)
 			{
+				threadPool.shutdown();
 				thrdData->threadWorking = false;
+
 				uiBridge->calcStop();
 				return 0;
 			}
@@ -135,7 +143,9 @@ int WINAPI HashThreadFunc(void *param)
 	{
 		if (thrdData->stop)
 		{
+			threadPool.shutdown();
 			thrdData->threadWorking = false;
+
 			uiBridge->calcStop();
 			return 0;
 		}
@@ -249,8 +259,9 @@ int WINAPI HashThreadFunc(void *param)
 				if (thrdData->stop)
 				{
 					osFile.close();
-
+					threadPool.shutdown();
 					thrdData->threadWorking = false;
+
 					uiBridge->calcStop();
 					return 0;
 				}
@@ -447,6 +458,7 @@ int WINAPI HashThreadFunc(void *param)
 
 	uiBridge->calcFinish();
 	
+	threadPool.shutdown();
 	thrdData->threadWorking = false;
 
 	return 0;
