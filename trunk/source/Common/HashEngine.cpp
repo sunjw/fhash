@@ -263,26 +263,32 @@ int WINAPI HashThreadFunc(void *param)
 
 				t++;
 
-				// single thread
-				//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
-				//MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen);
-				//sha1.Update(databuf.data, databuf.datalen); // SHA1 update
-				//SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen);
-				//sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
-				//SHA256UpdateWrapper(&sha256Ctx, databuf.data, databuf.datalen);
-				//SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
-				//SHA512UpdateWrapper(&sha512Ctx, databuf.data, databuf.datalen);
+				bool useThread = true;
+				if (!useThread)
+				{
+					// single thread
+					//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
+					MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen);
+					//sha1.Update(databuf.data, databuf.datalen); // SHA1 update
+					SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen);
+					//sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
+					SHA256UpdateWrapper(&sha256Ctx, databuf.data, databuf.datalen);
+					//SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
+					SHA512UpdateWrapper(&sha512Ctx, databuf.data, databuf.datalen);
+				}
+				else
+				{
+					// multi threads
+					thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
+					thread theaSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
+					thread theaSHA256Update(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
+					thread theaSHA512Update(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
 
-				// multi threads
-				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
-				thread theaSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
-				thread theaSHA256Update(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
-				thread theaSHA512Update(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
-
-				theadMD5Update.join();
-				theaSHA1Update.join();
-				theaSHA256Update.join();
-				theaSHA512Update.join();
+					theadMD5Update.join();
+					theaSHA1Update.join();
+					theaSHA256Update.join();
+					theaSHA512Update.join();
+				}
 
 				finishedSize += databuf.datalen;
 
