@@ -4,8 +4,8 @@
 
 #include <stdlib.h>
 
-#define THREAD_HASH_UPDATE
-#if defined (THREAD_HASH_UPDATE)
+#define FHAS_THREAD_HASH_UPDATE
+#if defined (FHAS_THREAD_HASH_UPDATE)
 #include <thread>
 #endif
 
@@ -266,7 +266,7 @@ int WINAPI HashThreadFunc(void *param)
 
 				t++;
 
-#if defined (THREAD_HASH_UPDATE)
+#if defined (FHAS_THREAD_HASH_UPDATE)
 				// multi threads
 				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
 				thread theaSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
