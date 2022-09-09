@@ -279,15 +279,15 @@ int WINAPI HashThreadFunc(void *param)
 
 #if defined (FHASH_THREAD_HASH_UPDATE)
 				// multi threads
-				thread threadSHA512Update(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
-				thread threadSHA256Update(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
-				thread threadSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
-				thread threadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
+				future<void> taskSHA512Update = threadPool.submit(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
+				future<void> taskSHA256Update = threadPool.submit(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
+				future<void> taskSHA1Update = threadPool.submit(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
+				future<void> taskMD5Update = threadPool.submit(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
 
-				threadSHA512Update.join();
-				threadSHA256Update.join();
-				threadSHA1Update.join();
-				threadMD5Update.join();
+				taskSHA512Update.wait();
+				taskSHA256Update.wait();
+				taskSHA1Update.wait();
+				taskMD5Update.wait();
 #else
 				// single thread
 				//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
