@@ -51,9 +51,14 @@ public:
 
 unsigned int DataBuffer::preflen = 1048576; // 2^20
 
-static void MD5UpdateWrapper(MD5_CTX* mdContext, unsigned char* inBuf, unsigned int inLen)
+static void MD5UpdateWrapper(MD5_CTX *mdContext, unsigned char *inBuf, unsigned int inLen)
 {
 	MD5Update(mdContext, inBuf, inLen); // MD5 update
+}
+
+static void SHA1UpdateWrapper(CSHA1 *sha1, unsigned char *data, unsigned int len)
+{
+	sha1->Update(data, len); // SHA1 update
 }
 
 // working thread
@@ -248,14 +253,20 @@ int WINAPI HashThreadFunc(void *param)
 
 				t++;
 
+				// single thread
 				//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
 				//MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen);
-				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
-				sha1.Update(databuf.data, databuf.datalen); // SHA1 update
+				//sha1.Update(databuf.data, databuf.datalen); // SHA1 update
+				//SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen);
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
 				SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
 
+				// multi threads
+				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
+				thread theaSHA1Update(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
+
 				theadMD5Update.join();
+				theaSHA1Update.join();
 
 				finishedSize += databuf.datalen;
 
