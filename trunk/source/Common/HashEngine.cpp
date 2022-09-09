@@ -4,6 +4,8 @@
 
 #include <stdlib.h>
 
+#include <thread>
+
 #if defined (__APPLE__) || defined (__unix)
 #include <string.h>
 #include <unistd.h>
@@ -48,6 +50,11 @@ public:
 };
 
 unsigned int DataBuffer::preflen = 1048576; // 2^20
+
+static void MD5UpdateWrapper(MD5_CTX* mdContext, unsigned char* inBuf, unsigned int inLen)
+{
+	MD5Update(mdContext, inBuf, inLen); // MD5 update
+}
 
 // working thread
 int WINAPI HashThreadFunc(void *param)
@@ -241,10 +248,14 @@ int WINAPI HashThreadFunc(void *param)
 
 				t++;
 
-				MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
+				//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
+				//MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen);
+				thread theadMD5Update(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
 				sha1.Update(databuf.data, databuf.datalen); // SHA1 update
 				sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
 				SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
+
+				theadMD5Update.join();
 
 				finishedSize += databuf.datalen;
 
