@@ -69,6 +69,9 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\FileVersionHelper.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Common\ThreadPool.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

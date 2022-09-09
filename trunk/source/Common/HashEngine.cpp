@@ -6,7 +6,7 @@
 
 #define FHASH_THREAD_HASH_UPDATE
 #if defined (FHASH_THREAD_HASH_UPDATE)
-#include <thread>
+#include "Common/ThreadPool.h"
 #endif
 
 #if defined (__APPLE__) || defined (__unix)
