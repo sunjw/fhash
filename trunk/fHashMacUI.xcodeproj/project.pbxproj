@@ -69,7 +69,7 @@
 		52225808213CDA7C00012EF8 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Common/Utils.cpp; sourceTree = "<group>"; };
 		52225809213CDA7C00012EF8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Common/Utils.h; sourceTree = "<group>"; };
 		5222580E213CDB2900012EF8 /* HashEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashEngine.h; path = source/Common/HashEngine.h; sourceTree = "<group>"; };
-		5222580F213CDB2900012EF8 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/Common/HashEngine.cpp; sourceTree = "<group>"; };
+		5222580F213CDB2900012EF8 /* HashEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HashEngine.cpp; path = source/Common/HashEngine.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		52225814213CDB9D00012EF8 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/Common/UIBridgeBase.h; sourceTree = "<group>"; };
 		52225819213CF24300012EF8 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/OSXUI/MacUtils.mm; sourceTree = SOURCE_ROOT; };
 		5222581A213CF24300012EF8 /* MacUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacUtils.h; path = source/OSXUI/MacUtils.h; sourceTree = SOURCE_ROOT; };
