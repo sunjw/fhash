@@ -101,14 +101,11 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (FHASH_THREAD_HASH_UPDATE)
 	// Create thread pool with 4 threads
 	ThreadPool threadPool(4);
-#endif
-
-	uiBridge->preparingCalc();
-
-#if defined (FHASH_THREAD_HASH_UPDATE)
 	// Initialize thread pool
 	threadPool.init();
 #endif
+
+	uiBridge->preparingCalc();
 
 	// get total files size
 	if (thrdData->nFiles < 200) // not too many
