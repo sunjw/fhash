@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 
-#define FHASH_THREAD_HASH_UPDATE
+//#define FHASH_THREAD_HASH_UPDATE
 #if defined (FHASH_THREAD_HASH_UPDATE)
 #include "Common/ThreadPool.h"
 #endif
@@ -98,13 +98,17 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA256;
 	tstring tstrFileSHA512;
 
+#if defined (FHASH_THREAD_HASH_UPDATE)
 	// Create thread pool with 4 threads
 	ThreadPool threadPool(4);
+#endif
 
 	uiBridge->preparingCalc();
 
+#if defined (FHASH_THREAD_HASH_UPDATE)
 	// Initialize thread pool
 	threadPool.init();
+#endif
 
 	// get total files size
 	if (thrdData->nFiles < 200) // not too many
@@ -114,7 +118,9 @@ int WINAPI HashThreadFunc(void *param)
 		{
 			if (thrdData->stop)
 			{
+#if defined (FHASH_THREAD_HASH_UPDATE)
 				threadPool.shutdown();
+#endif
 				thrdData->threadWorking = false;
 
 				uiBridge->calcStop();
@@ -143,7 +149,9 @@ int WINAPI HashThreadFunc(void *param)
 	{
 		if (thrdData->stop)
 		{
+#if defined (FHASH_THREAD_HASH_UPDATE)
 			threadPool.shutdown();
+#endif
 			thrdData->threadWorking = false;
 
 			uiBridge->calcStop();
@@ -259,7 +267,9 @@ int WINAPI HashThreadFunc(void *param)
 				if (thrdData->stop)
 				{
 					osFile.close();
+#if defined (FHASH_THREAD_HASH_UPDATE)
 					threadPool.shutdown();
+#endif
 					thrdData->threadWorking = false;
 
 					uiBridge->calcStop();
@@ -457,8 +467,10 @@ int WINAPI HashThreadFunc(void *param)
 	} // end for(i = 0; i < (thrdData->nFiles); i++)
 
 	uiBridge->calcFinish();
-	
+
+#if defined (FHASH_THREAD_HASH_UPDATE)
 	threadPool.shutdown();
+#endif
 	thrdData->threadWorking = false;
 
 	return 0;
