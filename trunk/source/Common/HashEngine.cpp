@@ -4,7 +4,6 @@
 
 #include <stdlib.h>
 
-#define FHASH_THREAD_HASH_UPDATE
 #if defined (FHASH_THREAD_HASH_UPDATE)
 #include "Common/ThreadPool.h"
 #endif
