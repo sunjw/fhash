@@ -127,24 +127,24 @@
                         Text="[Speed]" />
 
                     <Button
-                        x:Name="ButtonVerify"
-                        x:Uid="ButtonVerify"
-                        Grid.Column="4"
-                        Margin="0,0,10,10"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Click="ButtonVerify_Click"
-                        Content="[Verify]"
-                        TabIndex="4" />
-                    <Button
                         x:Name="ButtonClear"
                         x:Uid="ButtonClear"
-                        Grid.Column="5"
+                        Grid.Column="4"
                         Margin="0,0,10,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Click="ButtonClear_Click"
                         Content="[Clear]"
+                        TabIndex="4" />
+                    <Button
+                        x:Name="ButtonVerify"
+                        x:Uid="ButtonVerify"
+                        Grid.Column="5"
+                        Margin="0,0,10,10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Click="ButtonVerify_Click"
+                        Content="[Verify]"
                         TabIndex="5" />
                     <Button
                         x:Name="ButtonOpen"
