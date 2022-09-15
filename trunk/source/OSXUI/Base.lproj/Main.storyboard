@@ -31,73 +31,77 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" id="bS0-fd-qFN">
-                        <rect key="frame" x="0.0" y="0.0" width="429" height="240"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-Dy-ckM">
-                                <rect key="frame" x="0.0" y="0.0" width="429" height="240"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
+                                        <rect key="frame" x="310" y="13" width="107" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="VLo-f6-IH5"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="XF8-Lp-ANU"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="closeButtonClicked:" target="V35-dL-6OF" id="jcA-va-3gB"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
+                                        <rect key="frame" x="18" y="24" width="147" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="132" id="ou6-86-fTQ"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="homePageLinkTextField" id="jwH-wW-qOw">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
+                                        <rect key="frame" x="101" y="49" width="311" height="165"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
+                                            <constraint firstAttribute="width" constant="307" id="iAD-3b-m5X"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="infoTextField" id="zWw-Pv-m5p">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
+                                        <rect key="frame" x="20" y="156" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="bGI-jU-0iT"/>
+                                            <constraint firstAttribute="height" constant="64" id="q0E-Cs-u3g"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cg4-uF-IPt"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zGm-ZO-GT5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua3-zL-Sha" secondAttribute="trailing" constant="8" symbolic="YES" id="235-AN-Igl"/>
+                                    <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="8" symbolic="YES" id="5Cq-Ly-SgT"/>
+                                    <constraint firstItem="l26-dk-XVG" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" symbolic="YES" id="6hx-qT-gi4"/>
+                                    <constraint firstItem="Ua3-zL-Sha" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" id="Liv-pp-Ec9"/>
+                                    <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="Lz6-cz-rmu"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="24" id="Pvy-ky-gV5"/>
+                                    <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="SaO-sW-GEU"/>
+                                    <constraint firstAttribute="trailing" secondItem="zGm-ZO-GT5" secondAttribute="trailing" constant="20" id="bJ9-cs-gxJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="vnK-tx-hh5"/>
+                                    <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="JLJ-Dy-ckM" secondAttribute="top" constant="20" symbolic="YES" id="yqJ-Nf-DrK"/>
+                                </constraints>
                             </visualEffectView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
-                                <rect key="frame" x="20" y="156" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="bGI-jU-0iT"/>
-                                    <constraint firstAttribute="height" constant="64" id="q0E-Cs-u3g"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="cg4-uF-IPt"/>
-                            </imageView>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
-                                <rect key="frame" x="100" y="49" width="311" height="165"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
-                                    <constraint firstAttribute="width" constant="307" id="iAD-3b-m5X"/>
-                                </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="infoTextField" id="zWw-Pv-m5p">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
-                                <rect key="frame" x="309" y="13" width="107" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="VLo-f6-IH5"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="XF8-Lp-ANU"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="closeButtonClicked:" target="V35-dL-6OF" id="jcA-va-3gB"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
-                                <rect key="frame" x="18" y="24" width="147" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="132" id="ou6-86-fTQ"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="homePageLinkTextField" id="jwH-wW-qOw">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="l26-dk-XVG" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" constant="20" symbolic="YES" id="6jM-ds-mmm"/>
-                            <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="85y-Wg-AjY"/>
-                            <constraint firstItem="zGm-ZO-GT5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua3-zL-Sha" secondAttribute="trailing" constant="8" symbolic="YES" id="9NA-DV-tQm"/>
-                            <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="HoI-xp-LjW"/>
                             <constraint firstItem="JLJ-Dy-ckM" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" id="Jxf-eY-N1U"/>
                             <constraint firstItem="JLJ-Dy-ckM" firstAttribute="top" secondItem="bS0-fd-qFN" secondAttribute="top" id="WKC-ar-ADq"/>
                             <constraint firstAttribute="trailing" secondItem="JLJ-Dy-ckM" secondAttribute="trailing" id="ZkY-0G-X75"/>
-                            <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="24" id="ZsY-4Q-xp6"/>
-                            <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="n60-3M-A4u"/>
-                            <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="8" symbolic="YES" id="smj-RG-ZxT"/>
-                            <constraint firstAttribute="trailing" secondItem="zGm-ZO-GT5" secondAttribute="trailing" constant="20" id="tYB-FQ-mp7"/>
-                            <constraint firstItem="Ua3-zL-Sha" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" constant="20" id="uAG-1O-crA"/>
-                            <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="bS0-fd-qFN" secondAttribute="top" constant="20" symbolic="YES" id="xjN-qV-Dn1"/>
                             <constraint firstAttribute="bottom" secondItem="JLJ-Dy-ckM" secondAttribute="bottom" id="yfd-8E-A8n"/>
                         </constraints>
                     </view>
