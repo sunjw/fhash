@@ -474,22 +474,8 @@
                                             <action selector="openButtonClicked:" target="XfG-lQ-9wD" id="aIH-D7-zU6"/>
                                         </connections>
                                     </button>
-                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                        <rect key="frame" x="354" y="5" width="105" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="EPe-uf-diE"/>
-                                            <constraint firstAttribute="height" constant="20" id="dSk-bf-hJo"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="clearButtonClicked:" target="XfG-lQ-9wD" id="8v3-B8-CdC"/>
-                                        </connections>
-                                    </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                        <rect key="frame" x="247" y="5" width="108" height="32"/>
+                                        <rect key="frame" x="351" y="5" width="108" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="P5d-mH-dS8"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="TMp-Lb-uzy"/>
@@ -528,22 +514,36 @@
                                             <action selector="uppercaseButtonClicked:" target="XfG-lQ-9wD" id="tg7-CC-dE4"/>
                                         </connections>
                                     </button>
+                                    <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
+                                        <rect key="frame" x="247" y="5" width="105" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="EPe-uf-diE"/>
+                                            <constraint firstAttribute="height" constant="20" id="dSk-bf-hJo"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clearButtonClicked:" target="XfG-lQ-9wD" id="8v3-B8-CdC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="B0X-D0-nKy" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="36t-ra-nT8"/>
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="12" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
+                                    <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
                                     <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="15" id="Mrd-eA-M6m"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
                                     <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
                                     <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="12" id="UBq-6n-rr2"/>
-                                    <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" secondItem="PCO-87-Uvg" secondAttribute="trailing" constant="13" id="XGj-4P-pv3"/>
                                     <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="15" id="Ydj-cY-H9E"/>
                                     <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="12" id="g24-ws-BYV"/>
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
                                     <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="top" secondItem="M5s-ns-Qqg" secondAttribute="top" constant="-9" id="kOC-mk-24b"/>
-                                    <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="tJy-cg-q6d"/>
+                                    <constraint firstItem="B0X-D0-nKy" firstAttribute="leading" secondItem="PCO-87-Uvg" secondAttribute="trailing" constant="13" id="pMg-lm-8az"/>
+                                    <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="uac-u0-Fcc"/>
                                 </constraints>
                             </visualEffectView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
