@@ -34,6 +34,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="429" height="240"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-Dy-ckM">
+                                <rect key="frame" x="0.0" y="0.0" width="429" height="240"/>
+                            </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
                                 <rect key="frame" x="20" y="156" width="64" height="64"/>
                                 <constraints>
@@ -86,12 +89,16 @@
                             <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="85y-Wg-AjY"/>
                             <constraint firstItem="zGm-ZO-GT5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua3-zL-Sha" secondAttribute="trailing" constant="8" symbolic="YES" id="9NA-DV-tQm"/>
                             <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="HoI-xp-LjW"/>
+                            <constraint firstItem="JLJ-Dy-ckM" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" id="Jxf-eY-N1U"/>
+                            <constraint firstItem="JLJ-Dy-ckM" firstAttribute="top" secondItem="bS0-fd-qFN" secondAttribute="top" id="WKC-ar-ADq"/>
+                            <constraint firstAttribute="trailing" secondItem="JLJ-Dy-ckM" secondAttribute="trailing" id="ZkY-0G-X75"/>
                             <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="24" id="ZsY-4Q-xp6"/>
                             <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="n60-3M-A4u"/>
                             <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="8" symbolic="YES" id="smj-RG-ZxT"/>
                             <constraint firstAttribute="trailing" secondItem="zGm-ZO-GT5" secondAttribute="trailing" constant="20" id="tYB-FQ-mp7"/>
                             <constraint firstItem="Ua3-zL-Sha" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" constant="20" id="uAG-1O-crA"/>
                             <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="bS0-fd-qFN" secondAttribute="top" constant="20" symbolic="YES" id="xjN-qV-Dn1"/>
+                            <constraint firstAttribute="bottom" secondItem="JLJ-Dy-ckM" secondAttribute="bottom" id="yfd-8E-A8n"/>
                         </constraints>
                     </view>
                     <connections>
