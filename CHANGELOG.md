@@ -1,3 +1,7 @@
+3.1.0.0 (54) 2022-09-26  
+Performance improvement  
+UI tweak  
+
 3.0.2.0 (51) 2022-08-31  
 Windows UWP update components  
 Fix other issues  
