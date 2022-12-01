@@ -1,3 +1,7 @@
+3.1.1.0 (55) 2022-12-01  
+macOS support for 11 and later  
+Fix other issues  
+
 3.1.0.0 (54) 2022-09-26  
 Performance improvement  
 UI tweak  
