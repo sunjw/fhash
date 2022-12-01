@@ -2,9 +2,9 @@
  * MD5, SHA1, SHA256 and SHA512.
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
- * Support multiple files.
  * Support Windows 7 (only 2.x), Windows 10 (1903) and later (x64 only).
- * Support macOS 10.15 and later, with Dark Mode and universal binary.
+ * Support macOS 10.15 and later, with universal binary.
+ * Support Dark Mode.
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
