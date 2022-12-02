@@ -3,13 +3,13 @@
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support Windows 7 (only 2.x), Windows 10 (1903) and later (x64 only).
- * Support macOS 10.15 and later, with universal binary.
+ * Support macOS 11 and later, with universal binary.
  * Support Dark Mode.
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
    
-Current version: 3.1.0
+Current version: 3.1.1
 
 Project site: https://github.com/sunjw/fhash
 
@@ -19,11 +19,11 @@ Project site: https://github.com/sunjw/fhash
 Windows 10 and later   
 [![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)   
 Windows (2.x)   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/3.1.0)
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/3.1.1)
 [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/2.4.0/win/)   
 macOS   
-[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/3.1.0)
-[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/3.1.0/macOS/)   
+[![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/tag/3.1.1)
+[![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/3.1.1/macOS/)   
 
 
 ### LICENSE
