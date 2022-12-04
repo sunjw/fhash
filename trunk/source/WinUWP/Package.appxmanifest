@@ -9,7 +9,7 @@
   <Identity
     Name="3089SunJunwen.fHash"
     Publisher="CN=Sun Junwen"
-    Version="3.1.1.0" />
+    Version="3.1.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="fb3d725d-7c34-470c-8f76-9c45d1803df7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
