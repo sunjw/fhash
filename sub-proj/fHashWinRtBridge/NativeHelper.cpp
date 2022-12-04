@@ -19,6 +19,8 @@ String^ NativeHelper::GetTargetArch()
 	tstring tstrTarget;
 #if defined (_M_AMD64)
 	tstrTarget = TEXT("x64");
+#elif defined (_M_ARM64)
+	tstrTarget = TEXT("arm64");
 #endif
 	String^ pstrTarget = ConvertToPlatStr(tstrTarget.c_str());
 	return pstrTarget;
