@@ -1,6 +1,6 @@
 ### An open source files hash calculator for Windows and macOS.
  * MD5, SHA1, SHA256 and SHA512.
- * Drag & drop.
+ * Support drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support Windows 7 (only 2.x), Windows 10 (1903) and later (x64 and arm64).
  * Support macOS 11 and later, with universal binary.
