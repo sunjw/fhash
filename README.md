@@ -2,7 +2,7 @@
  * MD5, SHA1, SHA256 and SHA512.
  * Drag & drop.
  * Integrated with context menu in Explorer/Finder.
- * Support Windows 7 (only 2.x), Windows 10 (1903) and later (x64 only).
+ * Support Windows 7 (only 2.x), Windows 10 (1903) and later (x64 and arm64).
  * Support macOS 11 and later, with universal binary.
  * Support Dark Mode.
  * English and Simplified Chinese UI.
