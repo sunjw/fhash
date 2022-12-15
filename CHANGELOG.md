@@ -1,3 +1,6 @@
+3.1.2.0 (56) 2022-12-15  
+Windows UWP support for arm64  
+
 3.1.1.0 (55) 2022-12-01  
 macOS support for 11 and later  
 Fix other issues  
