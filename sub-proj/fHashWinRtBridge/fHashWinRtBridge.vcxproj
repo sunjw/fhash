@@ -361,7 +361,7 @@
     <ClCompile Include="UIBridgeDelegate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TestWinRtCmpt1.rc" />
+    <ResourceCompile Include="fHashWinRtBridge.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

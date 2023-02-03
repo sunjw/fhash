@@ -86,7 +86,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TestWinRtCmpt1.rc">
+    <ResourceCompile Include="fHashWinRtBridge.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>

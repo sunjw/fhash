@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by TestWinRtCmpt1.rc
+// Used by fHashWinRtBridge.rc
 
 // 新对象的下一组默认值
 // 
