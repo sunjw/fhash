@@ -193,7 +193,7 @@ void UIBridgeMacUI::AppendFileMetaToNSMutableAttributedString(const ResultData& 
                                                               NSMutableAttributedString *nsmutString)
 {
     char chSizeBuff[1024] = {0};
-    sprintf(chSizeBuff, "%llu", result.ulSize);
+    snprintf(chSizeBuff, 1024, "%llu", result.ulSize);
     string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
 
     string strAppend = GetStringFromResByKey(FILESIZE_STRING);

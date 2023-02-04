@@ -361,7 +361,7 @@ int WINAPI HashThreadFunc(void *param)
 
 			// MD5
 #if defined (WIN32)
-			sprintf_s(chHashBuff, 1024, 
+			sprintf_s(chHashBuff, 1024,
 								"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 								mdContext.digest[0],
 								mdContext.digest[1],
@@ -380,7 +380,7 @@ int WINAPI HashThreadFunc(void *param)
 								mdContext.digest[14],
 								mdContext.digest[15]);
 #else
-			sprintf(chHashBuff,
+			snprintf(chHashBuff, 1024,
 					  "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 					  mdContext.digest[0],
 					  mdContext.digest[1],
@@ -416,7 +416,7 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (WIN32)
 				sprintf_s(buf, 8, "%02X", digestSHA512[p]);
 #else
-				sprintf(buf, "%02X", digestSHA512[p]);
+				snprintf(buf, 8, "%02X", digestSHA512[p]);
 #endif
 				strSHA512.append(std::string(buf));
 			}

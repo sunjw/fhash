@@ -71,7 +71,7 @@ namespace Utils
 #if defined (WIN32)
                     sprintf_s(buff, 1024, "%.2f GB", g_size);
 #else
-                    sprintf(buff, "%.2f GB", g_size);
+                    snprintf(buff, 1024, "%.2f GB", g_size);
 #endif
                 }
                 else
@@ -79,7 +79,7 @@ namespace Utils
 #if defined (WIN32)
                     sprintf_s(buff, 1024, "%.2f MB", m_size);
 #else
-                    sprintf(buff, "%.2f MB", m_size);
+                    snprintf(buff, 1024, "%.2f MB", m_size);
 #endif
                 }
             }
@@ -88,7 +88,7 @@ namespace Utils
 #if defined (WIN32)
                 sprintf_s(buff, 1024, "%.2f KB", k_size);
 #else
-                sprintf(buff, "%.2f KB", k_size);
+                snprintf(buff, 1024, "%.2f KB", k_size);
 #endif
             }
         }
@@ -97,7 +97,7 @@ namespace Utils
 #if defined (WIN32)
             sprintf_s(buff, 1024, "%.2f B", (double)size);
 #else
-            sprintf(buff, "%.2f B", (double)size);
+            snprintf(buff, 1024, "%.2f B", (double)size);
 #endif
         }
 
