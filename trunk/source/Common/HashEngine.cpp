@@ -100,8 +100,6 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (FHASH_THREAD_HASH_UPDATE)
 	// Create thread pool with 4 threads
 	ThreadPool threadPool(4);
-	// Initialize thread pool
-	threadPool.init();
 #endif
 
 	uiBridge->preparingCalc();
@@ -114,9 +112,6 @@ int WINAPI HashThreadFunc(void *param)
 		{
 			if (thrdData->stop)
 			{
-#if defined (FHASH_THREAD_HASH_UPDATE)
-				threadPool.shutdown();
-#endif
 				thrdData->threadWorking = false;
 
 				uiBridge->calcStop();
@@ -145,9 +140,6 @@ int WINAPI HashThreadFunc(void *param)
 	{
 		if (thrdData->stop)
 		{
-#if defined (FHASH_THREAD_HASH_UPDATE)
-			threadPool.shutdown();
-#endif
 			thrdData->threadWorking = false;
 
 			uiBridge->calcStop();
@@ -263,9 +255,6 @@ int WINAPI HashThreadFunc(void *param)
 				if (thrdData->stop)
 				{
 					osFile.close();
-#if defined (FHASH_THREAD_HASH_UPDATE)
-					threadPool.shutdown();
-#endif
 					thrdData->threadWorking = false;
 
 					uiBridge->calcStop();
@@ -285,10 +274,10 @@ int WINAPI HashThreadFunc(void *param)
 
 #if defined (FHASH_THREAD_HASH_UPDATE)
 				// multi threads
-				future<void> taskSHA512Update = threadPool.submit(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
-				future<void> taskSHA256Update = threadPool.submit(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
-				future<void> taskSHA1Update = threadPool.submit(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
-				future<void> taskMD5Update = threadPool.submit(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
+				future<void> taskSHA512Update = threadPool.enqueue(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
+				future<void> taskSHA256Update = threadPool.enqueue(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
+				future<void> taskSHA1Update = threadPool.enqueue(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
+				future<void> taskMD5Update = threadPool.enqueue(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
 
 				taskSHA512Update.wait();
 				taskSHA256Update.wait();
@@ -464,9 +453,6 @@ int WINAPI HashThreadFunc(void *param)
 
 	uiBridge->calcFinish();
 
-#if defined (FHASH_THREAD_HASH_UPDATE)
-	threadPool.shutdown();
-#endif
 	thrdData->threadWorking = false;
 
 	return 0;
