@@ -1,3 +1,7 @@
+3.1.3.0 (57) 2023-02-17  
+Windows UWP update components  
+Fix other issues  
+
 3.1.2.0 (56) 2022-12-15  
 Windows UWP support for arm64  
 
