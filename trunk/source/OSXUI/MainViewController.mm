@@ -328,7 +328,6 @@ typedef NS_OPTIONS(NSUInteger, MainViewControllerState) {
     openPanel.canChooseDirectories = NO;
     openPanel.canCreateDirectories = YES;
     openPanel.allowsMultipleSelection = YES;
-    openPanel.allowedFileTypes = nil; // all types
 
     [openPanel beginSheetModalForWindow:self.view.window completionHandler:
      ^(NSInteger result) {
