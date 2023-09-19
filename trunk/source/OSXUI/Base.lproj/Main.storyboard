@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,19 +39,19 @@
                                 <subviews>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
                                         <rect key="frame" x="310" y="13" width="107" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="VLo-f6-IH5"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="XF8-Lp-ANU"/>
-                                        </constraints>
                                         <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="VLo-f6-IH5"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="XF8-Lp-ANU"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="closeButtonClicked:" target="V35-dL-6OF" id="jcA-va-3gB"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
                                         <rect key="frame" x="18" y="24" width="147" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
@@ -63,7 +63,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
                                         <rect key="frame" x="101" y="49" width="311" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
@@ -473,33 +473,33 @@
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
                                         <rect key="frame" x="458" y="5" width="105" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="Hn1-pg-q73"/>
-                                            <constraint firstAttribute="height" constant="20" id="YiQ-F7-3tz"/>
-                                        </constraints>
                                         <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="Hn1-pg-q73"/>
+                                            <constraint firstAttribute="height" constant="20" id="YiQ-F7-3tz"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="openButtonClicked:" target="XfG-lQ-9wD" id="aIH-D7-zU6"/>
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
                                         <rect key="frame" x="351" y="5" width="108" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="P5d-mH-dS8"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="TMp-Lb-uzy"/>
-                                        </constraints>
                                         <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="P5d-mH-dS8"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="TMp-Lb-uzy"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="verifyButtonClicked:" target="XfG-lQ-9wD" id="IB5-Fa-T1s"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
                                         <rect key="frame" x="159" y="15" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
@@ -513,28 +513,28 @@
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
                                         <rect key="frame" x="8" y="14" width="133" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="109" id="5i1-2R-MzS"/>
-                                            <constraint firstAttribute="height" constant="16" id="9Dd-oc-g1f"/>
-                                        </constraints>
                                         <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="109" id="5i1-2R-MzS"/>
+                                            <constraint firstAttribute="height" constant="16" id="9Dd-oc-g1f"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="uppercaseButtonClicked:" target="XfG-lQ-9wD" id="tg7-CC-dE4"/>
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
                                         <rect key="frame" x="247" y="5" width="105" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="EPe-uf-diE"/>
-                                            <constraint firstAttribute="height" constant="20" id="dSk-bf-hJo"/>
-                                        </constraints>
                                         <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="EPe-uf-diE"/>
+                                            <constraint firstAttribute="height" constant="20" id="dSk-bf-hJo"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="clearButtonClicked:" target="XfG-lQ-9wD" id="8v3-B8-CdC"/>
                                         </connections>
@@ -568,7 +568,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="560" height="313"/>
+                                            <size key="minSize" width="566" height="313"/>
                                             <size key="maxSize" width="573" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
