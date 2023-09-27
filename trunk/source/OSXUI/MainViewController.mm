@@ -370,6 +370,18 @@ typedef NS_OPTIONS(NSUInteger, MainViewControllerState) {
 
     [[self.mainTextView textStorage] setAttributedString:_mainText];
 
+    if (MacUtils::GetSystemMajorVersion() == 14) {
+        // Sonoma insets fix.
+        CGSize mainTextViewSize = [self.mainTextView frame].size;
+        CGSize mainScrollViewSize = [self.mainScrollView frame].size;
+        if (mainTextViewSize.width > mainScrollViewSize.width) {
+            NSEdgeInsets scrollViewContentInsets = self.mainScrollView.contentInsets;
+            scrollViewContentInsets.left = 5.0;
+            scrollViewContentInsets.right = 5.0;
+            [self.mainScrollView setContentInsets:scrollViewContentInsets];
+        }
+    }
+
     _mainMtx->unlock();
 
     if (!keepScrollPosition) {
