@@ -53,7 +53,7 @@ void UIBridgeMacUI::preparingCalc()
     unlockData();
 
     dispatch_async(dispatch_get_main_queue(), ^{
-       [mainViewController updateMainTextView];
+        [mainViewController updateMainTextView];
     });
 }
 
