@@ -18,27 +18,27 @@ using namespace std;
 using namespace sunjwbase;
 
 namespace MacUtils {
-    
+
     NSString *GetSystemVersion() {
         NSDictionary *systemVersionDictionary = [NSDictionary dictionaryWithContentsOfFile:
                                                  @"/System/Library/CoreServices/SystemVersion.plist"];
         NSString *systemVersion = [systemVersionDictionary objectForKey:@"ProductVersion"];
         return systemVersion;
     }
-    
+
     NSInteger GetSystemMajorVersion() {
         NSInteger nsiMajorVersion = 0;
-        
+
         NSString *systemVersion = GetSystemVersion();
         NSArray *versionParts = [systemVersion componentsSeparatedByString: @"."];
         if (versionParts != nil && versionParts.count > 0) {
             NSString *nsstrMajorVersion = [versionParts objectAtIndex:0];
             nsiMajorVersion = [nsstrMajorVersion integerValue];
         }
-        
+
         return nsiMajorVersion;
     }
-    
+
     NSInteger GetSystemMinorVersion() {
         NSInteger nsiMinorVersion = 0;
         
@@ -48,10 +48,10 @@ namespace MacUtils {
             NSString *nsstrMinorVersion = [versionParts objectAtIndex:1];
             nsiMinorVersion = [nsstrMinorVersion integerValue];
         }
-        
+
         return nsiMinorVersion;
     }
-    
+
     bool IsSystemEarlierThan(int majorVersion, int minorVersion) {
         NSInteger systemMajorVersion = MacUtils::GetSystemMajorVersion();
         NSInteger systemMinorVersion = MacUtils::GetSystemMinorVersion();
@@ -65,28 +65,20 @@ namespace MacUtils {
         return (systemMajorVersion == majorVersion && systemMinorVersion == minorVersion);
     }
 
-    bool IsSystem10_14() {
-        return IsSystemEqual(10, 14);
-    }
-
-    bool IsSystem10_15() {
-        return IsSystemEqual(10, 15);
-    }
-    
     NSString *GetSystemPreferredLanguage() {
         NSString* language = [[NSLocale preferredLanguages] objectAtIndex:0];
         return language;
     }
-    
+
     string ConvertNSStringToUTF8String(const NSString *nsstr) {
         string strRet = string([nsstr UTF8String]);
         return strRet;
     }
-    
+
     NSString *ConvertUTF8StringToNSString(const string stdstrUtf8) {
         return [NSString stringWithUTF8String:stdstrUtf8.c_str()];
     }
-    
+
     string GetStringFromRes(NSString *nsstrKey) {
         NSString *nsstrLocalized = NSLocalizedString(nsstrKey, @"");
         string strLocalized = ConvertNSStringToUTF8String(nsstrLocalized);
@@ -100,10 +92,10 @@ namespace MacUtils {
         }
         // Fix en-us
         strLocalized = strreplace(strLocalized, "&", ""); // Remove "&"
-        
+
         return strLocalized;
     }
-    
+
     NSString *GetNSStringFromRes(NSString *nsstrKey) {
         string strLocalized = GetStringFromRes(nsstrKey);
         NSString *nsstrLocalized = ConvertUTF8StringToNSString(strLocalized);
@@ -117,5 +109,5 @@ namespace MacUtils {
     void AppendNSStringToNSMutableAttributedString(NSMutableAttributedString *base, NSString *str) {
         [base appendAttributedString:ConvertNSStringToNSAttributedString(str)];
     }
-    
+
 }

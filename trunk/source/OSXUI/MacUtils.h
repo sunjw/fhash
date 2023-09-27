@@ -75,16 +75,6 @@ namespace MacUtils {
      * System version is equal to sepecific version.
      */
     bool IsSystemEqual(int majorVersion, int minorVersion);
-
-    /**
-     * System version is 10.14.
-     */
-    bool IsSystem10_14();
-
-    /**
-     * System version is 10.15.
-     */
-    bool IsSystem10_15();
     
     /**
      * Get system preferred languange full-name.
