@@ -1,3 +1,8 @@
+3.1.7.0 (61) 2023-10-31  
+macOS support for 12 and later  
+Windows UWP update components  
+Fix other issues  
+
 3.1.5.0 (59) 2023-07-21  
 Windows UWP update components  
 Fix other issues  
