@@ -37,7 +37,7 @@ BOOL CAboutDlg::OnInitDialog()
 	pWnd = GetDlgItem(IDC_SYSLINK_SITE);
 	pWnd->SetWindowText(GetStringByKey(ABOUTDLG_PROJECT_SITE));
 
-	CString fHashVersion = _T(STR_VERSION); //GetExeFileVersion(exeFullPath);
+	CString fHashVersion = _T(STR_VERSION_LEGACY); //GetExeFileVersion(exeFullPath);
 
 	sunjwbase::tstring tstrOsinfo = WindowsComm::GetWindowsInfo();
 	m_about = GetStringByKey(ABOUTDLG_INFO_TITLE);

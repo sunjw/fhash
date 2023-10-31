@@ -42,7 +42,7 @@ def read_file(file_path):
 
 def read_version_h():
     version_file_content = read_file(VERSION_FILE_H)
-    reg = re.compile('STR_VERSION "(.*)"')
+    reg = re.compile('STR_VERSION_LEGACY "(.*)"')
     #logger.info(version_file_content)
     reg_match = reg.search(version_file_content)
     version_value = reg_match.group(1)
