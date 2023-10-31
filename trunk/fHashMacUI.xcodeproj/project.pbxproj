@@ -53,7 +53,6 @@
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41A4A573285198E500D1ECAC /* endianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = endianness.h; path = source/Algorithms/endianness.h; sourceTree = "<group>"; };
 		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
-		41FF1DCB1B5B49490081F283 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = source/version.h; sourceTree = "<group>"; };
 		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
 		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
 		41FF1DD91B5B4A5A0081F283 /* OsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsThread.h; path = source/OsUtils/OsThread.h; sourceTree = "<group>"; };
@@ -109,14 +108,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4166AC661B56961100BF19F9 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				41FF1DCB1B5B49490081F283 /* version.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
 		41FF1DCE1B5B49840081F283 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +159,6 @@
 				41FF1DD61B5B4A420081F283 /* OsUtils */,
 				41FF1DDD1B5B4ACA0081F283 /* Algorithms */,
 				52751B121B56276F00BD724B /* fHashMacUI */,
-				4166AC661B56961100BF19F9 /* src */,
 				52751B111B56276F00BD724B /* Products */,
 			);
 			sourceTree = "<group>";
