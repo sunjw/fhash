@@ -27,7 +27,7 @@ namespace FilesHashUwp
             MainPageNone = 0, // clear stat
             MainPageCalcIng,  // calculating
             MainPageCalcFinish, // calculating finished/stopped
-            MainPageVerify, // verfing
+            MainPageVerify, // verifying
             MainPageWaitingExit, // waiting thread stop and exit
         };
 
