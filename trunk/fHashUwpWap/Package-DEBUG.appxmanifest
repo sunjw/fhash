@@ -79,8 +79,10 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer"/>
     <rescap:Capability Name="runFullTrust" />
     <rescap:Capability Name="broadFileSystemAccess" />
     <rescap:Capability Name="confirmAppClose"/>
+    <uap:Capability Name="enterpriseAuthentication"/>
   </Capabilities>
 </Package>
