@@ -40,7 +40,7 @@ using namespace sunjwbase;
     strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppVersion));
     strAboutInfo.append(" (");
     strAboutInfo.append(MacUtils::ConvertNSStringToUTF8String(nsstrAppBundleVersion));
-    strAboutInfo.append(")");
+    strAboutInfo.append(") Swift");
     strAboutInfo.append("\n");
     strAboutInfo.append(GetStringFromResByKey(ABOUTDLG_INFO_RIGHT));
     strAboutInfo.append("\n");
