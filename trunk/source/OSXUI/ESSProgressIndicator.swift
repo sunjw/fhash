@@ -49,7 +49,7 @@ private class ESSProgressBarAnimation: NSAnimation {
 
 private var sAnim: ESSProgressBarAnimation?
 
-@objc class ESSProgressIndicator: NSProgressIndicator {
+@objc(ESSProgressIndicator) class ESSProgressIndicator: NSProgressIndicator {
     @objc var toValue:Double = 0.0
     var animateDisabled = false
 

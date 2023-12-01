@@ -25,7 +25,6 @@
 		5222581B213CF24300012EF8 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225819213CF24300012EF8 /* MacUtils.mm */; };
 		5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222581C213CF28900012EF8 /* AboutViewController.mm */; };
 		52225823213CF2CA00012EF8 /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222581F213CF2C900012EF8 /* AboutWindowController.mm */; };
-		52225824213CF2CA00012EF8 /* ESSProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 52225820213CF2C900012EF8 /* ESSProgressIndicator.m */; };
 		52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */; };
 		5222582A213CF2F000012EF8 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 52225828213CF2F000012EF8 /* HyperlinkTextField.m */; };
 		52225831213CF32600012EF8 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582B213CF32500012EF8 /* MainView.mm */; };
@@ -78,8 +77,6 @@
 		5222581C213CF28900012EF8 /* AboutViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutViewController.mm; path = source/OSXUI/AboutViewController.mm; sourceTree = SOURCE_ROOT; };
 		5222581D213CF28900012EF8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = source/OSXUI/AboutViewController.h; sourceTree = SOURCE_ROOT; };
 		5222581F213CF2C900012EF8 /* AboutWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutWindowController.mm; path = source/OSXUI/AboutWindowController.mm; sourceTree = SOURCE_ROOT; };
-		52225820213CF2C900012EF8 /* ESSProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ESSProgressIndicator.m; path = source/OSXUI/ESSProgressIndicator.m; sourceTree = SOURCE_ROOT; };
-		52225821213CF2CA00012EF8 /* ESSProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ESSProgressIndicator.h; path = source/OSXUI/ESSProgressIndicator.h; sourceTree = SOURCE_ROOT; };
 		52225822213CF2CA00012EF8 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = source/OSXUI/AboutWindowController.h; sourceTree = SOURCE_ROOT; };
 		52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/OSXUI/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/OSXUI/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -186,8 +183,6 @@
 				5222581C213CF28900012EF8 /* AboutViewController.mm */,
 				52225822213CF2CA00012EF8 /* AboutWindowController.h */,
 				5222581F213CF2C900012EF8 /* AboutWindowController.mm */,
-				52225821213CF2CA00012EF8 /* ESSProgressIndicator.h */,
-				52225820213CF2C900012EF8 /* ESSProgressIndicator.m */,
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
@@ -309,7 +304,6 @@
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				52225823213CF2CA00012EF8 /* AboutWindowController.mm in Sources */,
 				52225831213CF32600012EF8 /* MainView.mm in Sources */,
-				52225824213CF2CA00012EF8 /* ESSProgressIndicator.m in Sources */,
 				5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */,
 				52225833213CF32600012EF8 /* MainWindowController.mm in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
