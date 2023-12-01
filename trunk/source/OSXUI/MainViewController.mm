@@ -8,6 +8,8 @@
 
 #import "MainViewController.h"
 
+#import "fHash-Swift.h"
+
 #include <stdint.h>
 #include <pthread.h>
 #include <string>
@@ -19,7 +21,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MacUtils.h"
-#import "ESSProgressIndicator.h"
 #import "UIBridgeMacUI.h"
 #import "fHashMacAppDelegate.h"
 #import "MainWindowController.h"

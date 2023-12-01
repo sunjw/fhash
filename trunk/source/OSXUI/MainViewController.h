@@ -8,7 +8,8 @@
 #include "OsUtils/OsThread.h"
 
 #import <Cocoa/Cocoa.h>
-#import "ESSProgressIndicator.h"
+
+@class ESSProgressIndicator;
 
 @interface MainViewController : NSViewController <NSTextViewDelegate>
 
