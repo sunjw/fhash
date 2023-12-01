@@ -23,7 +23,6 @@
 #import "MacUtils.h"
 #import "UIBridgeMacUI.h"
 #import "fHashMacAppDelegate.h"
-#import "MainWindowController.h"
 #import "MainView.h"
 
 using namespace std;
