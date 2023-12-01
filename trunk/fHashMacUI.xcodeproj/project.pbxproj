@@ -10,6 +10,7 @@
 		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
+		417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
@@ -46,6 +47,8 @@
 		41666E061B6741C900A1D71F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		41666E151B67573900A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		41666E171B67573D00A1D71F /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
+		417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "fHash-Bridging-Header.h"; path = "source/OSXUI/fHash-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ESSProgressIndicator.swift; path = source/OSXUI/ESSProgressIndicator.swift; sourceTree = SOURCE_ROOT; };
 		418F62861BE9C8D6007337CF /* fHash.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fHash.entitlements; path = source/OSXUI/fHash.entitlements; sourceTree = SOURCE_ROOT; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -178,12 +181,14 @@
 				418F62861BE9C8D6007337CF /* fHash.entitlements */,
 				4198A5321B58D3B50050C831 /* Info.plist */,
 				4198A5351B58D3C40050C831 /* Main.storyboard */,
+				417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */,
 				5222581D213CF28900012EF8 /* AboutViewController.h */,
 				5222581C213CF28900012EF8 /* AboutViewController.mm */,
 				52225822213CF2CA00012EF8 /* AboutWindowController.h */,
 				5222581F213CF2C900012EF8 /* AboutWindowController.mm */,
 				52225821213CF2CA00012EF8 /* ESSProgressIndicator.h */,
 				52225820213CF2C900012EF8 /* ESSProgressIndicator.m */,
+				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
 				52225827213CF2F000012EF8 /* HyperlinkTextField.h */,
@@ -205,7 +210,7 @@
 				52751B161B56276F00BD724B /* Supporting Files */,
 			);
 			name = fHashMacUI;
-			path = TestUI;
+			path = source/OSXUI;
 			sourceTree = "<group>";
 		};
 		52751B161B56276F00BD724B /* Supporting Files */ = {
@@ -234,7 +239,7 @@
 			dependencies = (
 			);
 			name = fHash;
-			productName = TestUI;
+			productName = fHashMacUI;
 			productReference = 52751B101B56276F00BD724B /* fHash.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -250,6 +255,7 @@
 				TargetAttributes = {
 					52751B0F1B56276F00BD724B = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 1500;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -299,6 +305,7 @@
 				5222583B213CF36400012EF8 /* PaddingClipView.mm in Sources */,
 				52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
+				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				52225823213CF2CA00012EF8 /* AboutWindowController.mm in Sources */,
 				52225831213CF32600012EF8 /* MainView.mm in Sources */,
@@ -474,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -492,6 +500,9 @@
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/source/OSXUI/fHash-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -499,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -517,6 +529,8 @@
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "fHash-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
