@@ -15,6 +15,7 @@
 //  Edited by Sun Junwen on 2015/08/15.
 //  Swift version created by Sun Junwen on 2023/12/1.
 //
+
 import Cocoa
 
 private class ESSProgressBarAnimation: NSAnimation {

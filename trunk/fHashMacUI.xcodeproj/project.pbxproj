@@ -11,6 +11,7 @@
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */; };
+		417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D32B19C992003DFFAF /* PaddingClipView.swift */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
@@ -31,7 +32,6 @@
 		52225832213CF32600012EF8 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582C213CF32500012EF8 /* MainViewController.mm */; };
 		52225833213CF32600012EF8 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225830213CF32600012EF8 /* MainWindowController.mm */; };
 		5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225836213CF36400012EF8 /* UIBridgeMacUI.mm */; };
-		5222583B213CF36400012EF8 /* PaddingClipView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225837213CF36400012EF8 /* PaddingClipView.mm */; };
 		5222583C213CF36400012EF8 /* NoTitlebarWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225839213CF36400012EF8 /* NoTitlebarWindowController.mm */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +48,7 @@
 		41666E171B67573D00A1D71F /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
 		417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "fHash-Bridging-Header.h"; path = "source/OSXUI/fHash-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ESSProgressIndicator.swift; path = source/OSXUI/ESSProgressIndicator.swift; sourceTree = SOURCE_ROOT; };
+		417AC3D32B19C992003DFFAF /* PaddingClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingClipView.swift; sourceTree = "<group>"; };
 		418F62861BE9C8D6007337CF /* fHash.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fHash.entitlements; path = source/OSXUI/fHash.entitlements; sourceTree = SOURCE_ROOT; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -91,8 +92,6 @@
 		52225834213CF36400012EF8 /* NoTitlebarWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoTitlebarWindowController.h; path = source/OSXUI/NoTitlebarWindowController.h; sourceTree = SOURCE_ROOT; };
 		52225835213CF36400012EF8 /* UIBridgeMacUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacUI.h; path = source/OSXUI/UIBridgeMacUI.h; sourceTree = SOURCE_ROOT; };
 		52225836213CF36400012EF8 /* UIBridgeMacUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UIBridgeMacUI.mm; path = source/OSXUI/UIBridgeMacUI.mm; sourceTree = SOURCE_ROOT; };
-		52225837213CF36400012EF8 /* PaddingClipView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PaddingClipView.mm; path = source/OSXUI/PaddingClipView.mm; sourceTree = SOURCE_ROOT; };
-		52225838213CF36400012EF8 /* PaddingClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaddingClipView.h; path = source/OSXUI/PaddingClipView.h; sourceTree = SOURCE_ROOT; };
 		52225839213CF36400012EF8 /* NoTitlebarWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NoTitlebarWindowController.mm; path = source/OSXUI/NoTitlebarWindowController.mm; sourceTree = SOURCE_ROOT; };
 		52751B101B56276F00BD724B /* fHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -198,8 +197,7 @@
 				52225830213CF32600012EF8 /* MainWindowController.mm */,
 				52225834213CF36400012EF8 /* NoTitlebarWindowController.h */,
 				52225839213CF36400012EF8 /* NoTitlebarWindowController.mm */,
-				52225838213CF36400012EF8 /* PaddingClipView.h */,
-				52225837213CF36400012EF8 /* PaddingClipView.mm */,
+				417AC3D32B19C992003DFFAF /* PaddingClipView.swift */,
 				52225835213CF36400012EF8 /* UIBridgeMacUI.h */,
 				52225836213CF36400012EF8 /* UIBridgeMacUI.mm */,
 				52751B161B56276F00BD724B /* Supporting Files */,
@@ -297,7 +295,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5222583B213CF36400012EF8 /* PaddingClipView.mm in Sources */,
 				52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
@@ -309,6 +306,7 @@
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				5222582A213CF2F000012EF8 /* HyperlinkTextField.m in Sources */,
+				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
 				52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */,
 				5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */,
 				4111D69D27F16A35001AD814 /* sha512.cpp in Sources */,
