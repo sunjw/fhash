@@ -19,6 +19,7 @@
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
 		41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF362B1D92C200146768 /* AboutWindowController.swift */; };
 		41AAAF392B1D931A00146768 /* MacSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */; };
+		41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */; };
 		41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */; };
 		41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */; };
 		41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEC1B5B4B470081F283 /* MD5.cpp */; };
@@ -60,6 +61,7 @@
 		41A4A573285198E500D1ECAC /* endianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = endianness.h; path = source/Algorithms/endianness.h; sourceTree = "<group>"; };
 		41AAAF362B1D92C200146768 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSwiftUtils.swift; sourceTree = "<group>"; };
+		41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
 		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
 		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
 				52225827213CF2F000012EF8 /* HyperlinkTextField.h */,
 				52225828213CF2F000012EF8 /* HyperlinkTextField.m */,
+				41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
 				52225819213CF24300012EF8 /* MacUtils.mm */,
 				41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */,
@@ -294,6 +297,7 @@
 			files = (
 				52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */,
 				417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */,
+				41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */,
 				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
