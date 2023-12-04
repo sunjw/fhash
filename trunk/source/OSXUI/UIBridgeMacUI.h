@@ -67,7 +67,7 @@ public:
 
 private:
     MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
-    
+
     NSAttributedString *_nsstrNoPreparing;
 };
 
