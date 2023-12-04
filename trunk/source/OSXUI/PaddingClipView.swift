@@ -8,7 +8,7 @@
 
 import Cocoa
 
-let CLIPVIEW_PADDING_TOP = 22
+private let CLIPVIEW_PADDING_TOP = 22
 
 @objc(PaddingClipView) class PaddingClipView: NSClipView {
     override func setFrameOrigin(_ newOrigin: NSPoint) {
