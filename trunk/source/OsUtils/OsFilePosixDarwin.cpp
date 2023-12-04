@@ -58,11 +58,11 @@ bool OsFile::open(void *flag, void *exception)
     if ((statRet = stat(strFilePath.c_str(), &st)) == 0 &&
         (st.st_mode & S_IFREG))
     {
-        
+
         int posixFlag = (int)(uint64_t)flag;
-        
+
         *fd = ::open(strFilePath.c_str(), posixFlag);
-        
+
         if (*fd == -1 && pFileExc != NULL)
         {
             strlcpy(pFileExc, "Cannot open this file.", OsFile::ERR_MSG_BUFFER_LEN);
@@ -85,7 +85,7 @@ bool OsFile::open(void *flag, void *exception)
 bool OsFile::openRead(void *exception/* = NULL*/)
 {
     bool ret = false;
-    
+
     ret = this->open((void *)(O_RDONLY), exception);
 
     if (ret == true)
@@ -104,7 +104,7 @@ bool OsFile::openReadScan(void *exception/* = NULL*/)
 bool OsFile::openWrite(void *exception/* = NULL*/)
 {
     bool ret = false;
-    
+
     ret = this->open((void *)(O_RDWR | O_CREAT | O_SYNC), exception);
 
     if (ret == true)
@@ -144,7 +144,7 @@ bool OsFile::getModifiedTime(void *modifiedTime)
     if (stat(strFilePath.c_str(), &st) == 0)
     {
         *darwinfileModTime = st.st_mtimespec;
-        
+
         return true;
     }
 
