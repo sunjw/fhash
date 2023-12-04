@@ -29,6 +29,6 @@ import Cocoa
             mainViewController?.stopHashCalc(true)
         }
 
-        return !(mainViewController?.isCalculating())!
+        return !(mainViewController?.isCalculating() ?? false)
     }
 }
