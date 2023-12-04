@@ -41,7 +41,7 @@ namespace MacUtils {
 
     NSInteger GetSystemMinorVersion() {
         NSInteger nsiMinorVersion = 0;
-        
+
         NSString *systemVersion = GetSystemVersion();
         NSArray *versionParts = [systemVersion componentsSeparatedByString: @"."];
         if (versionParts != nil && versionParts.count > 1) {
