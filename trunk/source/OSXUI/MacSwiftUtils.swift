@@ -67,7 +67,8 @@ class MacSwiftUtils {
         var strLocalized = NSLocalizedString(nsstrKey, comment: "")
         // Fix Windows UI strings.
         // Fix zh-cn.
-        for chTest in Unicode.Scalar("A").value...Unicode.Scalar("Z").value {
+        for iTest in Unicode.Scalar("A").value...Unicode.Scalar("Z").value {
+            let chTest = Character(Unicode.Scalar(iTest)!)
             var strTest = "(&"
             strTest += String(chTest)
             strTest += ")"
