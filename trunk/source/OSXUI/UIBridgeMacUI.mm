@@ -45,7 +45,7 @@ void UIBridgeMacUI::preparingCalc()
     {
         // Copy old string.
         _nsstrNoPreparing = [[NSMutableAttributedString alloc] initWithAttributedString:mainViewController.mainText];
-        
+
         string strAppend = GetStringFromResByKey(MAINDLG_WAITING_START);
         strAppend.append("\n");
         NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
