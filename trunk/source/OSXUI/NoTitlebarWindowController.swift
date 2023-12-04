@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc class NoTitlebarWindowController: NSWindowController {
+@objc(NoTitlebarWindowController) class NoTitlebarWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
