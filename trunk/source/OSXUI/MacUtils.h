@@ -89,7 +89,7 @@ namespace MacUtils {
     /**
      * Convert an UTF-8 std::string to NSString.
      */
-    NSString *ConvertUTF8StringToNSString(const std::string stdstrUtf8);
+    NSString *ConvertUTF8StringToNSString(const std::string& stdstrUtf8);
 
     /**
      * Get specific named string as std::string.

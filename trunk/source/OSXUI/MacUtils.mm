@@ -75,7 +75,7 @@ namespace MacUtils {
         return strRet;
     }
 
-    NSString *ConvertUTF8StringToNSString(const string stdstrUtf8) {
+    NSString *ConvertUTF8StringToNSString(const string& stdstrUtf8) {
         return [NSString stringWithUTF8String:stdstrUtf8.c_str()];
     }
 
