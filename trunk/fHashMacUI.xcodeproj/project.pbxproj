@@ -17,6 +17,8 @@
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
+		41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF362B1D92C200146768 /* AboutWindowController.swift */; };
+		41AAAF392B1D931A00146768 /* MacSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */; };
 		41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */; };
 		41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DDA1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp */; };
 		41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41FF1DEC1B5B4B470081F283 /* MD5.cpp */; };
@@ -57,6 +59,8 @@
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41A4A573285198E500D1ECAC /* endianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = endianness.h; path = source/Algorithms/endianness.h; sourceTree = "<group>"; };
+		41AAAF362B1D92C200146768 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSwiftUtils.swift; sourceTree = "<group>"; };
 		41F2360A20C77C3E005E6724 /* MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MD5.h; path = source/Algorithms/MD5.h; sourceTree = "<group>"; };
 		41FF1DD71B5B4A5A0081F283 /* OsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OsFile.h; path = source/OsUtils/OsFile.h; sourceTree = "<group>"; };
 		41FF1DD81B5B4A5A0081F283 /* OsFilePosixDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OsFilePosixDarwin.cpp; path = source/OsUtils/OsFilePosixDarwin.cpp; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				5222581C213CF28900012EF8 /* AboutViewController.mm */,
 				52225822213CF2CA00012EF8 /* AboutWindowController.h */,
 				5222581F213CF2C900012EF8 /* AboutWindowController.mm */,
+				41AAAF362B1D92C200146768 /* AboutWindowController.swift */,
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
@@ -187,6 +192,7 @@
 				52225828213CF2F000012EF8 /* HyperlinkTextField.m */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
 				52225819213CF24300012EF8 /* MacUtils.mm */,
+				41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */,
 				5222582F213CF32600012EF8 /* MainView.h */,
 				5222582B213CF32500012EF8 /* MainView.mm */,
 				5222582D213CF32600012EF8 /* MainViewController.h */,
@@ -294,6 +300,7 @@
 				52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */,
 				417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */,
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
+				41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */,
 				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				52225823213CF2CA00012EF8 /* AboutWindowController.mm in Sources */,
@@ -311,6 +318,7 @@
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
 				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
+				41AAAF392B1D931A00146768 /* MacSwiftUtils.swift in Sources */,
 				5222580A213CDA7C00012EF8 /* Utils.cpp in Sources */,
 				41FF1DF31B5B4B470081F283 /* MD5.cpp in Sources */,
 			);
