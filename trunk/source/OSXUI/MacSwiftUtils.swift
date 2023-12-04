@@ -16,29 +16,29 @@ class MacSwiftUtils {
     }
 
     class func GetSystemMajorVersion() -> Int {
-        var nsiMajorVersion = 0
+        var majorVersion = 0
 
         let systemVersion = GetSystemVersion()
         let versionParts = systemVersion?.components(separatedBy: ".")
         if versionParts != nil && (versionParts?.count ?? 0) > 0 {
-            let nsstrMajorVersion = versionParts?[0]
-            nsiMajorVersion = Int(nsstrMajorVersion ?? "") ?? 0
+            let strMajorVersion = versionParts?[0]
+            majorVersion = Int(strMajorVersion ?? "") ?? 0
         }
 
-        return nsiMajorVersion
+        return majorVersion
     }
 
     class func GetSystemMinorVersion() -> Int {
-        var nsiMinorVersion = 0
+        var minorVersion = 0
 
         let systemVersion = GetSystemVersion()
         let versionParts = systemVersion?.components(separatedBy: ".")
         if versionParts != nil && (versionParts?.count ?? 0) > 1 {
-            let nsstrMinorVersion = versionParts?[1]
-            nsiMinorVersion = Int(nsstrMinorVersion ?? "") ?? 0
+            let strMinorVersion = versionParts?[1]
+            minorVersion = Int(strMinorVersion ?? "") ?? 0
         }
 
-        return nsiMinorVersion
+        return minorVersion
     }
 
     class func IsSystemEarlierThan(_ majorVersion: Int, _ minorVersion: Int) -> Bool {
