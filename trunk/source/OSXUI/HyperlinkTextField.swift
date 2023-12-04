@@ -62,7 +62,7 @@ class HyperlinkTextField: NSTextField {
         return textView
     }
 
-    func _hyperlinkTextFieldInit() {
+    private func _hyperlinkTextFieldInit() {
         isEditable = false
         isSelectable = false
     }
@@ -82,7 +82,7 @@ class HyperlinkTextField: NSTextField {
         _resetHyperlinkCursorRects()
     }
 
-    func _resetHyperlinkCursorRects() {
+    private func _resetHyperlinkCursorRects() {
         for info in hyperlinkInfos {
             addCursorRect(info.rect, cursor: .pointingHand)
         }
