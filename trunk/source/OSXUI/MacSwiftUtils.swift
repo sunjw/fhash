@@ -59,8 +59,8 @@ class MacSwiftUtils {
         return language
     }
 
-    class func ConvertUTF8StringToString(_ stdstrUtf8: UnsafePointer<CChar>) -> String? {
-        return String(utf8String: stdstrUtf8)
+    class func ConvertUTF8CStringToString(_ cstrUtf8: UnsafePointer<CChar>) -> String? {
+        return String(utf8String: cstrUtf8)
     }
 
     class func GetStringFromRes(_ nsstrKey: String) -> String {
