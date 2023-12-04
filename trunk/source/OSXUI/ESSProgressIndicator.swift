@@ -19,8 +19,8 @@
 import Cocoa
 
 private class ESSProgressBarAnimation: NSAnimation {
-    var progInd: ESSProgressIndicator?
-    var initValue: Double = 0.0
+    private var progInd: ESSProgressIndicator?
+    private var initValue: Double = 0.0
     var newValue: Double = 0.0
 
     required init?(coder aDecoder: NSCoder) {
