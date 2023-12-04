@@ -7,7 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "HyperlinkTextField.h"
+
+@class HyperlinkTextField;
 
 @interface AboutViewController : NSViewController
 

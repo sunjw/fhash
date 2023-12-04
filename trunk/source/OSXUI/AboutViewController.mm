@@ -8,6 +8,8 @@
 
 #import "AboutViewController.h"
 
+#import "fHash-Swift.h"
+
 #include <string>
 #include "Common/strhelper.h"
 #import "MacUtils.h"

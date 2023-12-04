@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class HyperlinkTextField: NSTextField {
+@objc(HyperlinkTextField) class HyperlinkTextField: NSTextField {
     private struct HyperlinkInfo {
         let range: NSRange
         let link: URL
@@ -103,8 +103,7 @@ class HyperlinkTextField: NSTextField {
 
         if index != NSNotFound {
             for info in hyperlinkInfos {
-                let range = info.range
-                if NSLocationInRange(index, range) {
+                if NSLocationInRange(index, info.range) {
                     NSWorkspace.shared.open(info.link)
                 }
             }

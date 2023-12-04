@@ -31,7 +31,6 @@
 		5222581B213CF24300012EF8 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225819213CF24300012EF8 /* MacUtils.mm */; };
 		5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222581C213CF28900012EF8 /* AboutViewController.mm */; };
 		52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */; };
-		5222582A213CF2F000012EF8 /* HyperlinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 52225828213CF2F000012EF8 /* HyperlinkTextField.m */; };
 		52225831213CF32600012EF8 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582B213CF32500012EF8 /* MainView.mm */; };
 		52225832213CF32600012EF8 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582C213CF32500012EF8 /* MainViewController.mm */; };
 		5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225836213CF36400012EF8 /* UIBridgeMacUI.mm */; };
@@ -86,8 +85,6 @@
 		5222581D213CF28900012EF8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = source/OSXUI/AboutViewController.h; sourceTree = SOURCE_ROOT; };
 		52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/OSXUI/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/OSXUI/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
-		52225827213CF2F000012EF8 /* HyperlinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HyperlinkTextField.h; path = source/OSXUI/HyperlinkTextField.h; sourceTree = SOURCE_ROOT; };
-		52225828213CF2F000012EF8 /* HyperlinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HyperlinkTextField.m; path = source/OSXUI/HyperlinkTextField.m; sourceTree = SOURCE_ROOT; };
 		5222582B213CF32500012EF8 /* MainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainView.mm; path = source/OSXUI/MainView.mm; sourceTree = SOURCE_ROOT; };
 		5222582C213CF32500012EF8 /* MainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainViewController.mm; path = source/OSXUI/MainViewController.mm; sourceTree = SOURCE_ROOT; };
 		5222582D213CF32600012EF8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = source/OSXUI/MainViewController.h; sourceTree = SOURCE_ROOT; };
@@ -185,8 +182,6 @@
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
-				52225827213CF2F000012EF8 /* HyperlinkTextField.h */,
-				52225828213CF2F000012EF8 /* HyperlinkTextField.m */,
 				41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
 				52225819213CF24300012EF8 /* MacUtils.mm */,
@@ -306,7 +301,6 @@
 				5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
-				5222582A213CF2F000012EF8 /* HyperlinkTextField.m in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
 				52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */,
 				5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */,
