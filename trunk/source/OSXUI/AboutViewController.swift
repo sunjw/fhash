@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AboutViewController: NSViewController {
+@objc(AboutViewController) class AboutViewController: NSViewController {
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak var infoTextField: NSTextField!
     @IBOutlet weak var homePageLinkTextField: HyperlinkTextField!

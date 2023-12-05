@@ -30,7 +30,6 @@
 		5222580A213CDA7C00012EF8 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52225808213CDA7C00012EF8 /* Utils.cpp */; };
 		52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5222580F213CDB2900012EF8 /* HashEngine.cpp */; };
 		5222581B213CF24300012EF8 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225819213CF24300012EF8 /* MacUtils.mm */; };
-		5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222581C213CF28900012EF8 /* AboutViewController.mm */; };
 		52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */; };
 		52225831213CF32600012EF8 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582B213CF32500012EF8 /* MainView.mm */; };
 		52225832213CF32600012EF8 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582C213CF32500012EF8 /* MainViewController.mm */; };
@@ -83,8 +82,6 @@
 		52225814213CDB9D00012EF8 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/Common/UIBridgeBase.h; sourceTree = "<group>"; };
 		52225819213CF24300012EF8 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/OSXUI/MacUtils.mm; sourceTree = SOURCE_ROOT; };
 		5222581A213CF24300012EF8 /* MacUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacUtils.h; path = source/OSXUI/MacUtils.h; sourceTree = SOURCE_ROOT; };
-		5222581C213CF28900012EF8 /* AboutViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AboutViewController.mm; path = source/OSXUI/AboutViewController.mm; sourceTree = SOURCE_ROOT; };
-		5222581D213CF28900012EF8 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = source/OSXUI/AboutViewController.h; sourceTree = SOURCE_ROOT; };
 		52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/OSXUI/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/OSXUI/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		5222582B213CF32500012EF8 /* MainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainView.mm; path = source/OSXUI/MainView.mm; sourceTree = SOURCE_ROOT; };
@@ -178,8 +175,6 @@
 				4198A5321B58D3B50050C831 /* Info.plist */,
 				4198A5351B58D3C40050C831 /* Main.storyboard */,
 				417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */,
-				5222581D213CF28900012EF8 /* AboutViewController.h */,
-				5222581C213CF28900012EF8 /* AboutViewController.mm */,
 				413870E12B1F20C500448A6F /* AboutViewController.swift */,
 				41AAAF362B1D92C200146768 /* AboutWindowController.swift */,
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
@@ -302,7 +297,6 @@
 				413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				52225831213CF32600012EF8 /* MainView.mm in Sources */,
-				5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
