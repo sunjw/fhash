@@ -46,13 +46,13 @@ namespace Utils
         gettimeofday(&tv, NULL);
         return (tv.tv_sec) * 1000 + (tv.tv_usec) / 1000;
     }
-    
+
     string ConvertSizeToShortSizeStr(uint64_t size, bool conv1KSmaller)
     {
         string strSize("");
 
         char buff[1024] = {0};
-        
+
 #if defined (__APPLE__)
         int sizek = 1000;
 #else
@@ -105,8 +105,6 @@ namespace Utils
 
         return strSize;
     }
-    
-    
 
 }
 
