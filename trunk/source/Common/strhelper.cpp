@@ -47,7 +47,7 @@ namespace sunjwbase
 		delete[] szTo;
 		return strTo;
 	}
-	
+
 	static std::wstring _strtowstr(const std::string& str, UINT codePage)
 	{
 		// Convert a specified code page encoded string to a wstring 
@@ -73,27 +73,27 @@ std::string sunjwbase::striconv(const std::string& input,
 	size_t outleft = inleft * 4 + 1; // should be large enough
 	char* outptr = new char[outleft];
 	bzero(outptr, outleft);
-	
+
 	strcpy(inptr, input.c_str());
-	
+
 	iconv_t cd; // conversion descriptor
 	if ((cd = iconv_open(to_code.c_str(), from_code.c_str())) == (iconv_t) (-1))
 	{
 		iconv_close(cd); // failed clean
 		return input;
 	}
-	
+
 	char* in = inptr;
 	char* out = outptr;
 	outleft = iconv(cd, &in, &inleft, &out, &outleft);
-	
+
 	iconv_close(cd);
-	
+
 	std::string strRet(outptr);
-	
+
 	delete[] inptr;
 	delete[] outptr;
-	
+
 	return strRet;
 }
 #endif
@@ -143,7 +143,7 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 	std::string str(char_buf);
 	delete[] char_buf;
 	setlocale(LC_ALL, "C");
-	
+
 	return str;
 #endif
 }
@@ -163,7 +163,7 @@ std::wstring sunjwbase::strtowstr(const std::string& str)
 	std::wstring wstr(wct_buf, num_chars);
 	delete[] wct_buf;
 	setlocale(LC_ALL, "C");
-	
+
 	return wstr;
 #endif
 }
@@ -183,7 +183,7 @@ std::string sunjwbase::asciiconvjson(std::string& strJsonUtf16)
 			n[1] = strJsonUtf16[i + 3];
 			n[2] = strJsonUtf16[i + 4];
 			n[3] = strJsonUtf16[i + 5];
-			
+
 			i += 5;
 
 			int utf16 = 0;
@@ -262,7 +262,7 @@ std::string sunjwbase::strreplace(const std::string& base, const std::string& sr
 		ret.replace(pos, srcLen, des);
 		pos = ret.find(src, pos + desLen);
 	}
-	
+
 	return ret;
 }
 
@@ -278,7 +278,7 @@ std::wstring sunjwbase::strreplace(const std::wstring& base, const std::wstring&
 		ret.replace(pos, srcLen, des);
 		pos = ret.find(src, pos + desLen);
 	}
-	
+
 	return ret;
 }
 
@@ -349,7 +349,7 @@ std::string sunjwbase::itostr(int num, int idx /* = 10 */)
 			break;
 		}
 	}
-	
+
 	return ret;
 }
 
@@ -378,7 +378,7 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 			size *= 2;
 	}
 	str.append(temp);
-	
+
 	return str;
 }
 

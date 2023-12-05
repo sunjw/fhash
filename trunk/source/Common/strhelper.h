@@ -23,7 +23,7 @@ namespace sunjwbase
 #else
 	typedef std::string tstring;
 #endif
-	
+
 #if defined (WIN32)
 	typedef __int64 INT64;
 #endif
@@ -44,10 +44,10 @@ namespace sunjwbase
 	 * 2nd, call strtowstr
 	 */
 	std::wstring strtowstrutf8(const std::string& str);
-	
+
 	std::string wstrtostr(const std::wstring& wstr);
 	std::wstring strtowstr(const std::string& str);
-	
+
 #if defined (__APPLE__) || defined (__unix)
 	std::string striconv(const std::string& input,
 						 const std::string& to_code,
@@ -80,7 +80,7 @@ namespace sunjwbase
 
 	// convert JSON utf16 encoded string to native encoded string
 	std::string asciiconvjson(std::string& strJsonUtf16);
-	
+
 	inline std::string tstrtostr(const tstring& tstr)
 	{
 #if defined(_UNICODE_HELPER)
@@ -89,7 +89,7 @@ namespace sunjwbase
 		return tstr;
 #endif
 	}
-	
+
 	inline std::wstring tstrtowstr(const tstring& tstr)
 	{
 #if defined(_UNICODE_HELPER)
@@ -174,7 +174,7 @@ namespace sunjwbase
 	{
 		strequal_ci( const std::locale& loc ):m_loc(loc)
 		{}
-		
+
 		bool operator()(charT ch1, charT ch2)
 		{
 			return std::toupper(ch1, m_loc) == std::toupper(ch2, m_loc);
@@ -200,7 +200,7 @@ namespace sunjwbase
 			return -1; // not found
 		}
 	}
-	
+
 	// itostr
 	std::string itostr(int num, int idx = 10);
 
@@ -212,6 +212,5 @@ namespace sunjwbase
 	bool str_endwith(const std::string& str, const std::string& target);
 
 }
-
 
 #endif
