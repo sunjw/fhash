@@ -176,7 +176,7 @@ namespace WindowsComm
 				{
 					strOsinfo = strappendformat(strOsinfo, "Windows Version %d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion);
 				}
-					
+
 			}
 
 			if (osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2)
