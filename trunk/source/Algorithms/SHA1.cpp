@@ -104,9 +104,9 @@ void CSHA1::Update(unsigned char* data, unsigned int len)
 	j = (m_count[0] >> 3) & 63;
 
 	if((m_count[0] += len << 3) < (len << 3)) m_count[1]++;
-	
+
 	m_count[1] += (len >> 29);
-	
+
 	if((j + len) > 63)
 	{
 		memcpy(&m_buffer[j], data, (i = 64 - j));
