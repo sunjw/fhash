@@ -215,7 +215,7 @@ int WINAPI HashThreadFunc(void *param)
 			// get file status //
 			tstring tstrLastModifiedTime = osFile.getModifiedTimeFormat();
 			result.tstrMDate = tstrLastModifiedTime;
-			
+
 			fsize = osFile.getLength(); // fix 4GB file
 			result.ulSize = fsize;
 
@@ -248,7 +248,7 @@ int WINAPI HashThreadFunc(void *param)
 
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
-			
+
 			//UINT bufferSize = sizeof(buffer);
 			do 
 			{	
