@@ -100,14 +100,14 @@ bool OsFile::open(void *flag, void *exception)
 #endif
 		}
 	}
-	
+
 	return (_osfileData != INVALID_HANDLE_VALUE);
 }
 
 bool OsFile::openRead(void *exception/* = NULL*/)
 {
 	bool ret = false;
-	
+
 	CreateFileFlag fileFlag;
 	fileFlag.dwDesiredAccess = GENERIC_READ;
 	fileFlag.dwShareMode = FILE_SHARE_READ;
