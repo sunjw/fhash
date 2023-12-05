@@ -34,7 +34,7 @@ namespace WindowsStrings
 			itr->second = NULL;
 		}
 	}
-	
+
 	WindowsStringsMgr *WindowsStringsMgr::getInstance(void)
 	{
 		s_instMtx.lock();

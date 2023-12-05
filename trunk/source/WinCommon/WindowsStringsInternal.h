@@ -29,7 +29,7 @@ namespace WindowsStrings
 
 		static sunjwbase::OsMutex s_instMtx;
 		static WindowsStringsMgr *s_winStrsMgrInst;
-		
+
 		LangStringsMap m_langStrsMap;
 	};
 }
