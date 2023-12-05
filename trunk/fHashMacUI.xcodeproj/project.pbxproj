@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
+		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */; };
@@ -41,6 +42,7 @@
 		410E26141B71C9CC004B3C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4111D69B27F16A35001AD814 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha512.h; path = source/Algorithms/sha512.h; sourceTree = "<group>"; };
 		4111D69C27F16A35001AD814 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha512.cpp; path = source/Algorithms/sha512.cpp; sourceTree = "<group>"; };
+		413870E12B1F20C500448A6F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		415F8D6E28CF558500D8971C /* ThreadPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThreadPool.h; path = source/Common/ThreadPool.h; sourceTree = "<group>"; };
 		4163EC952850A2C900453333 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/OSXUI/stdafx.h; sourceTree = "<group>"; };
 		41666E041B67415300A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */,
 				5222581D213CF28900012EF8 /* AboutViewController.h */,
 				5222581C213CF28900012EF8 /* AboutViewController.mm */,
+				413870E12B1F20C500448A6F /* AboutViewController.swift */,
 				41AAAF362B1D92C200146768 /* AboutWindowController.swift */,
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
@@ -296,6 +299,7 @@
 				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */,
 				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
+				413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				52225831213CF32600012EF8 /* MainView.mm in Sources */,
 				5222581E213CF28A00012EF8 /* AboutViewController.mm in Sources */,
