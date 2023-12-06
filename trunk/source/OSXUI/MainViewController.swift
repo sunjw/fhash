@@ -294,6 +294,13 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         }
     }
 
+    private func performViewDragOperation(_ sender: NSDraggingInfo?) {
+        if let pboard = sender?.draggingPasteboard {
+            let fileNames = pboard.readObjects(forClasses: [NSURL.self], options: [:])
+            self.startHashCalc(fileNames ?? [], isURL: true)
+        }
+    }
+
     private func updateUpperCaseState() {
         upperCaseState = (upperCaseButton.state == .on)
     }
