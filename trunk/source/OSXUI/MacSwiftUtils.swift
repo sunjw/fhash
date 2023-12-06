@@ -14,7 +14,7 @@ class MacSwiftUtils {
     class func GetCurrentMilliSec() -> UInt64 {
         var tv = timeval()
         gettimeofday(&tv, nil)
-        return UInt64((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000)
+        return UInt64((tv.tv_sec) * 1000 + Int(tv.tv_usec) / 1000)
     }
 
     class func GetSystemVersion() -> String? {
