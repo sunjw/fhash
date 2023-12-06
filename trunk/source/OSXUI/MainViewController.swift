@@ -183,6 +183,12 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         }
     }
 
+    override var representedObject: Any? {
+        didSet {
+            // Update the view, if already loaded.
+        }
+    }
+
     private func getFileMenu() -> NSMenu? {
         let mainMenu = NSApp.mainMenu
         let fileMenuItem = mainMenu?.item(at: 1)
