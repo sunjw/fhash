@@ -278,6 +278,22 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         return (state == .CALC_ING || state == .WAITING_EXIT)
     }
 
+    private func openFiles() {
+        let openPanel = NSOpenPanel()
+        openPanel.showsResizeIndicator = true
+        openPanel.showsHiddenFiles = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = true
+        openPanel.allowsMultipleSelection = true
+
+        openPanel.beginSheetModal(for: view.window!) { [self] result in
+            if result == .OK {
+                let fileNames = openPanel.urls
+                self.startHashCalc(fileNames, isURL: true)
+            }
+        }
+    }
+
     private func updateUpperCaseState() {
         upperCaseState = (upperCaseButton.state == .on)
     }
@@ -375,7 +391,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView()
     }
 
-    private func startHashCalc(_ fileNames: [String], isURL: Bool) {
+    private func startHashCalc(_ fileNames: [Any], isURL: Bool) {
         if !self.ableToCalcFiles() {
             return
         }
