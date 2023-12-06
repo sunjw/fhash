@@ -96,7 +96,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         //_uiBridgeMac = new UIBridgeMacUI(self);
         //_thrdData = new ThreadData();
 
-        let fileMenu = getFileMenu()
+        let fileMenu = self.getFileMenu()
         fileMenu?.autoenablesItems = false
 
         // Set buttons title.
@@ -220,7 +220,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
             calcEndTime = MacSwiftUtils.GetCurrentMilliSec()
 
             // Set controls title.
-            let openMenuItem = getOpenMenuItem()
+            let openMenuItem = self.getOpenMenuItem()
             openMenuItem?.isEnabled = true
 
             openButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_OPEN")
@@ -233,7 +233,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
             // _thrdData->stop = false;
 
-            let openMenuItem = getOpenMenuItem()
+            let openMenuItem = self.getOpenMenuItem()
             openMenuItem?.isEnabled = false
 
             speedTextField.stringValue = ""
@@ -271,7 +271,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
     }
 
     private func ableToCalcFiles() -> Bool {
-        return !isCalculating()
+        return !self.isCalculating()
     }
 
     private func isCalculating() -> Bool {
@@ -373,6 +373,50 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         mainProgressIndicator.jump(toDoubleValue: 0)
 
         self.updateMainTextView()
+    }
+
+    private func startHashCalc(_ fileNames: [String], isURL: Bool) {
+        if !self.ableToCalcFiles() {
+            return
+        }
+
+        if state == .NONE {
+            // Clear up text.
+            // _mainMtx->lock();
+            mainText = NSMutableAttributedString()
+            // _mainMtx->unlock();
+        }
+
+        // Get files path.
+        let fileCount = fileNames.count
+        // _thrdData->nFiles = (uint32_t)fileCount;
+        // _thrdData->fullPaths.clear();
+
+        // for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
+        //     string strFileName;
+        //     if (!isURL) {
+        //         NSString *nsstrFileName = [fileNames objectAtIndex:i];
+        //         strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrFileName);
+        //     } else {
+        //         NSURL *nsurlFileName = [fileNames objectAtIndex:i];
+        //         strFileName = MacUtils::ConvertNSStringToUTF8String([nsurlFileName path]);
+        //     }
+        //     _thrdData->fullPaths.push_back(strtotstr(strFileName));
+        // }
+
+        // Uppercase.
+        self.updateUpperCaseState()
+        // _thrdData->uppercase = _upperCaseState;
+
+        mainProgressIndicator.jump(toDoubleValue: 0)
+
+        // Ready to go.
+        self.setViewControllerState(.CALC_ING)
+
+        // pthread_create(&_ptHash,
+        //                NULL,
+        //                (void *(*)(void *))HashThreadFunc,
+        //                _thrdData);
     }
 
     private func refreshResultText() {
