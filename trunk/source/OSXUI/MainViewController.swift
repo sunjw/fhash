@@ -162,6 +162,27 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView()
     }
 
+    override func viewWillDisappear() {
+        // Save NSUserDefaults.
+        let defaultUpperCase = (upperCaseButton.state == .on)
+        UserDefaults.standard.set(
+            defaultUpperCase,
+            forKey: UPPERCASE_DEFAULT_KEY)
+
+        // Close other windows.
+        let windows = NSApplication.shared.windows
+        let windowCount = windows.count
+        for i in 0..<windowCount {
+            let window = windows[i]
+            let windowController = window.windowController
+            if windowController == nil || !(windowController is MainWindowController) {
+                // It looks like about panel or finder overlay window.
+                // They will stop us exit, let's close them.
+                window.close()
+            }
+        }
+    }
+
     private func getFileMenu() -> NSMenu? {
         let mainMenu = NSApp.mainMenu
         let fileMenuItem = mainMenu?.item(at: 1)
