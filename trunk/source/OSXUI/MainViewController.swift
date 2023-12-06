@@ -45,7 +45,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
     private var mainFont: NSFont?
 
-    private var selectedLink: String?
+    private var selectedLink: String = ""
 
     private var calcStartTime: UInt64 = 0
     private var calcEndTime: UInt64 = 0
@@ -284,5 +284,23 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         // _mainMtx->unlock();
 
         self.updateMainTextView(true)
+    }
+
+    private func menuCopyHash() {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(selectedLink, forType: .string)
+    }
+
+    private func menuSearchGoogle() {
+        let nstrUrl = "https://www.google.com/search?q=\(selectedLink)&ie=utf-8&oe=utf-8"
+        let url = URL(string: nstrUrl)!
+        NSWorkspace.shared.open(url)
+    }
+
+    private func menuSearchVirusTotal() {
+        let nstrUrl = "https://www.virustotal.com/#/search/\(selectedLink)"
+        let url = URL(string: nstrUrl)!
+        NSWorkspace.shared.open(url)
     }
 }
