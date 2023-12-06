@@ -295,8 +295,8 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
             var nsptMouseLoc: NSPoint
             nsptMouseLoc = NSEvent.mouseLocation
-            let nsrtMouseInView = view.window?.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
-            let nsptMouseInView = nsrtMouseInView?.origin as? NSPoint
+            let nsrtMouseInView = view.window!.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
+            let nsptMouseInView = nsrtMouseInView.origin
 
             let nsmenuHash = NSMenu(title: "HashMenu")
             nsmenuHash.insertItem(
@@ -316,7 +316,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
                 keyEquivalent: "",
                 at: 3)
 
-            nsmenuHash.popUp(positioning: nil, at: nsptMouseInView ?? NSPoint.zero, in: view)
+            nsmenuHash.popUp(positioning: nil, at: nsptMouseInView, in: view)
 
             return true
         }
