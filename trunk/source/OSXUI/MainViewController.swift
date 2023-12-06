@@ -360,6 +360,21 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         }
     }
 
+    private func calculateStopped() {
+        var strAppend = "\n"
+        strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
+        strAppend += "\n\n"
+
+        // _mainMtx->lock();
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
+        // _mainMtx->unlock();
+
+        self.setViewControllerState(.CALC_FINISH)
+        mainProgressIndicator.jump(toDoubleValue: 0)
+
+        self.updateMainTextView()
+    }
+
     private func refreshResultText() {
         self.updateUpperCaseState()
 
