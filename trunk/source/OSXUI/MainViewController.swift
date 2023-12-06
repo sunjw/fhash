@@ -480,6 +480,14 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         }
     }
 
+    @IBAction func clearButtonClicked(_ sender: NSButton) {
+        if state == .VERIFY {
+        } else {
+            self.setViewControllerState(.NONE)
+            self.updateMainTextView()
+        }
+    }
+
     func textView(_ aTextView: NSTextView,
                   clickedOnLink link: Any,
                   at charIndex: Int) -> Bool {
