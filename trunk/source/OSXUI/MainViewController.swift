@@ -419,6 +419,16 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         //                _thrdData);
     }
 
+    private func stopHashCalc(_ needExit: Bool) {
+        if state == .CALC_ING {
+            // _thrdData->stop = true;
+
+            if needExit {
+                self.setViewControllerState(.WAITING_EXIT)
+            }
+        }
+    }
+
     private func refreshResultText() {
         self.updateUpperCaseState()
 
