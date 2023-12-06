@@ -41,7 +41,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
     var tag = 0
 
     // private
-    private var state: MainViewControllerState?
+    private var state: MainViewControllerState = .NONE
 
     private var mainFont: NSFont?
 
