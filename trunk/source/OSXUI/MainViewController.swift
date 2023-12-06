@@ -189,6 +189,74 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         }
     }
 
+    private func setViewControllerState(_ newState: MainViewControllerState) {
+        switch newState {
+        case .NONE:
+            // Clear all.
+            // _thrdData->threadWorking = false;
+            // _thrdData->stop = false;
+
+            // _thrdData->uppercase = false;
+            // _thrdData->totalSize = 0;
+
+            // _thrdData->nFiles = 0;
+            // _thrdData->fullPaths.clear();
+
+            // _thrdData->resultList.clear();
+
+            // _mainMtx->lock();
+            mainText = NSMutableAttributedString()
+            var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_INITINFO")
+            strAppend += "\n\n"
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
+            // _mainMtx->unlock();
+
+            mainProgressIndicator.jump(toDoubleValue: 0)
+            speedTextField.stringValue = ""
+
+            // Passthrough to MAINVC_CALC_FINISH.
+            fallthrough
+        case .CALC_FINISH:
+            calcEndTime = MacSwiftUtils.GetCurrentMilliSec()
+
+            // Set controls title.
+            let openMenuItem = getOpenMenuItem()
+            openMenuItem?.isEnabled = true
+
+            openButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_OPEN")
+            clearButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_CLEAR")
+            clearButton.isEnabled = true
+            verifyButton.isEnabled = true
+            upperCaseButton.isEnabled = true
+        case .CALC_ING:
+            calcStartTime = MacSwiftUtils.GetCurrentMilliSec()
+
+            // _thrdData->stop = false;
+
+            let openMenuItem = getOpenMenuItem()
+            openMenuItem?.isEnabled = false
+
+            speedTextField.stringValue = ""
+
+            openButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_STOP")
+            clearButton.isEnabled = false
+            verifyButton.isEnabled = false
+            upperCaseButton.isEnabled = false
+            // case .VERIFY:
+            // case .WAITING_EXIT:
+        default:
+            break
+        }
+
+        let oldState = state
+        state = newState
+
+        if state == .CALC_FINISH && oldState == .WAITING_EXIT {
+            // User want to close.
+            view.window?.close()
+        }
+    }
+
     private func getFileMenu() -> NSMenu? {
         let mainMenu = NSApp.mainMenu
         let fileMenuItem = mainMenu?.item(at: 1)
@@ -286,10 +354,9 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView(true)
     }
 
-    func textView(
-        _ aTextView: NSTextView,
-        clickedOnLink link: Any,
-        at charIndex: Int) -> Bool {
+    func textView(_ aTextView: NSTextView,
+                  clickedOnLink link: Any,
+                  at charIndex: Int) -> Bool {
         if aTextView == mainTextView {
             selectedLink = link as! String
 

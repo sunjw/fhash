@@ -112,13 +112,12 @@ class MacSwiftUtils {
         return strLocalized
     }
 
-    class func ConvertStringToNSAttributedString(_ str: String?) -> NSAttributedString? {
+    class func ConvertStringToNSAttributedString(_ str: String?) -> NSAttributedString {
         return NSAttributedString(string: str ?? "")
     }
 
     class func AppendStringToNSMutableAttributedString(_ base: NSMutableAttributedString?, _ str: String?) {
-        if let aStr = ConvertStringToNSAttributedString(str) {
-            base?.append(aStr)
-        }
+        let aStr = ConvertStringToNSAttributedString(str)
+        base?.append(aStr)
     }
 }
