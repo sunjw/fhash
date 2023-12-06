@@ -338,6 +338,28 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView(false)
     }
 
+    private func calculateFinished() {
+        self.setViewControllerState(.CALC_FINISH)
+        // [self.mainProgressIndicator jumpToDoubleValue:_uiBridgeMac->getProgMax()];
+
+        // Show calc speed.
+        let calcDurationTime = calcEndTime - calcStartTime
+        if calcDurationTime > 10 {
+            // speed is Bytes/ms
+            var calcSpeed = 0 // Double(thrdData.totalSize) / Double(calcDurationTime)
+            calcSpeed = calcSpeed * 1000 // Bytes/s
+
+            var strSpeed = ""
+            strSpeed = MacSwiftUtils.ConvertSizeToShortSizeStr(UInt64(calcSpeed), true)
+            if strSpeed != "" {
+                strSpeed += "/s";
+            }
+            speedTextField.stringValue = strSpeed
+        } else {
+            speedTextField.stringValue = ""
+        }
+    }
+
     private func refreshResultText() {
         self.updateUpperCaseState()
 
