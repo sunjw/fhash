@@ -286,19 +286,57 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView(true)
     }
 
-    private func menuCopyHash() {
+    func textView(
+        _ aTextView: NSTextView,
+        clickedOnLink link: Any,
+        at charIndex: Int) -> Bool {
+        if aTextView == mainTextView {
+            selectedLink = link as! String
+
+            var nsptMouseLoc: NSPoint
+            nsptMouseLoc = NSEvent.mouseLocation
+            let nsrtMouseInView = view.window?.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
+            let nsptMouseInView = nsrtMouseInView?.origin as? NSPoint
+
+            let nsmenuHash = NSMenu(title: "HashMenu")
+            nsmenuHash.insertItem(
+                withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_COPY"),
+                action: #selector(self.menuCopyHash),
+                keyEquivalent: "",
+                at: 0)
+            nsmenuHash.insertItem(NSMenuItem.separator(), at: 1)
+            nsmenuHash.insertItem(
+                withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE"),
+                action: #selector(self.menuSearchGoogle),
+                keyEquivalent: "",
+                at: 2)
+            nsmenuHash.insertItem(
+                withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL"),
+                action: #selector(self.menuSearchVirusTotal),
+                keyEquivalent: "",
+                at: 3)
+
+            nsmenuHash.popUp(positioning: nil, at: nsptMouseInView ?? NSPoint.zero, in: view)
+
+            return true
+        }
+
+        return false
+    }
+
+    @objc func menuCopyHash() {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(selectedLink, forType: .string)
     }
 
-    private func menuSearchGoogle() {
+    @objc func menuSearchGoogle() {
         let nstrUrl = "https://www.google.com/search?q=\(selectedLink)&ie=utf-8&oe=utf-8"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
     }
 
-    private func menuSearchVirusTotal() {
+    @objc func menuSearchVirusTotal() {
         let nstrUrl = "https://www.virustotal.com/#/search/\(selectedLink)"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
