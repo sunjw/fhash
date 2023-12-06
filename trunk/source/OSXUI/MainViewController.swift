@@ -219,8 +219,8 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
         if !keepScrollPosition {
             // Scroll to end.
-            mainTextView.scrollRangeToVisible(
-                NSRange(location: mainTextView.string.count, length: 0))
+            mainTextView.scrollRangeToVisible(NSRange(location: mainTextView.string.count,
+                                                      length: 0))
         }
     }
 
