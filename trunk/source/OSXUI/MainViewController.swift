@@ -472,6 +472,14 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.updateMainTextView(true)
     }
 
+    @IBAction func openButtonClicked(_ sender: NSButton) {
+        if state == .CALC_ING {
+            self.stopHashCalc(false)
+        } else {
+            self.openFiles()
+        }
+    }
+
     func textView(_ aTextView: NSTextView,
                   clickedOnLink link: Any,
                   at charIndex: Int) -> Bool {
