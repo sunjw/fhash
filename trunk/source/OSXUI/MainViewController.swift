@@ -269,4 +269,20 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
     private func updateMainTextView() {
         self.updateMainTextView(false)
     }
+
+    private func refreshResultText() {
+        self.updateUpperCaseState()
+
+        // _mainMtx->lock();
+        mainText = NSMutableAttributedString()
+
+        // ResultList::iterator itr = _thrdData->resultList.begin();
+        // for(; itr != _thrdData->resultList.end(); ++itr)
+        // {
+        //     UIBridgeMacUI::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
+        // }
+        // _mainMtx->unlock();
+
+        self.updateMainTextView(true)
+    }
 }
