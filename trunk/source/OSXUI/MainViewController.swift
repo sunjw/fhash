@@ -195,6 +195,13 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         return fileMenuItem?.submenu
     }
 
+    private func getOpenMenuItem() -> NSMenuItem? {
+        let mainMenu = NSApp.mainMenu
+        let fileMenuItem = mainMenu?.item(at: 1)
+        let openMenuItem = fileMenuItem?.submenu?.item(at: 0)
+        return openMenuItem
+    }
+
     private func updateUpperCaseState() {
         upperCaseState = (upperCaseButton.state == .on)
     }
