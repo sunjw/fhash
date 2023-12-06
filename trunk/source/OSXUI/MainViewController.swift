@@ -505,8 +505,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         if aTextView == mainTextView {
             selectedLink = link as! String
 
-            var nsptMouseLoc: NSPoint
-            nsptMouseLoc = NSEvent.mouseLocation
+            var nsptMouseLoc = NSEvent.mouseLocation
             let nsrtMouseInView = view.window!.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
             let nsptMouseInView = nsrtMouseInView.origin
 
