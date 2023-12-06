@@ -202,6 +202,14 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         return openMenuItem
     }
 
+    private func ableToCalcFiles() -> Bool {
+        return !isCalculating()
+    }
+
+    private func isCalculating() -> Bool {
+        return (state == .CALC_ING || state == .WAITING_EXIT)
+    }
+
     private func updateUpperCaseState() {
         upperCaseState = (upperCaseButton.state == .on)
     }
