@@ -96,6 +96,10 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         //_uiBridgeMac = new UIBridgeMacUI(self);
         //_thrdData = new ThreadData();
 
+        self.setViewControllerState(.NONE)
+
+        //_thrdData->uiBridge = _uiBridgeMac;
+
         let fileMenu = self.getFileMenu()
         fileMenu?.autoenablesItems = false
 
@@ -385,8 +389,8 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
     private func calculateStopped() {
         var strAppend = "\n"
-        strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
-        strAppend += "\n\n"
+        //strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
+        //strAppend += "\n\n"
 
         // _mainMtx->lock();
         MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
@@ -395,7 +399,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         self.setViewControllerState(.CALC_FINISH)
         mainProgressIndicator.jump(toDoubleValue: 0)
 
-        self.updateMainTextView()
+        //self.updateMainTextView()
     }
 
     private func startHashCalc(_ fileNames: [Any], isURL: Bool) {
