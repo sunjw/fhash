@@ -38,7 +38,7 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
 
     var mainText: NSMutableAttributedString?
 
-    var tag = 0
+    var tag: UInt = 0
 
     // private
     private var state: MainViewControllerState = .NONE
@@ -485,6 +485,17 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         } else {
             self.setViewControllerState(.NONE)
             self.updateMainTextView()
+        }
+    }
+
+    @IBAction func verifyButtonClicked(_ sender: NSButton) {
+        tag = NSFindPanelAction.showFindPanel.rawValue
+        mainTextView.performTextFinderAction(self)
+    }
+
+    @IBAction func uppercaseButtonClicked(_ sender: NSButton) {
+        if state == .CALC_FINISH {
+            self.refreshResultText()
         }
     }
 
