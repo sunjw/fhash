@@ -505,6 +505,69 @@ private struct MainViewControllerState: OptionSet {
         MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
     }
 
+    private func appendFileHashToNSMutableAttributedString(_ result: ResultDataSwift,
+                                                           uppercase: Bool,
+                                                           nsmutAttrString: NSMutableAttributedString)
+    {
+        var strFileMD5 = "", strFileSHA1 = "", strFileSHA256 = "", strFileSHA512 = ""
+
+        if uppercase {
+            strFileMD5 = result.strMD5.uppercased()
+            strFileSHA1 = result.strSHA1.uppercased()
+            strFileSHA256 = result.strSHA256.uppercased()
+            strFileSHA512 = result.strSHA512.uppercased()
+        } else {
+            strFileMD5 = result.strMD5.lowercased()
+            strFileSHA1 = result.strSHA1.lowercased()
+            strFileSHA256 = result.strSHA256.lowercased()
+            strFileSHA512 = result.strSHA512.lowercased()
+        }
+
+        var nsmutStrHash = NSMutableAttributedString()
+
+        nsmutStrHash.beginEditing()
+
+        var oldLength:Int = 0
+
+        // MD5
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, "MD5: ")
+        oldLength = nsmutStrHash.length
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, strFileMD5)
+        nsmutStrHash.addAttribute(.link,
+                                  value: strFileMD5,
+                                  range: NSRange(location: oldLength, length: strFileMD5.count))
+
+        // SHA1
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, "\nSHA1: ")
+        oldLength = nsmutStrHash.length
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, strFileSHA1)
+        nsmutStrHash.addAttribute(.link,
+                                  value: strFileSHA1,
+                                  range: NSRange(location: oldLength, length: strFileSHA1.count))
+
+        // SHA256
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, "\nSHA256: ")
+        oldLength = nsmutStrHash.length
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, strFileSHA256)
+        nsmutStrHash.addAttribute(.link,
+                                  value: strFileSHA256,
+                                  range: NSRange(location: oldLength, length: strFileSHA256.count))
+
+        // SHA512
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, "\nSHA512: ")
+        oldLength = nsmutStrHash.length
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, strFileSHA512)
+        nsmutStrHash.addAttribute(.link,
+                                  value: strFileSHA512,
+                                  range: NSRange(location: oldLength, length: strFileSHA512.count))
+
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutStrHash, "\n\n")
+
+        nsmutStrHash.endEditing()
+
+        nsmutAttrString.append(nsmutStrHash)
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
