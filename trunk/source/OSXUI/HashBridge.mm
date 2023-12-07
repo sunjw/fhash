@@ -15,6 +15,7 @@
 #include "Common/HashEngine.h"
 
 #import <Cocoa/Cocoa.h>
+#import "fHash-Swift.h"
 #import "UIBridgeMacSwift.h"
 
 using namespace std;
