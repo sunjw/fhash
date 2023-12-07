@@ -85,18 +85,8 @@ void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //lockData();
-    //{
-    //    UIBridgeMacSwift::AppendFileHashToNSMutableAttributedString(result,
-    //                                                                uppercase,
-    //                                                                mainViewController.mainText);
-    //}
-    //unlockData();
-    //
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController updateMainTextView];
-    //});
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
 }
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)

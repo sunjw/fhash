@@ -653,6 +653,13 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func onShowFileHash(_ result: ResultDataSwift, uppercase: Bool) {
+        DispatchQueue.main.async(execute: { [result] in
+            self.appendFileHashToNSMutableAttributedString(result, uppercase, self.mainText!)
+            self.updateMainTextView()
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
