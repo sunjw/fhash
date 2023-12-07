@@ -47,19 +47,19 @@ void UIBridgeMacSwift::unlockData()
 void UIBridgeMacSwift::preparingCalc()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController preparingCalc];
+    [mainViewController onPreparingCalc];
 }
 
 void UIBridgeMacSwift::removePreparingCalc()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController removePreparingCalc];
+    [mainViewController onRemovePreparingCalc];
 }
 
 void UIBridgeMacSwift::calcStop()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController calcStop];
+    [mainViewController onCalcStop];
 }
 
 void UIBridgeMacSwift::calcFinish()
