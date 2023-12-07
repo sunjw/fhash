@@ -667,6 +667,16 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func onUpdateProgWhole(_ value: Int) {
+        DispatchQueue.main.async(execute: {
+            let oldValue = Int(self.mainProgressIndicator.toValue)
+            if value == oldValue {
+                return
+            }
+            self.mainProgressIndicator.animate(toDoubleValue: Double(value))
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)

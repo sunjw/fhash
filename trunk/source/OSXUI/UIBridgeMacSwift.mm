@@ -107,13 +107,8 @@ void UIBridgeMacSwift::updateProg(int value)
 
 void UIBridgeMacSwift::updateProgWhole(int value)
 {
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    //    int oldValue = (int)mainViewController.mainProgressIndicator.toValue;
-    //    if (value == oldValue)
-    //        return;
-    //    [mainViewController.mainProgressIndicator animateToDoubleValue:(double)value];
-    //});
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    [mainViewController onUpdateProgWhole:value];
 }
 
 void UIBridgeMacSwift::fileCalcFinish()
