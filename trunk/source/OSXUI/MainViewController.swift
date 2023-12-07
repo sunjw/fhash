@@ -660,6 +660,13 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func onShowFileErr(_ result: ResultDataSwift) {
+        DispatchQueue.main.async(execute: { [result] in
+            self.appendFileErrToNSMutableAttributedString(result, self.mainText!)
+            self.updateMainTextView()
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)

@@ -92,16 +92,8 @@ void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //lockData();
-    //{
-    //    UIBridgeMacSwift::AppendFileErrToNSMutableAttributedString(result, mainViewController.mainText);
-    //}
-    //unlockData();
-    //
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController updateMainTextView];
-    //});
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    [mainViewController onShowFileErr:resultSwift];
 }
 
 int UIBridgeMacSwift::getProgMax()
