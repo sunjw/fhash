@@ -65,10 +65,7 @@ void UIBridgeMacSwift::calcStop()
 void UIBridgeMacSwift::calcFinish()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController calculateFinished];
-    //});
+    [mainViewController onCalcFinish];
 }
 
 void UIBridgeMacSwift::showFileName(const ResultData& result)

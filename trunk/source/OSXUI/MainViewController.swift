@@ -633,6 +633,12 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func onCalcFinish() {
+        DispatchQueue.main.async(execute: {
+            self.calculateFinished()
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
