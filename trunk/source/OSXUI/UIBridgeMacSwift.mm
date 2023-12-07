@@ -53,13 +53,7 @@ void UIBridgeMacSwift::preparingCalc()
 void UIBridgeMacSwift::removePreparingCalc()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //lockData();
-    //{
-    //    // Reset old string.
-    //    mainViewController.mainText = [[NSMutableAttributedString alloc] initWithAttributedString:_nsstrNoPreparing];
-    //}
-    //unlockData();
+    [mainViewController removePreparingCalc];
 }
 
 void UIBridgeMacSwift::calcStop()

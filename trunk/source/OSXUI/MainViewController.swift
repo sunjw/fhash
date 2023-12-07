@@ -622,6 +622,13 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func removePreparingCalc() {
+        DispatchQueue.main.async(execute: { [self] in
+            // Reset old string.
+            mainText = NSMutableAttributedString(attributedString: nsAttrStrNoPreparing!)
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
