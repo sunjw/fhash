@@ -9,7 +9,13 @@
 import Foundation
 
 @objc(ResultDataSwift) class ResultDataSwift: NSObject {
-    @objc var state:Int = 0 // State
+    @objc static let RESULT_NONE = 0
+    @objc static let ResultPath = 1
+    @objc static let ResultMeta = 2
+    @objc static let ResultAll = 3
+    @objc static let ResultError = 4
+
+    @objc var state = RESULT_NONE // State
     @objc var strPath:String = "" // Path
     @objc var ulSize:UInt64 = 0 // Size
     @objc var strMDate:String = "" // Modified date
