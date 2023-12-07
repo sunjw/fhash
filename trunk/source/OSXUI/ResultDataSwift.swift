@@ -10,10 +10,10 @@ import Foundation
 
 @objc(ResultDataSwift) class ResultDataSwift: NSObject {
     @objc static let RESULT_NONE = 0
-    @objc static let ResultPath = 1
-    @objc static let ResultMeta = 2
-    @objc static let ResultAll = 3
-    @objc static let ResultError = 4
+    @objc static let RESULT_PATH = 1
+    @objc static let RESULT_META = 2
+    @objc static let RESULT_ALL = 3
+    @objc static let RESULT_ERROR = 4
 
     @objc var state = RESULT_NONE // State
     @objc var strPath:String = "" // Path

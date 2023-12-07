@@ -185,6 +185,40 @@ void UIBridgeMacSwift::fileFinish()
 {
 }
 
+ResultDataSwift *UIBridgeMacSwift::ConvertResultDataToSwift(const ResultData& result)
+{
+    ResultDataSwift *resultDataSwift = [[ResultDataSwift alloc] init];
+    switch (result.enumState)
+    {
+        case ResultState::RESULT_NONE:
+            resultDataSwift.state = ResultDataSwift.RESULT_NONE;
+            break;
+        case ResultState::RESULT_PATH:
+            resultDataSwift.state = ResultDataSwift.RESULT_PATH;
+            break;
+        case ResultState::RESULT_META:
+            resultDataSwift.state = ResultDataSwift.RESULT_META;
+            break;
+        case ResultState::RESULT_ALL:
+            resultDataSwift.state = ResultDataSwift.RESULT_ALL;
+            break;
+        case ResultState::RESULT_ERROR:
+            resultDataSwift.state = ResultDataSwift.RESULT_ERROR;
+            break;
+    }
+    resultDataSwift.strPath = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
+    resultDataSwift.ulSize = result.ulSize;
+    resultDataSwift.strMDate = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
+    resultDataSwift.strVersion = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrVersion));
+    resultDataSwift.strMD5 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrMD5));
+    resultDataSwift.strSHA1 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA1));
+    resultDataSwift.strSHA256 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA256));
+    resultDataSwift.strSHA512 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA512));
+    resultDataSwift.strError = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrError));
+
+    return resultDataSwift;
+}
+
 void UIBridgeMacSwift::AppendFileNameToNSMutableAttributedString(const ResultData& result,
                                                                  NSMutableAttributedString *nsmutString)
 {
