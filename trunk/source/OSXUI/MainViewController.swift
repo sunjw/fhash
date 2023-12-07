@@ -388,6 +388,19 @@ private struct MainViewControllerState: OptionSet {
         }
     }
 
+    private func calculateStopped() {
+        let strAppend = "\n"
+        //strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
+        //strAppend += "\n\n"
+
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
+
+        self.setViewControllerState(.CALC_FINISH)
+        self.mainProgressIndicator.jump(toDoubleValue: 0)
+
+        //self.updateMainTextView()
+    }
+
     private func startHashCalc(_ fileNames: [Any], isURL: Bool) {
         if !self.ableToCalcFiles() {
             return
@@ -616,16 +629,7 @@ private struct MainViewControllerState: OptionSet {
 
     @objc func onCalcStop() {
         DispatchQueue.main.async(execute: {
-            let strAppend = "\n"
-            //strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
-            //strAppend += "\n\n"
-
-            MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
-
-            self.setViewControllerState(.CALC_FINISH)
-            self.mainProgressIndicator.jump(toDoubleValue: 0)
-
-            //self.updateMainTextView()
+            self.calculateStopped()
         })
     }
 
