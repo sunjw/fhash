@@ -18,27 +18,31 @@ class MacSwiftUtils {
     }
 
     class func ConvertSizeToShortSizeStr(_ size: UInt64, _ conv1KSmaller: Bool) -> String {
-        var strSize = "";
-        let sizek:Double = 1000;
+        var strSize = ""
+        let sizek:Double = 1000
 
         if Double(size) > sizek {
-            let k_size:Double = Double(size) / sizek;
+            let k_size:Double = Double(size) / sizek
             if k_size > sizek {
-                let m_size:Double = k_size / sizek;
+                let m_size:Double = k_size / sizek
                 if m_size > sizek {
-                    let g_size:Double = m_size / sizek;
-                    strSize = String(format: "%.2f GB", g_size);
+                    let g_size:Double = m_size / sizek
+                    strSize = String(format: "%.2f GB", g_size)
                 } else {
-                    strSize = String(format: "%.2f MB", m_size);
+                    strSize = String(format: "%.2f MB", m_size)
                 }
             } else {
-                strSize = String(format: "%.2f KB", k_size);
+                strSize = String(format: "%.2f KB", k_size)
             }
         } else if conv1KSmaller {
-            strSize = String(format: "%.2f B", Double(size));
+            strSize = String(format: "%.2f B", Double(size))
         }
 
-        return strSize;
+        return strSize
+    }
+
+    class func ConvertSizeToShortSizeStr(_ size: UInt64) -> String {
+        return ConvertSizeToShortSizeStr(size, false)
     }
 
     class func GetSystemVersion() -> String? {

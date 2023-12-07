@@ -481,6 +481,30 @@ private struct MainViewControllerState: OptionSet {
         MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
     }
 
+    private func appendFileMetaToNSMutableAttributedString(_ result: ResultDataSwift,
+                                                           nsmutAttrString: NSMutableAttributedString) {
+        let strSizeByte = String(format: "%llu", result.ulSize)
+        let strShortSize = MacSwiftUtils.ConvertSizeToShortSizeStr(result.ulSize)
+
+        var strAppend = MacSwiftUtils.GetStringFromRes("FILESIZE_STRING")
+        strAppend += " ";
+        strAppend += strSizeByte
+        strAppend += " "
+        strAppend += MacSwiftUtils.GetStringFromRes("BYTE_STRING")
+        if strShortSize != "" {
+            strAppend += " ("
+            strAppend += strShortSize
+            strAppend += ")"
+        }
+        strAppend += "\n"
+        strAppend += MacSwiftUtils.GetStringFromRes("MODIFYTIME_STRING")
+        strAppend += " "
+        strAppend += result.strMDate
+        strAppend += "\n"
+
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
