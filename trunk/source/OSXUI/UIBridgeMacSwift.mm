@@ -23,6 +23,44 @@
 using namespace std;
 using namespace sunjwbase;
 
+/**
+ * Convert ResultData to ResultDataSwift
+ */
+static ResultDataSwift *ConvertResultDataToSwift(const ResultData& result)
+{
+    ResultDataSwift *resultDataSwift = [[ResultDataSwift alloc] init];
+    switch (result.enumState)
+    {
+        case ResultState::RESULT_NONE:
+            resultDataSwift.state = ResultDataSwift.RESULT_NONE;
+            break;
+        case ResultState::RESULT_PATH:
+            resultDataSwift.state = ResultDataSwift.RESULT_PATH;
+            break;
+        case ResultState::RESULT_META:
+            resultDataSwift.state = ResultDataSwift.RESULT_META;
+            break;
+        case ResultState::RESULT_ALL:
+            resultDataSwift.state = ResultDataSwift.RESULT_ALL;
+            break;
+        case ResultState::RESULT_ERROR:
+            resultDataSwift.state = ResultDataSwift.RESULT_ERROR;
+            break;
+    }
+    resultDataSwift.strPath = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
+    resultDataSwift.ulSize = result.ulSize;
+    resultDataSwift.strMDate = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
+    resultDataSwift.strVersion = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrVersion));
+    resultDataSwift.strMD5 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrMD5));
+    resultDataSwift.strSHA1 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA1));
+    resultDataSwift.strSHA256 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA256));
+    resultDataSwift.strSHA512 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA512));
+    resultDataSwift.strError = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrError));
+
+    return resultDataSwift;
+}
+
+
 UIBridgeMacSwift::UIBridgeMacSwift(MainViewControllerX *mainViewController)
 :_mainViewControllerPtr(mainViewController)
 {
@@ -71,28 +109,28 @@ void UIBridgeMacSwift::calcFinish()
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    ResultDataSwift *resultSwift = ConvertResultDataToSwift(result);
     [mainViewController onShowFileName:resultSwift];
 }
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    ResultDataSwift *resultSwift = ConvertResultDataToSwift(result);
     [mainViewController onShowFileMeta:resultSwift];
 }
 
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    ResultDataSwift *resultSwift = ConvertResultDataToSwift(result);
     [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
 }
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    ResultDataSwift *resultSwift = ConvertResultDataToSwift(result);
     [mainViewController onShowFileErr:resultSwift];
 }
 
@@ -117,38 +155,4 @@ void UIBridgeMacSwift::fileCalcFinish()
 
 void UIBridgeMacSwift::fileFinish()
 {
-}
-
-ResultDataSwift *UIBridgeMacSwift::ConvertResultDataToSwift(const ResultData& result)
-{
-    ResultDataSwift *resultDataSwift = [[ResultDataSwift alloc] init];
-    switch (result.enumState)
-    {
-        case ResultState::RESULT_NONE:
-            resultDataSwift.state = ResultDataSwift.RESULT_NONE;
-            break;
-        case ResultState::RESULT_PATH:
-            resultDataSwift.state = ResultDataSwift.RESULT_PATH;
-            break;
-        case ResultState::RESULT_META:
-            resultDataSwift.state = ResultDataSwift.RESULT_META;
-            break;
-        case ResultState::RESULT_ALL:
-            resultDataSwift.state = ResultDataSwift.RESULT_ALL;
-            break;
-        case ResultState::RESULT_ERROR:
-            resultDataSwift.state = ResultDataSwift.RESULT_ERROR;
-            break;
-    }
-    resultDataSwift.strPath = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
-    resultDataSwift.ulSize = result.ulSize;
-    resultDataSwift.strMDate = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrPath));
-    resultDataSwift.strVersion = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrVersion));
-    resultDataSwift.strMD5 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrMD5));
-    resultDataSwift.strSHA1 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA1));
-    resultDataSwift.strSHA256 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA256));
-    resultDataSwift.strSHA512 = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrSHA512));
-    resultDataSwift.strError = MacUtils::ConvertUTF8StringToNSString(tstrtostr(result.tstrError));
-
-    return resultDataSwift;
 }
