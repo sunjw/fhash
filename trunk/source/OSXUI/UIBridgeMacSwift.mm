@@ -47,22 +47,7 @@ void UIBridgeMacSwift::unlockData()
 void UIBridgeMacSwift::preparingCalc()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //lockData();
-    //{
-    //    // Copy old string.
-    //    _nsstrNoPreparing = [[NSMutableAttributedString alloc] initWithAttributedString:mainViewController.mainText];
-    //
-    //    string strAppend = GetStringFromResByKey(MAINDLG_WAITING_START);
-    //    strAppend.append("\n");
-    //    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    //    MacUtils::AppendNSStringToNSMutableAttributedString(mainViewController.mainText, nsstrAppend);
-    //}
-    //unlockData();
-    //
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController updateMainTextView];
-    //});
+    [mainViewController preparingCalc];
 }
 
 void UIBridgeMacSwift::removePreparingCalc()

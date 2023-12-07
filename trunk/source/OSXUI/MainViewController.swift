@@ -37,6 +37,7 @@ private struct MainViewControllerState: OptionSet {
     //@property (assign) sunjwbase::OsMutex *mainMtx;
 
     var mainText: NSMutableAttributedString?
+    var nsAttrStrNoPreparing: NSAttributedString?
 
     var tag: UInt = 0
 
@@ -523,7 +524,7 @@ private struct MainViewControllerState: OptionSet {
             strFileSHA512 = result.strSHA512.lowercased()
         }
 
-        var nsmutStrHash = NSMutableAttributedString()
+        let nsmutStrHash = NSMutableAttributedString()
 
         nsmutStrHash.beginEditing()
 
@@ -606,6 +607,19 @@ private struct MainViewControllerState: OptionSet {
             let strAppend = "\n"
             MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
         }
+    }
+
+    @objc func preparingCalc() {
+        DispatchQueue.main.async(execute: { [self] in
+            // Copy old string.
+            nsAttrStrNoPreparing = NSMutableAttributedString(attributedString: mainText!)
+
+            var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_WAITING_START")
+            strAppend += "\n"
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
+
+            self.updateMainTextView()
+        })
     }
 
     @IBAction func openButtonClicked(_ sender: NSButton) {
