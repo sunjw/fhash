@@ -12,6 +12,7 @@
 #include <string>
 #include <dispatch/dispatch.h>
 
+#import <Cocoa/Cocoa.h>
 #import "fHash-Swift.h"
 
 #include "Common/strhelper.h"
@@ -19,12 +20,10 @@
 #include "MacUtils.h"
 #include "Common/Global.h"
 
-#import "MainViewController.h"
-
 using namespace std;
 using namespace sunjwbase;
 
-UIBridgeMacSwift::UIBridgeMacSwift(MainViewController *mainViewController)
+UIBridgeMacSwift::UIBridgeMacSwift(MainViewControllerX *mainViewController)
 :_mainViewControllerPtr(mainViewController)
 {
 }
@@ -47,7 +46,7 @@ void UIBridgeMacSwift::unlockData()
 
 void UIBridgeMacSwift::preparingCalc()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{
@@ -68,7 +67,7 @@ void UIBridgeMacSwift::preparingCalc()
 
 void UIBridgeMacSwift::removePreparingCalc()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{
@@ -80,7 +79,7 @@ void UIBridgeMacSwift::removePreparingCalc()
 
 void UIBridgeMacSwift::calcStop()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //dispatch_async(dispatch_get_main_queue(), ^{
     //    [mainViewController calculateStopped];
@@ -89,7 +88,7 @@ void UIBridgeMacSwift::calcStop()
 
 void UIBridgeMacSwift::calcFinish()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //dispatch_async(dispatch_get_main_queue(), ^{
     //    [mainViewController calculateFinished];
@@ -98,7 +97,7 @@ void UIBridgeMacSwift::calcFinish()
 
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{
@@ -113,7 +112,7 @@ void UIBridgeMacSwift::showFileName(const ResultData& result)
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{
@@ -128,7 +127,7 @@ void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{
@@ -145,7 +144,7 @@ void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
+    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
 
     //lockData();
     //{

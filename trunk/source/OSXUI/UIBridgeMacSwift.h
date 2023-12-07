@@ -13,12 +13,13 @@
 #include "Common/UIBridgeBase.h"
 
 #import "MacUtils.h"
-#import "MainViewController.h"
+
+@class MainViewControllerX;
 
 class UIBridgeMacSwift: public UIBridgeBase
 {
 public:
-    UIBridgeMacSwift(MainViewController *mainViewController);
+    UIBridgeMacSwift(MainViewControllerX *mainViewController);
     virtual ~UIBridgeMacSwift();
 
     virtual void lockData();
@@ -74,7 +75,7 @@ public:
                                                         NSMutableAttributedString *nsmutString);
 
 private:
-    MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
+    MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
 
     NSAttributedString *_nsstrNoPreparing;
 };
