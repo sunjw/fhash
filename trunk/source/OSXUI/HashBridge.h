@@ -6,8 +6,8 @@
 //  Copyright © 2023 Sun Junwen. All rights reserved.
 //
 
-#ifndef HashBridge_h
-#define HashBridge_h
+#import <Cocoa/Cocoa.h>
 
+@interface HashBridge : NSObject
 
-#endif /* HashBridge_h */
+@end

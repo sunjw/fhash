@@ -6,4 +6,23 @@
 //  Copyright © 2023 Sun Junwen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "HashBridge.h"
+
+#include <stdint.h>
+#include <pthread.h>
+#include <string>
+#include "Common/Global.h"
+#include "Common/HashEngine.h"
+
+#import <Cocoa/Cocoa.h>
+#import "UIBridgeMacSwift.h"
+
+using namespace std;
+
+@interface HashBridge()
+
+@property (assign) UIBridgeMacSwift *uiBridgeSwift;
+@property (assign) ThreadData *thrdData;
+@property (assign) pthread_t ptHash;
+
+@end
