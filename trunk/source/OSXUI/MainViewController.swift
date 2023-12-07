@@ -646,6 +646,13 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func onShowFileMeta(_ result: ResultDataSwift) {
+        DispatchQueue.main.async(execute: { [result] in
+            self.appendFileMetaToNSMutableAttributedString(result, self.mainText!)
+            self.updateMainTextView()
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
