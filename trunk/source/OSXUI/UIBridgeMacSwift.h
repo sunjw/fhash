@@ -15,6 +15,7 @@
 #import "MacUtils.h"
 
 @class MainViewControllerX;
+@class ResultDataSwift;
 
 class UIBridgeMacSwift: public UIBridgeBase
 {
@@ -41,6 +42,11 @@ public:
 
     virtual void fileCalcFinish();
     virtual void fileFinish();
+
+    /**
+     * Convert ResultData to ResultDataSwift
+     */
+    static ResultDataSwift *ConvertResultDataToSwift(const ResultData& result);
 
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
