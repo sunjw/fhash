@@ -388,7 +388,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func calculateStopped() {
-        var strAppend = "\n"
+        let strAppend = "\n"
         //strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
         //strAppend += "\n\n"
 
@@ -472,6 +472,15 @@ private struct MainViewControllerState: OptionSet {
         self.updateMainTextView(true)
     }
 
+    private func appendFileNameToNSMutableAttributedString(_ result: ResultDataSwift,
+                                                           nsmutAttrString: NSMutableAttributedString) {
+        var strAppend = MacSwiftUtils.GetStringFromRes("FILENAME_STRING")
+        strAppend += " "
+        strAppend += result.strPath
+        strAppend += "\n"
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
@@ -505,7 +514,7 @@ private struct MainViewControllerState: OptionSet {
         if aTextView == mainTextView {
             selectedLink = link as! String
 
-            var nsptMouseLoc = NSEvent.mouseLocation
+            let nsptMouseLoc = NSEvent.mouseLocation
             let nsrtMouseInView = view.window!.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
             let nsptMouseInView = nsrtMouseInView.origin
 
