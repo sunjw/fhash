@@ -473,7 +473,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func appendFileNameToNSMutableAttributedString(_ result: ResultDataSwift,
-                                                           nsmutAttrString: NSMutableAttributedString) {
+                                                           _ nsmutAttrString: NSMutableAttributedString) {
         var strAppend = MacSwiftUtils.GetStringFromRes("FILENAME_STRING")
         strAppend += " "
         strAppend += result.strPath
@@ -482,7 +482,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func appendFileMetaToNSMutableAttributedString(_ result: ResultDataSwift,
-                                                           nsmutAttrString: NSMutableAttributedString) {
+                                                           _ nsmutAttrString: NSMutableAttributedString) {
         let strSizeByte = String(format: "%llu", result.ulSize)
         let strShortSize = MacSwiftUtils.ConvertSizeToShortSizeStr(result.ulSize)
 
@@ -506,8 +506,8 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func appendFileHashToNSMutableAttributedString(_ result: ResultDataSwift,
-                                                           uppercase: Bool,
-                                                           nsmutAttrString: NSMutableAttributedString)
+                                                           _ uppercase: Bool,
+                                                           _ nsmutAttrString: NSMutableAttributedString)
     {
         var strFileMD5 = "", strFileSHA1 = "", strFileSHA256 = "", strFileSHA512 = ""
 
@@ -569,9 +569,43 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func appendFileErrToNSMutableAttributedString(_ result: ResultDataSwift,
-                                                          nsmutAttrString: NSMutableAttributedString) {
+                                                          _ nsmutAttrString: NSMutableAttributedString) {
         let strAppend = result.strError + "\n\n"
         MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
+    }
+
+    private func appendResultToNSMutableAttributedString(_ result: ResultDataSwift,
+                                                         _ uppercase: Bool,
+                                                         _ nsmutAttrString: NSMutableAttributedString) {
+        if result.state == ResultDataSwift.RESULT_NONE {
+            return
+        }
+
+        if result.state == ResultDataSwift.RESULT_ALL ||
+            result.state == ResultDataSwift.RESULT_META ||
+            result.state == ResultDataSwift.RESULT_ERROR ||
+            result.state == ResultDataSwift.RESULT_PATH {
+            self.appendFileNameToNSMutableAttributedString(result, nsmutAttrString)
+        }
+
+        if result.state == ResultDataSwift.RESULT_ALL ||
+            result.state == ResultDataSwift.RESULT_META {
+            self.appendFileMetaToNSMutableAttributedString(result, nsmutAttrString)
+        }
+
+        if (result.state == ResultDataSwift.RESULT_ALL) {
+            self.appendFileHashToNSMutableAttributedString(result, uppercase, nsmutAttrString)
+        }
+
+        if (result.state == ResultDataSwift.RESULT_ERROR) {
+            self.appendFileErrToNSMutableAttributedString(result, nsmutAttrString)
+        }
+
+        if result.state != ResultDataSwift.RESULT_ALL &&
+            result.state != ResultDataSwift.RESULT_ERROR {
+            let strAppend = "\n"
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+        }
     }
 
     @IBAction func openButtonClicked(_ sender: NSButton) {
