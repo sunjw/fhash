@@ -71,16 +71,8 @@ void UIBridgeMacSwift::calcFinish()
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //lockData();
-    //{
-    //    UIBridgeMacSwift::AppendFileNameToNSMutableAttributedString(result, mainViewController.mainText);
-    //}
-    //unlockData();
-    //
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController updateMainTextView];
-    //});
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+    [mainViewController onShowFileName:resultSwift];
 }
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
