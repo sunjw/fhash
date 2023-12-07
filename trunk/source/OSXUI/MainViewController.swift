@@ -568,6 +568,12 @@ private struct MainViewControllerState: OptionSet {
         nsmutAttrString.append(nsmutStrHash)
     }
 
+    private func appendFileErrToNSMutableAttributedString(_ result: ResultDataSwift,
+                                                          nsmutAttrString: NSMutableAttributedString) {
+        let strAppend = result.strError + "\n\n"
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
