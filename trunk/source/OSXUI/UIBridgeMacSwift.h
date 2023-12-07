@@ -67,12 +67,6 @@ public:
                                                           bool uppercase,
                                                           NSMutableAttributedString *nsmutString);
 
-    /**
-     * Append file error message in ResultData to NSMutableAttributedString.
-     */
-    static void AppendFileErrToNSMutableAttributedString(const ResultData& result,
-                                                         NSMutableAttributedString *nsmutString);
-
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
 };

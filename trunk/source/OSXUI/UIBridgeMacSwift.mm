@@ -255,14 +255,3 @@ void UIBridgeMacSwift::AppendFileHashToNSMutableAttributedString(const ResultDat
 
     [nsmutString appendAttributedString:nsmutStrHash];
 }
-
-void UIBridgeMacSwift::AppendFileErrToNSMutableAttributedString(const ResultData& result,
-                                                                NSMutableAttributedString *nsmutString)
-{
-    string strAppend;
-    strAppend.append(tstrtostr(result.tstrError));
-    strAppend.append("\n\n");
-
-    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
-}
