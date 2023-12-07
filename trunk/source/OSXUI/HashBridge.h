@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MainViewControllerX;
+
 @interface HashBridge : NSObject
+
+- (instancetype)initWithController:(MainViewControllerX *)mainViewController;
 
 @end

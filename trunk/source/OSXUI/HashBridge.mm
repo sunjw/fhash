@@ -40,4 +40,13 @@ using namespace std;
     delete _thrdData;
 }
 
+- (instancetype)initWithController:(MainViewControllerX *)mainViewController {
+    self = [super init];
+    if (self) {
+        _uiBridgeSwift = new UIBridgeMacSwift(mainViewController);
+        _thrdData = new ThreadData();
+    }
+    return self;
+}
+
 @end

@@ -97,6 +97,8 @@ private struct MainViewControllerState: OptionSet {
         //_mainMtx = new OsMutex();
         //_uiBridgeMac = new UIBridgeMacUI(self);
         //_thrdData = new ThreadData();
+        // Alloc bridge.
+        hashBridge = HashBridge(controller: self)
 
         self.setViewControllerState(.NONE)
 
