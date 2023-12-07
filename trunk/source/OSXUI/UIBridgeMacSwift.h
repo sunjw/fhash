@@ -60,13 +60,6 @@ public:
     static void AppendFileMetaToNSMutableAttributedString(const ResultData& result,
                                                           NSMutableAttributedString *nsmutString);
 
-    /**
-     * Append file hash result in ResultData to NSMutableAttributedString.
-     */
-    static void AppendFileHashToNSMutableAttributedString(const ResultData& result,
-                                                          bool uppercase,
-                                                          NSMutableAttributedString *nsmutString);
-
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
 };
