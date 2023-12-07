@@ -10,7 +10,7 @@ import Cocoa
 
 let UPPERCASE_DEFAULT_KEY = "upperCaseKey"
 
-private struct MainViewControllerState : OptionSet {
+private struct MainViewControllerState: OptionSet {
     let rawValue: Int
 
     static let NONE = MainViewControllerState(rawValue: 1 << 0) // clear state
@@ -84,7 +84,7 @@ private struct MainViewControllerState : OptionSet {
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
-            UPPERCASE_DEFAULT_KEY : Bool(false)
+            UPPERCASE_DEFAULT_KEY: Bool(false)
         ]
         UserDefaults.standard.register(defaults: defaultsDictionary)
 
