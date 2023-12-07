@@ -59,10 +59,7 @@ void UIBridgeMacSwift::removePreparingCalc()
 void UIBridgeMacSwift::calcStop()
 {
     MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
-
-    //dispatch_async(dispatch_get_main_queue(), ^{
-    //    [mainViewController calculateStopped];
-    //});
+    [mainViewController calcStop];
 }
 
 void UIBridgeMacSwift::calcFinish()

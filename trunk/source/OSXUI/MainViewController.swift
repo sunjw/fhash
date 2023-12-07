@@ -629,6 +629,21 @@ private struct MainViewControllerState: OptionSet {
         })
     }
 
+    @objc func calcStop() {
+        DispatchQueue.main.async(execute: {
+            let strAppend = "\n"
+            //strAppend += MacSwiftUtils.GetStringFromRes("MAINDLG_CALCU_TERMINAL")
+            //strAppend += "\n\n"
+
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
+
+            self.setViewControllerState(.CALC_FINISH)
+            self.mainProgressIndicator.jump(toDoubleValue: 0)
+
+            //self.updateMainTextView()
+        })
+    }
+
     @IBAction func openButtonClicked(_ sender: NSButton) {
         if state == .CALC_ING {
             self.stopHashCalc(false)
