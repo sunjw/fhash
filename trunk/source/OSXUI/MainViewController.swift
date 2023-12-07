@@ -39,7 +39,7 @@ private struct MainViewControllerState: OptionSet {
     var mainText: NSMutableAttributedString?
     var nsAttrStrNoPreparing: NSAttributedString?
 
-    var tag: UInt = 0
+    @objc var tag: UInt = 0
 
     // private
     private var state: MainViewControllerState = .NONE
