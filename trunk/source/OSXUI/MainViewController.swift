@@ -20,7 +20,7 @@ private struct MainViewControllerState: OptionSet {
     static let WAITING_EXIT = MainViewControllerState(rawValue: 1 << 4) // waiting thread stop and exit
 }
 
-@objc(MainViewControllerX) class MainViewControllerX: NSViewController, NSTextViewDelegate {
+@objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet var mainScrollView: NSScrollView!
     @IBOutlet var mainTextView: NSTextView!
 
@@ -79,10 +79,10 @@ private struct MainViewControllerState: OptionSet {
         let fHashDelegate = NSApp.delegate as? fHashMacAppDelegate
 
         // Initiate.
-        //fHashDelegate?.mainViewController = self
+        fHashDelegate?.mainViewController = self
 
         let mainView = view as? MainView
-        //mainView?.mainViewController = self
+        mainView?.mainViewController = self
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
@@ -278,15 +278,15 @@ private struct MainViewControllerState: OptionSet {
         return openMenuItem
     }
 
-    private func ableToCalcFiles() -> Bool {
+    @objc func ableToCalcFiles() -> Bool {
         return !self.isCalculating()
     }
 
-    private func isCalculating() -> Bool {
+    @objc func isCalculating() -> Bool {
         return (state == .CALC_ING || state == .WAITING_EXIT)
     }
 
-    private func openFiles() {
+    @objc func openFiles() {
         let openPanel = NSOpenPanel()
         openPanel.showsResizeIndicator = true
         openPanel.showsHiddenFiles = false
@@ -302,7 +302,7 @@ private struct MainViewControllerState: OptionSet {
         }
     }
 
-    private func performViewDragOperation(_ sender: NSDraggingInfo?) {
+    @objc func performViewDragOperation(_ sender: NSDraggingInfo?) {
         if let pboard = sender?.draggingPasteboard {
             let fileNames = pboard.readObjects(forClasses: [NSURL.self], options: [:])
             self.startHashCalc(fileNames ?? [], isURL: true)
@@ -404,7 +404,7 @@ private struct MainViewControllerState: OptionSet {
         //self.updateMainTextView()
     }
 
-    private func startHashCalc(_ fileNames: [Any], isURL: Bool) {
+    @objc func startHashCalc(_ fileNames: [Any], isURL: Bool) {
         if !self.ableToCalcFiles() {
             return
         }
@@ -448,7 +448,7 @@ private struct MainViewControllerState: OptionSet {
         //                _thrdData);
     }
 
-    private func stopHashCalc(_ needExit: Bool) {
+    @objc func stopHashCalc(_ needExit: Bool) {
         if state == .CALC_ING {
             // _thrdData->stop = true;
 

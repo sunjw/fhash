@@ -8,6 +8,7 @@
 
 #import "fHashMacAppDelegate.h"
 #include <objc/runtime.h>
+#import "fHash-Swift.h"
 
 @interface fHashMacAppDelegate ()
 

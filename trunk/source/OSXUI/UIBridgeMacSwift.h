@@ -14,13 +14,13 @@
 
 #import "MacUtils.h"
 
-@class MainViewControllerX;
+@class MainViewController;
 @class ResultDataSwift;
 
 class UIBridgeMacSwift: public UIBridgeBase
 {
 public:
-    UIBridgeMacSwift(MainViewControllerX *mainViewController);
+    UIBridgeMacSwift(MainViewController *mainViewController);
     virtual ~UIBridgeMacSwift();
 
     virtual void lockData();
@@ -49,7 +49,7 @@ public:
     static ResultDataSwift *ConvertResultDataToSwift(const ResultData& result);
 
 private:
-    MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
+    MacUtils::ObjcWeakPtr<MainViewController> _mainViewControllerPtr;
 };
 
 #endif

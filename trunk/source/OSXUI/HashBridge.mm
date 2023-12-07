@@ -41,7 +41,7 @@ using namespace std;
     delete _thrdData;
 }
 
-- (instancetype)initWithController:(MainViewControllerX *)mainViewController {
+- (instancetype)initWithController:(MainViewController *)mainViewController {
     self = [super init];
     if (self) {
         _uiBridgeSwift = new UIBridgeMacSwift(mainViewController);

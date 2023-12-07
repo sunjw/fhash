@@ -7,8 +7,8 @@
 //
 
 #import "MainView.h"
+#import "fHash-Swift.h"
 #import "MacUtils.h"
-#import "MainViewController.h"
 
 using namespace std;
 

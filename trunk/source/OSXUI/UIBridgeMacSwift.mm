@@ -23,7 +23,7 @@
 using namespace std;
 using namespace sunjwbase;
 
-UIBridgeMacSwift::UIBridgeMacSwift(MainViewControllerX *mainViewController)
+UIBridgeMacSwift::UIBridgeMacSwift(MainViewController *mainViewController)
 :_mainViewControllerPtr(mainViewController)
 {
 }
@@ -46,52 +46,52 @@ void UIBridgeMacSwift::unlockData()
 
 void UIBridgeMacSwift::preparingCalc()
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     [mainViewController onPreparingCalc];
 }
 
 void UIBridgeMacSwift::removePreparingCalc()
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     [mainViewController onRemovePreparingCalc];
 }
 
 void UIBridgeMacSwift::calcStop()
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     [mainViewController onCalcStop];
 }
 
 void UIBridgeMacSwift::calcFinish()
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     [mainViewController onCalcFinish];
 }
 
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     [mainViewController onShowFileName:resultSwift];
 }
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     [mainViewController onShowFileMeta:resultSwift];
 }
 
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
 }
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     [mainViewController onShowFileErr:resultSwift];
 }
@@ -107,7 +107,7 @@ void UIBridgeMacSwift::updateProg(int value)
 
 void UIBridgeMacSwift::updateProgWhole(int value)
 {
-    MainViewControllerX *mainViewController = _mainViewControllerPtr.get();
+    MainViewController *mainViewController = _mainViewControllerPtr.get();
     [mainViewController onUpdateProgWhole:value];
 }
 

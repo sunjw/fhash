@@ -4,5 +4,4 @@
 
 #import "fHashMacAppDelegate.h"
 #import "MainView.h"
-#import "MainViewController.h"
 #import "HashBridge.h"

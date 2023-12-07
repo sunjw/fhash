@@ -36,8 +36,6 @@
 		5222581B213CF24300012EF8 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225819213CF24300012EF8 /* MacUtils.mm */; };
 		52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */; };
 		52225831213CF32600012EF8 /* MainView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582B213CF32500012EF8 /* MainView.mm */; };
-		52225832213CF32600012EF8 /* MainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5222582C213CF32500012EF8 /* MainViewController.mm */; };
-		5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225836213CF36400012EF8 /* UIBridgeMacUI.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,11 +93,7 @@
 		52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/OSXUI/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
 		52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/OSXUI/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		5222582B213CF32500012EF8 /* MainView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainView.mm; path = source/OSXUI/MainView.mm; sourceTree = SOURCE_ROOT; };
-		5222582C213CF32500012EF8 /* MainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MainViewController.mm; path = source/OSXUI/MainViewController.mm; sourceTree = SOURCE_ROOT; };
-		5222582D213CF32600012EF8 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = source/OSXUI/MainViewController.h; sourceTree = SOURCE_ROOT; };
 		5222582F213CF32600012EF8 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = source/OSXUI/MainView.h; sourceTree = SOURCE_ROOT; };
-		52225835213CF36400012EF8 /* UIBridgeMacUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeMacUI.h; path = source/OSXUI/UIBridgeMacUI.h; sourceTree = SOURCE_ROOT; };
-		52225836213CF36400012EF8 /* UIBridgeMacUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UIBridgeMacUI.mm; path = source/OSXUI/UIBridgeMacUI.mm; sourceTree = SOURCE_ROOT; };
 		52751B101B56276F00BD724B /* fHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -196,15 +190,11 @@
 				41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */,
 				5222582F213CF32600012EF8 /* MainView.h */,
 				5222582B213CF32500012EF8 /* MainView.mm */,
-				5222582D213CF32600012EF8 /* MainViewController.h */,
-				5222582C213CF32500012EF8 /* MainViewController.mm */,
 				4119D65E2B2012B70005D7E5 /* MainViewController.swift */,
 				417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */,
 				417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */,
 				417AC3D32B19C992003DFFAF /* PaddingClipView.swift */,
 				41C4BB072B2169AB004A6C34 /* ResultDataSwift.swift */,
-				52225835213CF36400012EF8 /* UIBridgeMacUI.h */,
-				52225836213CF36400012EF8 /* UIBridgeMacUI.mm */,
 				41C4BB092B21B05F004A6C34 /* HashBridge.h */,
 				41C4BB0A2B21B090004A6C34 /* HashBridge.mm */,
 				41C4BB042B215BC5004A6C34 /* UIBridgeMacSwift.h */,
@@ -320,11 +310,9 @@
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
 				52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */,
-				5222583A213CF36400012EF8 /* UIBridgeMacUI.mm in Sources */,
 				417AC3D62B19CDC2003DFFAF /* NoTitlebarWindowController.swift in Sources */,
 				4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */,
 				4111D69D27F16A35001AD814 /* sha512.cpp in Sources */,
-				52225832213CF32600012EF8 /* MainViewController.mm in Sources */,
 				41FF1DDB1B5B4A5A0081F283 /* OsFilePosixDarwin.cpp in Sources */,
 				41FF1DDC1B5B4A5A0081F283 /* OsThreadPosixDarwin.cpp in Sources */,
 				41FF1DF41B5B4B470081F283 /* SHA1.cpp in Sources */,
