@@ -164,30 +164,3 @@ void UIBridgeMacSwift::AppendFileNameToNSMutableAttributedString(const ResultDat
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
     MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
 }
-
-void UIBridgeMacSwift::AppendFileMetaToNSMutableAttributedString(const ResultData& result,
-                                                                 NSMutableAttributedString *nsmutString)
-{
-    char chSizeBuff[1024] = {0};
-    snprintf(chSizeBuff, 1024, "%llu", result.ulSize);
-    string strShortSize = Utils::ConvertSizeToShortSizeStr(result.ulSize);
-
-    string strAppend = GetStringFromResByKey(FILESIZE_STRING);
-    strAppend.append(" ");
-    strAppend.append(chSizeBuff);
-    strAppend.append(" ");
-    strAppend.append(GetStringFromResByKey(BYTE_STRING));
-    if (strShortSize != "") {
-        strAppend.append(" (");
-        strAppend.append(strShortSize);
-        strAppend.append(")");
-    }
-    strAppend.append("\n");
-    strAppend.append(GetStringFromResByKey(MODIFYTIME_STRING));
-    strAppend.append(" ");
-    strAppend.append(tstrtostr(result.tstrMDate));
-    strAppend.append("\n");
-
-    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
-}

@@ -54,12 +54,6 @@ public:
     static void AppendFileNameToNSMutableAttributedString(const ResultData& result,
                                                           NSMutableAttributedString *nsmutString);
 
-    /**
-     * Append file meta in ResultData to NSMutableAttributedString.
-     */
-    static void AppendFileMetaToNSMutableAttributedString(const ResultData& result,
-                                                          NSMutableAttributedString *nsmutString);
-
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
 };
