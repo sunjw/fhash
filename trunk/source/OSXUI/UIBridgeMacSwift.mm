@@ -266,38 +266,3 @@ void UIBridgeMacSwift::AppendFileErrToNSMutableAttributedString(const ResultData
     NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
     MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
 }
-
-void UIBridgeMacSwift::AppendResultToNSMutableAttributedString(const ResultData& result,
-                                                               bool uppercase,
-                                                               NSMutableAttributedString *nsmutString)
-{
-    if (result.enumState == ResultState::RESULT_NONE)
-        return;
-
-    if (result.enumState == ResultState::RESULT_ALL ||
-        result.enumState == ResultState::RESULT_META ||
-        result.enumState == ResultState::RESULT_ERROR ||
-        result.enumState == ResultState::RESULT_PATH) {
-        AppendFileNameToNSMutableAttributedString(result, nsmutString);
-    }
-
-    if (result.enumState == ResultState::RESULT_ALL ||
-        result.enumState == ResultState::RESULT_META) {
-        AppendFileMetaToNSMutableAttributedString(result, nsmutString);
-    }
-
-    if (result.enumState == ResultState::RESULT_ALL) {
-        AppendFileHashToNSMutableAttributedString(result, uppercase, nsmutString);
-    }
-
-    if (result.enumState == ResultState::RESULT_ERROR) {
-        AppendFileErrToNSMutableAttributedString(result, nsmutString);
-    }
-
-    if (result.enumState != ResultState::RESULT_ALL &&
-        result.enumState != ResultState::RESULT_ERROR) {
-        string strAppend = "\n";
-        NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-        MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
-    }
-}

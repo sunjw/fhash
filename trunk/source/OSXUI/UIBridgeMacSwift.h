@@ -73,17 +73,8 @@ public:
     static void AppendFileErrToNSMutableAttributedString(const ResultData& result,
                                                          NSMutableAttributedString *nsmutString);
 
-    /**
-     * Append whole ResultData to NSMutableAttributedString.
-     */
-    static void AppendResultToNSMutableAttributedString(const ResultData& result,
-                                                        bool uppercase,
-                                                        NSMutableAttributedString *nsmutString);
-
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
-
-    NSAttributedString *_nsstrNoPreparing;
 };
 
 #endif
