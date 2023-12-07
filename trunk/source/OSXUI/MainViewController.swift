@@ -383,7 +383,7 @@ private struct MainViewControllerState: OptionSet {
             var strSpeed = ""
             strSpeed = MacSwiftUtils.ConvertSizeToShortSizeStr(UInt64(calcSpeed), true)
             if strSpeed != "" {
-                strSpeed += "/s";
+                strSpeed += "/s"
             }
             speedTextField.stringValue = strSpeed
         } else {
@@ -480,7 +480,7 @@ private struct MainViewControllerState: OptionSet {
         strAppend += " "
         strAppend += result.strPath
         strAppend += "\n"
-        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
     }
 
     private func appendFileMetaToNSMutableAttributedString(_ result: ResultDataSwift,
@@ -489,7 +489,7 @@ private struct MainViewControllerState: OptionSet {
         let strShortSize = MacSwiftUtils.ConvertSizeToShortSizeStr(result.ulSize)
 
         var strAppend = MacSwiftUtils.GetStringFromRes("FILESIZE_STRING")
-        strAppend += " ";
+        strAppend += " "
         strAppend += strSizeByte
         strAppend += " "
         strAppend += MacSwiftUtils.GetStringFromRes("BYTE_STRING")
@@ -504,7 +504,7 @@ private struct MainViewControllerState: OptionSet {
         strAppend += result.strMDate
         strAppend += "\n"
 
-        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
     }
 
     private func appendFileHashToNSMutableAttributedString(_ result: ResultDataSwift,
@@ -606,7 +606,7 @@ private struct MainViewControllerState: OptionSet {
         if result.state != ResultDataSwift.RESULT_ALL &&
             result.state != ResultDataSwift.RESULT_ERROR {
             let strAppend = "\n"
-            MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend);
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
         }
     }
 
