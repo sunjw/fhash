@@ -20,7 +20,7 @@ private struct MainViewControllerState : OptionSet {
     static let WAITING_EXIT = MainViewControllerState(rawValue: 1 << 4) // waiting thread stop and exit
 }
 
-class MainViewControllerX: NSViewController, NSTextViewDelegate {
+@objc(MainViewControllerX) class MainViewControllerX: NSViewController, NSTextViewDelegate {
     @IBOutlet var mainScrollView: NSScrollView!
     @IBOutlet var mainTextView: NSTextView!
 
@@ -77,10 +77,10 @@ class MainViewControllerX: NSViewController, NSTextViewDelegate {
         let fHashDelegate = NSApp.delegate as? fHashMacAppDelegate
 
         // Initiate.
-        fHashDelegate?.mainViewController = self
+        //fHashDelegate?.mainViewController = self
 
         let mainView = view as? MainView
-        mainView?.mainViewController = self
+        //mainView?.mainViewController = self
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
