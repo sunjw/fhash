@@ -291,7 +291,7 @@ private struct MainViewControllerState: OptionSet {
         openPanel.canCreateDirectories = true
         openPanel.allowsMultipleSelection = true
 
-        openPanel.beginSheetModal(for: view.window!) { [self] result in
+        openPanel.beginSheetModal(for: view.window!) { result in
             if result == .OK {
                 let fileNames = openPanel.urls
                 self.startHashCalc(fileNames, isURL: true)
@@ -610,22 +610,22 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc func preparingCalc() {
-        DispatchQueue.main.async(execute: { [self] in
+        DispatchQueue.main.async(execute: {
             // Copy old string.
-            nsAttrStrNoPreparing = NSMutableAttributedString(attributedString: mainText!)
+            self.nsAttrStrNoPreparing = NSMutableAttributedString(attributedString: self.mainText!)
 
             var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_WAITING_START")
             strAppend += "\n"
-            MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
+            MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
 
             self.updateMainTextView()
         })
     }
 
     @objc func removePreparingCalc() {
-        DispatchQueue.main.async(execute: { [self] in
+        DispatchQueue.main.async(execute: {
             // Reset old string.
-            mainText = NSMutableAttributedString(attributedString: nsAttrStrNoPreparing!)
+            self.mainText = NSMutableAttributedString(attributedString: self.nsAttrStrNoPreparing!)
         })
     }
 
