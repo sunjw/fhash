@@ -26,3 +26,18 @@ using namespace std;
 @property (assign) pthread_t ptHash;
 
 @end
+
+@implementation HashBridge
+
+@synthesize uiBridgeSwift = _uiBridgeSwift;
+@synthesize thrdData = _thrdData;
+@synthesize ptHash = _ptHash;
+
+// Not be called on exit.
+// Just for sure.
+- (void)dealloc {
+    delete _uiBridgeSwift;
+    delete _thrdData;
+}
+
+@end

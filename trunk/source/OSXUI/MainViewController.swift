@@ -56,6 +56,7 @@ private struct MainViewControllerState: OptionSet {
     //@property (assign) UIBridgeMacUI *uiBridgeMac;
     //@property (assign) ThreadData *thrdData;
     //@property (assign) pthread_t ptHash;
+    private var hashBridge: HashBridge?
 
     //@synthesize mainMtx = _mainMtx;
     //@synthesize uiBridgeMac = _uiBridgeMac;
