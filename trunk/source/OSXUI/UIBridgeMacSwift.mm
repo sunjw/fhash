@@ -152,15 +152,3 @@ ResultDataSwift *UIBridgeMacSwift::ConvertResultDataToSwift(const ResultData& re
 
     return resultDataSwift;
 }
-
-void UIBridgeMacSwift::AppendFileNameToNSMutableAttributedString(const ResultData& result,
-                                                                 NSMutableAttributedString *nsmutString)
-{
-    string strAppend = GetStringFromResByKey(FILENAME_STRING);
-    strAppend.append(" ");
-    strAppend.append(tstrtostr(result.tstrPath));
-    strAppend.append("\n");
-
-    NSString *nsstrAppend = MacUtils::ConvertUTF8StringToNSString(strAppend);
-    MacUtils::AppendNSStringToNSMutableAttributedString(nsmutString, nsstrAppend);
-}

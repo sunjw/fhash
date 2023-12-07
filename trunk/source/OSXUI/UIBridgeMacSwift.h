@@ -48,12 +48,6 @@ public:
      */
     static ResultDataSwift *ConvertResultDataToSwift(const ResultData& result);
 
-    /**
-     * Append file name in ResultData to NSMutableAttributedString.
-     */
-    static void AppendFileNameToNSMutableAttributedString(const ResultData& result,
-                                                          NSMutableAttributedString *nsmutString);
-
 private:
     MacUtils::ObjcWeakPtr<MainViewControllerX> _mainViewControllerPtr;
 };
