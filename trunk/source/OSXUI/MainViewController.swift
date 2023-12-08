@@ -422,7 +422,7 @@ private struct MainViewControllerState: OptionSet {
         }
 
         // Get files path.
-        let fileCount = fileNames.count
+        //let fileCount = fileNames.count
         // _thrdData->nFiles = (uint32_t)fileCount;
         // _thrdData->fullPaths.clear();
 
@@ -437,6 +437,9 @@ private struct MainViewControllerState: OptionSet {
         //     }
         //     _thrdData->fullPaths.push_back(strtotstr(strFileName));
         // }
+
+        // Get files path.
+        hashBridge?.addFiles(fileNames, isURL: isURL)
 
         // Uppercase.
         self.updateUpperCaseState()

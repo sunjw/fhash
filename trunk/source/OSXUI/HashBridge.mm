@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <pthread.h>
 #include <string>
+#include "Common/strhelper.h"
 #include "Common/Global.h"
 #include "Common/HashEngine.h"
 
@@ -19,6 +20,7 @@
 #import "UIBridgeMacSwift.h"
 
 using namespace std;
+using namespace sunjwbase;
 
 @interface HashBridge()
 
@@ -81,6 +83,25 @@ using namespace std;
 
 - (uint64_t)getTotalSize {
     return _thrdData->totalSize;
+}
+
+- (void)addFiles:(NSArray *)fileNames isURL:(BOOL)isURL {
+    // Get files path.
+    NSUInteger fileCount = [fileNames count];
+    _thrdData->nFiles = (uint32_t)fileCount;
+    _thrdData->fullPaths.clear();
+
+    for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
+        string strFileName;
+        if (!isURL) {
+            NSString *nsstrFileName = [fileNames objectAtIndex:i];
+            strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrFileName);
+        } else {
+            NSURL *nsurlFileName = [fileNames objectAtIndex:i];
+            strFileName = MacUtils::ConvertNSStringToUTF8String([nsurlFileName path]);
+        }
+        _thrdData->fullPaths.push_back(strtotstr(strFileName));
+    }
 }
 
 @end
