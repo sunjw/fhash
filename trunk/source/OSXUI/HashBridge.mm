@@ -75,4 +75,8 @@ using namespace std;
     _thrdData->uppercase = val;
 }
 
+- (uint64_t)getTotalSize {
+    return _thrdData->totalSize;
+}
+
 @end

@@ -19,5 +19,6 @@
 
 - (void)setStop:(bool)val;
 - (void)setUppercase:(bool)val;
+- (uint64_t)getTotalSize;
 
 @end

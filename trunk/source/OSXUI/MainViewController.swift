@@ -381,7 +381,7 @@ private struct MainViewControllerState: OptionSet {
         let calcDurationTime = calcEndTime - calcStartTime
         if calcDurationTime > 10 {
             // speed is Bytes/ms
-            var calcSpeed = 0 // Double(thrdData.totalSize) / Double(calcDurationTime)
+            var calcSpeed = Double(hashBridge!.getTotalSize()) / Double(calcDurationTime)
             calcSpeed = calcSpeed * 1000 // Bytes/s
 
             var strSpeed = ""
