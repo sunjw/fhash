@@ -34,14 +34,11 @@ private struct MainViewControllerState: OptionSet {
 
     @IBOutlet weak var speedTextField: NSTextField!
 
-    //@property (assign) sunjwbase::OsMutex *mainMtx;
+    @objc var tag: UInt = 0
 
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
 
-    @objc var tag: UInt = 0
-
-    // private
     private var state: MainViewControllerState = .NONE
 
     private var mainFont: NSFont?
@@ -53,24 +50,7 @@ private struct MainViewControllerState: OptionSet {
 
     private var upperCaseState = false
 
-    //@property (assign) UIBridgeMacUI *uiBridgeMac;
-    //@property (assign) ThreadData *thrdData;
-    //@property (assign) pthread_t ptHash;
     private var hashBridge: HashBridge?
-
-    //@synthesize mainMtx = _mainMtx;
-    //@synthesize uiBridgeMac = _uiBridgeMac;
-
-    //@synthesize thrdData = _thrdData;
-    //@synthesize ptHash = _ptHash;
-
-    // Not be called on exit.
-    // Just for sure.
-    deinit {
-        // delete _mainMtx;
-        // delete _uiBridgeMac;
-        // delete _thrdData;
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,18 +73,11 @@ private struct MainViewControllerState: OptionSet {
         // Load NSUserDefaults.
         let defaultUpperCase = UserDefaults.standard.bool(forKey: UPPERCASE_DEFAULT_KEY)
 
-        // Alloc c++ member.
-        //_mainMtx = new OsMutex();
-        //_uiBridgeMac = new UIBridgeMacUI(self);
-        //_thrdData = new ThreadData();
-
         // Alloc bridge.
         hashBridge = HashBridge(controller: self)
         hashBridge?.didLoad()
 
         self.setViewControllerState(.NONE)
-
-        //_thrdData->uiBridge = _uiBridgeMac;
 
         let fileMenu = self.getFileMenu()
         fileMenu?.autoenablesItems = false
@@ -203,24 +176,12 @@ private struct MainViewControllerState: OptionSet {
         switch newState {
         case .NONE:
             // Clear all.
-            // _thrdData->threadWorking = false;
-            // _thrdData->stop = false;
-
-            // _thrdData->uppercase = false;
-            // _thrdData->totalSize = 0;
-
-            // _thrdData->nFiles = 0;
-            // _thrdData->fullPaths.clear();
-
-            // _thrdData->resultList.clear();
             hashBridge?.clear()
 
-            // _mainMtx->lock();
             mainText = NSMutableAttributedString()
             var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_INITINFO")
             strAppend += "\n\n"
             MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
-            // _mainMtx->unlock();
 
             mainProgressIndicator.jump(toDoubleValue: 0)
             speedTextField.stringValue = ""
@@ -242,7 +203,6 @@ private struct MainViewControllerState: OptionSet {
         case .CALC_ING:
             calcStartTime = MacSwiftUtils.GetCurrentMilliSec()
 
-            // _thrdData->stop = false;
             hashBridge?.setStop(false)
 
             let openMenuItem = self.getOpenMenuItem()
@@ -318,8 +278,6 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func updateMainTextView(_ keepScrollPosition: Bool) {
-        // _mainMtx->lock();
-
         // Apply style to all text.
         mainText?.beginEditing()
 
@@ -360,8 +318,6 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.contentInsets = scrollViewContentInsets
         }
 
-        // _mainMtx->unlock();
-
         if !keepScrollPosition {
             // Scroll to end.
             mainTextView.scrollRangeToVisible(NSRange(location: mainTextView.string.count,
@@ -375,7 +331,6 @@ private struct MainViewControllerState: OptionSet {
 
     private func calculateFinished() {
         self.setViewControllerState(.CALC_FINISH)
-        // [self.mainProgressIndicator jumpToDoubleValue:_uiBridgeMac->getProgMax()];
         self.mainProgressIndicator.jump(toDoubleValue: Double(hashBridge!.getProgMax()))
 
         // Show calc speed.
@@ -416,51 +371,25 @@ private struct MainViewControllerState: OptionSet {
 
         if state == .NONE {
             // Clear up text.
-            // _mainMtx->lock();
             mainText = NSMutableAttributedString()
-            // _mainMtx->unlock();
         }
-
-        // Get files path.
-        //let fileCount = fileNames.count
-        // _thrdData->nFiles = (uint32_t)fileCount;
-        // _thrdData->fullPaths.clear();
-
-        // for (uint32_t i = 0; i < _thrdData->nFiles; ++i) {
-        //     string strFileName;
-        //     if (!isURL) {
-        //         NSString *nsstrFileName = [fileNames objectAtIndex:i];
-        //         strFileName = MacUtils::ConvertNSStringToUTF8String(nsstrFileName);
-        //     } else {
-        //         NSURL *nsurlFileName = [fileNames objectAtIndex:i];
-        //         strFileName = MacUtils::ConvertNSStringToUTF8String([nsurlFileName path]);
-        //     }
-        //     _thrdData->fullPaths.push_back(strtotstr(strFileName));
-        // }
 
         // Get files path.
         hashBridge?.addFiles(fileNames, isURL: isURL)
 
         // Uppercase.
         self.updateUpperCaseState()
-        // _thrdData->uppercase = _upperCaseState;
         hashBridge?.setUppercase(upperCaseState)
 
         mainProgressIndicator.jump(toDoubleValue: 0)
 
         // Ready to go.
         self.setViewControllerState(.CALC_ING)
-
-        // pthread_create(&_ptHash,
-        //                NULL,
-        //                (void *(*)(void *))HashThreadFunc,
-        //                _thrdData);
         hashBridge?.startHashThread()
     }
 
     @objc func stopHashCalc(_ needExit: Bool) {
         if state == .CALC_ING {
-            // _thrdData->stop = true;
             hashBridge?.setStop(true)
 
             if needExit {
@@ -472,15 +401,8 @@ private struct MainViewControllerState: OptionSet {
     private func refreshResultText() {
         self.updateUpperCaseState()
 
-        // _mainMtx->lock();
         mainText = NSMutableAttributedString()
 
-        // ResultList::iterator itr = _thrdData->resultList.begin();
-        // for(; itr != _thrdData->resultList.end(); ++itr)
-        // {
-        //     UIBridgeMacUI::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
-        // }
-        // _mainMtx->unlock();
         let results:[Any] = hashBridge!.getResults()
         for result in results {
             let resultSwift = result as? ResultDataSwift
