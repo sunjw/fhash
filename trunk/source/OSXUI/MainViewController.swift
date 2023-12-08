@@ -455,6 +455,7 @@ private struct MainViewControllerState: OptionSet {
         //                NULL,
         //                (void *(*)(void *))HashThreadFunc,
         //                _thrdData);
+        hashBridge?.startHashThread()
     }
 
     @objc func stopHashCalc(_ needExit: Bool) {

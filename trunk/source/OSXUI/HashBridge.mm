@@ -104,4 +104,11 @@ using namespace sunjwbase;
     }
 }
 
+- (void)startHashThread {
+    pthread_create(&_ptHash,
+                   NULL,
+                   (void *(*)(void *))HashThreadFunc,
+                   _thrdData);
+}
+
 @end
