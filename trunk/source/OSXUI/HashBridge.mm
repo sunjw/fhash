@@ -54,4 +54,17 @@ using namespace std;
     _thrdData->uiBridge = _uiBridgeSwift;
 }
 
+- (void)clear {
+    _thrdData->threadWorking = false;
+    _thrdData->stop = false;
+
+    _thrdData->uppercase = false;
+    _thrdData->totalSize = 0;
+
+    _thrdData->nFiles = 0;
+    _thrdData->fullPaths.clear();
+
+    _thrdData->resultList.clear();
+}
+
 @end

@@ -213,6 +213,7 @@ private struct MainViewControllerState: OptionSet {
             // _thrdData->fullPaths.clear();
 
             // _thrdData->resultList.clear();
+            hashBridge?.clear()
 
             // _mainMtx->lock();
             mainText = NSMutableAttributedString()
