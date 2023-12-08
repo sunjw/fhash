@@ -158,7 +158,7 @@ private struct MainViewControllerState: OptionSet {
         // Set progressbar.
         let mainProgIndiFrame = mainProgressIndicator.frame
         mainProgressIndicator.setFrameSize(NSMakeSize(mainProgIndiFrame.size.width, 2))
-        //mainProgressIndicator.maxValue = uiBridgeMac.getProgMax()
+        mainProgressIndicator.maxValue = Double(hashBridge!.getProgMax())
 
         // Set checkbox.
         if defaultUpperCase {
