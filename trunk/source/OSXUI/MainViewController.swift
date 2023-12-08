@@ -100,7 +100,6 @@ private struct MainViewControllerState: OptionSet {
         if mainFont == nil {
             mainFont = mainTextView.font
         }
-
         mainTextView.font = mainFont
 
         mainTextView.usesFindBar = true
