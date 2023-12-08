@@ -71,4 +71,8 @@ using namespace std;
     _thrdData->stop = val;
 }
 
+- (void)setUppercase:(bool)val {
+    _thrdData->uppercase = val;
+}
+
 @end

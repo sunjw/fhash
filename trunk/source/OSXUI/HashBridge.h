@@ -18,5 +18,6 @@
 - (void)clear;
 
 - (void)setStop:(bool)val;
+- (void)setUppercase:(bool)val;
 
 @end

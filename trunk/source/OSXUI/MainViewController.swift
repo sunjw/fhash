@@ -440,6 +440,7 @@ private struct MainViewControllerState: OptionSet {
         // Uppercase.
         self.updateUpperCaseState()
         // _thrdData->uppercase = _upperCaseState;
+        hashBridge?.setUppercase(upperCaseState)
 
         mainProgressIndicator.jump(toDoubleValue: 0)
 
