@@ -14,4 +14,6 @@
 
 - (instancetype)initWithController:(MainViewController *)mainViewController;
 
+- (void)didLoad;
+
 @end

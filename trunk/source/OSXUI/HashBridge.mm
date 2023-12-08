@@ -50,4 +50,8 @@ using namespace std;
     return self;
 }
 
+- (void)didLoad {
+    _thrdData->uiBridge = _uiBridgeSwift;
+}
+
 @end
