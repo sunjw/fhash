@@ -36,8 +36,8 @@ private struct MainViewControllerState: OptionSet {
 
     //@property (assign) sunjwbase::OsMutex *mainMtx;
 
-    var mainText: NSMutableAttributedString?
-    var nsAttrStrNoPreparing: NSAttributedString?
+    private var mainText: NSMutableAttributedString?
+    private var nsAttrStrNoPreparing: NSAttributedString?
 
     @objc var tag: UInt = 0
 
