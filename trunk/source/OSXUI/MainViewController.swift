@@ -96,11 +96,7 @@ private struct MainViewControllerState: OptionSet {
         mainTextView.delegate = self
         mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
 
-        if MacSwiftUtils.IsSystemEarlierThan(10, 15) {
-            mainFont = NSFont(name: "Monaco", size: 12)
-        } else {
-            mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
-        }
+        mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
         if mainFont == nil {
             mainFont = mainTextView.font
         }
