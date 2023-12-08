@@ -376,6 +376,7 @@ private struct MainViewControllerState: OptionSet {
     private func calculateFinished() {
         self.setViewControllerState(.CALC_FINISH)
         // [self.mainProgressIndicator jumpToDoubleValue:_uiBridgeMac->getProgMax()];
+        self.mainProgressIndicator.jump(toDoubleValue: Double(hashBridge!.getProgMax()))
 
         // Show calc speed.
         let calcDurationTime = calcEndTime - calcStartTime

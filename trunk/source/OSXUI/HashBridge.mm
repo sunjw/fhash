@@ -75,6 +75,10 @@ using namespace std;
     _thrdData->uppercase = val;
 }
 
+- (int)getProgMax {
+    return _uiBridgeSwift->getProgMax();
+}
+
 - (uint64_t)getTotalSize {
     return _thrdData->totalSize;
 }

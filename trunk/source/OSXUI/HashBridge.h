@@ -19,6 +19,7 @@
 
 - (void)setStop:(bool)val;
 - (void)setUppercase:(bool)val;
+- (int)getProgMax;
 - (uint64_t)getTotalSize;
 
 @end
