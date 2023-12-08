@@ -243,6 +243,7 @@ private struct MainViewControllerState: OptionSet {
             calcStartTime = MacSwiftUtils.GetCurrentMilliSec()
 
             // _thrdData->stop = false;
+            hashBridge?.setStop(false)
 
             let openMenuItem = self.getOpenMenuItem()
             openMenuItem?.isEnabled = false
@@ -454,6 +455,7 @@ private struct MainViewControllerState: OptionSet {
     @objc func stopHashCalc(_ needExit: Bool) {
         if state == .CALC_ING {
             // _thrdData->stop = true;
+            hashBridge?.setStop(true)
 
             if needExit {
                 self.setViewControllerState(.WAITING_EXIT)

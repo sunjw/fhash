@@ -17,4 +17,6 @@
 - (void)didLoad;
 - (void)clear;
 
+- (void)setStop:(bool)val;
+
 @end

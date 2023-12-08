@@ -67,4 +67,8 @@ using namespace std;
     _thrdData->resultList.clear();
 }
 
+- (void)setStop:(bool)val {
+    _thrdData->stop = val;
+}
+
 @end
