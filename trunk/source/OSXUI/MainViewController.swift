@@ -300,17 +300,28 @@ private struct MainViewControllerState: OptionSet {
 
         if (MacSwiftUtils.GetSystemMajorVersion() == 14) {
             // Sonoma insets fix.
+            let fixInset = 5.0
             let mainTextSize = mainText!.size()
             let mainScrollViewSize = mainScrollView.frame.size
             var scrollViewContentInsets = mainScrollView.contentInsets
+            var scrollViewScrollerInsets: NSEdgeInsets?
             if mainTextSize.width > mainScrollViewSize.width {
-                scrollViewContentInsets.left = 5.0
-                scrollViewContentInsets.right = 5.0
+                // Add inset.
+                scrollViewContentInsets.left = fixInset
+                scrollViewContentInsets.right = fixInset
+                scrollViewScrollerInsets = mainScrollView.scrollerInsets
+                scrollViewScrollerInsets?.left = -(fixInset)
+                scrollViewScrollerInsets?.right = -(fixInset)
             } else {
+                // Reset inset.
                 scrollViewContentInsets.left = 0
                 scrollViewContentInsets.right = 0
+                scrollViewScrollerInsets = mainScrollView.scrollerInsets
+                scrollViewScrollerInsets?.left = 0
+                scrollViewScrollerInsets?.right = 0
             }
             mainScrollView.contentInsets = scrollViewContentInsets
+            mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
         if !keepScrollPosition {
