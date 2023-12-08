@@ -23,6 +23,8 @@
 - (uint64_t)getTotalSize;
 
 - (void)addFiles:(NSArray *)fileNames isURL:(BOOL)isURL;
+- (NSArray *)getResults;
+
 - (void)startHashThread;
 
 @end

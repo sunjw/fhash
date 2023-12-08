@@ -481,6 +481,11 @@ private struct MainViewControllerState: OptionSet {
         //     UIBridgeMacUI::AppendResultToNSMutableAttributedString(*itr, _upperCaseState, _mainText);
         // }
         // _mainMtx->unlock();
+        let results:[Any] = hashBridge!.getResults()
+        for result in results {
+            let resultSwift = result as? ResultDataSwift
+            self.appendResultToNSMutableAttributedString(resultSwift!, upperCaseState, mainText!)
+        }
 
         self.updateMainTextView(true)
     }

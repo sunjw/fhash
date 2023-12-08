@@ -104,6 +104,19 @@ using namespace sunjwbase;
     }
 }
 
+- (NSArray *)getResults {
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+
+    ResultList::iterator itr = _thrdData->resultList.begin();
+    for(; itr != _thrdData->resultList.end(); ++itr)
+    {
+        ResultDataSwift *resultData = UIBridgeMacSwift::ConvertResultDataToSwift(*itr);
+        [results addObject:resultData];
+    }
+
+    return results;
+}
+
 - (void)startHashThread {
     pthread_create(&_ptHash,
                    NULL,
