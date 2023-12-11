@@ -51,7 +51,7 @@ private class ESSProgressBarAnimation: NSAnimation {
 private var sAnim: ESSProgressBarAnimation?
 
 @objc(ESSProgressIndicator) class ESSProgressIndicator: NSProgressIndicator {
-    @objc var toValue:Double = 0.0
+    var toValue:Double = 0.0
     var animateDisabled = false
 
     func cleanOldAnimation() {
@@ -63,14 +63,14 @@ private var sAnim: ESSProgressBarAnimation?
         }
     }
 
-    @objc func jump(toDoubleValue val: Double) {
+    func jump(toDoubleValue val: Double) {
         cleanOldAnimation()
         animateDisabled = true
         toValue = val
         super.doubleValue = self.toValue
     }
 
-    @objc func animate(toDoubleValue val: Double) {
+    func animate(toDoubleValue val: Double) {
         cleanOldAnimation()
         animateDisabled = false
         toValue = val
