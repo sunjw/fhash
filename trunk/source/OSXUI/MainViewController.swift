@@ -34,7 +34,7 @@ private struct MainViewControllerState: OptionSet {
 
     @IBOutlet weak var speedTextField: NSTextField!
 
-    @objc var tag: UInt = 0
+    @objc var tag: UInt = 0 // Must have @ojbc, it is used to open finder bar.
 
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
@@ -237,15 +237,15 @@ private struct MainViewControllerState: OptionSet {
         return openMenuItem
     }
 
-    @objc func ableToCalcFiles() -> Bool {
+    func ableToCalcFiles() -> Bool {
         return !self.isCalculating()
     }
 
-    @objc func isCalculating() -> Bool {
+    func isCalculating() -> Bool {
         return (state == .CALC_ING || state == .WAITING_EXIT)
     }
 
-    @objc func openFiles() {
+    func openFiles() {
         let openPanel = NSOpenPanel()
         openPanel.showsResizeIndicator = true
         openPanel.showsHiddenFiles = false
@@ -261,7 +261,7 @@ private struct MainViewControllerState: OptionSet {
         }
     }
 
-    @objc func performViewDragOperation(_ sender: NSDraggingInfo?) {
+    func performViewDragOperation(_ sender: NSDraggingInfo?) {
         if let pboard = sender?.draggingPasteboard {
             let fileNames = pboard.readObjects(forClasses: [NSURL.self], options: [:])
             self.startHashCalc(fileNames ?? [], isURL: true)
@@ -370,7 +370,7 @@ private struct MainViewControllerState: OptionSet {
         //self.updateMainTextView()
     }
 
-    @objc func startHashCalc(_ fileNames: [Any], isURL: Bool) {
+    func startHashCalc(_ fileNames: [Any], isURL: Bool) {
         if !self.ableToCalcFiles() {
             return
         }
@@ -394,7 +394,7 @@ private struct MainViewControllerState: OptionSet {
         hashBridge?.startHashThread()
     }
 
-    @objc func stopHashCalc(_ needExit: Bool) {
+    func stopHashCalc(_ needExit: Bool) {
         if state == .CALC_ING {
             hashBridge?.setStop(true)
 
