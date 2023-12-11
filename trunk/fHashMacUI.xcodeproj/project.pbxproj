@@ -23,6 +23,7 @@
 		41AAAF392B1D931A00146768 /* MacSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */; };
 		41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */; };
 		41B45DFB2B269F9500846043 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B45DFA2B269F9500846043 /* MainView.swift */; };
+		41B45DFD2B26A2DB00846043 /* fHashMacAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */; };
 		41C4BB062B215BEC004A6C34 /* UIBridgeMacSwift.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41C4BB052B215BEC004A6C34 /* UIBridgeMacSwift.mm */; };
 		41C4BB082B2169AB004A6C34 /* ResultDataSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4BB072B2169AB004A6C34 /* ResultDataSwift.swift */; };
 		41C4BB0B2B21B090004A6C34 /* HashBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41C4BB0A2B21B090004A6C34 /* HashBridge.mm */; };
@@ -66,6 +67,7 @@
 		41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSwiftUtils.swift; sourceTree = "<group>"; };
 		41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		41B45DFA2B269F9500846043 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fHashMacAppDelegate.swift; sourceTree = "<group>"; };
 		41C4BB042B215BC5004A6C34 /* UIBridgeMacSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBridgeMacSwift.h; sourceTree = "<group>"; };
 		41C4BB052B215BEC004A6C34 /* UIBridgeMacSwift.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UIBridgeMacSwift.mm; sourceTree = "<group>"; };
 		41C4BB072B2169AB004A6C34 /* ResultDataSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataSwift.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
 				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
+				41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */,
 				41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
 				52225819213CF24300012EF8 /* MacUtils.mm */,
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */,
+				41B45DFD2B26A2DB00846043 /* fHashMacAppDelegate.swift in Sources */,
 				41B45DFB2B269F9500846043 /* MainView.swift in Sources */,
 				417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */,
 				41C4BB082B2169AB004A6C34 /* ResultDataSwift.swift in Sources */,
