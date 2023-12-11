@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainView: NSView {
+@objc(MainView) class MainView: NSView {
     weak var mainViewController: MainViewController?
 
     override func awakeFromNib() {

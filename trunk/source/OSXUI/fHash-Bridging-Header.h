@@ -3,5 +3,4 @@
 //
 
 #import "fHashMacAppDelegate.h"
-#import "MainView.h"
 #import "HashBridge.h"
