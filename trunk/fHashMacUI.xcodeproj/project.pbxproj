@@ -18,7 +18,6 @@
 		417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
-		4198A53B1B58D3DA0050C831 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4198A5391B58D3DA0050C831 /* main.m */; };
 		41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF362B1D92C200146768 /* AboutWindowController.swift */; };
 		41AAAF392B1D931A00146768 /* MacSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */; };
 		41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */; };
@@ -36,7 +35,6 @@
 		5222580A213CDA7C00012EF8 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52225808213CDA7C00012EF8 /* Utils.cpp */; };
 		52225810213CDB2900012EF8 /* HashEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5222580F213CDB2900012EF8 /* HashEngine.cpp */; };
 		5222581B213CF24300012EF8 /* MacUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225819213CF24300012EF8 /* MacUtils.mm */; };
-		52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +59,6 @@
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		4198A5391B58D3DA0050C831 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = source/OSXUI/main.m; sourceTree = SOURCE_ROOT; };
 		41A4A573285198E500D1ECAC /* endianness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = endianness.h; path = source/Algorithms/endianness.h; sourceTree = "<group>"; };
 		41AAAF362B1D92C200146768 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSwiftUtils.swift; sourceTree = "<group>"; };
@@ -93,8 +90,6 @@
 		52225814213CDB9D00012EF8 /* UIBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBridgeBase.h; path = source/Common/UIBridgeBase.h; sourceTree = "<group>"; };
 		52225819213CF24300012EF8 /* MacUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacUtils.mm; path = source/OSXUI/MacUtils.mm; sourceTree = SOURCE_ROOT; };
 		5222581A213CF24300012EF8 /* MacUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacUtils.h; path = source/OSXUI/MacUtils.h; sourceTree = SOURCE_ROOT; };
-		52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = fHashMacAppDelegate.mm; path = source/OSXUI/fHashMacAppDelegate.mm; sourceTree = SOURCE_ROOT; };
-		52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fHashMacAppDelegate.h; path = source/OSXUI/fHashMacAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		52751B101B56276F00BD724B /* fHash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fHash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -183,8 +178,6 @@
 				413870E12B1F20C500448A6F /* AboutViewController.swift */,
 				41AAAF362B1D92C200146768 /* AboutWindowController.swift */,
 				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
-				52225826213CF2EF00012EF8 /* fHashMacAppDelegate.h */,
-				52225825213CF2EF00012EF8 /* fHashMacAppDelegate.mm */,
 				41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */,
 				41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
@@ -209,7 +202,6 @@
 		52751B161B56276F00BD724B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4198A5391B58D3DA0050C831 /* main.m */,
 				41666E051B67415300A1D71F /* Localizable.strings */,
 				41666E161B67573900A1D71F /* ServicesMenu.strings */,
 			);
@@ -303,7 +295,6 @@
 				41C4BB0B2B21B090004A6C34 /* HashBridge.mm in Sources */,
 				41C4BB062B215BEC004A6C34 /* UIBridgeMacSwift.mm in Sources */,
 				41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */,
-				4198A53B1B58D3DA0050C831 /* main.m in Sources */,
 				41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */,
 				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
 				413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */,
@@ -311,7 +302,6 @@
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
-				52225829213CF2F000012EF8 /* fHashMacAppDelegate.mm in Sources */,
 				417AC3D62B19CDC2003DFFAF /* NoTitlebarWindowController.swift in Sources */,
 				4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */,
 				4111D69D27F16A35001AD814 /* sha512.cpp in Sources */,

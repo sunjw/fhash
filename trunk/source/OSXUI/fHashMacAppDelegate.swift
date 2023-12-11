@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
+@objc(fHashMacAppDelegate) class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
     weak var mainViewController: MainViewController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -42,10 +42,10 @@ class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
         sender.reply(toOpenOrPrint: .success)
     }
 
-    func handleFinderContextOpen(_ pboard: NSPasteboard?,
-                                 userData: String?,
-                                 error: String?) {
-        if let fileNames = pboard?.readObjects(forClasses: [NSURL.self], options: [:]) {
+    @objc func handleFinderContextOpen(_ pboard: NSPasteboard,
+                                       userData: String,
+                                       error: NSErrorPointer){
+        if let fileNames = pboard.readObjects(forClasses: [NSURL.self], options: [:]) {
             mainViewController?.startHashCalc(fileNames, isURL: true)
         }
     }
