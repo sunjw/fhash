@@ -50,6 +50,10 @@ private struct MainViewControllerState: OptionSet {
 
     private var upperCaseState = false
 
+    private var inMainQueue: Int = 0
+    private var outMainQueue: Int = 0
+    private let maxDiffQueue = 3
+
     private var hashBridge: HashBridge?
 
     override func viewDidLoad() {
@@ -335,6 +339,10 @@ private struct MainViewControllerState: OptionSet {
         self.updateMainTextView(false)
     }
 
+    private func canUpdateMainTextView() -> Bool {
+        return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
+    }
+
     private func calculateFinished() {
         self.setViewControllerState(.CALC_FINISH)
         self.mainProgressIndicator.jump(toDoubleValue: Double(hashBridge!.getProgMax()))
@@ -388,9 +396,11 @@ private struct MainViewControllerState: OptionSet {
         hashBridge?.setUppercase(upperCaseState)
 
         mainProgressIndicator.jump(toDoubleValue: 0)
+        self.setViewControllerState(.CALC_ING)
 
         // Ready to go.
-        self.setViewControllerState(.CALC_ING)
+        inMainQueue = 0
+        outMainQueue = 0
         hashBridge?.startHashThread()
     }
 
@@ -587,30 +597,46 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc func onShowFileName(_ result: ResultDataSwift) {
+        inMainQueue += 1
         DispatchQueue.main.async(execute: { [result] in
+            self.outMainQueue += 1
             self.appendFileNameToNSMutableAttributedString(result, self.mainText!)
-            self.updateMainTextView()
+            if self.canUpdateMainTextView() {
+                self.updateMainTextView()
+            }
         })
     }
 
     @objc func onShowFileMeta(_ result: ResultDataSwift) {
+        inMainQueue += 1
         DispatchQueue.main.async(execute: { [result] in
+            self.outMainQueue += 1
             self.appendFileMetaToNSMutableAttributedString(result, self.mainText!)
-            self.updateMainTextView()
+            if self.canUpdateMainTextView() {
+                self.updateMainTextView()
+            }
         })
     }
 
     @objc func onShowFileHash(_ result: ResultDataSwift, uppercase: Bool) {
+        inMainQueue += 1
         DispatchQueue.main.async(execute: { [result] in
+            self.outMainQueue += 1
             self.appendFileHashToNSMutableAttributedString(result, uppercase, self.mainText!)
-            self.updateMainTextView()
+            if self.canUpdateMainTextView() {
+                self.updateMainTextView()
+            }
         })
     }
 
     @objc func onShowFileErr(_ result: ResultDataSwift) {
+        inMainQueue += 1
         DispatchQueue.main.async(execute: { [result] in
+            self.outMainQueue += 1
             self.appendFileErrToNSMutableAttributedString(result, self.mainText!)
-            self.updateMainTextView()
+            if self.canUpdateMainTextView() {
+                self.updateMainTextView()
+            }
         })
     }
 
