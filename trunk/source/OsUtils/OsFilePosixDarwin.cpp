@@ -2,7 +2,7 @@
  * OsFile posix (darwin) implementation file
  * Author: Sun Junwen
  * Version: 0.5
- * Provider basic open/close, read, write and 
+ * Provider basic open/close, read, write and
  * attributes functions of file.
  */
 #include "stdafx.h"
