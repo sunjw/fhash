@@ -1,7 +1,7 @@
 /*
  * strhelper implementation file
  * Author: Sun Junwen
- * Version: 2.2.1
+ * Version: 2.2.2
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
