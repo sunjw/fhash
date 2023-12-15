@@ -125,7 +125,7 @@ LPCBYTE FileVersionHelper::FindVersion()
             DWORD offs = ReadDWORD(res + 4);
             if ((offs & 0x80000000) == 0) //is a dir resource?
                 return NULL;
-            //verDir is another IMAGE_RESOURCE_DIRECTORY and 
+            //verDir is another IMAGE_RESOURCE_DIRECTORY and
             // IMAGE_RESOURCE_DIRECTORY_ENTRY array
             LPCBYTE verDir = resSec + (offs & 0x7FFFFFFF);
             numNamed = ReadWORD(verDir + 12);

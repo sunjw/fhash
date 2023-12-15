@@ -104,7 +104,7 @@ namespace WindowsComm
 		pGNSI = (PGNSI)GetProcAddress(GetModuleHandle(TEXT("kernel32.dll")), "GetNativeSystemInfo");
 		if (NULL != pGNSI)
 			pGNSI(&si);
-		else 
+		else
 			GetSystemInfo(&si);
 
 		switch (osvi.dwPlatformId)
@@ -193,7 +193,7 @@ namespace WindowsComm
 			}
 
 			if (osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1)
-			{	
+			{
 				strOsinfo.append("Microsoft Windows XP ");
 			}
 
@@ -297,7 +297,7 @@ namespace WindowsComm
 				}
 
 				// Test for the server type.
-				else if (osvi.wProductType == VER_NT_SERVER || 
+				else if (osvi.wProductType == VER_NT_SERVER ||
 					osvi.wProductType == VER_NT_DOMAIN_CONTROLLER)
 				{
 					if (osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2)
@@ -341,7 +341,7 @@ namespace WindowsComm
 						else
 							strOsinfo.append("Server ");
 					}
-					else  // Windows NT 4.0 
+					else  // Windows NT 4.0
 					{
 						if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
 							strOsinfo.append("Server 4.0, Enterprise Edition ");
@@ -351,7 +351,7 @@ namespace WindowsComm
 				}
 			}
 			// Test for specific product on Windows NT 4.0 SP5 and earlier
-			else  
+			else
 			{
 				HKEY hKey;
 				TCHAR szProductType[BUFSIZE];
@@ -383,9 +383,9 @@ namespace WindowsComm
 			}
 
 			// Display service pack (if any) and build number.
-			if (osvi.dwMajorVersion == 4 && 
+			if (osvi.dwMajorVersion == 4 &&
 				lstrcmpi(osvi.szCSDVersion, TEXT("Service Pack 6")) == 0 )
-			{ 
+			{
 				HKEY hKey;
 				LONG lRet;
 
@@ -397,7 +397,7 @@ namespace WindowsComm
 				{
 					string spinfo;
 					spinfo = strappendformat(spinfo, "Service Pack 6a (Build %d)\r\n",
-									osvi.dwBuildNumber & 0xFFFF); 
+									osvi.dwBuildNumber & 0xFFFF);
 					strOsinfo.append(spinfo);
 				}
 				else // Windows NT 4.0 prior to SP6a
@@ -422,7 +422,7 @@ namespace WindowsComm
 
 				RegCloseKey( hKey );
 			}
-			else // not Windows NT 4.0 
+			else // not Windows NT 4.0
 			{
 				string spinfo;
 				tstring tstrCSDVersion(osvi.szCSDVersion);
@@ -452,19 +452,19 @@ namespace WindowsComm
 				strOsinfo.append("Microsoft Windows 95 ");
 				if (osvi.szCSDVersion[1] == TEXT('C') || osvi.szCSDVersion[1] == TEXT('B'))
 					strOsinfo.append("OSR2 ");
-			} 
+			}
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
 			{
 				strOsinfo.append("Microsoft Windows 98 ");
 				if (osvi.szCSDVersion[1] == TEXT('A') || osvi.szCSDVersion[1] == TEXT('B'))
 					strOsinfo.append("SE ");
-			} 
+			}
 
 			if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
 			{
 				strOsinfo.append("Microsoft Windows Millennium Edition\r\n");
-			} 
+			}
 			break;
 
 		case VER_PLATFORM_WIN32s:

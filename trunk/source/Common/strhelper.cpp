@@ -37,7 +37,7 @@ namespace sunjwbase
 	// Windows convert
 	static std::string _wstrtostr(const std::wstring& wstr, UINT codePage)
 	{
-		// Convert a wstring to a specified code page encoded string 
+		// Convert a wstring to a specified code page encoded string
 		size_t strLen = WideCharToMultiByte(codePage, 0, wstr.c_str(), (int)wstr.length(), NULL, 0, NULL, NULL);
 		std::string strTo;
 		char *szTo = new char[strLen + 1];
@@ -50,7 +50,7 @@ namespace sunjwbase
 
 	static std::wstring _strtowstr(const std::string& str, UINT codePage)
 	{
-		// Convert a specified code page encoded string to a wstring 
+		// Convert a specified code page encoded string to a wstring
 		size_t wstrLen = MultiByteToWideChar(codePage, 0, str.c_str(), -1, NULL, 0);
 		std::wstring wstrTo;
 		wchar_t *wszTo = new wchar_t[wstrLen + 1];

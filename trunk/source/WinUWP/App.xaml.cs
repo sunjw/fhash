@@ -95,7 +95,7 @@ namespace FilesHashUwp
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
             }
-            else 
+            else
             {
                 // Already launched
                 MainPage mainPage = MainPage.GetCurrentMainPage();

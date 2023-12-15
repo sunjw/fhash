@@ -196,7 +196,7 @@ int WINAPI HashThreadFunc(void *param)
 		char fExc[OsFile::ERR_MSG_BUFFER_LEN] = { 0 };
 #endif
 		OsFile osFile(path);
-		if (osFile.openReadScan((void *)&fExc)) 
+		if (osFile.openReadScan((void *)&fExc))
 		{
 			MD5Init(&mdContext, 0); // MD5 init
 			sha1.Reset(); // SHA1 init
@@ -207,8 +207,8 @@ int WINAPI HashThreadFunc(void *param)
 
 			/*
 			// get file size - start //
-			fsize=thrdData->File.GetLength();
-			tsize+=fsize;
+			fsize = thrdData->File.GetLength();
+			tsize += fsize;
 			// get file size - end //
 			*/
 
@@ -250,8 +250,8 @@ int WINAPI HashThreadFunc(void *param)
 			times = fsize / DataBuffer::preflen + 1;
 
 			//UINT bufferSize = sizeof(buffer);
-			do 
-			{	
+			do
+			{
 				if (thrdData->stop)
 				{
 					osFile.close();
@@ -331,7 +331,7 @@ int WINAPI HashThreadFunc(void *param)
 					uiBridge->updateProgWhole(positionWhole);
 				}
 
-			} 
+			}
 			while (databuf.datalen >= DataBuffer::preflen);
 
 			uiBridge->fileCalcFinish();
@@ -431,7 +431,7 @@ int WINAPI HashThreadFunc(void *param)
 			result.enumState = RESULT_ALL;
 
 			uiBridge->showFileHash(result, thrdData->uppercase);
-		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex)) 
+		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex))
 		else
 		{
 #if defined (WIN32)
