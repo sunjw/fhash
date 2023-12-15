@@ -384,14 +384,14 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 
 bool sunjwbase::str_startwith(const std::string& str, const std::string& target)
 {
-	if(str.length() < target.length())
+	if (str.length() < target.length())
 		return false;
 
 	// Length is enough, let's check content.
 	size_t i = 0;
-	for(; i < target.length(); ++i)
+	for (; i < target.length(); ++i)
 	{
-		if(str[i] != target[i])
+		if (str[i] != target[i])
 			return false;
 	}
 
@@ -400,16 +400,16 @@ bool sunjwbase::str_startwith(const std::string& str, const std::string& target)
 
 bool sunjwbase::str_endwith(const std::string& str, const std::string& target)
 {
-	if(str.length() < target.length())
+	if (str.length() < target.length())
 		return false;
 
 	// Length is enough, let's check content.
 	size_t str_len = str.length();
 	size_t target_len = target.length();
 	size_t i = 0;
-	for(; i < target.length(); ++i)
+	for (; i < target.length(); ++i)
 	{
-		if(str[str_len - target_len + i] != target[i])
+		if (str[str_len - target_len + i] != target[i])
 			return false;
 	}
 
