@@ -363,7 +363,7 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 		temp.resize(size);
 		va_start(vl, format);
 #if defined (WIN32)
-		int n = vsnprintf_s((char *)temp.data(), size, size, format, vl);
+		int n = vsnprintf_s((char *)temp.data(), size, _TRUNCATE, format, vl);
 #else
 		int n = vsnprintf((char *)temp.data(), size, format, vl);
 #endif
