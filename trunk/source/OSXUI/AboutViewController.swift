@@ -29,7 +29,7 @@ import Cocoa
         strAboutInfo += (strAppVersion ?? "")
         strAboutInfo += " ("
         strAboutInfo += (strAppBundleVersion ?? "")
-        strAboutInfo += ") Swift"
+        strAboutInfo += ")"
         strAboutInfo += "\n"
         strAboutInfo += MacSwiftUtils.GetStringFromRes("ABOUTDLG_INFO_RIGHT")
         strAboutInfo += "\n"
