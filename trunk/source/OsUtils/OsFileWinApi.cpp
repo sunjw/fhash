@@ -1,5 +1,5 @@
 /*
- * OsFile posix (darwin) implementation file
+ * OsFile Windows API implementation file
  * Author: Sun Junwen
  * Version: 0.5
  * Provider basic open/close, read, write and
