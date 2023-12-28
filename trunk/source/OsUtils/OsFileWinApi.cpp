@@ -155,7 +155,7 @@ bool OsFile::openWrite(void *exception/* = NULL*/)
 
 	if (ret == true)
 	{
-		_fileStatus = OPEN_READ;
+		_fileStatus = OPEN_WRITE;
 	}
 
 	return ret;
