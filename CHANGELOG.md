@@ -1,3 +1,8 @@
+3.2.1.0 (73) 2024-01-04  
+macOS migrate to Swift  
+Windows UWP update components  
+Fix other issues  
+
 3.1.8.0 (62) 2023-11-29  
 Windows UWP update components  
 Fix other issues  
