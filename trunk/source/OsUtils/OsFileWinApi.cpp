@@ -18,6 +18,28 @@ using namespace sunjwbase;
 
 // HANDLE == void *
 
+static tstring LongPathFix(const tstring& tstrPath)
+{
+	tstring tstrFixPath;
+	size_t pathLen = tstrPath.size();
+	if (pathLen < MAX_PATH - 12)
+		return tstrPath;
+
+	if (tstrPath[0] == TEXT('\\') && tstrPath[1] == TEXT('\\'))
+	{
+		if (tstrPath[2] == TEXT('?')) // Already formatted
+			return tstrPath;
+		tstrFixPath = TEXT("\\\\?\\UNC\\");
+		tstrFixPath += (tstrPath.c_str() + 2);
+	}
+	else
+	{
+		tstrFixPath = TEXT("\\\\?\\");
+		tstrFixPath += tstrPath;
+	}
+	return tstrFixPath;
+}
+
 struct CreateFileFlag
 {
 	DWORD dwDesiredAccess;
@@ -27,7 +49,7 @@ struct CreateFileFlag
 };
 
 OsFile::OsFile(tstring filePath):
-	_filePath(filePath),
+	_filePath(LongPathFix(filePath)),
 	_osfileData(NULL),
 	_fileStatus(CLOSED)
 {
