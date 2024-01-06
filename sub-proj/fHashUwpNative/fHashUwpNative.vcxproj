@@ -274,7 +274,6 @@
     <ClCompile Include="..\..\trunk\source\Algorithms\sha512.cpp" />
     <ClCompile Include="..\..\trunk\source\Common\HashEngine.cpp" />
     <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
-    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\WinCommon\FileVersionHelper.cpp" />
     <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp" />

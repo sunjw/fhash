@@ -86,9 +86,6 @@
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp">
       <Filter>OsUtils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp">
-      <Filter>OsUtils</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\trunk\source\Common\HashEngine.cpp">
       <Filter>Common</Filter>
     </ClCompile>
