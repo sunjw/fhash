@@ -11,6 +11,58 @@
 
 #include <Windows.h>
 #include <strsafe.h>
+#include <wrl.h>
+
+// Fix for bug in windowsstoragecom.h
+enum _SHGDNF
+{
+	SHGDN_NORMAL = 0,
+	SHGDN_INFOLDER = 0x1,
+	SHGDN_FOREDITING = 0x1000,
+	SHGDN_FORADDRESSBAR = 0x4000,
+	SHGDN_FORPARSING = 0x8000
+};
+typedef DWORD SHGDNF;
+
+typedef struct _CMINVOKECOMMANDINFO
+{
+	DWORD cbSize;
+	DWORD fMask;
+	HWND hwnd;
+	LPCSTR lpVerb;
+	LPCSTR lpParameters;
+	LPCSTR lpDirectory;
+	int nShow;
+	DWORD dwHotKey;
+	HANDLE hIcon;
+} 	CMINVOKECOMMANDINFO;
+
+typedef CMINVOKECOMMANDINFO* LPCMINVOKECOMMANDINFO;
+
+typedef const CMINVOKECOMMANDINFO* PCCMINVOKECOMMANDINFO;
+
+typedef struct CMINVOKECOMMANDINFOEX_REMOTE
+{
+	DWORD cbSize;
+	DWORD fMask;
+	HWND hwnd;
+	LPCSTR lpVerbString;
+	LPCSTR lpParameters;
+	LPCSTR lpDirectory;
+	int nShow;
+	DWORD dwHotKey;
+	LPCSTR lpTitle;
+	LPCWSTR lpVerbWString;
+	LPCWSTR lpParametersW;
+	LPCWSTR lpDirectoryW;
+	LPCWSTR lpTitleW;
+	POINT ptInvoke;
+	UINT lpVerbInt;
+	UINT lpVerbWInt;
+} 	CMINVOKECOMMANDINFOEX_REMOTE;
+// Fix for bug in windowsstoragecom.h
+
+#include <windowsstoragecom.h>
 
 using namespace sunjwbase;
 
