@@ -37,7 +37,7 @@
     <ClCompile Include="NativeHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp">
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinUwp.cpp">
       <Filter>OsUtils</Filter>
     </ClCompile>
   </ItemGroup>

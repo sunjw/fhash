@@ -344,7 +344,7 @@
     <ClInclude Include="UIBridgeDelegate.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp" />
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinUwp.cpp" />
     <ClCompile Include="CxHelper.cpp" />
     <ClCompile Include="HashMgmt.cpp" />
     <ClCompile Include="NativeHelper.cpp" />
