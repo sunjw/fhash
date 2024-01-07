@@ -182,6 +182,23 @@ static tstring LongPathFix(const tstring& tstrPath)
 	return tstrFixPath;
 }
 
+static DWORD GetHandleByCreateFileFromApp(const tstring& tstrPath, const CreateFileFlag *pUwpCreateFlag, LPHANDLE pFileHandle)
+{
+	DWORD dwRet = ERROR_SUCCESS;
+	*pFileHandle = CreateFileFromAppW(tstrPath.c_str(), // file to open
+		pUwpCreateFlag->dwDesiredAccess, // open for reading
+		pUwpCreateFlag->dwShareMode, // share for reading
+		NULL, // default security
+		pUwpCreateFlag->dwCreationDisposition, // existing file only
+		pUwpCreateFlag->dwFlagsAndAttributes, // normal file
+		NULL); // no attr. template
+
+	if (*pFileHandle == INVALID_HANDLE_VALUE)
+		dwRet = GetLastError();
+
+	return dwRet;
+}
+
 static DWORD GetHandleByStorageFile(const tstring& tstrPath, const UwpCreateFlag *pUwpCreateFlag, LPHANDLE pFileHandle)
 {
 	StorageFile^ storageFile = nullptr;
@@ -221,7 +238,7 @@ static DWORD GetHandleByStorageFile(const tstring& tstrPath, const UwpCreateFlag
 }
 
 OsFile::OsFile(tstring filePath):
-	_filePath(filePath),
+	_filePath(LongPathFix(filePath)),
 	_osfileData(NULL),
 	_fileStatus(CLOSED)
 {
@@ -246,12 +263,18 @@ bool OsFile::open(void *flag, void *exception)
 	_osfileData = INVALID_HANDLE_VALUE;
 
 	DWORD dwResult = GetHandleByStorageFile(_filePath, &(fileFlag->uwpCreateFlag), &_osfileData);
-	if (dwResult != 0 || _osfileData == INVALID_HANDLE_VALUE)
+	if (_osfileData == INVALID_HANDLE_VALUE)
+	{
+		// Fallback to use CreateFileFromApp
+		dwResult = GetHandleByCreateFileFromApp(_filePath, &(fileFlag->createFileFlag), &_osfileData);
+	}
+
+	if (_osfileData == INVALID_HANDLE_VALUE)
 	{
 		if (pFileExc != NULL)
 		{
-			if (dwResult == 0)
-				dwResult = ERROR_ACCESS_DENIED;
+			if (dwResult == ERROR_SUCCESS)
+				dwResult = ERROR_ACCESS_DENIED; // Why?
 
 			LPVOID lpMsgBuf = NULL;
 			FormatMessage(
