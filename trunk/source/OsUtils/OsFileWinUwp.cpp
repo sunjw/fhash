@@ -108,6 +108,8 @@ extern "C" {
 
 #include <wrl\client.h>
 #include <wrl\wrappers\corewrappers.h>
+#include <ppl.h>
+#include <ppltasks.h>
 
 #include "CxHelper.h"
 
@@ -115,31 +117,25 @@ using namespace Platform;
 using namespace Windows::Storage;
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
+using namespace Concurrency;
 using namespace sunjwbase;
 
 #define WINBOOL_2_CBOOL(winbool_var) bool((winbool_var) == TRUE)
 
-HRESULT getHandleFromStorageFile(StorageFile^ file, HANDLE* handle)
+static DWORD Win32ErrCodeFromHResult(HRESULT hr)
 {
-	// Get an IUnknown from the ref class, and then QI for IStorageFolderHandleAccess
-	ComPtr<IUnknown> abiPointer(reinterpret_cast<IUnknown*>(file));
-	ComPtr<IStorageItemHandleAccess> handleAccess;
-	if (SUCCEEDED(abiPointer.As(&handleAccess))) {
-		HandleT<HandleTraits::FileHandleTraits> win32fileHandle;
-
-		// This is roughly equivalent of calling CreateFile2
-		if (SUCCEEDED(handleAccess->Create(HANDLE_ACCESS_OPTIONS::HAO_READ,
-			HANDLE_SHARING_OPTIONS::HSO_SHARE_READ,
-			HANDLE_OPTIONS::HO_NONE,
-			nullptr,
-			win32fileHandle.GetAddressOf()))) {
-			*handle = win32fileHandle.Detach();
-
-			return S_OK;
-		}
+	if ((hr & 0xFFFF0000) == MAKE_HRESULT(SEVERITY_ERROR, FACILITY_WIN32, 0))
+	{
+		return HRESULT_CODE(hr);
 	}
 
-	return E_FAIL;
+	if (hr == S_OK)
+	{
+		return ERROR_SUCCESS;
+	}
+
+	// Not a Win32 HRESULT so return a generic error code.
+	return ERROR_CAN_NOT_COMPLETE;
 }
 
 static tstring LongPathFix(const tstring& tstrPath)
@@ -196,14 +192,35 @@ bool OsFile::open(void *flag, void *exception)
 	CreateFileFlag* fileFlag = (CreateFileFlag*)flag;
 	TCHAR *pFileExc = (TCHAR *)exception;
 
+	_osfileData = INVALID_HANDLE_VALUE;
 
+	auto storageFileAction = StorageFile::GetFileFromPathAsync(ConvertToPlatStr(_filePath.c_str()));
 
+	// Make a blocking call to get hold of the StorageFile
+	StorageFile^ storageFile;
+	create_task(storageFileAction).then([&storageFile](StorageFile^ file)
+	{
+		storageFile = file;
+	}).wait();
 
-	if (_osfileData == INVALID_HANDLE_VALUE)
+	// Retrieve the IStorageItemHandleAccess interface from the StorageFile
+	ComPtr<IUnknown> unknown(reinterpret_cast<IUnknown*>(storageFile));
+	ComPtr<IStorageItemHandleAccess> fileAccessor;
+	HRESULT hr = unknown.As(&fileAccessor);
+	if (SUCCEEDED(hr))
+	{
+		hr = fileAccessor->Create(HANDLE_ACCESS_OPTIONS::HAO_READ,
+				HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE,
+				HANDLE_OPTIONS::HO_RANDOM_ACCESS,
+				nullptr,
+				&_osfileData);
+	}
+
+	if (FAILED(hr) || _osfileData == INVALID_HANDLE_VALUE)
 	{
 		if (pFileExc != NULL)
 		{
-			DWORD dw = GetLastError();
+			DWORD dw = Win32ErrCodeFromHResult(hr);
 			LPVOID lpMsgBuf = NULL;
 			FormatMessage(
 				FORMAT_MESSAGE_ALLOCATE_BUFFER |
