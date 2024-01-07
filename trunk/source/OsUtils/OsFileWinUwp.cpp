@@ -123,11 +123,25 @@ using namespace sunjwbase;
 
 #define WINBOOL_2_CBOOL(winbool_var) bool((winbool_var) == TRUE)
 
+struct CreateFileFlag
+{
+	DWORD dwDesiredAccess;
+	DWORD dwShareMode;
+	DWORD dwCreationDisposition;
+	DWORD dwFlagsAndAttributes;
+};
+
 struct UwpCreateFlag
 {
 	HANDLE_ACCESS_OPTIONS accessOptions;
 	HANDLE_SHARING_OPTIONS sharingOptions;
 	HANDLE_OPTIONS handleOptions;
+};
+
+struct CombinedCreateFlag
+{
+	CreateFileFlag createFileFlag;
+	UwpCreateFlag uwpCreateFlag;
 };
 
 static DWORD Win32ErrCodeFromHResult(HRESULT hr)
@@ -227,12 +241,11 @@ OsFile::~OsFile()
 
 bool OsFile::open(void *flag, void *exception)
 {
-	UwpCreateFlag *fileFlag = (UwpCreateFlag *)flag;
+	CombinedCreateFlag *fileFlag = (CombinedCreateFlag *)flag;
 	TCHAR *pFileExc = (TCHAR *)exception;
-
 	_osfileData = INVALID_HANDLE_VALUE;
-	DWORD dwResult = GetHandleByStorageFile(_filePath, fileFlag, &_osfileData);
 
+	DWORD dwResult = GetHandleByStorageFile(_filePath, &(fileFlag->uwpCreateFlag), &_osfileData);
 	if (dwResult != 0 || _osfileData == INVALID_HANDLE_VALUE)
 	{
 		if (pFileExc != NULL)
@@ -274,10 +287,14 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	UwpCreateFlag fileFlag;
-	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
-	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
-	fileFlag.handleOptions = HO_RANDOM_ACCESS;
+	CombinedCreateFlag fileFlag;
+	fileFlag.createFileFlag.dwDesiredAccess = GENERIC_READ;
+	fileFlag.createFileFlag.dwShareMode = FILE_SHARE_READ;
+	fileFlag.createFileFlag.dwCreationDisposition = OPEN_EXISTING;
+	fileFlag.createFileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	fileFlag.uwpCreateFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.uwpCreateFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
+	fileFlag.uwpCreateFlag.handleOptions = HO_RANDOM_ACCESS;
 	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
@@ -292,10 +309,14 @@ bool OsFile::openReadScan(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	UwpCreateFlag fileFlag;
-	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
-	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
-	fileFlag.handleOptions = HO_SEQUENTIAL_SCAN;
+	CombinedCreateFlag fileFlag;
+	fileFlag.createFileFlag.dwDesiredAccess = GENERIC_READ;
+	fileFlag.createFileFlag.dwShareMode = FILE_SHARE_READ;
+	fileFlag.createFileFlag.dwCreationDisposition = OPEN_EXISTING;
+	fileFlag.createFileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN;
+	fileFlag.uwpCreateFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.uwpCreateFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
+	fileFlag.uwpCreateFlag.handleOptions = HO_SEQUENTIAL_SCAN;
 	ret = this->open((void*)&fileFlag, exception);
 
 	if (ret == true)
@@ -310,10 +331,14 @@ bool OsFile::openWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	UwpCreateFlag fileFlag;
-	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE;
-	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
-	fileFlag.handleOptions = HO_RANDOM_ACCESS;
+	CombinedCreateFlag fileFlag;
+	fileFlag.createFileFlag.dwDesiredAccess = GENERIC_WRITE;
+	fileFlag.createFileFlag.dwShareMode = 0;
+	fileFlag.createFileFlag.dwCreationDisposition = CREATE_NEW;
+	fileFlag.createFileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	fileFlag.uwpCreateFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE;
+	fileFlag.uwpCreateFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
+	fileFlag.uwpCreateFlag.handleOptions = HO_RANDOM_ACCESS;
 	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
@@ -328,10 +353,14 @@ bool OsFile::openReadWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	UwpCreateFlag fileFlag;
-	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE | HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
-	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
-	fileFlag.handleOptions = HO_RANDOM_ACCESS;
+	CombinedCreateFlag fileFlag;
+	fileFlag.createFileFlag.dwDesiredAccess = GENERIC_WRITE | GENERIC_READ;
+	fileFlag.createFileFlag.dwShareMode = 0;
+	fileFlag.createFileFlag.dwCreationDisposition = CREATE_NEW;
+	fileFlag.createFileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	fileFlag.uwpCreateFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE | HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.uwpCreateFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
+	fileFlag.uwpCreateFlag.handleOptions = HO_RANDOM_ACCESS;
 	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
