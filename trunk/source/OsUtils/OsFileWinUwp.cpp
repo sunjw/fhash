@@ -113,6 +113,7 @@ extern "C" {
 
 #include "CxHelper.h"
 
+using namespace std;
 using namespace Platform;
 using namespace Windows::Storage;
 using namespace Microsoft::WRL;
@@ -168,7 +169,7 @@ struct UwpCreateFlag
 };
 
 OsFile::OsFile(tstring filePath):
-	_filePath(LongPathFix(filePath)),
+	_filePath(filePath),
 	_osfileData(NULL),
 	_fileStatus(CLOSED)
 {
@@ -192,27 +193,37 @@ bool OsFile::open(void *flag, void *exception)
 	TCHAR *pFileExc = (TCHAR *)exception;
 
 	_osfileData = INVALID_HANDLE_VALUE;
+	StorageFile^ storageFile = nullptr;
+	HRESULT hr = S_OK;
 
-	auto storageFileAction = StorageFile::GetFileFromPathAsync(ConvertToPlatStr(_filePath.c_str()));
-
-	// Make a blocking call to get hold of the StorageFile
-	StorageFile^ storageFile;
-	create_task(storageFileAction).then([&storageFile](StorageFile^ file)
+	try
 	{
-		storageFile = file;
-	}).wait();
-
-	// Retrieve the IStorageItemHandleAccess interface from the StorageFile
-	ComPtr<IUnknown> unknown(reinterpret_cast<IUnknown*>(storageFile));
-	ComPtr<IStorageItemHandleAccess> fileAccessor;
-	HRESULT hr = unknown.As(&fileAccessor);
-	if (SUCCEEDED(hr))
+		auto storageFileAction = StorageFile::GetFileFromPathAsync(ConvertToPlatStr(_filePath.c_str()));
+		// Make a blocking call to get hold of the StorageFile
+		create_task(storageFileAction).then([&storageFile](StorageFile^ file)
+		{
+			storageFile = file;
+		}).wait();
+	}
+	catch (COMException^ comEx)
 	{
-		hr = fileAccessor->Create(fileFlag->accessOptions,
-			fileFlag->sharingOptions,
-			fileFlag->handleOptions,
-			nullptr,
-			&_osfileData);
+		hr = comEx->HResult;
+	}
+
+	if (storageFile != nullptr)
+	{
+		// Retrieve the IStorageItemHandleAccess interface from the StorageFile
+		ComPtr<IUnknown> unknown(reinterpret_cast<IUnknown*>(storageFile));
+		ComPtr<IStorageItemHandleAccess> fileAccessor;
+		HRESULT hr = unknown.As(&fileAccessor);
+		if (SUCCEEDED(hr))
+		{
+			hr = fileAccessor->Create(fileFlag->accessOptions,
+				fileFlag->sharingOptions,
+				fileFlag->handleOptions,
+				nullptr,
+				&_osfileData);
+		}
 	}
 
 	if (FAILED(hr) || _osfileData == INVALID_HANDLE_VALUE)
