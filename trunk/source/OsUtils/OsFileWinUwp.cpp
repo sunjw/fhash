@@ -160,12 +160,11 @@ static tstring LongPathFix(const tstring& tstrPath)
 	return tstrFixPath;
 }
 
-struct CreateFileFlag
+struct UwpCreateFlag
 {
-	DWORD dwDesiredAccess;
-	DWORD dwShareMode;
-	DWORD dwCreationDisposition;
-	DWORD dwFlagsAndAttributes;
+	HANDLE_ACCESS_OPTIONS accessOptions;
+	HANDLE_SHARING_OPTIONS sharingOptions;
+	HANDLE_OPTIONS handleOptions;
 };
 
 OsFile::OsFile(tstring filePath):
@@ -189,7 +188,7 @@ OsFile::~OsFile()
 
 bool OsFile::open(void *flag, void *exception)
 {
-	CreateFileFlag* fileFlag = (CreateFileFlag*)flag;
+	UwpCreateFlag *fileFlag = (UwpCreateFlag *)flag;
 	TCHAR *pFileExc = (TCHAR *)exception;
 
 	_osfileData = INVALID_HANDLE_VALUE;
@@ -209,11 +208,11 @@ bool OsFile::open(void *flag, void *exception)
 	HRESULT hr = unknown.As(&fileAccessor);
 	if (SUCCEEDED(hr))
 	{
-		hr = fileAccessor->Create(HANDLE_ACCESS_OPTIONS::HAO_READ,
-				HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE,
-				HANDLE_OPTIONS::HO_RANDOM_ACCESS,
-				nullptr,
-				&_osfileData);
+		hr = fileAccessor->Create(fileFlag->accessOptions,
+			fileFlag->sharingOptions,
+			fileFlag->handleOptions,
+			nullptr,
+			&_osfileData);
 	}
 
 	if (FAILED(hr) || _osfileData == INVALID_HANDLE_VALUE)
@@ -255,11 +254,10 @@ bool OsFile::openRead(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	CreateFileFlag fileFlag;
-	fileFlag.dwDesiredAccess = GENERIC_READ;
-	fileFlag.dwShareMode = FILE_SHARE_READ;
-	fileFlag.dwCreationDisposition = OPEN_EXISTING;
-	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+	UwpCreateFlag fileFlag;
+	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
+	fileFlag.handleOptions = HO_RANDOM_ACCESS;
 	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
@@ -274,11 +272,10 @@ bool OsFile::openReadScan(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	CreateFileFlag fileFlag;
-	fileFlag.dwDesiredAccess = GENERIC_READ;
-	fileFlag.dwShareMode = FILE_SHARE_READ;
-	fileFlag.dwCreationDisposition = OPEN_EXISTING;
-	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN;
+	UwpCreateFlag fileFlag;
+	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_READ;
+	fileFlag.handleOptions = HO_SEQUENTIAL_SCAN;
 	ret = this->open((void*)&fileFlag, exception);
 
 	if (ret == true)
@@ -293,12 +290,11 @@ bool OsFile::openWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	CreateFileFlag fileFlag;
-	fileFlag.dwDesiredAccess = GENERIC_WRITE;
-	fileFlag.dwShareMode = 0;
-	fileFlag.dwCreationDisposition = CREATE_NEW;
-	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
-	ret = this->open((void*)&fileFlag, exception);
+	UwpCreateFlag fileFlag;
+	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE;
+	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
+	fileFlag.handleOptions = HO_RANDOM_ACCESS;
+	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
 	{
@@ -312,12 +308,11 @@ bool OsFile::openReadWrite(void *exception/* = NULL*/)
 {
 	bool ret = false;
 
-	CreateFileFlag fileFlag;
-	fileFlag.dwDesiredAccess = GENERIC_WRITE | GENERIC_READ;
-	fileFlag.dwShareMode = 0;
-	fileFlag.dwCreationDisposition = CREATE_NEW;
-	fileFlag.dwFlagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
-	ret = this->open((void*)&fileFlag, exception);
+	UwpCreateFlag fileFlag;
+	fileFlag.accessOptions = HANDLE_ACCESS_OPTIONS::HAO_WRITE | HANDLE_ACCESS_OPTIONS::HAO_READ | HANDLE_ACCESS_OPTIONS::HAO_READ_ATTRIBUTES;
+	fileFlag.sharingOptions = HANDLE_SHARING_OPTIONS::HSO_SHARE_NONE;
+	fileFlag.handleOptions = HO_RANDOM_ACCESS;
+	ret = this->open((void *)&fileFlag, exception);
 
 	if (ret == true)
 	{
