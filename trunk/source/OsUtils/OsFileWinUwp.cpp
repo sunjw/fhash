@@ -123,6 +123,13 @@ using namespace sunjwbase;
 
 #define WINBOOL_2_CBOOL(winbool_var) bool((winbool_var) == TRUE)
 
+struct UwpCreateFlag
+{
+	HANDLE_ACCESS_OPTIONS accessOptions;
+	HANDLE_SHARING_OPTIONS sharingOptions;
+	HANDLE_OPTIONS handleOptions;
+};
+
 static DWORD Win32ErrCodeFromHResult(HRESULT hr)
 {
 	if ((hr & 0xFFFF0000) == MAKE_HRESULT(SEVERITY_ERROR, FACILITY_WIN32, 0))
@@ -161,12 +168,43 @@ static tstring LongPathFix(const tstring& tstrPath)
 	return tstrFixPath;
 }
 
-struct UwpCreateFlag
+static DWORD GetHandleByStorageFile(const tstring& tstrPath, const UwpCreateFlag *pUwpCreateFlag, LPHANDLE pFileHandle)
 {
-	HANDLE_ACCESS_OPTIONS accessOptions;
-	HANDLE_SHARING_OPTIONS sharingOptions;
-	HANDLE_OPTIONS handleOptions;
-};
+	StorageFile^ storageFile = nullptr;
+	HRESULT hr = S_OK;
+
+	try
+	{
+		auto storageFileAction = StorageFile::GetFileFromPathAsync(ConvertToPlatStr(tstrPath.c_str()));
+		// Make a blocking call to get hold of the StorageFile
+		create_task(storageFileAction).then([&storageFile](StorageFile^ file)
+		{
+			storageFile = file;
+		}).wait();
+	}
+	catch (Exception^ ex)
+	{
+		hr = ex->HResult;
+	}
+
+	if (storageFile != nullptr)
+	{
+		// Retrieve the IStorageItemHandleAccess interface from the StorageFile
+		ComPtr<IUnknown> unknown(reinterpret_cast<IUnknown*>(storageFile));
+		ComPtr<IStorageItemHandleAccess> fileAccessor;
+		HRESULT hr = unknown.As(&fileAccessor);
+		if (SUCCEEDED(hr))
+		{
+			hr = fileAccessor->Create(pUwpCreateFlag->accessOptions,
+				pUwpCreateFlag->sharingOptions,
+				pUwpCreateFlag->handleOptions,
+				nullptr,
+				pFileHandle);
+		}
+	}
+
+	return Win32ErrCodeFromHResult(hr);
+}
 
 OsFile::OsFile(tstring filePath):
 	_filePath(filePath),
@@ -193,51 +231,22 @@ bool OsFile::open(void *flag, void *exception)
 	TCHAR *pFileExc = (TCHAR *)exception;
 
 	_osfileData = INVALID_HANDLE_VALUE;
-	StorageFile^ storageFile = nullptr;
-	HRESULT hr = S_OK;
+	DWORD dwResult = GetHandleByStorageFile(_filePath, fileFlag, &_osfileData);
 
-	try
-	{
-		auto storageFileAction = StorageFile::GetFileFromPathAsync(ConvertToPlatStr(_filePath.c_str()));
-		// Make a blocking call to get hold of the StorageFile
-		create_task(storageFileAction).then([&storageFile](StorageFile^ file)
-		{
-			storageFile = file;
-		}).wait();
-	}
-	catch (COMException^ comEx)
-	{
-		hr = comEx->HResult;
-	}
-
-	if (storageFile != nullptr)
-	{
-		// Retrieve the IStorageItemHandleAccess interface from the StorageFile
-		ComPtr<IUnknown> unknown(reinterpret_cast<IUnknown*>(storageFile));
-		ComPtr<IStorageItemHandleAccess> fileAccessor;
-		HRESULT hr = unknown.As(&fileAccessor);
-		if (SUCCEEDED(hr))
-		{
-			hr = fileAccessor->Create(fileFlag->accessOptions,
-				fileFlag->sharingOptions,
-				fileFlag->handleOptions,
-				nullptr,
-				&_osfileData);
-		}
-	}
-
-	if (FAILED(hr) || _osfileData == INVALID_HANDLE_VALUE)
+	if (dwResult != 0 || _osfileData == INVALID_HANDLE_VALUE)
 	{
 		if (pFileExc != NULL)
 		{
-			DWORD dw = Win32ErrCodeFromHResult(hr);
+			if (dwResult == 0)
+				dwResult = ERROR_ACCESS_DENIED;
+
 			LPVOID lpMsgBuf = NULL;
 			FormatMessage(
 				FORMAT_MESSAGE_ALLOCATE_BUFFER |
 				FORMAT_MESSAGE_FROM_SYSTEM |
 				FORMAT_MESSAGE_IGNORE_INSERTS,
 				NULL,
-				dw,
+				dwResult,
 				0, //MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), // MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH),
 				(LPTSTR)&lpMsgBuf,
 				0, NULL);
