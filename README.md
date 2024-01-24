@@ -28,7 +28,7 @@ winget install fHash
 
 ### LICENSE
 GPL 2.0 for codes hosted on GitHub.   
-May use other licenses for binary package on other distribution sites.
+Different licenses and agreements may be used for different distribution sites
 
 ### AUTHOR
 Sun Junwen sunjw8888 at gmail.com
