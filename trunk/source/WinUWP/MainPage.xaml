@@ -145,7 +145,11 @@
                         VerticalAlignment="Bottom"
                         Click="ButtonVerify_Click"
                         Content="[Verify]"
-                        TabIndex="5" />
+                        TabIndex="5">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="F" Modifiers="Control" />
+                        </Button.KeyboardAccelerators>
+                    </Button>
                     <Button
                         x:Name="ButtonOpen"
                         x:Uid="ButtonOpen"
