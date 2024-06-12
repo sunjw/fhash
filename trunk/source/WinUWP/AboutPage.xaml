@@ -37,6 +37,12 @@
                 Source="ms-appx:///Assets/AboutLogo.large.png" />
 
             <Grid x:Name="GridAboutContent" Margin="140,20,10,50">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="75" />
+                    </TransitionCollection>
+                </Grid.Transitions>
+
                 <TextBlock
                     x:Name="TextBlockAboutTitle"
                     Margin="0,0,0,0"
