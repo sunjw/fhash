@@ -1,4 +1,8 @@
-3.3.2 (76) 2024-06-27  
+3.3.3 (77) 2024-06-27  
+Windows UWP update components  
+Fix other issues  
+
+3.3.2 (76) 2024-06-07  
 Windows UWP update components  
 Fix other issues  
 
