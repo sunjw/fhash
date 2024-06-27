@@ -8,8 +8,6 @@
  * English and Simplified Chinese UI.
 
 The icon "希" is from hash in Chinese "哈希".   
-   
-Current version: 3.3.3
 
 Project site: https://github.com/sunjw/fhash
 
