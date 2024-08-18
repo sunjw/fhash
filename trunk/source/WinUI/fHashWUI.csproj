@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <RootNamespace>FilesHashWUI</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;ARM64</Platforms>
@@ -10,6 +10,7 @@
     <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
     <UseRidGraph>true</UseRidGraph>
+    <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
