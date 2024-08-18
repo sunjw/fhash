@@ -8,14 +8,14 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="c3e724da-700b-4f04-8362-a9cf11631bfd"
-    Publisher="CN=Sun Junwen"
+    Name="3089SunJunwen.fNext"
+    Publisher="CN=D9E78D3B-78DB-4079-8C66-F819B4C1DB61"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="c3e724da-700b-4f04-8362-a9cf11631bfd" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>fHashWUIWap</DisplayName>
+    <DisplayName>fNext</DisplayName>
     <PublisherDisplayName>Sun Junwen</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -34,7 +34,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="fHashWUIWap"
+        DisplayName="fNext"
         Description="fHashWUIWap"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
