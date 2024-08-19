@@ -5,9 +5,9 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.ApplicationModel.Resources;
 using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
-using Windows.ApplicationModel.Resources;
 using Windows.Graphics;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -59,7 +59,7 @@ namespace FilesHashWUI
             HWNDHandle = WindowNative.GetWindowHandle(this);
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
 
-            m_resourceLoaderMain = ResourceLoader.GetForViewIndependentUse();
+            m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
             m_uiSettings = new();
 
             InitTitleBarAndTaskBar();

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
+using Microsoft.Windows.ApplicationModel.Resources;
 using Microsoft.Windows.AppLifecycle;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
@@ -15,6 +16,7 @@ namespace SunJWBase
 {
     public class WinUIHelper
     {
+        private static ResourceLoader m_resourceLoaderMain = new();
 
         public static AppActivationArguments GetCurrentActivatedEventArgs()
         {
@@ -30,6 +32,11 @@ namespace SunJWBase
                 launchArgs = launchActivatedEventArgs?.Arguments;
             }
             return launchArgs;
+        }
+
+        public static ResourceLoader GetCurrentResourceLoader()
+        {
+            return m_resourceLoaderMain;
         }
 
         public static void ScrollViewerScrollTo(ScrollViewer scrollViewer, double offsetX, double offsetY)
@@ -62,7 +69,7 @@ namespace SunJWBase
 
         public static void CopyStringToClipboard(string text)
         {
-            DataPackage dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+            DataPackage dataPackage = new() { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
             Clipboard.Flush();
@@ -70,20 +77,20 @@ namespace SunJWBase
 
         public static void OpenUrl(string url)
         {
-            Uri uri = new Uri(url);
+            Uri uri = new(url);
             _ = Launcher.LaunchUriAsync(uri);
         }
 
         public static Run GenRunFromString(string strContent)
         {
-            Run run = new Run();
+            Run run = new();
             run.Text = strContent;
             return run;
         }
 
         public static Hyperlink GenHyperlinkFromString(string strContent, TypedEventHandler<Hyperlink, HyperlinkClickEventArgs> clickHandler)
         {
-            Hyperlink hyperlink = new Hyperlink();
+            Hyperlink hyperlink = new();
             hyperlink.Inlines.Add(GenRunFromString(strContent));
             hyperlink.UnderlineStyle = UnderlineStyle.None;
             if (clickHandler != null)
@@ -105,7 +112,7 @@ namespace SunJWBase
 
         public static async Task<List<string>> GetDropFilesPath(DragEventArgs e)
         {
-            List<string> strDropFilesPath = new List<string>();
+            List<string> strDropFilesPath = new();
 
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {

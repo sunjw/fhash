@@ -54,7 +54,7 @@ namespace SunJWBase
 
         public static Point GetPointerPoint()
         {
-            Point pointCursor = new Point();
+            Point pointCursor = new();
             PInvoke.GetCursorPos(out pointCursor);
             return pointCursor;
         }
