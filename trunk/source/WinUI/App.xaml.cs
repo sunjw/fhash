@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.Windows.AppLifecycle;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -10,7 +11,7 @@ namespace FilesHashWUI
     /// </summary>
     public partial class App : Application
     {
-        private Window m_window;
+        private Window m_mainWindow;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -27,8 +28,16 @@ namespace FilesHashWUI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Activate();
+            m_mainWindow = new MainWindow();
+            m_mainWindow.Activate();
+        }
+
+        public void OnRedirected(AppActivationArguments args)
+        {
+            if (m_mainWindow != null)
+            {
+                //m_mainWindow.DispatcherQueue.TryEnqueue(() => m_mainWindow.OnRedirected(args));
+            }
         }
     }
 }
