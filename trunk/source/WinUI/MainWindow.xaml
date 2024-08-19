@@ -1,14 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Window
     x:Class="FilesHashWUI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:FilesHashWUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:FilesHashWUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid x:Name="GridRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="GridTitleBar" Grid.Row="0">
+            <Border
+                x:Name="AppTitleBar"
+                Height="32"
+                VerticalAlignment="Top">
+                <TextBlock
+                    Margin="14,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Text="fNext" />
+            </Border>
+        </Grid>
+
+        <Frame
+            x:Name="MainFrame"
+            Grid.Row="1"
+            Margin="0"
+            Loaded="MainFrame_Loaded"
+            Navigated="MainFrame_Navigated" />
+    </Grid>
 </Window>
