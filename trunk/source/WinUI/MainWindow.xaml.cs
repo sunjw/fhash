@@ -58,8 +58,7 @@ namespace FilesHashWUI
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
             m_uiSettings = new();
 
-            ExtendsContentIntoTitleBar = true;
-            SetTitleBar(AppTitleBar);
+            InitTitleBar();
 
             Closed += MainWindow_Closed;
             m_uiSettings.ColorValuesChanged += UISettings_ColorValuesChanged;
@@ -81,6 +80,13 @@ namespace FilesHashWUI
             }
 
             return pointRelative;
+        }
+
+        private void InitTitleBar()
+        {
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(AppTitleBar);
+            AppWindow.SetIcon("Assets/fhashWUI.ico");
         }
 
         private void UpdateTitleBarColor()
@@ -207,7 +213,6 @@ namespace FilesHashWUI
         {
             CurrentWindow = this;
 
-            AppWindow.SetIcon("Assets/fhashWUI.ico");
             UpdateTitleBarColor();
 
             //MainFrame.Navigate(typeof(MainPage));
