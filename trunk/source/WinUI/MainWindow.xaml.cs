@@ -5,6 +5,7 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
 using Windows.Graphics;
 using Windows.UI;
@@ -193,6 +194,15 @@ namespace FilesHashWUI
             }
         }
 
+        public void OnRedirected(AppActivationArguments args)
+        {
+            //if (IsMainPageCurrent())
+            //{
+            //    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
+            //    (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+            //}
+        }
+
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentWindow = this;
@@ -202,13 +212,13 @@ namespace FilesHashWUI
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            bool isAppStart = false;
+            bool onAppStart = false;
             if (m_pageCurrent == null)
             {
-                isAppStart = true;
+                onAppStart = true;
             }
             m_pageCurrent = e.Content as Page;
-            //if (isAppStart && IsMainPageCurrent())
+            //if (onAppStart && IsMainPageCurrent())
             //{
             //    AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
             //    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
@@ -224,16 +234,6 @@ namespace FilesHashWUI
         private void MainWindow_Closed(object sender, WindowEventArgs args)
         {
             SaveWindowPosSize();
-
-            //if (IsAboutPageCurrent())
-            //{
-            //    AboutPage aboutPageCur = m_pageCurrent as AboutPage;
-            //    if (aboutPageCur.ThreadRunning)
-            //    {
-            //        args.Handled = true;
-            //        aboutPageCur.StopThread(() => DispatcherQueue.TryEnqueue(Close));
-            //    }
-            //}
         }
     }
 }

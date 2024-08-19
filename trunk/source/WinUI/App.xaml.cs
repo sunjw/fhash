@@ -11,7 +11,7 @@ namespace FilesHashWUI
     /// </summary>
     public partial class App : Application
     {
-        private Window m_mainWindow;
+        private MainWindow m_mainWindow;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -36,7 +36,7 @@ namespace FilesHashWUI
         {
             if (m_mainWindow != null)
             {
-                //m_mainWindow.DispatcherQueue.TryEnqueue(() => m_mainWindow.OnRedirected(args));
+                m_mainWindow.DispatcherQueue.TryEnqueue(() => m_mainWindow.OnRedirected(args));
             }
         }
     }
