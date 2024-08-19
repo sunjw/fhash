@@ -10,7 +10,7 @@
   <Identity
     Name="3089SunJunwen.fNext"
     Publisher="CN=D9E78D3B-78DB-4079-8C66-F819B4C1DB61"
-    Version="1.0.0.0" />
+    Version="3.9.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="c3e724da-700b-4f04-8362-a9cf11631bfd" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
