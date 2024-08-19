@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
+using Windows.ApplicationModel.Resources;
 using Windows.Graphics;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -39,6 +40,7 @@ namespace FilesHashWUI
         private const string KeyWinSizeWidth = "WinSizeWidth";
         private const string KeyWinSizeHeight = "WinSizeHeight";
 
+        private ResourceLoader m_resourceLoaderMain;
         private UISettings m_uiSettings;
         private Page m_pageCurrent = null;
         private SUBCLASSPROC m_subclassProc = null;
@@ -56,6 +58,8 @@ namespace FilesHashWUI
             IsAppPackaged = Win32Helper.IsAppPackaged();
             HWNDHandle = WindowNative.GetWindowHandle(this);
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
+
+            m_resourceLoaderMain = ResourceLoader.GetForViewIndependentUse();
             m_uiSettings = new();
 
             InitTitleBar();
@@ -84,9 +88,14 @@ namespace FilesHashWUI
 
         private void InitTitleBar()
         {
+            string titleAppName = m_resourceLoaderMain.GetString("TitleAppName");
+#if DEBUG
+            titleAppName += " Dev";
+#endif
+            TextBlockAppName.Text = titleAppName;
+
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
-            AppWindow.SetIcon("Assets/fhashWUI.ico");
         }
 
         private void UpdateTitleBarColor()
@@ -213,6 +222,7 @@ namespace FilesHashWUI
         {
             CurrentWindow = this;
 
+            AppWindow.SetIcon("Assets/fhashWUI.ico");
             UpdateTitleBarColor();
 
             //MainFrame.Navigate(typeof(MainPage));

@@ -38,11 +38,13 @@
                         Source="ms-appx:///Assets/StoreLogo.png" />
 
                     <TextBlock
+                        x:Name="TextBlockAppName"
                         Grid.Column="1"
                         Margin="12,0,0,0"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Text="fNext" />
+                        Text="[AppName]"
+                        TextTrimming="CharacterEllipsis" />
                 </Grid>
 
             </Border>
