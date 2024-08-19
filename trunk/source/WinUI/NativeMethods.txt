@@ -1,0 +1,13 @@
+﻿// constant
+WIN32_ERROR
+WM_GETMINMAXINFO
+// struct
+MINMAXINFO
+// function
+DefSubclassProc
+GetCurrentPackageId
+GetCursorPos
+GetDpiForWindow
+GetWindowPlacement
+SetWindowSubclass
+ShowWindow
