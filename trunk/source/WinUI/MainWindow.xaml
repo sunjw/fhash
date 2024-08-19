@@ -51,10 +51,10 @@
         </Grid>
 
         <Frame
-            x:Name="MainFrame"
+            x:Name="FrameMain"
             Grid.Row="1"
             Margin="0"
-            Loaded="MainFrame_Loaded"
-            Navigated="MainFrame_Navigated" />
+            Loaded="FrameMain_Loaded"
+            Navigated="FrameMain_Navigated" />
     </Grid>
 </Window>

@@ -108,7 +108,7 @@ namespace FilesHashWUI
             if (curTitleBar == null)
                 return;
 
-            ElementTheme curElementTheme = MainFrame.ActualTheme;
+            ElementTheme curElementTheme = FrameMain.ActualTheme;
             Color fgColor = Colors.Black;
             if (curElementTheme == ElementTheme.Dark)
                 fgColor = Colors.White;
@@ -222,16 +222,16 @@ namespace FilesHashWUI
             //}
         }
 
-        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        private void FrameMain_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentWindow = this;
 
             UpdateTitleBarColor();
 
-            //MainFrame.Navigate(typeof(MainPage));
+            //FrameMain.Navigate(typeof(MainPage));
         }
 
-        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        private void FrameMain_Navigated(object sender, NavigationEventArgs e)
         {
             bool onAppStart = false;
             if (m_pageCurrent == null)
