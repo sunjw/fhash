@@ -206,7 +206,10 @@ namespace FilesHashWUI
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             CurrentWindow = this;
+
+            AppWindow.SetIcon("Assets/fhashWUI.ico");
             UpdateTitleBarColor();
+
             //MainFrame.Navigate(typeof(MainPage));
         }
 
