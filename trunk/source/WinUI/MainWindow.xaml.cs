@@ -27,7 +27,7 @@ namespace FilesHashWUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private const int AppPrefWidth = 670;
+        private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
         private const int AppMinWidth = 520;
         private const int AppMinHeight = 440;
