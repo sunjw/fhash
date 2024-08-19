@@ -62,7 +62,7 @@ namespace FilesHashWUI
             m_resourceLoaderMain = ResourceLoader.GetForViewIndependentUse();
             m_uiSettings = new();
 
-            InitTitleBar();
+            InitTitleBarAndTaskBar();
 
             Closed += MainWindow_Closed;
             m_uiSettings.ColorValuesChanged += UISettings_ColorValuesChanged;
@@ -86,14 +86,18 @@ namespace FilesHashWUI
             return pointRelative;
         }
 
-        private void InitTitleBar()
+        private void InitTitleBarAndTaskBar()
         {
             string titleAppName = m_resourceLoaderMain.GetString("TitleAppName");
 #if DEBUG
             titleAppName += " Dev";
 #endif
-            TextBlockAppName.Text = titleAppName;
+            // Taskbar
+            AppWindow.SetIcon("Assets/fhashWUI.ico");
+            Title = titleAppName;
 
+            // Titlebar
+            TextBlockAppName.Text = titleAppName;
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
         }
@@ -222,7 +226,6 @@ namespace FilesHashWUI
         {
             CurrentWindow = this;
 
-            AppWindow.SetIcon("Assets/fhashWUI.ico");
             UpdateTitleBarColor();
 
             //MainFrame.Navigate(typeof(MainPage));
