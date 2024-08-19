@@ -23,11 +23,28 @@
                 x:Name="AppTitleBar"
                 Height="32"
                 VerticalAlignment="Top">
-                <TextBlock
-                    Margin="14,0,0,0"
-                    VerticalAlignment="Center"
-                    FontSize="12"
-                    Text="fNext" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        x:Name="ImageAppIcon"
+                        Width="20"
+                        Height="20"
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        Source="ms-appx:///Assets/StoreLogo.png" />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="12,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Text="fNext" />
+                </Grid>
+
             </Border>
         </Grid>
 
