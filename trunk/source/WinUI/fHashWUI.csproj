@@ -15,6 +15,7 @@
 
   <PropertyGroup>
     <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    <ApplicationIcon>Assets\fHashWUI.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
