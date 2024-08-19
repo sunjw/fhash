@@ -25,9 +25,13 @@ namespace FilesHashWUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private const int AppMinWidth = 660;
-        private const int AppMinHeight = 420;
+        private const int AppPrefWidth = 670;
+        private const int AppPrefHeight = 460;
+        private const int AppMinWidth = 520;
+        private const int AppMinHeight = 440;
+
         private const nuint SubclassId = 18;
+
         private const string KeyWinMaximize = "WinMaximize";
         private const string KeyWinPosX = "WinPosX";
         private const string KeyWinPosY = "WinPosY";
@@ -135,7 +139,7 @@ namespace FilesHashWUI
         {
             bool windowMaximize = false;
             PointInt32 windowPos = new(-1, -1);
-            SizeInt32 windowSize = new(Win32Helper.GetScaledPixel(AppMinWidth, Scale), Win32Helper.GetScaledPixel(AppMinHeight, Scale));
+            SizeInt32 windowSize = new(Win32Helper.GetScaledPixel(AppPrefWidth, Scale), Win32Helper.GetScaledPixel(AppPrefHeight, Scale));
 
             object objWinMaximize = WinUIHelper.LoadLocalSettings(KeyWinMaximize);
             if (objWinMaximize != null)
