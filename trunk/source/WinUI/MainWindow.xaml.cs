@@ -226,7 +226,8 @@ namespace FilesHashWUI
             }
             else
             {
-                FrameMain.GoBack();
+                if (FrameMain.CanGoBack)
+                    FrameMain.GoBack();
             }
         }
 
