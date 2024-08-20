@@ -10,6 +10,7 @@
     mc:Ignorable="d">
 
     <Grid x:Name="GridMain">
+
         <ScrollViewer
             x:Name="ScrollViewerMain"
             Margin="8,5,8,57"
@@ -17,6 +18,7 @@
             VerticalScrollBarVisibility="Auto">
 
             <RichTextBlock x:Name="RichTextMain" Margin="4,0,4,0" />
+
         </ScrollViewer>
 
         <Grid
@@ -24,6 +26,95 @@
             Height="57"
             Margin="0,0,0,0"
             VerticalAlignment="Bottom"
-            Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" />
+            Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}">
+
+            <ProgressBar
+                x:Name="ProgressBarMain"
+                Width="Auto"
+                Height="5"
+                Margin="0,0,0,0"
+                VerticalAlignment="Top"
+                Value="0" />
+
+            <Grid
+                x:Name="GridBottomColumn"
+                Height="50"
+                Margin="0,0,0,0"
+                VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="ButtonAbout"
+                    x:Uid="ButtonAbout"
+                    Grid.Column="0"
+                    Margin="10,0,0,10"
+                    VerticalAlignment="Bottom"
+                    Content="[About]"
+                    TabIndex="2" />
+
+                <CheckBox
+                    x:Name="CheckBoxUppercase"
+                    x:Uid="CheckBoxUppercase"
+                    Grid.Column="1"
+                    Margin="20,0,0,10"
+                    VerticalAlignment="Bottom"
+                    Content="[Uppercase]"
+                    TabIndex="3" />
+
+                <TextBlock
+                    x:Name="TextBlockSpeed"
+                    Grid.Column="2"
+                    Margin="5,0,0,18"
+                    VerticalAlignment="Bottom"
+                    Text="[Speed]" />
+
+                <Button
+                    x:Name="ButtonClear"
+                    x:Uid="ButtonClear"
+                    Grid.Column="4"
+                    Margin="0,0,10,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="[Clear]"
+                    TabIndex="4" />
+
+                <Button
+                    x:Name="ButtonVerify"
+                    x:Uid="ButtonVerify"
+                    Grid.Column="5"
+                    Margin="0,0,10,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="[Verify]"
+                    TabIndex="5">
+                    <Button.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F" Modifiers="Control" />
+                    </Button.KeyboardAccelerators>
+
+                </Button>
+
+                <Button
+                    x:Name="ButtonOpen"
+                    x:Uid="ButtonOpen"
+                    Grid.Column="6"
+                    Width="70"
+                    Margin="0,0,10,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="[Open]"
+                    Style="{StaticResource AccentButtonStyle}"
+                    TabIndex="1" />
+
+            </Grid>
+
+        </Grid>
     </Grid>
 </Page>

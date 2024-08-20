@@ -19,10 +19,12 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="GridTitleBar" Grid.Row="0">
+
             <Border
                 x:Name="AppTitleBar"
                 Height="32"
                 VerticalAlignment="Top">
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -45,8 +47,8 @@
                         FontSize="12"
                         Text="[AppName]"
                         TextTrimming="CharacterEllipsis" />
-                </Grid>
 
+                </Grid>
             </Border>
         </Grid>
 
@@ -56,5 +58,6 @@
             Margin="0"
             Loaded="FrameMain_Loaded"
             Navigated="FrameMain_Navigated" />
+
     </Grid>
 </Window>

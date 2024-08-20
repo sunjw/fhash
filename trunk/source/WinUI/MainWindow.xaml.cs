@@ -223,7 +223,7 @@ namespace FilesHashWUI
             if (IsPageCurrent(typeof(MainPage)))
             {
                 string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-                //(m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+                (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
             }
         }
 
