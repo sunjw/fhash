@@ -237,21 +237,7 @@ namespace FilesHashWUI
 
         private void FrameMain_Navigated(object sender, NavigationEventArgs e)
         {
-            bool onAppStart = false;
-            if (m_pageCurrent == null)
-            {
-                onAppStart = true;
-            }
             m_pageCurrent = e.Content as Page;
-            if (onAppStart && IsPageCurrent(typeof(MainPage)))
-            {
-                DispatcherQueue.TryEnqueue(() =>
-                {
-                    AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
-                    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-                    (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
-                });
-            }
         }
 
         private void UISettings_ColorValuesChanged(UISettings sender, object args)

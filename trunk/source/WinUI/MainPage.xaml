@@ -9,7 +9,7 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid x:Name="GridMain">
+    <Grid x:Name="GridMain" Loaded="GridMain_Loaded">
 
         <ScrollViewer
             x:Name="ScrollViewerMain"
@@ -17,7 +17,10 @@
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
 
-            <RichTextBlock x:Name="RichTextMain" Margin="4,0,4,0" />
+            <RichTextBlock
+                x:Name="RichTextMain"
+                Margin="4,0,4,0"
+                SelectionChanged="RichTextMain_SelectionChanged" />
 
         </ScrollViewer>
 

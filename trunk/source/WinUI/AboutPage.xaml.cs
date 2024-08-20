@@ -17,7 +17,7 @@ namespace FilesHashWUI
     public sealed partial class AboutPage : Page
     {
         private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
-        private bool m_textBlockAboutInit = false;
+        private bool m_pageInit = false;
 
         public AboutPage()
         {
@@ -26,11 +26,11 @@ namespace FilesHashWUI
 
         private void GridAboutMain_Loaded(object sender, RoutedEventArgs e)
         {
-            if (m_textBlockAboutInit)
+            if (m_pageInit)
             {
                 return;
             }
-            m_textBlockAboutInit = true;
+            m_pageInit = true;
 
             //NativeHelper nativeHelper = new NativeHelper();
 
