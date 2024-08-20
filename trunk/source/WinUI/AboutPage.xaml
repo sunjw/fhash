@@ -9,7 +9,7 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid x:Name="GridAboutMain">
+    <Grid x:Name="GridAboutMain" Loaded="GridAboutMain_Loaded">
 
         <Image
             x:Name="ImageAppIconAbout"

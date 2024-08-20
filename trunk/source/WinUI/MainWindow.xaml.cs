@@ -40,7 +40,7 @@ namespace FilesHashWUI
         private const string KeyWinSizeWidth = "WinSizeWidth";
         private const string KeyWinSizeHeight = "WinSizeHeight";
 
-        private ResourceLoader m_resourceLoaderMain;
+        private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
         private UISettings m_uiSettings;
         private Page m_pageCurrent = null;
         private SUBCLASSPROC m_subclassProc = null;
@@ -59,7 +59,6 @@ namespace FilesHashWUI
             HWNDHandle = WindowNative.GetWindowHandle(this);
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
 
-            m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
             m_uiSettings = new();
 
             InitTitleBarAndTaskBar();

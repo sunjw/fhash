@@ -1,3 +1,4 @@
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -19,7 +20,7 @@ namespace FilesHashWUI
         {
         }
 
-        private void ButtonAbout_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AboutPage));
         }
