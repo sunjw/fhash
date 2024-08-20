@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "fHashWUIWap", "fHashWUIWap\fHashWUIWap.wapproj", "{4DBFA2F2-D05A-456E-A5CF-879C07218CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fHashWUI", "source\WinUI\fHashWUI.csproj", "{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fHashWUI", "source\WinUI\fHashWUI.csproj", "{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashClrBridge", "..\sub-proj\fHashClrBridge\fHashClrBridge.vcxproj", "{B6E3BF15-9135-41B4-9643-98E0AC2D447F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,18 @@ Global
 		{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}.Release|x64.Build.0 = Release|x64
 		{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}.Release|x86.ActiveCfg = Release|x86
 		{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}.Release|x86.Build.0 = Release|x86
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|ARM64.ActiveCfg = Debug|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|ARM64.Build.0 = Debug|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|x64.ActiveCfg = Debug|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|x64.Build.0 = Debug|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Debug|x86.Build.0 = Debug|Win32
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|ARM64.ActiveCfg = Release|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|ARM64.Build.0 = Release|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x64.ActiveCfg = Release|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x64.Build.0 = Release|x64
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x86.ActiveCfg = Release|Win32
+		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
