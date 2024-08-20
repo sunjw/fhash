@@ -71,9 +71,9 @@ namespace FilesHashWUI
             InitWindowSubclass();
         }
 
-        private bool IsMainPageCurrent()
+        private bool IsPageCurrent(Type pageType)
         {
-            return m_pageCurrent is MainPage;
+            return (m_pageCurrent != null && m_pageCurrent.GetType() == pageType);
         }
 
         public System.Drawing.Point GetCursorRelativePoint()
@@ -220,7 +220,7 @@ namespace FilesHashWUI
 
         public void OnRedirected(AppActivationArguments args)
         {
-            if (IsMainPageCurrent())
+            if (IsPageCurrent(typeof(MainPage)))
             {
                 string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
                 //(m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
@@ -244,13 +244,13 @@ namespace FilesHashWUI
                 onAppStart = true;
             }
             m_pageCurrent = e.Content as Page;
-            if (onAppStart && IsMainPageCurrent())
+            if (onAppStart && IsPageCurrent(typeof(MainPage)))
             {
                 try
                 {
                     AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
                     string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-                    //(m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+                    (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
                 }
                 catch (Exception)
                 {
