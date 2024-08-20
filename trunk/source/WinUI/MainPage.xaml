@@ -57,6 +57,7 @@
                     Grid.Column="0"
                     Margin="10,0,0,10"
                     VerticalAlignment="Bottom"
+                    Click="ButtonAbout_Click"
                     Content="[About]"
                     TabIndex="2" />
 

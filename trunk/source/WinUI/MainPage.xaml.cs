@@ -18,5 +18,10 @@ namespace FilesHashWUI
         public void OnRedirected(string someArgs)
         {
         }
+
+        private void ButtonAbout_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AboutPage));
+        }
     }
 }

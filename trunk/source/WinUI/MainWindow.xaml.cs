@@ -246,15 +246,12 @@ namespace FilesHashWUI
             m_pageCurrent = e.Content as Page;
             if (onAppStart && IsPageCurrent(typeof(MainPage)))
             {
-                try
+                DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
                     string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
                     (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
-                }
-                catch (Exception)
-                {
-                }
+                });
             }
         }
 
