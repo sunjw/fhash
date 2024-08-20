@@ -52,8 +52,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION NUM_VERSION
- PRODUCTVERSION NUM_VERSION
+ FILEVERSION NUM_VERSION_UWP
+ PRODUCTVERSION NUM_VERSION_UWP
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -70,12 +70,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "SUN Junwen"
             VALUE "FileDescription", "fHashUwpShellExt"
-            VALUE "FileVersion", STR_VERSION
+            VALUE "FileVersion", STR_VERSION_UWP
             VALUE "InternalName", "fHashUwpShellExt.dll"
             VALUE "LegalCopyright", "Copyright (C) SUN Junwen 2022-"
             VALUE "OriginalFilename", "fHashUwpShellExt.dll"
             VALUE "ProductName", "fHashUwpShellExt"
-            VALUE "ProductVersion", STR_VERSION
+            VALUE "ProductVersion", STR_VERSION_UWP
         END
     END
     BLOCK "VarFileInfo"
