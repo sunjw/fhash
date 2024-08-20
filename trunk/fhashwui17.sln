@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fHashWUI", "source\WinUI\fHashWUI.csproj", "{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashClrBridge", "..\sub-proj\fHashClrBridge\fHashClrBridge.vcxproj", "{B6E3BF15-9135-41B4-9643-98E0AC2D447F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C} = {29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashWUINative", "..\sub-proj\fHashWUINative\fHashWUINative.vcxproj", "{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}"
 EndProject
