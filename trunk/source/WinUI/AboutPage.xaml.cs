@@ -14,5 +14,13 @@ namespace FilesHashWUI
         {
             InitializeComponent();
         }
+
+        private void ButtonOK_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
+        }
     }
 }
