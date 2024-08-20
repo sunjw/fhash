@@ -273,7 +273,7 @@
     <ClInclude Include="source\resource.h" />
     <ClInclude Include="source\stdafx.h" />
     <ClInclude Include="source\targetver.h" />
-    <ClInclude Include="source\version.h" />
+    <ClInclude Include="source\WinMFC\version.h" />
     <ClInclude Include="source\WinCommon\WindowsComm.h" />
     <ClInclude Include="source\WinMFC\AboutDlg.h" />
     <ClInclude Include="source\WinMFC\FilesHash.h" />

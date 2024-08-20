@@ -137,7 +137,7 @@
     <ClInclude Include="source\WinMFC\UIStringsZHCN.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="source\version.h">
+    <ClInclude Include="source\WinMFC\version.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="source\WinMFC\WindowsUtils.h">
