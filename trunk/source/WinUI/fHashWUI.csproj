@@ -36,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\sub-proj\fHashClrBridge\fHashClrBridge.vcxproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

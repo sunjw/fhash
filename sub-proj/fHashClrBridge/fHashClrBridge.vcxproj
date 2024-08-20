@@ -32,7 +32,7 @@
     <ProjectGuid>{B6E3BF15-9135-41B4-9643-98E0AC2D447F}</ProjectGuid>
     <Keyword>NetCoreCProj</Keyword>
     <RootNamespace>fHashClrBridge</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
