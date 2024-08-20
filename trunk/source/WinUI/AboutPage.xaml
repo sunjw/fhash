@@ -9,5 +9,51 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid x:Name="GridAboutMain">
+
+        <Image
+            x:Name="ImageAppIconAbout"
+            Width="90"
+            Height="90"
+            Margin="25,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Source="ms-appx:///Assets/AboutLogo.large.png" />
+
+        <Grid x:Name="GridAboutContent" Margin="140,20,10,50">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromVerticalOffset="75" />
+                </TransitionCollection>
+            </Grid.Transitions>
+
+            <TextBlock
+                x:Name="TextBlockAboutTitle"
+                Margin="0,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                TextWrapping="Wrap" />
+
+            <TextBlock
+                x:Name="TextBlockAbout"
+                Margin="0,30,0,0"
+                TextWrapping="Wrap" />
+
+        </Grid>
+
+        <HyperlinkButton
+            x:Name="HyperlinkButtonGithub"
+            x:Uid="HyperlinkButtonGithub"
+            Margin="10,0,0,10"
+            VerticalAlignment="Bottom"
+            Content="[Github]" />
+
+        <Button
+            x:Name="ButtonOK"
+            Margin="0,0,10,10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Content="OK" />
+
+    </Grid>
 </Page>
