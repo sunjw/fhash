@@ -24,7 +24,7 @@ logging.basicConfig(
         logging.StreamHandler()
     ])
 
-VERSION_FILE_H = './source/version.h'
+VERSION_FILE_H = './source/WinMFC/version.h'
 RELEASED_FILES_DIR = './x64/Release'
 EXE_FILE_NAME = 'fHash64.exe'
 DLL_FILE_NAME = 'fHashShlExt64.dll'
