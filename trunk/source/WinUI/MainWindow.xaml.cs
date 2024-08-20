@@ -224,6 +224,10 @@ namespace FilesHashWUI
                 string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
                 (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
             }
+            else
+            {
+                FrameMain.GoBack();
+            }
         }
 
         private void FrameMain_Loaded(object sender, RoutedEventArgs e)

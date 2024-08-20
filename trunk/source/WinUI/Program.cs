@@ -11,13 +11,11 @@ namespace FilesHashWUI
     public static class Program
     {
         private const string AppInstanceKey = "FilesHashWUI";
-        private static string[] programArgs = null;
 
         [STAThread]
         static void Main(string[] args)
         {
             WinRT.ComWrappersSupport.InitializeComWrappers();
-            programArgs = args;
 
             bool isRedirect = DecideRedirection();
             if (!isRedirect)
@@ -71,11 +69,6 @@ namespace FilesHashWUI
             {
                 appCurrent.OnRedirected(args);
             }
-        }
-
-        public static string[] GetProgramArgs()
-        {
-           return programArgs;
         }
     }
 }
