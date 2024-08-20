@@ -71,6 +71,11 @@ namespace FilesHashWUI
             InitWindowSubclass();
         }
 
+        private bool IsMainPageCurrent()
+        {
+            return m_pageCurrent is MainPage;
+        }
+
         public System.Drawing.Point GetCursorRelativePoint()
         {
             System.Drawing.Point pointRelative = new(0, 0);
@@ -215,11 +220,11 @@ namespace FilesHashWUI
 
         public void OnRedirected(AppActivationArguments args)
         {
-            //if (IsMainPageCurrent())
-            //{
-            //    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-            //    (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
-            //}
+            if (IsMainPageCurrent())
+            {
+                string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
+                //(m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+            }
         }
 
         private void FrameMain_Loaded(object sender, RoutedEventArgs e)
@@ -228,7 +233,7 @@ namespace FilesHashWUI
 
             UpdateTitleBarColor();
 
-            //FrameMain.Navigate(typeof(MainPage));
+            FrameMain.Navigate(typeof(MainPage));
         }
 
         private void FrameMain_Navigated(object sender, NavigationEventArgs e)
@@ -239,12 +244,18 @@ namespace FilesHashWUI
                 onAppStart = true;
             }
             m_pageCurrent = e.Content as Page;
-            //if (onAppStart && IsMainPageCurrent())
-            //{
-            //    AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
-            //    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-            //    (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
-            //}
+            if (onAppStart && IsMainPageCurrent())
+            {
+                try
+                {
+                    AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
+                    string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
+                    //(m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+                }
+                catch (Exception)
+                {
+                }
+            }
         }
 
         private void UISettings_ColorValuesChanged(UISettings sender, object args)
