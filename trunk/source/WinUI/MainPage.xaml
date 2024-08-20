@@ -9,5 +9,21 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid x:Name="GridMain">
+        <ScrollViewer
+            x:Name="ScrollViewerMain"
+            Margin="8,5,8,57"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+
+            <RichTextBlock x:Name="RichTextMain" Margin="4,0,4,0" />
+        </ScrollViewer>
+
+        <Grid
+            x:Name="GridBottom"
+            Height="57"
+            Margin="0,0,0,0"
+            VerticalAlignment="Bottom"
+            Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}" />
+    </Grid>
 </Page>
