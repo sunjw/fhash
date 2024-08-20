@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fHashWUI", "source\WinUI\fH
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashClrBridge", "..\sub-proj\fHashClrBridge\fHashClrBridge.vcxproj", "{B6E3BF15-9135-41B4-9643-98E0AC2D447F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fHashWUINative", "..\sub-proj\fHashWUINative\fHashWUINative.vcxproj", "{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -61,6 +63,18 @@ Global
 		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x64.Build.0 = Release|x64
 		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x86.ActiveCfg = Release|Win32
 		{B6E3BF15-9135-41B4-9643-98E0AC2D447F}.Release|x86.Build.0 = Release|Win32
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|ARM64.ActiveCfg = Debug|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|ARM64.Build.0 = Debug|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|x64.ActiveCfg = Debug|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|x64.Build.0 = Debug|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|x86.ActiveCfg = Debug|Win32
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Debug|x86.Build.0 = Debug|Win32
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|ARM64.ActiveCfg = Release|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|ARM64.Build.0 = Release|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|x64.ActiveCfg = Release|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|x64.Build.0 = Release|x64
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|x86.ActiveCfg = Release|Win32
+		{29FE3AEA-3A2C-4D65-9799-B5B1ABAA2A1C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
