@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.CommandLine.Parsing;
+using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
-using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -36,7 +37,7 @@ namespace FilesHashWUI
             return WinUIHelper.GenHyperlinkFromString(strContent, RichTextMainHyperlink_Click);
         }
 
-        private void ShowTest()
+        private void InitTestRichText()
         {
             m_paragraphTest.FontFamily = new FontFamily("Consolas");
             m_paragraphTest.LineHeight = 18;
@@ -45,7 +46,10 @@ namespace FilesHashWUI
             RichTextMain.TextWrapping = TextWrapping.NoWrap;
             RichTextMain.Blocks.Clear();
             RichTextMain.Blocks.Add(m_paragraphTest);
+        }
 
+        private void ShowTest()
+        {
             List<Inline> inlinesTest = new();
 
             inlinesTest.Add(WinUIHelper.GenRunFromString("Name: C:\\Users\\sunjw\\Downloads\\"));
@@ -120,16 +124,6 @@ namespace FilesHashWUI
             WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
-        private void HandleCommandLineArgs()
-        {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                AppActivationArguments args = WinUIHelper.GetCurrentActivatedEventArgs();
-                string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-                OnRedirected(appActivateArgs);
-            });
-        }
-
         private void HandleRichTextSelectionScroll(ScrollViewer scrollViewerWrapper)
         {
             //string strDebug = "";
@@ -199,6 +193,28 @@ namespace FilesHashWUI
 
         public void OnRedirected(string someArgs)
         {
+            if (string.IsNullOrEmpty(someArgs))
+            {
+                return;
+            }
+
+            string[] splitArgs = CommandLineStringSplitter.Instance.Split(someArgs).ToArray();
+
+            List<Inline> inlinesTest = new();
+            foreach (string argPart in splitArgs)
+            {
+                inlinesTest.Add(WinUIHelper.GenRunFromString(argPart));
+                inlinesTest.Add(WinUIHelper.GenRunFromString("\r\n"));
+            }
+
+            // finish
+            m_paragraphTest.Inlines.Clear();
+            foreach (Inline inline in inlinesTest)
+            {
+                m_paragraphTest.Inlines.Add(inline);
+            }
+
+            WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
         private void GridMain_Loaded(object sender, RoutedEventArgs e)
@@ -209,9 +225,8 @@ namespace FilesHashWUI
             }
             m_pageInit = true;
 
+            InitTestRichText();
             //ShowTest();
-
-            //HandleCommandLineArgs();
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
