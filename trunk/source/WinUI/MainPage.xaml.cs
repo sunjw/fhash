@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
+using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -21,7 +22,7 @@ namespace FilesHashWUI
         private MainWindow m_mainWindow;
 
         private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
-        private bool m_pageInit = false;
+        private bool m_pageInited = false;
 
         private Paragraph m_paragraphTest = new();
 
@@ -219,14 +220,29 @@ namespace FilesHashWUI
 
         private void GridMain_Loaded(object sender, RoutedEventArgs e)
         {
-            if (m_pageInit)
+            bool pageInited = m_pageInited;
+            if (!pageInited)
             {
-                return;
+                InitTestRichText();
             }
-            m_pageInit = true;
 
-            InitTestRichText();
-            //ShowTest();
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                string pendingArgs = null;
+                if (!pageInited)
+                {
+                    AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
+                    pendingArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
+                }
+                else
+                {
+                    pendingArgs = m_mainWindow.GetAndResetPendingAppActiveArgs();
+                }
+                OnRedirected(pendingArgs);
+            });
+
+            if (!m_pageInited)
+                m_pageInited = true;
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)

@@ -45,7 +45,7 @@ namespace FilesHashWUI
         private Page m_pageCurrent = null;
         private SUBCLASSPROC m_subclassProc = null;
 
-        private bool m_windowInit = false;
+        private bool m_windowInited = false;
         private string m_pendingAppActiveArgs = null;
 
         public static MainWindow CurrentWindow { get; private set; } = null;
@@ -220,7 +220,7 @@ namespace FilesHashWUI
             }
         }
 
-        private string GetAndResetPendingAppActiveArgs()
+        public string GetAndResetPendingAppActiveArgs()
         {
             string ret = m_pendingAppActiveArgs;
             m_pendingAppActiveArgs = null;
@@ -232,7 +232,7 @@ namespace FilesHashWUI
             m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
             if (IsPageCurrent(typeof(MainPage)))
             {
-                OnRedirectedToMainPage();
+                RedirectedToMainPage();
             }
             else
             {
@@ -241,7 +241,7 @@ namespace FilesHashWUI
             }
         }
 
-        private void OnRedirectedToMainPage()
+        private void RedirectedToMainPage()
         {
             if (IsPageCurrent(typeof(MainPage)))
             {
@@ -266,21 +266,8 @@ namespace FilesHashWUI
         {
             m_pageCurrent = e.Content as Page;
 
-            if (!m_windowInit)
-            {
-                m_windowInit = true;
-
-                DispatcherQueue.TryEnqueue(() => 
-                {
-                    AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
-                    m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
-                    OnRedirectedToMainPage();
-                });
-            }
-            else
-            {
-                OnRedirectedToMainPage();
-            }
+            if (!m_windowInited)
+                m_windowInited = true;
         }
 
         private void UISettings_ColorValuesChanged(UISettings sender, object args)
