@@ -37,7 +37,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resource.rc">
+    <ResourceCompile Include="fHashClrBridge.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
