@@ -147,10 +147,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;FHASH_WUI_LIB;FHASH_THREAD_HASH_UPDATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -162,10 +163,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;FHASH_WUI_LIB;FHASH_THREAD_HASH_UPDATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -179,10 +181,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;FHASH_WUI_LIB;FHASH_THREAD_HASH_UPDATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -198,10 +201,11 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;FHASH_WUI_LIB;FHASH_THREAD_HASH_UPDATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -212,11 +216,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\trunk\source\Algorithms\endianness.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\MD5.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\SHA1.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha256.h" />
+    <ClInclude Include="..\..\trunk\source\Algorithms\sha512.h" />
+    <ClInclude Include="..\..\trunk\source\Common\Global.h" />
+    <ClInclude Include="..\..\trunk\source\Common\HashEngine.h" />
+    <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
+    <ClInclude Include="..\..\trunk\source\Common\ThreadPool.h" />
+    <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\FileVersionHelper.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fHashWUINative.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\MD5.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\SHA1.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha256.cpp" />
+    <ClCompile Include="..\..\trunk\source\Algorithms\sha512.cpp" />
+    <ClCompile Include="..\..\trunk\source\Common\HashEngine.cpp" />
+    <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp" />
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp" />
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\FileVersionHelper.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
