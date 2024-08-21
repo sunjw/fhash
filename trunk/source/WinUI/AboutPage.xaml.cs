@@ -32,7 +32,7 @@ namespace FilesHashWUI
             }
             m_pageInit = true;
 
-            //NativeHelper nativeHelper = new NativeHelper();
+            NativeHelper nativeHelper = new NativeHelper();
 
             string strAboutTitle = m_resourceLoaderMain.GetString("AboutTitle");
             Run runAboutTitle = WinUIHelper.GenRunFromString(strAboutTitle);
@@ -43,7 +43,7 @@ namespace FilesHashWUI
             PackageVersion packVersion = Package.Current.Id.Version;
             string strVersion = string.Format("{0}.{1}.{2}.{3}",
                 packVersion.Major, packVersion.Minor, packVersion.Build, packVersion.Revision);
-            string strArch = "[strArch]";//nativeHelper.GetTargetArch();
+            string strArch = nativeHelper.GetTargetArch();
             string strRight = m_resourceLoaderMain.GetString("AboutInfoRight");
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString(strAboutInfoTitle));
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString(" "));
@@ -68,7 +68,7 @@ namespace FilesHashWUI
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
 
             string strAboutInfoOsTitle = m_resourceLoaderMain.GetString("AboutInfoOsTitle");
-            string strOsInfo = "[strOsInfo]";//nativeHelper.GetWindowsInfo();
+            string strOsInfo = nativeHelper.GetWindowsInfo();
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString(strAboutInfoOsTitle));
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
             TextBlockAbout.Inlines.Add(WinUIHelper.GenRunFromString(strOsInfo));
