@@ -209,7 +209,7 @@ namespace FilesHashWUI
             }
             m_pageInit = true;
 
-            ShowTest();
+            //ShowTest();
 
             HandleCommandLineArgs();
         }
