@@ -90,7 +90,6 @@ bool OsFile::open(void *flag, void *exception)
 		NULL); // no attr. template
 #endif
 
-
 	if (_osfileData == INVALID_HANDLE_VALUE)
 	{
 		if (pFileExc != NULL)

@@ -20,7 +20,7 @@
 
 #if defined (WIN32)
 #include "WinCommon/WindowsComm.h"
-#if defined (FHASH_UWP_LIB)
+#if (defined (FHASH_UWP_LIB) || defined(FHASH_WUI_LIB))
 #include "WinCommon/FileVersionHelper.h"
 #endif
 #endif
@@ -231,7 +231,7 @@ int WINAPI HashThreadFunc(void *param)
 
 #if defined (WIN32)
 			// get file version //
-#if defined (FHASH_UWP_LIB)
+#if (defined (FHASH_UWP_LIB) || defined(FHASH_WUI_LIB))
 			WindowsComm::FileVersionHelper fvHelper(osFile);
 			tstrFileVersion = fvHelper.Find();
 			result.tstrVersion = tstrFileVersion;
