@@ -45,12 +45,18 @@
     <ClInclude Include="ClrHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="NativeHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ClrHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NativeHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
