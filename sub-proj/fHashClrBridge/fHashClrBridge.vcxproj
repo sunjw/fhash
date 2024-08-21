@@ -122,7 +122,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>fHashWUINative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashWUINative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\fHashWUINative\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ResourceCompile>
@@ -137,7 +137,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>fHashWUINative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashWUINative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\fHashWUINative\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ResourceCompile>
@@ -174,7 +174,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>fHashWUINative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashWUINative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\fHashWUINative\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ResourceCompile>
@@ -189,7 +189,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>fHashWUINative.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fHashWUINative.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\fHashWUINative\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ResourceCompile>

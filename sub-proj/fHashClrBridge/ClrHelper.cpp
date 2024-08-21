@@ -5,22 +5,26 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
-std::string TestCLRBridge::ConvertToStdString(System::String^ mstr)
+using namespace std;
+using namespace msclr::interop;
+using namespace System;
+
+std::string sunjwbase::ConvertSystemStringToStdString(System::String^ mstr)
 {
-    return msclr::interop::marshal_as<std::string>(mstr);
+	return marshal_as<std::string>(mstr);
 }
 
-std::wstring TestCLRBridge::ConvertToStdWstring(System::String^ mstr)
+std::wstring sunjwbase::ConvertSystemStringToStdWstring(System::String^ mstr)
 {
-    return msclr::interop::marshal_as<std::wstring>(mstr);
+	return marshal_as<std::wstring>(mstr);
 }
 
-System::String^ TestCLRBridge::ConvertStrToSystemString(LPCSTR lpStrSource)
+System::String^ sunjwbase::ConvertStrToSystemString(LPCSTR lpStrSource)
 {
-    return msclr::interop::marshal_as<System::String^>(lpStrSource);
+	return marshal_as<System::String^>(lpStrSource);
 }
 
-System::String^ TestCLRBridge::ConvertWstrToSystemString(LPCWSTR lpWstrSource)
+System::String^ sunjwbase::ConvertWstrToSystemString(LPCWSTR lpWstrSource)
 {
-    return msclr::interop::marshal_as<System::String^>(lpWstrSource);
+	return marshal_as<System::String^>(lpWstrSource);
 }
