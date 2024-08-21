@@ -45,6 +45,9 @@ namespace FilesHashWUI
         private Page m_pageCurrent = null;
         private SUBCLASSPROC m_subclassProc = null;
 
+        private bool m_windowInit = false;
+        private string m_pendingAppActiveArgs = null;
+
         public static MainWindow CurrentWindow { get; private set; } = null;
 
         public bool IsAppPackaged { get; private set; } = false;
@@ -217,17 +220,36 @@ namespace FilesHashWUI
             }
         }
 
+        private string GetAndResetPendingAppActiveArgs()
+        {
+            string ret = m_pendingAppActiveArgs;
+            m_pendingAppActiveArgs = null;
+            return ret;
+        }
+
         public void OnRedirected(AppActivationArguments args)
         {
+            m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
             if (IsPageCurrent(typeof(MainPage)))
             {
-                string appActivateArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-                (m_pageCurrent as MainPage).OnRedirected(appActivateArgs);
+                OnRedirectedToMainPage();
             }
             else
             {
                 if (FrameMain.CanGoBack)
                     FrameMain.GoBack();
+            }
+        }
+
+        private void OnRedirectedToMainPage()
+        {
+            if (IsPageCurrent(typeof(MainPage)))
+            {
+                string pendingArgs = GetAndResetPendingAppActiveArgs();
+                DispatcherQueue.TryEnqueue(() =>
+                {
+                    (m_pageCurrent as MainPage).OnRedirected(pendingArgs);
+                });
             }
         }
 
@@ -243,6 +265,22 @@ namespace FilesHashWUI
         private void FrameMain_Navigated(object sender, NavigationEventArgs e)
         {
             m_pageCurrent = e.Content as Page;
+
+            if (!m_windowInit)
+            {
+                m_windowInit = true;
+
+                DispatcherQueue.TryEnqueue(() => 
+                {
+                    AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
+                    m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
+                    OnRedirectedToMainPage();
+                });
+            }
+            else
+            {
+                OnRedirectedToMainPage();
+            }
         }
 
         private void UISettings_ColorValuesChanged(UISettings sender, object args)

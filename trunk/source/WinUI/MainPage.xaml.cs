@@ -211,7 +211,7 @@ namespace FilesHashWUI
 
             //ShowTest();
 
-            HandleCommandLineArgs();
+            //HandleCommandLineArgs();
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
