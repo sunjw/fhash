@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Windows.ApplicationModel.Resources;
 using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -266,6 +267,11 @@ namespace FilesHashWUI
         private void MainWindow_Closed(object sender, WindowEventArgs args)
         {
             SaveWindowPosSize();
+        }
+
+        private void GridRoot_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
         }
     }
 }

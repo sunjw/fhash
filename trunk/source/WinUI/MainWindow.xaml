@@ -12,7 +12,11 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid x:Name="GridRoot" Background="Transparent">
+    <Grid
+        x:Name="GridRoot"
+        AllowDrop="True"
+        Background="Transparent"
+        DragOver="GridRoot_DragOver">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
