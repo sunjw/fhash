@@ -28,7 +28,7 @@ namespace FilesHashWUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public delegate void RedirectedDelegate();
+        public delegate void RedirectedDelegate(string strAppActiveArgs);
 
         private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
@@ -49,7 +49,6 @@ namespace FilesHashWUI
         private SUBCLASSPROC m_subclassProc = null;
 
         private bool m_windowInited = false;
-        private string m_pendingAppActiveArgs = null;
 
         public static MainWindow CurrentWindow { get; private set; } = null;
 
@@ -225,20 +224,13 @@ namespace FilesHashWUI
             }
         }
 
-        public string GetAndResetPendingAppActiveArgs()
-        {
-            string ret = m_pendingAppActiveArgs;
-            m_pendingAppActiveArgs = null;
-            return ret;
-        }
-
         public void OnRedirected(AppActivationArguments args)
         {
-            m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
+            string strAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
 
             if (RedirectedHandler != null)
             {
-                DispatcherQueue.TryEnqueue(() => RedirectedHandler());
+                DispatcherQueue.TryEnqueue(() => RedirectedHandler(strAppActiveArgs));
             }
         }
 

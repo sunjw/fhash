@@ -193,13 +193,12 @@ namespace FilesHashWUI
             //TextBlockDebug.Text = strDebug;
         }
 
-        private void MainWindow_RedirectedHandler()
+        private void MainWindow_RedirectedHandler(string strAppActiveArgs)
         {
             if (Frame.CanGoBack)
                 Frame.GoBack();
 
-            string pendingArgs = m_mainWindow.GetAndResetPendingAppActiveArgs();
-            OnRedirected(pendingArgs);
+            OnRedirected(strAppActiveArgs);
         }
 
         private void OnRedirected(string someArgs)
@@ -235,8 +234,8 @@ namespace FilesHashWUI
                 DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
-                    string pendingArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
-                    OnRedirected(pendingArgs);
+                    string strAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
+                    OnRedirected(strAppActiveArgs);
                 });
 
                 m_pageInited = true;
