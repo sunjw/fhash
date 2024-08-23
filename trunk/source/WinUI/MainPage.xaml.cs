@@ -31,6 +31,7 @@ namespace FilesHashWUI
             InitializeComponent();
 
             m_mainWindow = MainWindow.CurrentWindow;
+            m_mainWindow.RedirectedHandler += MainWindow_RedirectedHandler;
         }
 
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)
@@ -192,12 +193,19 @@ namespace FilesHashWUI
             //TextBlockDebug.Text = strDebug;
         }
 
-        public void OnRedirected(string someArgs)
+        private void MainWindow_RedirectedHandler()
+        {
+            if (Frame.CanGoBack)
+                Frame.GoBack();
+
+            string pendingArgs = m_mainWindow.GetAndResetPendingAppActiveArgs();
+            OnRedirected(pendingArgs);
+        }
+
+        private void OnRedirected(string someArgs)
         {
             if (string.IsNullOrEmpty(someArgs))
-            {
                 return;
-            }
 
             string[] splitArgs = CommandLineStringSplitter.Instance.Split(someArgs).ToArray();
 
@@ -220,29 +228,19 @@ namespace FilesHashWUI
 
         private void GridMain_Loaded(object sender, RoutedEventArgs e)
         {
-            bool pageInited = m_pageInited;
-            if (!pageInited)
+            if (!m_pageInited)
             {
                 InitTestRichText();
-            }
 
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                string pendingArgs = null;
-                if (!pageInited)
+                DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
-                    pendingArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
-                }
-                else
-                {
-                    pendingArgs = m_mainWindow.GetAndResetPendingAppActiveArgs();
-                }
-                OnRedirected(pendingArgs);
-            });
+                    string pendingArgs = WinUIHelper.GetLaunchActivatedEventArgs(appActiveArgs);
+                    OnRedirected(pendingArgs);
+                });
 
-            if (!m_pageInited)
                 m_pageInited = true;
+            }
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)

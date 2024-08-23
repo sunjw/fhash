@@ -27,6 +27,8 @@ namespace FilesHashWUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public delegate void RedirectedDelegate();
+
         private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
         private const int AppMinWidth = 520;
@@ -53,6 +55,8 @@ namespace FilesHashWUI
         public bool IsAppPackaged { get; private set; } = false;
         public IntPtr HWNDHandle { get; private set; } = 0;
         public double Scale { get; private set; } = 1.0;
+
+        public RedirectedDelegate RedirectedHandler;
 
         public MainWindow()
         {
@@ -230,26 +234,10 @@ namespace FilesHashWUI
         public void OnRedirected(AppActivationArguments args)
         {
             m_pendingAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-            if (IsPageCurrent(typeof(MainPage)))
-            {
-                RedirectedToMainPage();
-            }
-            else
-            {
-                if (FrameMain.CanGoBack)
-                    FrameMain.GoBack();
-            }
-        }
 
-        private void RedirectedToMainPage()
-        {
-            if (IsPageCurrent(typeof(MainPage)))
+            if (RedirectedHandler != null)
             {
-                string pendingArgs = GetAndResetPendingAppActiveArgs();
-                DispatcherQueue.TryEnqueue(() =>
-                {
-                    (m_pageCurrent as MainPage).OnRedirected(pendingArgs);
-                });
+                DispatcherQueue.TryEnqueue(() => RedirectedHandler());
             }
         }
 
