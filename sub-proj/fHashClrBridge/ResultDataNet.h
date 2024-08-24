@@ -1,6 +1,6 @@
 #pragma once
 
-namespace FilesHashUwp
+namespace FilesHashWUI
 {
 	public enum class ResultStateNet
 	{
