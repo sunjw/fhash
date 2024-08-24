@@ -206,6 +206,7 @@
     <ClInclude Include="..\..\trunk\source\Common\HashEngine.h" />
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\AdvTaskbar.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="AdvTaskbarHelper.h" />
     <ClInclude Include="ClrHelper.h" />
