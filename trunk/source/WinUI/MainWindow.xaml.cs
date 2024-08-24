@@ -50,6 +50,8 @@ namespace FilesHashWUI
 
         private bool m_windowInited = false;
 
+        private AdvTaskbarHelper m_advTaskbarHelper = null;
+
         public static MainWindow CurrentWindow { get; private set; } = null;
 
         public bool IsAppPackaged { get; private set; } = false;
@@ -67,6 +69,8 @@ namespace FilesHashWUI
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
 
             m_uiSettings = new();
+
+            m_advTaskbarHelper = new AdvTaskbarHelper(HWNDHandle);
 
             InitTitleBarAndTaskBar();
 

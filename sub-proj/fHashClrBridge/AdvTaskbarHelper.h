@@ -7,7 +7,7 @@ namespace SunJWBase
 	public ref class AdvTaskbarHelper sealed
 	{
 	public:
-		AdvTaskbarHelper(HWND hWnd);
+		AdvTaskbarHelper(System::IntPtr hWnd);
 
 	private:
 		HWND m_hWnd;
