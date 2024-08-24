@@ -54,6 +54,9 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\AdvTaskbar.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="ResultDataNet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

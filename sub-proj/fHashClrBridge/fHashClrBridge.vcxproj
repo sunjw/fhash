@@ -212,6 +212,7 @@
     <ClInclude Include="ClrHelper.h" />
     <ClInclude Include="NativeHelper.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ResultDataNet.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
