@@ -51,6 +51,7 @@ namespace FilesHashWUI
         private bool m_windowInited = false;
 
         private AdvTaskbarHelper m_advTaskbarHelper = null;
+        private ulong m_advTaskbarTestValue = 1;
 
         public static MainWindow CurrentWindow { get; private set; } = null;
 
@@ -253,6 +254,18 @@ namespace FilesHashWUI
 
             if (!m_windowInited)
                 m_windowInited = true;
+
+            m_advTaskbarHelper.SetTaskbarProg(m_advTaskbarTestValue);
+            if (m_advTaskbarTestValue == 99)
+            {
+                m_advTaskbarTestValue = 1;
+            }
+            else
+            {
+                m_advTaskbarTestValue += 30;
+                if (m_advTaskbarTestValue > 99)
+                    m_advTaskbarTestValue = 99;
+            }
         }
 
         private void UISettings_ColorValuesChanged(UISettings sender, object args)
