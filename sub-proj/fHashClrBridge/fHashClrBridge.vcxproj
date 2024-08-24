@@ -207,12 +207,14 @@
     <ClInclude Include="..\..\trunk\source\Common\strhelper.h" />
     <ClInclude Include="..\..\trunk\source\Common\UIBridgeBase.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
+    <ClInclude Include="AdvTaskbarHelper.h" />
     <ClInclude Include="ClrHelper.h" />
     <ClInclude Include="NativeHelper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdvTaskbarHelper.cpp" />
     <ClCompile Include="ClrHelper.cpp" />
     <ClCompile Include="NativeHelper.cpp" />
     <ClCompile Include="stdafx.cpp">

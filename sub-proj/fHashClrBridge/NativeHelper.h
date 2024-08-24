@@ -1,6 +1,6 @@
 #pragma once
 
-namespace FilesHashWUI
+namespace SunJWBase
 {
 	public ref class NativeHelper sealed
 	{

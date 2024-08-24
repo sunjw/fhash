@@ -7,7 +7,7 @@
 
 using namespace std;
 using namespace System;
-using namespace FilesHashWUI;
+using namespace SunJWBase;
 using namespace sunjwbase;
 
 NativeHelper::NativeHelper()
