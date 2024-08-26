@@ -215,7 +215,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResultDataNet.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="UIBridgeDelegate.h" />
+    <ClInclude Include="UIBridgeDelegates.h" />
     <ClInclude Include="UIBridgeWUI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -231,7 +231,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UIBridgeDelegate.cpp" />
+    <ClCompile Include="UIBridgeDelegates.cpp" />
     <ClCompile Include="UIBridgeWUI.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common/Global.h"
-#include "UIBridgeDelegate.h"
+#include "UIBridgeDelegates.h"
 #include "UIBridgeWUI.h"
 
 namespace FilesHashWUI

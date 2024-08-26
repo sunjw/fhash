@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "UIBridgeDelegate.h"
+#include "UIBridgeDelegates.h"
 
 using namespace System;
 using namespace FilesHashWUI;

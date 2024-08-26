@@ -57,7 +57,7 @@
     <ClInclude Include="ResultDataNet.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="UIBridgeDelegate.h">
+    <ClInclude Include="UIBridgeDelegates.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="UIBridgeWUI.h">
@@ -80,7 +80,7 @@
     <ClCompile Include="AdvTaskbarHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="UIBridgeDelegate.cpp">
+    <ClCompile Include="UIBridgeDelegates.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="UIBridgeWUI.cpp">

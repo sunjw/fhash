@@ -5,7 +5,7 @@
 #include "Common/UIBridgeBase.h"
 #include "Common/Global.h"
 
-#include "UIBridgeDelegate.h"
+#include "UIBridgeDelegates.h"
 #include "ResultDataNet.h"
 
 namespace FilesHashWUI
