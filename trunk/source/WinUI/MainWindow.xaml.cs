@@ -52,7 +52,6 @@ namespace FilesHashWUI
         private AdvTaskbarHelper m_advTaskbarHelper = null;
         private ulong m_advTaskbarTestValue = 1;
 
-        private UIBridgeDelegate m_uiBridgeDelegate = null;
         private HashMgmt m_hashMgmt = null;
 
         public static MainWindow CurrentWindow { get; private set; } = null;
@@ -62,6 +61,7 @@ namespace FilesHashWUI
         public double Scale { get; private set; } = 1.0;
 
         public RedirectedDelegate RedirectedHandler;
+        public UIBridgeDelegate UIBridgeHandler = new();
 
         public MainWindow()
         {
@@ -72,10 +72,9 @@ namespace FilesHashWUI
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
 
             m_uiSettings = new();
-            m_advTaskbarHelper = new (HWNDHandle);
+            m_advTaskbarHelper = new(HWNDHandle);
 
-            m_uiBridgeDelegate = new();
-            m_hashMgmt = new(m_uiBridgeDelegate);
+            m_hashMgmt = new(UIBridgeHandler);
             m_hashMgmt.Init();
 
             InitTitleBarAndTaskBar();
