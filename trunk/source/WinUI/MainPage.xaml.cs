@@ -41,7 +41,7 @@ namespace FilesHashWUI
 
         private void InitTestRichText()
         {
-            m_paragraphTest.FontFamily = new FontFamily("Consolas");
+            m_paragraphTest.FontFamily = new("Consolas");
             m_paragraphTest.LineHeight = 18;
             m_paragraphTest.LineStackingStrategy = LineStackingStrategy.BlockLineHeight;
 
@@ -139,7 +139,7 @@ namespace FilesHashWUI
 
             // ScrollView position
             GeneralTransform transformScrollView = scrollViewerWrapper.TransformToVisual(null);
-            Windows.Foundation.Point pointScrollView = transformScrollView.TransformPoint(new Windows.Foundation.Point(0, 0));
+            Windows.Foundation.Point pointScrollView = transformScrollView.TransformPoint(new(0, 0));
 
             // cursor offset relative to ScrollView
             double cursorRelateScrollOffX = pointCursor.X - pointScrollView.X - (scrollViewerWrapper.Margin.Left * scale);

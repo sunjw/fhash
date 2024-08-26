@@ -32,7 +32,7 @@ namespace FilesHashWUI
             }
             m_pageInited = true;
 
-            NativeHelper nativeHelper = new NativeHelper();
+            NativeHelper nativeHelper = new();
 
             string strAboutTitle = m_resourceLoaderMain.GetString("AboutTitle");
             Run runAboutTitle = WinUIHelper.GenRunFromString(strAboutTitle);
