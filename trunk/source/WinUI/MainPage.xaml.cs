@@ -33,7 +33,7 @@ namespace FilesHashWUI
             InitializeComponent();
 
             m_mainWindow = MainWindow.CurrentWindow;
-            m_mainWindow.RedirectedHandler += MainWindow_RedirectedHandler;
+            m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedHandler;
         }
 
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)

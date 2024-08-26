@@ -28,7 +28,7 @@ namespace FilesHashWUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public delegate void RedirectedDelegate(string strAppActiveArgs);
+        public delegate void RedirectedHandler(string strAppActiveArgs);
 
         private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
@@ -58,10 +58,10 @@ namespace FilesHashWUI
         public IntPtr HWNDHandle { get; private set; } = 0;
         public double Scale { get; private set; } = 1.0;
 
-        public RedirectedDelegate RedirectedHandler = null;
-
         public UIBridgeDelegates UIBridgeHandlers { get; private set; } = new();
         public HashMgmtClr HashMgmt { get; private set; } = null;
+
+        public event RedirectedHandler RedirectedEventHandler = null;
 
         public MainWindow()
         {
@@ -237,9 +237,9 @@ namespace FilesHashWUI
         {
             string strAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
 
-            if (RedirectedHandler != null)
+            if (RedirectedEventHandler != null)
             {
-                DispatcherQueue.TryEnqueue(() => RedirectedHandler(strAppActiveArgs));
+                DispatcherQueue.TryEnqueue(() => RedirectedEventHandler(strAppActiveArgs));
             }
         }
 
