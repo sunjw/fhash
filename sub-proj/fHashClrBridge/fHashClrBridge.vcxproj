@@ -215,6 +215,7 @@
     <ClInclude Include="ResultDataNet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UIBridgeDelegate.h" />
+    <ClInclude Include="UIBridgeWUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvTaskbarHelper.cpp" />
@@ -229,6 +230,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UIBridgeDelegate.cpp" />
+    <ClCompile Include="UIBridgeWUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="fHashClrBridge.rc" />
