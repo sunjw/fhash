@@ -245,7 +245,7 @@ namespace FilesHashWUI
 
             // Fix for color changed.
             DispatcherQueueTimer timerScrollBar = DispatcherQueue.CreateTimer();
-            timerScrollBar.Interval = TimeSpan.FromMilliseconds(500);
+            timerScrollBar.Interval = TimeSpan.FromMilliseconds(300);
             timerScrollBar.IsRepeating = false;
             timerScrollBar.Tick += (timer, sender) =>
             {
