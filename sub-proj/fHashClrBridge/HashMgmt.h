@@ -9,7 +9,7 @@ namespace FilesHashWUI
 	public ref class HashMgmt sealed
 	{
 	public:
-		HashMgmt(UIBridgeDelegate^ uiBridgeDelegate);
+		HashMgmt(UIBridgeDelegates^ uiBridgeDelegates);
 
 		virtual ~HashMgmt()
 		{

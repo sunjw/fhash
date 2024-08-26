@@ -61,7 +61,7 @@ namespace FilesHashWUI
         public double Scale { get; private set; } = 1.0;
 
         public RedirectedDelegate RedirectedHandler = null;
-        public UIBridgeDelegate UIBridgeHandler = new();
+        public UIBridgeDelegates UIBridgeHandlers = new();
 
         public MainWindow()
         {
@@ -74,7 +74,7 @@ namespace FilesHashWUI
             m_uiSettings = new();
             m_advTaskbarHelper = new(HWNDHandle);
 
-            m_hashMgmt = new(UIBridgeHandler);
+            m_hashMgmt = new(UIBridgeHandlers);
             m_hashMgmt.Init();
 
             InitTitleBarAndTaskBar();

@@ -9,10 +9,10 @@ namespace FilesHashWUI
 	public delegate void ResultHashEventHandler(ResultDataNet, bool);
 	public delegate void CalcProgEventHandler(System::Int32);
 
-	public ref class UIBridgeDelegate sealed
+	public ref class UIBridgeDelegates sealed
 	{
 	public:
-		UIBridgeDelegate();
+		UIBridgeDelegates();
 
 		System::Int32 GetProgMax();
 

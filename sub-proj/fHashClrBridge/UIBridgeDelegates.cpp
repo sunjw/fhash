@@ -4,56 +4,56 @@
 using namespace System;
 using namespace FilesHashWUI;
 
-UIBridgeDelegate::UIBridgeDelegate()
+UIBridgeDelegates::UIBridgeDelegates()
 {
 }
 
-Int32 UIBridgeDelegate::GetProgMax()
+Int32 UIBridgeDelegates::GetProgMax()
 {
 	return 100;
 }
 
-void UIBridgeDelegate::PreparingCalc()
+void UIBridgeDelegates::PreparingCalc()
 {
 	PreparingCalcHandler();
 }
 
-void UIBridgeDelegate::RemovePreparingCalc()
+void UIBridgeDelegates::RemovePreparingCalc()
 {
 	RemovePreparingCalcHandler();
 }
 
-void UIBridgeDelegate::CalcStop()
+void UIBridgeDelegates::CalcStop()
 {
 	CalcStopHandler();
 }
 
-void UIBridgeDelegate::CalcFinish()
+void UIBridgeDelegates::CalcFinish()
 {
 	CalcFinishHandler();
 }
 
-void UIBridgeDelegate::ShowFileName(ResultDataNet resultDataNet)
+void UIBridgeDelegates::ShowFileName(ResultDataNet resultDataNet)
 {
 	ShowFileNameHandler(resultDataNet);
 }
 
-void UIBridgeDelegate::ShowFileMeta(ResultDataNet resultDataNet)
+void UIBridgeDelegates::ShowFileMeta(ResultDataNet resultDataNet)
 {
 	ShowFileMetaHandler(resultDataNet);
 }
 
-void UIBridgeDelegate::ShowFileHash(ResultDataNet resultDataNet, bool uppercase)
+void UIBridgeDelegates::ShowFileHash(ResultDataNet resultDataNet, bool uppercase)
 {
 	ShowFileHashHandler(resultDataNet, uppercase);
 }
 
-void UIBridgeDelegate::ShowFileErr(ResultDataNet resultDataNet)
+void UIBridgeDelegates::ShowFileErr(ResultDataNet resultDataNet)
 {
 	ShowFileErrHandler(resultDataNet);
 }
 
-void UIBridgeDelegate::UpdateProgWhole(Int32 value)
+void UIBridgeDelegates::UpdateProgWhole(Int32 value)
 {
 	UpdateProgWholeHandler(value);
 }

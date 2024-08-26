@@ -44,8 +44,8 @@ ResultDataNet FilesHashWUI::ConvertResultDataToNet(const ResultData& result)
 	return resultDataNet;
 }
 
-UIBridgeWUI::UIBridgeWUI(UIBridgeDelegate^ uiBridgeDelegate)
-	:m_uiBridgeDelegate(uiBridgeDelegate)
+UIBridgeWUI::UIBridgeWUI(UIBridgeDelegates^ uiBridgeDelegates)
+	:m_uiBridgeDelegates(uiBridgeDelegates)
 {
 }
 
@@ -65,51 +65,51 @@ void UIBridgeWUI::unlockData()
 
 void UIBridgeWUI::preparingCalc()
 {
-	m_uiBridgeDelegate->PreparingCalc();
+	m_uiBridgeDelegates->PreparingCalc();
 }
 
 void UIBridgeWUI::removePreparingCalc()
 {
-	m_uiBridgeDelegate->RemovePreparingCalc();
+	m_uiBridgeDelegates->RemovePreparingCalc();
 }
 
 void UIBridgeWUI::calcStop()
 {
-	m_uiBridgeDelegate->CalcStop();
+	m_uiBridgeDelegates->CalcStop();
 }
 
 void UIBridgeWUI::calcFinish()
 {
-	m_uiBridgeDelegate->CalcFinish();
+	m_uiBridgeDelegates->CalcFinish();
 }
 
 void UIBridgeWUI::showFileName(const ResultData& result)
 {
 	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileName(resultDataNet);
+	m_uiBridgeDelegates->ShowFileName(resultDataNet);
 }
 
 void UIBridgeWUI::showFileMeta(const ResultData& result)
 {
 	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileMeta(resultDataNet);
+	m_uiBridgeDelegates->ShowFileMeta(resultDataNet);
 }
 
 void UIBridgeWUI::showFileHash(const ResultData& result, bool uppercase)
 {
 	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileHash(resultDataNet, uppercase);
+	m_uiBridgeDelegates->ShowFileHash(resultDataNet, uppercase);
 }
 
 void UIBridgeWUI::showFileErr(const ResultData& result)
 {
 	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileErr(resultDataNet);
+	m_uiBridgeDelegates->ShowFileErr(resultDataNet);
 }
 
 int UIBridgeWUI::getProgMax()
 {
-	return m_uiBridgeDelegate->GetProgMax();
+	return m_uiBridgeDelegates->GetProgMax();
 }
 
 void UIBridgeWUI::updateProg(int value)
@@ -118,7 +118,7 @@ void UIBridgeWUI::updateProg(int value)
 
 void UIBridgeWUI::updateProgWhole(int value)
 {
-	m_uiBridgeDelegate->UpdateProgWhole(value);
+	m_uiBridgeDelegates->UpdateProgWhole(value);
 }
 
 void UIBridgeWUI::fileCalcFinish()

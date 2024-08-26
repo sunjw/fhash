@@ -10,10 +10,10 @@ using namespace System;
 using namespace FilesHashWUI;
 using namespace sunjwbase;
 
-HashMgmt::HashMgmt(UIBridgeDelegate^ uiBridgeDelegate)
+HashMgmt::HashMgmt(UIBridgeDelegates^ uiBridgeDelegates)
 	:m_pUiBridgeWUI(NULL), m_pThreadData(NULL), m_hWorkThread(NULL)
 {
-	m_pUiBridgeWUI = new UIBridgeWUI(uiBridgeDelegate);
+	m_pUiBridgeWUI = new UIBridgeWUI(uiBridgeDelegates);
 	m_pThreadData = new ThreadData();
 	m_pThreadData->uiBridge = m_pUiBridgeWUI;
 }

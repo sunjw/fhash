@@ -15,7 +15,7 @@ namespace FilesHashWUI
 	class UIBridgeWUI : public UIBridgeBase
 	{
 	public:
-		UIBridgeWUI(UIBridgeDelegate^ uiBridgeDelegate);
+		UIBridgeWUI(UIBridgeDelegates^ uiBridgeDelegates);
 		virtual ~UIBridgeWUI();
 
 		virtual void lockData();
@@ -39,6 +39,6 @@ namespace FilesHashWUI
 		virtual void fileFinish();
 
 	private:
-		msclr::auto_gcroot<UIBridgeDelegate^> m_uiBridgeDelegate;
+		msclr::auto_gcroot<UIBridgeDelegates^> m_uiBridgeDelegates;
 	};
 }
