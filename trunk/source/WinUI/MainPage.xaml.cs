@@ -33,7 +33,7 @@ namespace FilesHashWUI
             InitializeComponent();
 
             m_mainWindow = MainWindow.CurrentWindow;
-            m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedHandler;
+            m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
         }
 
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)
@@ -195,7 +195,7 @@ namespace FilesHashWUI
             //TextBlockDebug.Text = strDebug;
         }
 
-        private void MainWindow_RedirectedHandler(string strAppActiveArgs)
+        private void MainWindow_RedirectedEventHandler(string strAppActiveArgs)
         {
             if (Frame.CanGoBack)
                 Frame.GoBack();
