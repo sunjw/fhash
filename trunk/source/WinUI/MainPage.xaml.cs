@@ -240,6 +240,16 @@ namespace FilesHashWUI
 
                 m_pageInited = true;
             }
+
+            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+        }
+
+        private void GridMain_Unloaded(object sender, RoutedEventArgs e)
+        {
+            // Fix for color changed.
+            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)

@@ -9,7 +9,10 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid x:Name="GridMain" Loaded="GridMain_Loaded">
+    <Grid
+        x:Name="GridMain"
+        Loaded="GridMain_Loaded"
+        Unloaded="GridMain_Unloaded">
 
         <ScrollViewer
             x:Name="ScrollViewerMain"
