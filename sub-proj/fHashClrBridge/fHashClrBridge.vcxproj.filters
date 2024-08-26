@@ -63,7 +63,7 @@
     <ClInclude Include="UIBridgeWUI.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="HashMgmt.h">
+    <ClInclude Include="HashMgmtClr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,7 +86,7 @@
     <ClCompile Include="UIBridgeWUI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="HashMgmt.cpp">
+    <ClCompile Include="HashMgmtClr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

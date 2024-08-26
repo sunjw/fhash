@@ -210,7 +210,7 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="AdvTaskbarHelper.h" />
     <ClInclude Include="ClrHelper.h" />
-    <ClInclude Include="HashMgmt.h" />
+    <ClInclude Include="HashMgmtClr.h" />
     <ClInclude Include="NativeHelper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResultDataNet.h" />
@@ -221,7 +221,7 @@
   <ItemGroup>
     <ClCompile Include="AdvTaskbarHelper.cpp" />
     <ClCompile Include="ClrHelper.cpp" />
-    <ClCompile Include="HashMgmt.cpp" />
+    <ClCompile Include="HashMgmtClr.cpp" />
     <ClCompile Include="NativeHelper.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

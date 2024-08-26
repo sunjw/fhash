@@ -6,24 +6,24 @@
 
 namespace FilesHashWUI
 {
-	public ref class HashMgmt sealed
+	public ref class HashMgmtClr sealed
 	{
 	public:
-		HashMgmt(UIBridgeDelegates^ uiBridgeDelegates);
+		HashMgmtClr(UIBridgeDelegates^ uiBridgeDelegates);
 
-		virtual ~HashMgmt()
+		virtual ~HashMgmtClr()
 		{
 			// clean up code to release managed resource
 			// ...
 			// to avoid code duplication,
 			// call finalizer to release unmanaged resources
-			this->!HashMgmt();
+			this->!HashMgmtClr();
 		}
 
 		// finalizer cleans up unmanaged resources
 		// destructor or garbage collector will
 		// clean up managed resources
-		!HashMgmt();
+		!HashMgmtClr();
 
 		void Init();
 		void Clear();

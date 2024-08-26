@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "HashMgmt.h"
+#include "HashMgmtClr.h"
 #include "ClrHelper.h"
 #include "Common/strhelper.h"
 #include "Common/HashEngine.h"
@@ -10,7 +10,7 @@ using namespace System;
 using namespace FilesHashWUI;
 using namespace sunjwbase;
 
-HashMgmt::HashMgmt(UIBridgeDelegates^ uiBridgeDelegates)
+HashMgmtClr::HashMgmtClr(UIBridgeDelegates^ uiBridgeDelegates)
 	:m_pUiBridgeWUI(NULL), m_pThreadData(NULL), m_hWorkThread(NULL)
 {
 	m_pUiBridgeWUI = new UIBridgeWUI(uiBridgeDelegates);
@@ -18,7 +18,7 @@ HashMgmt::HashMgmt(UIBridgeDelegates^ uiBridgeDelegates)
 	m_pThreadData->uiBridge = m_pUiBridgeWUI;
 }
 
-HashMgmt::!HashMgmt()
+HashMgmtClr::!HashMgmtClr()
 {
 	if (m_pUiBridgeWUI)
 		delete m_pUiBridgeWUI;
@@ -28,11 +28,11 @@ HashMgmt::!HashMgmt()
 		CloseHandle(m_hWorkThread);
 }
 
-void HashMgmt::Init()
+void HashMgmtClr::Init()
 {
 }
 
-void HashMgmt::Clear()
+void HashMgmtClr::Clear()
 {
 	m_pThreadData->threadWorking = false;
 	m_pThreadData->stop = false;
@@ -46,22 +46,22 @@ void HashMgmt::Clear()
 	m_pThreadData->resultList.clear();
 }
 
-void HashMgmt::SetStop(bool val)
+void HashMgmtClr::SetStop(bool val)
 {
 	m_pThreadData->stop = val;
 }
 
-void HashMgmt::SetUppercase(bool val)
+void HashMgmtClr::SetUppercase(bool val)
 {
 	m_pThreadData->uppercase = val;
 }
 
-UInt64 HashMgmt::GetTotalSize()
+UInt64 HashMgmtClr::GetTotalSize()
 {
 	return m_pThreadData->totalSize;
 }
 
-void HashMgmt::AddFiles(cli::array<String^>^ filePaths)
+void HashMgmtClr::AddFiles(cli::array<String^>^ filePaths)
 {
 	m_pThreadData->fullPaths.clear();
 	m_pThreadData->nFiles = filePaths->Length;
@@ -72,7 +72,7 @@ void HashMgmt::AddFiles(cli::array<String^>^ filePaths)
 	}
 }
 
-void HashMgmt::StartHashThread()
+void HashMgmtClr::StartHashThread()
 {
 	if (m_hWorkThread)
 	{
@@ -88,7 +88,7 @@ void HashMgmt::StartHashThread()
 										(unsigned int*)&thredID);
 }
 
-cli::array<ResultDataNet>^ HashMgmt::FindResult(String^ sstrHashToFind)
+cli::array<ResultDataNet>^ HashMgmtClr::FindResult(String^ sstrHashToFind)
 {
 	tstring tstrHashToFind(ConvertSystemStringToTstr(sstrHashToFind));
 	tstrHashToFind = strtotstr(str_upper(tstrtostr(tstrHashToFind))); // Upper
