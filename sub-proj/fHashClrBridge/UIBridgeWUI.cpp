@@ -9,92 +9,7 @@ using namespace System;
 using namespace FilesHashWUI;
 using namespace sunjwbase;
 
-UIBridgeUwp::UIBridgeUwp(UIBridgeDelegate^ uiBridgeDelegate)
-	:m_uiBridgeDelegate(uiBridgeDelegate)
-{
-}
-
-UIBridgeUwp::~UIBridgeUwp()
-{
-}
-
-void UIBridgeUwp::lockData()
-{
-	// No need here.
-}
-
-void UIBridgeUwp::unlockData()
-{
-	// No need here.
-}
-
-void UIBridgeUwp::preparingCalc()
-{
-	m_uiBridgeDelegate->PreparingCalc();
-}
-
-void UIBridgeUwp::removePreparingCalc()
-{
-	m_uiBridgeDelegate->RemovePreparingCalc();
-}
-
-void UIBridgeUwp::calcStop()
-{
-	m_uiBridgeDelegate->CalcStop();
-}
-
-void UIBridgeUwp::calcFinish()
-{
-	m_uiBridgeDelegate->CalcFinish();
-}
-
-void UIBridgeUwp::showFileName(const ResultData& result)
-{
-	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileName(resultDataNet);
-}
-
-void UIBridgeUwp::showFileMeta(const ResultData& result)
-{
-	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileMeta(resultDataNet);
-}
-
-void UIBridgeUwp::showFileHash(const ResultData& result, bool uppercase)
-{
-	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileHash(resultDataNet, uppercase);
-}
-
-void UIBridgeUwp::showFileErr(const ResultData& result)
-{
-	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
-	m_uiBridgeDelegate->ShowFileErr(resultDataNet);
-}
-
-int UIBridgeUwp::getProgMax()
-{
-	return m_uiBridgeDelegate->GetProgMax();
-}
-
-void UIBridgeUwp::updateProg(int value)
-{
-}
-
-void UIBridgeUwp::updateProgWhole(int value)
-{
-	m_uiBridgeDelegate->UpdateProgWhole(value);
-}
-
-void UIBridgeUwp::fileCalcFinish()
-{
-}
-
-void UIBridgeUwp::fileFinish()
-{
-}
-
-ResultDataNet UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
+static ResultDataNet ConvertResultDataToNet(const ResultData& result)
 {
 	ResultDataNet resultDataNet;
 	switch (result.enumState)
@@ -115,6 +30,7 @@ ResultDataNet UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
 		resultDataNet.EnumState = ResultStateNet::ResultError;
 		break;
 	}
+
 	resultDataNet.Path = ConvertTstrToSystemString(result.tstrPath.c_str());
 	resultDataNet.Size = result.ulSize;
 	resultDataNet.ModifiedDate = ConvertTstrToSystemString(result.tstrMDate.c_str());
@@ -126,4 +42,89 @@ ResultDataNet UIBridgeUwp::ConvertResultDataToNet(const ResultData& result)
 	resultDataNet.Error = ConvertTstrToSystemString(result.tstrError.c_str());
 
 	return resultDataNet;
+}
+
+UIBridgeWUI::UIBridgeWUI(UIBridgeDelegate^ uiBridgeDelegate)
+	:m_uiBridgeDelegate(uiBridgeDelegate)
+{
+}
+
+UIBridgeWUI::~UIBridgeWUI()
+{
+}
+
+void UIBridgeWUI::lockData()
+{
+	// No need here.
+}
+
+void UIBridgeWUI::unlockData()
+{
+	// No need here.
+}
+
+void UIBridgeWUI::preparingCalc()
+{
+	m_uiBridgeDelegate->PreparingCalc();
+}
+
+void UIBridgeWUI::removePreparingCalc()
+{
+	m_uiBridgeDelegate->RemovePreparingCalc();
+}
+
+void UIBridgeWUI::calcStop()
+{
+	m_uiBridgeDelegate->CalcStop();
+}
+
+void UIBridgeWUI::calcFinish()
+{
+	m_uiBridgeDelegate->CalcFinish();
+}
+
+void UIBridgeWUI::showFileName(const ResultData& result)
+{
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileName(resultDataNet);
+}
+
+void UIBridgeWUI::showFileMeta(const ResultData& result)
+{
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileMeta(resultDataNet);
+}
+
+void UIBridgeWUI::showFileHash(const ResultData& result, bool uppercase)
+{
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileHash(resultDataNet, uppercase);
+}
+
+void UIBridgeWUI::showFileErr(const ResultData& result)
+{
+	ResultDataNet resultDataNet = ConvertResultDataToNet(result);
+	m_uiBridgeDelegate->ShowFileErr(resultDataNet);
+}
+
+int UIBridgeWUI::getProgMax()
+{
+	return m_uiBridgeDelegate->GetProgMax();
+}
+
+void UIBridgeWUI::updateProg(int value)
+{
+}
+
+void UIBridgeWUI::updateProgWhole(int value)
+{
+	m_uiBridgeDelegate->UpdateProgWhole(value);
+}
+
+void UIBridgeWUI::fileCalcFinish()
+{
+}
+
+void UIBridgeWUI::fileFinish()
+{
 }
