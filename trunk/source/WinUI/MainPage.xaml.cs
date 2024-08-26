@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.CommandLine.Parsing;
 using System.Linq;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
@@ -241,8 +243,16 @@ namespace FilesHashWUI
                 m_pageInited = true;
             }
 
-            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            // Fix for color changed.
+            DispatcherQueueTimer timerScrollBar = DispatcherQueue.CreateTimer();
+            timerScrollBar.Interval = TimeSpan.FromMilliseconds(250);
+            timerScrollBar.IsRepeating = false;
+            timerScrollBar.Tick += (timer, sender) =>
+            {
+                ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+                ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            };
+            timerScrollBar.Start();
         }
 
         private void GridMain_Unloaded(object sender, RoutedEventArgs e)
