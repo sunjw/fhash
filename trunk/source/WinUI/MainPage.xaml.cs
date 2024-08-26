@@ -245,7 +245,7 @@ namespace FilesHashWUI
 
             // Fix for color changed.
             DispatcherQueueTimer timerScrollBar = DispatcherQueue.CreateTimer();
-            timerScrollBar.Interval = TimeSpan.FromMilliseconds(250);
+            timerScrollBar.Interval = TimeSpan.FromMilliseconds(500);
             timerScrollBar.IsRepeating = false;
             timerScrollBar.Tick += (timer, sender) =>
             {
@@ -257,9 +257,6 @@ namespace FilesHashWUI
 
         private void GridMain_Unloaded(object sender, RoutedEventArgs e)
         {
-            // Fix for color changed.
-            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
@@ -274,6 +271,10 @@ namespace FilesHashWUI
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
+            // Fix for color changed.
+            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
             Frame.Navigate(typeof(AboutPage));
         }
     }
