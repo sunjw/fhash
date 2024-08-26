@@ -10,6 +10,8 @@
 
 namespace FilesHashWUI
 {
+	ResultDataNet ConvertResultDataToNet(const ResultData& result);
+
 	class UIBridgeWUI : public UIBridgeBase
 	{
 	public:

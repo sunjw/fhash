@@ -9,7 +9,7 @@ using namespace System;
 using namespace FilesHashWUI;
 using namespace sunjwbase;
 
-static ResultDataNet ConvertResultDataToNet(const ResultData& result)
+ResultDataNet FilesHashWUI::ConvertResultDataToNet(const ResultData& result)
 {
 	ResultDataNet resultDataNet;
 	switch (result.enumState)
