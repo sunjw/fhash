@@ -44,14 +44,16 @@ namespace FilesHashWUI
         private const string KeyWinSizeHeight = "WinSizeHeight";
 
         private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
-        private UISettings m_uiSettings;
+        private UISettings m_uiSettings = null;
         private Page m_pageCurrent = null;
         private SUBCLASSPROC m_subclassProc = null;
 
         private bool m_windowInited = false;
-
         private AdvTaskbarHelper m_advTaskbarHelper = null;
         private ulong m_advTaskbarTestValue = 1;
+
+        private UIBridgeDelegate m_uiBridgeDelegate = null;
+        private HashMgmt m_hashMgmt = null;
 
         public static MainWindow CurrentWindow { get; private set; } = null;
 
@@ -70,8 +72,11 @@ namespace FilesHashWUI
             Scale = Win32Helper.GetScaleFactor(HWNDHandle);
 
             m_uiSettings = new();
+            m_advTaskbarHelper = new (HWNDHandle);
 
-            m_advTaskbarHelper = new AdvTaskbarHelper(HWNDHandle);
+            m_uiBridgeDelegate = new();
+            m_hashMgmt = new(m_uiBridgeDelegate);
+            m_hashMgmt.Init();
 
             InitTitleBarAndTaskBar();
 
