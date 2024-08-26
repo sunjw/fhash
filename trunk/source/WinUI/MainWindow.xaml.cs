@@ -60,7 +60,7 @@ namespace FilesHashWUI
         public IntPtr HWNDHandle { get; private set; } = 0;
         public double Scale { get; private set; } = 1.0;
 
-        public RedirectedDelegate RedirectedHandler;
+        public RedirectedDelegate RedirectedHandler = null;
         public UIBridgeDelegate UIBridgeHandler = new();
 
         public MainWindow()
