@@ -124,15 +124,26 @@ namespace FilesHashWUI
             m_menuFlyoutTextMain.Items.Add(menuItemVirusTotal);
         }
 
+        private void CloseAboutPage()
+        {
+            if (Frame.CanGoBack)
+                Frame.GoBack();
+        }
+
         private void ScrollTextMainToBottom()
         {
             WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
-        private void HideAboutPage()
+        private Paragraph CreateParagraphForTextMain()
         {
-            if (Frame.CanGoBack)
-                Frame.GoBack();
+            Paragraph paragraph = new()
+            {
+                FontFamily = new("Consolas"),
+                LineHeight = 18,
+                LineStackingStrategy = LineStackingStrategy.BlockLineHeight
+            };
+            return paragraph;
         }
 
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)
@@ -197,7 +208,7 @@ namespace FilesHashWUI
                     CheckBoxUppercase.IsEnabled = true;
                     break;
                 case MainPageControlStat.MainPageCalcIng:
-                    HideAboutPage();
+                    CloseAboutPage();
 
                     m_calcStartTime = WinUIHelper.GetCurrentMilliSec();
                     m_mainWindow.HashMgmt.SetStop(false);
@@ -222,6 +233,62 @@ namespace FilesHashWUI
                 // Wait to close
                 DispatcherQueue.TryEnqueue(m_mainWindow.Close);
             }
+        }
+
+        private void UpdateUppercaseStat(bool saveLocalSetting = true)
+        {
+            bool? uppercaseIsChecked = CheckBoxUppercase.IsChecked;
+            if (uppercaseIsChecked.HasValue && uppercaseIsChecked.Value)
+            {
+                m_uppercaseChecked = true;
+            }
+            else
+            {
+                m_uppercaseChecked = false;
+            }
+            if (saveLocalSetting)
+            {
+                WinUIHelper.SaveLocalSettings(KeyUppercase, m_uppercaseChecked);
+            }
+        }
+
+        private void UpdateResultUppercase()
+        {
+            // Refresh stat
+            UpdateUppercaseStat();
+
+            // Refresh result & find
+            List<List<Hyperlink>> hyperlinkLists = new();
+            hyperlinkLists.Add(m_hyperlinksResult);
+            hyperlinkLists.Add(m_hyperlinksFind);
+            foreach (List<Hyperlink> hyperlinkListItr in hyperlinkLists)
+            {
+                foreach (Hyperlink hyperlink in hyperlinkListItr)
+                {
+                    if (hyperlink.Inlines.Count == 0)
+                        continue;
+
+                    string hyperLinkText = WinUIHelper.GetTextFromHyperlink(hyperlink);
+                    if (m_uppercaseChecked)
+                        hyperLinkText = hyperLinkText.ToUpper();
+                    else
+                        hyperLinkText = hyperLinkText.ToLower();
+
+                    Run runInHyperlink = (Run)hyperlink.Inlines[0];
+                    runInHyperlink.Text = hyperLinkText;
+                }
+            }
+        }
+
+        private bool IsAbleToCalcFiles()
+        {
+            return !IsCalculating();
+        }
+
+        private bool IsCalculating()
+        {
+            return (m_mainPageStat == MainPageControlStat.MainPageCalcIng ||
+                m_mainPageStat == MainPageControlStat.MainPageWaitingExit);
         }
 
         private void CalculateFinished()
