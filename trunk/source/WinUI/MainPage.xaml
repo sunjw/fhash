@@ -103,6 +103,7 @@
                     Margin="0,0,10,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
+                    Click="ButtonVerify_Click"
                     Content="[Verify]"
                     TabIndex="5">
                     <Button.KeyboardAccelerators>
@@ -119,6 +120,7 @@
                     Margin="0,0,10,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
+                    Click="ButtonOpen_Click"
                     Content="[Open]"
                     Style="{StaticResource AccentButtonStyle}"
                     TabIndex="1" />

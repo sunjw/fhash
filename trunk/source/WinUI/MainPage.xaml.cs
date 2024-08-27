@@ -10,6 +10,9 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
 using Microsoft.Windows.AppLifecycle;
 using SunJWBase;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -122,6 +125,11 @@ namespace FilesHashWUI
             m_menuFlyoutTextMain.Items.Add(new MenuFlyoutSeparator());
             m_menuFlyoutTextMain.Items.Add(menuItemGoogle);
             m_menuFlyoutTextMain.Items.Add(menuItemVirusTotal);
+        }
+
+        private void ShowAboutPage()
+        {
+            Frame.Navigate(typeof(AboutPage));
         }
 
         private void CloseAboutPage()
@@ -740,15 +748,6 @@ namespace FilesHashWUI
             HandleRichTextSelectionScroll(ScrollViewerMain);
         }
 
-        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
-        {
-            // Fix for color changed.
-            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-
-            Frame.Navigate(typeof(AboutPage));
-        }
-
         private void CheckBoxUppercase_Checked(object sender, RoutedEventArgs e)
         {
             UpdateResultUppercase();
@@ -759,12 +758,70 @@ namespace FilesHashWUI
             UpdateResultUppercase();
         }
 
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            // Fix for color changed.
+            ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
+            ShowAboutPage();
+        }
+
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
             if (m_mainPageStat == MainPageControlStat.MainPageVerify)
                 ClearFindResult();
             else
                 SetPageControlStat(MainPageControlStat.MainPageNone);
+        }
+
+        private async void ButtonVerify_Click(object sender, RoutedEventArgs e)
+        {
+            m_textBoxFindHash.Text = "";
+            ContentDialogResult result = await m_dialogFind.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string strHashToFind = m_textBoxFindHash.Text;
+                ResultDataNet[] resultDataNetArray = m_mainWindow.HashMgmt.FindResult(strHashToFind);
+                ShowFindResult(strHashToFind, resultDataNetArray);
+            }
+        }
+
+        private async void ButtonOpen_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_mainPageStat == MainPageControlStat.MainPageCalcIng)
+            {
+                StopHashCalc(false);
+            }
+            else
+            {
+                FileOpenPicker picker = new();
+
+                // Initialize the file picker with the window handle (HWND).
+                InitializeWithWindow.Initialize(picker, m_mainWindow.HWNDHandle);
+
+                // Set options for your file picker
+                picker.FileTypeFilter.Add("*");
+
+                // Open the picker for the user to pick a file
+                IReadOnlyList<StorageFile> pickFiles = await picker.PickMultipleFilesAsync();
+                if (pickFiles != null)
+                {
+                    // Application now has read/write access to the picked file
+                    List<string> strPickFilePaths = new();
+                    foreach (IStorageItem storageItem in pickFiles)
+                    {
+                        string path = storageItem.Path;
+                        if (!string.IsNullOrEmpty(path))
+                            strPickFilePaths.Add(path);
+                    }
+
+                    if (strPickFilePaths.Count == 0)
+                        return;
+
+                    DispatcherQueue.TryEnqueue(() => StartHashCalc(strPickFilePaths));
+                }
+            }
         }
 
         private void UIBridgeHandlers_PreparingCalcHandler()
