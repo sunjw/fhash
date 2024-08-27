@@ -72,7 +72,7 @@ namespace SunJWBase
             DataPackage dataPackage = new() { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
-            Clipboard.Flush();
+            Clipboard.Flush(); // very important
         }
 
         public static void OpenUrl(string url)

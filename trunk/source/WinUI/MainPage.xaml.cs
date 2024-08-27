@@ -44,8 +44,8 @@ namespace FilesHashWUI
         private Paragraph m_paragraphResult = null;
         private Paragraph m_paragraphFind = null;
         private List<Hyperlink> m_hyperlinksMain = null;
-        private List<Hyperlink> m_hyperlinksResult = new List<Hyperlink>();
-        private List<Hyperlink> m_hyperlinksFind = new List<Hyperlink>();
+        private List<Hyperlink> m_hyperlinksResult = new();
+        private List<Hyperlink> m_hyperlinksFind = new();
         private MenuFlyout m_menuFlyoutTextMain = null;
         private Hyperlink m_hyperlinkClicked = null;
         private Run m_runPrepare = null;
@@ -61,17 +61,78 @@ namespace FilesHashWUI
 
             m_mainWindow = MainWindow.CurrentWindow;
             m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
+
+            m_mainWindow.UIBridgeHandlers.PreparingCalcHandler += UIBridgeHandlers_PreparingCalcHandler;
+            m_mainWindow.UIBridgeHandlers.RemovePreparingCalcHandler += UIBridgeHandlers_RemovePreparingCalcHandler;
+            m_mainWindow.UIBridgeHandlers.CalcStopHandler += UIBridgeHandlers_CalcStopHandler;
+            m_mainWindow.UIBridgeHandlers.CalcFinishHandler += UIBridgeHandlers_CalcFinishHandler;
+            m_mainWindow.UIBridgeHandlers.ShowFileNameHandler += UIBridgeHandlers_ShowFileNameHandler;
+            m_mainWindow.UIBridgeHandlers.ShowFileMetaHandler += UIBridgeHandlers_ShowFileMetaHandler;
+            m_mainWindow.UIBridgeHandlers.ShowFileHashHandler += UIBridgeHandlers_ShowFileHashHandler;
+            m_mainWindow.UIBridgeHandlers.ShowFileErrHandler += UIBridgeHandlers_ShowFileErrHandler;
+            m_mainWindow.UIBridgeHandlers.UpdateProgWholeHandler += UIBridgeHandlers_UpdateProgWholeHandler;
+
+            InitLayout();
+        }
+
+        private void InitLayout()
+        {
+            InitDialogFind();
+            InitMenuFlyoutTextMain();
+        }
+
+        private void InitDialogFind()
+        {
+            m_textBoxFindHash = new()
+            {
+                Height = (double)Application.Current.Resources["TextControlThemeMinHeight"],
+                Width = 400,
+                PlaceholderText = m_resourceLoaderMain.GetString("HashValue")
+            };
+            m_dialogFind = new()
+            {
+                XamlRoot = m_mainWindow.Content.XamlRoot,
+                Title = m_resourceLoaderMain.GetString("FindDialogTitle"),
+                // MaxWidth = ActualWidth,
+                PrimaryButtonText = "OK",
+                SecondaryButtonText = "Cancel",
+                Content = m_textBoxFindHash,
+                DefaultButton = ContentDialogButton.Primary
+            };
+        }
+
+        private void InitMenuFlyoutTextMain()
+        {
+            m_menuFlyoutTextMain = new()
+            {
+                XamlRoot = m_mainWindow.Content.XamlRoot
+            };
+
+            MenuFlyoutItem menuItemCopy = new();
+            menuItemCopy.Text = m_resourceLoaderMain.GetString("MenuItemCopy");
+            menuItemCopy.Click += MenuItemCopy_Click;
+            MenuFlyoutItem menuItemGoogle = new();
+            menuItemGoogle.Text = m_resourceLoaderMain.GetString("MenuItemGoogle");
+            menuItemGoogle.Click += MenuItemGoogle_Click;
+            MenuFlyoutItem menuItemVirusTotal = new();
+            menuItemVirusTotal.Text = m_resourceLoaderMain.GetString("MenuItemVirusTotal");
+            menuItemVirusTotal.Click += MenuItemVirusTotal_Click;
+
+            m_menuFlyoutTextMain.Items.Add(menuItemCopy);
+            m_menuFlyoutTextMain.Items.Add(new MenuFlyoutSeparator());
+            m_menuFlyoutTextMain.Items.Add(menuItemGoogle);
+            m_menuFlyoutTextMain.Items.Add(menuItemVirusTotal);
+        }
+
+        private void ScrollTextMainToBottom()
+        {
+            WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
         private void HideAboutPage()
         {
             if (Frame.CanGoBack)
                 Frame.GoBack();
-        }
-
-        private void ScrollTextMainToBottom()
-        {
-            WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
         }
 
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)
@@ -120,7 +181,7 @@ namespace FilesHashWUI
                         ProgressBarMain.Value = 0;
                         TextBlockSpeed.Text = "";
 
-                        Span spanInit = new Span();
+                        Span spanInit = new();
                         string strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
                         spanInit.Inlines.Add(WinUIHelper.GenRunFromString(strPageInit));
                         spanInit.Inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
@@ -202,7 +263,7 @@ namespace FilesHashWUI
 
         private void AppendFileNameToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = new List<Inline>();
+            List<Inline> inlines = new();
             string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
             strAppend += " ";
             strAppend += resultData.Path;
@@ -214,7 +275,7 @@ namespace FilesHashWUI
         private void AppendFileMetaToTextMain(ResultDataNet resultData)
         {
             string strShortSize = WinUIHelper.ConvertSizeToShortSizeStr(resultData.Size);
-            List<Inline> inlines = new List<Inline>();
+            List<Inline> inlines = new();
             string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
             strSize += " ";
             strSize += resultData.Size;
@@ -263,7 +324,7 @@ namespace FilesHashWUI
                 strFileSHA512 = resultData.SHA512.ToLower();
             }
 
-            List<Inline> inlines = new List<Inline>();
+            List<Inline> inlines = new();
             inlines.Add(WinUIHelper.GenRunFromString("MD5: "));
             Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForRichTextMain(strFileMD5);
             m_hyperlinksMain.Add(hyperlinkMD5);
@@ -289,7 +350,7 @@ namespace FilesHashWUI
 
         private void AppendFileErrToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = new List<Inline>();
+            List<Inline> inlines = new();
             string strAppend = resultData.Error;
             inlines.Add(WinUIHelper.GenRunFromString(strAppend));
             inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
@@ -332,6 +393,35 @@ namespace FilesHashWUI
             {
                 AppendInlineToTextMain(WinUIHelper.GenRunFromString("\r\n"));
             }
+        }
+
+        private void MenuItemCopy_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_hyperlinkClicked == null)
+                return;
+
+            string strHash = WinUIHelper.GetTextFromHyperlink(m_hyperlinkClicked);
+            WinUIHelper.CopyStringToClipboard(strHash);
+        }
+
+        private void MenuItemGoogle_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_hyperlinkClicked == null)
+                return;
+
+            string strHash = WinUIHelper.GetTextFromHyperlink(m_hyperlinkClicked);
+            string strUrl = string.Format("https://www.google.com/search?q={0}&ie=utf-8&oe=utf-8", strHash);
+            WinUIHelper.OpenUrl(strUrl);
+        }
+
+        private void MenuItemVirusTotal_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_hyperlinkClicked == null)
+                return;
+
+            string strHash = WinUIHelper.GetTextFromHyperlink(m_hyperlinkClicked);
+            string strUrl = string.Format("https://www.virustotal.com/#/search/{0}", strHash);
+            WinUIHelper.OpenUrl(strUrl);
         }
 
         private void HandleRichTextSelectionScroll(ScrollViewer scrollViewerWrapper)
@@ -473,7 +563,7 @@ namespace FilesHashWUI
             Frame.Navigate(typeof(AboutPage));
         }
 
-        private void UIBridgeDelegate_PreparingCalcHandler()
+        private void UIBridgeHandlers_PreparingCalcHandler()
         {
             DispatcherQueue.TryEnqueue(() =>
             {
@@ -483,7 +573,7 @@ namespace FilesHashWUI
             });
         }
 
-        private void UIBridgeDelegate_RemovePreparingCalcHandler()
+        private void UIBridgeHandlers_RemovePreparingCalcHandler()
         {
             DispatcherQueue.TryEnqueue(() =>
             {
@@ -494,37 +584,37 @@ namespace FilesHashWUI
             });
         }
 
-        private void UIBridgeDelegate_CalcStopHandler()
+        private void UIBridgeHandlers_CalcStopHandler()
         {
             DispatcherQueue.TryEnqueue(CalculateStopped);
         }
 
-        private void UIBridgeDelegate_CalcFinishHandler()
+        private void UIBridgeHandlers_CalcFinishHandler()
         {
             DispatcherQueue.TryEnqueue(CalculateFinished);
         }
 
-        private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
+        private void UIBridgeHandlers_ShowFileNameHandler(ResultDataNet resultData)
         {
             DispatcherQueue.TryEnqueue(() => AppendFileNameToTextMain(resultData));
         }
 
-        private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
+        private void UIBridgeHandlers_ShowFileMetaHandler(ResultDataNet resultData)
         {
             DispatcherQueue.TryEnqueue(() => AppendFileMetaToTextMain(resultData));
         }
 
-        private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
+        private void UIBridgeHandlers_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
         {
             DispatcherQueue.TryEnqueue(() => AppendFileHashToTextMain(resultData, uppercase));
         }
 
-        private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
+        private void UIBridgeHandlers_ShowFileErrHandler(ResultDataNet resultData)
         {
             DispatcherQueue.TryEnqueue(() => AppendFileErrToTextMain(resultData));
         }
 
-        private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
+        private void UIBridgeHandlers_UpdateProgWholeHandler(int value)
         {
             DispatcherQueue.TryEnqueue(() =>
             {
