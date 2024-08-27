@@ -882,9 +882,8 @@ namespace FilesHashWUI
                 double newValue = value;
                 double oldValue = ProgressBarMain.Value;
                 if (oldValue == newValue)
-                {
                     return;
-                }
+
                 ProgressBarMain.Value = newValue;
             });
         }
