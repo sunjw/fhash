@@ -291,6 +291,43 @@ namespace FilesHashWUI
                 m_mainPageStat == MainPageControlStat.MainPageWaitingExit);
         }
 
+        private void StartHashCalc(List<string> filePaths)
+        {
+            if (!IsAbleToCalcFiles())
+            {
+                return;
+            }
+
+            if (m_mainPageStat == MainPageControlStat.MainPageNone)
+            {
+                ClearTextMain();
+            }
+            if (m_mainPageStat == MainPageControlStat.MainPageVerify)
+            {
+                ClearFindResult();
+            }
+
+            m_mainWindow.HashMgmt.AddFiles(filePaths.ToArray());
+
+            UpdateUppercaseStat();
+            m_mainWindow.HashMgmt.SetUppercase(m_uppercaseChecked);
+            ProgressBarMain.Value = 0;
+
+            SetPageControlStat(MainPageControlStat.MainPageCalcIng);
+            m_mainWindow.HashMgmt.StartHashThread();
+        }
+
+        private void StopHashCalc(bool needExit)
+        {
+            if (m_mainPageStat == MainPageControlStat.MainPageCalcIng)
+            {
+                m_mainWindow.HashMgmt.SetStop(true);
+
+                if (needExit)
+                    SetPageControlStat(MainPageControlStat.MainPageWaitingExit);
+            }
+        }
+
         private void CalculateFinished()
         {
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
@@ -460,6 +497,66 @@ namespace FilesHashWUI
             {
                 AppendInlineToTextMain(WinUIHelper.GenRunFromString("\r\n"));
             }
+        }
+
+        private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNetArray)
+        {
+            // Switch m_paragraphMain
+            RichTextMain.Blocks.Clear();
+            m_paragraphMain = m_paragraphFind;
+            RichTextMain.Blocks.Add(m_paragraphMain);
+            m_hyperlinksMain = m_hyperlinksFind;
+
+            // Show result
+            List<Inline> inlines = new();
+            string strFindResult = m_resourceLoaderMain.GetString("FindResultTitle");
+            inlines.Add(WinUIHelper.GenRunFromString(strFindResult));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            string strHashValue = m_resourceLoaderMain.GetString("HashValue");
+            strHashValue += ": ";
+            inlines.Add(WinUIHelper.GenRunFromString(strHashValue));
+            inlines.Add(WinUIHelper.GenRunFromString(strHashToFind));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            string strFindResultBegin = m_resourceLoaderMain.GetString("FindResultBegin");
+            inlines.Add(WinUIHelper.GenRunFromString(strFindResultBegin));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
+
+            if (resultDataNetArray == null || resultDataNetArray.Length == 0)
+            {
+                // No match
+                List<Inline> inlinesResult = new();
+                string strFindNoResult = m_resourceLoaderMain.GetString("FindNoResult");
+                inlinesResult.Add(WinUIHelper.GenRunFromString(strFindNoResult));
+                inlinesResult.Add(WinUIHelper.GenRunFromString("\r\n"));
+                AppendInlinesToTextMain(inlinesResult);
+            }
+            else
+            {
+                // Found some
+                foreach (ResultDataNet resultData in resultDataNetArray)
+                {
+                    AppendFileResultToTextMain(resultData, m_uppercaseChecked);
+                }
+            }
+
+            SetPageControlStat(MainPageControlStat.MainPageVerify);
+        }
+
+        private void ClearFindResult()
+        {
+            // Switch m_paragraphMain
+            RichTextMain.Blocks.Clear();
+            m_paragraphMain = m_paragraphResult;
+            RichTextMain.Blocks.Add(m_paragraphMain);
+            ScrollTextMainToBottom();
+            m_hyperlinksMain = m_hyperlinksResult;
+
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+
+            // Clear find result
+            m_paragraphFind.Inlines.Clear();
+            m_hyperlinksFind.Clear();
         }
 
         private void MenuItemCopy_Click(object sender, RoutedEventArgs e)
