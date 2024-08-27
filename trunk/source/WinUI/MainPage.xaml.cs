@@ -63,13 +63,177 @@ namespace FilesHashWUI
             m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
         }
 
+        private void ScrollTextMainToBottom()
+        {
+            WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
+        }
+
         private Hyperlink GenHyperlinkFromStringForRichTextMain(string strContent)
         {
             return WinUIHelper.GenHyperlinkFromString(strContent, RichTextMainHyperlink_Click);
         }
 
-        private void InitTestRichText()
+        private void AppendInlinesToTextMain(List<Inline> inlines, bool scrollBottom = true)
         {
+            if (inlines != null)
+            {
+                foreach (Inline inline in inlines)
+                {
+                    m_paragraphMain.Inlines.Add(inline);
+                }
+            }
+            if (scrollBottom)
+            {
+                ScrollTextMainToBottom();
+            }
+        }
+
+        private void AppendInlineToTextMain(Inline inline)
+        {
+            List<Inline> inlines = [inline];
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void CalculateStopped()
+        {
+            AppendInlineToTextMain(WinUIHelper.GenRunFromString("\r\n"));
+
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            ProgressBarMain.Value = 0;
+        }
+
+        private void AppendFileNameToTextMain(ResultDataNet resultData)
+        {
+            List<Inline> inlines = new List<Inline>();
+            string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
+            strAppend += " ";
+            strAppend += resultData.Path;
+            inlines.Add(WinUIHelper.GenRunFromString(strAppend));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileMetaToTextMain(ResultDataNet resultData)
+        {
+            string strShortSize = WinUIHelper.ConvertSizeToShortSizeStr(resultData.Size);
+            List<Inline> inlines = new List<Inline>();
+            string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
+            strSize += " ";
+            strSize += resultData.Size;
+            strSize += " ";
+            strSize += m_resourceLoaderMain.GetString("ResultByte");
+            if (!string.IsNullOrEmpty(strShortSize))
+            {
+                strSize += " (";
+                strSize += strShortSize;
+                strSize += ")";
+            }
+            string strModifiedTime = m_resourceLoaderMain.GetString("ResultModifiedTime");
+            strModifiedTime += " ";
+            strModifiedTime += resultData.ModifiedDate;
+            inlines.Add(WinUIHelper.GenRunFromString(strSize));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            inlines.Add(WinUIHelper.GenRunFromString(strModifiedTime));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            if (!string.IsNullOrEmpty(resultData.Version))
+            {
+                string strVersion = m_resourceLoaderMain.GetString("ResultFileVersion");
+                strVersion += " ";
+                strVersion += resultData.Version;
+                inlines.Add(WinUIHelper.GenRunFromString(strVersion));
+                inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            }
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileHashToTextMain(ResultDataNet resultData, bool uppercase)
+        {
+            string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
+
+            if (uppercase)
+            {
+                strFileMD5 = resultData.MD5.ToUpper();
+                strFileSHA1 = resultData.SHA1.ToUpper();
+                strFileSHA256 = resultData.SHA256.ToUpper();
+                strFileSHA512 = resultData.SHA512.ToUpper();
+            }
+            else
+            {
+                strFileMD5 = resultData.MD5.ToLower();
+                strFileSHA1 = resultData.SHA1.ToLower();
+                strFileSHA256 = resultData.SHA256.ToLower();
+                strFileSHA512 = resultData.SHA512.ToLower();
+            }
+
+            List<Inline> inlines = new List<Inline>();
+            inlines.Add(WinUIHelper.GenRunFromString("MD5: "));
+            Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForRichTextMain(strFileMD5);
+            m_hyperlinksMain.Add(hyperlinkMD5);
+            inlines.Add(hyperlinkMD5);
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            inlines.Add(WinUIHelper.GenRunFromString("SHA1: "));
+            Hyperlink hyperlinkSHA1 = GenHyperlinkFromStringForRichTextMain(strFileSHA1);
+            m_hyperlinksMain.Add(hyperlinkSHA1);
+            inlines.Add(hyperlinkSHA1);
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            inlines.Add(WinUIHelper.GenRunFromString("SHA256: "));
+            Hyperlink hyperlinkSHA256 = GenHyperlinkFromStringForRichTextMain(strFileSHA256);
+            m_hyperlinksMain.Add(hyperlinkSHA256);
+            inlines.Add(hyperlinkSHA256);
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            inlines.Add(WinUIHelper.GenRunFromString("SHA512: "));
+            Hyperlink hyperlinkSHA512 = GenHyperlinkFromStringForRichTextMain(strFileSHA512);
+            m_hyperlinksMain.Add(hyperlinkSHA512);
+            inlines.Add(hyperlinkSHA512);
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileErrToTextMain(ResultDataNet resultData)
+        {
+            List<Inline> inlines = new List<Inline>();
+            string strAppend = resultData.Error;
+            inlines.Add(WinUIHelper.GenRunFromString(strAppend));
+            inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
+            AppendInlinesToTextMain(inlines);
+        }
+
+        private void AppendFileResultToTextMain(ResultDataNet resultData, bool uppercase)
+        {
+            if (resultData.EnumState == ResultStateNet.ResultNone)
+            {
+                return;
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll ||
+                resultData.EnumState == ResultStateNet.ResultMeta ||
+                resultData.EnumState == ResultStateNet.ResultError ||
+                resultData.EnumState == ResultStateNet.ResultPath)
+            {
+                AppendFileNameToTextMain(resultData);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll ||
+                resultData.EnumState == ResultStateNet.ResultMeta)
+            {
+                AppendFileMetaToTextMain(resultData);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultAll)
+            {
+                AppendFileHashToTextMain(resultData, uppercase);
+            }
+
+            if (resultData.EnumState == ResultStateNet.ResultError)
+            {
+                AppendFileErrToTextMain(resultData);
+            }
+
+            if (resultData.EnumState != ResultStateNet.ResultAll &&
+                resultData.EnumState != ResultStateNet.ResultError)
+            {
+                AppendInlineToTextMain(WinUIHelper.GenRunFromString("\r\n"));
+            }
         }
 
         private void HandleRichTextSelectionScroll(ScrollViewer scrollViewerWrapper)
@@ -166,8 +330,6 @@ namespace FilesHashWUI
         {
             if (!m_pageInited)
             {
-                InitTestRichText();
-
                 DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
@@ -211,6 +373,89 @@ namespace FilesHashWUI
             ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
             Frame.Navigate(typeof(AboutPage));
+        }
+
+        private void UIBridgeDelegate_PreparingCalcHandler()
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                string strPrepare = m_resourceLoaderMain.GetString("ResultWaitingStart");
+                m_runPrepare = WinUIHelper.GenRunFromString(strPrepare);
+                AppendInlineToTextMain(m_runPrepare);
+            });
+        }
+
+        private void UIBridgeDelegate_RemovePreparingCalcHandler()
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                if (m_runPrepare != null)
+                {
+                    m_runPrepare.Text = "";
+                }
+            });
+        }
+
+        private void UIBridgeDelegate_CalcStopHandler()
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                CalculateStopped();
+            });
+        }
+
+        private void UIBridgeDelegate_CalcFinishHandler()
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                CalculateFinished();
+            });
+        }
+
+        private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                AppendFileNameToTextMain(resultData);
+            });
+        }
+
+        private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                AppendFileMetaToTextMain(resultData);
+            });
+        }
+
+        private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                AppendFileHashToTextMain(resultData, uppercase);
+            });
+        }
+
+        private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                AppendFileErrToTextMain(resultData);
+            });
+        }
+
+        private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                double newValue = value;
+                double oldValue = ProgressBarMain.Value;
+                if (oldValue == newValue)
+                {
+                    return;
+                }
+                ProgressBarMain.Value = newValue;
+            });
         }
     }
 }
