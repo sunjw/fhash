@@ -63,6 +63,12 @@ namespace FilesHashWUI
             m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
         }
 
+        private void HideAboutPage()
+        {
+            if (Frame.CanGoBack)
+                Frame.GoBack();
+        }
+
         private void ScrollTextMainToBottom()
         {
             WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
@@ -92,6 +98,98 @@ namespace FilesHashWUI
         {
             List<Inline> inlines = [inline];
             AppendInlinesToTextMain(inlines);
+        }
+
+        private void ClearTextMain()
+        {
+            m_paragraphMain.Inlines.Clear();
+        }
+
+        private void SetPageControlStat(MainPageControlStat newStat)
+        {
+            switch (newStat)
+            {
+                case MainPageControlStat.MainPageNone:
+                case MainPageControlStat.MainPageCalcFinish:
+                    // MainPageControlStat.MainPageNone
+                    if (newStat == MainPageControlStat.MainPageNone)
+                    {
+                        m_hyperlinksMain.Clear();
+                        m_mainWindow.HashMgmt.Clear();
+
+                        ProgressBarMain.Value = 0;
+                        TextBlockSpeed.Text = "";
+
+                        Span spanInit = new Span();
+                        string strPageInit = m_resourceLoaderMain.GetString("MainPageInitInfo");
+                        spanInit.Inlines.Add(WinUIHelper.GenRunFromString(strPageInit));
+                        spanInit.Inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+                        ClearTextMain();
+                        AppendInlineToTextMain(spanInit);
+                    }
+                    // Passthrough to MainPageControlStat.MainPageCalcFinish
+                    m_calcEndTime = WinUIHelper.GetCurrentMilliSec();
+
+                    ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
+                    ButtonClear.IsEnabled = true;
+                    ButtonVerify.IsEnabled = true;
+                    CheckBoxUppercase.IsEnabled = true;
+                    break;
+                case MainPageControlStat.MainPageCalcIng:
+                    HideAboutPage();
+
+                    m_calcStartTime = WinUIHelper.GetCurrentMilliSec();
+                    m_mainWindow.HashMgmt.SetStop(false);
+
+                    TextBlockSpeed.Text = "";
+                    ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenStop");
+                    ButtonClear.IsEnabled = false;
+                    ButtonVerify.IsEnabled = false;
+                    CheckBoxUppercase.IsEnabled = false;
+                    break;
+                case MainPageControlStat.MainPageVerify:
+                    ButtonVerify.IsEnabled = false;
+                    break;
+            }
+
+            MainPageControlStat oldStat = m_mainPageStat;
+            m_mainPageStat = newStat;
+
+            if (oldStat == MainPageControlStat.MainPageWaitingExit &&
+                m_mainPageStat == MainPageControlStat.MainPageCalcFinish)
+            {
+                // Wait to close
+                DispatcherQueue.TryEnqueue(m_mainWindow.Close);
+            }
+        }
+
+        private void CalculateFinished()
+        {
+            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            ProgressBarMain.Value = m_mainWindow.UIBridgeHandlers.GetProgMax();
+
+            long calcDurationTime = m_calcEndTime - m_calcStartTime;
+            if (calcDurationTime > 10)
+            {
+                // speed is Bytes/ms
+                double calcSpeed = ((double)m_mainWindow.HashMgmt.GetTotalSize()) / calcDurationTime;
+                calcSpeed = calcSpeed * 1000; // Bytes/s
+                ulong ulCalcSpeed = (ulong)calcSpeed;
+                string strSpeed = "";
+                if (ulCalcSpeed > 0)
+                {
+                    strSpeed = WinUIHelper.ConvertSizeToShortSizeStr(ulCalcSpeed, true);
+                    if (!string.IsNullOrEmpty(strSpeed))
+                    {
+                        strSpeed += "/s";
+                    }
+                }
+                TextBlockSpeed.Text = strSpeed;
+            }
+            else
+            {
+                TextBlockSpeed.Text = "";
+            }
         }
 
         private void CalculateStopped()

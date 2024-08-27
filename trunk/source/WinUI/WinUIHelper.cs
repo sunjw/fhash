@@ -133,6 +133,11 @@ namespace SunJWBase
             return strDropFilesPath;
         }
 
+        public static long GetCurrentMilliSec()
+        {
+            return DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        }
+
         public static string ConvertSizeToShortSizeStr(ulong size, bool conv1KSmaller = false)
         {
             string strSize = "";
