@@ -682,6 +682,28 @@ namespace FilesHashWUI
         {
             if (!m_pageInited)
             {
+                // Prepare RichTextMain
+                RichTextMain.TextWrapping = TextWrapping.NoWrap;
+                m_paragraphResult = CreateParagraphForTextMain();
+                m_paragraphFind = CreateParagraphForTextMain();
+                m_paragraphMain = m_paragraphResult;
+                RichTextMain.Blocks.Add(m_paragraphMain);
+                m_hyperlinksMain = m_hyperlinksResult;
+
+                // Prepare controls
+                ButtonOpen.Content = m_resourceLoaderMain.GetString("ButtonOpenOpen");
+                TextBlockSpeed.Text = "";
+
+                object objUppercase = WinUIHelper.LoadLocalSettings(KeyUppercase);
+                bool uppercaseSetting = false;
+                if (objUppercase != null)
+                    uppercaseSetting = (bool)objUppercase;
+                CheckBoxUppercase.IsChecked = uppercaseSetting;
+                UpdateUppercaseStat(false);
+
+                // Init stat
+                SetPageControlStat(MainPageControlStat.MainPageNone);
+
                 DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
