@@ -37,7 +37,7 @@
             <ProgressBar
                 x:Name="ProgressBarMain"
                 Width="Auto"
-                Height="6"
+                Height="4"
                 Margin="0,0,0,0"
                 VerticalAlignment="Top"
                 Value="0" />
