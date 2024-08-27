@@ -749,6 +749,24 @@ namespace FilesHashWUI
             Frame.Navigate(typeof(AboutPage));
         }
 
+        private void CheckBoxUppercase_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateResultUppercase();
+        }
+
+        private void CheckBoxUppercase_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateResultUppercase();
+        }
+
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        {
+            if (m_mainPageStat == MainPageControlStat.MainPageVerify)
+                ClearFindResult();
+            else
+                SetPageControlStat(MainPageControlStat.MainPageNone);
+        }
+
         private void UIBridgeHandlers_PreparingCalcHandler()
         {
             DispatcherQueue.TryEnqueue(() =>
