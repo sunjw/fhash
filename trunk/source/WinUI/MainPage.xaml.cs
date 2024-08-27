@@ -496,50 +496,32 @@ namespace FilesHashWUI
 
         private void UIBridgeDelegate_CalcStopHandler()
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                CalculateStopped();
-            });
+            DispatcherQueue.TryEnqueue(CalculateStopped);
         }
 
         private void UIBridgeDelegate_CalcFinishHandler()
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                CalculateFinished();
-            });
+            DispatcherQueue.TryEnqueue(CalculateFinished);
         }
 
         private void UIBridgeDelegate_ShowFileNameHandler(ResultDataNet resultData)
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                AppendFileNameToTextMain(resultData);
-            });
+            DispatcherQueue.TryEnqueue(() => AppendFileNameToTextMain(resultData));
         }
 
         private void UIBridgeDelegate_ShowFileMetaHandler(ResultDataNet resultData)
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                AppendFileMetaToTextMain(resultData);
-            });
+            DispatcherQueue.TryEnqueue(() => AppendFileMetaToTextMain(resultData));
         }
 
         private void UIBridgeDelegate_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                AppendFileHashToTextMain(resultData, uppercase);
-            });
+            DispatcherQueue.TryEnqueue(() => AppendFileHashToTextMain(resultData, uppercase));
         }
 
         private void UIBridgeDelegate_ShowFileErrHandler(ResultDataNet resultData)
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                AppendFileErrToTextMain(resultData);
-            });
+            DispatcherQueue.TryEnqueue(() => AppendFileErrToTextMain(resultData));
         }
 
         private void UIBridgeDelegate_UpdateProgWholeHandler(int value)
