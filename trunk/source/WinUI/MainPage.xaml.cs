@@ -208,6 +208,8 @@ namespace FilesHashWUI
                         m_mainWindow.HashMgmt.Clear();
 
                         ProgressBarMain.Value = 0;
+                        m_mainWindow.SetTaskbarProgress(0);
+
                         TextBlockSpeed.Text = "";
 
                         Span spanInit = new();
@@ -329,7 +331,9 @@ namespace FilesHashWUI
 
             UpdateUppercaseStat();
             m_mainWindow.HashMgmt.SetUppercase(m_uppercaseChecked);
+
             ProgressBarMain.Value = 0;
+            m_mainWindow.SetTaskbarProgress(1);
 
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
             m_mainWindow.HashMgmt.StartHashThread();
@@ -349,7 +353,10 @@ namespace FilesHashWUI
         private void CalculateFinished()
         {
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
-            ProgressBarMain.Value = m_mainWindow.UIBridgeHandlers.GetProgMax();
+
+            int progMax = m_mainWindow.UIBridgeHandlers.GetProgMax();
+            ProgressBarMain.Value = progMax;
+            m_mainWindow.SetTaskbarProgress((ulong)progMax);
 
             long calcDurationTime = m_calcEndTime - m_calcStartTime;
             if (calcDurationTime > 10)
@@ -381,6 +388,7 @@ namespace FilesHashWUI
 
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
             ProgressBarMain.Value = 0;
+            m_mainWindow.SetTaskbarProgress(0);
         }
 
         private void AppendFileNameToTextMain(ResultDataNet resultData)
@@ -904,6 +912,9 @@ namespace FilesHashWUI
                     return;
 
                 ProgressBarMain.Value = newValue;
+                if (value == 0)
+                    value = 1;
+                m_mainWindow.SetTaskbarProgress((ulong)value);
             });
         }
     }
