@@ -36,9 +36,11 @@ namespace FilesHashWUI
         private const string KeyUppercase = "Uppercase";
 
         private MainWindow m_mainWindow = null;
-
         private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
+
         private bool m_pageInited = false;
+        private bool m_pageLoaded = false;
+        private bool m_pendingScrollToBottom = false;
 
         private ContentDialog m_dialogFind = null;
         private TextBox m_textBoxFindHash = null;
@@ -140,7 +142,10 @@ namespace FilesHashWUI
 
         private void ScrollTextMainToBottom()
         {
-            WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
+            if (m_pageLoaded)
+                WinUIHelper.ScrollViewerToBottom(ScrollViewerMain);
+            else
+                m_pendingScrollToBottom = true;
         }
 
         private Paragraph CreateParagraphForTextMain()
@@ -722,6 +727,14 @@ namespace FilesHashWUI
                 m_pageInited = true;
             }
 
+            m_pageLoaded = true;
+
+            if (m_pendingScrollToBottom)
+            {
+                m_pendingScrollToBottom = false;
+                ScrollTextMainToBottom();
+            }
+
             // Fix for color changed.
             DispatcherQueueTimer timerScrollBar = DispatcherQueue.CreateTimer();
             timerScrollBar.Interval = TimeSpan.FromMilliseconds(300);
@@ -736,6 +749,7 @@ namespace FilesHashWUI
 
         private void GridMain_Unloaded(object sender, RoutedEventArgs e)
         {
+            m_pageLoaded = false;
         }
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
