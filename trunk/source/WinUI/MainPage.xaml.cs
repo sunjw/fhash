@@ -585,6 +585,16 @@ namespace FilesHashWUI
             m_hyperlinksFind.Clear();
         }
 
+        private void ShowRichTextMainMenuFlyout()
+        {
+            double scale = m_mainWindow.Scale;
+            int menuOffsetX = 4;
+            int menuOffsetY = 2;
+            System.Drawing.Point sdPointCursor = m_mainWindow.GetCursorRelativePoint();
+            Windows.Foundation.Point wfPointCuror = new((sdPointCursor.X / scale) + menuOffsetX, (sdPointCursor.Y / scale) + menuOffsetY);
+            m_menuFlyoutTextMain?.ShowAt(null, wfPointCuror);
+        }
+
         private void MenuItemCopy_Click(object sender, RoutedEventArgs e)
         {
             if (m_hyperlinkClicked == null)
@@ -767,7 +777,8 @@ namespace FilesHashWUI
 
         private void RichTextMainHyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
         {
-
+            m_hyperlinkClicked = sender;
+            ShowRichTextMainMenuFlyout();
         }
 
         private void RichTextMain_SelectionChanged(object sender, RoutedEventArgs e)
