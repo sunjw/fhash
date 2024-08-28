@@ -94,7 +94,7 @@ namespace FilesHashWUI
 
         private bool IsPageCurrent(Type pageType)
         {
-            return (m_pageCurrent != null && m_pageCurrent.GetType() == pageType);
+            return m_pageCurrent?.GetType() == pageType;
         }
 
         public System.Drawing.Point GetCursorRelativePoint()
@@ -187,10 +187,7 @@ namespace FilesHashWUI
             SizeInt32 windowSize = new(Win32Helper.GetScaledPixel(AppPrefWidth, Scale), Win32Helper.GetScaledPixel(AppPrefHeight, Scale));
 
             object objWinMaximize = WinUIHelper.LoadLocalSettings(KeyWinMaximize);
-            if (objWinMaximize != null)
-            {
-                windowMaximize = (bool)objWinMaximize;
-            }
+            windowMaximize = (bool)(objWinMaximize ?? false);
             object objWinPosX = WinUIHelper.LoadLocalSettings(KeyWinPosX);
             object objWinPosY = WinUIHelper.LoadLocalSettings(KeyWinPosY);
             if (objWinPosX != null && objWinPosY != null)
@@ -248,11 +245,7 @@ namespace FilesHashWUI
         public void OnRedirected(AppActivationArguments args)
         {
             string strAppActiveArgs = WinUIHelper.GetLaunchActivatedEventArgs(args);
-
-            if (RedirectedEventHandler != null)
-            {
-                DispatcherQueue.TryEnqueue(() => RedirectedEventHandler(strAppActiveArgs));
-            }
+            DispatcherQueue.TryEnqueue(() => RedirectedEventHandler?.Invoke(strAppActiveArgs));
         }
 
         private void FrameMain_Loaded(object sender, RoutedEventArgs e)

@@ -34,10 +34,7 @@ namespace FilesHashWUI
 
         public void OnRedirected(AppActivationArguments args)
         {
-            if (m_mainWindow != null)
-            {
-                m_mainWindow.DispatcherQueue.TryEnqueue(() => m_mainWindow.OnRedirected(args));
-            }
+            m_mainWindow?.DispatcherQueue.TryEnqueue(() => m_mainWindow?.OnRedirected(args));
         }
     }
 }

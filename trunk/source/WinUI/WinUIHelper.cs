@@ -26,7 +26,7 @@ namespace SunJWBase
         public static string GetLaunchActivatedEventArgs(AppActivationArguments appActivationArgs)
         {
             string launchArgs = null;
-            if (appActivationArgs != null && appActivationArgs.Kind == ExtendedActivationKind.Launch)
+            if (appActivationArgs?.Kind == ExtendedActivationKind.Launch)
             {
                 ILaunchActivatedEventArgs launchActivatedEventArgs = appActivationArgs.Data as ILaunchActivatedEventArgs;
                 launchArgs = launchActivatedEventArgs?.Arguments;

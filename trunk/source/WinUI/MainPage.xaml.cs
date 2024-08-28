@@ -731,10 +731,7 @@ namespace FilesHashWUI
                 TextBlockSpeed.Text = "";
 
                 object objUppercase = WinUIHelper.LoadLocalSettings(KeyUppercase);
-                bool uppercaseSetting = false;
-                if (objUppercase != null)
-                    uppercaseSetting = (bool)objUppercase;
-                CheckBoxUppercase.IsChecked = uppercaseSetting;
+                CheckBoxUppercase.IsChecked = (bool)(objUppercase ?? false);
                 UpdateUppercaseStat(false);
 
                 // Init stat
