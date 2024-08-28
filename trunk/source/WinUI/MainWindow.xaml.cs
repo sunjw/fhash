@@ -130,8 +130,7 @@ namespace FilesHashWUI
 
         private void UpdateTitleBarColor()
         {
-            AppWindowTitleBar curTitleBar = AppWindow.TitleBar;
-            if (curTitleBar == null)
+            if (AppWindow.TitleBar == null)
                 return;
 
             ElementTheme curElementTheme = FrameMain.ActualTheme;
