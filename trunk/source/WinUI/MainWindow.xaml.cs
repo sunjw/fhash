@@ -67,7 +67,7 @@ namespace FilesHashWUI
         public IsCalculatingHandler IsCalculating = null;
 
         public event RedirectedHandler RedirectedEventHandler = null;
-        public event OnCloseStopCalcHandler OnCloseStopCalc = null;
+        public event OnCloseStopCalcHandler OnCloseStopCalcEventHandler = null;
 
         public MainWindow()
         {
@@ -275,7 +275,7 @@ namespace FilesHashWUI
             if (IsCalculating?.Invoke() ?? false)
             {
                 args.Handled = true;
-                OnCloseStopCalc?.Invoke();
+                OnCloseStopCalcEventHandler?.Invoke();
                 return;
             }
 

@@ -80,7 +80,7 @@ namespace FilesHashWUI
             m_mainWindow.IsCalculating = IsCalculating;
 
             m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
-            m_mainWindow.OnCloseStopCalc += () => StopHashCalc(true);
+            m_mainWindow.OnCloseStopCalcEventHandler += () => StopHashCalc(true);
 
             InitLayout();
         }
