@@ -29,9 +29,9 @@ namespace FilesHashWUI
     public sealed partial class MainWindow : Window
     {
         public delegate void RedirectedHandler(string strAppActiveArgs);
-        public delegate bool IsAbleToCalcFilesHandler();
+        public delegate void OnCloseStopCalcHandler();
+        public delegate bool IsAbleToCalcHandler();
         public delegate bool IsCalculatingHandler();
-        public delegate void StopHashCalcHandler();
 
         private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
@@ -63,11 +63,11 @@ namespace FilesHashWUI
 
         public HashMgmtClr HashMgmt { get; private set; } = null;
         public UIBridgeDelegates UIBridgeHandlers { get; private set; } = new();
-        public IsAbleToCalcFilesHandler IsAbleToCalcFiles = null;
+        public IsAbleToCalcHandler IsAbleToCalc = null;
         public IsCalculatingHandler IsCalculating = null;
-        public StopHashCalcHandler StopHashCalc = null;
 
         public event RedirectedHandler RedirectedEventHandler = null;
+        public event OnCloseStopCalcHandler OnCloseStopCalc = null;
 
         public MainWindow()
         {
@@ -282,7 +282,7 @@ namespace FilesHashWUI
             if (IsCalculating?.Invoke() ?? false)
             {
                 args.Handled = true;
-                StopHashCalc?.Invoke();
+                OnCloseStopCalc?.Invoke();
                 return;
             }
 

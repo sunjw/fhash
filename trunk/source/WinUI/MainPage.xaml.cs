@@ -76,11 +76,11 @@ namespace FilesHashWUI
             m_mainWindow.UIBridgeHandlers.ShowFileErrHandler += UIBridgeHandlers_ShowFileErrHandler;
             m_mainWindow.UIBridgeHandlers.UpdateProgWholeHandler += UIBridgeHandlers_UpdateProgWholeHandler;
 
-            m_mainWindow.IsAbleToCalcFiles = IsAbleToCalcFiles;
+            m_mainWindow.IsAbleToCalc = IsAbleToCalcFiles;
             m_mainWindow.IsCalculating = IsCalculating;
-            m_mainWindow.StopHashCalc = () => StopHashCalc(true);
 
             m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
+            m_mainWindow.OnCloseStopCalc += () => StopHashCalc(true);
 
             InitLayout();
         }
