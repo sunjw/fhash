@@ -38,7 +38,7 @@ namespace FilesHashWUI
 
         private const int AppPrefWidth = 680;
         private const int AppPrefHeight = 460;
-        private const int AppMinWidth = 520;
+        private const int AppMinWidth = 540;
         private const int AppMinHeight = 440;
 
         private const nuint SubclassId = 18;
