@@ -16,7 +16,8 @@
         x:Name="GridRoot"
         AllowDrop="True"
         Background="Transparent"
-        DragOver="GridRoot_DragOver">
+        DragOver="GridRoot_DragOver"
+        Drop="GridRoot_Drop">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />

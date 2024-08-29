@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -29,7 +30,9 @@ namespace FilesHashWUI
     public sealed partial class MainWindow : Window
     {
         public delegate void RedirectedHandler(string strAppActiveArgs);
-        public delegate void OnCloseStopCalcHandler();
+        public delegate void OnCloseStopHandler();
+        public delegate void OnDropFilesHandler(List<string> strDropFilesPath);
+
         public delegate bool IsAbleToCalcHandler();
         public delegate bool IsCalculatingHandler();
 
@@ -67,7 +70,8 @@ namespace FilesHashWUI
         public IsCalculatingHandler IsCalculating = null;
 
         public event RedirectedHandler RedirectedEventHandler = null;
-        public event OnCloseStopCalcHandler OnCloseStopCalcEventHandler = null;
+        public event OnCloseStopHandler OnCloseStopEventHandler = null;
+        public event OnDropFilesHandler OnDropFilesEventHandler = null;
 
         public MainWindow()
         {
@@ -275,7 +279,7 @@ namespace FilesHashWUI
             if (IsCalculating?.Invoke() ?? false)
             {
                 args.Handled = true;
-                OnCloseStopCalcEventHandler?.Invoke();
+                OnCloseStopEventHandler?.Invoke();
                 return;
             }
 
@@ -288,6 +292,12 @@ namespace FilesHashWUI
                 e.AcceptedOperation = DataPackageOperation.Copy;
             else
                 e.AcceptedOperation = DataPackageOperation.None;
+        }
+
+        private async void GridRoot_Drop(object sender, DragEventArgs e)
+        {
+            List<string> strDropFilesPath = await WinUIHelper.GetDropFilesPath(e);
+            DispatcherQueue.TryEnqueue(() => OnDropFilesEventHandler?.Invoke(strDropFilesPath));
         }
     }
 }
