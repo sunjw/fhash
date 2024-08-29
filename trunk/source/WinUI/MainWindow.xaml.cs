@@ -284,7 +284,10 @@ namespace FilesHashWUI
 
         private void GridRoot_DragOver(object sender, DragEventArgs e)
         {
-            e.AcceptedOperation = DataPackageOperation.Copy;
+            if (IsAbleToCalc?.Invoke() ?? false)
+                e.AcceptedOperation = DataPackageOperation.Copy;
+            else
+                e.AcceptedOperation = DataPackageOperation.None;
         }
     }
 }
