@@ -34,6 +34,7 @@ namespace FilesHashWUI
         };
 
         private const string KeyUppercase = "Uppercase";
+        private const string ArgPaths = "-paths";
 
         private MainWindow m_mainWindow = null;
         private ResourceLoader m_resourceLoaderMain = WinUIHelper.GetCurrentResourceLoader();
@@ -79,7 +80,7 @@ namespace FilesHashWUI
             m_mainWindow.IsAbleToCalc = IsAbleToCalcFiles;
             m_mainWindow.IsCalculating = IsCalculating;
 
-            m_mainWindow.RedirectedEventHandler += MainWindow_RedirectedEventHandler;
+            m_mainWindow.RedirectedEventHandler += OnRedirected;
             m_mainWindow.OnCloseStopEventHandler += () => StopHashCalc(true);
             m_mainWindow.OnDropFilesEventHandler += StartHashCalc;
 
@@ -692,27 +693,25 @@ namespace FilesHashWUI
             //TextBlockDebug.Text = strDebug;
         }
 
-        private void MainWindow_RedirectedEventHandler(string strAppActiveArgs)
-        {
-            if (Frame.CanGoBack)
-                Frame.GoBack();
-
-            OnRedirected(strAppActiveArgs);
-        }
-
         private void OnRedirected(string someArgs)
         {
             if (string.IsNullOrEmpty(someArgs))
                 return;
 
             string[] splitArgs = CommandLineStringSplitter.Instance.Split(someArgs).ToArray();
-
-            List<Inline> inlinesTest = new();
-            foreach (string argPart in splitArgs)
+            List<string> strFilePaths = new();
+            bool foundPaths = false;
+            for (int i = 0; i < splitArgs.Length; i++)
             {
-                inlinesTest.Add(WinUIHelper.GenRunFromString(argPart));
-                inlinesTest.Add(WinUIHelper.GenRunFromString("\r\n"));
+                if (foundPaths)
+                    strFilePaths.Add(splitArgs[i]);
+
+                if (string.Equals(splitArgs[i], ArgPaths, StringComparison.OrdinalIgnoreCase))
+                    foundPaths = true;
             }
+
+            if (strFilePaths.Count > 0)
+                StartHashCalc(strFilePaths);
         }
 
         private void GridMain_Loaded(object sender, RoutedEventArgs e)
@@ -738,6 +737,8 @@ namespace FilesHashWUI
                 // Init stat
                 SetPageControlStat(MainPageControlStat.MainPageNone);
 
+
+                // Handle commandline args
                 DispatcherQueue.TryEnqueue(() =>
                 {
                     AppActivationArguments appActiveArgs = WinUIHelper.GetCurrentActivatedEventArgs();
