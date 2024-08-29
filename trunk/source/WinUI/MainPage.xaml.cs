@@ -622,7 +622,7 @@ namespace FilesHashWUI
                 return;
 
             string strHash = WinUIHelper.GetTextFromHyperlink(m_hyperlinkClicked);
-            string strUrl = string.Format("https://www.virustotal.com/#/search/{0}", strHash);
+            string strUrl = string.Format("https://www.virustotal.com/gui/search/{0}", strHash);
             WinUIHelper.OpenUrl(strUrl);
         }
 
