@@ -167,7 +167,7 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName)Dev.dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
@@ -196,7 +196,7 @@
       <ModuleDefinitionFile>Dll.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName).dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
@@ -226,7 +226,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName)Dev.dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
@@ -254,7 +254,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName)Dev.dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
@@ -286,7 +286,7 @@
       <ModuleDefinitionFile>Dll.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName).dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
@@ -316,7 +316,7 @@
       <ModuleDefinitionFile>Dll.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <!-- <Command>copy /y "$(TargetPath)" "$(SolutionDir)source\WinUWP\"</Command> -->
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)fHashWUIWap\ShellExt\$(ProjectName).dll"</Command>
     </PostBuildEvent>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)fHashWUIWap\;</AdditionalIncludeDirectories>
