@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "fHashWUIWap", "fHashWUIWap\fHashWUIWap.wapproj", "{4DBFA2F2-D05A-456E-A5CF-879C07218CE7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB630AD9-1305-416D-BFF3-50B5C6647291} = {FB630AD9-1305-416D-BFF3-50B5C6647291}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fHashWUI", "source\WinUI\fHashWUI.csproj", "{1C15F972-3CD8-48F1-82EC-5B14D9E9F68F}"
 EndProject
