@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dll.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplorerCommandVerb.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RegisterExtension.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AppxShellExtStringsBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AppxShellExtStringsZHCN.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\Common\strhelper.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp">
+      <Filter>OsUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStrings.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Dll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RegisterExtension.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShellHelpers.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AppxShellExtStringsBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AppxShellExtStringsZHCN.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\fHashWUIWap\version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\Common\strhelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h">
+      <Filter>OsUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStrings.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\WindowsStringsInternal.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{e4c30e31-f68d-43fa-8e95-5e329f762082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{f272d19f-8624-4dad-aa93-5d2c72560f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{fb39b3af-d1c3-4160-9972-050e08b237a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{7cfaf0bc-2e7e-4621-8f69-565465bdfc78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OsUtils">
+      <UniqueIdentifier>{0349beb9-5dc9-4e32-8dd9-aa443f11d762}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="fHashWUIShellExt.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dll.def">
+      <Filter>头文件</Filter>
+    </None>
+  </ItemGroup>
+</Project>
