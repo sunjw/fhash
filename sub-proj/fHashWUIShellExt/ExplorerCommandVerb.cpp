@@ -24,11 +24,12 @@
 
 static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fNext";
 static WCHAR const c_szProgID[] = L"*";
-static WCHAR const c_szVerbName[] = L"fHashWUIShellExt";
 #if defined (_DEBUG)
+static WCHAR const c_szVerbName[] = L"fHashWUIShellExtDev";
 static WCHAR const c_szExecPath[] = L"fHashWUIDev.exe";
 #else
-static WCHAR const c_szExecPath[] = L"fHashWUI.exe";
+static WCHAR const c_szVerbName[] = L"fHashWUIShellExt";
+static WCHAR const c_szExecPath[] = L"fHashWUIDev.exe";
 #endif
 
 class CExplorerCommandVerb : public IExplorerCommand,

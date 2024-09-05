@@ -16,7 +16,7 @@ void DllRelease();
 
 // use UUDIGEN.EXE to generate unique CLSID values for your objects
 #if defined (_DEBUG)
-class __declspec(uuid("E0154D1E-46DE-4B76-A468-2664F97D1B58")) CExplorerCommandVerb;
+class __declspec(uuid("B34F7CE8-D206-4C32-AE59-A7E3581D0C91")) CExplorerCommandVerb;
 #else
 class __declspec(uuid("16FC91D0-EEF9-4BA6-9052-C0F9264D40AC")) CExplorerCommandVerb;
 #endif

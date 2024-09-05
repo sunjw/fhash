@@ -2,6 +2,9 @@
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
@@ -59,6 +62,22 @@
             <uap5:ExecutionAlias Alias="fHashWUIDev.exe"/>
           </uap5:AppExecutionAlias>
         </uap5:Extension>
+
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="*">
+              <desktop5:Verb Id="fHashWUIShellExtDev" Clsid="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="fHashWUIShellExtDev">
+              <com:Class Id="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" Path="ShellExtDev\fHashWUIShellExt.dll" ThreadingModel="STA"/>
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
 
       </Extensions>
 
