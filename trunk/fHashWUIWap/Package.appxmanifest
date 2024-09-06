@@ -5,7 +5,6 @@
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
   xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
   xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
@@ -15,8 +14,6 @@
     Name="3089SunJunwen.fNext"
     Publisher="CN=D9E78D3B-78DB-4079-8C66-F819B4C1DB61"
     Version="3.9.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="c3e724da-700b-4f04-8362-a9cf11631bfd" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>fNext</DisplayName>
@@ -59,22 +56,22 @@
 
         <uap5:Extension Category="windows.appExecutionAlias">
           <uap5:AppExecutionAlias>
-            <uap5:ExecutionAlias Alias="fHashWUIDev.exe"/>
+            <uap5:ExecutionAlias Alias="fHashWUI.exe"/>
           </uap5:AppExecutionAlias>
         </uap5:Extension>
 
         <desktop4:Extension Category="windows.fileExplorerContextMenus">
           <desktop4:FileExplorerContextMenus>
             <desktop5:ItemType Type="*">
-              <desktop5:Verb Id="fHashWUIShellExtDev" Clsid="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" />
+              <desktop5:Verb Id="fHashWUIShellExt" Clsid="16FC91D0-EEF9-4BA6-9052-C0F9264D40AC" />
             </desktop5:ItemType>
           </desktop4:FileExplorerContextMenus>
         </desktop4:Extension>
 
         <com:Extension Category="windows.comServer">
           <com:ComServer>
-            <com:SurrogateServer DisplayName="fHashWUIShellExtDev">
-              <com:Class Id="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" Path="ShellExtDev\fHashWUIShellExt.dll" ThreadingModel="STA"/>
+            <com:SurrogateServer DisplayName="fHashWUIShellExt">
+              <com:Class Id="16FC91D0-EEF9-4BA6-9052-C0F9264D40AC" Path="ShellExt\fHashWUIShellExt.dll" ThreadingModel="STA"/>
             </com:SurrogateServer>
           </com:ComServer>
         </com:Extension>

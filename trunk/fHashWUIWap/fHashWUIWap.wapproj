@@ -45,7 +45,10 @@
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="Package-DEV.appxmanifest" Condition="'$(Configuration)'=='Debug'">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <AppxManifest Include="Package.appxmanifest" Condition="'$(Configuration)'!='Debug'">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
@@ -103,7 +106,10 @@
     <Content Include="Images\Wide310x150Logo.scale-150.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
-    <Content Include="ShellExtDev\fHashWUIShellExt.dll">
+    <Content Include="ShellExtDev\fHashWUIShellExt.dll" Condition="'$(Configuration)'=='Debug'">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShellExt\fHashWUIShellExt.dll" Condition="'$(Configuration)'!='Debug'">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Package.StoreAssociation.xml" />

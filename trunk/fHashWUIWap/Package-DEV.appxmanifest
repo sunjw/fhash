@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <Identity
+    Name="3089SunJunwen.fNextDev"
+    Publisher="CN=D9E78D3B-78DB-4079-8C66-F819B4C1DB61"
+    Version="3.9.0.0" />
+
+  <Properties>
+    <DisplayName>fNext</DisplayName>
+    <PublisherDisplayName>Sun Junwen</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.18362.0" MaxVersionTested="10.0.22000.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.18362.0" MaxVersionTested="10.0.22000.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-US"/>
+    <Resource Language="zh-CN"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+
+      <uap:VisualElements
+        DisplayName="fNext"
+        Description="fNext"
+        BackgroundColor="transparent"
+        Square150x150Logo="Images\Square150x150Logo.png"
+        Square44x44Logo="Images\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
+        <uap:SplashScreen Image="Images\SplashScreen.png" />
+      </uap:VisualElements>
+
+      <Extensions>
+
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="fHashWUIDev.exe"/>
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="*">
+              <desktop5:Verb Id="fHashWUIShellExtDev" Clsid="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="fHashWUIShellExtDev">
+              <com:Class Id="B34F7CE8-D206-4C32-AE59-A7E3581D0C91" Path="ShellExtDev\fHashWUIShellExt.dll" ThreadingModel="STA"/>
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+
+      </Extensions>
+
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer"/>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="broadFileSystemAccess" />
+    <rescap:Capability Name="confirmAppClose"/>
+  </Capabilities>
+</Package>

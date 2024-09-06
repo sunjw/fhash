@@ -29,7 +29,7 @@ static WCHAR const c_szVerbName[] = L"fHashWUIShellExtDev";
 static WCHAR const c_szExecPath[] = L"fHashWUIDev.exe";
 #else
 static WCHAR const c_szVerbName[] = L"fHashWUIShellExt";
-static WCHAR const c_szExecPath[] = L"fHashWUIDev.exe";
+static WCHAR const c_szExecPath[] = L"fHashWUI.exe";
 #endif
 
 class CExplorerCommandVerb : public IExplorerCommand,
