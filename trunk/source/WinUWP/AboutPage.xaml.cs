@@ -55,6 +55,8 @@ namespace FilesHashUwp
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strAboutInfoTitle));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
             TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(strVersion));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));
+            TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString("UWP"));
             if (!string.IsNullOrEmpty(strArch))
             {
                 TextBlockAbout.Inlines.Add(UwpHelper.GenRunFromString(" "));

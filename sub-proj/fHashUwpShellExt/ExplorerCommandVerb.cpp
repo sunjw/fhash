@@ -22,7 +22,7 @@
 #include "UwpShellExtStringsBase.h"
 #include "UwpShellExtStringsZHCN.h"
 
-static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash";
+static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash UWP";
 static WCHAR const c_szProgID[] = L"*";
 static WCHAR const c_szVerbName[] = L"fHashUwpShellExt";
 #if defined (_DEBUG)

@@ -130,7 +130,7 @@
     <value>Drag files here or click open to start calculate.</value>
   </data>
   <data name="TitleAppName" xml:space="preserve">
-    <value>fHash</value>
+    <value>fHash UWP</value>
   </data>
   <data name="ButtonOpenStop" xml:space="preserve">
     <value>Stop</value>
@@ -208,6 +208,6 @@
     <value>Prepare to start calculation.</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About fHash</value>
+    <value>About fHash UWP</value>
   </data>
 </root>

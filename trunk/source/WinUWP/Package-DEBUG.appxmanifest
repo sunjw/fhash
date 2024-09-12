@@ -14,7 +14,7 @@
   <mp:PhoneIdentity PhoneProductId="fb3d725d-7c34-470c-8f76-9c45d1803df7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>fHash Dev</DisplayName>
+    <DisplayName>fHash UWP Dev</DisplayName>
     <PublisherDisplayName>Sun Junwen</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
