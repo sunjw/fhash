@@ -72,7 +72,7 @@ BEGIN
             VALUE "FileDescription", "fHashWUIShellExt"
             VALUE "FileVersion", STR_VERSION_WUI
             VALUE "InternalName", "fHashWUIShellExt.dll"
-            VALUE "LegalCopyright", "Copyright (C) SUN Junwen 2022-"
+            VALUE "LegalCopyright", "Copyright (C) SUN Junwen 2024-"
             VALUE "OriginalFilename", "fHashWUIShellExt.dll"
             VALUE "ProductName", "fHashWUIShellExt"
             VALUE "ProductVersion", STR_VERSION_WUI
