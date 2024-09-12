@@ -118,6 +118,8 @@
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
     <IncludePath>$(IncludePath)</IncludePath>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -127,6 +129,8 @@
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
     <IncludePath>$(IncludePath)</IncludePath>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -136,6 +140,8 @@
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
     <IncludePath>$(IncludePath)</IncludePath>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
@@ -145,6 +151,8 @@
     <CodeAnalysisRules />
     <CodeAnalysisRuleAssemblies />
     <IncludePath>$(IncludePath)</IncludePath>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
