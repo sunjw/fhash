@@ -15,9 +15,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define GetNSStringFromResByKey(key) MacUtils::GetNSStringFromRes(@"" #key "")
-#define GetStringFromResByKey(key) MacUtils::GetStringFromRes(@"" #key "")
-
 namespace MacUtils {
 
     /**
@@ -52,36 +49,6 @@ namespace MacUtils {
     }
 
     /**
-     * Get system version.
-     */
-    NSString *GetSystemVersion();
-
-    /**
-     * Get system major version.
-     */
-    NSInteger GetSystemMajorVersion();
-
-    /**
-     * Get system minor version.
-     */
-    NSInteger GetSystemMinorVersion();
-
-    /**
-     * System version is below sepecific version.
-     */
-    bool IsSystemEarlierThan(int majorVersion, int minorVersion);
-
-    /**
-     * System version is equal to sepecific version.
-     */
-    bool IsSystemEqual(int majorVersion, int minorVersion);
-
-    /**
-     * Get system preferred languange full-name.
-     */
-    NSString *GetSystemPreferredLanguage();
-
-    /**
      * Convert NSString to an UTF-8 std::string.
      */
     std::string ConvertNSStringToUTF8String(const NSString *nsstr);
@@ -90,26 +57,6 @@ namespace MacUtils {
      * Convert an UTF-8 std::string to NSString.
      */
     NSString *ConvertUTF8StringToNSString(const std::string& stdstrUtf8);
-
-    /**
-     * Get specific named string as std::string.
-     */
-    std::string GetStringFromRes(NSString *nsstrKey);
-
-    /**
-     * Get specific named string as NSString.
-     */
-    NSString *GetNSStringFromRes(NSString *nsstrKey);
-
-    /**
-     * Convert NSString to plain NSAttributedString.
-     */
-    NSAttributedString *ConvertNSStringToNSAttributedString(NSString *str);
-
-    /**
-     * Append NSString to NSMutableAttributedString.
-     */
-    void AppendNSStringToNSMutableAttributedString(NSMutableAttributedString *base, NSString *str);
 
 }
 
