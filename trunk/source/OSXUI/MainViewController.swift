@@ -726,7 +726,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc func menuSearchVirusTotal() {
-        let nstrUrl = "https://www.virustotal.com/#/search/\(selectedLink)"
+        let nstrUrl = "https://www.virustotal.com/gui/search/\(selectedLink)"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
     }
