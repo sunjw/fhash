@@ -27,7 +27,7 @@ private class ESSProgressBarAnimation: NSAnimation {
         super.init(coder: aDecoder)
     }
 
-    init(progressBar ind: ESSProgressIndicator?, newDoubleValue val: Double) {
+    @MainActor init(progressBar ind: ESSProgressIndicator?, newDoubleValue val: Double) {
         super.init(duration: 0.3, animationCurve: .linear)
         progInd = ind
         initValue = progInd?.doubleValue ?? 0.0
@@ -49,7 +49,7 @@ private class ESSProgressBarAnimation: NSAnimation {
 }
 
 @objc(ESSProgressIndicator) class ESSProgressIndicator: NSProgressIndicator {
-    private var sAnim: ESSProgressBarAnimation?
+    @MainActor private var sAnim: ESSProgressBarAnimation?
 
     var toValue:Double = 0.0
     var animateDisabled = false
@@ -78,5 +78,9 @@ private class ESSProgressBarAnimation: NSAnimation {
             progressBar: self,
             newDoubleValue: toValue)
         self.sAnim?.start()
+    }
+
+    func newValue(newDoubleValue val: Double) {
+
     }
 }
