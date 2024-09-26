@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@NSApplicationMain
+@main
 @objc(fHashMacAppDelegate) class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
     weak var mainViewController: MainViewController?
 
@@ -42,7 +42,7 @@ import Cocoa
         sender.reply(toOpenOrPrint: .success)
     }
 
-    @objc func handleFinderContextOpen(_ pboard: NSPasteboard,
+    @MainActor @objc func handleFinderContextOpen(_ pboard: NSPasteboard,
                                        userData: String,
                                        error: NSErrorPointer){
         if let fileNames = pboard.readObjects(forClasses: [NSURL.self], options: [:]) {
