@@ -38,6 +38,9 @@ cd "$src_folder"
 # Clean
 rm -f Applications
 
+# Tar
+tar -cJvf fHash.app.tar.xz fHash.app
+
 cd "$cur_dir"
 
 echo "Done"
