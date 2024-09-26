@@ -48,17 +48,17 @@ private class ESSProgressBarAnimation: NSAnimation {
     }
 }
 
-private var sAnim: ESSProgressBarAnimation?
-
 @objc(ESSProgressIndicator) class ESSProgressIndicator: NSProgressIndicator {
+    private var sAnim: ESSProgressBarAnimation?
+
     var toValue:Double = 0.0
     var animateDisabled = false
 
     func cleanOldAnimation() {
-        if sAnim != nil {
-            let oldToValue = sAnim?.newValue ?? 0.0
-            sAnim?.stop()
-            sAnim = nil
+        if self.sAnim != nil {
+            let oldToValue = self.sAnim?.newValue ?? 0.0
+            self.sAnim?.stop()
+            self.sAnim = nil
             self.doubleValue = oldToValue
         }
     }
@@ -74,9 +74,9 @@ private var sAnim: ESSProgressBarAnimation?
         cleanOldAnimation()
         animateDisabled = false
         toValue = val
-        sAnim = ESSProgressBarAnimation(
+        self.sAnim = ESSProgressBarAnimation(
             progressBar: self,
             newDoubleValue: toValue)
-        sAnim?.start()
+        self.sAnim?.start()
     }
 }

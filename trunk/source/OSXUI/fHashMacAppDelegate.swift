@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@NSApplicationMain
+@main
 @objc(fHashMacAppDelegate) class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
     weak var mainViewController: MainViewController?
 
