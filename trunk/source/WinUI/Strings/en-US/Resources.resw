@@ -130,7 +130,7 @@
     <value>Drag files here or click open to start calculate.</value>
   </data>
   <data name="TitleAppName" xml:space="preserve">
-    <value>fNext</value>
+    <value>fHash</value>
   </data>
   <data name="ButtonOpenStop" xml:space="preserve">
     <value>Stop</value>

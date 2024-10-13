@@ -22,7 +22,7 @@
 #include "AppxShellExtStringsBase.h"
 #include "AppxShellExtStringsZHCN.h"
 
-static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fNext";
+static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash";
 static WCHAR const c_szProgID[] = L"*";
 #if defined (_DEBUG)
 static WCHAR const c_szVerbName[] = L"fHashWUIShellExtDev";
