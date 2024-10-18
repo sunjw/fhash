@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 *.dll
+
+!Properties/PublishProfiles/*.pubxml
