@@ -569,7 +569,7 @@ namespace FilesHashWUI
             }
 
             // Fix strange behavior
-            ScrollViewerMain.ChangeView(0, null, null);
+            DispatcherQueue.TryEnqueue(() => ScrollViewerMain.ChangeView(0, null, null));
 
             SetPageControlStat(MainPageControlStat.MainPageVerify);
         }
