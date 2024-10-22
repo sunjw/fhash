@@ -529,6 +529,9 @@ namespace FilesHashWUI
 
         private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNetArray)
         {
+            // Fix strange behavior
+            ScrollViewerMain.ChangeView(0.1, null, null);
+
             // Switch m_paragraphMain
             RichTextMain.Blocks.Clear();
             m_paragraphMain = m_paragraphFind;
@@ -568,10 +571,10 @@ namespace FilesHashWUI
                 }
             }
 
-            // Fix strange behavior
-            DispatcherQueue.TryEnqueue(() => ScrollViewerMain.ChangeView(0, null, null));
-
             SetPageControlStat(MainPageControlStat.MainPageVerify);
+
+            // Fix strange behavior
+            ScrollViewerMain.ChangeView(0.0, null, null);
         }
 
         private void ClearFindResult()
@@ -739,7 +742,6 @@ namespace FilesHashWUI
 
                 // Init stat
                 SetPageControlStat(MainPageControlStat.MainPageNone);
-
 
                 // Handle commandline args
                 DispatcherQueue.TryEnqueue(() =>
