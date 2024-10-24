@@ -1,50 +1,50 @@
 3.3.3 (77) 2024-06-27  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.3.2 (76) 2024-06-07  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.3.1 (75) 2024-04-24  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.3.0 (74) 2024-01-12  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.2.1.0 (73) 2024-01-04  
-macOS migrate to Swift  
-Windows UWP update components  
+macOS: migrate to Swift  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.8.0 (62) 2023-11-29  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.7.0 (61) 2023-10-31  
-macOS support for 12 and later  
-Windows UWP update components  
+macOS: support for macOS 12 and later  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.5.0 (59) 2023-07-21  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.4.0 (58) 2023-04-23  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.3.0 (57) 2023-02-17  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.1.2.0 (56) 2022-12-15  
-Windows UWP support for arm64  
+Windows UWP: support for arm64  
 
 3.1.1.0 (55) 2022-12-01  
-macOS support for 11 and later  
+macOS: support for macOS 11 and later  
 Fix other issues  
 
 3.1.0.0 (54) 2022-09-26  
@@ -52,52 +52,52 @@ Performance improvement
 UI tweak  
 
 3.0.2.0 (51) 2022-08-31  
-Windows UWP update components  
+Windows UWP: update components  
 Fix other issues  
 
 3.0.1.0 (50) 2022-07-23  
-Windows UWP fix progress bar high DPI display issue  
-Windows UWP fix Windows version detection issue  
+Windows UWP: fix progress bar high DPI display issue  
+Windows UWP: fix Windows version detection issue  
+Windows MFC: release 2.4.0  
 Fix other issues  
-Windows MFC release 2.4.0  
 
 3.0.0.0 (49) 2022-07-09  
-Windows UWP first release (3.x)  
+Windows UWP: first release (3.x)  
 Fix other issues  
 
 2.3.0.0 (47) 2022-05-10  
 Add SHA512  
 
 2.2.5.0 (45) 2022-03-25  
-macOS UI tweak  
+macOS: UI tweak  
 Remove CRC32  
 
 2.2.4.0 (42) 2021-11-04  
-Windows 11 Support  
-macOS UI and font tweak  
-macOS support for 10.15 and later  
+Windows: Windows 11 Support  
+macOS: UI and font tweak  
+macOS: support for macOS 10.15 and later  
 Fix other issues  
 
 2.2.3.0 (40) 2021-07-19  
-Windows UI performance improvement  
+Windows: UI performance improvement  
 Fix other issues  
 
 2.2.1.0 (36) 2021-05-24  
-macOS update Big Sur style icon  
+macOS: update Big Sur style icon  
 
 2.2.0.0 (34) 2020-12-01  
-Windows update to Visual Studio 2017 project  
-Windows support 7 and later  
-Windows interface tweak  
-macOS support for 10.14 and later  
-macOS support for 11.0 Big Sur  
-macOS support for universal binary  
+Windows: update to Visual Studio 2017 project  
+Windows: support Windows 7 and later  
+Windows: interface tweak  
+macOS: support for macOS 10.14 and later  
+macOS: support for macOS 11.0 Big Sur  
+macOS: support for universal binary  
 Fix some minor bugs  
 
 2.1.9.0 2018-09-26  
-File explorer context menu use single fHash instance  
+Windows: file explorer context menu use single fHash instance  
+macOS: support for macOS 10.14 Dark Mode  
 Update VirusTotal link  
-macOS support for 10.14 Dark Mode  
 Fix some minor bugs  
 
 2.1.3.0 2017-05-19  

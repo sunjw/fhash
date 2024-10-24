@@ -1,50 +1,50 @@
 3.3.3 (77) 2024-06-27  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.3.2 (76) 2024-06-07  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.3.1 (75) 2024-04-24  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.3.0 (74) 2024-01-12  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.2.1.0 (73) 2024-01-04  
-macOS 迁移到 Swift  
-Windows UWP 更新组件  
+macOS: 迁移到 Swift  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.8.0 (62) 2023-11-29  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.7.0 (61) 2023-10-31  
-macOS 支持 12 及以后版本  
-Windows UWP 更新组件  
+macOS: 支持 macOS 12 及以后版本  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.5.0 (59) 2023-07-21  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.4.0 (58) 2023-04-23  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.3.0 (57) 2023-02-17  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.1.2.0 (56) 2022-12-15  
-Windows UWP 支持 arm64  
+Windows UWP: 支持 arm64  
 
 3.1.1.0 (55) 2022-12-01  
-macOS 支持 11 及以后版本  
+macOS: 支持 macOS 11 及以后版本  
 修复其它问题  
 
 3.1.0.0 (54) 2022-09-26  
@@ -52,52 +52,52 @@ macOS 支持 11 及以后版本
 UI 调整  
 
 3.0.2.0 (51) 2022-08-31  
-Windows UWP 更新组件  
+Windows UWP: 更新组件  
 修复其它问题  
 
 3.0.1.0 (50) 2022-07-23  
-Windows UWP 修复进度条高 DPI 显示问题  
-Windows UWP 修复 Windows 版本检测问题  
+Windows UWP: 修复进度条高 DPI 显示问题  
+Windows UWP: 修复 Windows 版本检测问题  
+Windows MFC: 发布 2.4.0  
 修复其它问题  
-Windows MFC 发布 2.4.0  
 
 3.0.0.0 (49) 2022-07-09  
-Windows UWP 首次发布 (3.x)  
+Windows UWP: 首次发布 (3.x)  
 修复其它问题  
 
 2.3.0.0 (47) 2022-05-10  
 增加 SHA512  
 
 2.2.5.0 (45) 2022-03-25  
-macOS UI 调整  
+macOS: UI 调整  
 移除 CRC32  
 
 2.2.4.0 (42) 2021-11-04  
-Windows 11 支持  
-macOS UI 和字体调整  
-macOS 支持 10.15 及以后版本  
+Windows: Windows 11 支持  
+macOS: UI 和字体调整  
+macOS: 支持 macOS 10.15 及以后版本  
 修复其它问题  
 
 2.2.3.0 (40) 2021-07-19  
-Windows UI 性能提高  
+Windows: UI 性能提高  
 修复其它问题  
 
 2.2.1.0 (36) 2021-05-24  
-macOS 更新 Big Sur 样式图标  
+macOS: 更新 Big Sur 样式图标  
 
 2.2.0.0 (34) 2020-12-01  
-Windows 更新为 Visual Studio 2017 工程  
-Windows 支持 7 及以后版本  
-Windows 界面调整  
-macOS 支持 10.14 及以后版本  
-macOS 支持 11.0 Big Sur  
-macOS 支持 universal binary  
+Windows: 更新为 Visual Studio 2017 工程  
+Windows: 支持 Windows 7 及以后版本  
+Windows: 界面调整  
+macOS: 支持 macOS 10.14 及以后版本  
+macOS: 支持 macOS 11.0 Big Sur  
+macOS: 支持 universal binary  
 修复一些小 bug  
 
 2.1.9.0 2018-09-26  
-文件浏览器右键菜单使用已经启动的 fHash 实例  
+Windows: 文件浏览器右键菜单使用已经启动的 fHash 实例  
+macOS: 支持 macOS 10.14 Dark Mode  
 更新 VirusTotal 链接  
-macOS 支持 10.14 Dark Mode  
 修复一些小 bug  
 
 2.1.3.0 2017-05-19  
