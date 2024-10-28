@@ -1,3 +1,8 @@
+3.11.0 (87) 2024-10-28  
+Windows WinUI: upgrade to WinUI 3  
+macOS: support for macOS 13 and later  
+Fix other issues  
+
 3.3.3 (77) 2024-06-27  
 Windows UWP: update components  
 Fix other issues  
