@@ -527,6 +527,18 @@ namespace FilesHashWUI
             }
         }
 
+        private async void ShowFindDialog()
+        {
+            m_textBoxFindHash.Text = "";
+            ContentDialogResult result = await m_dialogFind.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string strHashToFind = m_textBoxFindHash.Text;
+                ResultDataNet[] resultDataNetArray = m_mainWindow.HashMgmt.FindResult(strHashToFind);
+                DispatcherQueue.TryEnqueue(() => ShowFindResult(strHashToFind, resultDataNetArray));
+            }
+        }
+
         private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNetArray)
         {
             // Fix strange behavior
@@ -817,16 +829,9 @@ namespace FilesHashWUI
                 SetPageControlStat(MainPageControlStat.MainPageNone);
         }
 
-        private async void ButtonVerify_Click(object sender, RoutedEventArgs e)
+        private void ButtonVerify_Click(object sender, RoutedEventArgs e)
         {
-            m_textBoxFindHash.Text = "";
-            ContentDialogResult result = await m_dialogFind.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                string strHashToFind = m_textBoxFindHash.Text;
-                ResultDataNet[] resultDataNetArray = m_mainWindow.HashMgmt.FindResult(strHashToFind);
-                ShowFindResult(strHashToFind, resultDataNetArray);
-            }
+            DispatcherQueue.TryEnqueue(ShowFindDialog);
         }
 
         private async void ButtonOpen_Click(object sender, RoutedEventArgs e)
