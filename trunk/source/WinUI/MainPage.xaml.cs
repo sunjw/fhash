@@ -542,7 +542,8 @@ namespace FilesHashWUI
         private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNetArray)
         {
             // Fix strange behavior
-            ScrollViewerMain.ChangeView(0.0, 0.0, null, true);
+            ScrollViewerMain.ChangeView(null, 0.0, null, true);
+            ScrollViewerMain.ChangeView(0.0, null, null);
             ScrollViewerMain.IsEnabled = false;
 
             // Switch m_paragraphMain
