@@ -175,7 +175,7 @@
     <value>SHA512 实现 copyright (C) Aaron D. Gifford</value>
   </data>
   <data name="AboutInfoTitle" xml:space="preserve">
-    <value>fHash: 文件 Hash 计算器</value>
+    <value>fHash UWP: 文件 Hash 计算器</value>
   </data>
   <data name="FindDialogTitle" xml:space="preserve">
     <value>验证</value>
