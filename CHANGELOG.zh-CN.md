@@ -1,3 +1,7 @@
+3.11.1 (88) 2024-11-18  
+Windows WinUI: 更新组件  
+修复其它问题  
+
 3.11.0 (87) 2024-10-28  
 Windows WinUI: 升级至 WinUI 3  
 macOS: 支持 macOS 13 及以后版本  
