@@ -50,8 +50,8 @@ namespace FilesHashWUI
         private Paragraph m_paragraphResult = null;
         private Paragraph m_paragraphFind = null;
         private List<Hyperlink> m_hyperlinksMain = null;
-        private List<Hyperlink> m_hyperlinksResult = new();
-        private List<Hyperlink> m_hyperlinksFind = new();
+        private List<Hyperlink> m_hyperlinksResult = [];
+        private List<Hyperlink> m_hyperlinksFind = [];
         private MenuFlyout m_menuFlyoutTextMain = null;
         private Hyperlink m_hyperlinkClicked = null;
         private Run m_runPrepare = null;
@@ -280,7 +280,7 @@ namespace FilesHashWUI
             UpdateUppercaseStat();
 
             // Refresh result & find
-            List<List<Hyperlink>> hyperlinkLists = new();
+            List<List<Hyperlink>> hyperlinkLists = [];
             hyperlinkLists.Add(m_hyperlinksResult);
             hyperlinkLists.Add(m_hyperlinksFind);
             foreach (List<Hyperlink> hyperlinkListItr in hyperlinkLists)
@@ -395,7 +395,7 @@ namespace FilesHashWUI
 
         private void AppendFileNameToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = new();
+            List<Inline> inlines = [];
             string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
             strAppend += " ";
             strAppend += resultData.Path;
@@ -407,7 +407,7 @@ namespace FilesHashWUI
         private void AppendFileMetaToTextMain(ResultDataNet resultData)
         {
             string strShortSize = WinUIHelper.ConvertSizeToShortSizeStr(resultData.Size);
-            List<Inline> inlines = new();
+            List<Inline> inlines = [];
             string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
             strSize += " ";
             strSize += resultData.Size;
@@ -456,7 +456,7 @@ namespace FilesHashWUI
                 strFileSHA512 = resultData.SHA512.ToLower();
             }
 
-            List<Inline> inlines = new();
+            List<Inline> inlines = [];
             inlines.Add(WinUIHelper.GenRunFromString("MD5: "));
             Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForRichTextMain(strFileMD5);
             m_hyperlinksMain.Add(hyperlinkMD5);
@@ -482,7 +482,7 @@ namespace FilesHashWUI
 
         private void AppendFileErrToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = new();
+            List<Inline> inlines = [];
             string strAppend = resultData.Error;
             inlines.Add(WinUIHelper.GenRunFromString(strAppend));
             inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
@@ -553,7 +553,7 @@ namespace FilesHashWUI
             m_hyperlinksMain = m_hyperlinksFind;
 
             // Show result
-            List<Inline> inlines = new();
+            List<Inline> inlines = [];
             string strFindResult = m_resourceLoaderMain.GetString("FindResultTitle");
             inlines.Add(WinUIHelper.GenRunFromString(strFindResult));
             inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
@@ -570,7 +570,7 @@ namespace FilesHashWUI
             if (resultDataNetArray == null || resultDataNetArray.Length == 0)
             {
                 // No match
-                List<Inline> inlinesResult = new();
+                List<Inline> inlinesResult = [];
                 string strFindNoResult = m_resourceLoaderMain.GetString("FindNoResult");
                 inlinesResult.Add(WinUIHelper.GenRunFromString(strFindNoResult));
                 inlinesResult.Add(WinUIHelper.GenRunFromString("\r\n"));
@@ -721,7 +721,7 @@ namespace FilesHashWUI
                 return;
 
             string[] splitArgs = CommandLineStringSplitter.Instance.Split(someArgs).ToArray();
-            List<string> strFilePaths = new();
+            List<string> strFilePaths = [];
             bool foundPaths = false;
             for (int i = 0; i < splitArgs.Length; i++)
             {
@@ -859,7 +859,7 @@ namespace FilesHashWUI
                 if (pickFiles != null)
                 {
                     // Application now has read/write access to the picked file
-                    List<string> strPickFilePaths = new();
+                    List<string> strPickFilePaths = [];
                     foreach (IStorageItem storageItem in pickFiles)
                     {
                         string path = storageItem.Path;

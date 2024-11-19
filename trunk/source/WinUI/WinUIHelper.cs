@@ -112,7 +112,7 @@ namespace SunJWBase
 
         public static async Task<List<string>> GetDropFilesPath(DragEventArgs e)
         {
-            List<string> strDropFilesPath = new();
+            List<string> strDropFilesPath = [];
 
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {
