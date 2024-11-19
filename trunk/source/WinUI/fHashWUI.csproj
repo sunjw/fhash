@@ -30,7 +30,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241106002" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -53,7 +53,7 @@
 
   <Target Name="FixWebView2Path" BeforeTargets="PrepareForBuild" Condition="'$(PlatformTarget)'=='arm64'">
     <ItemGroup>
-      <Content Remove="@(Content)" Condition="'%(Content.Link)'=='runtimes\win-x64\native\WebView2Loader.dll'"/>
+      <Content Remove="@(Content)" Condition="'%(Content.Link)'=='runtimes\win-x64\native\WebView2Loader.dll'" />
       <Content Include="$(NugetRoot)runtimes\win-arm64\native\WebView2Loader.dll">
         <Link>runtimes\win-arm64\native\WebView2Loader.dll</Link>
         <PublishState>Included</PublishState>
@@ -62,8 +62,8 @@
         <IncludeInVsix>true</IncludeInVsix>
         <Pack>false</Pack>
       </Content>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(FileName)%(Extension)'=='Microsoft.Web.WebView2.Core.dll'"/>
-      <ReferenceCopyLocalPaths Include="$(NugetRoot)runtimes\win-arm64\native_uap\Microsoft.Web.WebView2.Core.dll"/>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(FileName)%(Extension)'=='Microsoft.Web.WebView2.Core.dll'" />
+      <ReferenceCopyLocalPaths Include="$(NugetRoot)runtimes\win-arm64\native_uap\Microsoft.Web.WebView2.Core.dll" />
     </ItemGroup>
   </Target>
 
