@@ -1,3 +1,7 @@
+3.11.2 (89) 2024-11-21  
+Windows WinUI: update components  
+Fix other issues  
+
 3.11.1 (88) 2024-11-18  
 Windows WinUI: update components  
 Fix other issues  
