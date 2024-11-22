@@ -123,7 +123,7 @@ namespace FilesHashWUI
             titleAppName += " Dev";
 #endif
             // Taskbar
-            AppWindow.SetIcon("Assets/fhashWUI.ico");
+            AppWindow.SetIcon(WinUIHelper.GetAppIconPath("Assets/fhashWUI.ico"));
             Title = titleAppName;
 
             // Titlebar

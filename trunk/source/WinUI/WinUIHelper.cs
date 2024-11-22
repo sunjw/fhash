@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -37,6 +38,33 @@ namespace SunJWBase
         public static ResourceLoader GetCurrentResourceLoader()
         {
             return m_resourceLoaderMain;
+        }
+
+        public static string GetAppIconPath(string relativeAppIconPath)
+        {
+            string appIconPath = relativeAppIconPath;
+            try
+            {
+                appIconPath = Path.Combine(Windows.ApplicationModel.Package.Current.InstalledLocation.Path, relativeAppIconPath);
+                if (!File.Exists(appIconPath))
+                {
+                    appIconPath = Path.Combine(AppContext.BaseDirectory, relativeAppIconPath);
+                    if (!File.Exists(appIconPath))
+                    {
+                        appIconPath = Path.Combine(AppContext.BaseDirectory, "../" + relativeAppIconPath);
+                        if (!File.Exists(appIconPath))
+                        {
+                            appIconPath = relativeAppIconPath;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                appIconPath = relativeAppIconPath;
+            }
+
+            return appIconPath;
         }
 
         public static void ScrollViewerScrollTo(ScrollViewer scrollViewer, double offsetX, double offsetY)
