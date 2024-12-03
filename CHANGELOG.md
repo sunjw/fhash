@@ -1,3 +1,8 @@
+3.11.3 (90) 2024-12-03  
+Windows WinUI: upgrade to .NET 9  
+Windows WinUI: update components  
+Fix other issues  
+
 3.11.2 (89) 2024-11-21  
 Windows WinUI: update components  
 Fix other issues  
