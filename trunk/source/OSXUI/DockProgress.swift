@@ -205,8 +205,8 @@ public enum DockProgress {
 			NSBezierPath(roundedRect: rect, cornerRadius: rect.height / 2).fill()
 		}
 
-		let margin = 8.0
-		let bar = CGRect(x: margin, y: 1, width: (dstRect.width + 0 - margin * 2), height: 10)
+		let margin = 9.0
+		let bar = CGRect(x: margin, y: 0, width: (dstRect.width - margin * 2), height: 10)
 		NSColor.white.withAlpha(0.8).set()
 		roundedRect(bar)
 
@@ -216,7 +216,8 @@ public enum DockProgress {
 
 		var barProgress = bar.insetBy(dx: 1, dy: 1)
 		barProgress.size.width = barProgress.width * displayedProgress
-		NSColor.systemBlue.set()
+		//NSColor.systemBlue.set()
+		NSColor.controlAccentColor.set()
 		roundedRect(barProgress)
 	}
 
