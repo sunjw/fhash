@@ -13,8 +13,7 @@
 #include <dispatch/dispatch.h>
 
 #import <Cocoa/Cocoa.h>
-#import <QuartzCore/QuartzCore.h>
-#import "fHash-Swift.h"
+#import "fHash-Swift-Header.h"
 
 #include "Common/strhelper.h"
 #include "Common/Utils.h"
