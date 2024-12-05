@@ -81,6 +81,9 @@ private struct MainViewControllerState: OptionSet {
         hashBridge = HashBridge(controller: self)
         hashBridge?.didLoad()
 
+        // Set DockProgress.
+        DockProgress.style = .bar
+
         self.setViewControllerState(.NONE)
 
         let fileMenu = self.getFileMenu()
@@ -183,6 +186,8 @@ private struct MainViewControllerState: OptionSet {
             MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
 
             mainProgressIndicator.jump(toDoubleValue: 0)
+            DockProgress.resetProgress()
+
             speedTextField.stringValue = ""
 
             // Passthrough to MAINVC_CALC_FINISH.
@@ -345,7 +350,10 @@ private struct MainViewControllerState: OptionSet {
 
     private func calculateFinished() {
         self.setViewControllerState(.CALC_FINISH)
-        self.mainProgressIndicator.jump(toDoubleValue: Double(hashBridge!.getProgMax()))
+
+        let progMax = hashBridge!.getProgMax()
+        self.mainProgressIndicator.jump(toDoubleValue: Double(progMax))
+        self.updateDockProgress(Int(progMax))
 
         // Show calc speed.
         let calcDurationTime = calcEndTime - calcStartTime
@@ -373,7 +381,9 @@ private struct MainViewControllerState: OptionSet {
         MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
 
         self.setViewControllerState(.CALC_FINISH)
+
         self.mainProgressIndicator.jump(toDoubleValue: 0)
+        DockProgress.resetProgress()
 
         //self.updateMainTextView()
     }
@@ -396,6 +406,8 @@ private struct MainViewControllerState: OptionSet {
         hashBridge?.setUppercase(upperCaseState)
 
         mainProgressIndicator.jump(toDoubleValue: 0)
+        DockProgress.resetProgress()
+
         self.setViewControllerState(.CALC_ING)
 
         // Ready to go.
@@ -426,6 +438,14 @@ private struct MainViewControllerState: OptionSet {
         }
 
         self.updateMainTextView(true)
+    }
+
+    private func updateDockProgress(_ value: Int) {
+        var dockProgress = (Double(value) / self.mainProgressIndicator.maxValue)
+        if (dockProgress >= 1) {
+            dockProgress = 0.99999 // 1 will disappear.
+        }
+        DockProgress.progress = dockProgress
     }
 
     private func appendFileNameToNSMutableAttributedString(_ result: ResultDataSwift,
@@ -646,7 +666,9 @@ private struct MainViewControllerState: OptionSet {
             if value == oldValue {
                 return
             }
+
             self.mainProgressIndicator.animate(toDoubleValue: Double(value))
+            self.updateDockProgress(value)
         })
     }
 
