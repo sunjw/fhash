@@ -241,7 +241,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "Sun Junwen";
 				TargetAttributes = {
 					52751B0F1B56276F00BD724B = {
@@ -479,6 +479,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
 				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
