@@ -13,7 +13,7 @@ namespace sunjwbase
 
 	System::String^ ConvertWstrToSystemString(LPCWSTR lpWstrSource);
 
-#if defined(WIN32) && (defined(UNICODE) || defined(_UNICODE))
+#if defined(_WIN32) && (defined(UNICODE) || defined(_UNICODE))
 #define ConvertSystemStringToTstr ConvertSystemStringToStdWstring
 #define ConvertTstrToSystemString ConvertWstrToSystemString
 #else

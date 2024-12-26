@@ -18,7 +18,7 @@
 #include "Common/strhelper.h"
 #include "Common/UIBridgeBase.h"
 
-#if defined (WIN32)
+#if defined (_WIN32)
 #include "WinCommon/WindowsComm.h"
 #if (defined (FHASH_UWP_LIB) || defined(FHASH_WUI_LIB))
 #include "WinCommon/FileVersionHelper.h"
@@ -146,7 +146,7 @@ int WINAPI HashThreadFunc(void *param)
 			return 0;
 		}
 
-#if defined (WIN32)
+#if defined (_WIN32)
 		Sleep(50);
 #else
 		usleep(50 * 1000);
@@ -189,7 +189,7 @@ int WINAPI HashThreadFunc(void *param)
 		uiBridge->showFileName(result);
 
 		//Calculating begins
-#if defined (WIN32)
+#if defined (_WIN32)
 		// CFileException fExc;
 		TCHAR fExc[OsFile::ERR_MSG_BUFFER_LEN] = { 0 };
 #else
@@ -229,7 +229,7 @@ int WINAPI HashThreadFunc(void *param)
 				fSizes[i] = fsize; // fix file size
 			}
 
-#if defined (WIN32)
+#if defined (_WIN32)
 			// get file version //
 #if (defined (FHASH_UWP_LIB) || defined(FHASH_WUI_LIB))
 			WindowsComm::FileVersionHelper fvHelper(osFile);
@@ -360,7 +360,7 @@ int WINAPI HashThreadFunc(void *param)
 			char chHashBuff[1024] = {0};
 
 			// MD5
-#if defined (WIN32)
+#if defined (_WIN32)
 			sprintf_s(chHashBuff, 1024,
 								"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
 								mdContext.digest[0],
@@ -413,7 +413,7 @@ int WINAPI HashThreadFunc(void *param)
 			for (int p = 0; p < SHA512_DIGEST_LENGTH; p++)
 			{
 				char buf[8] = { 0 };
-#if defined (WIN32)
+#if defined (_WIN32)
 				sprintf_s(buf, 8, "%02X", digestSHA512[p]);
 #else
 				snprintf(buf, 8, "%02X", digestSHA512[p]);
@@ -434,7 +434,7 @@ int WINAPI HashThreadFunc(void *param)
 		} // end if(File.Open(path, CFile::modeRead|CFile::shareDenyWrite, &ex))
 		else
 		{
-#if defined (WIN32)
+#if defined (_WIN32)
 			/*TCHAR szError[1024] = {0};
 			fExc.GetErrorMessage(szError, 1024);
 			result.tstrError = szError;*/

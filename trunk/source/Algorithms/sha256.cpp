@@ -280,7 +280,7 @@ void sha256_digest(const struct sha256_ctx *ctx, unsigned char *s)
 		}
 }
 
-//#if defined (WIN32)
+//#if defined (_WIN32)
 //void
 //sha256_digest(const struct sha256_ctx *ctx, CString* sDigest)
 //{
@@ -326,7 +326,7 @@ sha256_digest(const struct sha256_ctx *ctx, std::string* sDigest)
 		for(int p = 0; p < 32; p++)
 		{
 			char buf[8] = {0};
-#if defined (WIN32)
+#if defined (_WIN32)
 			sprintf_s(buf, 8, "%02X", digest[p]);
 #else
             snprintf(buf, 8, "%02X", digest[p]);

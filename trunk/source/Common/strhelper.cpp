@@ -1,7 +1,7 @@
 /*
  * strhelper implementation file
  * Author: Sun Junwen
- * Version: 2.2.2
+ * Version: 2.2.3
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -13,7 +13,7 @@
 #include <math.h>
 #include <string>
 
-#if defined (WIN32)
+#if defined (_WIN32)
 #include "Windows.h"
 #endif
 
@@ -33,7 +33,7 @@
 
 namespace sunjwbase
 {
-#if defined (WIN32)
+#if defined (_WIN32)
 	// Windows convert
 	static std::string _wstrtostr(const std::wstring& wstr, UINT codePage)
 	{
@@ -104,7 +104,7 @@ std::string sunjwbase::striconv(const std::string& input,
 std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 {
 	// Convert a wstring to an utf8 encoded string
-#if defined (WIN32)
+#if defined (_WIN32)
 	return _wstrtostr(wstr, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -120,7 +120,7 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 {
 	// Convert an utf8 encoded string to a wstring
-#if defined (WIN32)
+#if defined (_WIN32)
 	return _strtowstr(str, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -131,7 +131,7 @@ std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 {
 	// Convert a wstring to an string
-#if defined (WIN32)
+#if defined (_WIN32)
 	return _wstrtostr(wstr, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -151,7 +151,7 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 std::wstring sunjwbase::strtowstr(const std::string& str)
 {
 	// Convert an string to a wtring
-#if defined (WIN32)
+#if defined (_WIN32)
 	return _strtowstr(str, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -362,7 +362,7 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 	{
 		temp.resize(size);
 		va_start(vl, format);
-#if defined (WIN32)
+#if defined (_WIN32)
 		int n = vsnprintf_s((char *)temp.data(), size, _TRUNCATE, format, vl);
 #else
 		int n = vsnprintf((char *)temp.data(), size, format, vl);

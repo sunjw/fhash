@@ -3,7 +3,7 @@
 
 #include "Common/Global.h"
 
-#if defined (WIN32)
+#if defined (_WIN32)
 #include <WinDef.h>
 #endif
 

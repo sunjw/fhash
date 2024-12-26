@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string>
 
-#if defined (WIN32)
+#if defined (_WIN32)
 #include <Windows.h>
 #include <Winsock2.h>
 #endif
@@ -18,7 +18,7 @@ using namespace std;
 
 namespace Utils
 {
-#if defined (WIN32)
+#if defined (_WIN32)
     // http://stackoverflow.com/questions/10905892/equivalent-of-gettimeday-for-windows
     int gettimeofday(struct timeval *tp, struct timezone *tzp)
     {
@@ -68,7 +68,7 @@ namespace Utils
                 if(m_size > sizek)
                 {
                     double g_size = m_size / sizek;
-#if defined (WIN32)
+#if defined (_WIN32)
                     sprintf_s(buff, 1024, "%.2f GB", g_size);
 #else
                     snprintf(buff, 1024, "%.2f GB", g_size);
@@ -76,7 +76,7 @@ namespace Utils
                 }
                 else
                 {
-#if defined (WIN32)
+#if defined (_WIN32)
                     sprintf_s(buff, 1024, "%.2f MB", m_size);
 #else
                     snprintf(buff, 1024, "%.2f MB", m_size);
@@ -85,7 +85,7 @@ namespace Utils
             }
             else
             {
-#if defined (WIN32)
+#if defined (_WIN32)
                 sprintf_s(buff, 1024, "%.2f KB", k_size);
 #else
                 snprintf(buff, 1024, "%.2f KB", k_size);
@@ -94,7 +94,7 @@ namespace Utils
         }
         else if(conv1KSmaller)
         {
-#if defined (WIN32)
+#if defined (_WIN32)
             sprintf_s(buff, 1024, "%.2f B", (double)size);
 #else
             snprintf(buff, 1024, "%.2f B", (double)size);

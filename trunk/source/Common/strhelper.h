@@ -1,7 +1,7 @@
 /*
  * strhelper header file
  * Author: Sun Junwen
- * Version: 2.2.2
+ * Version: 2.2.3
  * Provides converting from tstring, string and wstring to each other
  * And provides string's utf8 converting.
  * Provides triming function to string and wstring.
@@ -17,14 +17,14 @@
 namespace sunjwbase
 {
 	// define the tstring only for WIN32 platform
-#if defined(WIN32) && (defined(UNICODE) || defined(_UNICODE))
+#if defined(_WIN32) && (defined(UNICODE) || defined(_UNICODE))
 #define _UNICODE_HELPER // use _UNICODE_HELPER internally
 	typedef std::wstring tstring;
 #else
 	typedef std::string tstring;
 #endif
 
-#if defined (WIN32)
+#if defined (_WIN32)
 	typedef __int64 INT64;
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -57,7 +57,7 @@ namespace sunjwbase
 	// convert native encoded string to utf8 encoded string
 	inline std::string utf8conv(std::string& strAscii)
 	{
-#if defined (WIN32)
+#if defined (_WIN32)
 		return wstrtostrutf8(strtowstr(strAscii));
 #endif
 #if defined (__APPLE__) || defined (__unix)
@@ -69,7 +69,7 @@ namespace sunjwbase
 	// convert utf8 encoded string to native encoded string
 	inline std::string asciiconv(std::string& strUtf8)
 	{
-#if defined (WIN32)
+#if defined (_WIN32)
 		return wstrtostr(strtowstrutf8(strUtf8));
 #endif
 #if defined (__APPLE__) || defined (__unix)

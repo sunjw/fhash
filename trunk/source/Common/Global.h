@@ -6,7 +6,7 @@
 #include <vector>
 #include <list>
 
-#if defined (WIN32)
+#if defined (_WIN32)
 
 #include <atlbase.h>
 #include <WinUser.h>
