@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sched.h>
 #endif
 
 #include "Common/strhelper.h"
@@ -149,7 +150,7 @@ int WINAPI HashThreadFunc(void *param)
 #if defined (_WIN32)
 		Sleep(50);
 #else
-		usleep(50 * 1000);
+		sched_yield();
 #endif
 
 		// Declaration for calculator
