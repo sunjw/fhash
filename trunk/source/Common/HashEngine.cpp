@@ -147,9 +147,9 @@ int WINAPI HashThreadFunc(void *param)
 		}
 
 #if defined (_WIN32)
-		//Sleep(50);
+		Sleep(3);
 #else
-		//usleep(50 * 1000);
+		usleep(50 * 1000);
 #endif
 
 		// Declaration for calculator
