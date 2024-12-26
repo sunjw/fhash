@@ -148,7 +148,7 @@ int WINAPI HashThreadFunc(void *param)
 		}
 
 #if defined (_WIN32)
-		Sleep(50);
+		Sleep(3);
 #else
 		sched_yield();
 #endif
