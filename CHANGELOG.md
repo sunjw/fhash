@@ -1,3 +1,8 @@
+3.11.4 (94) 2025-01-08  
+Windows WinUI: update components  
+macOS: add dock progress bar  
+Fix other issues  
+
 3.11.3 (90) 2024-12-03  
 Windows WinUI: upgrade to .NET 9  
 Windows WinUI: update components  

@@ -1,3 +1,8 @@
+3.11.4 (94) 2025-01-08  
+Windows WinUI: 更新组件  
+macOS: 增加程序坞 (dock) 进度条  
+修复其它问题  
+
 3.11.3 (90) 2024-12-03  
 Windows WinUI: 升级至 .NET 9  
 Windows WinUI: 更新组件  
