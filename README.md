@@ -17,7 +17,7 @@ Project site: https://github.com/sunjw/fhash
 | Platform ||
 | --- | --- |
 | Windows 10 and later (Store) | [![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ) |
-| macOS | [![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/latest) [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/3.11.4/macOS/) |
+| macOS | [![Image of GitHub](https://raw.githubusercontent.com/sunjw/fhash/master/assets/GitHub_Logo_White.png)](https://github.com/sunjw/fhash/releases/latest) [![Image of SourceForge.net](https://raw.githubusercontent.com/sunjw/fhash/master/assets/sflogo.png)](https://sourceforge.net/projects/fhash/files/3.11.4/) |
 
 #### winget
 ```
