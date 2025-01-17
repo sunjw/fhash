@@ -12,7 +12,6 @@
 		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
-		417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */; };
 		417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D32B19C992003DFFAF /* PaddingClipView.swift */; };
 		417AC3D62B19CDC2003DFFAF /* NoTitlebarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */; };
 		417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */; };
@@ -53,7 +52,6 @@
 		41666E151B67573900A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		41666E171B67573D00A1D71F /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
 		417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "fHash-Bridging-Header.h"; path = "source/OSXUI/fHash-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ESSProgressIndicator.swift; path = source/OSXUI/ESSProgressIndicator.swift; sourceTree = SOURCE_ROOT; };
 		417AC3D32B19C992003DFFAF /* PaddingClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingClipView.swift; sourceTree = "<group>"; };
 		417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTitlebarWindowController.swift; sourceTree = "<group>"; };
 		417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				41AAAF362B1D92C200146768 /* AboutWindowController.swift */,
 				41B6B5532D017DAB00697E22 /* DockProgress.swift */,
 				41B6B5542D017DAB00697E22 /* DockProgressUtilities.swift */,
-				417AC3D12B197FF5003DFFAF /* ESSProgressIndicator.swift */,
 				41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */,
 				41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */,
 				5222581A213CF24300012EF8 /* MacUtils.h */,
@@ -304,7 +301,6 @@
 				41C4BB062B215BEC004A6C34 /* UIBridgeMacSwift.mm in Sources */,
 				41AAAF3B2B1DBB5D00146768 /* HyperlinkTextField.swift in Sources */,
 				41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */,
-				417AC3D22B197FF5003DFFAF /* ESSProgressIndicator.swift in Sources */,
 				413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,

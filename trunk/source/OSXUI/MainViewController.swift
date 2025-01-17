@@ -24,7 +24,7 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet var mainScrollView: NSScrollView!
     @IBOutlet var mainTextView: NSTextView!
 
-    @IBOutlet var mainProgressIndicator: ESSProgressIndicator!
+    @IBOutlet var mainProgressIndicator: NSProgressIndicator!
 
     @IBOutlet weak var openButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
@@ -185,7 +185,7 @@ private struct MainViewControllerState: OptionSet {
             strAppend += "\n\n"
             MacSwiftUtils.AppendStringToNSMutableAttributedString(mainText, strAppend)
 
-            mainProgressIndicator.jump(toDoubleValue: 0)
+            mainProgressIndicator.doubleValue = 0
             DockProgress.resetProgress()
 
             speedTextField.stringValue = ""
@@ -359,7 +359,7 @@ private struct MainViewControllerState: OptionSet {
         self.setViewControllerState(.CALC_FINISH)
 
         let progMax = hashBridge!.getProgMax()
-        self.mainProgressIndicator.jump(toDoubleValue: Double(progMax))
+        self.mainProgressIndicator.doubleValue = Double(progMax)
         self.updateDockProgress(Int(progMax))
 
         // Show calc speed.
@@ -389,7 +389,7 @@ private struct MainViewControllerState: OptionSet {
 
         self.setViewControllerState(.CALC_FINISH)
 
-        self.mainProgressIndicator.jump(toDoubleValue: 0)
+        self.mainProgressIndicator.doubleValue = 0
         DockProgress.resetProgress()
 
         //self.updateMainTextView()
@@ -412,7 +412,7 @@ private struct MainViewControllerState: OptionSet {
         self.updateUpperCaseState()
         hashBridge?.setUppercase(upperCaseState)
 
-        mainProgressIndicator.jump(toDoubleValue: 0)
+        mainProgressIndicator.doubleValue = 0
         DockProgress.resetProgress()
 
         self.setViewControllerState(.CALC_ING)
@@ -669,12 +669,12 @@ private struct MainViewControllerState: OptionSet {
 
     @objc func onUpdateProgWhole(_ value: Int) {
         DispatchQueue.main.async(execute: {
-            let oldValue = Int(self.mainProgressIndicator.toValue)
+            let oldValue = Int(self.mainProgressIndicator.doubleValue)
             if value == oldValue {
                 return
             }
 
-            self.mainProgressIndicator.animate(toDoubleValue: Double(value))
+            self.mainProgressIndicator.doubleValue = Double(value)
             self.updateDockProgress(value)
         })
     }

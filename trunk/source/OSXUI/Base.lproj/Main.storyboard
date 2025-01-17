@@ -465,7 +465,7 @@
                             <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="46"/>
                                 <subviews>
-                                    <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="ESSProgressIndicator">
+                                    <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5" customClass="NSProgressIndicator">
                                         <rect key="frame" x="-3" y="36" width="574" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="nV5-gn-dUK"/>
