@@ -144,5 +144,8 @@
       <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250108002" />
+  </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
