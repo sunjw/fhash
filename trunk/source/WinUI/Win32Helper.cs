@@ -58,5 +58,10 @@ namespace SunJWBase
             PInvoke.GetCursorPos(out pointCursor);
             return pointCursor;
         }
+
+        public static bool SetForegroundWindow(IntPtr hWnd)
+        {
+            return PInvoke.SetForegroundWindow(new HWND(hWnd));
+        }
     }
 }

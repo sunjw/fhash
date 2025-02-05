@@ -9,5 +9,6 @@ GetCurrentPackageId
 GetCursorPos
 GetDpiForWindow
 GetWindowPlacement
+SetForegroundWindow
 SetWindowSubclass
 ShowWindow
