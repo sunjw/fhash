@@ -147,6 +147,11 @@ namespace FilesHashWUI
                 Frame.GoBack();
         }
 
+        private void BringWindowToFront()
+        {
+            DispatcherQueue.TryEnqueue(() => Win32Helper.SetForegroundWindow(m_mainWindow.HWNDHandle));
+        }
+
         private void ScrollTextMainToBottom()
         {
             if (m_pageLoaded)
@@ -240,6 +245,8 @@ namespace FilesHashWUI
                     ButtonClear.IsEnabled = false;
                     ButtonVerify.IsEnabled = false;
                     CheckBoxUppercase.IsEnabled = false;
+
+                    BringWindowToFront();
                     break;
                 case MainPageControlStat.MainPageVerify:
                     ButtonVerify.IsEnabled = false;
