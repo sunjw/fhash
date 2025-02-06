@@ -1,3 +1,7 @@
+3.11.5 (95) 2025-02-06  
+Windows WinUI: update components  
+Fix other issues  
+
 3.11.4 (94) 2025-01-08  
 Windows WinUI: update components  
 macOS: add dock progress bar  
