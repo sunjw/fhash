@@ -52,20 +52,4 @@
     </Page>
   </ItemGroup>
 
-  <Target Name="FixWebView2Path" BeforeTargets="PrepareForBuild" Condition="'$(PlatformTarget)'=='arm64'">
-    <ItemGroup>
-      <Content Remove="@(Content)" Condition="'%(Content.Link)'=='runtimes\win-x64\native\WebView2Loader.dll'" />
-      <Content Include="$(NugetRoot)runtimes\win-arm64\native\WebView2Loader.dll">
-        <Link>runtimes\win-arm64\native\WebView2Loader.dll</Link>
-        <PublishState>Included</PublishState>
-        <Visible>False</Visible>
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <IncludeInVsix>true</IncludeInVsix>
-        <Pack>false</Pack>
-      </Content>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(FileName)%(Extension)'=='Microsoft.Web.WebView2.Core.dll'" />
-      <ReferenceCopyLocalPaths Include="$(NugetRoot)runtimes\win-arm64\native_uap\Microsoft.Web.WebView2.Core.dll" />
-    </ItemGroup>
-  </Target>
-
 </Project>
