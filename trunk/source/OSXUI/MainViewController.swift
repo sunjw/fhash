@@ -218,8 +218,8 @@ private struct MainViewControllerState: OptionSet {
             clearButton.isEnabled = false
             verifyButton.isEnabled = false
             upperCaseButton.isEnabled = false
-            // case .VERIFY:
-            // case .WAITING_EXIT:
+        // case .VERIFY:
+        // case .WAITING_EXIT:
         default:
             break
         }
