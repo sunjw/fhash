@@ -459,8 +459,8 @@ private struct MainViewControllerState: OptionSet {
 
     private func bringWindowToFront() {
         DispatchQueue.main.async(execute: {
-            NSApplication.shared.activate(ignoringOtherApps: true)
             self.view.window?.makeKeyAndOrderFront(self)
+            NSApplication.shared.activate(ignoringOtherApps: true)
         })
     }
 
