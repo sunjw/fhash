@@ -218,6 +218,8 @@ private struct MainViewControllerState: OptionSet {
             clearButton.isEnabled = false
             verifyButton.isEnabled = false
             upperCaseButton.isEnabled = false
+
+            self.bringWindowToFront()
         // case .VERIFY:
         // case .WAITING_EXIT:
         default:
@@ -453,6 +455,13 @@ private struct MainViewControllerState: OptionSet {
             dockProgress = 0.99999 // 1 will disappear.
         }
         DockProgress.progress = dockProgress
+    }
+
+    private func bringWindowToFront() {
+        DispatchQueue.main.async(execute: {
+            NSApplication.shared.activate(ignoringOtherApps: true)
+            self.view.window?.makeKeyAndOrderFront(self)
+        })
     }
 
     private func appendFileNameToNSMutableAttributedString(_ result: ResultDataSwift,
