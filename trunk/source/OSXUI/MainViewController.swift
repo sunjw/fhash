@@ -459,7 +459,7 @@ private struct MainViewControllerState: OptionSet {
 
     private func bringWindowToFront() {
         DispatchQueue.main.async(execute: {
-            self.view.window?.makeKeyAndOrderFront(self)
+            self.view.window?.deminiaturize(self)
             NSApplication.shared.activate(ignoringOtherApps: true)
         })
     }
