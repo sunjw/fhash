@@ -155,7 +155,7 @@ private struct MainViewControllerState: OptionSet {
             forKey: UPPERCASE_DEFAULT_KEY)
 
         // Close other windows.
-        let windows = NSApplication.shared.windows
+        let windows = NSApp.windows
         let windowCount = windows.count
         for i in 0..<windowCount {
             let window = windows[i]
@@ -460,7 +460,7 @@ private struct MainViewControllerState: OptionSet {
     private func bringWindowToFront() {
         DispatchQueue.main.async(execute: {
             self.view.window?.deminiaturize(self)
-            NSApplication.shared.activate(ignoringOtherApps: true)
+            NSApp.activate(ignoringOtherApps: true)
         })
     }
 
