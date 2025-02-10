@@ -89,6 +89,9 @@
     <ClCompile Include="HashMgmtClr.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="fHashClrBridge.rc">
