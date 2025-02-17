@@ -1,3 +1,7 @@
+3.11.6 (98) 2025-02-17  
+Windows WinUI: update components  
+Fix other issues  
+
 3.11.5 (95) 2025-02-06  
 Windows WinUI: update components  
 Fix other issues  
