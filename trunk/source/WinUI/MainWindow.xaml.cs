@@ -283,7 +283,6 @@ namespace FilesHashWUI
                 return;
             }
 
-            WinUIHelper.FlushClipboard();
             SaveWindowPosSize();
         }
 
