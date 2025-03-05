@@ -100,6 +100,10 @@ namespace SunJWBase
             DataPackage dataPackage = new() { RequestedOperation = DataPackageOperation.Copy };
             dataPackage.SetText(text);
             Clipboard.SetContent(dataPackage);
+        }
+
+        public static void FlushClipboard()
+        {
             Clipboard.Flush(); // very important
         }
 
