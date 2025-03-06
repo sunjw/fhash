@@ -309,7 +309,8 @@ private struct MainViewControllerState: OptionSet {
 
         mainTextView.textStorage?.setAttributedString(mainText!)
 
-        if (!MacSwiftUtils.IsSystemEarlierThan(14, 0)) {
+        if (!MacSwiftUtils.IsSystemEarlierThan(14, 0) &&
+            MacSwiftUtils.IsSystemEarlierThan(15, 3)) {
             // Sonoma and later insets fix.
             let fixInset = 5.0
             let mainTextSize = mainText!.size()
