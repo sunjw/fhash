@@ -18,7 +18,7 @@
 "BUTTON_CANCEL" = "Cancel";
 
 // Main Dialog Strings
-"MAINDLG_INITINFO" = "Drag files here or click open to start calculate.";
+"MAINDLG_INITINFO" = "Drag files here or click open to start calculate...";
 "MAINDLG_WAITING_START" = "Prepare to start calculation.";
 "MAINDLG_CONTEXT_INIT" = "Need Administrator";
 "MAINDLG_ADD_SUCCEEDED" = "Add Succeeded";

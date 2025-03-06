@@ -18,7 +18,7 @@
 "BUTTON_CANCEL" = "取消";
 
 // Main Dialog Strings
-"MAINDLG_INITINFO" = "将文件拖入或点击打开，开始计算。";
+"MAINDLG_INITINFO" = "将文件拖入或点击打开，开始计算...";
 "MAINDLG_WAITING_START" = "准备开始计算。";
 "MAINDLG_CONTEXT_INIT" = "需要管理员权限";
 "MAINDLG_ADD_SUCCEEDED" = "添加成功";
