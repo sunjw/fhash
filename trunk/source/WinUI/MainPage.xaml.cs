@@ -632,17 +632,8 @@ namespace FilesHashWUI
                 return;
 
             string strHash = WinUIHelper.GetTextFromHyperlink(m_hyperlinkClicked);
-            WinUIHelper.CopyStringToClipboard(strHash);
-
-            // Fix Clipboard.Flush crash.
-            DispatcherQueueTimer timerClipboardFlush = DispatcherQueue.CreateTimer();
-            timerClipboardFlush.Interval = TimeSpan.FromMilliseconds(500);
-            timerClipboardFlush.IsRepeating = false;
-            timerClipboardFlush.Tick += (timer, sender) =>
-            {
-                WinUIHelper.FlushClipboard();
-            };
-            timerClipboardFlush.Start();
+            NativeHelper nativeHelper = new();
+            nativeHelper.SetClipboardText(strHash);
         }
 
         private void MenuItemGoogle_Click(object sender, RoutedEventArgs e)
