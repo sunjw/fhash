@@ -229,6 +229,7 @@
     <ClInclude Include="..\..\trunk\source\OsUtils\OsFile.h" />
     <ClInclude Include="..\..\trunk\source\OsUtils\OsThread.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\AdvTaskbar.h" />
+    <ClInclude Include="..\..\trunk\source\WinCommon\ClipboardHelper.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\FileVersionHelper.h" />
     <ClInclude Include="..\..\trunk\source\WinCommon\WindowsComm.h" />
     <ClInclude Include="framework.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="..\..\trunk\source\OsUtils\OsFileWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\OsUtils\OsThreadWinApi.cpp" />
     <ClCompile Include="..\..\trunk\source\WinCommon\AdvTaskbar.cpp" />
+    <ClCompile Include="..\..\trunk\source\WinCommon\ClipboardHelper.cpp" />
     <ClCompile Include="..\..\trunk\source\WinCommon\FileVersionHelper.cpp" />
     <ClCompile Include="..\..\trunk\source\WinCommon\WindowsComm.cpp" />
     <ClCompile Include="stdafx.cpp">

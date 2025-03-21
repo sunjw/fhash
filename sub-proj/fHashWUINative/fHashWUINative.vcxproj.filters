@@ -75,6 +75,9 @@
     <ClInclude Include="..\..\trunk\source\WinCommon\AdvTaskbar.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\trunk\source\WinCommon\ClipboardHelper.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -111,6 +114,9 @@
       <Filter>算法</Filter>
     </ClCompile>
     <ClCompile Include="..\..\trunk\source\WinCommon\AdvTaskbar.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\trunk\source\WinCommon\ClipboardHelper.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
