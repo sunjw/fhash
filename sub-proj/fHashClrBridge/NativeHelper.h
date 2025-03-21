@@ -9,5 +9,7 @@ namespace SunJWBase
 
 		System::String^ GetTargetArch();
 		System::String^ GetWindowsInfo();
+
+		System::Boolean SetClipboardText(System::String^ sstrCopyText);
 	};
 }

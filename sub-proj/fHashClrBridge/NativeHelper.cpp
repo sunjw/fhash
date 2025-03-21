@@ -2,6 +2,7 @@
 
 #include "NativeHelper.h"
 #include "WinCommon/WindowsComm.h"
+#include "WinCommon/ClipboardHelper.h"
 #include "ClrHelper.h"
 #include "Common/strhelper.h"
 
@@ -22,13 +23,19 @@ String^ NativeHelper::GetTargetArch()
 #elif defined (_M_ARM64)
 	tstrTarget = TEXT("arm64");
 #endif
-	String^ pstrTarget = ConvertTstrToSystemString(tstrTarget.c_str());
-	return pstrTarget;
+	String^ sstrTarget = ConvertTstrToSystemString(tstrTarget.c_str());
+	return sstrTarget;
 }
 
 String^ NativeHelper::GetWindowsInfo()
 {
 	tstring tstrWinInfo = WindowsComm::GetWindowsInfo();
-	String^ pstrWinInfo = ConvertTstrToSystemString(tstrWinInfo.c_str());
-	return pstrWinInfo;
+	String^ sstrWinInfo = ConvertTstrToSystemString(tstrWinInfo.c_str());
+	return sstrWinInfo;
+}
+
+Boolean NativeHelper::SetClipboardText(String^ sstrCopyText)
+{
+	tstring tstrCopyText = ConvertSystemStringToTstr(sstrCopyText);
+	return WindowsComm::SetClipboardText(tstrCopyText);
 }
