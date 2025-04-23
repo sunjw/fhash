@@ -604,35 +604,27 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc func onPreparingCalc() {
-        DispatchQueue.main.async(execute: {
-            // Copy old string.
-            self.nsAttrStrNoPreparing = NSMutableAttributedString(attributedString: self.mainText!)
+        // Copy old string.
+        self.nsAttrStrNoPreparing = NSMutableAttributedString(attributedString: self.mainText!)
 
-            var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_WAITING_START")
-            strAppend += "\n"
-            MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
+        var strAppend = MacSwiftUtils.GetStringFromRes("MAINDLG_WAITING_START")
+        strAppend += "\n"
+        MacSwiftUtils.AppendStringToNSMutableAttributedString(self.mainText, strAppend)
 
-            self.updateMainTextView()
-        })
+        self.updateMainTextView()
     }
 
     @objc func onRemovePreparingCalc() {
-        DispatchQueue.main.async(execute: {
-            // Reset old string.
-            self.mainText = NSMutableAttributedString(attributedString: self.nsAttrStrNoPreparing!)
-        })
+        // Reset old string.
+        self.mainText = NSMutableAttributedString(attributedString: self.nsAttrStrNoPreparing!)
     }
 
     @objc func onCalcStop() {
-        DispatchQueue.main.async(execute: {
-            self.calculateStopped()
-        })
+        self.calculateStopped()
     }
 
     @objc func onCalcFinish() {
-        DispatchQueue.main.async(execute: {
-            self.calculateFinished()
-        })
+        self.calculateFinished()
     }
 
     @objc func onShowFileName(_ result: ResultDataSwift) {
@@ -680,15 +672,13 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc func onUpdateProgWhole(_ value: Int) {
-        DispatchQueue.main.async(execute: {
-            let oldValue = Int(self.mainProgressIndicator.doubleValue)
-            if value == oldValue {
-                return
-            }
+        let oldValue = Int(self.mainProgressIndicator.doubleValue)
+        if value == oldValue {
+            return
+        }
 
-            self.mainProgressIndicator.doubleValue = Double(value)
-            self.updateDockProgress(value)
-        })
+        self.mainProgressIndicator.doubleValue = Double(value)
+        self.updateDockProgress(value)
     }
 
     @IBAction func openButtonClicked(_ sender: NSButton) {
