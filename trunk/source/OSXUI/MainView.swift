@@ -12,7 +12,9 @@ import Cocoa
     weak var mainViewController: MainViewController?
 
     override func awakeFromNib() {
-        registerForDraggedTypes([.fileURL])
+        MainActor.assumeIsolated {
+            registerForDraggedTypes([.fileURL])
+        }
     }
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
