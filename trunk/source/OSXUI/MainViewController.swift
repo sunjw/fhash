@@ -148,6 +148,8 @@ private struct MainViewControllerState: OptionSet {
     }
 
     override func viewWillDisappear() {
+        DockProgress.resetProgress()
+
         // Save NSUserDefaults.
         let defaultUpperCase = (upperCaseButton.state == .on)
         UserDefaults.standard.set(
