@@ -357,6 +357,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     private func canUpdateMainTextView() -> Bool {
+        // NSLog("%@", ((self.inMainQueue - self.outMainQueue < self.maxDiffQueue) ? "true" : "false"))
         return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
     }
 
