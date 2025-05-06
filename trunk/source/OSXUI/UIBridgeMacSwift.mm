@@ -78,36 +78,36 @@ void UIBridgeMacSwift::calcFinish()
 
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     dispatch_async(dispatch_get_main_queue(), ^{
         MainViewController *mainViewController = _mainViewControllerPtr.get();
-        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
         [mainViewController onShowFileName:resultSwift];
     });
 }
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 {
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     dispatch_async(dispatch_get_main_queue(), ^{
         MainViewController *mainViewController = _mainViewControllerPtr.get();
-        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
         [mainViewController onShowFileMeta:resultSwift];
     });
 }
 
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     dispatch_async(dispatch_get_main_queue(), ^{
         MainViewController *mainViewController = _mainViewControllerPtr.get();
-        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
         [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
     });
 }
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
+    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
     dispatch_async(dispatch_get_main_queue(), ^{
         MainViewController *mainViewController = _mainViewControllerPtr.get();
-        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
         [mainViewController onShowFileErr:resultSwift];
     });
 }
