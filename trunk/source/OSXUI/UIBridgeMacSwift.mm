@@ -46,54 +46,70 @@ void UIBridgeMacSwift::unlockData()
 
 void UIBridgeMacSwift::preparingCalc()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController onPreparingCalc];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController onPreparingCalc];
+    });
 }
 
 void UIBridgeMacSwift::removePreparingCalc()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController onRemovePreparingCalc];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController onRemovePreparingCalc];
+    });
 }
 
 void UIBridgeMacSwift::calcStop()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController onCalcStop];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController onCalcStop];
+    });
 }
 
 void UIBridgeMacSwift::calcFinish()
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController onCalcFinish];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController onCalcFinish];
+    });
 }
 
 void UIBridgeMacSwift::showFileName(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
-    [mainViewController onShowFileName:resultSwift];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+        [mainViewController onShowFileName:resultSwift];
+    });
 }
 
 void UIBridgeMacSwift::showFileMeta(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
-    [mainViewController onShowFileMeta:resultSwift];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+        [mainViewController onShowFileMeta:resultSwift];
+    });
 }
 
 void UIBridgeMacSwift::showFileHash(const ResultData& result, bool uppercase)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
-    [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+        [mainViewController onShowFileHash:resultSwift uppercase:uppercase];
+    });
 }
 
 void UIBridgeMacSwift::showFileErr(const ResultData& result)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
-    [mainViewController onShowFileErr:resultSwift];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        ResultDataSwift *resultSwift = UIBridgeMacSwift::ConvertResultDataToSwift(result);
+        [mainViewController onShowFileErr:resultSwift];
+    });
 }
 
 int UIBridgeMacSwift::getProgMax()
@@ -107,8 +123,10 @@ void UIBridgeMacSwift::updateProg(int value)
 
 void UIBridgeMacSwift::updateProgWhole(int value)
 {
-    MainViewController *mainViewController = _mainViewControllerPtr.get();
-    [mainViewController onUpdateProgWhole:value];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        MainViewController *mainViewController = _mainViewControllerPtr.get();
+        [mainViewController onUpdateProgWhole:value];
+    });
 }
 
 void UIBridgeMacSwift::fileCalcFinish()
