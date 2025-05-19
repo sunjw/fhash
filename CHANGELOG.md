@@ -1,3 +1,8 @@
+3.11.10 (104) 2025-05-19  
+Windows WinUI: update components  
+macOS: Target Swift 6  
+Fix other issues  
+
 3.11.8 (101) 2025-04-07  
 Windows WinUI: update components  
 Fix other issues  
