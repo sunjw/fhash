@@ -24,12 +24,13 @@
 
 static WCHAR const c_szVerbDisplayNameBack[] = L"Hash with fHash";
 static WCHAR const c_szProgID[] = L"*";
+static WCHAR const c_szExecName[] = L"fHashWUI.exe";
 #if defined (_DEBUG)
 static WCHAR const c_szVerbName[] = L"fHashWUIShellExtDev";
-static WCHAR const c_szExecPath[] = L"fHashWUIDev.exe";
+static WCHAR const c_szAliasExecName[] = L"fHashWUIDev.exe";
 #else
 static WCHAR const c_szVerbName[] = L"fHashWUIShellExt";
-static WCHAR const c_szExecPath[] = L"fHashWUI.exe";
+static WCHAR const c_szAliasExecName[] = L"fHashWUI.exe";
 #endif
 
 extern HINSTANCE g_hInst;
@@ -84,7 +85,36 @@ public:
 
     IFACEMETHODIMP GetIcon(IShellItemArray * /* psiItemArray */, LPWSTR *ppszIcon)
     {
-        // the icon ref ("dll,-<resid>") is provied here, in this case none is provieded
+        // the icon ref ("dll,-<resid>") is provied here
+        TCHAR szModulePath[MAX_PATH + 1] = { 0 };
+        if (GetModuleFileName(g_hInst, szModulePath, MAX_PATH))
+        {
+            sunjwbase::tstring tstrModuleFullPath(szModulePath);
+            sunjwbase::tstring tstrExeDirPath(tstrModuleFullPath);
+            sunjwbase::tstring::size_type idx = tstrExeDirPath.rfind(_T("\\"));
+            if (idx != sunjwbase::tstring::npos)
+            {
+                tstrExeDirPath = tstrExeDirPath.substr(0, idx);
+                idx = tstrExeDirPath.rfind(_T("\\"));
+                if (idx != sunjwbase::tstring::npos)
+                {
+                    tstrExeDirPath = tstrExeDirPath.substr(0, idx);
+                    sunjwbase::tstring tstrExeFullPath = tstrExeDirPath + _T("\\fHashWUI\\") + c_szExecName;
+                    // check file exists
+                    DWORD dwAttr = GetFileAttributes(tstrExeFullPath.c_str());
+                    if (dwAttr != INVALID_FILE_ATTRIBUTES && !(dwAttr & FILE_ATTRIBUTE_DIRECTORY))
+                    {
+                        // MessageBox(_hwnd, tstrExeFullPath.c_str(), TEXT("GetIcon"), MB_OK);
+
+                        // the icon ref ("dll,-<resid>") is provied here
+                        sunjwbase::tstring tstrIconRef = tstrExeFullPath + _T(",0");
+                        return SHStrDup(tstrIconRef.c_str(), ppszIcon);
+                    }
+                }
+            }
+        }
+
+        // anything wrong, return NULL
         *ppszIcon = NULL;
         return E_NOTIMPL;
     }
@@ -194,7 +224,7 @@ DWORD CExplorerCommandVerb::_ThreadProc()
     if (SUCCEEDED(hr))
     {
         WCHAR szExecPath[MAX_PATH + 20] = {0};
-        hr = ResolveWindowsAppExePath(c_szExecPath, szExecPath);
+        hr = ResolveWindowsAppExePath(c_szAliasExecName, szExecPath);
         if (SUCCEEDED(hr))
         {
             sunjwbase::tstring tstrExecPath(szExecPath); // executable path
