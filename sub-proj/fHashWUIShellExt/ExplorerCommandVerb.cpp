@@ -91,15 +91,15 @@ public:
         {
             sunjwbase::tstring tstrModuleFullPath(szModulePath);
             sunjwbase::tstring tstrExeDirPath(tstrModuleFullPath);
-            sunjwbase::tstring::size_type idx = tstrExeDirPath.rfind(_T("\\"));
+            sunjwbase::tstring::size_type idx = tstrExeDirPath.rfind(TEXT("\\"));
             if (idx != sunjwbase::tstring::npos)
             {
                 tstrExeDirPath = tstrExeDirPath.substr(0, idx);
-                idx = tstrExeDirPath.rfind(_T("\\"));
+                idx = tstrExeDirPath.rfind(TEXT("\\"));
                 if (idx != sunjwbase::tstring::npos)
                 {
                     tstrExeDirPath = tstrExeDirPath.substr(0, idx);
-                    sunjwbase::tstring tstrExeFullPath = tstrExeDirPath + _T("\\fHashWUI\\") + c_szExecName;
+                    sunjwbase::tstring tstrExeFullPath = tstrExeDirPath + TEXT("\\fHashWUI\\") + c_szExecName;
                     // check file exists
                     DWORD dwAttr = GetFileAttributes(tstrExeFullPath.c_str());
                     if (dwAttr != INVALID_FILE_ATTRIBUTES && !(dwAttr & FILE_ATTRIBUTE_DIRECTORY))
@@ -107,7 +107,7 @@ public:
                         // MessageBox(_hwnd, tstrExeFullPath.c_str(), TEXT("GetIcon"), MB_OK);
 
                         // the icon ref ("dll,-<resid>") is provied here
-                        sunjwbase::tstring tstrIconRef = tstrExeFullPath + _T(",0");
+                        sunjwbase::tstring tstrIconRef = tstrExeFullPath + TEXT(",0");
                         return SHStrDup(tstrIconRef.c_str(), ppszIcon);
                     }
                 }
@@ -203,7 +203,7 @@ private:
 
 __inline HRESULT ResolveWindowsAppExePath(LPCWSTR pszExecName, LPWSTR pszPath)
 {
-    WCHAR szUserPath[MAX_PATH + 20] = {0};
+    WCHAR szUserPath[MAX_PATH + 20] = { 0 };
     HRESULT hr = SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, szUserPath);
     if (FAILED(hr))
     {
@@ -223,7 +223,7 @@ DWORD CExplorerCommandVerb::_ThreadProc()
     _pstmShellItemArray = NULL;
     if (SUCCEEDED(hr))
     {
-        WCHAR szExecPath[MAX_PATH + 20] = {0};
+        WCHAR szExecPath[MAX_PATH + 20] = { 0 };
         hr = ResolveWindowsAppExePath(c_szAliasExecName, szExecPath);
         if (SUCCEEDED(hr))
         {
