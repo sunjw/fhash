@@ -32,6 +32,8 @@ static WCHAR const c_szVerbName[] = L"fHashWUIShellExt";
 static WCHAR const c_szExecPath[] = L"fHashWUI.exe";
 #endif
 
+extern HINSTANCE g_hInst;
+
 class CExplorerCommandVerb : public IExplorerCommand,
                              public IInitializeCommand,
                              public IObjectWithSite
@@ -171,7 +173,7 @@ private:
 
 __inline HRESULT ResolveWindowsAppExePath(LPCWSTR pszExecName, LPWSTR pszPath)
 {
-    WCHAR szUserPath[MAX_PATH];
+    WCHAR szUserPath[MAX_PATH + 20] = {0};
     HRESULT hr = SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, szUserPath);
     if (FAILED(hr))
     {
@@ -191,7 +193,7 @@ DWORD CExplorerCommandVerb::_ThreadProc()
     _pstmShellItemArray = NULL;
     if (SUCCEEDED(hr))
     {
-        WCHAR szExecPath[MAX_PATH];
+        WCHAR szExecPath[MAX_PATH + 20] = {0};
         hr = ResolveWindowsAppExePath(c_szExecPath, szExecPath);
         if (SUCCEEDED(hr))
         {
