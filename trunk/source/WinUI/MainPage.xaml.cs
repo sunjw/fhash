@@ -57,7 +57,14 @@ namespace FilesHashWUI
         private Run m_runPrepare = null;
 
         private MainPageControlStat m_mainPageStat;
+
         private bool m_uppercaseChecked = false;
+
+        private int m_inMainQueue = 0;
+        private int m_outMainQueue = 0;
+        private const int m_maxDiffQueue = 3;
+        List<Inline> m_inlinesQueue = [];
+
         private long m_calcStartTime = 0;
         private long m_calcEndTime = 0;
 
@@ -195,6 +202,27 @@ namespace FilesHashWUI
         {
             List<Inline> inlines = [inline];
             AppendInlinesToTextMain(inlines);
+        }
+
+        private bool CanUpdateTextMain()
+        {
+            if (m_inMainQueue < 100)
+            {
+                return (m_inMainQueue - m_outMainQueue < m_maxDiffQueue);
+            }
+            else
+            {
+                return (m_inlinesQueue.Count > (m_inMainQueue / 2));
+            }
+        }
+
+        private void AppendInlinesQueueToTextMain()
+        {
+            if (m_inlinesQueue.Count > 0)
+            {
+                AppendInlinesToTextMain(m_inlinesQueue);
+                m_inlinesQueue.Clear();
+            }
         }
 
         private void ClearTextMain()
@@ -345,6 +373,11 @@ namespace FilesHashWUI
             m_mainWindow.SetTaskbarProgress(1);
 
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
+
+            // Ready to go.
+            m_inMainQueue = 0;
+            m_outMainQueue = 0;
+            m_inlinesQueue.Clear();
             m_mainWindow.HashMgmt.StartHashThread();
         }
 
@@ -361,6 +394,8 @@ namespace FilesHashWUI
 
         private void CalculateFinished()
         {
+            AppendInlinesQueueToTextMain();
+
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
 
             int progMax = m_mainWindow.UIBridgeHandlers.GetProgMax();
@@ -393,6 +428,7 @@ namespace FilesHashWUI
 
         private void CalculateStopped()
         {
+            AppendInlinesQueueToTextMain();
             AppendInlineToTextMain(WinUIHelper.GenRunFromString("\r\n"));
 
             SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
@@ -402,19 +438,23 @@ namespace FilesHashWUI
 
         private void AppendFileNameToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = [];
+            m_outMainQueue += 1;
             string strAppend = m_resourceLoaderMain.GetString("ResultFileName");
             strAppend += " ";
             strAppend += resultData.Path;
-            inlines.Add(WinUIHelper.GenRunFromString(strAppend));
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
-            AppendInlinesToTextMain(inlines);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString(strAppend));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
+
+            if (CanUpdateTextMain())
+            {
+                AppendInlinesQueueToTextMain();
+            }
         }
 
         private void AppendFileMetaToTextMain(ResultDataNet resultData)
         {
+            m_outMainQueue += 1;
             string strShortSize = WinUIHelper.ConvertSizeToShortSizeStr(resultData.Size);
-            List<Inline> inlines = [];
             string strSize = m_resourceLoaderMain.GetString("ResultFileSize");
             strSize += " ";
             strSize += resultData.Size;
@@ -429,23 +469,28 @@ namespace FilesHashWUI
             string strModifiedTime = m_resourceLoaderMain.GetString("ResultModifiedTime");
             strModifiedTime += " ";
             strModifiedTime += resultData.ModifiedDate;
-            inlines.Add(WinUIHelper.GenRunFromString(strSize));
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
-            inlines.Add(WinUIHelper.GenRunFromString(strModifiedTime));
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString(strSize));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString(strModifiedTime));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
             if (!string.IsNullOrEmpty(resultData.Version))
             {
                 string strVersion = m_resourceLoaderMain.GetString("ResultFileVersion");
                 strVersion += " ";
                 strVersion += resultData.Version;
-                inlines.Add(WinUIHelper.GenRunFromString(strVersion));
-                inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
+                m_inlinesQueue.Add(WinUIHelper.GenRunFromString(strVersion));
+                m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
             }
-            AppendInlinesToTextMain(inlines);
+
+            if (CanUpdateTextMain())
+            {
+                AppendInlinesQueueToTextMain();
+            }
         }
 
         private void AppendFileHashToTextMain(ResultDataNet resultData, bool uppercase)
         {
+            m_outMainQueue += 1;
             string strFileMD5, strFileSHA1, strFileSHA256, strFileSHA512;
 
             if (uppercase)
@@ -463,37 +508,44 @@ namespace FilesHashWUI
                 strFileSHA512 = resultData.SHA512.ToLower();
             }
 
-            List<Inline> inlines = [];
-            inlines.Add(WinUIHelper.GenRunFromString("MD5: "));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("MD5: "));
             Hyperlink hyperlinkMD5 = GenHyperlinkFromStringForRichTextMain(strFileMD5);
             m_hyperlinksMain.Add(hyperlinkMD5);
-            inlines.Add(hyperlinkMD5);
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
-            inlines.Add(WinUIHelper.GenRunFromString("SHA1: "));
+            m_inlinesQueue.Add(hyperlinkMD5);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("SHA1: "));
             Hyperlink hyperlinkSHA1 = GenHyperlinkFromStringForRichTextMain(strFileSHA1);
             m_hyperlinksMain.Add(hyperlinkSHA1);
-            inlines.Add(hyperlinkSHA1);
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
-            inlines.Add(WinUIHelper.GenRunFromString("SHA256: "));
+            m_inlinesQueue.Add(hyperlinkSHA1);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("SHA256: "));
             Hyperlink hyperlinkSHA256 = GenHyperlinkFromStringForRichTextMain(strFileSHA256);
             m_hyperlinksMain.Add(hyperlinkSHA256);
-            inlines.Add(hyperlinkSHA256);
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n"));
-            inlines.Add(WinUIHelper.GenRunFromString("SHA512: "));
+            m_inlinesQueue.Add(hyperlinkSHA256);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n"));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("SHA512: "));
             Hyperlink hyperlinkSHA512 = GenHyperlinkFromStringForRichTextMain(strFileSHA512);
             m_hyperlinksMain.Add(hyperlinkSHA512);
-            inlines.Add(hyperlinkSHA512);
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
-            AppendInlinesToTextMain(inlines);
+            m_inlinesQueue.Add(hyperlinkSHA512);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
+
+            if (CanUpdateTextMain())
+            {
+                AppendInlinesQueueToTextMain();
+            }
         }
 
         private void AppendFileErrToTextMain(ResultDataNet resultData)
         {
-            List<Inline> inlines = [];
+            m_outMainQueue += 1;
             string strAppend = resultData.Error;
-            inlines.Add(WinUIHelper.GenRunFromString(strAppend));
-            inlines.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
-            AppendInlinesToTextMain(inlines);
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString(strAppend));
+            m_inlinesQueue.Add(WinUIHelper.GenRunFromString("\r\n\r\n"));
+
+            if (CanUpdateTextMain())
+            {
+                AppendInlinesQueueToTextMain();
+            }
         }
 
         private void AppendFileResultToTextMain(ResultDataNet resultData, bool uppercase)
@@ -916,21 +968,25 @@ namespace FilesHashWUI
 
         private void UIBridgeHandlers_ShowFileNameHandler(ResultDataNet resultData)
         {
+            m_inMainQueue += 1;
             DispatcherQueue.TryEnqueue(() => AppendFileNameToTextMain(resultData));
         }
 
         private void UIBridgeHandlers_ShowFileMetaHandler(ResultDataNet resultData)
         {
+            m_inMainQueue += 1;
             DispatcherQueue.TryEnqueue(() => AppendFileMetaToTextMain(resultData));
         }
 
         private void UIBridgeHandlers_ShowFileHashHandler(ResultDataNet resultData, bool uppercase)
         {
+            m_inMainQueue += 1;
             DispatcherQueue.TryEnqueue(() => AppendFileHashToTextMain(resultData, uppercase));
         }
 
         private void UIBridgeHandlers_ShowFileErrHandler(ResultDataNet resultData)
         {
+            m_inMainQueue += 1;
             DispatcherQueue.TryEnqueue(() => AppendFileErrToTextMain(resultData));
         }
 
