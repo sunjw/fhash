@@ -125,3 +125,8 @@ cli::array<ResultDataNet>^ HashMgmtClr::FindResult(String^ sstrHashToFind)
 
 	return findResultNetArray;
 }
+
+UInt64 HashMgmtClr::GetResultCount()
+{
+	return m_pThreadData->resultList.size();
+}

@@ -36,6 +36,7 @@ namespace FilesHashWUI
 		void StartHashThread();
 
 		cli::array<ResultDataNet>^ FindResult(System::String^ sstrHashToFind);
+		System::UInt64 GetResultCount();
 
 	private:
 		UIBridgeWUI *m_pUiBridgeWUI;

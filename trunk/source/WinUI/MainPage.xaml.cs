@@ -360,13 +360,15 @@ namespace FilesHashWUI
                 return;
             }
 
-            if (m_mainPageStat == MainPageControlStat.MainPageNone)
-            {
-                ClearTextMain();
-            }
+            // ClearFindResult first
             if (m_mainPageStat == MainPageControlStat.MainPageVerify)
             {
                 ClearFindResult();
+            }
+            // Stat can be MainPageNone after ClearFindResult
+            if (m_mainPageStat == MainPageControlStat.MainPageNone)
+            {
+                ClearTextMain();
             }
 
             m_mainWindow.HashMgmt.AddFiles(filePaths.ToArray());
@@ -379,7 +381,7 @@ namespace FilesHashWUI
 
             SetPageControlStat(MainPageControlStat.MainPageCalcIng);
 
-            // Ready to go.
+            // Ready to go
             m_inMainQueue = 0;
             m_outMainQueue = 0;
             m_inlinesQueue.Clear();
@@ -668,7 +670,14 @@ namespace FilesHashWUI
             ScrollTextMainToBottom();
             m_hyperlinksMain = m_hyperlinksResult;
 
-            SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            if (m_mainWindow.HashMgmt.GetResultCount() > 0)
+            {
+                SetPageControlStat(MainPageControlStat.MainPageCalcFinish);
+            }
+            else
+            {
+                SetPageControlStat(MainPageControlStat.MainPageNone);
+            }
 
             // Clear find result
             m_paragraphFind.Inlines.Clear();
@@ -885,7 +894,7 @@ namespace FilesHashWUI
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
-            // Fix for color changed.
+            // Fix for color changed
             ScrollViewerMain.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
             ScrollViewerMain.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
@@ -915,7 +924,7 @@ namespace FilesHashWUI
             {
                 FileOpenPicker picker = new();
 
-                // Initialize the file picker with the window handle (HWND).
+                // Initialize the file picker with the window handle (HWND)
                 InitializeWithWindow.Initialize(picker, m_mainWindow.HWNDHandle);
 
                 // Set options for your file picker
