@@ -41,7 +41,6 @@ namespace FilesHashWUI
 
         private bool m_pageInited = false;
         private bool m_pageLoaded = false;
-        private bool m_pageVerify = false;
         private bool m_pendingScrollToBottom = false;
 
         private ContentDialog m_dialogFind = null;
@@ -207,7 +206,7 @@ namespace FilesHashWUI
 
         private bool CanUpdateTextMain()
         {
-            if (m_pageVerify)
+            if (!IsCalculating())
             {
                 return true;
             }
@@ -608,8 +607,6 @@ namespace FilesHashWUI
 
         private void ShowFindResult(string strHashToFind, ResultDataNet[] resultDataNetArray)
         {
-            m_pageVerify = true;
-
             // Fix strange behavior
             ScrollViewerMain.ChangeView(null, 0.0, null, true);
             ScrollViewerMain.ChangeView(0.01, null, null); // WTF?
@@ -664,8 +661,6 @@ namespace FilesHashWUI
 
         private void ClearFindResult()
         {
-            m_pageVerify = false;
-
             // Switch m_paragraphMain
             RichTextMain.Blocks.Clear();
             m_paragraphMain = m_paragraphResult;
