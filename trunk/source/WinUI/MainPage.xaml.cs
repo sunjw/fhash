@@ -796,7 +796,7 @@ namespace FilesHashWUI
             if (string.IsNullOrEmpty(someArgs))
                 return;
 
-            string[] splitArgs = CommandLineStringSplitter.Instance.Split(someArgs).ToArray();
+            string[] splitArgs = CommandLineParser.SplitCommandLine(someArgs).ToArray();
             List<string> strFilePaths = [];
             bool foundPaths = false;
             for (int i = 0; i < splitArgs.Length; i++)
