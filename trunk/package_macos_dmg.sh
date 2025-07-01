@@ -27,7 +27,7 @@ temp_dmg_path=${temp_dmg_path/VERSION/$plist_version}
 cd "$cur_dir"
 
 # Create DMG
-hdiutil create -format UDBZ -fs HFS+ -volname "$vol_name" -srcfolder "$src_folder" "$temp_dmg_path"
+hdiutil create -format UDZO -fs HFS+ -volname "$vol_name" -srcfolder "$src_folder" "$temp_dmg_path"
 
 # Move to target directory
 echo "Move DMG to [$src_folder]"
