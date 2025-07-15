@@ -1,3 +1,7 @@
+25.7.13 (107) 2025-07-15  
+Windows WinUI: update components  
+Fix other issues  
+
 3.11.11 (105) 2025-06-09  
 Windows WinUI: update components  
 Fix other issues  
