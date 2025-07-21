@@ -270,9 +270,6 @@ int WINAPI HashThreadFunc(void *param)
 							return (!queueDataBuffer.empty() || isFileFinished || thrdData->stop);
 						});
 
-						if (thrdData->stop)
-							break;
-
 						if (queueDataBuffer.empty() && isFileFinished)
 							break;
 
@@ -284,6 +281,9 @@ int WINAPI HashThreadFunc(void *param)
 						}
 					}
 					cvFile.notify_one();
+
+					if (thrdData->stop)
+						break;
 
 					if (!ptrDataBufCalc)
 						continue; // no data
