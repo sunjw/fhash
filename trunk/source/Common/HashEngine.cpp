@@ -74,6 +74,47 @@ static void SHA512UpdateWrapper(SHA512_CTX *context, void *datain, size_t len)
 	SHA512_Update(context, datain, len); // SHA512 update
 }
 
+static void UpdateProgressWrapper(uint64_t fsize, uint64_t totalSize, bool isSizeCaled, unsigned int dataBufLen,
+	UIBridgeBase *uiBridge, uint64_t *finishedSize, uint64_t *finishedSizeWhole, int *position, int *positionWhole)
+{
+	// update progress
+	*finishedSize += dataBufLen;
+
+	int progressMax = uiBridge->getProgMax();
+
+	int positionNew;
+	if (fsize == 0)
+	{
+		positionNew = progressMax;
+	}
+	else
+	{
+		positionNew = (int)(progressMax * (*finishedSize) / fsize);
+	}
+
+	if (positionNew > *position)
+	{
+		uiBridge->updateProg(positionNew);
+		*position = positionNew;
+	}
+
+	*finishedSizeWhole += dataBufLen;
+	int positionWholeNew;
+	if (totalSize == 0)
+	{
+		positionWholeNew = progressMax;
+	}
+	else
+	{
+		positionWholeNew = (int)(progressMax * (*finishedSizeWhole) / totalSize);
+	}
+	if (isSizeCaled && positionWholeNew > *positionWhole)
+	{
+		*positionWhole = positionWholeNew;
+		uiBridge->updateProgWhole(*positionWhole);
+	}
+}
+
 // working thread
 int WINAPI HashThreadFunc(void *param)
 {
@@ -87,7 +128,6 @@ int WINAPI HashThreadFunc(void *param)
 	uint64_t finishedSize = 0;
 	uint64_t finishedSizeWhole = 0;
 	bool isSizeCaled = false;
-	//ULONGLONG* fSizes = NULL;
 	ULLongVector fSizes(thrdData->nFiles);
 	int positionWhole = 0; // whole position
 
@@ -120,7 +160,7 @@ int WINAPI HashThreadFunc(void *param)
 			}
 			uint64_t fSize = 0;
 
-			const TCHAR* path;
+			const TCHAR *path;
 			path = thrdData->fullPaths[i].c_str();
 			OsFile osFile(path);
 			if (osFile.openRead())
@@ -154,7 +194,7 @@ int WINAPI HashThreadFunc(void *param)
 #endif
 
 		// Declaration for calculator
-		const TCHAR* path;
+		const TCHAR *path;
 		uint64_t fsize, times;
 		finishedSize = 0;
 
