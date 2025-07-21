@@ -99,8 +99,8 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA512;
 
 #if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
-	// Create thread pool with 4 threads
-	ThreadPool threadPool(4);
+	// Create thread pool with 5 threads
+	ThreadPool threadPool(5);
 #endif
 
 	uiBridge->preparingCalc();
@@ -155,11 +155,8 @@ int WINAPI HashThreadFunc(void *param)
 
 		// Declaration for calculator
 		const TCHAR* path;
-		uint64_t fsize, times, t = 0;
+		uint64_t fsize, times;
 		finishedSize = 0;
-		//unsigned int len;
-		//unsigned char buffer[65534];
-		DataBuffer databuf;
 
 		MD5_CTX mdContext; // MD5 context
 
@@ -250,7 +247,98 @@ int WINAPI HashThreadFunc(void *param)
 			// get calculating times //
 			times = fsize / DataBuffer::preflen + 1;
 
-			//UINT bufferSize = sizeof(buffer);
+			bool isFileFinished = false;
+
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
+			queue<unique_ptr<DataBuffer>> queueDataBuffer;
+			mutex mtxQueue;
+			condition_variable cvQueue;
+
+			// create hashWorker thread
+			future<void> taskHash = threadPool.enqueue([&] // capture by ref
+			{
+				while (true)
+				{
+					unique_ptr<DataBuffer> ptrDataBufCalc;
+
+					{
+						unique_lock<mutex> lock(mtxQueue);
+						cvQueue.wait(lock, [&]
+						{
+							// not to wait
+							return (!queueDataBuffer.empty() || thrdData->stop);
+						});
+
+						if (thrdData->stop)
+							break;
+
+						if (queueDataBuffer.empty() && isFileFinished)
+							break;
+
+						if (!queueDataBuffer.empty())
+						{
+							// pop one
+							ptrDataBufCalc = move(queueDataBuffer.front());
+							queueDataBuffer.pop();
+						}
+					}
+
+					if (!ptrDataBufCalc)
+						continue; // no data
+
+					// multi threads
+					future<void> taskSHA512Update = threadPool.enqueue(SHA512UpdateWrapper, &sha512Ctx, ptrDataBufCalc->data, ptrDataBufCalc->datalen);
+					future<void> taskSHA256Update = threadPool.enqueue(SHA256UpdateWrapper, &sha256Ctx, ptrDataBufCalc->data, ptrDataBufCalc->datalen);
+					future<void> taskSHA1Update = threadPool.enqueue(SHA1UpdateWrapper, &sha1, ptrDataBufCalc->data, ptrDataBufCalc->datalen);
+					future<void> taskMD5Update = threadPool.enqueue(MD5UpdateWrapper, &mdContext, ptrDataBufCalc->data, ptrDataBufCalc->datalen);
+
+					taskSHA512Update.wait();
+					taskSHA256Update.wait();
+					taskSHA1Update.wait();
+					taskMD5Update.wait();
+
+					// update progress
+					finishedSize += ptrDataBufCalc->datalen;
+
+					int progressMax = uiBridge->getProgMax();
+
+					int positionNew;
+					if (fsize == 0)
+					{
+						positionNew = progressMax;
+					}
+					else
+					{
+						positionNew = (int)(progressMax * finishedSize / fsize);
+					}
+
+					if (positionNew > position)
+					{
+						uiBridge->updateProg(positionNew);
+						position = positionNew;
+					}
+
+					finishedSizeWhole += ptrDataBufCalc->datalen;
+					int positionWholeNew;
+					if (thrdData->totalSize == 0)
+					{
+						positionWholeNew = progressMax;
+					}
+					else
+					{
+						positionWholeNew = (int)(progressMax * finishedSizeWhole / thrdData->totalSize);
+					}
+					if (isSizeCaled && positionWholeNew > positionWhole)
+					{
+						positionWhole = positionWholeNew;
+						uiBridge->updateProgWhole(positionWhole);
+					}
+				}
+			});
+#else
+			DataBuffer databuf;
+#endif
+
 			do
 			{
 				if (thrdData->stop)
@@ -259,8 +347,26 @@ int WINAPI HashThreadFunc(void *param)
 					thrdData->threadWorking = false;
 
 					uiBridge->calcStop();
-					return 0;
+
+					break; // return 0;
 				}
+
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
+				unique_ptr<DataBuffer> ptrDataBufFile = make_unique<DataBuffer>();
+				int64_t readRet = osFile.read(ptrDataBufFile->data, DataBuffer::preflen);
+				if (readRet >= 0)
+					ptrDataBufFile->datalen = (unsigned int)readRet;
+				else
+					ptrDataBufFile->datalen = 0;
+
+				isFileFinished = (ptrDataBufFile->datalen < DataBuffer::preflen);
+
+				{
+					lock_guard<std::mutex> lock(mtxQueue);
+					queueDataBuffer.push(std::move(ptrDataBufFile));
+				}
+				cvQueue.notify_one();
+#else
 				int64_t readRet = osFile.read(databuf.data, DataBuffer::preflen);
 				if (readRet >= 0)
 				{
@@ -271,31 +377,13 @@ int WINAPI HashThreadFunc(void *param)
 					databuf.datalen = 0;
 				}
 
-				t++;
-
-#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
-				// multi threads
-				future<void> taskSHA512Update = threadPool.enqueue(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
-				future<void> taskSHA256Update = threadPool.enqueue(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
-				future<void> taskSHA1Update = threadPool.enqueue(SHA1UpdateWrapper, &sha1, databuf.data, databuf.datalen);
-				future<void> taskMD5Update = threadPool.enqueue(MD5UpdateWrapper, &mdContext, databuf.data, databuf.datalen);
-
-				taskSHA512Update.wait();
-				taskSHA256Update.wait();
-				taskSHA1Update.wait();
-				taskMD5Update.wait();
-#else
 				// single thread
-				//MD5Update(&mdContext, databuf.data, databuf.datalen); // MD5 update
-				MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen);
-				//sha1.Update(databuf.data, databuf.datalen); // SHA1 update
-				SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen);
-				//sha256_update(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
-				SHA256UpdateWrapper(&sha256Ctx, databuf.data, databuf.datalen);
-				//SHA512_Update(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
-				SHA512UpdateWrapper(&sha512Ctx, databuf.data, databuf.datalen);
-#endif
+				MD5UpdateWrapper(&mdContext, databuf.data, databuf.datalen); // MD5 update
+				SHA1UpdateWrapper(&sha1, databuf.data, databuf.datalen); // SHA1 update
+				SHA256UpdateWrapper(&sha256Ctx, databuf.data, databuf.datalen); // SHA256 update
+				SHA512UpdateWrapper(&sha512Ctx, databuf.data, databuf.datalen); // SHA512 update
 
+				// update progress
 				finishedSize += databuf.datalen;
 
 				int progressMax = uiBridge->getProgMax();
@@ -332,8 +420,19 @@ int WINAPI HashThreadFunc(void *param)
 					uiBridge->updateProgWhole(positionWhole);
 				}
 
+				isFileFinished = (databuf.datalen < DataBuffer::preflen);
+#endif
 			}
-			while (databuf.datalen >= DataBuffer::preflen);
+			while (!isFileFinished);
+
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
+			isFileFinished = true;
+			cvQueue.notify_all();
+			taskHash.wait();
+#endif
+
+			if (thrdData->stop)
+				return 0;
 
 			uiBridge->fileCalcFinish();
 
