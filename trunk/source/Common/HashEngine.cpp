@@ -340,41 +340,8 @@ int WINAPI HashThreadFunc(void *param)
 					taskMD5Update.wait();
 
 					// update progress
-					finishedSize += ptrDataBufCalc->datalen;
-
-					int progressMax = uiBridge->getProgMax();
-
-					int positionNew;
-					if (fsize == 0)
-					{
-						positionNew = progressMax;
-					}
-					else
-					{
-						positionNew = (int)(progressMax * finishedSize / fsize);
-					}
-
-					if (positionNew > position)
-					{
-						uiBridge->updateProg(positionNew);
-						position = positionNew;
-					}
-
-					finishedSizeWhole += ptrDataBufCalc->datalen;
-					int positionWholeNew;
-					if (thrdData->totalSize == 0)
-					{
-						positionWholeNew = progressMax;
-					}
-					else
-					{
-						positionWholeNew = (int)(progressMax * finishedSizeWhole / thrdData->totalSize);
-					}
-					if (isSizeCaled && positionWholeNew > positionWhole)
-					{
-						positionWhole = positionWholeNew;
-						uiBridge->updateProgWhole(positionWhole);
-					}
+					UpdateProgressWrapper(fsize, thrdData->totalSize, isSizeCaled, ptrDataBufCalc->datalen,
+						uiBridge, &finishedSize, &finishedSizeWhole, &position, &positionWhole);
 				}
 			});
 #else
