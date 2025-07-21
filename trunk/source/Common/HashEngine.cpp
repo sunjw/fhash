@@ -252,7 +252,8 @@ int WINAPI HashThreadFunc(void *param)
 #if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 			queue<unique_ptr<DataBuffer>> queueDataBuffer;
 			mutex mtxQueue;
-			condition_variable cvQueue;
+			condition_variable cvFile;
+			condition_variable cvCalc;
 
 			// create hashWorker thread
 			future<void> taskHash = threadPool.enqueue([&] // capture by ref
@@ -263,10 +264,10 @@ int WINAPI HashThreadFunc(void *param)
 
 					{
 						unique_lock<mutex> lock(mtxQueue);
-						cvQueue.wait(lock, [&]
+						cvCalc.wait(lock, [&]
 						{
 							// not to wait
-							return (!queueDataBuffer.empty() || thrdData->stop);
+							return (!queueDataBuffer.empty() || isFileFinished || thrdData->stop);
 						});
 
 						if (thrdData->stop)
@@ -282,6 +283,7 @@ int WINAPI HashThreadFunc(void *param)
 							queueDataBuffer.pop();
 						}
 					}
+					cvFile.notify_one();
 
 					if (!ptrDataBufCalc)
 						continue; // no data
@@ -363,14 +365,14 @@ int WINAPI HashThreadFunc(void *param)
 
 				{
 					unique_lock<mutex> lock(mtxQueue);
-					cvQueue.wait(lock, [&]
+					cvFile.wait(lock, [&]
 					{
 						// limit to 4 DataBuffer
 						return queueDataBuffer.size() < 4;
 					});
 					queueDataBuffer.push(move(ptrDataBufFile));
 				}
-				cvQueue.notify_one();
+				cvCalc.notify_one();
 #else
 				int64_t readRet = osFile.read(databuf.data, DataBuffer::preflen);
 				if (readRet >= 0)
@@ -432,7 +434,7 @@ int WINAPI HashThreadFunc(void *param)
 
 #if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 			isFileFinished = true;
-			cvQueue.notify_all();
+			cvCalc.notify_all();
 			taskHash.wait();
 #endif
 
