@@ -362,8 +362,13 @@ int WINAPI HashThreadFunc(void *param)
 				isFileFinished = (ptrDataBufFile->datalen < DataBuffer::preflen);
 
 				{
-					lock_guard<std::mutex> lock(mtxQueue);
-					queueDataBuffer.push(std::move(ptrDataBufFile));
+					unique_lock<mutex> lock(mtxQueue);
+					cvQueue.wait(lock, [&]
+					{
+						// limit to 4 DataBuffer
+						return queueDataBuffer.size() < 4;
+					});
+					queueDataBuffer.push(move(ptrDataBufFile));
 				}
 				cvQueue.notify_one();
 #else
