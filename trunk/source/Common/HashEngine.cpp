@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 
-#if defined (FHASH_THREAD_HASH_UPDATE)
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 #include "Common/ThreadPool.h"
 #endif
 
@@ -98,7 +98,7 @@ int WINAPI HashThreadFunc(void *param)
 	tstring tstrFileSHA256;
 	tstring tstrFileSHA512;
 
-#if defined (FHASH_THREAD_HASH_UPDATE)
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 	// Create thread pool with 4 threads
 	ThreadPool threadPool(4);
 #endif
@@ -273,7 +273,7 @@ int WINAPI HashThreadFunc(void *param)
 
 				t++;
 
-#if defined (FHASH_THREAD_HASH_UPDATE)
+#if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 				// multi threads
 				future<void> taskSHA512Update = threadPool.enqueue(SHA512UpdateWrapper, &sha512Ctx, databuf.data, databuf.datalen);
 				future<void> taskSHA256Update = threadPool.enqueue(SHA256UpdateWrapper, &sha256Ctx, databuf.data, databuf.datalen);
