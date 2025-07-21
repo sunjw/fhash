@@ -280,7 +280,7 @@ int WINAPI HashThreadFunc(void *param)
 							queueDataBuffer.pop();
 						}
 					}
-					cvFile.notify_one();
+					cvFile.notify_all();
 
 					if (thrdData->stop)
 						break;
@@ -372,7 +372,7 @@ int WINAPI HashThreadFunc(void *param)
 					});
 					queueDataBuffer.push(move(ptrDataBufFile));
 				}
-				cvCalc.notify_one();
+				cvCalc.notify_all();
 #else
 				int64_t readRet = osFile.read(databuf.data, DataBuffer::preflen);
 				if (readRet >= 0)
