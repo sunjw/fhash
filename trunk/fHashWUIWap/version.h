@@ -1,7 +1,7 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-#define NUM_VERSION_WUI 25,7,13,0
-#define STR_VERSION_WUI "25.7.13.0"
+#define NUM_VERSION_WUI 25,8,20,0
+#define STR_VERSION_WUI "25.8.20.0"
 
 #endif
