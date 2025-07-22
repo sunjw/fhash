@@ -304,7 +304,7 @@ int WINAPI HashThreadFunc(void *param)
 
 					{
 						unique_lock<mutex> lock(mtxQueue);
-						cvCalc.wait(lock, [&]
+						cvCalc.wait_for(lock, std::chrono::milliseconds(50), [&]
 						{
 							// not to wait
 							return (!queueDataBuffer.empty() || isFileFinished || thrdData->stop);
@@ -374,7 +374,7 @@ int WINAPI HashThreadFunc(void *param)
 
 				{
 					unique_lock<mutex> lock(mtxQueue);
-					cvFile.wait(lock, [&]
+					cvFile.wait_for(lock, std::chrono::milliseconds(50), [&]
 					{
 						// limit to 4 DataBuffer
 						return (queueDataBuffer.size() < 4 || thrdData->stop);
