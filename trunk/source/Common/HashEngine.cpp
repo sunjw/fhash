@@ -343,6 +343,8 @@ int WINAPI HashThreadFunc(void *param)
 					UpdateProgressWrapper(fsize, thrdData->totalSize, isSizeCaled, ptrDataBufCalc->datalen,
 						uiBridge, &finishedSize, &finishedSizeWhole, &position, &positionWhole);
 				}
+				// calc exit
+				cvFile.notify_all();
 			});
 #else
 			DataBuffer databuf;
@@ -375,7 +377,7 @@ int WINAPI HashThreadFunc(void *param)
 					cvFile.wait(lock, [&]
 					{
 						// limit to 4 DataBuffer
-						return queueDataBuffer.size() < 4;
+						return (queueDataBuffer.size() < 4 || thrdData->stop);
 					});
 					queueDataBuffer.push(std::move(ptrDataBufFile));
 				}
