@@ -316,7 +316,7 @@ int WINAPI HashThreadFunc(void *param)
 						if (!queueDataBuffer.empty())
 						{
 							// pop one
-							ptrDataBufCalc = move(queueDataBuffer.front());
+							ptrDataBufCalc = std::move(queueDataBuffer.front());
 							queueDataBuffer.pop();
 						}
 					}
@@ -377,7 +377,7 @@ int WINAPI HashThreadFunc(void *param)
 						// limit to 4 DataBuffer
 						return queueDataBuffer.size() < 4;
 					});
-					queueDataBuffer.push(move(ptrDataBufFile));
+					queueDataBuffer.push(std::move(ptrDataBufFile));
 				}
 				cvCalc.notify_all();
 #else
