@@ -353,14 +353,7 @@ int WINAPI HashThreadFunc(void *param)
 			do
 			{
 				if (thrdData->stop)
-				{
-					osFile.close();
-					thrdData->threadWorking = false;
-
-					uiBridge->calcStop();
-
-					break; // return 0;
-				}
+					break;
 
 #if !defined (FHASH_SINGLE_THREAD_HASH_UPDATE)
 				unique_ptr<DataBuffer> ptrDataBufFile = make_unique<DataBuffer>();
@@ -448,7 +441,13 @@ int WINAPI HashThreadFunc(void *param)
 #endif
 
 			if (thrdData->stop)
+			{
+				osFile.close();
+				thrdData->threadWorking = false;
+				uiBridge->calcStop();
+
 				return 0;
+			}
 
 			uiBridge->fileCalcFinish();
 
