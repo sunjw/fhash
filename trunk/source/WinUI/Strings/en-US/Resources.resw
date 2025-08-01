@@ -199,7 +199,7 @@
     <value>Hash</value>
   </data>
   <data name="HyperlinkButtonGithub.Content" xml:space="preserve">
-    <value>Hosted on GitHub</value>
+    <value>GitHub</value>
   </data>
   <data name="HyperlinkButtonGithub.NavigateUri" xml:space="preserve">
     <value>https://github.com/sunjw/fhash</value>
