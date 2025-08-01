@@ -51,8 +51,8 @@
                                             <action selector="closeButtonClicked:" target="V35-dL-6OF" id="jcA-va-3gB"/>
                                         </connections>
                                     </button>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
-                                        <rect key="frame" x="18" y="24" width="147" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
+                                        <rect key="frame" x="18" y="22" width="147" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="132" id="ou6-86-fTQ"/>
@@ -63,8 +63,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
-                                        <rect key="frame" x="101" y="49" width="311" height="165"/>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
+                                        <rect key="frame" x="101" y="47" width="311" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
                                             <constraint firstAttribute="width" constant="307" id="iAD-3b-m5X"/>
@@ -90,7 +90,7 @@
                                     <constraint firstItem="l26-dk-XVG" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" symbolic="YES" id="6hx-qT-gi4"/>
                                     <constraint firstItem="Ua3-zL-Sha" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" id="Liv-pp-Ec9"/>
                                     <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="Lz6-cz-rmu"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="24" id="Pvy-ky-gV5"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ua3-zL-Sha" secondAttribute="bottom" constant="22" id="Pvy-ky-gV5"/>
                                     <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="SaO-sW-GEU"/>
                                     <constraint firstAttribute="trailing" secondItem="zGm-ZO-GT5" secondAttribute="trailing" constant="20" id="bJ9-cs-gxJ"/>
                                     <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="vnK-tx-hh5"/>
@@ -499,7 +499,7 @@
                                             <action selector="verifyButtonClicked:" target="XfG-lQ-9wD" id="IB5-Fa-T1s"/>
                                         </connections>
                                     </button>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
                                         <rect key="frame" x="159" y="15" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
@@ -568,7 +568,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="560" height="313"/>
+                                            <size key="minSize" width="566" height="313"/>
                                             <size key="maxSize" width="573" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
