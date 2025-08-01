@@ -59,7 +59,7 @@
 "ABOUTDLG_INFO_SHA512" = "SHA512 实现 copyright (C) Aaron D. Gifford";
 "ABOUTDLG_INFO_RIGHTDETAIL" = "详细授权信息见开发者网站。";
 "ABOUTDLG_INFO_OSTITLE" = "当前操作系统:";
-"ABOUTDLG_PROJECT_SITE" = "<a>Hosted on GitHub</a>";
+"ABOUTDLG_PROJECT_SITE" = "<a>GitHub</a>";
 "ABOUTDLG_PROJECT_URL" = "https://github.com/sunjw/fhash";
 
 // Shell ext
