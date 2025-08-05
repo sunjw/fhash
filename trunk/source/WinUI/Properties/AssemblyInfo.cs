@@ -13,7 +13,7 @@ using System.Runtime.Versioning;
 [assembly: AssemblyCopyright("Copyright © SUN Junwen 2024-")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: TargetPlatformAttribute("Windows10.0.22000.0")]
+[assembly: TargetPlatformAttribute("Windows10.0.22621.0")]
 [assembly: SupportedOSPlatformAttribute("Windows10.0.18362.0")]
 
 // 程序集的版本信息由下列四个值组成: 
