@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "queue": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "string": "cpp",
+        "thread": "cpp",
+        "condition_variable": "cpp",
+        "memory": "cpp",
+        "chrono": "cpp",
+        "xthread": "cpp"
     }
 }
