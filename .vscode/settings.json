@@ -1,5 +1,7 @@
 {
     "files.associations": {
+        "*.plist": "xml",
+        "*.slnx": "xml",
         "queue": "cpp",
         "mutex": "cpp",
         "string": "cpp",
@@ -7,6 +9,7 @@
         "condition_variable": "cpp",
         "memory": "cpp",
         "chrono": "cpp",
-        "xthread": "cpp"
+        "xthread": "cpp",
+        "array": "cpp"
     }
 }
