@@ -1,3 +1,8 @@
+25.8.22 (113) 2025-08-19  
+Windows WinUI: update components  
+Performance improvement  
+Fix other issues  
+
 25.7.13 (107) 2025-07-15  
 Windows WinUI: update components  
 Fix other issues  
