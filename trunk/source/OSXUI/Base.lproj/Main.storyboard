@@ -557,7 +557,7 @@
                                     <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="uac-u0-Fcc"/>
                                 </constraints>
                             </visualEffectView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz" customClass="MainScrollView">
                                 <rect key="frame" x="0.0" y="45" width="568" height="315"/>
                                 <clipView key="contentView" id="OyA-0h-4ne" customClass="PaddingClipView">
                                     <rect key="frame" x="1" y="1" width="566" height="313"/>
