@@ -34,7 +34,7 @@ private struct MainViewControllerState: OptionSet {
 
     @IBOutlet weak var speedTextField: NSTextField!
 
-    @objc var tag: UInt = 0 // Must have @ojbc, it is used to open finder bar.
+    @objc var tag: Int = 0 // Must have @ojbc, it is used to open finder bar.
 
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
@@ -699,7 +699,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @IBAction func verifyButtonClicked(_ sender: NSButton) {
-        tag = NSFindPanelAction.showFindPanel.rawValue
+        tag = NSTextFinder.Action.showFindInterface.rawValue
         mainTextView.performTextFinderAction(self)
     }
 
