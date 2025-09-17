@@ -338,16 +338,29 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            // Sonoma and later insets fix.
+            let mainTextSize = mainText!.size()
+            let mainScrollViewSize = mainScrollView.frame.size
+            if mainTextSize.width > mainScrollViewSize.width {
+                mainTextView.textContainerInset = NSMakeSize(-2.0, 2.0)
+            } else {
+                mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+            }
+        }
+
         if !keepScrollPosition {
             // Scroll to end.
             mainTextView.layoutManager?.ensureLayout(for: mainTextView.textContainer!)
             mainTextView.scrollRangeToVisible(NSRange(location: mainTextView.string.count,
                                                       length: 0))
-            // Keep on the left.
-            if let enclosingScrollView = mainTextView.enclosingScrollView {
-                enclosingScrollView.contentView.scroll(to:NSPoint(
-                    x: 0, y: enclosingScrollView.contentView.bounds.origin.y))
-                enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+            if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                // Keep on the left.
+                if let enclosingScrollView = mainTextView.enclosingScrollView {
+                    enclosingScrollView.contentView.scroll(to:NSPoint(
+                        x: 0, y: enclosingScrollView.contentView.bounds.origin.y))
+                    enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+                }
             }
         }
     }
