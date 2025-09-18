@@ -28,9 +28,13 @@ import Cocoa
             // NSLog("isFindBarVisible=%d", newValue)
             super.isFindBarVisible = newValue
             if super.isFindBarVisible {
-                mainViewController?.mainScrollViewTopConstraint.constant = 30
+                // show
+                mainViewController?.mainScrollViewTopConstraint.constant = 28
+                mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 6.0)
             } else {
+                // hide
                 mainViewController?.mainScrollViewTopConstraint.constant = 0
+                mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
             }
         }
         get {
@@ -38,8 +42,8 @@ import Cocoa
         }
     }
 
-    override func findBarViewDidChangeHeight() {
-        guard let findBarHeight = findBarView?.frame.height else { return }
-        // NSLog("findBarHeight=%f", findBarHeight)
-    }
+    // override func findBarViewDidChangeHeight() {
+    //     guard let findBarHeight = findBarView?.frame.height else { return }
+    //     NSLog("findBarHeight=%f", findBarHeight)
+    // }
 }
