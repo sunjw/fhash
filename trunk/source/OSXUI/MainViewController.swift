@@ -388,18 +388,23 @@ private struct MainViewControllerState: OptionSet {
             // Tahoe and later insets fix.
             let mainTextSize = mainText!.size()
             let mainScrollViewSize = mainScrollView.frame.size
-            if !mainScrollView.isFindBarVisible {
-                if mainTextSize.height > mainScrollViewSize.height {
-                    NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                    mainTextViewInsetNeedFix = false
+
+            if mainTextSize.height > mainScrollViewSize.height {
+                NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                mainTextViewInsetNeedFix = false
+                if !mainScrollView.isFindBarVisible {
                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-                } else {
-                    NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                }
+            } else {
+                NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                if !mainScrollView.isFindBarVisible {
                     if (mainTextViewInsetNeedFix) {
                         mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
                     } else {
                         mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                     }
+                }
+                if state != .NONE {
                     mainTextViewInsetNeedFix = true
                 }
             }
