@@ -33,7 +33,7 @@ import Cocoa
                 if super.isFindBarVisible {
                     // show
                     mainViewController?.mainScrollViewTopConstraint.constant = 28
-                    mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 6.0)
+                    mainViewController?.mainTextView.textContainerInset = MainViewController.MainTextViewInsetWithFindBarAfter26
                     if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
                         enclosingScrollView.contentView.scroll(to:NSPoint(
                             x: enclosingScrollView.contentView.bounds.origin.x,
