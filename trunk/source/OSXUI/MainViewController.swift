@@ -21,7 +21,7 @@ private struct MainViewControllerState: OptionSet {
 }
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
-    @IBOutlet weak var mainScrollView: NSScrollView!
+    @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var mainTextView: NSTextView!
@@ -69,6 +69,7 @@ private struct MainViewControllerState: OptionSet {
 
         let mainView = view as? MainView
         mainView?.mainViewController = self
+        mainScrollView.mainViewController = self
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
@@ -100,7 +101,7 @@ private struct MainViewControllerState: OptionSet {
 
         // Set scroll view top constraint
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            mainScrollViewTopConstraint.constant = 16
+            // mainScrollViewTopConstraint.constant = 16
         }
 
         // Set scroll view border type.
