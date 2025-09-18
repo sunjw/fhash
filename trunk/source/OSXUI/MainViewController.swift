@@ -384,6 +384,11 @@ private struct MainViewControllerState: OptionSet {
         self.updateMainTextView(false)
     }
 
+    private func canUpdateMainTextView() -> Bool {
+        // NSLog("%@", ((self.inMainQueue - self.outMainQueue < self.maxDiffQueue) ? "true" : "false"))
+        return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
+    }
+
     func fixMainTextViewInset() {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // Tahoe and later insets fix.
@@ -415,11 +420,6 @@ private struct MainViewControllerState: OptionSet {
                 mainTextViewInsetNeedFix = true
             }
         }
-    }
-
-    private func canUpdateMainTextView() -> Bool {
-        // NSLog("%@", ((self.inMainQueue - self.outMainQueue < self.maxDiffQueue) ? "true" : "false"))
-        return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
     }
 
     private func calculateFinished() {
