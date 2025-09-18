@@ -774,23 +774,33 @@ private struct MainViewControllerState: OptionSet {
             let nsrtMouseInView = view.window!.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
             let nsptMouseInView = nsrtMouseInView.origin
 
+            var nsmenuItem: NSMenuItem? = nil
             let nsmenuHash = NSMenu(title: "HashMenu")
-            nsmenuHash.insertItem(
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_COPY"),
                 action: #selector(self.menuCopyHash),
                 keyEquivalent: "",
                 at: 0)
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "document.on.document", accessibilityDescription: nil)
+            }
             nsmenuHash.insertItem(NSMenuItem.separator(), at: 1)
-            nsmenuHash.insertItem(
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE"),
                 action: #selector(self.menuSearchGoogle),
                 keyEquivalent: "",
                 at: 2)
-            nsmenuHash.insertItem(
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: nil)
+            }
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL"),
                 action: #selector(self.menuSearchVirusTotal),
                 keyEquivalent: "",
                 at: 3)
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "safari", accessibilityDescription: nil)
+            }
 
             nsmenuHash.popUp(positioning: nil, at: nsptMouseInView, in: view)
 
