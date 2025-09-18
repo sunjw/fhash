@@ -116,7 +116,11 @@ private struct MainViewControllerState: OptionSet {
 
         // Set some text in text field.
         mainTextView.delegate = self
-        mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+        } else {
+            mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
+        }
 
         mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
         if mainFont == nil {
