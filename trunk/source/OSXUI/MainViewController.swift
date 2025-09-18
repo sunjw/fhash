@@ -343,7 +343,7 @@ private struct MainViewControllerState: OptionSet {
             let mainTextSize = mainText!.size()
             let mainScrollViewSize = mainScrollView.frame.size
             if mainTextSize.width > mainScrollViewSize.width {
-                mainTextView.textContainerInset = NSMakeSize(-2.0, 2.0)
+                mainTextView.textContainerInset = NSMakeSize(-2.0, 5.0)
             } else {
                 mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
             }
