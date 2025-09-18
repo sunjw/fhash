@@ -21,6 +21,8 @@ private struct MainViewControllerState: OptionSet {
 }
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
+    static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 24.0)
+
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 
@@ -55,6 +57,8 @@ private struct MainViewControllerState: OptionSet {
     private var inMainQueue: Int = 0
     private var outMainQueue: Int = 0
     private let maxDiffQueue = 3
+
+    private var mainTextViewInsetNeedFix = false
 
     private var hashBridge: HashBridge?
 
@@ -119,7 +123,7 @@ private struct MainViewControllerState: OptionSet {
         if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
         } else {
-            mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
+            mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
         }
 
         mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
@@ -357,16 +361,24 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-        // if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-        //     // Tahoe and later insets fix.
-        //     let mainTextSize = mainText!.size()
-        //     let mainScrollViewSize = mainScrollView.frame.size
-        //     if mainTextSize.width > mainScrollViewSize.width {
-        //         mainTextView.textContainerInset = NSMakeSize(-2.0, 5.0)
-        //     } else {
-        //         mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
-        //     }
-        // }
+         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+             // Tahoe and later insets fix.
+             let mainTextSize = mainText!.size()
+             let mainScrollViewSize = mainScrollView.frame.size
+             if mainTextSize.height > mainScrollViewSize.height {
+                 NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                 mainTextViewInsetNeedFix = false
+                 mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+             } else {
+                 NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                 if mainTextViewInsetNeedFix {
+                     mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
+                 } else {
+                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+                 }
+                 mainTextViewInsetNeedFix = true
+             }
+         }
 
         if !keepScrollPosition {
             // Scroll to end.
