@@ -40,6 +40,7 @@ import Cocoa
                             y: enclosingScrollView.contentView.bounds.origin.y - scrollFixY))
                         enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
                     }
+                    mainViewController?.findPanelShown()
                 } else {
                     // hide
                     mainViewController?.mainScrollViewTopConstraint.constant = 0
