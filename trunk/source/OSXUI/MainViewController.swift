@@ -408,8 +408,8 @@ private struct MainViewControllerState: OptionSet {
                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                 }
             } else {
-                NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
-                    mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
+                // NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
+                //     mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
                 if !mainScrollView.isFindBarVisible {
                     if (mainTextViewInsetNeedFix &&
                         mainTextViewInsetNeedApplyFix) {
