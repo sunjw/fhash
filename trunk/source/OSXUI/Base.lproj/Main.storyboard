@@ -38,8 +38,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
                                 <subviews>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
-                                        <rect key="frame" x="314" y="20" width="96" height="20"/>
-                                        <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
+                                        <rect key="frame" x="310" y="20" width="100" height="20"/>
+                                        <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
