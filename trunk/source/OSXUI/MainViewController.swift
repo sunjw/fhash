@@ -60,6 +60,7 @@ private struct MainViewControllerState: OptionSet {
     private let maxDiffQueue = 3
 
     private var mainTextViewInsetNeedFix = false
+    private var mainTextViewInsetNeedApplyFix = false
 
     private var hashBridge: HashBridge?
 
@@ -389,6 +390,10 @@ private struct MainViewControllerState: OptionSet {
             let mainTextSize = mainText!.size()
             let mainScrollViewSize = mainScrollView.frame.size
 
+            if mainTextSize.width > mainScrollViewSize.width {
+                mainTextViewInsetNeedApplyFix = true
+            }
+
             if mainTextSize.height > mainScrollViewSize.height {
                 // NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
                 mainTextViewInsetNeedFix = false
@@ -396,17 +401,18 @@ private struct MainViewControllerState: OptionSet {
                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                 }
             } else {
-                // NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
+                      mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
                 if !mainScrollView.isFindBarVisible {
-                    if (mainTextViewInsetNeedFix) {
+                    if (mainTextViewInsetNeedFix &&
+                        mainTextViewInsetNeedApplyFix) {
                         mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
                     } else {
                         mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                     }
                 }
-                if state != .NONE {
-                    mainTextViewInsetNeedFix = true
-                }
+
+                mainTextViewInsetNeedFix = true
             }
         }
     }
