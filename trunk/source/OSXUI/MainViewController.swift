@@ -362,26 +362,7 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-             // Tahoe and later insets fix.
-             let mainTextSize = mainText!.size()
-             let mainScrollViewSize = mainScrollView.frame.size
-             if !mainScrollView.isFindBarVisible {
-                 if mainTextSize.height > mainScrollViewSize.height {
-                     NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                     mainTextViewInsetNeedFix = false
-                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-                 } else {
-                     NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                     if (mainTextViewInsetNeedFix) {
-                         mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
-                     } else {
-                         mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-                     }
-                     mainTextViewInsetNeedFix = true
-                 }
-             }
-         }
+        self.fixMainTextViewInset()
 
         if !keepScrollPosition {
             // Scroll to end.
@@ -400,6 +381,29 @@ private struct MainViewControllerState: OptionSet {
 
     private func updateMainTextView() {
         self.updateMainTextView(false)
+    }
+
+    func fixMainTextViewInset() {
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            // Tahoe and later insets fix.
+            let mainTextSize = mainText!.size()
+            let mainScrollViewSize = mainScrollView.frame.size
+            if !mainScrollView.isFindBarVisible {
+                if mainTextSize.height > mainScrollViewSize.height {
+                    NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                    mainTextViewInsetNeedFix = false
+                    mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+                } else {
+                    NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                    if (mainTextViewInsetNeedFix) {
+                        mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
+                    } else {
+                        mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+                    }
+                    mainTextViewInsetNeedFix = true
+                }
+            }
+        }
     }
 
     private func canUpdateMainTextView() -> Bool {
