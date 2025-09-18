@@ -22,6 +22,7 @@ private struct MainViewControllerState: OptionSet {
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 24.0)
+    static let MainTextViewInsetWithFindBarAfter26 = NSMakeSize(3.0, 6.0)
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
@@ -365,18 +366,20 @@ private struct MainViewControllerState: OptionSet {
              // Tahoe and later insets fix.
              let mainTextSize = mainText!.size()
              let mainScrollViewSize = mainScrollView.frame.size
-             if mainTextSize.height > mainScrollViewSize.height {
-                 NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                 mainTextViewInsetNeedFix = false
-                 mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-             } else {
-                 NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                 if mainTextViewInsetNeedFix {
-                     mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
-                 } else {
+             if !mainScrollView.isFindBarVisible {
+                 if mainTextSize.height > mainScrollViewSize.height {
+                     NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                     mainTextViewInsetNeedFix = false
                      mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+                 } else {
+                     NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                     if (mainTextViewInsetNeedFix) {
+                         mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
+                     } else {
+                         mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+                     }
+                     mainTextViewInsetNeedFix = true
                  }
-                 mainTextViewInsetNeedFix = true
              }
          }
 
