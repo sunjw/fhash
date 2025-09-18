@@ -9,6 +9,8 @@
 import Cocoa
 
 @objc(MainScrollView) class MainScrollView: NSScrollView {
+    weak var mainViewController: MainViewController?
+
     override func addSubview(_ view: NSView) {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             let blockViewsName = ["Dummy"/*, "NSScrollPocket", "BackdropView", "_NSScrollViewContentBackgroundView"*/]
@@ -19,5 +21,25 @@ import Cocoa
             }
         }
         super.addSubview(view)
+    }
+
+    override var isFindBarVisible: Bool {
+        set {
+            // NSLog("isFindBarVisible=%d", newValue)
+            super.isFindBarVisible = newValue
+            if super.isFindBarVisible {
+                mainViewController?.mainScrollViewTopConstraint.constant = 30
+            } else {
+                mainViewController?.mainScrollViewTopConstraint.constant = 0
+            }
+        }
+        get {
+            return super.isFindBarVisible
+        }
+    }
+
+    override func findBarViewDidChangeHeight() {
+        guard let findBarHeight = findBarView?.frame.height else { return }
+        // NSLog("findBarHeight=%f", findBarHeight)
     }
 }
