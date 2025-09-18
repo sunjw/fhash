@@ -363,7 +363,7 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-        self.fixMainTextViewInset()
+        self.fixMainTextViewInset(byFindBar: false)
 
         if !keepScrollPosition {
             // Scroll to end.
@@ -389,13 +389,14 @@ private struct MainViewControllerState: OptionSet {
         return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
     }
 
-    func fixMainTextViewInset() {
+    func fixMainTextViewInset(byFindBar: Bool) {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // Tahoe and later insets fix.
             let mainTextSize = mainText!.size()
             let mainScrollViewSize = mainScrollView.frame.size
 
-            if mainTextSize.width > mainScrollViewSize.width {
+            if (!mainScrollView.isFindBarVisible && !byFindBar &&
+                mainTextSize.width > mainScrollViewSize.width) {
                 mainTextViewInsetNeedApplyFix = true
             }
 
@@ -406,8 +407,8 @@ private struct MainViewControllerState: OptionSet {
                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                 }
             } else {
-                // NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
-                //       mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
+                NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
+                    mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
                 if !mainScrollView.isFindBarVisible {
                     if (mainTextViewInsetNeedFix &&
                         mainTextViewInsetNeedApplyFix) {
