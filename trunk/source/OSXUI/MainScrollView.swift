@@ -43,7 +43,7 @@ import Cocoa
                 } else {
                     // hide
                     mainViewController?.mainScrollViewTopConstraint.constant = 0
-                    mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
+                    mainViewController?.mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                     if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
                         var hideScrollFixY = scrollFixY
                         if enclosingScrollView.contentView.bounds.origin.y == 0 {
