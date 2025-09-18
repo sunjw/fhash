@@ -390,13 +390,13 @@ private struct MainViewControllerState: OptionSet {
             let mainScrollViewSize = mainScrollView.frame.size
 
             if mainTextSize.height > mainScrollViewSize.height {
-                NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                // NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
                 mainTextViewInsetNeedFix = false
                 if !mainScrollView.isFindBarVisible {
                     mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
                 }
             } else {
-                NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
+                // NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
                 if !mainScrollView.isFindBarVisible {
                     if (mainTextViewInsetNeedFix) {
                         mainTextView.textContainerInset = NSMakeSize(3.0, 30.0)
