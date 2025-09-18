@@ -99,6 +99,14 @@ private struct MainViewControllerState: OptionSet {
         // Set scroll view border type.
         mainScrollView.borderType = .noBorder
 
+        // Set scroll view findbar position.
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainScrollView.findBarPosition = .belowContent
+        } else {
+            mainScrollView.findBarPosition = .aboveContent
+        }
+
+
         // Set some text in text field.
         mainTextView.delegate = self
         mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
