@@ -21,10 +21,12 @@ private struct MainViewControllerState: OptionSet {
 }
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
-    @IBOutlet var mainScrollView: NSScrollView!
-    @IBOutlet var mainTextView: NSTextView!
+    @IBOutlet weak var mainScrollView: NSScrollView!
+    @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 
-    @IBOutlet var mainProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var mainTextView: NSTextView!
+
+    @IBOutlet weak var mainProgressIndicator: NSProgressIndicator!
 
     @IBOutlet weak var openButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
@@ -96,6 +98,11 @@ private struct MainViewControllerState: OptionSet {
         // Set open button as default.
         openButton.keyEquivalent = "\r"
 
+        // Set scroll view top constraint
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainScrollViewTopConstraint.constant = 16
+        }
+
         // Set scroll view border type.
         mainScrollView.borderType = .noBorder
 
@@ -105,7 +112,6 @@ private struct MainViewControllerState: OptionSet {
         } else {
             mainScrollView.findBarPosition = .aboveContent
         }
-
 
         // Set some text in text field.
         mainTextView.delegate = self
@@ -346,29 +352,28 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            // Sonoma and later insets fix.
-            let mainTextSize = mainText!.size()
-            let mainScrollViewSize = mainScrollView.frame.size
-            if mainTextSize.width > mainScrollViewSize.width {
-                mainTextView.textContainerInset = NSMakeSize(-2.0, 5.0)
-            } else {
-                mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
-            }
-        }
+        // if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+        //     // Tahoe and later insets fix.
+        //     let mainTextSize = mainText!.size()
+        //     let mainScrollViewSize = mainScrollView.frame.size
+        //     if mainTextSize.width > mainScrollViewSize.width {
+        //         mainTextView.textContainerInset = NSMakeSize(-2.0, 5.0)
+        //     } else {
+        //         mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+        //     }
+        // }
 
         if !keepScrollPosition {
             // Scroll to end.
             mainTextView.layoutManager?.ensureLayout(for: mainTextView.textContainer!)
             mainTextView.scrollRangeToVisible(NSRange(location: mainTextView.string.count,
                                                       length: 0))
-            if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-                // Keep on the left.
-                if let enclosingScrollView = mainTextView.enclosingScrollView {
-                    enclosingScrollView.contentView.scroll(to:NSPoint(
-                        x: 0, y: enclosingScrollView.contentView.bounds.origin.y))
-                    enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
-                }
+
+            // Keep on the left.
+            if let enclosingScrollView = mainTextView.enclosingScrollView {
+                enclosingScrollView.contentView.scroll(to:NSPoint(
+                    x: 0, y: enclosingScrollView.contentView.bounds.origin.y))
+                enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
             }
         }
     }

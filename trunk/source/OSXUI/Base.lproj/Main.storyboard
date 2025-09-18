@@ -600,6 +600,7 @@
                         <outlet property="clearButton" destination="T3R-eZ-zFT" id="pHK-Yx-MbL"/>
                         <outlet property="mainProgressIndicator" destination="mgI-sH-iC5" id="VHx-pW-9oH"/>
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
+                        <outlet property="mainScrollViewTopConstraint" destination="Ruo-Gk-o2M" id="Dni-ZE-fWz"/>
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
                         <outlet property="speedTextField" destination="rrP-Dq-Bp3" id="9bn-wR-fh6"/>
