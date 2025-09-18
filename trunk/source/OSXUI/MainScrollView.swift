@@ -10,9 +10,13 @@ import Cocoa
 
 @objc(MainScrollView) class MainScrollView: NSScrollView {
     override func addSubview(_ view: NSView) {
-        let name = String(describing: type(of: view))
-        if name == "NSScrollPocket" {
-            return
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            let blockViewsName = ["Dummy"/*, "NSScrollPocket", "BackdropView", "_NSScrollViewContentBackgroundView"*/]
+            let viewClassName = String(describing: type(of: view))
+            // NSLog("MainScrollView.addSubview [%@]", viewClassName)
+            if blockViewsName.contains(viewClassName) {
+                return
+            }
         }
         super.addSubview(view)
     }
