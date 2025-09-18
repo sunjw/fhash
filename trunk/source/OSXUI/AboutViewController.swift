@@ -59,6 +59,9 @@ import Cocoa
 
         closeButton.keyEquivalent = "\r"
         closeButton.title = MacSwiftUtils.GetStringFromRes("BUTTON_OK")
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            closeButton.controlSize = .regular
+        }
     }
 
     @IBAction func closeButtonClicked(_ sender: NSButton) {
