@@ -126,7 +126,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="fHash" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About fHash" id="5kV-Vb-QxS">
+                                        <menuItem title="About fHash" image="info.circle" catalog="system" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="gn5-6V-AbC" kind="show" id="EI6-Y8-ZkJ"/>
@@ -613,4 +613,7 @@
             <point key="canvasLocation" x="98" y="717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="15" height="15"/>
+    </resources>
 </document>
