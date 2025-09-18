@@ -28,30 +28,32 @@ import Cocoa
             // NSLog("isFindBarVisible=%d", newValue)
             super.isFindBarVisible = newValue
 
-            let scrollFixY: CGFloat = 26
-            if super.isFindBarVisible {
-                // show
-                mainViewController?.mainScrollViewTopConstraint.constant = 28
-                mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 6.0)
-                if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
-                    enclosingScrollView.contentView.scroll(to:NSPoint(
-                        x: enclosingScrollView.contentView.bounds.origin.x,
-                        y: enclosingScrollView.contentView.bounds.origin.y - scrollFixY))
-                    enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
-                }
-            } else {
-                // hide
-                mainViewController?.mainScrollViewTopConstraint.constant = 0
-                mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
-                if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
-                    var hideScrollFixY = scrollFixY
-                    if enclosingScrollView.contentView.bounds.origin.y == 0 {
-                        hideScrollFixY = 0
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                let scrollFixY: CGFloat = 26
+                if super.isFindBarVisible {
+                    // show
+                    mainViewController?.mainScrollViewTopConstraint.constant = 28
+                    mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 6.0)
+                    if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
+                        enclosingScrollView.contentView.scroll(to:NSPoint(
+                            x: enclosingScrollView.contentView.bounds.origin.x,
+                            y: enclosingScrollView.contentView.bounds.origin.y - scrollFixY))
+                        enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
                     }
-                    enclosingScrollView.contentView.scroll(to:NSPoint(
-                        x: enclosingScrollView.contentView.bounds.origin.x,
-                        y: enclosingScrollView.contentView.bounds.origin.y + hideScrollFixY))
-                    enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+                } else {
+                    // hide
+                    mainViewController?.mainScrollViewTopConstraint.constant = 0
+                    mainViewController?.mainTextView.textContainerInset = NSMakeSize(3.0, 24.0)
+                    if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
+                        var hideScrollFixY = scrollFixY
+                        if enclosingScrollView.contentView.bounds.origin.y == 0 {
+                            hideScrollFixY = 0
+                        }
+                        enclosingScrollView.contentView.scroll(to:NSPoint(
+                            x: enclosingScrollView.contentView.bounds.origin.x,
+                            y: enclosingScrollView.contentView.bounds.origin.y + hideScrollFixY))
+                        enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+                    }
                 }
             }
         }
