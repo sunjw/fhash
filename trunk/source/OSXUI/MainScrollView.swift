@@ -44,7 +44,7 @@ import Cocoa
                 } else {
                     // hide
                     mainViewController?.mainScrollViewTopConstraint.constant = 0
-                    mainViewController?.fixMainTextViewInset(byFindBar: true)
+                    mainViewController?.fixMainTextViewInset()
                     if let enclosingScrollView = mainViewController?.mainTextView.enclosingScrollView {
                         var hideScrollFixY = scrollFixY
                         if enclosingScrollView.contentView.bounds.origin.y == 0 {
