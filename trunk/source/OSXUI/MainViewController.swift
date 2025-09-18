@@ -422,6 +422,10 @@ private struct MainViewControllerState: OptionSet {
         }
     }
 
+    func findPanelShown() {
+        mainTextViewInsetNeedApplyFix = false // reset with find panel
+    }
+
     private func calculateFinished() {
         self.setViewControllerState(.CALC_FINISH)
 
