@@ -24,8 +24,6 @@ private struct MainViewControllerState: OptionSet {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAfter26 = NSEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 6.0)
-    static let MainTextViewInsetFixAfter26 = NSMakeSize(3.0, 6.0)
-    static let MainTextViewInsetWithFindBarAfter26 = NSMakeSize(3.0, 6.0)
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
@@ -373,8 +371,6 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-        // self.fixMainTextViewInset()
-
         if !keepScrollPosition {
             // Scroll to end.
             mainTextView.layoutManager?.ensureLayout(for: mainTextView.textContainer!)
@@ -399,41 +395,6 @@ private struct MainViewControllerState: OptionSet {
         return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
     }
 
-    private func fixMainTextViewInset() {
-        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            // Tahoe and later insets fix.
-            let mainTextSize = mainText!.size()
-            let mainScrollViewSize = mainScrollView.frame.size
-
-            if (!mainScrollView.isFindBarVisible &&
-                mainTextSize.width > mainScrollViewSize.width) {
-                mainTextViewInsetNeedApplyFix = true
-            }
-
-            if mainTextSize.height > mainScrollViewSize.height {
-                // NSLog("mainTextViewInsetNeedFix=%d", mainTextViewInsetNeedFix)
-                mainTextViewInsetNeedFix = false
-                mainTextViewInsetNeedApplyFix = false
-                if !mainScrollView.isFindBarVisible {
-                    mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-                }
-            } else {
-                // NSLog("mainTextViewInsetNeedFix=%d, mainTextViewInsetNeedApplyFix=%d",
-                //     mainTextViewInsetNeedFix, mainTextViewInsetNeedApplyFix)
-                if !mainScrollView.isFindBarVisible {
-                    if (mainTextViewInsetNeedFix &&
-                        mainTextViewInsetNeedApplyFix) {
-                        mainTextView.textContainerInset = MainViewController.MainTextViewInsetFixAfter26
-                    } else {
-                        mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
-                    }
-                }
-
-                mainTextViewInsetNeedFix = true
-            }
-        }
-    }
-
     func findPanelVisibleChange(isVisible: Bool) {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             if isVisible {
@@ -445,11 +406,10 @@ private struct MainViewControllerState: OptionSet {
                 // hide
                 mainScrollViewTopConstraint.constant = 0
                 mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
-                // self.fixMainTextViewInset()
             }
-            if let enclosingScrollView = mainTextView.enclosingScrollView {
-                NSLog("1: y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
-            }
+            // if let enclosingScrollView = mainTextView.enclosingScrollView {
+            //     NSLog("findPanelVisibleChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+            // }
         }
     }
 
@@ -463,33 +423,33 @@ private struct MainViewControllerState: OptionSet {
         }
         if newFindPanelVisible && !curFindPanelVisible {
             // show find bar
-            NSLog("Show find bar")
+            // NSLog("clipViewSizeChange, show find bar")
         }
         if !newFindPanelVisible && curFindPanelVisible {
             // hide find bar
-            NSLog("Hide find bar")
+            // NSLog("clipViewSizeChange, hide find bar")
             becameShow = false
         }
 
         let mainTextSize = mainText!.size()
         let mainScrollViewSize = mainScrollView.frame.size
-        NSLog("mainTextSize.height=%.2f, mainScrollViewSize.height=%.2f",
-              mainTextSize.height, mainScrollViewSize.height)
+        // NSLog("clipViewSizeChange, mainTextSize.height=%.2f, mainScrollViewSize.height=%.2f",
+        //       mainTextSize.height, mainScrollViewSize.height)
         if mainTextSize.height < mainScrollViewSize.height {
             scrollNeedFix = false
         }
 
         if scrollNeedFix, let enclosingScrollView = self.mainTextView.enclosingScrollView {
-            NSLog("2: y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+            // NSLog("clipViewSizeChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
             var scrollFix: CGFloat = 0
             let bottomOffset = mainTextSize.height - mainScrollViewSize.height - enclosingScrollView.contentView.bounds.origin.y
             if becameShow && enclosingScrollView.contentView.bounds.origin.y < -18 {
-                NSLog("2.5: fix show top")
+                // NSLog("clipViewSizeChange, fix show top")
                 scrollFix = -6
             }
-            NSLog("bottomOffset=%.2f", bottomOffset)
+            // NSLog("clipViewSizeChange, bottomOffset=%.2f", bottomOffset)
             if becameShow && bottomOffset <= 28 {
-                NSLog("2.5: fix show bottom")
+                // NSLog("clipViewSizeChange, fix show bottom")
                 scrollFix = 28
             }
 
@@ -499,7 +459,7 @@ private struct MainViewControllerState: OptionSet {
                     y: enclosingScrollView.contentView.bounds.origin.y + scrollFix))
                 enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
             }
-            NSLog("3: y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+            // NSLog("clipViewSizeChange, after, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
         }
 
         curFindPanelVisible = newFindPanelVisible
