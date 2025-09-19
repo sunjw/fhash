@@ -580,7 +580,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="gC8-UO-p76">
-                                    <rect key="frame" x="536" y="50" width="16" height="261"/>
+                                    <rect key="frame" x="550" y="1" width="17" height="313"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -598,6 +598,7 @@
                     </view>
                     <connections>
                         <outlet property="clearButton" destination="T3R-eZ-zFT" id="pHK-Yx-MbL"/>
+                        <outlet property="mainClipView" destination="OyA-0h-4ne" id="PNA-bq-s4A"/>
                         <outlet property="mainProgressIndicator" destination="mgI-sH-iC5" id="VHx-pW-9oH"/>
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
                         <outlet property="mainScrollViewTopConstraint" destination="Ruo-Gk-o2M" id="Dni-ZE-fWz"/>
