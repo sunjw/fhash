@@ -396,24 +396,31 @@ private struct MainViewControllerState: OptionSet {
     }
 
     func findPanelVisibleChange(isVisible: Bool) {
-        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            if isVisible {
-                // show
-                mainScrollViewTopConstraint.constant = 28
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAfter26
-                mainTextViewInsetNeedApplyFix = false // reset with find panel
-            } else {
-                // hide
-                mainScrollViewTopConstraint.constant = 0
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
-            }
-            // if let enclosingScrollView = mainTextView.enclosingScrollView {
-            //     NSLog("findPanelVisibleChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
-            // }
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            return
         }
+
+        if isVisible {
+            // show
+            mainScrollViewTopConstraint.constant = 28
+            mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAfter26
+            mainTextViewInsetNeedApplyFix = false // reset with find panel
+        } else {
+            // hide
+            mainScrollViewTopConstraint.constant = 0
+            mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+        }
+        // if let enclosingScrollView = mainTextView.enclosingScrollView {
+        //     NSLog("findPanelVisibleChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+        // }
+
     }
 
     func clipViewSizeChange() {
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            return
+        }
+
         var scrollNeedFix = true
         var becameShow = true
 

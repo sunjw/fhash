@@ -27,8 +27,7 @@ private let CLIPVIEW_PADDING_TOP = 22
             sizeFixed = NSMakeSize(newSize.width, newSize.height - CGFloat(CLIPVIEW_PADDING_TOP))
         }
         super.setFrameSize(sizeFixed)
-        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            mainViewController?.clipViewSizeChange()
-        }
+
+        mainViewController?.clipViewSizeChange()
     }
 }
