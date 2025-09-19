@@ -373,7 +373,7 @@ private struct MainViewControllerState: OptionSet {
             mainScrollView.scrollerInsets = scrollViewScrollerInsets!
         }
 
-        self.fixMainTextViewInset()
+        // self.fixMainTextViewInset()
 
         if !keepScrollPosition {
             // Scroll to end.
@@ -399,7 +399,7 @@ private struct MainViewControllerState: OptionSet {
         return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
     }
 
-    func fixMainTextViewInset() {
+    private func fixMainTextViewInset() {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // Tahoe and later insets fix.
             let mainTextSize = mainText!.size()
@@ -454,7 +454,7 @@ private struct MainViewControllerState: OptionSet {
                 mainScrollViewTopConstraint.constant = 0
                 mainClipView.automaticallyAdjustsContentInsets = false
                 mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
-                self.fixMainTextViewInset()
+                // self.fixMainTextViewInset()
                 if let enclosingScrollView = mainTextView.enclosingScrollView {
                     var hideScrollFixY = scrollFixY
                     if enclosingScrollView.contentView.bounds.origin.y == 0 {
