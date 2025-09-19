@@ -63,8 +63,6 @@ private struct MainViewControllerState: OptionSet {
     private let maxDiffQueue = 3
 
     private var curFindPanelVisible = false
-    private var mainTextViewInsetNeedFix = false
-    private var mainTextViewInsetNeedApplyFix = false
 
     private var hashBridge: HashBridge?
 
@@ -404,7 +402,6 @@ private struct MainViewControllerState: OptionSet {
             // show
             mainScrollViewTopConstraint.constant = 28
             mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAfter26
-            mainTextViewInsetNeedApplyFix = false // reset with find panel
         } else {
             // hide
             mainScrollViewTopConstraint.constant = 0
