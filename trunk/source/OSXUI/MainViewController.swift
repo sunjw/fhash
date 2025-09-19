@@ -21,9 +21,9 @@ private struct MainViewControllerState: OptionSet {
 }
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
-    static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
-    static let MainClipViewInsetWithFindBarAfter26 = NSEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
-    static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 6.0)
+    static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetWithFindBarAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
+    static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
