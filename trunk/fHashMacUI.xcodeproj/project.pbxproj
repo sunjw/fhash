@@ -10,6 +10,7 @@
 		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
 		4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4119D65E2B2012B70005D7E5 /* MainViewController.swift */; };
 		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
+		4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */; };
 		4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4142AB542E7AA0E10072FE1B /* MainScrollView.swift */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
@@ -46,6 +47,7 @@
 		4111D69C27F16A35001AD814 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha512.cpp; path = source/Algorithms/sha512.cpp; sourceTree = "<group>"; };
 		4119D65E2B2012B70005D7E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		413870E12B1F20C500448A6F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = fHashIconTahoe.icon; sourceTree = "<group>"; };
 		4142AB542E7AA0E10072FE1B /* MainScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
 		415F8D6E28CF558500D8971C /* ThreadPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThreadPool.h; path = source/Common/ThreadPool.h; sourceTree = "<group>"; };
 		4163EC952850A2C900453333 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/OSXUI/stdafx.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				418F62861BE9C8D6007337CF /* fHash.entitlements */,
 				4198A5321B58D3B50050C831 /* Info.plist */,
 				4198A5351B58D3C40050C831 /* Main.storyboard */,
+				4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */,
 				417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */,
 				41B6B5572D01975800697E22 /* fHash-Swift-Header.h */,
 				413870E12B1F20C500448A6F /* AboutViewController.swift */,
@@ -281,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */,
 				41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */,
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
@@ -502,7 +506,7 @@
 		52751B251B56276F00BD724B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = fHashIconTahoe;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -544,7 +548,7 @@
 		52751B261B56276F00BD724B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = fHashIconTahoe;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
