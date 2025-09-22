@@ -500,7 +500,7 @@
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
-                                        <rect key="frame" x="157" y="15" width="96" height="17"/>
+                                        <rect key="frame" x="157" y="14" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Zgf-bX-PvL"/>
@@ -544,7 +544,7 @@
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="12" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="15" id="Mrd-eA-M6m"/>
+                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="14" id="Mrd-eA-M6m"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
                                     <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
                                     <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="12" id="UBq-6n-rr2"/>
