@@ -30,7 +30,10 @@ let label = with(NSTextField()) {
 ```
 */
 @discardableResult
-func with<T>(_ item: T, update: (inout T) throws -> Void) rethrows -> T {
+func with<T, E>(
+	_ item: T,
+	update: (inout T) throws(E) -> Void
+) throws(E) -> T {
 	var this = item
 	try update(&this)
 	return this
@@ -170,7 +173,8 @@ extension NSColor {
 
 
 extension NSFont {
-	@MainActor static let helveticaNeueBold = NSFont(name: "HelveticaNeue-Bold", size: 0)
+	@MainActor
+	static let helveticaNeueBold = NSFont(name: "HelveticaNeue-Bold", size: 0)
 }
 
 
@@ -363,11 +367,12 @@ An observer that invokes a callback for each screen refresh.
 
 This is useful for creating smooth animations that synchronize with the screen's refresh rate.
 */
-final class DisplayLinkObserver: @unchecked Sendable {
-	private var displayLink: CVDisplayLink?
+@MainActor
+final class DisplayLinkObserver {
+	nonisolated(unsafe) private var displayLink: CVDisplayLink?
 	fileprivate let callback: (DisplayLinkObserver, Double) -> Void
 
-	init(_ callback: @escaping (DisplayLinkObserver, Double) -> Void) {
+	init(_ callback: @escaping @MainActor (DisplayLinkObserver, Double) -> Void) {
 		self.callback = callback
 
 		guard CVDisplayLinkCreateWithActiveCGDisplays(&displayLink) == kCVReturnSuccess else {
@@ -381,7 +386,7 @@ final class DisplayLinkObserver: @unchecked Sendable {
 		stop()
 	}
 
-	func start() {
+	nonisolated func start() {
 		guard let displayLink else {
 			return
 		}
@@ -396,7 +401,7 @@ final class DisplayLinkObserver: @unchecked Sendable {
 		CVDisplayLinkStart(displayLink)
 	}
 
-	func stop() {
+	nonisolated func stop() {
 		guard let displayLink else {
 			return
 		}
@@ -421,7 +426,9 @@ private func displayLinkOutputCallback(
 		refreshPeriod = 1.0 / 60.0
 	}
 
-	observer.callback(observer, refreshPeriod)
+	Task { @MainActor in
+		observer.callback(observer, refreshPeriod)
+	}
 
 	return kCVReturnSuccess
 }
