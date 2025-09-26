@@ -461,11 +461,11 @@ struct CanvasBarStyle: View {
 
 	var body: some View {
 		Canvas { context, size in
-			let barInset = 8.0
+			let barInset = 9.0
 
 			let barRect = CGRect(
 				x: barInset,
-				y: size.height - 30,
+				y: size.height - 10,
 				width: size.width - (barInset * 2),
 				height: 10
 			)
@@ -495,7 +495,7 @@ struct CanvasBarStyle: View {
 				)
 				context.fill(
 					RoundedRectangle(cornerRadius: 4).path(in: progressRect),
-					with: .color(.white)
+					with: .color(.accentColor)
 				)
 			}
 		}
