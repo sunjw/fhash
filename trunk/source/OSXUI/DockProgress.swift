@@ -332,6 +332,10 @@ extension DockProgress {
 				return
 			}
 
+			if progress < displayedProgress {
+				displayedProgress = progress // fix flash on set progress backwards
+			}
+
 			switch style {
 			case .bar:
 				updateHostingView(with: CanvasBarStyle(progress: displayedProgress))
@@ -481,6 +485,7 @@ struct CanvasBarStyle: View {
 
 			// Progress fill
 			let progressWidth = max(0, (barRect.width - 2) * progress)
+			// NSLog("%.2f", progressWidth)
 			if progressWidth > 0 {
 				let progressRect = CGRect(
 					x: barRect.minX + 1,
