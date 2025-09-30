@@ -36,8 +36,11 @@ public enum DockProgress {
 			let speed = 1.0
 
 			elapsedTimeSinceLastRefresh += speed * refreshPeriod
+			if elapsedTimeSinceLastRefresh >= 1 {
+				elapsedTimeSinceLastRefresh = 1
+			}
 
-			if (displayedProgress - progress).magnitude <= 0.01 {
+			if (displayedProgress - progress).magnitude <= 0.001 {
 				displayedProgress = progress
 				elapsedTimeSinceLastRefresh = 0
 				observer.stop()
@@ -485,12 +488,12 @@ struct CanvasBarStyle: View {
 
 			// Progress fill
 			let progressWidth = max(0, barRect.width * progress)
-			// NSLog("%.2f", progressWidth)
+			NSLog("progress=%.10f, progressWidth=%.2f", progress, progressWidth)
 			if progressWidth > 0 {
 				let progressRect = CGRect(
 					x: barRect.minX + 1,
 					y: barRect.minY + 1,
-					width: progressWidth - 1,
+					width: progressWidth - 2,
 					height: barRect.height - 2
 				)
 				context.fill(
