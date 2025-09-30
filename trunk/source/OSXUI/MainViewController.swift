@@ -566,7 +566,7 @@ private struct MainViewControllerState: OptionSet {
         if (dockProgress >= 1) {
             dockProgress = 0.99999 // 1 will disappear.
         }
-        NSLog("dockProgress=%.10f", dockProgress)
+        // NSLog("dockProgress=%.10f", dockProgress)
         DockProgress.progress = dockProgress
     }
 
