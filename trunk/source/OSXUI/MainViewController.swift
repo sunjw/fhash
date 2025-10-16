@@ -44,6 +44,8 @@ private struct MainViewControllerState: OptionSet {
 
     @objc var tag: Int = 0 // Must have @ojbc, it is used to open finder bar.
 
+    var mainWindowWillClose: Bool = false
+
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
 
@@ -79,6 +81,8 @@ private struct MainViewControllerState: OptionSet {
         mainView?.mainViewController = self
         mainScrollView.mainViewController = self
         mainClipView.mainViewController = self
+
+        mainWindowWillClose = false
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
@@ -179,6 +183,10 @@ private struct MainViewControllerState: OptionSet {
     }
 
     override func viewWillDisappear() {
+        if !mainWindowWillClose {
+            return // window minimize
+        }
+
         DockProgress.resetProgress()
 
         // Save NSUserDefaults.

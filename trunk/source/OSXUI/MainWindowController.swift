@@ -33,4 +33,10 @@ import Cocoa
 
         return !(mainViewController?.isCalculating() ?? false)
     }
+
+    func windowWillClose(_ notification: Notification) {
+        let mainViewController = getMainViewController()
+        mainViewController?.mainWindowWillClose = true
+    }
+
 }
