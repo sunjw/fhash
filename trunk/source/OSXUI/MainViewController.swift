@@ -24,6 +24,7 @@ private struct MainViewControllerState: OptionSet {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
+    static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
@@ -380,7 +381,7 @@ private struct MainViewControllerState: OptionSet {
 
         if isVisible {
             // show
-            mainScrollViewTopConstraint.constant = 28
+            mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
             mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAfter26
         } else {
             // hide
@@ -432,9 +433,9 @@ private struct MainViewControllerState: OptionSet {
                 scrollFix = -6
             }
             // NSLog("clipViewSizeChange, bottomOffset=%.2f", bottomOffset)
-            if becameShow && bottomOffset <= 28 {
+            if becameShow && bottomOffset <= MainViewController.MainScrollViewTopConstraintAfter26 {
                 // NSLog("clipViewSizeChange, fix show bottom")
-                scrollFix = 28
+                scrollFix = MainViewController.MainScrollViewTopConstraintAfter26
             }
 
             if scrollFix != 0 {
