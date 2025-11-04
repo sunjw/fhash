@@ -11,12 +11,23 @@ import Cocoa
 private let CLIPVIEW_PADDING_TOP = 22
 
 @objc(PaddingClipView) class PaddingClipView: NSClipView {
+    weak var mainViewController: MainViewController?
+
     override func setFrameOrigin(_ newOrigin: NSPoint) {
-        super.setFrameOrigin(NSPoint(x: 0, y: CGFloat(CLIPVIEW_PADDING_TOP)))
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            super.setFrameOrigin(NSPoint(x: 0, y: CGFloat(CLIPVIEW_PADDING_TOP)))
+        } else {
+            super.setFrameOrigin(newOrigin)
+        }
     }
 
     override func setFrameSize(_ newSize: NSSize) {
-        let sizeFixed = NSMakeSize(newSize.width, newSize.height - CGFloat(CLIPVIEW_PADDING_TOP))
+        var sizeFixed = newSize
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            sizeFixed = NSMakeSize(newSize.width, newSize.height - CGFloat(CLIPVIEW_PADDING_TOP))
+        }
         super.setFrameSize(sizeFixed)
+
+        mainViewController?.clipViewSizeChange()
     }
 }

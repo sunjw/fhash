@@ -33,4 +33,29 @@ import Cocoa
 
         return !(mainViewController?.isCalculating() ?? false)
     }
+
+    func windowWillClose(_ notification: Notification) {
+        let mainViewController = getMainViewController()
+        DockProgress.resetProgress()
+
+        // Save NSUserDefaults.
+        let defaultUpperCase = (mainViewController?.upperCaseButton.state == .on)
+        UserDefaults.standard.set(
+            defaultUpperCase,
+            forKey: UpperCaseDefaultKey)
+
+        // Close other windows.
+        let windows = NSApp.windows
+        let windowCount = windows.count
+        for i in 0..<windowCount {
+            let window = windows[i]
+            let windowController = window.windowController
+            if windowController == nil || !(windowController is MainWindowController) {
+                // It looks like about panel or finder overlay window.
+                // They will stop us exit, let's close them.
+                window.close()
+            }
+        }
+    }
+
 }

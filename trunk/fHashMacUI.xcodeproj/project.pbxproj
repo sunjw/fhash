@@ -10,6 +10,8 @@
 		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
 		4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4119D65E2B2012B70005D7E5 /* MainViewController.swift */; };
 		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
+		4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */; };
+		4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4142AB542E7AA0E10072FE1B /* MainScrollView.swift */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
 		41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E161B67573900A1D71F /* ServicesMenu.strings */; };
 		417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D32B19C992003DFFAF /* PaddingClipView.swift */; };
@@ -45,6 +47,8 @@
 		4111D69C27F16A35001AD814 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha512.cpp; path = source/Algorithms/sha512.cpp; sourceTree = "<group>"; };
 		4119D65E2B2012B70005D7E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		413870E12B1F20C500448A6F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = fHashIconTahoe.icon; sourceTree = "<group>"; };
+		4142AB542E7AA0E10072FE1B /* MainScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
 		415F8D6E28CF558500D8971C /* ThreadPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThreadPool.h; path = source/Common/ThreadPool.h; sourceTree = "<group>"; };
 		4163EC952850A2C900453333 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/OSXUI/stdafx.h; sourceTree = "<group>"; };
 		41666E041B67415300A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				418F62861BE9C8D6007337CF /* fHash.entitlements */,
 				4198A5321B58D3B50050C831 /* Info.plist */,
 				4198A5351B58D3C40050C831 /* Main.storyboard */,
+				4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */,
 				417AC3D02B197FF5003DFFAF /* fHash-Bridging-Header.h */,
 				41B6B5572D01975800697E22 /* fHash-Swift-Header.h */,
 				413870E12B1F20C500448A6F /* AboutViewController.swift */,
@@ -188,6 +193,7 @@
 				5222581A213CF24300012EF8 /* MacUtils.h */,
 				52225819213CF24300012EF8 /* MacUtils.mm */,
 				41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */,
+				4142AB542E7AA0E10072FE1B /* MainScrollView.swift */,
 				41B45DFA2B269F9500846043 /* MainView.swift */,
 				4119D65E2B2012B70005D7E5 /* MainViewController.swift */,
 				417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */,
@@ -240,7 +246,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 2600;
 				ORGANIZATIONNAME = "Sun Junwen";
 				TargetAttributes = {
 					52751B0F1B56276F00BD724B = {
@@ -278,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */,
 				41666E141B67573900A1D71F /* ServicesMenu.strings in Resources */,
 				4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */,
 				41666E031B67415300A1D71F /* Localizable.strings in Resources */,
@@ -308,6 +315,7 @@
 				41B6B5562D017DAB00697E22 /* DockProgressUtilities.swift in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
+				4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */,
 				417AC3D62B19CDC2003DFFAF /* NoTitlebarWindowController.swift in Sources */,
 				4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */,
 				4111D69D27F16A35001AD814 /* sha512.cpp in Sources */,
@@ -408,10 +416,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
@@ -466,9 +475,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"FHASH_OSX_UI=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "FHASH_OSX_UI=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -476,9 +483,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -498,12 +506,14 @@
 		52751B251B56276F00BD724B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = fHashIconTahoe;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/source/OSXUI",
 					"$(PROJECT_DIR)/source",
@@ -513,7 +523,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;
@@ -538,12 +548,14 @@
 		52751B261B56276F00BD724B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = fHashIconTahoe;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = source/OSXUI/fHash.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/source/OSXUI",
 					"$(PROJECT_DIR)/source",
@@ -554,7 +566,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-liconv";
 				PRODUCT_BUNDLE_IDENTIFIER = org.sunjw.fHashMacUI;

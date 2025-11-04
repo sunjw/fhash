@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24127"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,8 +38,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
                                 <subviews>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
-                                        <rect key="frame" x="310" y="13" width="107" height="32"/>
-                                        <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
+                                        <rect key="frame" x="310" y="20" width="100" height="20"/>
+                                        <buttonCell key="cell" type="push" title="closeButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="apS-iw-e7L">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -51,7 +51,7 @@
                                             <action selector="closeButtonClicked:" target="V35-dL-6OF" id="jcA-va-3gB"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ua3-zL-Sha" customClass="HyperlinkTextField">
                                         <rect key="frame" x="18" y="22" width="147" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="c2K-tZ-Vc9"/>
@@ -63,7 +63,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
                                         <rect key="frame" x="101" y="47" width="311" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
@@ -126,7 +126,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="fHash" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About fHash" id="5kV-Vb-QxS">
+                                        <menuItem title="About fHash" image="info.circle" catalog="system" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <segue destination="gn5-6V-AbC" kind="show" id="EI6-Y8-ZkJ"/>
@@ -437,8 +437,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="MainWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="525" y="430" width="527" height="304"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -466,13 +466,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="46"/>
                                 <subviews>
                                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5">
-                                        <rect key="frame" x="-3" y="36" width="574" height="20"/>
+                                        <rect key="frame" x="-3" y="37" width="574" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="nV5-gn-dUK"/>
                                         </constraints>
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
-                                        <rect key="frame" x="458" y="5" width="105" height="32"/>
+                                        <rect key="frame" x="461" y="12" width="95" height="20"/>
                                         <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -486,7 +486,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                        <rect key="frame" x="351" y="5" width="108" height="32"/>
+                                        <rect key="frame" x="350" y="12" width="98" height="20"/>
                                         <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -499,8 +499,8 @@
                                             <action selector="verifyButtonClicked:" target="XfG-lQ-9wD" id="IB5-Fa-T1s"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
-                                        <rect key="frame" x="159" y="15" width="96" height="17"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
+                                        <rect key="frame" x="157" y="14" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Zgf-bX-PvL"/>
@@ -512,7 +512,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
-                                        <rect key="frame" x="8" y="14" width="133" height="18"/>
+                                        <rect key="frame" x="10" y="15" width="129" height="16"/>
                                         <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k5e-vW-As5">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -526,7 +526,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                        <rect key="frame" x="247" y="5" width="105" height="32"/>
+                                        <rect key="frame" x="243" y="12" width="94" height="20"/>
                                         <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -544,7 +544,7 @@
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="12" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="15" id="Mrd-eA-M6m"/>
+                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="14" id="Mrd-eA-M6m"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
                                     <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
                                     <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="12" id="UBq-6n-rr2"/>
@@ -557,14 +557,14 @@
                                     <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="uac-u0-Fcc"/>
                                 </constraints>
                             </visualEffectView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz" customClass="MainScrollView">
                                 <rect key="frame" x="0.0" y="45" width="568" height="315"/>
                                 <clipView key="contentView" id="OyA-0h-4ne" customClass="PaddingClipView">
                                     <rect key="frame" x="1" y="1" width="566" height="313"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="w6J-k5-Pqc">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="313"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="566" height="313"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -580,7 +580,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="gC8-UO-p76">
-                                    <rect key="frame" x="536" y="50" width="16" height="261"/>
+                                    <rect key="frame" x="550" y="1" width="17" height="313"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -598,8 +598,10 @@
                     </view>
                     <connections>
                         <outlet property="clearButton" destination="T3R-eZ-zFT" id="pHK-Yx-MbL"/>
+                        <outlet property="mainClipView" destination="OyA-0h-4ne" id="PNA-bq-s4A"/>
                         <outlet property="mainProgressIndicator" destination="mgI-sH-iC5" id="VHx-pW-9oH"/>
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
+                        <outlet property="mainScrollViewTopConstraint" destination="Ruo-Gk-o2M" id="Dni-ZE-fWz"/>
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
                         <outlet property="speedTextField" destination="rrP-Dq-Bp3" id="9bn-wR-fh6"/>
@@ -612,4 +614,7 @@
             <point key="canvasLocation" x="98" y="717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="15" height="15"/>
+    </resources>
 </document>

@@ -7,10 +7,11 @@ if [ -z "$1" ]
 fi
 
 cur_dir=$PWD
-app_name="fHash.app"
-vol_name="fHash"
+app_title="fHash"
+app_name="$app_title.app"
+vol_name=$app_title
 src_folder=$1
-temp_dmg_path="fHash-VERSION-macOS.dmg"
+temp_dmg_path="$app_title-VERSION-macOS.dmg"
 
 echo "Create DMG from [$src_folder]..."
 
@@ -21,7 +22,7 @@ rm -f .DS_Store
 # Make /Applications link
 ln -s /Applications Applications
 # Get version
-plist_version=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" $app_name/Contents/Info.plist)
+plist_version=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$app_name/Contents/Info.plist")
 temp_dmg_path=${temp_dmg_path/VERSION/$plist_version}
 
 cd "$cur_dir"
@@ -39,7 +40,7 @@ cd "$src_folder"
 rm -f Applications
 
 # Tar
-tar -cJvf fHash.app.tar.xz fHash.app
+tar -cJvf "$app_name.tar.xz" "$app_name"
 
 cd "$cur_dir"
 

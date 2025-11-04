@@ -1,0 +1,33 @@
+{
+  "fill" : {
+    "solid" : "display-p3:0.70068,0.18701,0.18701,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "xi-text-2048.heic",
+          "name" : "xi-text-2048",
+          "position" : {
+            "scale" : 0.41,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}

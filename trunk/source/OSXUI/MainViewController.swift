@@ -8,7 +8,8 @@
 
 import Cocoa
 
-let UPPERCASE_DEFAULT_KEY = "upperCaseKey"
+let UpperCaseDefaultKey = "upperCaseKey"
+let FindBarAtBelowAfter26 = true
 
 private struct MainViewControllerState: OptionSet {
     let rawValue: Int
@@ -21,10 +22,20 @@ private struct MainViewControllerState: OptionSet {
 }
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
-    @IBOutlet var mainScrollView: NSScrollView!
-    @IBOutlet var mainTextView: NSTextView!
+    static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 26, right: 0)
+    static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
+    static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
-    @IBOutlet var mainProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var mainScrollView: MainScrollView!
+    @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var mainClipView: PaddingClipView!
+
+    @IBOutlet weak var mainTextView: NSTextView!
+
+    @IBOutlet weak var mainProgressIndicator: NSProgressIndicator!
 
     @IBOutlet weak var openButton: NSButton!
     @IBOutlet weak var clearButton: NSButton!
@@ -34,7 +45,7 @@ private struct MainViewControllerState: OptionSet {
 
     @IBOutlet weak var speedTextField: NSTextField!
 
-    @objc var tag: UInt = 0 // Must have @ojbc, it is used to open finder bar.
+    @objc var tag: Int = 0 // Must have @ojbc, it is used to open finder bar.
 
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
@@ -54,6 +65,8 @@ private struct MainViewControllerState: OptionSet {
     private var outMainQueue: Int = 0
     private let maxDiffQueue = 3
 
+    private var curFindPanelVisible = false
+
     private var hashBridge: HashBridge?
 
     override func viewDidLoad() {
@@ -67,15 +80,17 @@ private struct MainViewControllerState: OptionSet {
 
         let mainView = view as? MainView
         mainView?.mainViewController = self
+        mainScrollView.mainViewController = self
+        mainClipView.mainViewController = self
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
-            UPPERCASE_DEFAULT_KEY: Bool(false)
+            UpperCaseDefaultKey: Bool(false)
         ]
         UserDefaults.standard.register(defaults: defaultsDictionary)
 
         // Load NSUserDefaults.
-        let defaultUpperCase = UserDefaults.standard.bool(forKey: UPPERCASE_DEFAULT_KEY)
+        let defaultUpperCase = UserDefaults.standard.bool(forKey: UpperCaseDefaultKey)
 
         // Alloc bridge.
         hashBridge = HashBridge(controller: self)
@@ -96,12 +111,35 @@ private struct MainViewControllerState: OptionSet {
         // Set open button as default.
         openButton.keyEquivalent = "\r"
 
+        curFindPanelVisible = mainScrollView.isFindBarVisible
+
         // Set scroll view border type.
         mainScrollView.borderType = .noBorder
 
+        // Set scroll view findbar position.
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainScrollView.findBarPosition = .belowContent
+        } else {
+            if FindBarAtBelowAfter26 {
+                mainScrollView.findBarPosition = .belowContent
+            } else {
+                mainScrollView.findBarPosition = .aboveContent
+            }
+        }
+
+        // Set clip view insets.
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainClipView.automaticallyAdjustsContentInsets = false
+            mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+        }
+
         // Set some text in text field.
         mainTextView.delegate = self
-        mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
+        } else {
+            mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+        }
 
         mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
         if mainFont == nil {
@@ -148,26 +186,6 @@ private struct MainViewControllerState: OptionSet {
     }
 
     override func viewWillDisappear() {
-        DockProgress.resetProgress()
-
-        // Save NSUserDefaults.
-        let defaultUpperCase = (upperCaseButton.state == .on)
-        UserDefaults.standard.set(
-            defaultUpperCase,
-            forKey: UPPERCASE_DEFAULT_KEY)
-
-        // Close other windows.
-        let windows = NSApp.windows
-        let windowCount = windows.count
-        for i in 0..<windowCount {
-            let window = windows[i]
-            let windowController = window.windowController
-            if windowController == nil || !(windowController is MainWindowController) {
-                // It looks like about panel or finder overlay window.
-                // They will stop us exit, let's close them.
-                window.close()
-            }
-        }
     }
 
     override var representedObject: Any? {
@@ -343,6 +361,7 @@ private struct MainViewControllerState: OptionSet {
             mainTextView.layoutManager?.ensureLayout(for: mainTextView.textContainer!)
             mainTextView.scrollRangeToVisible(NSRange(location: mainTextView.string.count,
                                                       length: 0))
+
             // Keep on the left.
             if let enclosingScrollView = mainTextView.enclosingScrollView {
                 enclosingScrollView.contentView.scroll(to:NSPoint(
@@ -359,6 +378,94 @@ private struct MainViewControllerState: OptionSet {
     private func canUpdateMainTextView() -> Bool {
         // NSLog("%@", ((self.inMainQueue - self.outMainQueue < self.maxDiffQueue) ? "true" : "false"))
         return (self.inMainQueue - self.outMainQueue < self.maxDiffQueue)
+    }
+
+    func findPanelVisibleChange(isVisible: Bool) {
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            return
+        }
+
+        if FindBarAtBelowAfter26 {
+            if isVisible {
+                // show
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+            } else {
+                // hide
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
+        } else {
+            if isVisible {
+                // show
+                mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtAboveAfter26
+            } else {
+                // hide
+                mainScrollViewTopConstraint.constant = 0
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
+        }
+
+        // if let enclosingScrollView = mainTextView.enclosingScrollView {
+        //     NSLog("findPanelVisibleChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+        // }
+
+    }
+
+    func clipViewSizeChange() {
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0) ||
+            FindBarAtBelowAfter26) {
+            return
+        }
+
+        var scrollNeedFix = true
+        var becameShow = true
+
+        let newFindPanelVisible = mainScrollView.isFindBarVisible
+        if newFindPanelVisible == curFindPanelVisible {
+            scrollNeedFix = false
+        }
+        if newFindPanelVisible && !curFindPanelVisible {
+            // show find bar
+            // NSLog("clipViewSizeChange, show find bar")
+        }
+        if !newFindPanelVisible && curFindPanelVisible {
+            // hide find bar
+            // NSLog("clipViewSizeChange, hide find bar")
+            becameShow = false
+        }
+
+        let mainTextSize = mainText!.size()
+        let mainScrollViewSize = mainScrollView.frame.size
+        // NSLog("clipViewSizeChange, mainTextSize.height=%.2f, mainScrollViewSize.height=%.2f",
+        //       mainTextSize.height, mainScrollViewSize.height)
+        if mainTextSize.height < mainScrollViewSize.height {
+            scrollNeedFix = false
+        }
+
+        if scrollNeedFix, let enclosingScrollView = self.mainTextView.enclosingScrollView {
+            // NSLog("clipViewSizeChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+            var scrollFix: CGFloat = 0
+            let bottomOffset = mainTextSize.height - mainScrollViewSize.height - enclosingScrollView.contentView.bounds.origin.y
+            if becameShow && enclosingScrollView.contentView.bounds.origin.y < -18 {
+                // NSLog("clipViewSizeChange, fix show top")
+                scrollFix = -6
+            }
+            // NSLog("clipViewSizeChange, bottomOffset=%.2f", bottomOffset)
+            if becameShow && bottomOffset <= MainViewController.MainScrollViewTopConstraintAfter26 {
+                // NSLog("clipViewSizeChange, fix show bottom")
+                scrollFix = MainViewController.MainScrollViewTopConstraintAfter26
+            }
+
+            if scrollFix != 0 {
+                enclosingScrollView.contentView.scroll(to:NSPoint(
+                    x: enclosingScrollView.contentView.bounds.origin.x,
+                    y: enclosingScrollView.contentView.bounds.origin.y + scrollFix))
+                enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+            }
+            // NSLog("clipViewSizeChange, after, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+        }
+
+        curFindPanelVisible = newFindPanelVisible
     }
 
     private func calculateFinished() {
@@ -458,6 +565,7 @@ private struct MainViewControllerState: OptionSet {
         if (dockProgress >= 1) {
             dockProgress = 0.99999 // 1 will disappear.
         }
+        // NSLog("dockProgress=%.10f", dockProgress)
         DockProgress.progress = dockProgress
     }
 
@@ -699,7 +807,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @IBAction func verifyButtonClicked(_ sender: NSButton) {
-        tag = NSFindPanelAction.showFindPanel.rawValue
+        tag = NSTextFinder.Action.showFindInterface.rawValue
         mainTextView.performTextFinderAction(self)
     }
 
@@ -719,23 +827,33 @@ private struct MainViewControllerState: OptionSet {
             let nsrtMouseInView = view.window!.convertFromScreen(NSRect(x: nsptMouseLoc.x, y: nsptMouseLoc.y, width: 0, height: 0))
             let nsptMouseInView = nsrtMouseInView.origin
 
+            var nsmenuItem: NSMenuItem? = nil
             let nsmenuHash = NSMenu(title: "HashMenu")
-            nsmenuHash.insertItem(
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_COPY"),
                 action: #selector(self.menuCopyHash),
                 keyEquivalent: "",
                 at: 0)
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "document.on.document", accessibilityDescription: nil)
+            }
             nsmenuHash.insertItem(NSMenuItem.separator(), at: 1)
-            nsmenuHash.insertItem(
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHGOOGLE"),
                 action: #selector(self.menuSearchGoogle),
                 keyEquivalent: "",
                 at: 2)
-            nsmenuHash.insertItem(
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: nil)
+            }
+            nsmenuItem = nsmenuHash.insertItem(
                 withTitle: MacSwiftUtils.GetStringFromRes("MAINDLG_HYPEREDIT_MENU_SERACHVIRUSTOTAL"),
                 action: #selector(self.menuSearchVirusTotal),
                 keyEquivalent: "",
                 at: 3)
+            if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+                nsmenuItem?.image = NSImage(systemSymbolName: "safari", accessibilityDescription: nil)
+            }
 
             nsmenuHash.popUp(positioning: nil, at: nsptMouseInView, in: view)
 
