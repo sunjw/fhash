@@ -8,7 +8,7 @@
 
 import Cocoa
 
-let UPPERCASE_DEFAULT_KEY = "upperCaseKey"
+let UpperCaseDefaultKey = "upperCaseKey"
 
 private struct MainViewControllerState: OptionSet {
     let rawValue: Int
@@ -83,12 +83,12 @@ private struct MainViewControllerState: OptionSet {
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
-            UPPERCASE_DEFAULT_KEY: Bool(false)
+            UpperCaseDefaultKey: Bool(false)
         ]
         UserDefaults.standard.register(defaults: defaultsDictionary)
 
         // Load NSUserDefaults.
-        let defaultUpperCase = UserDefaults.standard.bool(forKey: UPPERCASE_DEFAULT_KEY)
+        let defaultUpperCase = UserDefaults.standard.bool(forKey: UpperCaseDefaultKey)
 
         // Alloc bridge.
         hashBridge = HashBridge(controller: self)

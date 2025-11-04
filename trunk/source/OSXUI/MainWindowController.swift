@@ -42,7 +42,7 @@ import Cocoa
         let defaultUpperCase = (mainViewController?.upperCaseButton.state == .on)
         UserDefaults.standard.set(
             defaultUpperCase,
-            forKey: UPPERCASE_DEFAULT_KEY)
+            forKey: UpperCaseDefaultKey)
 
         // Close other windows.
         let windows = NSApp.windows
