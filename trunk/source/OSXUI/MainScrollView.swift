@@ -33,9 +33,4 @@ import Cocoa
             return super.isFindBarVisible
         }
     }
-
-    // override func findBarViewDidChangeHeight() {
-    //     guard let findBarHeight = findBarView?.frame.height else { return }
-    //     NSLog("findBarHeight=%f", findBarHeight)
-    // }
 }

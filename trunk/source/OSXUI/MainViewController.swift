@@ -9,6 +9,7 @@
 import Cocoa
 
 let UpperCaseDefaultKey = "upperCaseKey"
+let FindBarAtBelowAfter26 = true
 
 private struct MainViewControllerState: OptionSet {
     let rawValue: Int
@@ -22,7 +23,8 @@ private struct MainViewControllerState: OptionSet {
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
-    static let MainClipViewInsetWithFindBarAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 28, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
     static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
@@ -118,7 +120,11 @@ private struct MainViewControllerState: OptionSet {
         if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             mainScrollView.findBarPosition = .belowContent
         } else {
-            mainScrollView.findBarPosition = .aboveContent
+            if FindBarAtBelowAfter26 {
+                mainScrollView.findBarPosition = .belowContent
+            } else {
+                mainScrollView.findBarPosition = .aboveContent
+            }
         }
 
         // Set clip view insets.
@@ -379,15 +385,26 @@ private struct MainViewControllerState: OptionSet {
             return
         }
 
-        if isVisible {
-            // show
-            mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
-            mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAfter26
+        if FindBarAtBelowAfter26 {
+            if isVisible {
+                // show
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+            } else {
+                // hide
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
         } else {
-            // hide
-            mainScrollViewTopConstraint.constant = 0
-            mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            if isVisible {
+                // show
+                mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtAboveAfter26
+            } else {
+                // hide
+                mainScrollViewTopConstraint.constant = 0
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
         }
+
         // if let enclosingScrollView = mainTextView.enclosingScrollView {
         //     NSLog("findPanelVisibleChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
         // }
@@ -395,7 +412,8 @@ private struct MainViewControllerState: OptionSet {
     }
 
     func clipViewSizeChange() {
-        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0) ||
+            FindBarAtBelowAfter26) {
             return
         }
 
