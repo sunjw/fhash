@@ -134,7 +134,9 @@ public enum DockProgress {
 				NSApp?.dockTile.contentView = dockContentView
 				displayLinkObserver.start()
 			} else {
-				updateDockIcon()
+				if #available(macOS 26, *) {
+					updateDockIcon()
+				}
 			}
 		}
 	}
