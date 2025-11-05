@@ -69,8 +69,8 @@
 		41AAAF3A2B1DBB5D00146768 /* HyperlinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperlinkTextField.swift; sourceTree = "<group>"; };
 		41B45DFA2B269F9500846043 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		41B45DFC2B26A2DB00846043 /* fHashMacAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fHashMacAppDelegate.swift; sourceTree = "<group>"; };
-		41B6B5532D017DAB00697E22 /* DockProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockProgress.swift; sourceTree = "<group>"; };
-		41B6B5542D017DAB00697E22 /* DockProgressUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockProgressUtilities.swift; sourceTree = "<group>"; };
+		41B6B5532D017DAB00697E22 /* DockProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockProgress.swift; sourceTree = "<group>"; usesTabs = 1; };
+		41B6B5542D017DAB00697E22 /* DockProgressUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockProgressUtilities.swift; sourceTree = "<group>"; usesTabs = 1; };
 		41B6B5572D01975800697E22 /* fHash-Swift-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fHash-Swift-Header.h"; sourceTree = "<group>"; };
 		41C4BB042B215BC5004A6C34 /* UIBridgeMacSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBridgeMacSwift.h; sourceTree = "<group>"; };
 		41C4BB052B215BEC004A6C34 /* UIBridgeMacSwift.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UIBridgeMacSwift.mm; sourceTree = "<group>"; };
