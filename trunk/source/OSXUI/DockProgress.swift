@@ -134,9 +134,7 @@ public enum DockProgress {
 				NSApp?.dockTile.contentView = dockContentView
 				displayLinkObserver.start()
 			} else {
-				if #available(macOS 26, *) {
-					updateDockIcon()
-				}
+				updateDockIcon()
 			}
 		}
 	}
@@ -146,7 +144,7 @@ public enum DockProgress {
 	*/
 	public private(set) static var displayedProgress = 0.0 {
 		didSet {
-			if displayedProgress == 0 || displayedProgress >= 1 {
+			if displayedProgress >= 1 {
 				NSApp?.dockTile.contentView = nil
 			}
 		}
@@ -173,6 +171,9 @@ public enum DockProgress {
 	public static var style = Style.bar
 
 	private static func updateDockIcon() {
+		if displayedProgress == 0 {
+			NSApp?.dockTile.contentView = nil
+		}
 		dockContentView.needsDisplay = true
 		NSApp?.dockTile.display()
 	}
