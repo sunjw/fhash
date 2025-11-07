@@ -491,19 +491,21 @@ struct CanvasBarStyle: View {
 
 			// Progress fill
 			let progressWidth = max(0, barRect.width * progress)
-			// NSLog("progress=%.10f, progressWidth=%.2f", progress, progressWidth)
-			if progressWidth > 0 {
-				let progressRect = CGRect(
-					x: barRect.minX + 1,
-					y: barRect.minY + 1,
-					width: progressWidth - 2,
-					height: barRect.height - 2
-				)
-				context.fill(
-					RoundedRectangle(cornerRadius: 4).path(in: progressRect),
-					with: .color(.accentColor)
-				)
+			var rectWidth = progressWidth - 2
+			if rectWidth < 0 {
+				rectWidth = 0
 			}
+			// NSLog("progress=%.10f, rectWidth=%.2f", progress, rectWidth)
+			let progressRect = CGRect(
+				x: barRect.minX + 1,
+				y: barRect.minY + 1,
+				width: rectWidth,
+				height: barRect.height - 2
+			)
+			context.fill(
+				RoundedRectangle(cornerRadius: 4).path(in: progressRect),
+				with: .color(.accentColor)
+			)
 		}
 	}
 }
