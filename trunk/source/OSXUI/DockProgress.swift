@@ -193,9 +193,6 @@ public enum DockProgress {
 	public static var style = Style.bar
 
 	private static func updateDockIcon() {
-		//if displayedProgress == 0 {
-		//	NSApp?.dockTile.contentView = nil
-		//}
 		dockContentView.needsDisplay = true
 		NSApp?.dockTile.display()
 	}
@@ -367,10 +364,6 @@ extension DockProgress {
 				resetHostingView()
 				return
 			}
-
-			//if progress < displayedProgress {
-			//	displayedProgress = progress // fix flash on set progress backwards
-			//}
 
 			switch style {
 			case .bar:
