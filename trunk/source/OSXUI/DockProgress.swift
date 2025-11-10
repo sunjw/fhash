@@ -536,8 +536,8 @@ struct CanvasBarStyle: View {
 			// Progress fill
 			let progressWidth = max(0, (barRect.width - 2) * progress)
 			if progressWidth >= 0 {
-				NSLog("displayedProgress==%.10f, progress=%.10f, progressWidth=%.4f",
-					  DockProgress.displayedProgress, progress, progressWidth)
+				//NSLog("displayedProgress==%.10f, progress=%.10f, progressWidth=%.4f",
+				//	  DockProgress.displayedProgress, progress, progressWidth)
 				let progressRect = CGRect(
 					x: barRect.minX + 1,
 					y: barRect.minY + 1,
