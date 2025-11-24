@@ -4,11 +4,11 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="../sub-proj/fHashClrBridge/fHashClrBridge.vcxproj">
+  <Project Path="../sub-proj/fHashClrBridge/fHashClrBridge.vcxproj" Id="b6e3bf15-9135-41b4-9643-98e0ac2d447f">
     <BuildDependency Project="../sub-proj/fHashWUINative/fHashWUINative.vcxproj" />
   </Project>
-  <Project Path="../sub-proj/fHashWUINative/fHashWUINative.vcxproj" />
-  <Project Path="../sub-proj/fHashWUIShellExt/fHashWUIShellExt.vcxproj" />
+  <Project Path="../sub-proj/fHashWUINative/fHashWUINative.vcxproj" Id="29fe3aea-3a2c-4d65-9799-b5b1abaa2a1c" />
+  <Project Path="../sub-proj/fHashWUIShellExt/fHashWUIShellExt.vcxproj" Id="fb630ad9-1305-416d-bff3-50b5c6647291" />
   <Project Path="fHashWUIWap/fHashWUIWap.wapproj" Type="c7167f0d-bc9f-4e6e-afe1-012c56b48db5">
     <BuildDependency Project="../sub-proj/fHashWUIShellExt/fHashWUIShellExt.vcxproj" />
     <Deploy />
