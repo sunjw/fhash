@@ -3,7 +3,7 @@
  * Support drag & drop.
  * Integrated with context menu in Explorer/Finder.
  * Support Windows 7 (fHash legacy only), Windows 10 (1903) and later (x64 and arm64).
- * Support macOS 13 and later, with universal binary.
+ * Support macOS 14 and later, with universal binary.
  * Support Dark Mode.
  * English and Simplified Chinese UI.
 
