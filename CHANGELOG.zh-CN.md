@@ -1,3 +1,7 @@
+25.12.33 (134) 2025-12-01  
+Windows WinUI: 更新组件  
+修复其它问题  
+
 25.11.32 (133) 2025-11-11  
 Windows WinUI: 更新组件  
 macOS: 适配 macOS 26.1 (不支持 macOS 26.0，存在会破坏 fHash 界面功能的 bug)  

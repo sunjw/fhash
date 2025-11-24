@@ -1,3 +1,7 @@
+25.12.33 (134) 2025-12-01  
+Windows WinUI: update components  
+Fix other issues  
+
 25.11.32 (133) 2025-11-11  
 Windows WinUI: update components  
 macOS: adapt to macOS 26.1 (not support macOS 26.0 due to a UI-breaking bug)  
