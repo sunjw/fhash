@@ -1,0 +1,21 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../sub-proj/fHashClrBridge/fHashClrBridge.vcxproj">
+    <BuildDependency Project="../sub-proj/fHashWUINative/fHashWUINative.vcxproj" />
+  </Project>
+  <Project Path="../sub-proj/fHashWUINative/fHashWUINative.vcxproj" />
+  <Project Path="../sub-proj/fHashWUIShellExt/fHashWUIShellExt.vcxproj" />
+  <Project Path="fHashWUIWap/fHashWUIWap.wapproj" Type="c7167f0d-bc9f-4e6e-afe1-012c56b48db5">
+    <BuildDependency Project="../sub-proj/fHashWUIShellExt/fHashWUIShellExt.vcxproj" />
+    <Deploy />
+  </Project>
+  <Project Path="source/WinUI/fHashWUI.csproj">
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+</Solution>
