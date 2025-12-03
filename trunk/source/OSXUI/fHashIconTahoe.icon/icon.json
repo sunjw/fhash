@@ -6,6 +6,14 @@
     {
       "layers" : [
         {
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "display-p3:0.90797,0.24360,0.24360,1.00000"
+              }
+            }
+          ],
           "image-name" : "xi-text-2048.heic",
           "name" : "xi-text-2048",
           "position" : {
