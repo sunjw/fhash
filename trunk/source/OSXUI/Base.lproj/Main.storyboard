@@ -64,7 +64,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
-                                        <rect key="frame" x="101" y="47" width="311" height="165"/>
+                                        <rect key="frame" x="101" y="59" width="311" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
                                             <constraint firstAttribute="width" constant="307" id="iAD-3b-m5X"/>
@@ -76,7 +76,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
-                                        <rect key="frame" x="20" y="188" width="64" height="64"/>
+                                        <rect key="frame" x="20" y="162" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="bGI-jU-0iT"/>
                                             <constraint firstAttribute="height" constant="64" id="q0E-Cs-u3g"/>
@@ -86,7 +86,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="zGm-ZO-GT5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua3-zL-Sha" secondAttribute="trailing" constant="8" symbolic="YES" id="235-AN-Igl"/>
-                                    <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="8" symbolic="YES" id="5Cq-Ly-SgT"/>
+                                    <constraint firstItem="Ua3-zL-Sha" firstAttribute="top" secondItem="Sh8-E9-AAT" secondAttribute="bottom" constant="20" id="5Cq-Ly-SgT"/>
                                     <constraint firstItem="l26-dk-XVG" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" symbolic="YES" id="6hx-qT-gi4"/>
                                     <constraint firstItem="Ua3-zL-Sha" firstAttribute="leading" secondItem="JLJ-Dy-ckM" secondAttribute="leading" constant="20" id="Liv-pp-Ec9"/>
                                     <constraint firstItem="Sh8-E9-AAT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l26-dk-XVG" secondAttribute="trailing" constant="8" symbolic="YES" id="Lz6-cz-rmu"/>
@@ -94,7 +94,7 @@
                                     <constraint firstAttribute="bottom" secondItem="zGm-ZO-GT5" secondAttribute="bottom" constant="20" id="SaO-sW-GEU"/>
                                     <constraint firstAttribute="trailing" secondItem="zGm-ZO-GT5" secondAttribute="trailing" constant="20" id="bJ9-cs-gxJ"/>
                                     <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="vnK-tx-hh5"/>
-                                    <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="JLJ-Dy-ckM" secondAttribute="top" constant="20" symbolic="YES" id="yqJ-Nf-DrK"/>
+                                    <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="JLJ-Dy-ckM" secondAttribute="top" constant="46" id="yqJ-Nf-DrK"/>
                                 </constraints>
                             </visualEffectView>
                         </subviews>
