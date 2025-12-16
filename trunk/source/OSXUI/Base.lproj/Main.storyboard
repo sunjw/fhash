@@ -12,7 +12,7 @@
                 <windowController showSeguePresentationStyle="single" id="gn5-6V-AbC" customClass="AboutWindowController" sceneMemberID="viewController">
                     <window key="window" title="AboutWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6Ix-nh-iPf">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="460"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
                             <outlet property="delegate" destination="gn5-6V-AbC" id="fqX-dx-2cu"/>
@@ -31,11 +31,11 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="V35-dL-6OF" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" id="bS0-fd-qFN">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-Dy-ckM">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="240"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="272"/>
                                 <subviews>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
                                         <rect key="frame" x="310" y="20" width="100" height="20"/>
@@ -76,7 +76,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l26-dk-XVG">
-                                        <rect key="frame" x="20" y="156" width="64" height="64"/>
+                                        <rect key="frame" x="20" y="188" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="bGI-jU-0iT"/>
                                             <constraint firstAttribute="height" constant="64" id="q0E-Cs-u3g"/>
