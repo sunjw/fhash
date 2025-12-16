@@ -8,12 +8,12 @@
 
 import Cocoa
 
-@objc(AboutWindowController) class AboutWindowController: NSWindowController {
+@objc(AboutWindowController) class AboutWindowController: NoTitlebarWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.title = MacSwiftUtils.GetStringFromRes("ABOUTDLG_TITLE")
-        //window?.backgroundColor = .textBackgroundColor
+        window?.titlebarAppearsTransparent = true
     }
 }
