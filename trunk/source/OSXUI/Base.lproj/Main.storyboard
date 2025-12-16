@@ -64,10 +64,10 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sh8-E9-AAT">
-                                        <rect key="frame" x="101" y="59" width="311" height="165"/>
+                                        <rect key="frame" x="100" y="59" width="312" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="165" id="dIW-dR-K5k"/>
-                                            <constraint firstAttribute="width" constant="307" id="iAD-3b-m5X"/>
+                                            <constraint firstAttribute="width" constant="308" id="iAD-3b-m5X"/>
                                         </constraints>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="infoTextField" id="zWw-Pv-m5p">
                                             <font key="font" metaFont="system"/>
