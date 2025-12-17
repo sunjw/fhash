@@ -1,3 +1,8 @@
+25.12.34 (136) 2025-12-17  
+Windows WinUI: update components  
+macOS: support for macOS 14 and later  
+Fix other issues  
+
 25.12.33 (134) 2025-12-01  
 Windows WinUI: update components  
 Fix other issues  
