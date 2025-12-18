@@ -28,7 +28,7 @@ private struct MainViewControllerState: OptionSet {
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
     static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
-    @IBOutlet weak var titlebarView: NSView!
+    @IBOutlet weak var titlebarView: TitlebarView!
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 

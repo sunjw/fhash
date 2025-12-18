@@ -585,7 +585,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig">
+                            <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig" customClass="TitlebarView">
                                 <rect key="frame" x="0.0" y="328" width="78" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="6Lf-hy-tLZ"/>

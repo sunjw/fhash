@@ -17,6 +17,7 @@
 		417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D32B19C992003DFFAF /* PaddingClipView.swift */; };
 		417AC3D62B19CDC2003DFFAF /* NoTitlebarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */; };
 		417AC3D82B19D1BC003DFFAF /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */; };
+		419287792EF442DE0079F10E /* TitlebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419287782EF442DE0079F10E /* TitlebarView.swift */; };
 		4198A5331B58D3B50050C831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5311B58D3B50050C831 /* Assets.xcassets */; };
 		4198A5371B58D3C40050C831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4198A5351B58D3C40050C831 /* Main.storyboard */; };
 		41AAAF372B1D92C200146768 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AAAF362B1D92C200146768 /* AboutWindowController.swift */; };
@@ -60,6 +61,7 @@
 		417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTitlebarWindowController.swift; sourceTree = "<group>"; };
 		417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		418F62861BE9C8D6007337CF /* fHash.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fHash.entitlements; path = source/OSXUI/fHash.entitlements; sourceTree = SOURCE_ROOT; };
+		419287782EF442DE0079F10E /* TitlebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlebarView.swift; sourceTree = "<group>"; };
 		4198A5311B58D3B50050C831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = source/OSXUI/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4198A5321B58D3B50050C831 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = source/OSXUI/Info.plist; sourceTree = SOURCE_ROOT; };
 		4198A5361B58D3C40050C831 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = source/OSXUI/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -200,6 +202,7 @@
 				417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */,
 				417AC3D32B19C992003DFFAF /* PaddingClipView.swift */,
 				41C4BB072B2169AB004A6C34 /* ResultDataSwift.swift */,
+				419287782EF442DE0079F10E /* TitlebarView.swift */,
 				41C4BB092B21B05F004A6C34 /* HashBridge.h */,
 				41C4BB0A2B21B090004A6C34 /* HashBridge.mm */,
 				41C4BB042B215BC5004A6C34 /* UIBridgeMacSwift.h */,
@@ -313,6 +316,7 @@
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
 				41B6B5552D017DAB00697E22 /* DockProgress.swift in Sources */,
 				41B6B5562D017DAB00697E22 /* DockProgressUtilities.swift in Sources */,
+				419287792EF442DE0079F10E /* TitlebarView.swift in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
 				4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */,
