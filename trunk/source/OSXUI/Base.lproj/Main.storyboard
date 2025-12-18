@@ -586,14 +586,14 @@
                                 </scroller>
                             </scrollView>
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig" customClass="TitlebarView">
-                                <rect key="frame" x="0.0" y="328" width="78" height="32"/>
+                                <rect key="frame" x="0.0" y="328" width="568" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="6Lf-hy-tLZ"/>
-                                    <constraint firstAttribute="width" constant="78" id="WCM-PM-HIO"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="szV-FU-9ig" secondAttribute="trailing" id="7pg-vI-Uj6"/>
                             <constraint firstAttribute="bottom" secondItem="IAf-7L-vjz" secondAttribute="bottom" constant="45" id="Jhf-rJ-c1K"/>
                             <constraint firstItem="szV-FU-9ig" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Kkr-oI-Elp"/>
                             <constraint firstAttribute="trailing" secondItem="M5s-ns-Qqg" secondAttribute="trailing" id="LMw-EU-vTP"/>

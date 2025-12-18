@@ -87,12 +87,12 @@ private struct MainViewControllerState: OptionSet {
 
         // Setup NSVisualEffectView/NSGlassEffectView background
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
-        let titlebarEffectView = MacSwiftUtils.SetupEffectViewBackground(titlebarView)
-        if #available(macOS 26.0, *) {
-            let titlebarGlassEffectView = titlebarEffectView as? NSGlassEffectView
-            titlebarGlassEffectView?.cornerRadius = 16
-            // titlebarGlassEffectView?.tintColor = .textBackgroundColor
-        }
+        // let titlebarEffectView = MacSwiftUtils.SetupEffectViewBackground(titlebarView)
+        // if #available(macOS 26.0, *) {
+        //     let titlebarGlassEffectView = titlebarEffectView as? NSGlassEffectView
+        //     titlebarGlassEffectView?.cornerRadius = 16
+        //     // titlebarGlassEffectView?.tintColor = .textBackgroundColor
+        // }
 
         titlebarView.isHidden = true
         titlebarView.alphaValue = 0.0
