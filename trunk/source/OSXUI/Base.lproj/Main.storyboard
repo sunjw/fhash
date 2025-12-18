@@ -463,7 +463,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
+                            <view translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="46"/>
                                 <subviews>
                                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5">
@@ -557,7 +557,7 @@
                                     <constraint firstItem="B0X-D0-nKy" firstAttribute="leading" secondItem="PCO-87-Uvg" secondAttribute="trailing" constant="13" id="pMg-lm-8az"/>
                                     <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="uac-u0-Fcc"/>
                                 </constraints>
-                            </visualEffectView>
+                            </view>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz" customClass="MainScrollView">
                                 <rect key="frame" x="0.0" y="45" width="568" height="315"/>
                                 <clipView key="contentView" id="OyA-0h-4ne" customClass="PaddingClipView">

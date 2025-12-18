@@ -78,10 +78,24 @@ private struct MainViewControllerState: OptionSet {
         // Initiate.
         fHashDelegate?.mainViewController = self
 
-        let mainView = view as? MainView
-        mainView?.mainViewController = self
+        let mainView = view as! MainView
+        mainView.mainViewController = self
         mainScrollView.mainViewController = self
         mainClipView.mainViewController = self
+
+        let effectView: NSView
+        if #available(macOS 26.0, *) {
+            let glassEffectView = NSGlassEffectView(frame: mainView.bounds)
+            effectView = glassEffectView
+        } else {
+            let visualEffectView = NSVisualEffectView(frame: mainView.bounds)
+            visualEffectView.blendingMode = .behindWindow
+            visualEffectView.material = .underWindowBackground
+            visualEffectView.state = .followsWindowActiveState
+            effectView = visualEffectView
+        }
+        effectView.autoresizingMask = [.width, .height]
+        mainView.addSubview(effectView, positioned: .below, relativeTo: nil)
 
         // Register NSUserDefaults.
         let defaultsDictionary = [

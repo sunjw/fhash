@@ -15,6 +15,10 @@ import Cocoa
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.delegate = self
 
+        // Prepare for NSVisualEffectView/NSGlassEffectView background
+        window?.isOpaque = false
+        window?.backgroundColor = .clear
+
         self.windowFrameAutosaveName = "MainWindowFrame"
     }
 
