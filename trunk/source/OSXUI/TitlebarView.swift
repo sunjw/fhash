@@ -13,9 +13,12 @@ import Cocoa
         super.draw(dirtyRect)
 
         let startColor = NSColor.textBackgroundColor.withAlphaComponent(1.0)
+        let midColor = NSColor.textBackgroundColor.withAlphaComponent(0.8)
         let endColor = NSColor.textBackgroundColor.withAlphaComponent(0.0)
 
-        let gradient = NSGradient(starting: startColor, ending: endColor)
+        let gradient = NSGradient(colors: [startColor, midColor, endColor],
+                                          atLocations: [0.0, 0.75, 1.0],
+                                          colorSpace: .deviceRGB)
 
         gradient?.draw(in: bounds, angle: 270)
     }
