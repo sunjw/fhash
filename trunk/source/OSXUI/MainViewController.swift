@@ -83,19 +83,8 @@ private struct MainViewControllerState: OptionSet {
         mainScrollView.mainViewController = self
         mainClipView.mainViewController = self
 
-        let effectView: NSView
-        if #available(macOS 26.0, *) {
-            let glassEffectView = NSGlassEffectView(frame: mainView.bounds)
-            effectView = glassEffectView
-        } else {
-            let visualEffectView = NSVisualEffectView(frame: mainView.bounds)
-            visualEffectView.blendingMode = .behindWindow
-            visualEffectView.material = .underWindowBackground
-            visualEffectView.state = .followsWindowActiveState
-            effectView = visualEffectView
-        }
-        effectView.autoresizingMask = [.width, .height]
-        mainView.addSubview(effectView, positioned: .below, relativeTo: nil)
+        // Setup NSVisualEffectView/NSGlassEffectView background
+        MacSwiftUtils.SetupEffectViewBackground(mainView)
 
         // Register NSUserDefaults.
         let defaultsDictionary = [

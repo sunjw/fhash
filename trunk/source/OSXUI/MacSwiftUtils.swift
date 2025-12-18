@@ -124,4 +124,20 @@ class MacSwiftUtils {
         let aStr = ConvertStringToNSAttributedString(str)
         base?.append(aStr)
     }
+
+    @MainActor class func SetupEffectViewBackground(_ contentView: NSView) {
+        let effectView: NSView
+        if #available(macOS 26.0, *) {
+            let glassEffectView = NSGlassEffectView(frame: contentView.bounds)
+            effectView = glassEffectView
+        } else {
+            let visualEffectView = NSVisualEffectView(frame: contentView.bounds)
+            visualEffectView.blendingMode = .behindWindow
+            visualEffectView.material = .underWindowBackground
+            visualEffectView.state = .followsWindowActiveState
+            effectView = visualEffectView
+        }
+        effectView.autoresizingMask = [.width, .height]
+        contentView.addSubview(effectView, positioned: .below, relativeTo: nil)
+    }
 }
