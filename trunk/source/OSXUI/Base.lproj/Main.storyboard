@@ -586,9 +586,9 @@
                                 </scroller>
                             </scrollView>
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig">
-                                <rect key="frame" x="0.0" y="330" width="78" height="30"/>
+                                <rect key="frame" x="0.0" y="328" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6Lf-hy-tLZ"/>
+                                    <constraint firstAttribute="height" constant="32" id="6Lf-hy-tLZ"/>
                                     <constraint firstAttribute="width" constant="78" id="WCM-PM-HIO"/>
                                 </constraints>
                             </view>

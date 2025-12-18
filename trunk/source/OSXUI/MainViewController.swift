@@ -923,7 +923,7 @@ private struct MainViewControllerState: OptionSet {
 
         guard let clip = notification.object as? NSClipView else { return }
         let y = clip.bounds.origin.y
-        if y >= -20 {
+        if y >= -22 {
             titlebarView.isHidden = false
             titlebarViewChanging = true
             NSAnimationContext.runAnimationGroup({ ctx in
