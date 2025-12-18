@@ -44,14 +44,6 @@ import Cocoa
 
         mainViewController?.viewWillClose()
 
-        DockProgress.resetProgress()
-
-        // Save NSUserDefaults.
-        let defaultUpperCase = (mainViewController?.upperCaseButton.state == .on)
-        UserDefaults.standard.set(
-            defaultUpperCase,
-            forKey: UpperCaseDefaultKey)
-
         // Close other windows.
         let windows = NSApp.windows
         let windowCount = windows.count

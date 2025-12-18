@@ -211,9 +211,17 @@ private struct MainViewControllerState: OptionSet {
     }
 
     func viewWillClose() {
+        DockProgress.resetProgress()
+
         NotificationCenter.default.removeObserver(self,
                                                   name: NSView.boundsDidChangeNotification,
                                                   object: mainClipView)
+
+        // Save NSUserDefaults.
+        let defaultUpperCase = (upperCaseButton.state == .on)
+        UserDefaults.standard.set(
+            defaultUpperCase,
+            forKey: UpperCaseDefaultKey)
     }
 
     private func setViewControllerState(_ newState: MainViewControllerState) {
