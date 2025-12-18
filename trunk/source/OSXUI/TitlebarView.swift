@@ -13,7 +13,7 @@ import Cocoa
         super.draw(dirtyRect)
 
         let startColor = NSColor.textBackgroundColor.withAlphaComponent(1.0)
-        let endColor = NSColor.clear.withAlphaComponent(0.0)
+        let endColor = NSColor.textBackgroundColor.withAlphaComponent(0.0)
 
         let gradient = NSGradient(starting: startColor, ending: endColor)
 
