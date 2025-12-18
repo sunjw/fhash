@@ -404,6 +404,10 @@ private struct MainViewControllerState: OptionSet {
                 enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
             }
         }
+
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSView.boundsDidChangeNotification, object: self.mainClipView)
+        }
     }
 
     private func updateMainTextView() {
@@ -924,6 +928,10 @@ private struct MainViewControllerState: OptionSet {
         guard let clip = notification.object as? NSClipView else { return }
         let y = clip.bounds.origin.y
         if y >= -22 {
+            // show
+            if !titlebarView.isHidden {
+                return
+            }
             titlebarView.isHidden = false
             titlebarViewChanging = true
             NSAnimationContext.runAnimationGroup({ ctx in
@@ -935,6 +943,10 @@ private struct MainViewControllerState: OptionSet {
                 })
             })
         } else {
+            // hide
+            if titlebarView.isHidden {
+                return
+            }
             titlebarViewChanging = true
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = 0.4
