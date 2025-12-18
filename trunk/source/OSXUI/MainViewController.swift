@@ -87,7 +87,7 @@ private struct MainViewControllerState: OptionSet {
 
         // Setup NSVisualEffectView/NSGlassEffectView background
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
-        let titlebarEffectView = MacSwiftUtils.SetupEffectViewBackground(titlebarView/*, cornerRadius: 16*/)
+        let titlebarEffectView = MacSwiftUtils.SetupEffectViewBackground(titlebarView)
         if #available(macOS 26.0, *) {
             let titlebarGlassEffectView = titlebarEffectView as? NSGlassEffectView
             titlebarGlassEffectView?.cornerRadius = 16
@@ -917,7 +917,7 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc private func scrollViewBoundsDidChange(_ notification: Notification) {
-        if titlebarViewChanging {
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0) || titlebarViewChanging) {
             return
         }
 
