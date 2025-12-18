@@ -16,6 +16,7 @@ import Cocoa
         window?.delegate = self
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background
+        window?.titlebarAppearsTransparent = true
         window?.isOpaque = false
         window?.backgroundColor = .clear
 
@@ -40,6 +41,9 @@ import Cocoa
 
     func windowWillClose(_ notification: Notification) {
         let mainViewController = getMainViewController()
+
+        mainViewController?.viewWillClose()
+
         DockProgress.resetProgress()
 
         // Save NSUserDefaults.

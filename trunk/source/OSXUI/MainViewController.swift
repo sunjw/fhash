@@ -28,6 +28,7 @@ private struct MainViewControllerState: OptionSet {
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
     static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
+    @IBOutlet weak var titlebarView: NSView!
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 
@@ -66,6 +67,7 @@ private struct MainViewControllerState: OptionSet {
     private let maxDiffQueue = 3
 
     private var curFindPanelVisible = false
+    private var titlebarViewChanging = false
 
     private var hashBridge: HashBridge?
 
@@ -84,7 +86,18 @@ private struct MainViewControllerState: OptionSet {
         mainClipView.mainViewController = self
 
         // Setup NSVisualEffectView/NSGlassEffectView background
-        MacSwiftUtils.SetupEffectViewBackground(mainView)
+        MacSwiftUtils.SetupEffectViewBackground(mainView, cornerRadius: nil)
+        MacSwiftUtils.SetupEffectViewBackground(titlebarView, cornerRadius: 16)
+
+        titlebarView.isHidden = true
+        titlebarView.alphaValue = 0.0
+
+        // observe scroll changes
+        mainClipView.postsBoundsChangedNotifications = true
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(scrollViewBoundsDidChange(_:)),
+                                               name: NSView.boundsDidChangeNotification,
+                                               object: mainClipView)
 
         // Register NSUserDefaults.
         let defaultsDictionary = [
@@ -195,6 +208,12 @@ private struct MainViewControllerState: OptionSet {
         didSet {
             // Update the view, if already loaded.
         }
+    }
+
+    func viewWillClose() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSView.boundsDidChangeNotification,
+                                                  object: mainClipView)
     }
 
     private func setViewControllerState(_ newState: MainViewControllerState) {
@@ -882,5 +901,37 @@ private struct MainViewControllerState: OptionSet {
         let nstrUrl = "https://www.virustotal.com/gui/search/\(selectedLink)"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
+    }
+
+    @objc private func scrollViewBoundsDidChange(_ notification: Notification) {
+        if titlebarViewChanging {
+            return
+        }
+
+        guard let clip = notification.object as? NSClipView else { return }
+        let y = clip.bounds.origin.y
+        if y >= -20 {
+            titlebarView.isHidden = false
+            titlebarViewChanging = true
+            NSAnimationContext.runAnimationGroup({ ctx in
+                ctx.duration = 0.4
+                self.titlebarView.animator().alphaValue = 1.0
+            }, completionHandler: {
+                DispatchQueue.main.async(execute: {
+                    self.titlebarViewChanging = false
+                })
+            })
+        } else {
+            titlebarViewChanging = true
+            NSAnimationContext.runAnimationGroup({ ctx in
+                ctx.duration = 0.4
+                self.titlebarView.animator().alphaValue = 0.0
+            }, completionHandler: {
+                DispatchQueue.main.async(execute: {
+                    self.titlebarView.isHidden = true
+                    self.titlebarViewChanging = false
+                })
+            })
+        }
     }
 }

@@ -125,10 +125,13 @@ class MacSwiftUtils {
         base?.append(aStr)
     }
 
-    @MainActor class func SetupEffectViewBackground(_ contentView: NSView) {
+    @MainActor class func SetupEffectViewBackground(_ contentView: NSView, cornerRadius: CGFloat?) {
         let effectView: NSView
         if #available(macOS 26.0, *) {
             let glassEffectView = NSGlassEffectView(frame: contentView.bounds)
+            if cornerRadius != nil {
+                glassEffectView.cornerRadius = cornerRadius!
+            }
             effectView = glassEffectView
         } else {
             let visualEffectView = NSVisualEffectView(frame: contentView.bounds)
