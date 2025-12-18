@@ -19,7 +19,7 @@ import Cocoa
         super.viewDidLoad()
 
         // Setup NSVisualEffectView/NSGlassEffectView background
-        MacSwiftUtils.SetupEffectViewBackground(mainView, cornerRadius: nil)
+        _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
         // Do view setup here.
         iconImageView.image = NSApp.applicationIconImage

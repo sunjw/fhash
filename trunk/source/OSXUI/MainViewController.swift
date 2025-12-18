@@ -86,8 +86,13 @@ private struct MainViewControllerState: OptionSet {
         mainClipView.mainViewController = self
 
         // Setup NSVisualEffectView/NSGlassEffectView background
-        MacSwiftUtils.SetupEffectViewBackground(mainView, cornerRadius: nil)
-        MacSwiftUtils.SetupEffectViewBackground(titlebarView, cornerRadius: 16)
+        _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
+        let titlebarEffectView = MacSwiftUtils.SetupEffectViewBackground(titlebarView/*, cornerRadius: 16*/)
+        if #available(macOS 26.0, *) {
+            let titlebarGlassEffectView = titlebarEffectView as? NSGlassEffectView
+            titlebarGlassEffectView?.cornerRadius = 16
+            // titlebarGlassEffectView?.tintColor = .textBackgroundColor
+        }
 
         titlebarView.isHidden = true
         titlebarView.alphaValue = 0.0

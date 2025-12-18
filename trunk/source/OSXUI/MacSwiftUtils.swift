@@ -125,13 +125,10 @@ class MacSwiftUtils {
         base?.append(aStr)
     }
 
-    @MainActor class func SetupEffectViewBackground(_ contentView: NSView, cornerRadius: CGFloat?) {
+    @MainActor class func SetupEffectViewBackground(_ contentView: NSView) -> NSView {
         let effectView: NSView
         if #available(macOS 26.0, *) {
             let glassEffectView = NSGlassEffectView(frame: contentView.bounds)
-            if cornerRadius != nil {
-                glassEffectView.cornerRadius = cornerRadius!
-            }
             effectView = glassEffectView
         } else {
             let visualEffectView = NSVisualEffectView(frame: contentView.bounds)
@@ -142,5 +139,6 @@ class MacSwiftUtils {
         }
         effectView.autoresizingMask = [.width, .height]
         contentView.addSubview(effectView, positioned: .below, relativeTo: nil)
+        return effectView
     }
 }
