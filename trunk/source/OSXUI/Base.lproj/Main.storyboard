@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-Dy-ckM">
+                            <view translatesAutoresizingMaskIntoConstraints="NO" id="JLJ-Dy-ckM">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="272"/>
                                 <subviews>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-ZO-GT5">
@@ -96,7 +96,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Sh8-E9-AAT" secondAttribute="trailing" constant="20" symbolic="YES" id="vnK-tx-hh5"/>
                                     <constraint firstItem="l26-dk-XVG" firstAttribute="top" secondItem="JLJ-Dy-ckM" secondAttribute="top" constant="46" id="yqJ-Nf-DrK"/>
                                 </constraints>
-                            </visualEffectView>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="JLJ-Dy-ckM" firstAttribute="leading" secondItem="bS0-fd-qFN" secondAttribute="leading" id="Jxf-eY-N1U"/>
@@ -110,6 +110,7 @@
                         <outlet property="homePageLinkTextField" destination="Ua3-zL-Sha" id="tCw-qC-hhH"/>
                         <outlet property="iconImageView" destination="l26-dk-XVG" id="CPp-Ev-ON1"/>
                         <outlet property="infoTextField" destination="Sh8-E9-AAT" id="vyW-O7-rKG"/>
+                        <outlet property="mainView" destination="bS0-fd-qFN" id="8fa-cS-8C9"/>
                     </connections>
                 </viewController>
                 <customObject id="SSp-Tu-NaS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

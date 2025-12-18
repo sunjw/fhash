@@ -15,5 +15,7 @@ import Cocoa
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.title = MacSwiftUtils.GetStringFromRes("ABOUTDLG_TITLE")
         window?.titlebarAppearsTransparent = true
+        window?.isOpaque = false
+        window?.backgroundColor = .clear
     }
 }

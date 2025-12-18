@@ -9,6 +9,7 @@
 import Cocoa
 
 @objc(AboutViewController) class AboutViewController: NSViewController {
+    @IBOutlet weak var mainView: NSView!
     @IBOutlet weak var iconImageView: NSImageView!
     @IBOutlet weak var infoTextField: NSTextField!
     @IBOutlet weak var homePageLinkTextField: HyperlinkTextField!
@@ -16,6 +17,20 @@ import Cocoa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Setup NSVisualEffectView/NSGlassEffectView background
+        let effectView: NSView
+        if #available(macOS 26.0, *) {
+            let glassEffectView = NSGlassEffectView(frame: mainView.bounds)
+            effectView = glassEffectView
+        } else {
+            let visualEffectView = NSVisualEffectView(frame: mainView.bounds)
+            visualEffectView.blendingMode = .behindWindow
+            visualEffectView.material = .underWindowBackground
+            visualEffectView.state = .followsWindowActiveState
+            effectView = visualEffectView
+        }
+        mainView.addSubview(effectView, positioned: .below, relativeTo: nil)
 
         // Do view setup here.
         iconImageView.image = NSApp.applicationIconImage
