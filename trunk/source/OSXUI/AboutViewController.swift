@@ -30,6 +30,7 @@ import Cocoa
             visualEffectView.state = .followsWindowActiveState
             effectView = visualEffectView
         }
+        effectView.autoresizingMask = [.width, .height]
         mainView.addSubview(effectView, positioned: .below, relativeTo: nil)
 
         // Do view setup here.
