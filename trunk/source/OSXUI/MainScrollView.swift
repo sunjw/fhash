@@ -42,9 +42,9 @@ import Cocoa
     private func setupTitlebarView(_ targetView: NSView) {
         let titlebarViewHeight = 32
         let titlebarView = TitlebarView(frame: CGRect(x: 0,
-                                                         y: 0,
-                                                         width: Int(bounds.width),
-                                                         height: titlebarViewHeight))
+                                                      y: 0,
+                                                      width: Int(bounds.width),
+                                                      height: titlebarViewHeight))
         titlebarView.autoresizingMask = [.width]
 
         self.addSubview(titlebarView, positioned: .below, relativeTo: targetView)
