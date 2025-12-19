@@ -89,31 +89,6 @@ private struct MainViewControllerState: OptionSet {
         // Setup NSVisualEffectView/NSGlassEffectView background
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
-        let titlebarViewHeight = 28
-        let titlebarView = TitlebarView(frame: CGRect(x: 0,
-                                                         y: 0,
-                                                         width: Int(mainScrollView.bounds.width),
-                                                         height: titlebarViewHeight))
-        titlebarView.autoresizingMask = [.width]
-        mainScrollView.addSubview(titlebarView, positioned: .above, relativeTo: mainClipView)
-        NSLayoutConstraint.activate([
-            titlebarView.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: 0),
-            titlebarView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
-            titlebarView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
-            titlebarView.heightAnchor.constraint(equalToConstant: CGFloat(titlebarViewHeight))
-        ])
-
-        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            titlebarView.isHidden = true
-            // titlebarView.alphaValue = 0.0
-        }
-
-        // observe scroll changes
-        // NotificationCenter.default.addObserver(self,
-        //                                        selector: #selector(scrollViewBoundsDidChange(_:)),
-        //                                        name: NSView.boundsDidChangeNotification,
-        //                                        object: mainClipView)
-
         // Register NSUserDefaults.
         let defaultsDictionary = [
             UpperCaseDefaultKey: Bool(false)
@@ -227,10 +202,6 @@ private struct MainViewControllerState: OptionSet {
 
     func viewWillClose() {
         DockProgress.resetProgress()
-
-        // NotificationCenter.default.removeObserver(self,
-        //                                           name: NSView.boundsDidChangeNotification,
-        //                                           object: mainClipView)
 
         // Save NSUserDefaults.
         let defaultUpperCase = (upperCaseButton.state == .on)
@@ -414,10 +385,6 @@ private struct MainViewControllerState: OptionSet {
                 enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
             }
         }
-
-        // DispatchQueue.main.async {
-        //     NotificationCenter.default.post(name: NSView.boundsDidChangeNotification, object: self.mainClipView)
-        // }
     }
 
     private func updateMainTextView() {
