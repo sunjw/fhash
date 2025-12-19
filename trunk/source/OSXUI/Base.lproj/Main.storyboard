@@ -585,21 +585,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig" customClass="TitlebarView">
-                                <rect key="frame" x="0.0" y="332" width="568" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="6Lf-hy-tLZ"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="szV-FU-9ig" secondAttribute="trailing" id="7pg-vI-Uj6"/>
                             <constraint firstAttribute="bottom" secondItem="IAf-7L-vjz" secondAttribute="bottom" constant="45" id="Jhf-rJ-c1K"/>
-                            <constraint firstItem="szV-FU-9ig" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Kkr-oI-Elp"/>
                             <constraint firstAttribute="trailing" secondItem="M5s-ns-Qqg" secondAttribute="trailing" id="LMw-EU-vTP"/>
                             <constraint firstItem="IAf-7L-vjz" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="LWR-ge-Pd6"/>
                             <constraint firstItem="IAf-7L-vjz" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Ruo-Gk-o2M"/>
-                            <constraint firstItem="szV-FU-9ig" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZDb-Sq-rNS"/>
                             <constraint firstAttribute="bottom" secondItem="M5s-ns-Qqg" secondAttribute="bottom" id="ZRT-CK-iSk"/>
                             <constraint firstItem="M5s-ns-Qqg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZsF-iI-XnT"/>
                             <constraint firstAttribute="trailing" secondItem="IAf-7L-vjz" secondAttribute="trailing" id="edP-F4-Vod"/>
@@ -615,7 +606,6 @@
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
                         <outlet property="speedTextField" destination="rrP-Dq-Bp3" id="9bn-wR-fh6"/>
-                        <outlet property="titlebarView" destination="szV-FU-9ig" id="xMu-RR-bs9"/>
                         <outlet property="upperCaseButton" destination="6ZG-fr-1QJ" id="hCe-Ff-tAv"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                     </connections>

@@ -28,7 +28,6 @@ private struct MainViewControllerState: OptionSet {
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
     static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
-    @IBOutlet weak var titlebarView: TitlebarView!
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
 
@@ -89,6 +88,20 @@ private struct MainViewControllerState: OptionSet {
 
         // Setup NSVisualEffectView/NSGlassEffectView background
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
+
+        let titlebarViewHeight = 28
+        let titlebarView = TitlebarView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: Int(mainScrollView.bounds.width),
+                                                         height: titlebarViewHeight))
+        titlebarView.autoresizingMask = [.width]
+        mainScrollView.addSubview(titlebarView, positioned: .above, relativeTo: mainClipView)
+        NSLayoutConstraint.activate([
+            titlebarView.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: 0),
+            titlebarView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
+            titlebarView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
+            titlebarView.heightAnchor.constraint(equalToConstant: CGFloat(titlebarViewHeight))
+        ])
 
         if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             titlebarView.isHidden = true
@@ -915,45 +928,5 @@ private struct MainViewControllerState: OptionSet {
         let nstrUrl = "https://www.virustotal.com/gui/search/\(selectedLink)"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
-    }
-
-    @objc private func scrollViewBoundsDidChange(_ notification: Notification) {
-        if (MacSwiftUtils.IsSystemEarlierThan(26, 0) || titlebarViewChanging) {
-            return
-        }
-
-        guard let clip = notification.object as? NSClipView else { return }
-        let y = clip.bounds.origin.y
-        if y >= -22 {
-            // show
-            if !titlebarView.isHidden {
-                return
-            }
-            titlebarView.isHidden = false
-            titlebarViewChanging = true
-            NSAnimationContext.runAnimationGroup({ ctx in
-                ctx.duration = 0.4
-                self.titlebarView.animator().alphaValue = 1.0
-            }, completionHandler: {
-                DispatchQueue.main.async(execute: {
-                    self.titlebarViewChanging = false
-                })
-            })
-        } else {
-            // hide
-            if titlebarView.isHidden {
-                return
-            }
-            titlebarViewChanging = true
-            NSAnimationContext.runAnimationGroup({ ctx in
-                ctx.duration = 0.4
-                self.titlebarView.animator().alphaValue = 0.0
-            }, completionHandler: {
-                DispatchQueue.main.async(execute: {
-                    self.titlebarView.isHidden = true
-                    self.titlebarViewChanging = false
-                })
-            })
-        }
     }
 }
