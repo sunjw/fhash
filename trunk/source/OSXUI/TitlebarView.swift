@@ -12,13 +12,12 @@ import Cocoa
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
-        let startColor = NSColor.textBackgroundColor.withAlphaComponent(1.0)
-        let midColor = NSColor.textBackgroundColor.withAlphaComponent(0.8)
-        let endColor = NSColor.textBackgroundColor.withAlphaComponent(0.0)
-
-        let gradient = NSGradient(colors: [startColor, midColor, endColor],
-                                          atLocations: [0.0, 0.75, 1.0],
-                                          colorSpace: .deviceRGB)
+        let baseColor = NSColor.textBackgroundColor
+        let gradient = NSGradient(colors: [baseColor.withAlphaComponent(1.0),
+                                           baseColor.withAlphaComponent(0.8),
+                                           baseColor.withAlphaComponent(0.0)],
+                                  atLocations: [0.0, 0.5, 1.0],
+                                  colorSpace: .deviceRGB)
 
         gradient?.draw(in: bounds, angle: 270)
     }

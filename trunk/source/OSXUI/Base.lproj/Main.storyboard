@@ -586,9 +586,9 @@
                                 </scroller>
                             </scrollView>
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="szV-FU-9ig" customClass="TitlebarView">
-                                <rect key="frame" x="0.0" y="334" width="568" height="26"/>
+                                <rect key="frame" x="0.0" y="332" width="568" height="28"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="6Lf-hy-tLZ"/>
+                                    <constraint firstAttribute="height" constant="28" id="6Lf-hy-tLZ"/>
                                 </constraints>
                             </view>
                         </subviews>

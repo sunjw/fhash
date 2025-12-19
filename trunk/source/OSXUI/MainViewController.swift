@@ -85,14 +85,17 @@ private struct MainViewControllerState: OptionSet {
         mainScrollView.mainViewController = self
         mainClipView.mainViewController = self
 
+        mainClipView.postsBoundsChangedNotifications = true
+
         // Setup NSVisualEffectView/NSGlassEffectView background
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
-        // titlebarView.isHidden = true
-        // titlebarView.alphaValue = 0.0
+        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            titlebarView.isHidden = true
+            // titlebarView.alphaValue = 0.0
+        }
 
         // observe scroll changes
-        mainClipView.postsBoundsChangedNotifications = true
         // NotificationCenter.default.addObserver(self,
         //                                        selector: #selector(scrollViewBoundsDidChange(_:)),
         //                                        name: NSView.boundsDidChangeNotification,
