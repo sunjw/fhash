@@ -66,7 +66,6 @@ private struct MainViewControllerState: OptionSet {
     private let maxDiffQueue = 3
 
     private var curFindPanelVisible = false
-    private var titlebarViewChanging = false
 
     private var hashBridge: HashBridge?
 
