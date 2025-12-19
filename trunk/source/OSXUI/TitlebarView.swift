@@ -12,6 +12,11 @@ import Cocoa
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
+        // let drawingRect = bounds
+        // let path = NSBezierPath(rect: drawingRect)
+        // NSColor.white.setFill()
+        // path.fill()
+
         let baseColor = NSColor.textBackgroundColor
         let gradient = NSGradient(colors: [baseColor.withAlphaComponent(1.0),
                                            baseColor.withAlphaComponent(0.8),
