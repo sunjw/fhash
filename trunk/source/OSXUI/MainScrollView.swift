@@ -40,7 +40,7 @@ import Cocoa
     }
 
     private func setupTitlebarView(_ targetView: NSView) {
-        let titlebarViewHeight = 28
+        let titlebarViewHeight = 32
         let titlebarView = TitlebarView(frame: CGRect(x: 0,
                                                          y: 0,
                                                          width: Int(bounds.width),
