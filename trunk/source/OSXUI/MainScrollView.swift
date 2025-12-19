@@ -20,7 +20,7 @@ import Cocoa
             // NSLog("MainScrollView.addSubview [%@]", viewClassName)
             if targetViewNames.contains(viewClassName) {
                 titleViewAdded = true
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async(execute: { [view] in
                     self.setupTitlebarView(view)
                 })
             }
