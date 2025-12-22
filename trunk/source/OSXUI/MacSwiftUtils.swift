@@ -141,4 +141,28 @@ class MacSwiftUtils {
         contentView.addSubview(effectView, positioned: .below, relativeTo: nil)
         return effectView
     }
+
+    @MainActor class func FindFirstDescendantViewFrom(_ fromView: NSView, withClassName name: String) -> NSView? {
+        for subview in fromView.subviews {
+            if String(describing: type(of: subview)) == name {
+                return subview
+            } else if let found = FindFirstDescendantViewFrom(subview, withClassName: name) {
+                return found
+            }
+        }
+
+        return nil
+    }
+
+    @MainActor class func FindFirstViewFrom(_ fromView: NSView, withClassName name: String) -> NSView? {
+        let from = fromView
+
+        // Check fromView
+        if String(describing: type(of: from)) == name {
+            return from
+        }
+
+        // Otherwise search descendants
+        return FindFirstDescendantViewFrom(from, withClassName: name)
+    }
 }
