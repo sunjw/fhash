@@ -18,7 +18,7 @@ import Cocoa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Setup NSVisualEffectView/NSGlassEffectView background
+        // Setup NSVisualEffectView/NSGlassEffectView background.
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
         // Do view setup here.

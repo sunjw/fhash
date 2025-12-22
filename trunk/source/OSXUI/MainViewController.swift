@@ -85,7 +85,7 @@ private struct MainViewControllerState: OptionSet {
 
         mainClipView.postsBoundsChangedNotifications = true
 
-        // Setup NSVisualEffectView/NSGlassEffectView background
+        // Setup NSVisualEffectView/NSGlassEffectView background.
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
         // Register NSUserDefaults.
