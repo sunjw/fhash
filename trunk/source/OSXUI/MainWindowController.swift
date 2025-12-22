@@ -15,11 +15,27 @@ import Cocoa
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.delegate = self
 
-        // Prepare for NSVisualEffectView/NSGlassEffectView background
-        window?.titlebarAppearsTransparent = true
+        // Prepare for NSVisualEffectView/NSGlassEffectView background.
+        // window?.titlebarAppearsTransparent = true
         window?.isOpaque = false
         window?.backgroundColor = .clear
+        if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            // Fix titlebar strange behavior on Tahoe when
+            // window?.titlebarAppearsTransparent = false and
+            // window?.backgroundColor = .clear
+            let windowSuperView = window?.contentView?.superview
+            if let windowSuperView {
+                let titlebarContainerView = MacSwiftUtils.FindFirstViewFrom(windowSuperView,
+                                                                            withClassName: "NSTitlebarContainerView")
+                if let titlebarContainerView {
+                    let titlebarBackgroundView = MacSwiftUtils.FindFirstViewFrom(titlebarContainerView,
+                                                                                 withClassName: "NSTitlebarBackgroundView")
+                    titlebarBackgroundView?.isHidden = true
+                }
+            }
+        }
 
+        // Autosave position.
         self.windowFrameAutosaveName = "MainWindowFrame"
     }
 

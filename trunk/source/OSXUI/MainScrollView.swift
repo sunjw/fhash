@@ -17,7 +17,7 @@ import Cocoa
     override func addSubview(_ view: NSView) {
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // NSScrollPocket may be added multiple times
-            let targetViewNames = ["NSScrollPocket"]
+            let targetViewNames = ["Dummy", /*"NSScrollPocket"*/]
             let viewClassName = String(describing: type(of: view))
             // NSLog("MainScrollView.addSubview [%@]", viewClassName)
             if targetViewNames.contains(viewClassName) {
