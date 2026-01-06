@@ -1,3 +1,9 @@
+26.1.37 (142) 2026-01-06  
+Windows WinUI: 升级至 .NET 10  
+Windows WinUI: 更新组件  
+macOS: 适配 Liquid Glass  
+修复其它问题  
+
 25.12.34 (136) 2025-12-17  
 Windows WinUI: 更新组件  
 macOS: 支持 macOS 14 及以后版本  

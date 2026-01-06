@@ -1,3 +1,9 @@
+26.1.37 (142) 2026-01-06  
+Windows WinUI: upgrade to .NET 10  
+Windows WinUI: update components  
+macOS: adopt Liquid Glass design  
+Fix other issues  
+
 25.12.34 (136) 2025-12-17  
 Windows WinUI: update components  
 macOS: support for macOS 14 and later  
