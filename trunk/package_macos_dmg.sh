@@ -10,15 +10,16 @@ cur_dir=$PWD
 app_title="fHash"
 app_name="$app_title.app"
 vol_name=$app_title
-src_folder=$1
+application_folder=$1
 temp_dmg_path="$app_title-VERSION-macOS.dmg"
 
-echo "Create DMG from [$src_folder]..."
+echo "Create DMG from [$application_folder]..."
 
-cd "$src_folder"
+cd "$application_folder"
 
 # Clean
 rm -f .DS_Store
+
 # Make /Applications link
 ln -s /Applications Applications
 # Get version
@@ -28,13 +29,13 @@ temp_dmg_path=${temp_dmg_path/VERSION/$plist_version}
 cd "$cur_dir"
 
 # Create DMG
-hdiutil create -format UDZO -fs HFS+ -volname "$vol_name" -srcfolder "$src_folder" "$temp_dmg_path"
+hdiutil create -format UDZO -fs HFS+ -volname "$vol_name" -srcfolder "$application_folder" "$temp_dmg_path"
 
 # Move to target directory
-echo "Move DMG to [$src_folder]"
-mv "$temp_dmg_path" "$src_folder"
+echo "Move DMG to [$application_folder]"
+mv "$temp_dmg_path" "$application_folder"
 
-cd "$src_folder"
+cd "$application_folder"
 
 # Clean
 rm -f Applications
