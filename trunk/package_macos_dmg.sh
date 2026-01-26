@@ -2,6 +2,7 @@
 
 if [ -z "$1" ]
   then
+    echo "Don't forget \"npm install --global create-dmg\""
     echo "Usage: package_dmg.sh </some/archive/Applications_contains_.app>"
     exit
 fi
