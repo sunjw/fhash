@@ -338,6 +338,36 @@ extension DockProgress {
 	}
 }
 
+extension DockProgress.Style: Equatable {
+	public static func == (lhs: Self, rhs: Self) -> Bool {
+		switch (lhs, rhs) {
+		case (.bar, .bar):
+			true
+		case let (.squircle(lhsInset, lhsColor), .squircle(rhsInset, rhsColor)):
+			lhsInset == rhsInset && lhsColor == rhsColor
+		case let (.circle(lhsRadius, lhsColor), .circle(rhsRadius, rhsColor)):
+			lhsRadius == rhsRadius && lhsColor == rhsColor
+		case let (.badge(lhsColor, lhsBadgeValue), .badge(rhsColor, rhsBadgeValue)):
+			lhsColor == rhsColor && sameIdentity(lhsBadgeValue, rhsBadgeValue)
+		case let (.pie(lhsColor), .pie(rhsColor)):
+			lhsColor == rhsColor
+		case let (.customView(lhsView), .customView(rhsView)):
+			sameIdentity(lhsView, rhsView)
+		case let (.customCanvas(lhsCanvas), .customCanvas(rhsCanvas)):
+			sameIdentity(lhsCanvas, rhsCanvas)
+		case let (.custom(lhsHandler), .custom(rhsHandler)):
+			sameIdentity(lhsHandler, rhsHandler)
+		default:
+			false
+		}
+	}
+}
+
+@inline(__always)
+private func sameIdentity(_ lhs: Any, _ rhs: Any) -> Bool {
+	ObjectIdentifier(lhs as AnyObject) == ObjectIdentifier(rhs as AnyObject)
+}
+
 extension DockProgress {
 	private final class ContentView: NSView {
 		private var hostingView: NSView?
@@ -677,4 +707,75 @@ struct CanvasPieStyle: View {
 			}
 		}
 	}
+}
+
+extension View {
+	/**
+	Sets the dock progress indicator.
+
+	```swift
+	struct ContentView: View {
+		@State private var progress = 0.0
+
+		var body: some View {
+			VStack {
+				ProgressView(value: progress)
+				Button("Start") {
+					progress = 0.5
+				}
+			}
+			.dockProgress(progress)
+		}
+	}
+	```
+
+	- Parameters:
+		- progress: The progress value from 0.0 to 1.0. Set to `nil` to reset.
+		- style: The style to use for displaying progress. Defaults to `.bar`.
+		- resetsOnDisappear: Whether to reset the progress when the view disappears. Defaults to `true`.
+	*/
+	public func dockProgress(
+		_ progress: Double?,
+		style: DockProgress.Style = .bar,
+		resetsOnDisappear: Bool = true
+	) -> some View {
+		modifier(
+			DockProgressModifier(
+				progress: progress,
+				style: style,
+				resetsOnDisappear: resetsOnDisappear
+			)
+		)
+	}
+}
+
+private struct DockProgressModifier: ViewModifier {
+	let progress: Double?
+	let style: DockProgress.Style
+	let resetsOnDisappear: Bool
+
+	func body(content: Content) -> some View {
+		content
+			.task(id: DockProgressTaskIdentity(progress: progress, style: style)) {
+				guard let progress else {
+					DockProgress.resetProgress()
+					return
+				}
+
+				DockProgress.style = style
+				DockProgress.progress = progress
+			}
+			.onDisappear {
+				guard resetsOnDisappear else {
+					return
+				}
+
+				DockProgress.resetProgress()
+			}
+	}
+}
+
+private struct DockProgressTaskIdentity: Equatable {
+	let progress: Double?
+	let style: DockProgress.Style
 }
