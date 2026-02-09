@@ -1,3 +1,7 @@
+26.2.38 (143) 2026-02-09  
+Windows WinUI: update components  
+Fix other issues  
+
 26.1.37 (142) 2026-01-06  
 Windows WinUI: upgrade to .NET 10  
 Windows WinUI: update components  
