@@ -15,17 +15,30 @@ import Cocoa
     private var titlebarView: TitlebarView?
 
     override func addSubview(_ view: NSView) {
+        let viewClassName = String(describing: type(of: view))
+        // NSLog("MainScrollView.addSubview [%@]", viewClassName)
+
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // NSScrollPocket may be added multiple times
             let targetViewNames = ["Dummy", /*"NSScrollPocket"*/]
-            let viewClassName = String(describing: type(of: view))
-            // NSLog("MainScrollView.addSubview [%@]", viewClassName)
             if targetViewNames.contains(viewClassName) {
                 DispatchQueue.main.async(execute: { [view] in
                     self.setupTitlebarView(view)
                 })
             }
         }
+
+        // Try to intercept FindBar
+        let targetViewNames = ["NSTextFinderBarView"]
+        if targetViewNames.contains(viewClassName) {
+            let findPatternSearchField = MacSwiftUtils.FindFirstViewFrom(view,
+                                                                        withClassName: "NSFindPatternSearchField")
+            if let findPatternSearchField,
+               let findTextField = findPatternSearchField as? NSTextField {
+                findTextField.delegate = mainViewController
+            }
+        }
+
         super.addSubview(view)
     }
 

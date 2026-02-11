@@ -21,7 +21,7 @@ private struct MainViewControllerState: OptionSet {
     static let WAITING_EXIT = MainViewControllerState(rawValue: 1 << 4) // waiting thread stop and exit
 }
 
-@objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate {
+@objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate, NSTextFieldDelegate {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 26, right: 0)
@@ -894,5 +894,11 @@ private struct MainViewControllerState: OptionSet {
         let nstrUrl = "https://www.virustotal.com/gui/search/\(selectedLink)"
         let url = URL(string: nstrUrl)!
         NSWorkspace.shared.open(url)
+    }
+
+    func controlTextDidChange(_ obj: Notification) {
+        guard let findTextField = obj.object as? NSTextField else { return }
+        let findString = findTextField.stringValue
+        // NSLog("findTextField.stringValue [%@]", findString)
     }
 }
