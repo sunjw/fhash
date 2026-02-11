@@ -900,5 +900,9 @@ private struct MainViewControllerState: OptionSet {
         guard let findTextField = obj.object as? NSTextField else { return }
         let findString = findTextField.stringValue
         // NSLog("findTextField.stringValue [%@]", findString)
+
+        // First, trim
+        let fixFindString = findString.trimmingCharacters(in: .whitespacesAndNewlines)
+        findTextField.stringValue = fixFindString
     }
 }
