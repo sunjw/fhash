@@ -906,7 +906,7 @@ private struct MainViewControllerState: OptionSet {
         var fixFindString = findString.trimmingCharacters(in: .whitespacesAndNewlines)
 
         // Second, regex
-        let pattern = "^(?:MD5|SHA1|SHA256|SHA512):\\s*(.*)$"
+        let pattern = "^(?:MD5|SHA1|SHA256|SHA512)[\\s:]+(.*)$"
         if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
             let nsFixString = fixFindString as NSString
             let range = NSRange(location: 0, length: nsFixString.length)
