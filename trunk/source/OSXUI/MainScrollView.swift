@@ -34,7 +34,7 @@ import Cocoa
             let findPatternSearchField = MacSwiftUtils.FindFirstViewFrom(view,
                                                                         withClassName: "NSFindPatternSearchField")
             if let findPatternSearchField,
-               let findTextField = findPatternSearchField as? NSTextField {
+               let findTextField = findPatternSearchField as? NSSearchField {
                 findTextField.delegate = mainViewController
             }
         }
