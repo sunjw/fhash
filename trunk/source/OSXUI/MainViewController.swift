@@ -903,7 +903,19 @@ private struct MainViewControllerState: OptionSet {
         // NSLog("findTextField.stringValue [%@]", findString)
 
         // First, trim
-        let fixFindString = findString.trimmingCharacters(in: .whitespacesAndNewlines)
+        var fixFindString = findString.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        // Second, regex
+        let pattern = "^(?:MD5|SHA1|SHA256|SHA512):\\s*(.*)$"
+        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+            let nsFixString = fixFindString as NSString
+            let range = NSRange(location: 0, length: nsFixString.length)
+            if let match = regex.firstMatch(in: fixFindString, options: [], range: range),
+               match.numberOfRanges >= 2 {
+                let hashRange = match.range(at: 1)
+                fixFindString = nsFixString.substring(with: hashRange)
+            }
+        }
 
         if fixFindString == findString {
             return // no change
