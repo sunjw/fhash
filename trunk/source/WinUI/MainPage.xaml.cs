@@ -975,9 +975,9 @@ namespace FilesHashWUI
             }
 
             // Update the textbox without re-triggering the handler recursively.
+            m_textBoxFindHash.TextChanged -= TextBoxFindHash_TextChanged;
             try
             {
-                m_textBoxFindHash.TextChanged -= TextBoxFindHash_TextChanged;
                 m_textBoxFindHash.Text = fixedFindString;
 
                 // Move caret to end
