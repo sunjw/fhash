@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.CommandLine.Parsing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -108,6 +109,8 @@ namespace FilesHashWUI
                 Width = 400,
                 PlaceholderText = m_resourceLoaderMain.GetString("HashValue")
             };
+            m_textBoxFindHash.TextChanged += TextBoxFindHash_TextChanged;
+
             m_dialogFind = new()
             {
                 XamlRoot = m_mainWindow.Content.XamlRoot,
@@ -948,6 +951,42 @@ namespace FilesHashWUI
 
                     DispatcherQueue.TryEnqueue(() => StartHashCalc(strPickFilePaths));
                 }
+            }
+        }
+
+        private void TextBoxFindHash_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string findString = m_textBoxFindHash.Text;
+
+            // First, trim
+            string fixedFindString = findString.Trim();
+
+            // Second, regex
+            string pattern = @"^(?:MD5|SHA(?:-?(?:1|256|512)))[\s:=]+(.+)$";
+            Match match = Regex.Match(fixedFindString, pattern, RegexOptions.IgnoreCase);
+            if (match.Success && match.Groups.Count >= 2)
+            {
+                fixedFindString = match.Groups[1].Value;
+            }
+
+            if (string.IsNullOrEmpty(fixedFindString) || fixedFindString == findString)
+            {
+                return; // no change
+            }
+
+            // Update the textbox without re-triggering the handler recursively.
+            try
+            {
+                m_textBoxFindHash.TextChanged -= TextBoxFindHash_TextChanged;
+                m_textBoxFindHash.Text = fixedFindString;
+
+                // Move caret to end
+                m_textBoxFindHash.SelectionStart = fixedFindString.Length;
+                m_textBoxFindHash.SelectionLength = 0;
+            }
+            finally
+            {
+                m_textBoxFindHash.TextChanged += TextBoxFindHash_TextChanged;
             }
         }
 
