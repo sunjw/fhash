@@ -857,7 +857,7 @@ namespace FilesHashWUI
                 ScrollTextMainToBottom();
             }
 
-            // Fix for color changed.
+            // Fix for color changed
             DispatcherQueueTimer timerScrollBar = DispatcherQueue.CreateTimer();
             timerScrollBar.Interval = TimeSpan.FromMilliseconds(300);
             timerScrollBar.IsRepeating = false;
@@ -974,7 +974,7 @@ namespace FilesHashWUI
                 return; // no change
             }
 
-            // Update the textbox without re-triggering the handler recursively.
+            // Update the textbox without re-triggering the handler recursively
             m_textBoxFindHash.TextChanged -= TextBoxFindHash_TextChanged;
             try
             {
