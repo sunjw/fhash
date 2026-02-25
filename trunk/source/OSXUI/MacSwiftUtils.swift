@@ -8,6 +8,7 @@
 
 import Darwin.C
 import Foundation
+import AppKit
 
 class MacSwiftUtils {
 
