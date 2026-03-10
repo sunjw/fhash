@@ -1,3 +1,7 @@
+26.3.39 (146) 2026-03-10  
+Windows WinUI: update components  
+Fix other issues  
+
 26.2.38 (143) 2026-02-09  
 Windows WinUI: update components  
 Fix other issues  
