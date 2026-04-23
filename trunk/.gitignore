@@ -388,6 +388,8 @@ DerivedData/
 ## Gcc Patch
 /*.gcno
 
+.derived-data-log-*
+
 *.old
 *.suo
 *.user
