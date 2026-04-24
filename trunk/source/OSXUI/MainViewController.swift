@@ -30,10 +30,12 @@ private struct MainViewControllerState: OptionSet {
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
     static let MainTextViewInsetLargeRoundedAfter26 = NSMakeSize(10.0, 2.0)
     // static let MainScrollViewTopConstraintAfter26: CGFloat = 26
+    static let MainScrollViewBottomConstraint: CGFloat = 45
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var mainScrollViewBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var mainClipView: PaddingClipView!
 
     @IBOutlet weak var mainTextView: NSTextView!
@@ -93,9 +95,9 @@ private struct MainViewControllerState: OptionSet {
 
         if LiquidGlassUI.enableLargeRounded() {
             // Large rounded ui
-
         } else {
             // Old style
+            mainScrollViewBottomConstraint.constant = MainViewController.MainScrollViewBottomConstraint
             openButton.controlSize = .regular
             clearButton.controlSize = .regular
             verifyButton.controlSize = .regular

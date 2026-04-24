@@ -58,7 +58,6 @@ import Cocoa
 
 public enum LiquidGlassUI {
     private static let forceNo = false
-    // private static let forceNo = true
 
     static func enableLargeRounded() -> Bool {
         if (forceNo || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
