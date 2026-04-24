@@ -26,6 +26,7 @@ private struct MainViewControllerState: OptionSet {
     // static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 26, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
+    static let MainTextViewInsetLargeRoundedAfter26 = NSMakeSize(12.0, 2.0)
     // static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
     @IBOutlet weak var mainScrollView: MainScrollView!
@@ -151,10 +152,14 @@ private struct MainViewControllerState: OptionSet {
 
         // Set text view insets.
         mainTextView.delegate = self
-        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+        if MacSwiftUtils.IsSystemEarlierThan(26, 0) {
             mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
         } else {
-            mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+            if LiquidGlassUI.enableLargeRounded() {
+                mainTextView.textContainerInset = MainViewController.MainTextViewInsetLargeRoundedAfter26
+            } else {
+                mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+            }
         }
 
         mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
