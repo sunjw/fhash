@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate {
+@objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate, NSToolbarDelegate {
     override func windowDidLoad() {
         super.windowDidLoad()
 
@@ -16,7 +16,8 @@ import Cocoa
         window?.delegate = self
 
         if LiquidGlassUI.enableLargeRounded() {
-            // large rounded ui
+            // Large rounded ui
+            self.initToolbar()
         }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
@@ -76,6 +77,18 @@ import Cocoa
                 window.close()
             }
         }
+    }
+
+    private func initToolbar() {
+        // An empty toolbar to enable large rounded ui.
+        let toolbar = NSToolbar(identifier: "fhash.emptyToolbar")
+        toolbar.delegate = self
+        toolbar.displayMode = .iconOnly
+        toolbar.allowsUserCustomization = false
+        toolbar.autosavesConfiguration = false
+
+        window?.toolbarStyle = .unified
+        window?.toolbar = toolbar
     }
 
 }
