@@ -149,7 +149,7 @@ private struct MainViewControllerState: OptionSet {
             mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
         }
 
-        // Set some text in text field.
+        // Set text view insets.
         mainTextView.delegate = self
         if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
