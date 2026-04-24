@@ -10,17 +10,20 @@ import Cocoa
 
 @objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate, NSToolbarDelegate {
     private static let WindowContentSize = NSSize(width: 568, height: 360)
+    private static let WindowContentSizeLargeRoundedAfter26 = NSSize(width: 568, height: 394)
 
     override func windowDidLoad() {
         super.windowDidLoad()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.delegate = self
-        window?.setContentSize(MainWindowController.WindowContentSize)
 
         if LiquidGlassUI.enableLargeRounded() {
             // Large rounded ui
+            window?.setContentSize(MainWindowController.WindowContentSizeLargeRoundedAfter26)
             self.initToolbar()
+        } else {
+            window?.setContentSize(MainWindowController.WindowContentSize)
         }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
