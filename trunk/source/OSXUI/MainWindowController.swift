@@ -15,6 +15,10 @@ import Cocoa
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.delegate = self
 
+        if LiquidGlassUI.enableLargeRounded() {
+            // large rounded ui
+        }
+
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
         // window?.titlebarAppearsTransparent = true
         window?.isOpaque = false
