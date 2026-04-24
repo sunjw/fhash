@@ -110,6 +110,8 @@ private struct MainViewControllerState: OptionSet {
             verifyButton.controlSize = .regular
             verifyButtonBottomConstraint.constant = 12
             upperCaseButton.controlSize = .regular
+            upperCaseButtonBottomConstraint.constant = 15
+            speedTextFieldBottomConstraint.constant = 14
         }
 
         // Register NSUserDefaults.

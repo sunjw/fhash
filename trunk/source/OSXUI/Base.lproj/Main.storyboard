@@ -501,7 +501,7 @@
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
-                                        <rect key="frame" x="159" y="14" width="96" height="17"/>
+                                        <rect key="frame" x="159" y="20" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Zgf-bX-PvL"/>
@@ -513,7 +513,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
-                                        <rect key="frame" x="10" y="15" width="131" height="16"/>
+                                        <rect key="frame" x="10" y="21" width="131" height="16"/>
                                         <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" controlSize="large" state="on" inset="2" id="k5e-vW-As5">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -545,11 +545,11 @@
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="18" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="14" id="Mrd-eA-M6m"/>
+                                    <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="20" id="Mrd-eA-M6m"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
                                     <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
                                     <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="18" id="UBq-6n-rr2"/>
-                                    <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="15" id="Ydj-cY-H9E"/>
+                                    <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="21" id="Ydj-cY-H9E"/>
                                     <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="18" id="g24-ws-BYV"/>
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
                                     <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
