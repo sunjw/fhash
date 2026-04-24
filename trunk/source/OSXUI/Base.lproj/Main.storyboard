@@ -460,20 +460,20 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="XfG-lQ-9wD" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="MainView">
-                        <rect key="frame" x="0.0" y="0.0" width="581" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="585" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="M5s-ns-Qqg">
-                                <rect key="frame" x="0.0" y="0.0" width="581" height="57"/>
+                                <rect key="frame" x="0.0" y="0.0" width="585" height="57"/>
                                 <subviews>
                                     <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-sH-iC5">
-                                        <rect key="frame" x="-3" y="48" width="587" height="18"/>
+                                        <rect key="frame" x="-3" y="48" width="591" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="nV5-gn-dUK"/>
                                         </constraints>
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
-                                        <rect key="frame" x="470" y="18" width="99" height="20"/>
+                                        <rect key="frame" x="474" y="18" width="99" height="20"/>
                                         <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -487,7 +487,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                        <rect key="frame" x="355" y="18" width="102" height="20"/>
+                                        <rect key="frame" x="359" y="18" width="102" height="20"/>
                                         <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -501,7 +501,7 @@
                                         </connections>
                                     </button>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rrP-Dq-Bp3">
-                                        <rect key="frame" x="159" y="20" width="96" height="17"/>
+                                        <rect key="frame" x="161" y="20" width="96" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="2eb-px-P8H"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Zgf-bX-PvL"/>
@@ -513,7 +513,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-fr-1QJ">
-                                        <rect key="frame" x="10" y="21" width="131" height="16"/>
+                                        <rect key="frame" x="12" y="21" width="131" height="16"/>
                                         <buttonCell key="cell" type="check" title="upperCaseButton" bezelStyle="regularSquare" imagePosition="left" controlSize="large" state="on" inset="2" id="k5e-vW-As5">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -527,7 +527,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                        <rect key="frame" x="244" y="18" width="98" height="20"/>
+                                        <rect key="frame" x="248" y="18" width="98" height="20"/>
                                         <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -552,25 +552,25 @@
                                     <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="21" id="Ydj-cY-H9E"/>
                                     <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="18" id="g24-ws-BYV"/>
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
-                                    <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
+                                    <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="12" id="hZA-N3-MRn"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="top" secondItem="M5s-ns-Qqg" secondAttribute="top" constant="-9" id="kOC-mk-24b"/>
                                     <constraint firstItem="B0X-D0-nKy" firstAttribute="leading" secondItem="PCO-87-Uvg" secondAttribute="trailing" constant="13" id="pMg-lm-8az"/>
                                     <constraint firstItem="T3R-eZ-zFT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rrP-Dq-Bp3" secondAttribute="trailing" constant="-10" id="uac-u0-Fcc"/>
                                 </constraints>
                             </view>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="IAf-7L-vjz" customClass="MainScrollView">
-                                <rect key="frame" x="0.0" y="56" width="581" height="304"/>
+                                <rect key="frame" x="0.0" y="56" width="585" height="304"/>
                                 <clipView key="contentView" id="OyA-0h-4ne" customClass="PaddingClipView">
-                                    <rect key="frame" x="1" y="1" width="579" height="302"/>
+                                    <rect key="frame" x="1" y="1" width="583" height="302"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="w6J-k5-Pqc">
-                                            <rect key="frame" x="0.0" y="0.0" width="579" height="302"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="583" height="302"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="579" height="302"/>
-                                            <size key="maxSize" width="581" height="10000000"/>
+                                            <size key="minSize" width="583" height="302"/>
+                                            <size key="maxSize" width="583" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
@@ -612,6 +612,7 @@
                         <outlet property="speedTextFieldBottomConstraint" destination="Mrd-eA-M6m" id="jAp-KE-Pss"/>
                         <outlet property="upperCaseButton" destination="6ZG-fr-1QJ" id="hCe-Ff-tAv"/>
                         <outlet property="upperCaseButtonBottomConstraint" destination="Ydj-cY-H9E" id="x1f-hI-0ce"/>
+                        <outlet property="upperCaseButtonLeadingConstraint" destination="hZA-N3-MRn" id="D4j-od-jce"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                         <outlet property="verifyButtonBottomConstraint" destination="g24-ws-BYV" id="8hx-g3-epX"/>
                     </connections>
