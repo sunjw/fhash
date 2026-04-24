@@ -88,6 +88,17 @@ private struct MainViewControllerState: OptionSet {
         // Setup NSVisualEffectView/NSGlassEffectView background.
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
+        if LiquidGlassUI.enableLargeRounded() {
+            // Large rounded ui
+
+        } else {
+            // Old style
+            openButton.controlSize = .regular
+            clearButton.controlSize = .regular
+            verifyButton.controlSize = .regular
+            upperCaseButton.controlSize = .regular
+        }
+
         // Register NSUserDefaults.
         let defaultsDictionary = [
             UpperCaseDefaultKey: Bool(false)
