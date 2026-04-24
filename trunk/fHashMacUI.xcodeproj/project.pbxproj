@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4111D69D27F16A35001AD814 /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4111D69C27F16A35001AD814 /* sha512.cpp */; };
 		4119D65F2B2012B70005D7E5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4119D65E2B2012B70005D7E5 /* MainViewController.swift */; };
+		411E07D12F9B63CC00435298 /* TitlebarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E07D02F9B63CC00435298 /* TitlebarOverlayView.swift */; };
 		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
 		4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */; };
 		4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4142AB542E7AA0E10072FE1B /* MainScrollView.swift */; };
@@ -46,6 +47,7 @@
 		4111D69B27F16A35001AD814 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha512.h; path = source/Algorithms/sha512.h; sourceTree = "<group>"; };
 		4111D69C27F16A35001AD814 /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha512.cpp; path = source/Algorithms/sha512.cpp; sourceTree = "<group>"; };
 		4119D65E2B2012B70005D7E5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		411E07D02F9B63CC00435298 /* TitlebarOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlebarOverlayView.swift; sourceTree = "<group>"; };
 		413870E12B1F20C500448A6F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = fHashIconTahoe.icon; sourceTree = "<group>"; };
 		4142AB542E7AA0E10072FE1B /* MainScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				417AC3D52B19CDC2003DFFAF /* NoTitlebarWindowController.swift */,
 				417AC3D32B19C992003DFFAF /* PaddingClipView.swift */,
 				41C4BB072B2169AB004A6C34 /* ResultDataSwift.swift */,
+				411E07D02F9B63CC00435298 /* TitlebarOverlayView.swift */,
 				41C4BB092B21B05F004A6C34 /* HashBridge.h */,
 				41C4BB0A2B21B090004A6C34 /* HashBridge.mm */,
 				41C4BB042B215BC5004A6C34 /* UIBridgeMacSwift.h */,
@@ -311,6 +314,7 @@
 				413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */,
 				52225804213CD95E00012EF8 /* strhelper.cpp in Sources */,
 				41FF1DF51B5B4B470081F283 /* sha256.cpp in Sources */,
+				411E07D12F9B63CC00435298 /* TitlebarOverlayView.swift in Sources */,
 				41B6B5552D017DAB00697E22 /* DockProgress.swift in Sources */,
 				41B6B5562D017DAB00697E22 /* DockProgressUtilities.swift in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,

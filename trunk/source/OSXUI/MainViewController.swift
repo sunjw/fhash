@@ -101,6 +101,8 @@ private struct MainViewControllerState: OptionSet {
 
         if LiquidGlassUI.enableLargeRounded() {
             // Large rounded ui
+            let titlebarOverlayView = TitlebarOverlayView()
+            titlebarOverlayView.setupTitlebarOverlay(mainView)
         } else {
             // Old style
             mainScrollViewBottomConstraint.constant = MainViewController.MainScrollViewBottomConstraint
