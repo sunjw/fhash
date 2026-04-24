@@ -473,7 +473,7 @@
                                         </constraints>
                                     </progressIndicator>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B0X-D0-nKy">
-                                        <rect key="frame" x="470" y="12" width="99" height="20"/>
+                                        <rect key="frame" x="470" y="18" width="99" height="20"/>
                                         <buttonCell key="cell" type="push" title="openButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tyJ-Xe-raO">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -487,7 +487,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-87-Uvg">
-                                        <rect key="frame" x="355" y="12" width="102" height="20"/>
+                                        <rect key="frame" x="355" y="18" width="102" height="20"/>
                                         <buttonCell key="cell" type="push" title="verifyButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XRb-zd-8Xo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -527,7 +527,7 @@
                                         </connections>
                                     </button>
                                     <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T3R-eZ-zFT">
-                                        <rect key="frame" x="244" y="12" width="98" height="20"/>
+                                        <rect key="frame" x="244" y="18" width="98" height="20"/>
                                         <buttonCell key="cell" type="push" title="clearButton" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0gQ-Iz-KEc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -542,15 +542,15 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="12" id="8KN-Nh-V36"/>
+                                    <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="18" id="8KN-Nh-V36"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="6ZG-fr-1QJ" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
                                     <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="14" id="Mrd-eA-M6m"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="-3" id="N3j-k3-lrk"/>
                                     <constraint firstAttribute="trailing" secondItem="mgI-sH-iC5" secondAttribute="trailing" constant="-3" id="Ndw-Hz-Q1s"/>
-                                    <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="12" id="UBq-6n-rr2"/>
+                                    <constraint firstAttribute="bottom" secondItem="B0X-D0-nKy" secondAttribute="bottom" constant="18" id="UBq-6n-rr2"/>
                                     <constraint firstAttribute="bottom" secondItem="6ZG-fr-1QJ" secondAttribute="bottom" constant="15" id="Ydj-cY-H9E"/>
-                                    <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="12" id="g24-ws-BYV"/>
+                                    <constraint firstAttribute="bottom" secondItem="PCO-87-Uvg" secondAttribute="bottom" constant="18" id="g24-ws-BYV"/>
                                     <constraint firstAttribute="trailing" secondItem="B0X-D0-nKy" secondAttribute="trailing" constant="12" id="hX0-bV-XpH"/>
                                     <constraint firstItem="6ZG-fr-1QJ" firstAttribute="leading" secondItem="M5s-ns-Qqg" secondAttribute="leading" constant="10" id="hZA-N3-MRn"/>
                                     <constraint firstItem="mgI-sH-iC5" firstAttribute="top" secondItem="M5s-ns-Qqg" secondAttribute="top" constant="-9" id="kOC-mk-24b"/>
@@ -599,6 +599,7 @@
                     </view>
                     <connections>
                         <outlet property="clearButton" destination="T3R-eZ-zFT" id="pHK-Yx-MbL"/>
+                        <outlet property="clearButtonBottomConstraint" destination="8KN-Nh-V36" id="nXl-eU-Zbe"/>
                         <outlet property="mainClipView" destination="OyA-0h-4ne" id="PNA-bq-s4A"/>
                         <outlet property="mainProgressIndicator" destination="mgI-sH-iC5" id="VHx-pW-9oH"/>
                         <outlet property="mainScrollView" destination="IAf-7L-vjz" id="0BY-g5-N74"/>
@@ -606,9 +607,13 @@
                         <outlet property="mainScrollViewTopConstraint" destination="Ruo-Gk-o2M" id="Dni-ZE-fWz"/>
                         <outlet property="mainTextView" destination="w6J-k5-Pqc" id="2eT-so-CyA"/>
                         <outlet property="openButton" destination="B0X-D0-nKy" id="bKg-FL-ZTv"/>
+                        <outlet property="openButtonBottomConstraint" destination="UBq-6n-rr2" id="ntU-eG-uFc"/>
                         <outlet property="speedTextField" destination="rrP-Dq-Bp3" id="9bn-wR-fh6"/>
+                        <outlet property="speedTextFieldBottomConstraint" destination="Mrd-eA-M6m" id="jAp-KE-Pss"/>
                         <outlet property="upperCaseButton" destination="6ZG-fr-1QJ" id="hCe-Ff-tAv"/>
+                        <outlet property="upperCaseButtonBottomConstraint" destination="Ydj-cY-H9E" id="x1f-hI-0ce"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
+                        <outlet property="verifyButtonBottomConstraint" destination="g24-ws-BYV" id="8hx-g3-epX"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

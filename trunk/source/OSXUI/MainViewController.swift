@@ -43,12 +43,17 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet weak var mainProgressIndicator: NSProgressIndicator!
 
     @IBOutlet weak var openButton: NSButton!
+    @IBOutlet weak var openButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var clearButton: NSButton!
+    @IBOutlet weak var clearButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var verifyButton: NSButton!
+    @IBOutlet weak var verifyButtonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var upperCaseButton: NSButton!
+    @IBOutlet weak var upperCaseButtonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var speedTextField: NSTextField!
+    @IBOutlet weak var speedTextFieldBottomConstraint: NSLayoutConstraint!
 
     @objc var tag: Int = 0 // Must have @ojbc, it is used to open finder bar.
 
@@ -99,8 +104,11 @@ private struct MainViewControllerState: OptionSet {
             // Old style
             mainScrollViewBottomConstraint.constant = MainViewController.MainScrollViewBottomConstraint
             openButton.controlSize = .regular
+            openButtonBottomConstraint.constant = 12
             clearButton.controlSize = .regular
+            clearButtonBottomConstraint.constant = 12
             verifyButton.controlSize = .regular
+            verifyButtonBottomConstraint.constant = 12
             upperCaseButton.controlSize = .regular
         }
 
