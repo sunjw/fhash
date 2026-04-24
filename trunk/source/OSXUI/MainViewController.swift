@@ -23,10 +23,12 @@ private struct MainViewControllerState: OptionSet {
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate, NSSearchFieldDelegate {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetLargeRoundedAfter26 = NSEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
     // static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 26, right: 0)
+    static let MainClipViewInsetWithFindBarAtBelowLargeRoundedAfter26 = NSEdgeInsets(top: 50, left: 0, bottom: 26, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
-    static let MainTextViewInsetLargeRoundedAfter26 = NSMakeSize(12.0, 2.0)
+    static let MainTextViewInsetLargeRoundedAfter26 = NSMakeSize(10.0, 2.0)
     // static let MainScrollViewTopConstraintAfter26: CGFloat = 26
 
     @IBOutlet weak var mainScrollView: MainScrollView!
@@ -147,7 +149,11 @@ private struct MainViewControllerState: OptionSet {
         // Set clip view insets.
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             mainClipView.automaticallyAdjustsContentInsets = false
-            mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            if LiquidGlassUI.enableLargeRounded() {
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetLargeRoundedAfter26
+            } else {
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
         }
 
         // Set text view insets.
@@ -419,10 +425,18 @@ private struct MainViewControllerState: OptionSet {
         if FindBarAtBelowAfter26 {
             if isVisible {
                 // show
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+                if LiquidGlassUI.enableLargeRounded() {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowLargeRoundedAfter26
+                } else {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+                }
             } else {
                 // hide
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+                if LiquidGlassUI.enableLargeRounded() {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetLargeRoundedAfter26
+                } else {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+                }
             }
         } else {
             // if isVisible {
