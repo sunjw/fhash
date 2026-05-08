@@ -8,12 +8,23 @@
 
 import Cocoa
 
-@objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate {
+@objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate, NSToolbarDelegate {
+    private static let WindowContentSize = NSSize(width: 568, height: 360)
+    private static let WindowContentSizeLargeRoundedAfter26 = NSSize(width: 578, height: 394)
+
     override func windowDidLoad() {
         super.windowDidLoad()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         window?.delegate = self
+
+        if LiquidGlassUI.enableLargeRounded() {
+            // Large rounded ui
+            window?.setContentSize(MainWindowController.WindowContentSizeLargeRoundedAfter26)
+            self.initToolbar()
+        } else {
+            window?.setContentSize(MainWindowController.WindowContentSize)
+        }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
         // window?.titlebarAppearsTransparent = true
@@ -74,4 +85,31 @@ import Cocoa
         }
     }
 
+    private func initToolbar() {
+        // An empty toolbar to enable large rounded ui.
+        let toolbar = NSToolbar(identifier: "fhash.emptyToolbar")
+        toolbar.delegate = self
+        toolbar.displayMode = .iconOnly
+        toolbar.allowsUserCustomization = false
+        toolbar.autosavesConfiguration = false
+
+        window?.toolbarStyle = .unified
+        window?.toolbar = toolbar
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        [.flexibleSpace,]
+    }
+
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        toolbarDefaultItemIdentifiers(toolbar)
+    }
+
+    func toolbar(
+        _ toolbar: NSToolbar,
+        itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+        willBeInsertedIntoToolbar flag: Bool
+    ) -> NSToolbarItem? {
+        nil
+    }
 }

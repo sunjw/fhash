@@ -23,14 +23,19 @@ private struct MainViewControllerState: OptionSet {
 
 @objc(MainViewController) class MainViewController: NSViewController, NSTextViewDelegate, NSSearchFieldDelegate {
     static let MainClipViewInsetAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 0, right: 0)
-    static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
+    static let MainClipViewInsetLargeRoundedAfter26 = NSEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+    // static let MainClipViewInsetWithFindBarAtAboveAfter26 = NSEdgeInsets(top: 34, left: 0, bottom: 0, right: 0)
     static let MainClipViewInsetWithFindBarAtBelowAfter26 = NSEdgeInsets(top: 28, left: 0, bottom: 26, right: 0)
+    static let MainClipViewInsetWithFindBarAtBelowLargeRoundedAfter26 = NSEdgeInsets(top: 50, left: 0, bottom: 26, right: 0)
     static let MainTextViewInsetAfter26 = NSMakeSize(3.0, 2.0)
-    static let MainScrollViewTopConstraintAfter26: CGFloat = 26
+    static let MainTextViewInsetLargeRoundedAfter26 = NSMakeSize(10.0, 2.0)
+    // static let MainScrollViewTopConstraintAfter26: CGFloat = 26
+    static let MainScrollViewBottomConstraint: CGFloat = 45
 
     @IBOutlet weak var mainScrollView: MainScrollView!
     @IBOutlet weak var mainScrollViewTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var mainScrollViewBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var mainClipView: PaddingClipView!
 
     @IBOutlet weak var mainTextView: NSTextView!
@@ -38,12 +43,18 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet weak var mainProgressIndicator: NSProgressIndicator!
 
     @IBOutlet weak var openButton: NSButton!
+    @IBOutlet weak var openButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var clearButton: NSButton!
+    @IBOutlet weak var clearButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var verifyButton: NSButton!
+    @IBOutlet weak var verifyButtonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var upperCaseButton: NSButton!
+    @IBOutlet weak var upperCaseButtonLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var upperCaseButtonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var speedTextField: NSTextField!
+    @IBOutlet weak var speedTextFieldBottomConstraint: NSLayoutConstraint!
 
     @objc var tag: Int = 0 // Must have @ojbc, it is used to open finder bar.
 
@@ -88,6 +99,25 @@ private struct MainViewControllerState: OptionSet {
         // Setup NSVisualEffectView/NSGlassEffectView background.
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
+        if LiquidGlassUI.enableLargeRounded() {
+            // Large rounded ui
+            let titlebarOverlayView = TitlebarOverlayView()
+            titlebarOverlayView.setupTitlebarOverlay(mainView)
+        } else {
+            // Old style
+            mainScrollViewBottomConstraint.constant = MainViewController.MainScrollViewBottomConstraint
+            openButton.controlSize = .regular
+            openButtonBottomConstraint.constant = 12
+            clearButton.controlSize = .regular
+            clearButtonBottomConstraint.constant = 12
+            verifyButton.controlSize = .regular
+            verifyButtonBottomConstraint.constant = 12
+            upperCaseButton.controlSize = .regular
+            upperCaseButtonLeadingConstraint.constant = 10
+            upperCaseButtonBottomConstraint.constant = 15
+            speedTextFieldBottomConstraint.constant = 14
+        }
+
         // Register NSUserDefaults.
         let defaultsDictionary = [
             UpperCaseDefaultKey: Bool(false)
@@ -128,22 +158,30 @@ private struct MainViewControllerState: OptionSet {
             if FindBarAtBelowAfter26 {
                 mainScrollView.findBarPosition = .belowContent
             } else {
-                mainScrollView.findBarPosition = .aboveContent
+                // mainScrollView.findBarPosition = .aboveContent
             }
         }
 
         // Set clip view insets.
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             mainClipView.automaticallyAdjustsContentInsets = false
-            mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            if LiquidGlassUI.enableLargeRounded() {
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetLargeRoundedAfter26
+            } else {
+                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            }
         }
 
-        // Set some text in text field.
+        // Set text view insets.
         mainTextView.delegate = self
-        if (MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+        if MacSwiftUtils.IsSystemEarlierThan(26, 0) {
             mainTextView.textContainerInset = NSMakeSize(3.0, 2.0)
         } else {
-            mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+            if LiquidGlassUI.enableLargeRounded() {
+                mainTextView.textContainerInset = MainViewController.MainTextViewInsetLargeRoundedAfter26
+            } else {
+                mainTextView.textContainerInset = MainViewController.MainTextViewInsetAfter26
+            }
         }
 
         mainFont = .monospacedSystemFont(ofSize: 12, weight: .regular)
@@ -403,21 +441,29 @@ private struct MainViewControllerState: OptionSet {
         if FindBarAtBelowAfter26 {
             if isVisible {
                 // show
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+                if LiquidGlassUI.enableLargeRounded() {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowLargeRoundedAfter26
+                } else {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtBelowAfter26
+                }
             } else {
                 // hide
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+                if LiquidGlassUI.enableLargeRounded() {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetLargeRoundedAfter26
+                } else {
+                    mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+                }
             }
         } else {
-            if isVisible {
-                // show
-                mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtAboveAfter26
-            } else {
-                // hide
-                mainScrollViewTopConstraint.constant = 0
-                mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
-            }
+            // if isVisible {
+            //     // show
+            //     mainScrollViewTopConstraint.constant = MainViewController.MainScrollViewTopConstraintAfter26
+            //     mainClipView.contentInsets = MainViewController.MainClipViewInsetWithFindBarAtAboveAfter26
+            // } else {
+            //     // hide
+            //     mainScrollViewTopConstraint.constant = 0
+            //     mainClipView.contentInsets = MainViewController.MainClipViewInsetAfter26
+            // }
         }
 
         // if let enclosingScrollView = mainTextView.enclosingScrollView {
@@ -432,55 +478,55 @@ private struct MainViewControllerState: OptionSet {
             return
         }
 
-        var scrollNeedFix = true
-        var becameShow = true
+        // var scrollNeedFix = true
+        // var becameShow = true
 
-        let newFindPanelVisible = mainScrollView.isFindBarVisible
-        if newFindPanelVisible == curFindPanelVisible {
-            scrollNeedFix = false
-        }
-        if newFindPanelVisible && !curFindPanelVisible {
-            // show find bar
-            // NSLog("clipViewSizeChange, show find bar")
-        }
-        if !newFindPanelVisible && curFindPanelVisible {
-            // hide find bar
-            // NSLog("clipViewSizeChange, hide find bar")
-            becameShow = false
-        }
+        // let newFindPanelVisible = mainScrollView.isFindBarVisible
+        // if newFindPanelVisible == curFindPanelVisible {
+        //     scrollNeedFix = false
+        // }
+        // if newFindPanelVisible && !curFindPanelVisible {
+        //     // show find bar
+        //     // NSLog("clipViewSizeChange, show find bar")
+        // }
+        // if !newFindPanelVisible && curFindPanelVisible {
+        //     // hide find bar
+        //     // NSLog("clipViewSizeChange, hide find bar")
+        //     becameShow = false
+        // }
 
-        let mainTextSize = mainText!.size()
-        let mainScrollViewSize = mainScrollView.frame.size
-        // NSLog("clipViewSizeChange, mainTextSize.height=%.2f, mainScrollViewSize.height=%.2f",
-        //       mainTextSize.height, mainScrollViewSize.height)
-        if mainTextSize.height < mainScrollViewSize.height {
-            scrollNeedFix = false
-        }
+        // let mainTextSize = mainText!.size()
+        // let mainScrollViewSize = mainScrollView.frame.size
+        // // NSLog("clipViewSizeChange, mainTextSize.height=%.2f, mainScrollViewSize.height=%.2f",
+        // //       mainTextSize.height, mainScrollViewSize.height)
+        // if mainTextSize.height < mainScrollViewSize.height {
+        //     scrollNeedFix = false
+        // }
 
-        if scrollNeedFix, let enclosingScrollView = self.mainTextView.enclosingScrollView {
-            // NSLog("clipViewSizeChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
-            var scrollFix: CGFloat = 0
-            let bottomOffset = mainTextSize.height - mainScrollViewSize.height - enclosingScrollView.contentView.bounds.origin.y
-            if becameShow && enclosingScrollView.contentView.bounds.origin.y < -18 {
-                // NSLog("clipViewSizeChange, fix show top")
-                scrollFix = -6
-            }
-            // NSLog("clipViewSizeChange, bottomOffset=%.2f", bottomOffset)
-            if becameShow && bottomOffset <= MainViewController.MainScrollViewTopConstraintAfter26 {
-                // NSLog("clipViewSizeChange, fix show bottom")
-                scrollFix = MainViewController.MainScrollViewTopConstraintAfter26
-            }
+        // if scrollNeedFix, let enclosingScrollView = self.mainTextView.enclosingScrollView {
+        //     // NSLog("clipViewSizeChange, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+        //     var scrollFix: CGFloat = 0
+        //     let bottomOffset = mainTextSize.height - mainScrollViewSize.height - enclosingScrollView.contentView.bounds.origin.y
+        //     if becameShow && enclosingScrollView.contentView.bounds.origin.y < -18 {
+        //         // NSLog("clipViewSizeChange, fix show top")
+        //         scrollFix = -6
+        //     }
+        //     // NSLog("clipViewSizeChange, bottomOffset=%.2f", bottomOffset)
+        //     if becameShow && bottomOffset <= MainViewController.MainScrollViewTopConstraintAfter26 {
+        //         // NSLog("clipViewSizeChange, fix show bottom")
+        //         scrollFix = MainViewController.MainScrollViewTopConstraintAfter26
+        //     }
 
-            if scrollFix != 0 {
-                enclosingScrollView.contentView.scroll(to:NSPoint(
-                    x: enclosingScrollView.contentView.bounds.origin.x,
-                    y: enclosingScrollView.contentView.bounds.origin.y + scrollFix))
-                enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
-            }
-            // NSLog("clipViewSizeChange, after, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
-        }
+        //     if scrollFix != 0 {
+        //         enclosingScrollView.contentView.scroll(to:NSPoint(
+        //             x: enclosingScrollView.contentView.bounds.origin.x,
+        //             y: enclosingScrollView.contentView.bounds.origin.y + scrollFix))
+        //         enclosingScrollView.reflectScrolledClipView(enclosingScrollView.contentView)
+        //     }
+        //     // NSLog("clipViewSizeChange, after, y=%.2f", enclosingScrollView.contentView.bounds.origin.y)
+        // }
 
-        curFindPanelVisible = newFindPanelVisible
+        // curFindPanelVisible = newFindPanelVisible
     }
 
     private func calculateFinished() {
