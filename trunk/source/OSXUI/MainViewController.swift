@@ -370,6 +370,15 @@ private struct MainViewControllerState: OptionSet {
             value: NSColor.textColor,
             range: NSRange(location: 0, length: mainText!.length))
 
+        if LiquidGlassUI.enableLargeRounded() {
+            let paraStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            paraStyle.lineSpacing = 3
+            mainText?.addAttribute(
+                .paragraphStyle,
+                value: paraStyle,
+                range: NSRange(location: 0, length: mainText!.length))
+        }
+
         // word wrap
         // var paraStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         // paraStyle.lineBreakMode = .byCharWrapping
