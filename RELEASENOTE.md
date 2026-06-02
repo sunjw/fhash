@@ -12,7 +12,7 @@ Windows 10 and later (Store)
 [![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)
 
 Windows 10 and later (winget)
-```text
+```
 winget install fHash
 ```
 
