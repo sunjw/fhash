@@ -1,3 +1,8 @@
+26.6.44 (153) 🌞 2026-06-02  
+Windows WinUI: update components  
+macOS: adopt Tahoe design  
+Fix other issues  
+
 26.5.42 (148) 🍨 2026-05-07  
 Windows WinUI: update components  
 Fix other issues  
