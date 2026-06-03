@@ -124,7 +124,14 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 	return _wstrtostr(wstr, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	return striconv(wstrtostr(wstr), "UTF-8", "ASCII");
+	if (wstr.empty())
+	{
+		return std::string();
+	}
+
+	std::string wideBytes(reinterpret_cast<const char*>(wstr.data()),
+		wstr.size() * sizeof(std::wstring::value_type));
+	return striconv(wideBytes, "UTF-8", "WCHAR_T");
 #endif
 }
 
@@ -140,7 +147,20 @@ std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 	return _strtowstr(str, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	return strtowstr(striconv(str, "ASCII", "UTF-8"));
+	if (str.empty())
+	{
+		return std::wstring();
+	}
+
+	std::string wideBytes = striconv(str, "WCHAR_T", "UTF-8");
+	if ((wideBytes.size() % sizeof(std::wstring::value_type)) != 0)
+	{
+		return std::wstring();
+	}
+
+	return std::wstring(
+		reinterpret_cast<const std::wstring::value_type*>(wideBytes.data()),
+		wideBytes.size() / sizeof(std::wstring::value_type));
 #endif
 }
 
