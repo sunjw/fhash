@@ -171,16 +171,14 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 	return _wstrtostr(wstr, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	setlocale(LC_ALL, "zh_CN.UTF-8");
-	size_t num_chars = wcstombs(NULL, wstr.c_str(), 0);
-	char* char_buf = new char[num_chars + 1];
-	wcstombs(char_buf, wstr.c_str(), num_chars);
-	char_buf[num_chars] = '\0';
-	std::string str(char_buf);
-	delete[] char_buf;
-	setlocale(LC_ALL, "C");
+	if (wstr.empty())
+	{
+		return std::string();
+	}
 
-	return str;
+	std::string wideBytes(reinterpret_cast<const char*>(wstr.data()),
+		wstr.size() * sizeof(std::wstring::value_type));
+	return striconv(wideBytes, "UTF-8", "WCHAR_T");
 #endif
 }
 
@@ -191,16 +189,20 @@ std::wstring sunjwbase::strtowstr(const std::string& str)
 	return _strtowstr(str, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	setlocale(LC_ALL, "zh_CN.UTF-8");
-	size_t num_chars = mbstowcs(NULL, str.c_str(), 0);
-	wchar_t* wct_buf = new wchar_t[num_chars + 1];
-	mbstowcs(wct_buf, str.c_str(), num_chars);
-	wct_buf[num_chars] = '\0';
-	std::wstring wstr(wct_buf, num_chars);
-	delete[] wct_buf;
-	setlocale(LC_ALL, "C");
+	if (str.empty())
+	{
+		return std::wstring();
+	}
 
-	return wstr;
+	std::string wideBytes = striconv(str, "WCHAR_T", "UTF-8");
+	if ((wideBytes.size() % sizeof(std::wstring::value_type)) != 0)
+	{
+		return std::wstring();
+	}
+
+	return std::wstring(
+		reinterpret_cast<const std::wstring::value_type*>(wideBytes.data()),
+		wideBytes.size() / sizeof(std::wstring::value_type));
 #endif
 }
 
