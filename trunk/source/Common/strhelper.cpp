@@ -61,6 +61,36 @@ namespace sunjwbase
 		return wstrTo;
 	}
 #endif
+
+#if defined (__APPLE__) || defined (__unix)
+	static std::string _wstrtostr(const std::wstring& wstr)
+	{
+		if (wstr.empty())
+		{
+			return std::string();
+		}
+
+		return std::string(reinterpret_cast<const char*>(wstr.data()),
+			wstr.size() * sizeof(std::wstring::value_type));
+	}
+
+	static std::wstring _strtowstr(const std::string& str)
+	{
+		if (str.empty())
+		{
+			return std::wstring();
+		}
+
+		if ((str.size() % sizeof(std::wstring::value_type)) != 0)
+		{
+			return std::wstring();
+		}
+
+		return std::wstring(
+			reinterpret_cast<const std::wstring::value_type*>(str.data()),
+			str.size() / sizeof(std::wstring::value_type));
+	}
+#endif
 }
 
 #if defined (__APPLE__) || defined (__unix)
@@ -124,14 +154,7 @@ std::string sunjwbase::wstrtostrutf8(const std::wstring& wstr)
 	return _wstrtostr(wstr, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	if (wstr.empty())
-	{
-		return std::string();
-	}
-
-	std::string wideBytes(reinterpret_cast<const char*>(wstr.data()),
-		wstr.size() * sizeof(std::wstring::value_type));
-	return striconv(wideBytes, "UTF-8", "WCHAR_T");
+	return striconv(_wstrtostr(wstr), "UTF-8", "WCHAR_T");
 #endif
 }
 
@@ -147,20 +170,7 @@ std::wstring sunjwbase::strtowstrutf8(const std::string& str)
 	return _strtowstr(str, CP_UTF8);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	if (str.empty())
-	{
-		return std::wstring();
-	}
-
-	std::string wideBytes = striconv(str, "WCHAR_T", "UTF-8");
-	if ((wideBytes.size() % sizeof(std::wstring::value_type)) != 0)
-	{
-		return std::wstring();
-	}
-
-	return std::wstring(
-		reinterpret_cast<const std::wstring::value_type*>(wideBytes.data()),
-		wideBytes.size() / sizeof(std::wstring::value_type));
+	return _strtowstr(striconv(str, "WCHAR_T", "UTF-8"));
 #endif
 }
 
@@ -171,14 +181,7 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 	return _wstrtostr(wstr, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	if (wstr.empty())
-	{
-		return std::string();
-	}
-
-	std::string wideBytes(reinterpret_cast<const char*>(wstr.data()),
-		wstr.size() * sizeof(std::wstring::value_type));
-	return striconv(wideBytes, "UTF-8", "WCHAR_T");
+	return striconv(_wstrtostr(wstr), "UTF-8", "WCHAR_T");
 #endif
 }
 
@@ -189,20 +192,7 @@ std::wstring sunjwbase::strtowstr(const std::string& str)
 	return _strtowstr(str, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	if (str.empty())
-	{
-		return std::wstring();
-	}
-
-	std::string wideBytes = striconv(str, "WCHAR_T", "UTF-8");
-	if ((wideBytes.size() % sizeof(std::wstring::value_type)) != 0)
-	{
-		return std::wstring();
-	}
-
-	return std::wstring(
-		reinterpret_cast<const std::wstring::value_type*>(wideBytes.data()),
-		wideBytes.size() / sizeof(std::wstring::value_type));
+	return _strtowstr(striconv(str, "WCHAR_T", "UTF-8"));
 #endif
 }
 
