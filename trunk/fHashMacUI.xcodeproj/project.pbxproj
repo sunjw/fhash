@@ -90,7 +90,7 @@
 		41FF1DF01B5B4B470081F283 /* sha256.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sha256.cpp; path = source/Algorithms/sha256.cpp; sourceTree = "<group>"; };
 		41FF1DF11B5B4B470081F283 /* sha256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha256.h; path = source/Algorithms/sha256.h; sourceTree = "<group>"; };
 		52225800213CD69A00012EF8 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Global.h; path = source/Common/Global.h; sourceTree = "<group>"; };
-		52225802213CD95D00012EF8 /* strhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strhelper.cpp; path = source/Common/strhelper.cpp; sourceTree = "<group>"; };
+		52225802213CD95D00012EF8 /* strhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = strhelper.cpp; path = source/Common/strhelper.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		52225803213CD95D00012EF8 /* strhelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strhelper.h; path = source/Common/strhelper.h; sourceTree = "<group>"; };
 		52225808213CDA7C00012EF8 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = source/Common/Utils.cpp; sourceTree = "<group>"; };
 		52225809213CDA7C00012EF8 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = source/Common/Utils.h; sourceTree = "<group>"; };
