@@ -91,6 +91,26 @@ namespace sunjwbase
 			str.size() / sizeof(std::wstring::value_type));
 	}
 #endif
+
+	static int _hexchar_to_int(char ch)
+	{
+		if (ch >= '0' && ch <= '9')
+		{
+			return ch - '0';
+		}
+
+		if (ch >= 'a' && ch <= 'f')
+		{
+			return ch - 'a' + 10;
+		}
+
+		if (ch >= 'A' && ch <= 'F')
+		{
+			return ch - 'A' + 10;
+		}
+
+		return -1;
+	}
 }
 
 #if defined (__APPLE__) || defined (__unix)
@@ -201,41 +221,44 @@ std::string sunjwbase::asciiconvjson(std::string& strJsonUtf16)
 	std::wstring wstrTemp;
 
 	std::string::size_type i = 0;
-	for (; i + 5 < strJsonUtf16.length(); ++i)
+	for (; i < strJsonUtf16.length(); ++i)
 	{
-		if (strJsonUtf16[i] == '\\' &&
+		if (i + 5 < strJsonUtf16.length() &&
+			strJsonUtf16[i] == '\\' &&
 			strJsonUtf16[i + 1] == 'u')
 		{
-			char n[4];
-			n[0] = strJsonUtf16[i + 2];
-			n[1] = strJsonUtf16[i + 3];
-			n[2] = strJsonUtf16[i + 4];
-			n[3] = strJsonUtf16[i + 5];
-
-			i += 5;
-
 			int utf16 = 0;
+			bool validHex = true;
 			for (int j = 0; j < 4; ++j)
 			{
-				int num = 0;
-				if (n[j] > 'a')
+				int num = _hexchar_to_int(strJsonUtf16[i + 2 + j]);
+				if (num < 0)
 				{
-					num = n[j] - 'a' + 10;
-				}
-				else if (n[j] > '0')
-				{
-					num = n[j] - '0';
+					validHex = false;
+					break;
 				}
 
-				utf16 += (int)(num * pow(16.0, 3.0 - j));
+				utf16 = (utf16 << 4) | num;
 			}
 
-			wchar_t wch = utf16;
-			wstrTemp += wch;
+			if (validHex)
+			{
+				wchar_t wch = (wchar_t)utf16;
+				wstrTemp += wch;
+				i += 5;
+				continue;
+			}
 		}
+
+		wstrTemp += (wchar_t)(unsigned char)strJsonUtf16[i];
 	}
 
+#if defined (_WIN32)
 	return sunjwbase::wstrtostr(wstrTemp);
+#endif
+#if defined (__APPLE__) || defined (__unix)
+	return sunjwbase::wstrtostrutf8(wstrTemp);
+#endif
 }
 
 std::string sunjwbase::strtrim_right(const std::string& s, const std::string& spaces)
