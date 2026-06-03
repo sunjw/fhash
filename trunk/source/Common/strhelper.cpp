@@ -68,33 +68,49 @@ std::string sunjwbase::striconv(const std::string& input,
 								const std::string& to_code,
 								const std::string& from_code)
 {
-	char* inptr = new char[input.size() + 1];
-	size_t inleft = input.size();
-	size_t outleft = inleft * 4 + 1; // should be large enough
-	char* outptr = new char[outleft];
-	bzero(outptr, outleft);
-
-	strcpy(inptr, input.c_str());
-
-	iconv_t cd; // conversion descriptor
-	if ((cd = iconv_open(to_code.c_str(), from_code.c_str())) == (iconv_t) (-1))
+	if (input.empty())
 	{
-		iconv_close(cd); // failed clean
 		return input;
 	}
 
-	char* in = inptr;
-	char* out = outptr;
-	outleft = iconv(cd, &in, &inleft, &out, &outleft);
+	std::vector<char> inbuf(input.begin(), input.end());
+	size_t inleft = inbuf.size();
+	size_t outsize = inleft * 4 + 1; // should be large enough for most cases
+	std::vector<char> outbuf(outsize, 0);
+
+	iconv_t cd; // conversion descriptor
+	if ((cd = iconv_open(to_code.c_str(), from_code.c_str())) == (iconv_t)(-1))
+	{
+		return input;
+	}
+
+	char* in = &inbuf[0];
+	char* out = &outbuf[0];
+	size_t outleft = outbuf.size();
+
+	while (inleft > 0)
+	{
+		size_t ret = iconv(cd, &in, &inleft, &out, &outleft);
+		if (ret != (size_t)(-1))
+		{
+			break;
+		}
+
+		if (errno != E2BIG)
+		{
+			iconv_close(cd);
+			return input;
+		}
+
+		size_t used = outbuf.size() - outleft;
+		outbuf.resize(outbuf.size() * 2, 0);
+		out = &outbuf[0] + used;
+		outleft = outbuf.size() - used;
+	}
 
 	iconv_close(cd);
 
-	std::string strRet(outptr);
-
-	delete[] inptr;
-	delete[] outptr;
-
-	return strRet;
+	return std::string(&outbuf[0], outbuf.size() - outleft);
 }
 #endif
 
