@@ -201,7 +201,7 @@ std::string sunjwbase::wstrtostr(const std::wstring& wstr)
 	return _wstrtostr(wstr, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	return _wstrtostr(wstr);
+	return striconv(_wstrtostr(wstr), "UTF-8", "WCHAR_T");
 #endif
 }
 
@@ -212,7 +212,7 @@ std::wstring sunjwbase::strtowstr(const std::string& str)
 	return _strtowstr(str, CP_ACP);
 #endif
 #if defined (__APPLE__) || defined (__unix)
-	return _strtowstr(str);
+	return _strtowstr(striconv(str, "WCHAR_T", "UTF-8"));
 #endif
 }
 
