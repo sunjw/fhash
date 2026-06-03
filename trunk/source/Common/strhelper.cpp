@@ -298,6 +298,11 @@ std::wstring sunjwbase::strtrim_left(const std::wstring& s, const std::wstring& 
 
 std::string sunjwbase::strreplace(const std::string& base, const std::string& src, const std::string& des)
 {
+	if (src.empty())
+	{
+		return base;
+	}
+
 	std::string ret(base);
 	std::string::size_type pos = 0;
 	std::string::size_type srcLen = src.size();
@@ -314,6 +319,11 @@ std::string sunjwbase::strreplace(const std::string& base, const std::string& sr
 
 std::wstring sunjwbase::strreplace(const std::wstring& base, const std::wstring& src, const std::wstring& des)
 {
+	if (src.empty())
+	{
+		return base;
+	}
+
 	std::wstring ret(base);
 	std::wstring::size_type pos = 0;
 	std::wstring::size_type srcLen = src.size();
