@@ -253,12 +253,7 @@ std::string sunjwbase::asciiconvjson(std::string& strJsonUtf16)
 		wstrTemp += (wchar_t)(unsigned char)strJsonUtf16[i];
 	}
 
-#if defined (_WIN32)
 	return sunjwbase::wstrtostr(wstrTemp);
-#endif
-#if defined (__APPLE__) || defined (__unix)
-	return sunjwbase::wstrtostrutf8(wstrTemp);
-#endif
 }
 
 std::string sunjwbase::strtrim_right(const std::string& s, const std::string& spaces)
