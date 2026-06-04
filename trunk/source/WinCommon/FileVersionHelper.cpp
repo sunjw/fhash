@@ -220,9 +220,9 @@ tstring FileVersionHelper::Find()
             SVer = pvsf.dwFileVersionMS - 65536 * MVer;
             LVer = pvsf.dwFileVersionLS / 65536;
             BVer = pvsf.dwFileVersionLS - 65536 * LVer;
-            string strVer("");
-            strVer = strappendformat(strVer, ("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
-            return strtotstr(strVer);
+            tstring tstrVer(TEXT(""));
+            tstrVer = strappendformat(tstrVer, TEXT("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
+            return tstrVer;
         }
     }
 
