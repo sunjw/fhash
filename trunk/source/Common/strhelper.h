@@ -204,8 +204,9 @@ namespace sunjwbase
 	// itostr
 	std::string itostr(int num, int idx = 10);
 
-	// format append for std::string
+	// format append for std::string and std::wstring
 	std::string strappendformat(std::string& str, const char *format, ...);
+	std::wstring strappendformat(std::wstring& str, const wchar_t *format, ...);
 
 	// start with & end with
 	bool str_startwith(const std::string& str, const std::string& target);

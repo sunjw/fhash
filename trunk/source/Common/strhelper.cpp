@@ -438,6 +438,35 @@ std::string sunjwbase::strappendformat(std::string& str, const char *format, ...
 	return str;
 }
 
+std::wstring sunjwbase::strappendformat(std::wstring& str, const wchar_t *format, ...)
+{
+	int size = 100;
+	std::wstring temp;
+	va_list vl;
+	while (1)
+	{
+		temp.resize(size + 1); // for null terminator
+		va_start(vl, format);
+#if defined (_WIN32)
+		int n = _vsnwprintf_s((wchar_t *)temp.data(), size, _TRUNCATE, format, vl);
+#else
+		int n = vswprintf((wchar_t *)temp.data(), size, format, vl);
+#endif
+		va_end(vl);
+		if (n > -1 && n < size) {
+			// temp.resize(n);
+			break;
+		}
+		if (n > -1)
+			size = n + 1; // not large enough
+		else
+			size *= 2;
+	}
+	str.append(temp.c_str());
+
+	return str;
+}
+
 bool sunjwbase::str_startwith(const std::string& str, const std::string& target)
 {
 	if (str.length() < target.length())
