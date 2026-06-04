@@ -126,7 +126,16 @@ namespace WindowsComm
 					}
 					else
 					{
-						tstrOsinfo = strappendformat(tstrOsinfo, TEXT("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
+						if (osvi.dwBuildNumber >= 26100)
+							tstrOsinfo.append(TEXT("Windows Server 2025 "));
+						else if (osvi.dwBuildNumber >= 20348)
+							tstrOsinfo.append(TEXT("Windows Server 2022 "));
+						else if (osvi.dwBuildNumber >= 17763)
+							tstrOsinfo.append(TEXT("Windows Server 2019 "));
+						else if (osvi.dwBuildNumber >= 14393)
+							tstrOsinfo.append(TEXT("Windows Server 2016 "));
+						else
+							tstrOsinfo = strappendformat(tstrOsinfo, TEXT("Windows Server %d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion);
 					}
 				}
 				else
