@@ -34,7 +34,7 @@ namespace WindowsComm
 	tstring GetExeFileVersion(TCHAR* path)
 	{
 		// get file version //
-		string strVer("");
+		tstring tstrVer(TEXT(""));
 		unsigned int MVer,SVer,LVer,BVer;
 		VS_FIXEDFILEINFO pvsf;
 		DWORD dwHandle;
@@ -53,7 +53,7 @@ namespace WindowsComm
 			SVer = pvsf.dwFileVersionMS - 65536 * MVer;
 			LVer = pvsf.dwFileVersionLS / 65536;
 			BVer = pvsf.dwFileVersionLS - 65536 * LVer;
-			strVer = strappendformat(strVer, ("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
+			tstrVer = strappendformat(tstrVer, TEXT("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
 			// Ver.Format(_T("%d.%d.%d.%d"), MVer, SVer, LVer, BVer);
 			// 将版本号转换为数字 //
 
@@ -61,7 +61,7 @@ namespace WindowsComm
 		}
 
 		// get file version //
-		return strtotstr(strVer);
+		return tstrVer;
 	}
 
 	BOOL GetWindowsVersion(OSVERSIONINFOEX& osvi, BOOL& bOsVersionInfoEx)
