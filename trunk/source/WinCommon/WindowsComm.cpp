@@ -350,7 +350,7 @@ namespace WindowsComm
 						else
 							tstrOsinfo.append(TEXT("Server "));
 					}
-					else  // Windows NT 4.0
+					else if (osvi.dwMajorVersion == 4)  // Windows NT 4.0
 					{
 						if (osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
 							tstrOsinfo.append(TEXT("Server 4.0, Enterprise Edition "));
