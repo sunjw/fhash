@@ -371,14 +371,14 @@ namespace WindowsComm
 					TEXT("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
 					0, KEY_QUERY_VALUE, &hKey );
 				if( lRet != ERROR_SUCCESS )
-					return FALSE;
+					return tstrOsinfo;
 
 				lRet = RegQueryValueEx(hKey, TEXT("ProductType"), NULL, NULL,
 					(LPBYTE) szProductType, &dwBufLen);
 				RegCloseKey( hKey );
 
 				if ((lRet != ERROR_SUCCESS) || (dwBufLen > BUFSIZE*sizeof(TCHAR)))
-					return FALSE;
+					return tstrOsinfo;
 
 				if (lstrcmpi(TEXT("WINNT"), szProductType) == 0)
 					tstrOsinfo.append(TEXT("Workstation "));
