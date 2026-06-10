@@ -55,14 +55,3 @@ import Cocoa
         mainViewController?.openFiles()
     }
 }
-
-public enum LiquidGlassUI {
-    private static let forceNo = false
-
-    static func enableLargeRounded() -> Bool {
-        if (forceNo || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
-            return false
-        }
-        return true
-    }
-}

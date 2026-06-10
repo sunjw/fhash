@@ -1,5 +1,5 @@
 //
-//  TitlebarOverlayView.swift
+//  LiquidGlassUtils.swift
 //  fHash
 //
 //  Created by Sun Junwen on 2026/4/24.
@@ -7,6 +7,17 @@
 //
 
 import Cocoa
+
+public enum LiquidGlassUI {
+    private static let forceNo = false
+
+    static func enableLargeRounded() -> Bool {
+        if (forceNo || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            return false
+        }
+        return true
+    }
+}
 
 @objc(TitlebarOverlayView) class TitlebarOverlayView: NSView {
     static let height: CGFloat = 48
