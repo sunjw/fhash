@@ -10,7 +10,7 @@ import Cocoa
 
 @objc(MainWindowController) class MainWindowController: NoTitlebarWindowController, NSWindowDelegate, NSToolbarDelegate {
     private static let WindowContentSize = NSSize(width: 568, height: 360)
-    private static let WindowContentSizeLargeRoundedAfter26 = NSSize(width: 610, height: 440)
+    private static let WindowContentSizeLargeRoundedAfter26 = NSSize(width: 638, height: 440)
 
     override func windowDidLoad() {
         super.windowDidLoad()
