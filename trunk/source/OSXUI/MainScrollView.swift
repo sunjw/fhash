@@ -18,10 +18,10 @@ import Cocoa
 
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // NSScrollPocket may be added multiple times
-            let targetViewNames = ["Dummy", /*"NSScrollPocket"*/]
+            let targetViewNames = ["NSScrollPocket"]
             if targetViewNames.contains(viewClassName) {
                 DispatchQueue.main.async(execute: { [view] in
-                    self.setupTitlebarView(view)
+                    self.setupTitlebarView(targetView: view, height: Int(view.frame.height))
                 })
             }
         }
@@ -51,12 +51,12 @@ import Cocoa
         }
     }
 
-    private func setupTitlebarView(_ targetView: NSView) {
+    private func setupTitlebarView(targetView: NSView, height: Int) {
         if titlebarView == nil {
             titlebarView = TitlebarView(frame: CGRect(x: 0,
                                                       y: 0,
                                                       width: Int(bounds.width),
-                                                      height: MainScrollView.TitlebarViewHeight))
+                                                      height: height))
             titlebarView?.autoresizingMask = [.width]
         }
 
@@ -69,7 +69,7 @@ import Cocoa
             titlebarView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             titlebarView.leadingAnchor.constraint(equalTo: leadingAnchor),
             titlebarView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titlebarView.heightAnchor.constraint(equalToConstant: CGFloat(MainScrollView.TitlebarViewHeight))
+            titlebarView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         ])
     }
 }
