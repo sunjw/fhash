@@ -10,7 +10,7 @@ import Cocoa
 
 @objc(MainScrollView) class MainScrollView: NSScrollView {
     weak var mainViewController: MainViewController?
-    private var titlebarView: TitlebarView?
+    private var scrollTopEdgeView: ScrollTopEdgeView?
 
     override func addSubview(_ view: NSView) {
         let viewClassName = String(describing: type(of: view))
@@ -52,24 +52,24 @@ import Cocoa
     }
 
     private func setupTitlebarView(targetView: NSView, height: Int) {
-        if titlebarView == nil {
-            titlebarView = TitlebarView(frame: CGRect(x: 0,
-                                                      y: 0,
-                                                      width: Int(bounds.width),
-                                                      height: height))
-            titlebarView?.autoresizingMask = [.width]
+        if scrollTopEdgeView == nil {
+            scrollTopEdgeView = ScrollTopEdgeView(
+                frame: CGRect(x: 0, y: 0,
+                              width: Int(bounds.width),
+                              height: height))
+            scrollTopEdgeView?.autoresizingMask = [.width]
         }
 
-        guard let titlebarView else { return }
+        guard let scrollTopEdgeView else { return }
 
-        titlebarView.removeFromSuperview()
-        self.addSubview(titlebarView, positioned: .below, relativeTo: targetView)
+        scrollTopEdgeView.removeFromSuperview()
+        self.addSubview(scrollTopEdgeView, positioned: .below, relativeTo: targetView)
 
         NSLayoutConstraint.activate([
-            titlebarView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            titlebarView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titlebarView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titlebarView.heightAnchor.constraint(equalToConstant: CGFloat(height))
+            scrollTopEdgeView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            scrollTopEdgeView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollTopEdgeView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollTopEdgeView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         ])
     }
 }
