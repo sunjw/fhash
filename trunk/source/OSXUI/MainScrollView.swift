@@ -21,7 +21,7 @@ import Cocoa
             let targetViewNames = ["NSScrollPocket"]
             if targetViewNames.contains(viewClassName) {
                 DispatchQueue.main.async(execute: { [view] in
-                    self.setupTitlebarView(targetView: view, height: Int(view.frame.height))
+                    self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
                 })
             }
         }
@@ -51,7 +51,7 @@ import Cocoa
         }
     }
 
-    private func setupTitlebarView(targetView: NSView, height: Int) {
+    private func setupScrollTopEdgeView(targetView: NSView, height: Int) {
         if scrollTopEdgeView == nil {
             scrollTopEdgeView = ScrollTopEdgeView(
                 frame: CGRect(x: 0, y: 0,
