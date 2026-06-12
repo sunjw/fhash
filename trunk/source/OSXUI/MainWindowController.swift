@@ -27,7 +27,7 @@ import Cocoa
         }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
-        // window?.titlebarAppearsTransparent = true
+        window?.titlebarAppearsTransparent = true
         window?.isOpaque = false
         window?.backgroundColor = .clear
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
