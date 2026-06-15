@@ -81,7 +81,7 @@ public enum LiquidGlassUI {
 
 @objc(ScrollTopEdgeGaussianBlurView) class ScrollTopEdgeGaussianBlurView: NSView {
     private let blurRadius: CGFloat = 2
-    private let tintColor: NSColor = .white
+    private let tintColor: NSColor = .textBackgroundColor
 
     private let tintLayer = CAGradientLayer()
     private let maskLayer = CAGradientLayer()
@@ -106,12 +106,10 @@ public enum LiquidGlassUI {
 
         layer.masksToBounds = true
 
-        // Workaround
-        layer.backgroundColor = NSColor.white.withAlphaComponent(0.001).cgColor
-
         updateBackdropFilter()
         setupTintLayer()
         setupMaskLayer()
+        updateAppearanceColors()
     }
 
     private func updateBackdropFilter() {
@@ -138,23 +136,42 @@ public enum LiquidGlassUI {
     private func updateTintLayer() {
         // With this layer setup, y=0 behaves as bottom and y=1 as top.
         tintLayer.colors = [
-            tintColor.withAlphaComponent(0.0).cgColor,
-            tintColor.withAlphaComponent(0.95).cgColor
+            resolvedTintColor(alpha: 0.0).cgColor,
+            resolvedTintColor(alpha: 0.95).cgColor
         ]
     }
 
     private func setupMaskLayer() {
-        // Bottom fades out, top remains visible.
-        maskLayer.colors = [
-            NSColor.clear.cgColor,
-            NSColor.white.cgColor,
-            NSColor.white.cgColor
-        ]
         maskLayer.locations = [0.0, 0.6, 1.0]
         maskLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         maskLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
 
         layer?.mask = maskLayer
+        updateMaskLayer()
+    }
+
+    private func updateMaskLayer() {
+        // Bottom fades out, top remains visible.
+        maskLayer.colors = [
+            NSColor.clear.cgColor,
+            resolvedTintColor().cgColor,
+            resolvedTintColor().cgColor
+        ]
+    }
+
+    private func updateAppearanceColors() {
+        // Workaround
+        layer?.backgroundColor = resolvedTintColor(alpha: 0.001).cgColor
+        updateTintLayer()
+        updateMaskLayer()
+    }
+
+    private func resolvedTintColor(alpha: CGFloat = 1.0) -> NSColor {
+        var resolvedColor = tintColor.withAlphaComponent(alpha)
+        effectiveAppearance.performAsCurrentDrawingAppearance {
+            resolvedColor = tintColor.withAlphaComponent(alpha)
+        }
+        return resolvedColor
     }
 
     override func layout() {
@@ -167,6 +184,11 @@ public enum LiquidGlassUI {
         maskLayer.frame = bounds
 
         CATransaction.commit()
+    }
+
+    override func viewDidChangeEffectiveAppearance() {
+        super.viewDidChangeEffectiveAppearance()
+        updateAppearanceColors()
     }
 
     private func makeCAFilter(name: String) -> NSObject? {
