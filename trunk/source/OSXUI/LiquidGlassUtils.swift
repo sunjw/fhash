@@ -80,20 +80,11 @@ public enum LiquidGlassUI {
 }
 
 @objc(ScrollTopEdgeExView) class ScrollTopEdgeGaussianBlurView: NSView {
+    private let blurRadius: CGFloat = 2
+    private let tintColor: NSColor = .white
+
     private let tintLayer = CAGradientLayer()
     private let maskLayer = CAGradientLayer()
-
-    var blurRadius: CGFloat = 2 {
-        didSet {
-            updateBackdropFilter()
-        }
-    }
-
-    var tintColor: NSColor = .white {
-        didSet {
-            updateTintLayer()
-        }
-    }
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -115,8 +106,7 @@ public enum LiquidGlassUI {
 
         layer.masksToBounds = true
 
-        // A nearly transparent fill helps Core Animation define the backdrop area
-        // on some compositing paths.
+        // workaround
         layer.backgroundColor = NSColor.white.withAlphaComponent(0.001).cgColor
 
         updateBackdropFilter()
