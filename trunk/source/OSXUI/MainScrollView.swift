@@ -21,7 +21,8 @@ import Cocoa
             let targetViewNames = ["NSScrollPocket"]
             if targetViewNames.contains(viewClassName) {
                 DispatchQueue.main.async(execute: { [view] in
-                    self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
+                    // self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
+                    self.setupScrollTopEdgeView(targetView: view, height: 60)
                 })
             }
         }
