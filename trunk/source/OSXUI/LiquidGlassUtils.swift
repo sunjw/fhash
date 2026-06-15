@@ -97,6 +97,8 @@ public enum LiquidGlassUI {
     }
 
     private func setup() {
+        translatesAutoresizingMaskIntoConstraints = false
+
         wantsLayer = true
         layerUsesCoreImageFilters = true
 
@@ -125,7 +127,7 @@ public enum LiquidGlassUI {
     }
 
     private func setupTintLayer() {
-        updateTintLayer()
+        updateTintLayerColors()
 
         tintLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         tintLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
@@ -133,7 +135,7 @@ public enum LiquidGlassUI {
         layer?.addSublayer(tintLayer)
     }
 
-    private func updateTintLayer() {
+    private func updateTintLayerColors() {
         // With this layer setup, y=0 behaves as bottom and y=1 as top.
         tintLayer.colors = [
             resolvedTintColor(alpha: 0.0).cgColor,
@@ -142,15 +144,16 @@ public enum LiquidGlassUI {
     }
 
     private func setupMaskLayer() {
+        updateMaskLayerColors()
+
         maskLayer.locations = [0.0, 0.6, 1.0]
         maskLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         maskLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
 
         layer?.mask = maskLayer
-        updateMaskLayer()
     }
 
-    private func updateMaskLayer() {
+    private func updateMaskLayerColors() {
         // Bottom fades out, top remains visible.
         maskLayer.colors = [
             NSColor.clear.cgColor,
@@ -162,8 +165,8 @@ public enum LiquidGlassUI {
     private func updateAppearanceColors() {
         // Workaround
         layer?.backgroundColor = resolvedTintColor(alpha: 0.001).cgColor
-        updateTintLayer()
-        updateMaskLayer()
+        updateTintLayerColors()
+        updateMaskLayerColors()
     }
 
     private func resolvedTintColor(alpha: CGFloat = 1.0) -> NSColor {
