@@ -79,7 +79,7 @@ public enum LiquidGlassUI {
 
 }
 
-@objc(ScrollTopEdgeExView) class ScrollTopEdgeGaussianBlurView: NSView {
+@objc(ScrollTopEdgeGaussianBlurView) class ScrollTopEdgeGaussianBlurView: NSView {
     private let blurRadius: CGFloat = 2
     private let tintColor: NSColor = .white
 
@@ -106,7 +106,7 @@ public enum LiquidGlassUI {
 
         layer.masksToBounds = true
 
-        // workaround
+        // Workaround
         layer.backgroundColor = NSColor.white.withAlphaComponent(0.001).cgColor
 
         updateBackdropFilter()
@@ -137,7 +137,6 @@ public enum LiquidGlassUI {
 
     private func updateTintLayer() {
         // With this layer setup, y=0 behaves as bottom and y=1 as top.
-        // This matches CSS: linear-gradient(to top, transparent, white).
         tintLayer.colors = [
             tintColor.withAlphaComponent(0.0).cgColor,
             tintColor.withAlphaComponent(0.95).cgColor
@@ -146,7 +145,6 @@ public enum LiquidGlassUI {
 
     private func setupMaskLayer() {
         // Bottom fades out, top remains visible.
-        // This matches CSS: mask-image: linear-gradient(white 50%, transparent).
         maskLayer.colors = [
             NSColor.clear.cgColor,
             NSColor.white.cgColor,
