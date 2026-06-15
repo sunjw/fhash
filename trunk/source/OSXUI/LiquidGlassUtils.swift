@@ -171,6 +171,13 @@ public enum LiquidGlassUI {
         effectiveAppearance.performAsCurrentDrawingAppearance {
             resolvedColor = tintColor.withAlphaComponent(alpha)
         }
+        // if let deviceColor = resolvedColor.usingColorSpace(.deviceRGB) {
+        //     NSLog("resolvedTintColor rgba=(%.4f, %.4f, %.4f, %.4f)",
+        //           deviceColor.redComponent,
+        //           deviceColor.greenComponent,
+        //           deviceColor.blueComponent,
+        //           deviceColor.alphaComponent)
+        // }
         return resolvedColor
     }
 
