@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import QuartzCore
 
 public enum LiquidGlassUI {
     private static let forceNo = false
@@ -74,6 +75,125 @@ public enum LiquidGlassUI {
                                   colorSpace: .deviceRGB)
 
         gradient?.draw(in: bounds, angle: 270)
+    }
+
+}
+
+@objc(ScrollTopEdgeExView) class ScrollTopEdgeGaussianBlurView: NSView {
+    private let tintLayer = CAGradientLayer()
+    private let maskLayer = CAGradientLayer()
+
+    var blurRadius: CGFloat = 2 {
+        didSet {
+            updateBackdropFilter()
+        }
+    }
+
+    var tintColor: NSColor = .white {
+        didSet {
+            updateTintLayer()
+        }
+    }
+
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+
+    private func setup() {
+        wantsLayer = true
+        layerUsesCoreImageFilters = true
+
+        guard let layer else {
+            return
+        }
+
+        layer.masksToBounds = true
+
+        // A nearly transparent fill helps Core Animation define the backdrop area
+        // on some compositing paths.
+        layer.backgroundColor = NSColor.white.withAlphaComponent(0.001).cgColor
+
+        updateBackdropFilter()
+        setupTintLayer()
+        setupMaskLayer()
+    }
+
+    private func updateBackdropFilter() {
+        guard let blurFilter = makeCAFilter(name: "gaussianBlur") else {
+            layer?.backgroundFilters = nil
+            return
+        }
+
+        blurFilter.setValue(blurRadius, forKey: "inputRadius")
+        blurFilter.setValue(true, forKey: "inputNormalizeEdges")
+
+        layer?.backgroundFilters = [blurFilter]
+    }
+
+    private func setupTintLayer() {
+        updateTintLayer()
+
+        tintLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        tintLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+
+        layer?.addSublayer(tintLayer)
+    }
+
+    private func updateTintLayer() {
+        // With this layer setup, y=0 behaves as bottom and y=1 as top.
+        // This matches CSS: linear-gradient(to top, transparent, white).
+        tintLayer.colors = [
+            tintColor.withAlphaComponent(0.0).cgColor,
+            tintColor.withAlphaComponent(0.95).cgColor
+        ]
+    }
+
+    private func setupMaskLayer() {
+        // Bottom fades out, top remains visible.
+        // This matches CSS: mask-image: linear-gradient(white 50%, transparent).
+        maskLayer.colors = [
+            NSColor.clear.cgColor,
+            NSColor.white.cgColor,
+            NSColor.white.cgColor
+        ]
+        maskLayer.locations = [0.0, 0.6, 1.0]
+        maskLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        maskLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+
+        layer?.mask = maskLayer
+    }
+
+    override func layout() {
+        super.layout()
+
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+
+        tintLayer.frame = bounds
+        maskLayer.frame = bounds
+
+        CATransaction.commit()
+    }
+
+    private func makeCAFilter(name: String) -> NSObject? {
+        guard let filterClass = NSClassFromString("CAFilter") as? NSObject.Type else {
+            return nil
+        }
+
+        let selector = NSSelectorFromString("filterWithName:")
+
+        guard filterClass.responds(to: selector) else {
+            return nil
+        }
+
+        return filterClass.perform(selector, with: name)?
+            .takeUnretainedValue() as? NSObject
     }
 
 }
