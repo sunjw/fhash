@@ -10,7 +10,7 @@ import Cocoa
 
 @objc(MainScrollView) class MainScrollView: NSScrollView {
     weak var mainViewController: MainViewController?
-    private var scrollTopEdgeView: ScrollTopEdgeView?
+    private var scrollTopEdgeView: ScrollTopEdgeGaussianBlurView?
 
     override func addSubview(_ view: NSView) {
         let viewClassName = String(describing: type(of: view))
@@ -53,7 +53,7 @@ import Cocoa
 
     private func setupScrollTopEdgeView(targetView: NSView, height: Int) {
         if scrollTopEdgeView == nil {
-            scrollTopEdgeView = ScrollTopEdgeView(
+            scrollTopEdgeView = ScrollTopEdgeGaussianBlurView(
                 frame: CGRect(x: 0, y: 0,
                               width: Int(bounds.width),
                               height: height))
