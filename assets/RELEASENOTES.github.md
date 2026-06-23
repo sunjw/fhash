@@ -18,6 +18,7 @@ winget install fHash
 
 macOS
 Download from Assets
+> Note: The macOS build is currently unsigned. On the first run, macOS will block the app (Gatekeeper). To open it, go to **System Settings → Privacy & Security**, scroll to the bottom, and click **Open Anyway** for fHash.
 
 Windows 7 and later (legacy 2.4.0)
 https://github.com/sunjw/fhash/releases/tag/3.0.1
