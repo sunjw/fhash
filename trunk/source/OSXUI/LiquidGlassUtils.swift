@@ -36,15 +36,15 @@ public enum LiquidGlassUI {
     }
 
     func setupTitlebarOverlay(_ toView: MainView) {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
 
         toView.addSubview(self)
 
         NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: toView.topAnchor),
-            self.leadingAnchor.constraint(equalTo: toView.leadingAnchor),
-            self.trailingAnchor.constraint(equalTo: toView.trailingAnchor),
-            self.heightAnchor.constraint(equalToConstant: TitlebarOverlayView.height)
+            topAnchor.constraint(equalTo: toView.topAnchor),
+            leadingAnchor.constraint(equalTo: toView.leadingAnchor),
+            trailingAnchor.constraint(equalTo: toView.trailingAnchor),
+            heightAnchor.constraint(equalToConstant: TitlebarOverlayView.height)
         ])
     }
 }

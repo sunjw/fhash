@@ -47,7 +47,7 @@ import Cocoa
         }
 
         // Autosave position.
-        self.windowFrameAutosaveName = "MainWindowFrame"
+        windowFrameAutosaveName = "MainWindowFrame"
     }
 
     func getMainViewController() -> MainViewController? {
