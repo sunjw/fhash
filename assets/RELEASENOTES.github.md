@@ -1,10 +1,8 @@
 ### Change log
 Windows WinUI: update components
-macOS: adopt Tahoe design
 Fix other issues
 
 Windows WinUI: 更新组件
-macOS: 适配 Tahoe 设计
 修复其它问题
 
 ### Download & Install
@@ -18,16 +16,16 @@ winget install fHash
 
 macOS
 Download from Assets
-> Note: The macOS build is currently unsigned. On the first run, macOS will block the app (Gatekeeper). To open it, go to **System Settings → Privacy & Security**, scroll to the bottom, and click **Open Anyway** for fHash.
+> Note: The macOS build is currently unsigned. On the first run, the Gatekeeper will block the app. To open it, go to **System Settings → Privacy & Security**, scroll to the bottom, and click **Open Anyway** for fHash. Or, run `xattr -dr com.apple.quarantine /Applications/fHash.app` in Terminal to remove the Gatekeeper quarantine attribute. Use these workarounds at your own risk.
 
 Windows 7 and later (legacy 2.4.0)
 https://github.com/sunjw/fhash/releases/tag/3.0.1
 
 ### Hash
-Name: fHash-26.6.44-macOS.dmg
-File Size: 3626739 Byte(s) (3.63 MB)
-Modified Date: 2026-05-27 12:26
-MD5: 7FB382933B3B831C40C667B772DC510C
-SHA1: 4EC94755FD2EA143391731D8C336407E41249F5E
-SHA256: 984A0CB07E4620BF0A64A33442176C93194E6566E72BE674527A85D43674CE8B
-SHA512: DD4CBE9B18F42FB6592A3898B747D9F2684C9B249CE85546722FA26B7212F06AF14576B5D2BB79DDD053F33CF6DB5217192C7954054F647EEB689AE5B0E5A782
+Name: fHash-26.7.46-macOS.dmg
+File Size: 2872789 Byte(s) (2.87 MB)
+Modified Date: 2026-06-10 14:28
+MD5: 87B86860D8575BD22DF9F3C1D11A617F
+SHA1: 44D04CA3C50C6E706F21D5F3CA3396FE74ADFE58
+SHA256: 115051D5DC94B4DA1B0867F7AFC71274C966E65B2501D092A261E7ACF1CEFC20
+SHA512: 06E7CDDC44F6B8E7942282FDA94F74B93A78F6280CC367F31385AFB8BBE1C1255ADDBBBAAF183BF90A87F6524532F8A2C0D8045283D34A3809C2EEF8AC3A1F56
