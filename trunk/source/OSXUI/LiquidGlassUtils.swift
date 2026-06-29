@@ -146,7 +146,7 @@ public enum LiquidGlassUI {
     private func setupMaskLayer() {
         updateMaskLayerColors()
 
-        maskLayer.locations = [0.0, 0.6, 1.0]
+        maskLayer.locations = [0.0, 0.5, 1.0]
         maskLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
         maskLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
 
