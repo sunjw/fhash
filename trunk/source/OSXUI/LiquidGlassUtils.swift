@@ -138,8 +138,8 @@ public enum LiquidGlassUI {
     private func updateTintLayerColors() {
         // With this layer setup, y=0 behaves as bottom and y=1 as top.
         tintLayer.colors = [
-            resolvedTintColor(alpha: 0.0).cgColor,
-            resolvedTintColor(alpha: 0.95).cgColor
+            resolvedTintColor(alpha: 0.0),
+            resolvedTintColor(alpha: 0.95)
         ]
     }
 
@@ -157,31 +157,24 @@ public enum LiquidGlassUI {
         // Bottom fades out, top remains visible.
         maskLayer.colors = [
             NSColor.clear.cgColor,
-            resolvedTintColor().cgColor,
-            resolvedTintColor().cgColor
+            resolvedTintColor(),
+            resolvedTintColor()
         ]
     }
 
     private func updateAppearanceColors() {
         // Workaround
-        layer?.backgroundColor = resolvedTintColor(alpha: 0.001).cgColor
+        layer?.backgroundColor = resolvedTintColor(alpha: 0.001)
         updateTintLayerColors()
         updateMaskLayerColors()
     }
 
-    private func resolvedTintColor(alpha: CGFloat = 1.0) -> NSColor {
+    private func resolvedTintColor(alpha: CGFloat = 1.0) -> CGColor {
         var resolvedColor = tintColor.withAlphaComponent(alpha)
         effectiveAppearance.performAsCurrentDrawingAppearance {
             resolvedColor = tintColor.withAlphaComponent(alpha)
         }
-        // if let deviceColor = resolvedColor.usingColorSpace(.deviceRGB) {
-        //     NSLog("resolvedTintColor rgba=(%.4f, %.4f, %.4f, %.4f)",
-        //           deviceColor.redComponent,
-        //           deviceColor.greenComponent,
-        //           deviceColor.blueComponent,
-        //           deviceColor.alphaComponent)
-        // }
-        return resolvedColor
+        return resolvedColor.cgColor
     }
 
     override func layout() {
