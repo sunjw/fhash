@@ -652,7 +652,12 @@ private struct MainViewControllerState: OptionSet {
         strAppend += " "
         strAppend += result.strPath
         strAppend += "\n"
+        let oldLength = nsmutAttrString.length
         MacSwiftUtils.AppendStringToNSMutableAttributedString(nsmutAttrString, strAppend)
+        nsmutAttrString.addAttribute(.toolTip,
+                                     value: result.strPath,
+                                     range: NSRange(location: oldLength,
+                                                    length: (nsmutAttrString.length - oldLength)))
     }
 
     private func appendFileMetaToNSMutableAttributedString(_ result: ResultDataSwift,
