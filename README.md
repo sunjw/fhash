@@ -24,6 +24,12 @@ Project site: https://github.com/sunjw/fhash
 winget install fHash
 ```
 
+#### brew
+```
+brew tap sunjw/tap
+brew install --cask fhash
+```
+
 ### LICENSE
 GPL 2.0 for codes hosted on GitHub.   
 Different licenses and agreements may be used for different distribution sites
