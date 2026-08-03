@@ -6,16 +6,18 @@ Windows WinUI: 更新组件
 修复其它问题
 
 ### Download & Install
-Windows 10 and later (Store)
+Windows 10 and later
 [![Image of Microsoft Store](https://raw.githubusercontent.com/sunjw/fhash/master/assets/Microsoft_English_L.png)](https://www.microsoft.com/store/apps/9P4CLCRV93DQ)
-
-Windows 10 and later (winget)
 ```
 winget install fHash
 ```
 
 macOS
-Download from Assets
+Download from release assets or using Homebrew
+```
+brew tap sunjw/tap
+brew install --cask fhash
+```
 > Note: The macOS build is currently unsigned. On the first run, the Gatekeeper will block the app. To open it, go to **System Settings → Privacy & Security**, scroll to the bottom, and click **Open Anyway** for fHash. Or, run `xattr -dr com.apple.quarantine /Applications/fHash.app` in Terminal to remove the Gatekeeper quarantine attribute. Use these workarounds at your own risk.
 
 Windows 7 and later (legacy 2.4.0)
