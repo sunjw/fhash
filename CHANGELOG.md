@@ -1,3 +1,7 @@
+26.8.48 (157) 🏞️ 2026-08-03  
+Windows WinUI: update components  
+Fix other issues  
+
 26.7.46 (155) ✨ 2026-06-26  
 Windows WinUI: update components  
 Fix other issues  
