@@ -47,6 +47,6 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
         window?.setContentSize(AboutSwiftUIView.contentSize)
 
         // Center the window on the screen.
-        MacSwiftUtils.CenterWindowOnMainScreen(window)
+        MacSwiftUtils.CenterWindowOnScreen(window)
     }
 }

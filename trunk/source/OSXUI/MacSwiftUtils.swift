@@ -167,7 +167,7 @@ class MacSwiftUtils {
         return FindFirstDescendantViewFrom(from, withClassName: name)
     }
 
-    @MainActor class func CenterWindowOnMainScreen(_ window: NSWindow?) {
+    @MainActor class func CenterWindowOnScreen(_ window: NSWindow?) {
         guard let window, let screen = window.screen ?? NSScreen.main else {
             return
         }
