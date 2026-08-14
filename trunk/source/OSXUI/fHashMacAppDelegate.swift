@@ -58,11 +58,16 @@ import Cocoa
     }
 
     @IBAction func showAboutWindow(_ sender: Any) {
-        if aboutWindowController == nil {
-            let storyboard = NSStoryboard(name: "Main", bundle: nil)
-            aboutWindowController = storyboard.instantiateController(withIdentifier: "AboutWindowController") as? AboutWindowController
+        if MacSwiftUtils.IsSystemEarlierThan(26, 0) {
+            if aboutWindowController == nil {
+                let storyboard = NSStoryboard(name: "Main", bundle: nil)
+                aboutWindowController = storyboard.instantiateController(withIdentifier: "AboutWindowController") as? AboutWindowController
+            }
+            aboutWindowController?.showWindow(sender)
+            aboutWindowController?.window?.makeKeyAndOrderFront(sender)
+        } else {
+            AboutSwiftUIWindowController.shared.showWindow(sender)
+            AboutSwiftUIWindowController.shared.window?.makeKeyAndOrderFront(sender)
         }
-        aboutWindowController?.showWindow(sender)
-        aboutWindowController?.window?.makeKeyAndOrderFront(sender)
     }
 }
