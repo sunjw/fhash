@@ -12,6 +12,8 @@ import Cocoa
 @objc(fHashMacAppDelegate) class fHashMacAppDelegate: NSObject, NSApplicationDelegate {
     weak var mainViewController: MainViewController?
 
+    private var aboutWindowController: AboutWindowController?
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
 
@@ -56,5 +58,11 @@ import Cocoa
     }
 
     @IBAction func showAboutWindow(_ sender: Any) {
+        if aboutWindowController == nil {
+            let storyboard = NSStoryboard(name: "Main", bundle: nil)
+            aboutWindowController = storyboard.instantiateController(withIdentifier: "AboutWindowController") as? AboutWindowController
+        }
+        aboutWindowController?.showWindow(sender)
+        aboutWindowController?.window?.makeKeyAndOrderFront(sender)
     }
 }

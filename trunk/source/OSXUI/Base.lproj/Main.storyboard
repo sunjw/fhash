@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="pby-Yy-FUo">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="gn5-6V-AbC" customClass="AboutWindowController" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="AboutWindowController" showSeguePresentationStyle="single" id="gn5-6V-AbC" customClass="AboutWindowController" sceneMemberID="viewController">
                     <window key="window" title="AboutWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="6Ix-nh-iPf">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="460"/>
