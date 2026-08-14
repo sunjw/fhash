@@ -19,7 +19,6 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
             backing: .buffered,
             defer: false)
         window.isReleasedWhenClosed = false
-        window.center()
         self.init(window: window)
 
         // init(window:) skips nib loading, call windowDidLoad() by ourself.
@@ -44,5 +43,10 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
         )
         aboutSwiftHostingController.safeAreaRegions = []
         window?.contentViewController = aboutSwiftHostingController
+        // Force refresh content size, it is a must for the center on screen.
+        window?.setContentSize(AboutSwiftUIView.contentSize)
+
+        // Center the window on the screen.
+        MacSwiftUtils.CenterWindowOnMainScreen(window)
     }
 }
