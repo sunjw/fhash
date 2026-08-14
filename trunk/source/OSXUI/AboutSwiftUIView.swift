@@ -55,18 +55,15 @@ struct AboutSwiftUIView: View {
             .frame(width: 308, height: 165, alignment: .topLeading)
     }
 
+    @ViewBuilder
     private var homePageLinkView: some View {
-        Link(homePageLinkTitle, destination: homePageURL)
-            .font(.system(size: 13))
-            .frame(height: 18)
-            .contentShape(Rectangle())
-            .onHover { hovering in
-                if hovering {
-                    NSCursor.pointingHand.push()
-                } else {
-                    NSCursor.pop()
-                }
-            }
+        if #available(macOS 15.0, *) {
+            Link(homePageLinkTitle, destination: homePageURL)
+                .font(.system(size: 13))
+                .frame(height: 18)
+                .contentShape(Rectangle())
+                .pointerStyle(.link)
+        }
     }
 
     @ViewBuilder
