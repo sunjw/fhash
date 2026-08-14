@@ -37,7 +37,7 @@ struct AboutSwiftUIView: View {
             .overlay(alignment: .bottomTrailing) {
                 closeButtonView
                     .padding(.trailing, 20)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 16)
             }
     }
 
@@ -67,7 +67,7 @@ struct AboutSwiftUIView: View {
             Button(MacSwiftUtils.GetStringFromRes("BUTTON_OK"), action: onClose)
                 .keyboardShortcut(.defaultAction)
                 .buttonStyle(.glassProminent)
-                .controlSize(.large)
+                .controlSize(.extraLarge)
         }
     }
 
