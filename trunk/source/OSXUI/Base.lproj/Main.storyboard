@@ -130,7 +130,7 @@
                                         <menuItem title="About fHash" image="info.circle" catalog="system" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <segue destination="gn5-6V-AbC" kind="show" id="EI6-Y8-ZkJ"/>
+                                                <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="QE7-5c-q9B"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>

@@ -54,4 +54,7 @@ import Cocoa
         // Menu bar "open"
         mainViewController?.openFiles()
     }
+
+    @IBAction func showAboutWindow(_ sender: Any) {
+    }
 }
