@@ -22,7 +22,7 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
         window.center()
         self.init(window: window)
 
-        // init(window:) skips nib loading, so the framework never calls windowDidLoad() on its own.
+        // init(window:) skips nib loading, call windowDidLoad() by ourself.
         windowDidLoad()
     }
 
