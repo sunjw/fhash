@@ -14,7 +14,7 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
 
     private convenience init() {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 430, height: 272),
+            contentRect: NSRect(origin: .zero, size: AboutSwiftUIView.contentSize),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false)
@@ -37,10 +37,12 @@ class AboutSwiftUIWindowController: NoTitlebarWindowController {
         window?.isOpaque = false
         window?.backgroundColor = .clear
 
-        window?.contentViewController = NSHostingController(
+        let aboutSwiftHostingController = NSHostingController(
             rootView: AboutSwiftUIView(onClose: { [weak self] in
                 self?.window?.close()
             })
         )
+        aboutSwiftHostingController.safeAreaRegions = []
+        window?.contentViewController = aboutSwiftHostingController
     }
 }

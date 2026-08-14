@@ -11,7 +11,7 @@ import SwiftUI
 
 // Pure SwiftUI About view content, the same to AboutViewController.
 struct AboutSwiftUIView: View {
-    private static let contentSize = NSSize(width: 430, height: 272)
+    static let contentSize = NSSize(width: 430, height: 272)
 
     let onClose: () -> Void
 
