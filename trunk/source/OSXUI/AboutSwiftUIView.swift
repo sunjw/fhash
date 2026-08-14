@@ -32,7 +32,7 @@ struct AboutSwiftUIView: View {
             .overlay(alignment: .bottomLeading) {
                 homePageLinkView
                     .padding(.leading, 20)
-                    .padding(.bottom, 22)
+                    .padding(.bottom, 23)
             }
             .overlay(alignment: .bottomTrailing) {
                 closeButtonView
@@ -58,7 +58,15 @@ struct AboutSwiftUIView: View {
     private var homePageLinkView: some View {
         Link(homePageLinkTitle, destination: homePageURL)
             .font(.system(size: 13))
-            .frame(height: 17)
+            .frame(height: 18)
+            .contentShape(Rectangle())
+            .onHover { hovering in
+                if hovering {
+                    NSCursor.pointingHand.push()
+                } else {
+                    NSCursor.pop()
+                }
+            }
     }
 
     @ViewBuilder
