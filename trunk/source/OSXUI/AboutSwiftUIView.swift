@@ -9,7 +9,7 @@
 import Cocoa
 import SwiftUI
 
-/// Pure SwiftUI re-implementation of the About window content (see AboutViewController), used on macOS 26+.
+// Pure SwiftUI About view content, the same to AboutViewController.
 struct AboutSwiftUIView: View {
     private static let contentSize = NSSize(width: 430, height: 272)
 
@@ -68,13 +68,6 @@ struct AboutSwiftUIView: View {
                 .keyboardShortcut(.defaultAction)
                 .buttonStyle(.glassProminent)
                 .controlSize(.large)
-                .frame(minWidth: 86, minHeight: 20, maxHeight: 20)
-        } else {
-            Button(MacSwiftUtils.GetStringFromRes("BUTTON_OK"), action: onClose)
-                .keyboardShortcut(.defaultAction)
-                .buttonStyle(.borderedProminent)
-                .controlSize(.regular)
-                .frame(minWidth: 86, minHeight: 20, maxHeight: 20)
         }
     }
 
@@ -114,17 +107,16 @@ struct AboutSwiftUIView: View {
 }
 
 private struct AboutGlassBackground: View {
-    // macOS 26+ uses the native Liquid Glass material,
-    // earlier systems fall back to a translucent material.
     var body: some View {
         if #available(macOS 26.0, *) {
             Rectangle()
                 .fill(.clear)
                 .glassEffect(.regular, in: Rectangle())
-        } else {
-            Rectangle()
-                .fill(.regularMaterial)
         }
     }
+}
+
+#Preview {
+    AboutSwiftUIView(onClose: {})
 }
 
