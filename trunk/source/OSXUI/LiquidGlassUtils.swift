@@ -18,6 +18,11 @@ public enum LiquidGlassUI {
         }
         return true
     }
+
+    static func enableFakeSoftEdge() -> Bool {
+        return true
+        //return false
+    }
 }
 
 @objc(TitlebarOverlayView) class TitlebarOverlayView: NSView {

@@ -27,7 +27,9 @@ import Cocoa
         }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
-        window?.titlebarAppearsTransparent = true
+        if LiquidGlassUI.enableFakeSoftEdge() {
+            window?.titlebarAppearsTransparent = true
+        }
         window?.isOpaque = false
         window?.backgroundColor = .clear
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {

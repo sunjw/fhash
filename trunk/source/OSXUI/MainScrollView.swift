@@ -18,12 +18,14 @@ import Cocoa
 
         if (!MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
             // NSScrollPocket may be added multiple times
-            let targetViewNames = ["NSScrollPocket"]
-            if targetViewNames.contains(viewClassName) {
-                DispatchQueue.main.async(execute: { [view] in
-                    self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
-                    //self.setupScrollTopEdgeView(targetView: view, height: 60)
-                })
+            if LiquidGlassUI.enableFakeSoftEdge() {
+                let targetViewNames = ["NSScrollPocket"]
+                if targetViewNames.contains(viewClassName) {
+                    DispatchQueue.main.async(execute: { [view] in
+                        self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
+                        //self.setupScrollTopEdgeView(targetView: view, height: 60)
+                    })
+                }
             }
         }
 
