@@ -9,8 +9,6 @@
 import Cocoa
 
 @objc(MainScrollView) class MainScrollView: NSScrollView {
-    static let TitlebarViewHeight = 32
-
     weak var mainViewController: MainViewController?
 
     override func addSubview(_ view: NSView) {
