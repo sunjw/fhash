@@ -67,10 +67,10 @@ public enum LiquidGlassUI {
 }
 
 @objc(TrafficLightGlassPillView) class TrafficLightGlassPillView: NSView {
-    static let pillWidth: CGFloat = 82
-    static let pillHeight: CGFloat = 32
-    static let leadingInset: CGFloat = 8
-    static let topInset: CGFloat = 10
+    static let pillWidth: CGFloat = 80
+    static let pillHeight: CGFloat = 34
+    static let leadingInset: CGFloat = 9
+    static let topInset: CGFloat = 9
 
     private var pendingVisible: Bool?
 
@@ -83,9 +83,10 @@ public enum LiquidGlassUI {
 
         let effectView = MacSwiftUtils.SetupEffectViewBackground(self)
         let cornerRadius = TrafficLightGlassPillView.pillHeight / 2
-        if #available(macOS 26.0, *) {
+        if #available(macOS 27.0, *) {
             if let glassEffectView = effectView as? NSGlassEffectView {
                 glassEffectView.cornerRadius = cornerRadius
+                glassEffectView.style = .regular
             }
         }
 
@@ -110,7 +111,7 @@ public enum LiquidGlassUI {
         let target: CGFloat = toVisible ? 1.0 : 0.0
 
         if animated {
-            let fadeDuration: TimeInterval = 0.15
+            let fadeDuration: TimeInterval = 0.16
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = fadeDuration
                 ctx.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
