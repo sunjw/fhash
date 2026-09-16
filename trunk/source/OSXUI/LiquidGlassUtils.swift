@@ -12,6 +12,7 @@ import QuartzCore
 public enum LiquidGlassUI {
     private static let forceNoLargeRounded = false
     private static let forceNoFakeSoftEdge = false
+    private static let forceNoTrafficLightGlass = false
 
     static func enableLargeRounded() -> Bool {
         if (forceNoLargeRounded || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
@@ -22,6 +23,13 @@ public enum LiquidGlassUI {
 
     static func enableFakeSoftEdge() -> Bool {
         if (forceNoFakeSoftEdge || MacSwiftUtils.IsSystemEarlierThan(27, 0)) {
+            return false
+        }
+        return true
+    }
+
+    static func enableTrafficLightGlass() -> Bool {
+        if (forceNoTrafficLightGlass || MacSwiftUtils.IsSystemEarlierThan(27, 0)) {
             return false
         }
         return true
@@ -54,6 +62,49 @@ public enum LiquidGlassUI {
             leadingAnchor.constraint(equalTo: toView.leadingAnchor),
             trailingAnchor.constraint(equalTo: toView.trailingAnchor),
             heightAnchor.constraint(equalToConstant: TitlebarOverlayView.height)
+        ])
+    }
+}
+
+@objc(TrafficLightGlassPillView) class TrafficLightGlassPillView: NSView {
+    static let pillWidth: CGFloat = 82
+    static let pillHeight: CGFloat = 32
+    static let leadingInset: CGFloat = 8
+    static let topInset: CGFloat = 10
+
+    override var isOpaque: Bool {
+        false
+    }
+
+    override var mouseDownCanMoveWindow: Bool {
+        true
+    }
+
+    override func resetCursorRects() {
+        discardCursorRects()
+        addCursorRect(bounds, cursor: .arrow)
+    }
+
+    func setupTrafficLightPill(_ toView: NSView) {
+        translatesAutoresizingMaskIntoConstraints = false
+
+        let effectView = MacSwiftUtils.SetupEffectViewBackground(self)
+        let cornerRadius = TrafficLightGlassPillView.pillHeight / 2
+        if #available(macOS 26.0, *) {
+            if let glassEffectView = effectView as? NSGlassEffectView {
+                glassEffectView.cornerRadius = cornerRadius
+            }
+        }
+
+        toView.addSubview(self)
+
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: toView.topAnchor,
+                                 constant: TrafficLightGlassPillView.topInset),
+            leadingAnchor.constraint(equalTo: toView.leadingAnchor,
+                                     constant: TrafficLightGlassPillView.leadingInset),
+            widthAnchor.constraint(equalToConstant: TrafficLightGlassPillView.pillWidth),
+            heightAnchor.constraint(equalToConstant: TrafficLightGlassPillView.pillHeight)
         ])
     }
 }

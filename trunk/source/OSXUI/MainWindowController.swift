@@ -27,7 +27,7 @@ import Cocoa
         }
 
         // Prepare for NSVisualEffectView/NSGlassEffectView background.
-        if LiquidGlassUI.enableFakeSoftEdge() {
+        if LiquidGlassUI.enableFakeSoftEdge() || LiquidGlassUI.enableTrafficLightGlass() {
             window?.titlebarAppearsTransparent = true
         }
         window?.isOpaque = false

@@ -99,6 +99,12 @@ private struct MainViewControllerState: OptionSet {
         // Setup NSVisualEffectView/NSGlassEffectView background.
         _ = MacSwiftUtils.SetupEffectViewBackground(mainView)
 
+        if LiquidGlassUI.enableTrafficLightGlass() {
+            // Setup NSGlassEffectView for traffic light.
+            let trafficLightPill = TrafficLightGlassPillView()
+            trafficLightPill.setupTrafficLightPill(mainView)
+        }
+
         if LiquidGlassUI.enableLargeRounded() {
             // Large rounded ui
             let titlebarOverlayView = TitlebarOverlayView()
