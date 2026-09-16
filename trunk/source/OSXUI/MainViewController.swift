@@ -236,12 +236,14 @@ private struct MainViewControllerState: OptionSet {
         // Update main text.
         self.updateMainTextView()
 
-        // Subscribe mainClipView bounds change (scrolled).
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(handleMainScrollViewScrolled),
-            name: NSView.boundsDidChangeNotification,
-            object: mainClipView)
+        if LiquidGlassUI.enableTrafficLightGlass() {
+            // Subscribe mainClipView bounds change (scrolled).
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(handleMainScrollViewScrolled),
+                name: NSView.boundsDidChangeNotification,
+                object: mainClipView)
+        }
     }
 
     deinit {

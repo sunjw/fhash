@@ -11,8 +11,8 @@ import QuartzCore
 
 public enum LiquidGlassUI {
     private static let forceNoLargeRounded = false
-    private static let forceNoFakeSoftEdge = true
-    private static let forceNoTrafficLightGlass = false
+    private static let forceNoFakeSoftEdge = false
+    private static let forceNoTrafficLightGlass = true
 
     static func enableLargeRounded() -> Bool {
         if (forceNoLargeRounded || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
