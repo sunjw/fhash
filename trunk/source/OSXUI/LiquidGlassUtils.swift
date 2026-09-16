@@ -11,7 +11,7 @@ import QuartzCore
 
 public enum LiquidGlassUI {
     private static let forceNoLargeRounded = false
-    private static let forceNoFakeSoftEdge = false
+    private static let forceNoFakeSoftEdge = true
     private static let forceNoTrafficLightGlass = false
 
     static func enableLargeRounded() -> Bool {
@@ -71,19 +71,6 @@ public enum LiquidGlassUI {
     static let pillHeight: CGFloat = 32
     static let leadingInset: CGFloat = 8
     static let topInset: CGFloat = 10
-
-    override var isOpaque: Bool {
-        false
-    }
-
-    override var mouseDownCanMoveWindow: Bool {
-        true
-    }
-
-    override func resetCursorRects() {
-        discardCursorRects()
-        addCursorRect(bounds, cursor: .arrow)
-    }
 
     func setupTrafficLightPill(_ toView: NSView) {
         translatesAutoresizingMaskIntoConstraints = false
