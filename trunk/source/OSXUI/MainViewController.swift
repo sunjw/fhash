@@ -331,7 +331,6 @@ private struct MainViewControllerState: OptionSet {
 
     func openFiles() {
         let openPanel = NSOpenPanel()
-        openPanel.showsResizeIndicator = true
         openPanel.showsHiddenFiles = false
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = true
