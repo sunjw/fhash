@@ -72,8 +72,6 @@ public enum LiquidGlassUI {
     static let leadingInset: CGFloat = 8
     static let topInset: CGFloat = 10
 
-    private let fadeDuration: TimeInterval = 0.18
-
     func setupTrafficLightPill(_ toView: NSView) {
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -104,6 +102,7 @@ public enum LiquidGlassUI {
         guard abs(alphaValue - target) > 0.01 else { return }
 
         if animated {
+            let fadeDuration: TimeInterval = 0.1
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = fadeDuration
                 ctx.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)

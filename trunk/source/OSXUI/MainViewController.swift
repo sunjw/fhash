@@ -236,10 +236,10 @@ private struct MainViewControllerState: OptionSet {
         // Update main text.
         self.updateMainTextView()
 
-        // Subscribe clipView bounds change.
+        // Subscribe mainClipView bounds change (scrolled).
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(handleScrollChange),
+            selector: #selector(handleMainScrollViewScrolled),
             name: NSView.boundsDidChangeNotification,
             object: mainClipView)
     }
@@ -1018,9 +1018,9 @@ private struct MainViewControllerState: OptionSet {
         return false
     }
 
-    @objc private func handleScrollChange() {
+    @objc private func handleMainScrollViewScrolled() {
         guard let glassPillView = trafficLightGlassPillView else { return }
-        let scrolled = mainClipView.bounds.origin.y > 0.5
+        let scrolled = mainClipView.bounds.origin.y > -42
         glassPillView.setVisible(scrolled, animated: true)
     }
 }
