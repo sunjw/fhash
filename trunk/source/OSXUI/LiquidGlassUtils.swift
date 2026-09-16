@@ -72,10 +72,14 @@ public enum LiquidGlassUI {
     static let leadingInset: CGFloat = 8
     static let topInset: CGFloat = 10
 
+    private var pendingVisible: Bool?
+
     func setupTrafficLightPill(_ toView: NSView) {
         translatesAutoresizingMaskIntoConstraints = false
 
+        // Start hidden; will fade in once the scroll view leaves the top.
         alphaValue = 0
+        pendingVisible = false
 
         let effectView = MacSwiftUtils.SetupEffectViewBackground(self)
         let cornerRadius = TrafficLightGlassPillView.pillHeight / 2
@@ -97,12 +101,16 @@ public enum LiquidGlassUI {
         ])
     }
 
-    func setVisible(_ visible: Bool, animated: Bool) {
-        let target: CGFloat = visible ? 1.0 : 0.0
-        guard abs(alphaValue - target) > 0.01 else { return }
+    func setVisible(_ toVisible: Bool, animated: Bool) {
+        if pendingVisible == toVisible {
+            return
+        }
+        pendingVisible = toVisible
+
+        let target: CGFloat = toVisible ? 1.0 : 0.0
 
         if animated {
-            let fadeDuration: TimeInterval = 0.1
+            let fadeDuration: TimeInterval = 0.15
             NSAnimationContext.runAnimationGroup({ ctx in
                 ctx.duration = fadeDuration
                 ctx.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
