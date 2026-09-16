@@ -72,8 +72,12 @@ public enum LiquidGlassUI {
     static let leadingInset: CGFloat = 8
     static let topInset: CGFloat = 10
 
+    private let fadeDuration: TimeInterval = 0.18
+
     func setupTrafficLightPill(_ toView: NSView) {
         translatesAutoresizingMaskIntoConstraints = false
+
+        alphaValue = 0
 
         let effectView = MacSwiftUtils.SetupEffectViewBackground(self)
         let cornerRadius = TrafficLightGlassPillView.pillHeight / 2
@@ -93,6 +97,21 @@ public enum LiquidGlassUI {
             widthAnchor.constraint(equalToConstant: TrafficLightGlassPillView.pillWidth),
             heightAnchor.constraint(equalToConstant: TrafficLightGlassPillView.pillHeight)
         ])
+    }
+
+    func setVisible(_ visible: Bool, animated: Bool) {
+        let target: CGFloat = visible ? 1.0 : 0.0
+        guard abs(alphaValue - target) > 0.01 else { return }
+
+        if animated {
+            NSAnimationContext.runAnimationGroup({ ctx in
+                ctx.duration = fadeDuration
+                ctx.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                self.animator().alphaValue = target
+            })
+        } else {
+            alphaValue = target
+        }
     }
 }
 

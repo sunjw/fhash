@@ -61,6 +61,8 @@ private struct MainViewControllerState: OptionSet {
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
 
+    private weak var trafficLightGlassPillView: TrafficLightGlassPillView?
+
     private var state: MainViewControllerState = .NONE
 
     private var mainFont: NSFont?
@@ -101,8 +103,9 @@ private struct MainViewControllerState: OptionSet {
 
         if LiquidGlassUI.enableTrafficLightGlass() {
             // Setup NSGlassEffectView for traffic light.
-            let trafficLightPill = TrafficLightGlassPillView()
-            trafficLightPill.setupTrafficLightPill(mainView)
+            let glassPillView = TrafficLightGlassPillView()
+            glassPillView.setupTrafficLightPill(mainView)
+            trafficLightGlassPillView = glassPillView
         }
 
         if LiquidGlassUI.enableLargeRounded() {
@@ -232,6 +235,17 @@ private struct MainViewControllerState: OptionSet {
 
         // Update main text.
         self.updateMainTextView()
+
+        // Subscribe clipView bounds change.
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleScrollChange),
+            name: NSView.boundsDidChangeNotification,
+            object: mainClipView)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillDisappear() {
@@ -1002,5 +1016,11 @@ private struct MainViewControllerState: OptionSet {
         }
 
         return false
+    }
+
+    @objc private func handleScrollChange() {
+        guard let glassPillView = trafficLightGlassPillView else { return }
+        let scrolled = mainClipView.bounds.origin.y > 0.5
+        glassPillView.setVisible(scrolled, animated: true)
     }
 }
