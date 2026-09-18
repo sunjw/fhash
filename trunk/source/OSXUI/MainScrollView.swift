@@ -23,7 +23,7 @@ import Cocoa
                 if targetViewNames.contains(viewClassName) {
                     DispatchQueue.main.async(execute: { [view] in
                         //self.setupScrollTopEdgeView(targetView: view, height: Int(view.frame.height))
-                        self.setupScrollTopEdgeView(targetView: view, height: 62)
+                        self.setupScrollTopEdgeView(targetView: view, height: 66)
                     })
                 }
             }
@@ -74,5 +74,13 @@ import Cocoa
             scrollTopEdgeView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollTopEdgeView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         ])
+
+        self.setScrollTopEdgeViewVisible(false)
+    }
+
+    func setScrollTopEdgeViewVisible(_ toVisible: Bool) {
+        guard let scrollTopEdgeView else { return }
+        let target: CGFloat = toVisible ? 1.0 : 0.0
+        scrollTopEdgeView.alphaValue = target
     }
 }

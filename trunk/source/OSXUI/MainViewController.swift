@@ -61,7 +61,7 @@ private struct MainViewControllerState: OptionSet {
     private var mainText: NSMutableAttributedString?
     private var nsAttrStrNoPreparing: NSAttributedString?
 
-    private weak var trafficLightGlassPillView: TrafficLightGlassPillView?
+    private var trafficLightGlassPillView: TrafficLightGlassPillView?
 
     private var state: MainViewControllerState = .NONE
 
@@ -236,7 +236,7 @@ private struct MainViewControllerState: OptionSet {
         // Update main text.
         self.updateMainTextView()
 
-        if LiquidGlassUI.enableTrafficLightGlass() {
+        if LiquidGlassUI.enableFakeSoftEdge() || LiquidGlassUI.enableTrafficLightGlass() {
             // Subscribe mainClipView bounds change (scrolled).
             NotificationCenter.default.addObserver(
                 self,
@@ -1021,8 +1021,16 @@ private struct MainViewControllerState: OptionSet {
     }
 
     @objc private func handleMainScrollViewScrolled() {
-        guard let glassPillView = trafficLightGlassPillView else { return }
-        let scrolled = mainClipView.bounds.origin.y > -42
-        glassPillView.setVisible(scrolled, animated: true)
+        // mainClipView.bounds.origin.y = -50 is not scrolled.
+        if LiquidGlassUI.enableFakeSoftEdge() {
+            let scrolled = mainClipView.bounds.origin.y > -48
+            mainScrollView.setScrollTopEdgeViewVisible(scrolled)
+        }
+
+        if LiquidGlassUI.enableTrafficLightGlass() {
+            guard let glassPillView = trafficLightGlassPillView else { return }
+            let scrolled = mainClipView.bounds.origin.y > -42
+            glassPillView.setVisible(scrolled, animated: true)
+        }
     }
 }
