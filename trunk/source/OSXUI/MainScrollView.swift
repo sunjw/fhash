@@ -75,12 +75,15 @@ import Cocoa
             scrollTopEdgeView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         ])
 
-        self.setScrollTopEdgeViewVisible(false)
+        self.updateScrollTopEdgeViewVisible()
     }
 
-    func setScrollTopEdgeViewVisible(_ toVisible: Bool) {
-        guard let scrollTopEdgeView else { return }
-        let target: CGFloat = toVisible ? 1.0 : 0.0
-        scrollTopEdgeView.alphaValue = target
+    func updateScrollTopEdgeViewVisible() {
+        guard let scrollTopEdgeView, let mainViewController else { return }
+        // mainClipView.bounds.origin.y = -50 is not scrolled.
+        let scrolled = mainViewController.mainClipView.bounds.origin.y > -48
+        let newAlpha: CGFloat = scrolled ? 1.0 : 0.0
+        //NSLog("updateScrollTopEdgeViewVisible, newAlpha=%.1f", newAlpha)
+        scrollTopEdgeView.alphaValue = newAlpha
     }
 }

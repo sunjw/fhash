@@ -1023,8 +1023,7 @@ private struct MainViewControllerState: OptionSet {
     @objc private func handleMainScrollViewScrolled() {
         // mainClipView.bounds.origin.y = -50 is not scrolled.
         if LiquidGlassUI.enableFakeSoftEdge() {
-            let scrolled = mainClipView.bounds.origin.y > -48
-            mainScrollView.setScrollTopEdgeViewVisible(scrolled)
+            mainScrollView.updateScrollTopEdgeViewVisible()
         }
 
         if LiquidGlassUI.enableTrafficLightGlass() {
