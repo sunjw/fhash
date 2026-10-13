@@ -1,3 +1,9 @@
+26.10.56 (165) 🌉 2026-10-13  
+Windows WinUI: update components  
+macOS: support for macOS 15 and later  
+macOS: adopt Golden Gate design  
+Fix other issues  
+
 26.9.50 (158) 🎒 2026-09-01  
 Windows WinUI: update components  
 Fix other issues  
