@@ -49,7 +49,8 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet weak var verifyButton: NSButton!
     @IBOutlet weak var verifyButtonBottomConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var upperCaseButton: NSButton!
+    @IBOutlet weak var upperCaseButton: NSSwitch!
+    @IBOutlet weak var upperCaseLabel: NSTextField!
     @IBOutlet weak var upperCaseButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var upperCaseButtonBottomConstraint: NSLayoutConstraint!
 
@@ -150,7 +151,7 @@ private struct MainViewControllerState: OptionSet {
 
         // Set buttons title.
         verifyButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_VERIFY")
-        upperCaseButton.title = MacSwiftUtils.GetStringFromRes("MAINDLG_UPPER_HASH")
+        upperCaseLabel.stringValue = MacSwiftUtils.GetStringFromRes("MAINDLG_UPPER_HASH")
 
         // Set open button as default.
         openButton.keyEquivalent = "\r"
@@ -907,7 +908,7 @@ private struct MainViewControllerState: OptionSet {
         mainTextView.performTextFinderAction(self)
     }
 
-    @IBAction func uppercaseButtonClicked(_ sender: NSButton) {
+    @IBAction func uppercaseButtonClicked(_ sender: NSSwitch) {
         if state == .CALC_FINISH {
             self.refreshResultText()
         }
