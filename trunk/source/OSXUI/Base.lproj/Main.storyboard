@@ -614,6 +614,7 @@
                         <outlet property="upperCaseButtonBottomConstraint" destination="Ydj-cY-H9E" id="x1f-hI-0ce"/>
                         <outlet property="upperCaseButtonLeadingConstraint" destination="hZA-N3-MRn" id="D4j-od-jce"/>
                         <outlet property="upperCaseLabel" destination="o35-fE-Q89" id="LBL-uc-001"/>
+                        <outlet property="upperCaseLabelBottomConstraint" destination="5gl-IZ-APa" id="vfq-DF-WlV"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                         <outlet property="verifyButtonBottomConstraint" destination="g24-ws-BYV" id="8hx-g3-epX"/>
                     </connections>
