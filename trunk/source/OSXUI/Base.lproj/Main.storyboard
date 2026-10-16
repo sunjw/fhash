@@ -541,8 +541,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="o35-fE-Q89" secondAttribute="bottom" constant="20" id="5gl-IZ-APa"/>
+                                    <constraint firstItem="o35-fE-Q89" firstAttribute="leading" secondItem="XaC-qJ-0KX" secondAttribute="trailing" constant="10" id="6G1-tf-WdA"/>
                                     <constraint firstAttribute="bottom" secondItem="T3R-eZ-zFT" secondAttribute="bottom" constant="18" id="8KN-Nh-V36"/>
-                                    <constraint firstItem="o35-fE-Q89" firstAttribute="leading" secondItem="XaC-qJ-0KX" secondAttribute="trailing" constant="10" id="Abc-de-fgH"/>
                                     <constraint firstItem="rrP-Dq-Bp3" firstAttribute="leading" secondItem="o35-fE-Q89" secondAttribute="trailing" constant="20" id="BPu-1O-6hH"/>
                                     <constraint firstItem="PCO-87-Uvg" firstAttribute="leading" secondItem="T3R-eZ-zFT" secondAttribute="trailing" constant="13" id="KKP-Zt-2PQ"/>
                                     <constraint firstAttribute="bottom" secondItem="rrP-Dq-Bp3" secondAttribute="bottom" constant="20" id="Mrd-eA-M6m"/>
@@ -613,7 +613,7 @@
                         <outlet property="upperCaseButton" destination="XaC-qJ-0KX" id="hCe-Ff-tAv"/>
                         <outlet property="upperCaseButtonBottomConstraint" destination="Ydj-cY-H9E" id="x1f-hI-0ce"/>
                         <outlet property="upperCaseButtonLeadingConstraint" destination="hZA-N3-MRn" id="D4j-od-jce"/>
-                        <outlet property="upperCaseLabel" destination="o35-fE-Q89" id="LBL-uc-001"/>
+                        <outlet property="upperCaseLabel" destination="o35-fE-Q89" id="eMh-1h-xde"/>
                         <outlet property="upperCaseLabelBottomConstraint" destination="5gl-IZ-APa" id="vfq-DF-WlV"/>
                         <outlet property="verifyButton" destination="PCO-87-Uvg" id="69X-OM-FQo"/>
                         <outlet property="verifyButtonBottomConstraint" destination="g24-ws-BYV" id="8hx-g3-epX"/>
