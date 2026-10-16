@@ -50,9 +50,9 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet weak var verifyButtonBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var upperCaseButton: NSSwitch!
-    @IBOutlet weak var upperCaseLabel: NSTextField!
     @IBOutlet weak var upperCaseButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var upperCaseButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var upperCaseLabel: NSTextField!
 
     @IBOutlet weak var speedTextField: NSTextField!
     @IBOutlet weak var speedTextFieldBottomConstraint: NSLayoutConstraint!
