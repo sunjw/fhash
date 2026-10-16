@@ -53,6 +53,7 @@ private struct MainViewControllerState: OptionSet {
     @IBOutlet weak var upperCaseButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var upperCaseButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var upperCaseLabel: NSTextField!
+    @IBOutlet weak var upperCaseLabelBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var speedTextField: NSTextField!
     @IBOutlet weak var speedTextFieldBottomConstraint: NSLayoutConstraint!
@@ -122,9 +123,10 @@ private struct MainViewControllerState: OptionSet {
             clearButtonBottomConstraint.constant = 12
             verifyButton.controlSize = .regular
             verifyButtonBottomConstraint.constant = 12
-            upperCaseButton.controlSize = .regular
+            //upperCaseButton.controlSize = .regular
             upperCaseButtonLeadingConstraint.constant = 10
-            upperCaseButtonBottomConstraint.constant = 15
+            upperCaseButtonBottomConstraint.constant = 13
+            upperCaseLabelBottomConstraint.constant = 14
             speedTextFieldBottomConstraint.constant = 14
         }
 
