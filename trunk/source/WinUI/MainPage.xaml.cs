@@ -732,7 +732,7 @@ namespace FilesHashWUI
             //string strDebug = "";
 
             // Only scroll with mouse dragging, not keyboard selecting
-            if (!Win32Helper.IsLeftMouseButtonDown())
+            if (!Win32Helper.IsAnyMouseButtonDown())
                 return;
 
             // cursor position

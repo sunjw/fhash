@@ -70,9 +70,11 @@ namespace SunJWBase
             return (PInvoke.GetAsyncKeyState((int)mouseButton) & 0x8000) != 0;
         }
 
-        public static bool IsLeftMouseButtonDown()
+        // GetAsyncKeyState reports physical buttons, so check all of them to ignore swapped buttons
+        public static bool IsAnyMouseButtonDown()
         {
-            return IsMouseButtonDown(VIRTUAL_KEY.VK_LBUTTON);
+            return IsMouseButtonDown(VIRTUAL_KEY.VK_LBUTTON)
+                || IsMouseButtonDown(VIRTUAL_KEY.VK_RBUTTON);
         }
     }
 }
