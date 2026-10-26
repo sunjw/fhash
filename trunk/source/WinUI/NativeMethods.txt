@@ -1,10 +1,12 @@
 ﻿// constant
+VIRTUAL_KEY
 WIN32_ERROR
 WM_GETMINMAXINFO
 // struct
 MINMAXINFO
 // function
 DefSubclassProc
+GetAsyncKeyState
 GetCurrentPackageId
 GetCursorPos
 GetDpiForWindow

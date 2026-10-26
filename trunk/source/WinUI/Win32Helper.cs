@@ -2,6 +2,7 @@
 using System.Drawing;
 using Windows.Win32;
 using Windows.Win32.Foundation;
+using Windows.Win32.UI.Input.KeyboardAndMouse;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace SunJWBase
@@ -57,6 +58,16 @@ namespace SunJWBase
             Point pointCursor = new();
             PInvoke.GetCursorPos(out pointCursor);
             return pointCursor;
+        }
+
+        internal static bool IsMouseButtonDown(VIRTUAL_KEY mouseButton)
+        {
+            return (PInvoke.GetAsyncKeyState((int)mouseButton) & 0x8000) != 0;
+        }
+
+        public static bool IsLeftMouseButtonDown()
+        {
+            return IsMouseButtonDown(VIRTUAL_KEY.VK_LBUTTON);
         }
 
         public static bool SetForegroundWindow(IntPtr hWnd)

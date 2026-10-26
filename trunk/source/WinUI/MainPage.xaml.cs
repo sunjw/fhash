@@ -731,6 +731,10 @@ namespace FilesHashWUI
         {
             //string strDebug = "";
 
+            // Only scroll with mouse dragging, not keyboard selecting
+            if (!Win32Helper.IsLeftMouseButtonDown())
+                return;
+
             // cursor position
             double scale = m_mainWindow.Scale;
             System.Drawing.Point pointCursor = m_mainWindow.GetCursorRelativePoint();
