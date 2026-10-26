@@ -21,12 +21,6 @@ namespace SunJWBase
             return isPackaged;
         }
 
-        public static double GetScaleFactor(IntPtr hWnd)
-        {
-            double dpi = PInvoke.GetDpiForWindow(new HWND(hWnd));
-            return dpi / 96.0;
-        }
-
         public static bool IsWindowMaximize(IntPtr hWnd)
         {
             WINDOWPLACEMENT windowPlacement = default;
@@ -41,6 +35,17 @@ namespace SunJWBase
         public static void MaximizeWindow(IntPtr hWnd)
         {
             PInvoke.ShowWindow(new HWND(hWnd), SHOW_WINDOW_CMD.SW_MAXIMIZE);
+        }
+
+        public static bool SetForegroundWindow(IntPtr hWnd)
+        {
+            return PInvoke.SetForegroundWindow(new HWND(hWnd));
+        }
+
+        public static double GetScaleFactor(IntPtr hWnd)
+        {
+            double dpi = PInvoke.GetDpiForWindow(new HWND(hWnd));
+            return dpi / 96.0;
         }
 
         public static int GetScaledPixel(int pixel, double scale)
@@ -68,11 +73,6 @@ namespace SunJWBase
         public static bool IsLeftMouseButtonDown()
         {
             return IsMouseButtonDown(VIRTUAL_KEY.VK_LBUTTON);
-        }
-
-        public static bool SetForegroundWindow(IntPtr hWnd)
-        {
-            return PInvoke.SetForegroundWindow(new HWND(hWnd));
         }
     }
 }
