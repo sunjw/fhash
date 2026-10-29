@@ -25,6 +25,9 @@ import Cocoa
                 // Resizable only with large rounded ui, default size is also the minimum size.
                 window?.styleMask.insert(.resizable)
                 window?.contentMinSize = MainWindowController.WindowContentSizeLargeRoundedAfter26
+                // Disable full screen, the zoom button still works.
+                window?.collectionBehavior.insert(.fullScreenNone)
+                window?.collectionBehavior.remove(.fullScreenPrimary)
             }
             self.initToolbar()
         } else {
