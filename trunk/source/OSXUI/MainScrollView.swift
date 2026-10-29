@@ -8,6 +8,32 @@
 
 import Cocoa
 
+// NSTextView scrolls to its selection (centered) when its frame size changes or
+// a live resize ends, which makes the content drift when resizing the window. Ignore it.
+@objc(MainTextView) class MainTextView: NSTextView {
+    private var isSettingFrameSize = false
+    private var isEndingLiveResize = false
+
+    override func setFrameSize(_ newSize: NSSize) {
+        isSettingFrameSize = true
+        super.setFrameSize(newSize)
+        isSettingFrameSize = false
+    }
+
+    override func viewDidEndLiveResize() {
+        isEndingLiveResize = true
+        super.viewDidEndLiveResize()
+        isEndingLiveResize = false
+    }
+
+    override func scrollToVisible(_ rect: NSRect) -> Bool {
+        if isSettingFrameSize || isEndingLiveResize || (window?.inLiveResize ?? false) {
+            return false
+        }
+        return super.scrollToVisible(rect)
+    }
+}
+
 @objc(MainScrollView) class MainScrollView: NSScrollView {
     weak var mainViewController: MainViewController?
     private var scrollTopEdgeView: ScrollTopEdgeGaussianBlurView?
