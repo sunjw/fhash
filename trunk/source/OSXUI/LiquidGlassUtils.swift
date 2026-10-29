@@ -13,9 +13,17 @@ public enum LiquidGlassUI {
     private static let forceNoLargeRounded = false
     private static let forceNoFakeSoftEdge = false
     private static let forceNoTrafficLightGlass = true
+    private static let forceNoWindowResize = false
 
     static func enableLargeRounded() -> Bool {
         if (forceNoLargeRounded || MacSwiftUtils.IsSystemEarlierThan(26, 0)) {
+            return false
+        }
+        return true
+    }
+
+    static func enableWindowResize() -> Bool {
+        if (forceNoWindowResize || MacSwiftUtils.IsSystemEarlierThan(27, 0)) {
             return false
         }
         return true

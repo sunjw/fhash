@@ -21,6 +21,11 @@ import Cocoa
         if LiquidGlassUI.enableLargeRounded() {
             // Large rounded ui
             window?.setContentSize(MainWindowController.WindowContentSizeLargeRoundedAfter26)
+            if LiquidGlassUI.enableWindowResize() {
+                // Resizable only with large rounded ui, default size is also the minimum size.
+                window?.styleMask.insert(.resizable)
+                window?.contentMinSize = MainWindowController.WindowContentSizeLargeRoundedAfter26
+            }
             self.initToolbar()
         } else {
             window?.setContentSize(MainWindowController.WindowContentSize)
