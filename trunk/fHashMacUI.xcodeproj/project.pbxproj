@@ -13,6 +13,7 @@
 		413870E22B1F20C500448A6F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413870E12B1F20C500448A6F /* AboutViewController.swift */; };
 		4142A2B42E7D5A3000F43F56 /* fHashIconTahoe.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4142A2B32E7D5A3000F43F56 /* fHashIconTahoe.icon */; };
 		4142AB552E7AA0E10072FE1B /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4142AB542E7AA0E10072FE1B /* MainScrollView.swift */; };
+		4164C6C430932489005E089A /* MainTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4164C6C330932489005E089A /* MainTextView.swift */; };
 		4165F3B5302EF13D0047595D /* AboutSwiftUIWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4165F3B4302EF13D0047595D /* AboutSwiftUIWindowController.swift */; };
 		4165F3B7302EF2630047595D /* AboutSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4165F3B6302EF2630047595D /* AboutSwiftUIView.swift */; };
 		41666E031B67415300A1D71F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41666E051B67415300A1D71F /* Localizable.strings */; };
@@ -55,6 +56,7 @@
 		4142AB542E7AA0E10072FE1B /* MainScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
 		415F8D6E28CF558500D8971C /* ThreadPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ThreadPool.h; path = source/Common/ThreadPool.h; sourceTree = "<group>"; };
 		4163EC952850A2C900453333 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = stdafx.h; path = source/OSXUI/stdafx.h; sourceTree = "<group>"; };
+		4164C6C330932489005E089A /* MainTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTextView.swift; sourceTree = "<group>"; };
 		4165F3B4302EF13D0047595D /* AboutSwiftUIWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSwiftUIWindowController.swift; sourceTree = "<group>"; };
 		4165F3B6302EF2630047595D /* AboutSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSwiftUIView.swift; sourceTree = "<group>"; };
 		41666E041B67415300A1D71F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				52225819213CF24300012EF8 /* MacUtils.mm */,
 				41AAAF382B1D931A00146768 /* MacSwiftUtils.swift */,
 				4142AB542E7AA0E10072FE1B /* MainScrollView.swift */,
+				4164C6C330932489005E089A /* MainTextView.swift */,
 				41B45DFA2B269F9500846043 /* MainView.swift */,
 				4119D65E2B2012B70005D7E5 /* MainViewController.swift */,
 				417AC3D72B19D1BC003DFFAF /* MainWindowController.swift */,
@@ -324,6 +327,7 @@
 				411E07D12F9B63CC00435298 /* LiquidGlassUtils.swift in Sources */,
 				41B6B5552D017DAB00697E22 /* DockProgress.swift in Sources */,
 				41B6B5562D017DAB00697E22 /* DockProgressUtilities.swift in Sources */,
+				4164C6C430932489005E089A /* MainTextView.swift in Sources */,
 				4165F3B5302EF13D0047595D /* AboutSwiftUIWindowController.swift in Sources */,
 				5222581B213CF24300012EF8 /* MacUtils.mm in Sources */,
 				417AC3D42B19C992003DFFAF /* PaddingClipView.swift in Sources */,
