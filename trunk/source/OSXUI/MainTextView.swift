@@ -15,19 +15,30 @@ import Cocoa
     private var isEndingLiveResize = false
 
     override func setFrameSize(_ newSize: NSSize) {
+        guard LiquidGlassUI.enableWindowResize() else {
+            super.setFrameSize(newSize)
+            return
+        }
+
         isSettingFrameSize = true
         super.setFrameSize(newSize)
         isSettingFrameSize = false
     }
 
     override func viewDidEndLiveResize() {
+        guard LiquidGlassUI.enableWindowResize() else {
+            super.viewDidEndLiveResize()
+            return
+        }
+
         isEndingLiveResize = true
         super.viewDidEndLiveResize()
         isEndingLiveResize = false
     }
 
     override func scrollToVisible(_ rect: NSRect) -> Bool {
-        if isSettingFrameSize || isEndingLiveResize || (window?.inLiveResize ?? false) {
+        if LiquidGlassUI.enableWindowResize() &&
+            (isSettingFrameSize || isEndingLiveResize || (window?.inLiveResize ?? false)) {
             return false
         }
         return super.scrollToVisible(rect)
