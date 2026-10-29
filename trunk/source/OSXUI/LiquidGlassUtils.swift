@@ -178,8 +178,6 @@ public enum LiquidGlassUI {
     }
 
     private func setup() {
-        translatesAutoresizingMaskIntoConstraints = false
-
         wantsLayer = true
         layerUsesCoreImageFilters = true
 
@@ -260,7 +258,16 @@ public enum LiquidGlassUI {
 
     override func layout() {
         super.layout()
+        updateLayerFrames()
+    }
 
+    // layout() may not be called when only the frame size changes (window resize).
+    override func setFrameSize(_ newSize: NSSize) {
+        super.setFrameSize(newSize)
+        updateLayerFrames()
+    }
+
+    private func updateLayerFrames() {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
 

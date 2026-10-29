@@ -11,6 +11,7 @@ import Cocoa
 @objc(MainScrollView) class MainScrollView: NSScrollView {
     weak var mainViewController: MainViewController?
     private var scrollTopEdgeView: ScrollTopEdgeGaussianBlurView?
+    private var scrollTopEdgeHeight: CGFloat = 0
 
     override func addSubview(_ view: NSView) {
         let viewClassName = String(describing: type(of: view))
@@ -55,12 +56,13 @@ import Cocoa
     }
 
     private func setupScrollTopEdgeView(targetView: NSView, height: Int) {
+        scrollTopEdgeHeight = CGFloat(height)
+
         if scrollTopEdgeView == nil {
             scrollTopEdgeView = ScrollTopEdgeGaussianBlurView(
                 frame: CGRect(x: 0, y: 0,
                               width: Int(bounds.width),
                               height: height))
-            scrollTopEdgeView?.autoresizingMask = [.width]
         }
 
         guard let scrollTopEdgeView else { return }
@@ -68,14 +70,22 @@ import Cocoa
         scrollTopEdgeView.removeFromSuperview()
         self.addSubview(scrollTopEdgeView, positioned: .below, relativeTo: targetView)
 
-        NSLayoutConstraint.activate([
-            scrollTopEdgeView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            scrollTopEdgeView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollTopEdgeView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollTopEdgeView.heightAnchor.constraint(equalToConstant: CGFloat(height))
-        ])
-
+        self.updateScrollTopEdgeViewFrame()
         self.updateScrollTopEdgeViewVisible()
+    }
+
+    // NSScrollView lays out its subviews by itself, so use frame instead of constraints.
+    private func updateScrollTopEdgeViewFrame() {
+        guard let scrollTopEdgeView else { return }
+        scrollTopEdgeView.frame = CGRect(x: 0,
+                                         y: isFlipped ? 0 : bounds.height - scrollTopEdgeHeight,
+                                         width: bounds.width,
+                                         height: scrollTopEdgeHeight)
+    }
+
+    override func tile() {
+        super.tile()
+        self.updateScrollTopEdgeViewFrame()
     }
 
     func updateScrollTopEdgeViewVisible() {
