@@ -1,3 +1,8 @@
+26.11.58 (169) 🐿️ 2026-11-19  
+Windows WinUI: 更新组件  
+macOS: 适配 Golden Gate 设计  
+修复其它问题  
+
 26.10.56 (165) 🌉 2026-10-13  
 Windows WinUI: 更新组件  
 macOS: 支持 macOS 15 及以后版本  
